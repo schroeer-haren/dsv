@@ -48,6 +48,41 @@ grep -n -A20 "Wettkampfdefinitionsliste" spec/dsv8.md
 diff spec/dsv7.md spec/dsv8.md | less   # Unterschiede zwischen den Formaten
 ```
 
+## Testdaten
+
+Drei getrennte Bestände – die Trennung ist bewusst und darf nicht aufgeweicht
+werden:
+
+| Ort                    | Git       | Inhalt                                        |
+| ---------------------- | --------- | --------------------------------------------- |
+| `spec/samples/`        | ignoriert | Originaldateien mit Klarnamen realer Personen |
+| `test/fixtures/real/`  | committet | dieselben Dateien, anonymisiert               |
+| `test/fixtures/synth/` | committet | synthetisch, deckt alle Schemafelder ab       |
+
+Echte DSV-Dateien enthalten Name, Jahrgang, Geschlecht, DSV-ID und Verein – bei
+Nachwuchswettkämpfen also Daten von Kindern. **Niemals Originaldateien
+committen.** Anonymisiert wird mit `scripts/anonymize.ts`; das Skript ersetzt
+Namen und randomisiert DSV-IDs, lässt Struktur, Zeiten, Whitespace und
+Zeilenenden aber byte-genau unangetastet – der Testwert steckt in den
+Formateigenheiten, nicht in den Klarnamen.
+
+### Was echte Dateien anders machen als die Spec
+
+Befunde aus dem gesammelten Bestand, alle parser-relevant:
+
+- **`FORMAT:` steht nie in Zeile 1.** Davor steht ein Erzeuger-Kommentar
+  `(* erzeugt mit EasyWk ... *)`. „FORMAT muss erstes Element sein" heißt:
+  erstes _Element_ – Kommentarzeilen zählen nicht mit.
+- **Leerzeichen nach dem Doppelpunkt**: EasyWk schreibt
+  `FORMAT: Wettkampfergebnisliste;7;`, Splash schreibt es ohne. Immer trimmen.
+- **Encoding durchgehend UTF-8**, kein CP1252.
+- **Zeilenenden überwiegend CRLF**, vereinzelt LF. Beides muss gehen.
+- **Dateinamen folgen der Spec-Konvention meist nicht** (`-Protokoll.dsv7` statt
+  `-Pr`, teils `.txt`). Die Listenart **ausschließlich** aus `FORMAT:` lesen,
+  nie aus dem Dateinamen.
+- Der Bestand ist stark EasyWk-lastig; Dateien aus Splash Meet Manager sind für
+  Robustheitstests überproportional wertvoll.
+
 ## Stack
 
 - TypeScript (strict), ESM als Quellformat
