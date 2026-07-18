@@ -26,3 +26,33 @@ describe('lexLine — Eigenschaften', () => {
     );
   });
 });
+
+describe('lexLine — Kommentar-Pfad', () => {
+  /**
+   * Die Property oben kann den Kommentar-Pfad nicht erreichen: Sie baut immer
+   * Zeilen mit abschliessendem Semikolon, und `splitTrailingComment` verlangt,
+   * dass die Zeile auf `*)` endet. Dieser Generator hängt deshalb gezielt einen
+   * Kommentar an.
+   */
+  const kommentarInhalt = fc.stringMatching(/^[^;\r\n*]*$/);
+
+  it('trennt einen angehängten Kommentar ab, ohne die Felder zu verändern', () => {
+    fc.assert(
+      fc.property(fc.array(zk, { minLength: 1, maxLength: 6 }), kommentarInhalt, (fields, text) => {
+        const kommentar = `(*${text}*)`;
+        const lexed = lexLine(`X:${fields.join(';')}; ${kommentar}`, 1);
+        if (lexed.kind !== 'element') throw new Error('erwartet: element');
+        expect(lexed.rawFields).toEqual(fields);
+        expect(lexed.comment).toBe(` ${kommentar}`);
+      }),
+    );
+  });
+
+  it('behandelt einen Kommentar ohne vorangehendes Semikolon als Feldinhalt', () => {
+    // Bewusste Grenze des Lexers: Ohne Terminator davor ist es kein Kommentar.
+    const lexed = lexLine('X:wert (* kein Kommentar *)', 1);
+    if (lexed.kind !== 'element') throw new Error('erwartet: element');
+    expect(lexed.comment).toBeNull();
+    expect(lexed.fields).toEqual(['wert (* kein Kommentar *)']);
+  });
+});
