@@ -186,6 +186,29 @@ describe('Wettkampfdefinitionslisten aus test/fixtures/real', () => {
       }
     }
   });
+
+  /**
+   * Erwartete Abweichung: Zwei echte Dateien lassen bei Finals die
+   * Qualifikationswettkampfnr leer, obwohl dsv8.md:1110 sie verlangt. Deshalb
+   * ist die Regel eine Warnung. Steigt die Zahl, ist das ein Fund.
+   */
+  it('warnt genau 22-mal wegen fehlender Qualifikationswettkampfnr', () => {
+    const warnings = realLists.flatMap((name) =>
+      parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'))
+        .diagnostics.filter(
+          (d) => d.code === 'conditional-field-required' && d.severity === 'warning',
+        )
+        .map((d) => ({ name, data: d.data })),
+    );
+
+    expect(warnings).toHaveLength(22);
+    expect(new Set(warnings.map((w) => w.name))).toEqual(
+      new Set(['b-csc-2026-02-22-Gersthof-Wk.dsv7', 'b-freital-2026-07-04-Windbergfest-Wk.dsv7']),
+    );
+    for (const warning of warnings) {
+      expect(warning.data).toMatchObject({ field: 'qualifikationswettkampfnr' });
+    }
+  });
 });
 
 describe('Wettkampfdefinitionslisten aus test/fixtures/synth', () => {

@@ -226,6 +226,44 @@ describe('validateDocument', () => {
     });
   });
 
+  describe('Qualifikationswettkampf bei Zwischenlauf und Finale', () => {
+    const wettkampf = (art: string, qualifikationsnr: string): string[] => [
+      '2',
+      art,
+      '1',
+      '1',
+      '50',
+      'F',
+      'GL',
+      'M',
+      'SW',
+      qualifikationsnr,
+      qualifikationsnr === '' ? '' : 'V',
+    ];
+
+    // Nur eine Warnung: 22 der 67 Zwischenläufe und Finals in
+    // test/fixtures/real lassen das Feld leer, siehe validate-document.ts.
+    it.each(['Z', 'F'])('warnt bei Wettkampfart %s ohne Qualifikationswettkampfnr', (art) => {
+      const diagnostics = validate(replace(minimal(8), 'WETTKAMPF', wettkampf(art, '')));
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['conditional-field-required']);
+      expect(diagnostics[0]?.severity).toBe('warning');
+      expect(diagnostics[0]?.data).toMatchObject({
+        element: 'WETTKAMPF',
+        field: 'qualifikationswettkampfnr',
+        condition: art,
+      });
+    });
+
+    it.each(['Z', 'F'])('akzeptiert Wettkampfart %s mit Qualifikationswettkampfnr', (art) => {
+      expect(validate(replace(minimal(8), 'WETTKAMPF', wettkampf(art, '1')))).toEqual([]);
+    });
+
+    it.each(['V', 'E'])('verlangt bei Wettkampfart %s keine Qualifikationswettkampfnr', (art) => {
+      expect(validate(replace(minimal(8), 'WETTKAMPF', wettkampf(art, '')))).toEqual([]);
+    });
+  });
+
   describe('Feld- und Wertprüfungen je Record', () => {
     it('führt die Feldanzahlprüfung mit', () => {
       const lines = replace(minimal(), 'MELDESCHLUSS', ['01.05.2026']);

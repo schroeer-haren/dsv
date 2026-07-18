@@ -56,8 +56,23 @@ function validateCardinalities(
 }
 
 /** Feldindizes im WETTKAMPF-Record, in DSV7 und DSV8 gleich. */
+const WETTKAMPF_ART = 1;
 const WETTKAMPF_TECHNIK = 5;
 const WETTKAMPF_AUSUEBUNG = 6;
+const WETTKAMPF_QUALIFIKATIONSNR = 9;
+
+/**
+ * Wettkampfarten, die sich aus einem vorherigen Lauf speisen und deshalb dessen
+ * Nummer nennen müssen (dsv8.md:1110).
+ *
+ * Gemeldet als `warning`, nicht als `error`: Von den 67 Zwischenläufen und
+ * Finals in `test/fixtures/real` lassen 22 das Feld leer, verteilt auf zwei
+ * Dateien (b-csc-2026-02-22-Gersthof-Wk.dsv7 und
+ * b-freital-2026-07-04-Windbergfest-Wk.dsv7). Dort trägt erst der Kommentar die
+ * Zuordnung, etwa „50m Rücken weiblich (Finale)" zu Wettkampf 103. Als Fehler
+ * gemeldet wiese die Bibliothek Ausschreibungen zurück, die real im Umlauf sind.
+ */
+const QUALIFIZIERENDE_ARTEN = new Set(['Z', 'F']);
 
 /** Ausübungswerte, die nur bei Technik `S` zulässig sind (dsv8.md:1070). */
 const KICK_AUSUEBUNGEN = new Set(['KB', 'KR']);
@@ -91,22 +106,46 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>): Diagnostic[] {
     // Kicks in Bauch- und Rückenlage gibt es nur als Schmetterling
     // (dsv8.md:1070, dsv8.md:1072).
     const ausuebung = (record.fields[WETTKAMPF_AUSUEBUNG] ?? '').trim();
-    if (!KICK_AUSUEBUNGEN.has(ausuebung)) continue;
-
     const technik = (record.fields[WETTKAMPF_TECHNIK] ?? '').trim();
-    if (technik === 'S') continue;
 
-    diagnostics.push(
-      createDiagnostic(
-        'invalid-value',
-        'error',
-        `WETTKAMPF.ausuebung: "${ausuebung}" is only allowed with technik S, found "${technik}"`,
-        {
-          ...at(record.line),
-          data: { element: 'WETTKAMPF', field: 'ausuebung', value: ausuebung, technik },
-        },
-      ),
-    );
+    if (KICK_AUSUEBUNGEN.has(ausuebung) && technik !== 'S') {
+      diagnostics.push(
+        createDiagnostic(
+          'invalid-value',
+          'error',
+          `WETTKAMPF.ausuebung: "${ausuebung}" is only allowed with technik S, found "${technik}"`,
+          {
+            ...at(record.line),
+            data: { element: 'WETTKAMPF', field: 'ausuebung', value: ausuebung, technik },
+          },
+        ),
+      );
+    }
+
+    // Zwischenläufe und Finals nennen den Lauf, der für sie qualifiziert
+    // (dsv8.md:1110).
+    const art = (record.fields[WETTKAMPF_ART] ?? '').trim();
+
+    if (
+      QUALIFIZIERENDE_ARTEN.has(art) &&
+      (record.fields[WETTKAMPF_QUALIFIKATIONSNR] ?? '').trim() === ''
+    ) {
+      diagnostics.push(
+        createDiagnostic(
+          'conditional-field-required',
+          'warning',
+          `WETTKAMPF of type ${art} should name a qualifikationswettkampfnr`,
+          {
+            ...at(record.line),
+            data: {
+              element: 'WETTKAMPF',
+              field: 'qualifikationswettkampfnr',
+              condition: art,
+            },
+          },
+        ),
+      );
+    }
   }
 
   for (const record of byElement.get('MELDEGELD') ?? []) {
