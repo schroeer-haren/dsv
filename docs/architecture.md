@@ -74,10 +74,10 @@ umso wichtiger wird: Breite entsteht am Ende, nicht am Anfang.
 Punkt 5 ist der Kern: der Schlüssel für eine Elementdefinition ist
 `(Listenart, Elementname)`, nicht der Elementname allein.
 
-## Befunde aus 100 echten Dateien
+## Befunde aus 108 echten Dateien
 
-Gesammelter Bestand in `spec/samples/`: 71 Wettkampfergebnislisten, 29
-Wettkampfdefinitionslisten; 95× DSV7, 5× DSV6, **0× DSV8**. Erzeuger: 83×
+Gesammelter Bestand in `spec/samples/`: 75 Wettkampfergebnislisten, 33
+Wettkampfdefinitionslisten; 103× DSV7, 5× DSV6, **0× DSV8**. Erzeuger: 83×
 EasyWk, 9× SPLASH Meet Manager 11.
 
 Was die Realität anders macht als die Spec – jeder Punkt ist ein Parser-Bug in
@@ -486,7 +486,11 @@ jede interne Umbenennung zum Breaking Change.
   Rewrite. Ein Benchmark mit einer synthetischen 50-MB-Datei vor 1.0 beendet die
   Diskussion empirisch.
 - **Meldegeldberechnung** – Fachlogik, kein Parsen.
-- **DSV6** – veraltet.
+- **DSV6** – veraltet. Ab der Schema-Ebene mit `fatal`-Diagnostic ablehnen.
+- **DSV7↔DSV8-Konvertierung** und **Dateinamen-Helfer** – beide gewollt und
+  günstig zu bauen (siehe oben), setzen aber vollständige Schemata beider
+  Formatversionen voraus. Nach 1.0, weil sie den Weg dorthin nicht verkürzen
+  und die mit 1.0 einzufrierende API-Oberfläche vergrößern.
 - **High-Level-Schreibpfad.** Schreiben ist voll im Umfang, aber über die
   Low-Level-Ebene. Ein zweites Mutationsmodell auf dem Objektgraph wäre die
   eigentliche Verdopplung des Wartungsaufwands – der Nutzen gegenüber
