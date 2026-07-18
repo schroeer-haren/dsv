@@ -26,6 +26,8 @@ export type DiagnosticCode =
   | 'conditional-field-required'
   | 'unsupported-format-version'
   | 'wrong-list-type'
+  | 'dangling-reference'
+  | 'ambiguous-reference'
   | 'empty-input';
 
 export interface Diagnostic {

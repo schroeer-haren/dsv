@@ -11,6 +11,7 @@
 
 export { parseDsv, parseDsvOrThrow, DsvParseError } from './parse/parse-dsv.js';
 export { parseWettkampfdefinitionsliste } from './parse/parse-wettkampfdefinitionsliste.js';
+export { projectWettkampfdefinitionsliste } from './document/wettkampfdefinitionsliste.js';
 export { writeDsv } from './write/write-dsv.js';
 export {
   writeWettkampfdefinitionsliste,
@@ -24,6 +25,17 @@ export type {
   Wettkampfdefinitionsliste,
 } from './parse/parse-wettkampfdefinitionsliste.js';
 export type { FormatVersion } from './validate/validate-fields.js';
+
+export type {
+  Abschnitt,
+  Pflichtzeit,
+  ProjectionResult,
+  Veranstaltung,
+  Wertung,
+  Wettkampf,
+  Wettkampfdefinition,
+} from './document/wettkampfdefinitionsliste.js';
+export type { Datum } from './values/datum.js';
 
 export type {
   DsvDocument,
