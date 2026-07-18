@@ -22,16 +22,12 @@ hier entsprechend zugeschnitten. Das Abbruchkriterium der Spec bleibt unberührt
 
 ## Arbeitsweise
 
-Die Umsetzung läuft auf einem Branch, nicht direkt auf `main`:
+Die Umsetzung läuft direkt auf `main`, ein Task-Commit je Schritt.
 
-```bash
-git switch -c feat/m0-m1-fundament
-```
-
-Alle Task-Commits gehen dorthin. Erst nach Task 17, Schritt 2 — also nach
-bestandenem Test-Review-Zyklus — wird nach `main` gebracht und getaggt. Damit
-bleibt `main` durchgehend releasefähig, und der Release-Workflow feuert nicht
-auf halbfertigen Zwischenständen.
+Das ist ausdrücklich abgestimmt. Es ist vertretbar, weil der Release-Workflow
+nicht auf Pushes feuert, sondern nur auf ein veröffentlichtes GitHub-Release —
+Zwischenstände auf `main` lösen also keine Veröffentlichung aus. Getaggt wird
+erst nach bestandenem Test-Review-Zyklus in Task 17.
 
 ## Domänenwissen für Umsetzende
 
@@ -1848,9 +1844,6 @@ typisierte Listenarten.
 git add CHANGELOG.md
 git commit -m "docs: add changelog for 0.1.0"
 
-# Branch nach main bringen — erst jetzt, nach bestandenem Review-Zyklus
-git switch main
-git merge --no-ff feat/m0-m1-fundament
 npm run check && npm run build
 git push origin main
 
