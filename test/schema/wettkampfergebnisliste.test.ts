@@ -3,14 +3,23 @@ import type { ElementDef } from '../../src/schema/types.js';
 import {
   ABSCHNITT,
   AUSRICHTER,
+  DATEIENDE,
   ERZEUGER,
   FORMAT,
   KAMPFGERICHT,
+  PNERGEBNIS,
+  PNREAKTION,
+  PNZWISCHENZEIT,
+  STABLOESE,
+  STAFFELPERSON,
+  STERGEBNIS,
+  STZWISCHENZEIT,
   VERANSTALTER,
   VERANSTALTUNG,
   VEREIN,
   WERTUNG,
   WETTKAMPF,
+  WETTKAMPFERGEBNISLISTE,
 } from '../../src/schema/wettkampfergebnisliste.js';
 
 /** Namen der Felder in der Reihenfolge der Spezifikation. */
@@ -284,6 +293,272 @@ describe('Wettkampfergebnisliste — Wettkampf, Wertung, Verein', () => {
     ];
 
     for (const def of kopf) {
+      for (const f of def.fields) {
+        expect(f.specRef, `${def.name}.${f.name}`).toMatch(/^dsv8\.md:\d+$/);
+      }
+    }
+  });
+});
+
+describe('Wettkampfergebnisliste — Ergebniselemente', () => {
+  it('benennt PNERGEBNIS', () => {
+    expect(names(PNERGEBNIS)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsId',
+      'platz',
+      'grundDerNichtwertung',
+      'name',
+      'dsvId',
+      'veranstaltungsId',
+      'geschlecht',
+      'jahrgang',
+      'altersklasse',
+      'verein',
+      'vereinskennzahl',
+      'endzeit',
+      'disqualifikationsbemerkung',
+      'erhoehtesNachtraeglichesMeldegeld',
+      'nationalitaet1',
+      'nationalitaet2',
+      'nationalitaet3',
+    ]);
+    expect(requiredNames(PNERGEBNIS)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsId',
+      'platz',
+      'name',
+      'dsvId',
+      'veranstaltungsId',
+      'geschlecht',
+      'jahrgang',
+      'verein',
+      'vereinskennzahl',
+      'endzeit',
+    ]);
+    expect(enumValues(PNERGEBNIS, 'grundDerNichtwertung')).toEqual(['DS', 'NA', 'AB', 'AU', 'ZU']);
+    expect(enumValues(PNERGEBNIS, 'erhoehtesNachtraeglichesMeldegeld')).toEqual(['E', 'F', 'N']);
+  });
+
+  it('kennt bei Personen kein X als Geschlecht', () => {
+    // Anders als WETTKAMPF und WERTUNG: X steht für gemischte Wettkämpfe
+    // beziehungsweise Wertungen, nie für eine einzelne Person.
+    expect(enumValues(PNERGEBNIS, 'geschlecht')).toEqual(['M', 'W', 'D']);
+    expect(enumValues(PNERGEBNIS, 'geschlecht')).not.toContain('X');
+    expect(enumValues(STAFFELPERSON, 'geschlecht')).toEqual(['M', 'W', 'D']);
+    expect(enumValues(WETTKAMPF, 'geschlecht')).toContain('X');
+  });
+
+  it('benennt PNZWISCHENZEIT', () => {
+    expect(names(PNZWISCHENZEIT)).toEqual([
+      'veranstaltungsId',
+      'wettkampfnr',
+      'wettkampfart',
+      'distanz',
+      'zwischenzeit',
+    ]);
+    expect(requiredNames(PNZWISCHENZEIT)).toEqual(names(PNZWISCHENZEIT));
+  });
+
+  it('benennt PNREAKTION mit Vorzeichen als Unterlassungswert', () => {
+    expect(names(PNREAKTION)).toEqual([
+      'veranstaltungsId',
+      'wettkampfnr',
+      'wettkampfart',
+      'art',
+      'reaktionszeit',
+    ]);
+    expect(requiredNames(PNREAKTION)).toEqual([
+      'veranstaltungsId',
+      'wettkampfnr',
+      'wettkampfart',
+      'reaktionszeit',
+    ]);
+    expect(PNREAKTION.fields.find((f) => f.name === 'art')?.default).toBe('+');
+    expect(enumValues(PNREAKTION, 'art')).toEqual(['+', '-']);
+  });
+
+  it('benennt STERGEBNIS', () => {
+    expect(names(STERGEBNIS)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsId',
+      'platz',
+      'grundDerNichtwertung',
+      'nummerDerMannschaft',
+      'veranstaltungsId',
+      'verein',
+      'vereinskennzahl',
+      'endzeit',
+      'startnummerDisqualifiziert',
+      'disqualifikationsbemerkung',
+      'erhoehtesNachtraeglichesMeldegeld',
+    ]);
+    expect(requiredNames(STERGEBNIS)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsId',
+      'platz',
+      'nummerDerMannschaft',
+      'veranstaltungsId',
+      'verein',
+      'vereinskennzahl',
+      'endzeit',
+    ]);
+    expect(enumValues(STERGEBNIS, 'grundDerNichtwertung')).toEqual(['DS', 'NA', 'AB', 'AU', 'ZU']);
+  });
+
+  it('benennt STAFFELPERSON', () => {
+    expect(names(STAFFELPERSON)).toEqual([
+      'veranstaltungsIdStaffel',
+      'wettkampfnr',
+      'wettkampfart',
+      'name',
+      'dsvId',
+      'startnummer',
+      'geschlecht',
+      'jahrgang',
+      'altersklasse',
+      'nationalitaet1',
+      'nationalitaet2',
+      'nationalitaet3',
+    ]);
+    expect(requiredNames(STAFFELPERSON)).toEqual([
+      'veranstaltungsIdStaffel',
+      'wettkampfnr',
+      'wettkampfart',
+      'name',
+      'dsvId',
+      'startnummer',
+      'geschlecht',
+      'jahrgang',
+    ]);
+  });
+
+  it('benennt STZWISCHENZEIT', () => {
+    expect(names(STZWISCHENZEIT)).toEqual([
+      'veranstaltungsIdStaffel',
+      'wettkampfnr',
+      'wettkampfart',
+      'startnummer',
+      'distanz',
+      'zwischenzeit',
+    ]);
+    expect(requiredNames(STZWISCHENZEIT)).toEqual(names(STZWISCHENZEIT));
+  });
+
+  it('benennt STABLOESE', () => {
+    // Kommt in keiner der 75 echten Dateien vor; allein aus der
+    // Spezifikation abgeleitet.
+    expect(STABLOESE.name).toBe('STABLOESE');
+    expect(names(STABLOESE)).toEqual([
+      'veranstaltungsIdStaffel',
+      'wettkampfnr',
+      'wettkampfart',
+      'startnummer',
+      'art',
+      'reaktionszeit',
+    ]);
+    expect(requiredNames(STABLOESE)).toEqual([
+      'veranstaltungsIdStaffel',
+      'wettkampfnr',
+      'wettkampfart',
+      'startnummer',
+      'reaktionszeit',
+    ]);
+    expect(STABLOESE.fields.find((f) => f.name === 'art')?.default).toBe('+');
+    expect(enumValues(STABLOESE, 'art')).toEqual(['+', '-']);
+  });
+
+  it('führt in allen Ergebniselementen dieselben Wettkampfarten', () => {
+    const mitWettkampfart = [
+      PNERGEBNIS,
+      PNZWISCHENZEIT,
+      PNREAKTION,
+      STERGEBNIS,
+      STAFFELPERSON,
+      STZWISCHENZEIT,
+      STABLOESE,
+    ];
+
+    for (const def of mitWettkampfart) {
+      expect(enumValues(def, 'wettkampfart'), def.name).toEqual(wettkampfartWerte);
+    }
+  });
+
+  it('führt DATEIENDE ohne Attribute', () => {
+    expect(DATEIENDE.name).toBe('DATEIENDE');
+    expect(DATEIENDE.fields).toEqual([]);
+    expect(DATEIENDE.bare).toBe(true);
+  });
+});
+
+describe('WETTKAMPFERGEBNISLISTE', () => {
+  it('kennt die Listart', () => {
+    expect(WETTKAMPFERGEBNISLISTE.listenart).toBe('Wettkampfergebnisliste');
+  });
+
+  it('führt 18 Elemente in der Reihenfolge der Spezifikation', () => {
+    expect(WETTKAMPFERGEBNISLISTE.elements.map((e) => e.def.name)).toEqual([
+      'FORMAT',
+      'ERZEUGER',
+      'VERANSTALTUNG',
+      'VERANSTALTER',
+      'AUSRICHTER',
+      'ABSCHNITT',
+      'KAMPFGERICHT',
+      'WETTKAMPF',
+      'WERTUNG',
+      'VEREIN',
+      'PNERGEBNIS',
+      'PNZWISCHENZEIT',
+      'PNREAKTION',
+      'STERGEBNIS',
+      'STAFFELPERSON',
+      'STZWISCHENZEIT',
+      'STABLOESE',
+      'DATEIENDE',
+    ]);
+    expect(WETTKAMPFERGEBNISLISTE.elements).toHaveLength(18);
+  });
+
+  it('führt die Kardinalitäten je Element', () => {
+    const card = (name: string): string => {
+      const found = WETTKAMPFERGEBNISLISTE.find(name);
+      if (found === undefined) throw new Error(`Element ${name} fehlt`);
+      return `${found.min}..${found.max === null ? 'N' : found.max}`;
+    };
+
+    for (const name of [
+      'FORMAT',
+      'ERZEUGER',
+      'VERANSTALTUNG',
+      'VERANSTALTER',
+      'AUSRICHTER',
+      'DATEIENDE',
+    ]) {
+      expect(card(name), name).toBe('1..1');
+    }
+    for (const name of ['ABSCHNITT', 'WETTKAMPF', 'WERTUNG', 'VEREIN']) {
+      expect(card(name), name).toBe('1..N');
+    }
+    for (const name of [
+      'KAMPFGERICHT',
+      'PNERGEBNIS',
+      'PNZWISCHENZEIT',
+      'PNREAKTION',
+      'STERGEBNIS',
+      'STAFFELPERSON',
+      'STZWISCHENZEIT',
+      'STABLOESE',
+    ]) {
+      expect(card(name), name).toBe('0..N');
+    }
+  });
+
+  it('belegt jedes Feld jedes Elements mit einer Fundstelle', () => {
+    for (const { def } of WETTKAMPFERGEBNISLISTE.elements) {
       for (const f of def.fields) {
         expect(f.specRef, `${def.name}.${f.name}`).toMatch(/^dsv8\.md:\d+$/);
       }
