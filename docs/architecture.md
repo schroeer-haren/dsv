@@ -89,11 +89,11 @@ spe:
    erstes Element sein" meint das erste **Element** – Kommentarzeilen zählen
    nicht mit. Eine Prüfung auf Zeile 1 scheitert an praktisch jeder echten Datei.
 2. **Leerzeichen nach dem Doppelpunkt sind die Mehrheit**, nicht die Ausnahme:
-   `FORMAT: Wettkampfergebnisliste;7;` in 61 von 100 Dateien gegenüber 16 ohne.
+   `FORMAT: Wettkampfergebnisliste;7;` in 91 von 108 Dateien gegenüber 17 ohne.
    Gilt auch für Datenzeilen (`VERANSTALTUNG: Kreismeisterschaften…`).
 3. **Groß-/Kleinschreibung der Listart variiert** (`FORMAT:WETTKAMPFERGEBNIS­LISTE`)
    – Vergleich case-insensitiv, wie schon aus der Spec abgeleitet.
-4. **Zeilenenden gemischt**: 87× CRLF, 13× LF. Ein Parser, der `\r` nicht
+4. **Zeilenenden gemischt**: 95× CRLF, 13× LF. Ein Parser, der `\r` nicht
    abstreift, schleppt es ins letzte Feld.
 5. **Encoding durchgängig UTF-8** – kein einziges CP1252 im Bestand. Die
    Warn-Diagnostic bei U+FFFD bleibt trotzdem sinnvoll, ist aber kein

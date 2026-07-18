@@ -34,6 +34,10 @@ Nicht in v1.0:
 - **Meldegeldberechnung** — Fachlogik, kein Parsen.
 - **DSV6 als unterstützte Formatversion** — siehe Abnahmekriterien: DSV6-Dateien
   müssen ab M2 sauber mit `fatal`-Diagnostic abgelehnt werden, nicht verarbeitet.
+- **Streaming** — aber der Lexer arbeitet **ab M1** auf einer
+  Zeilen-Iterator-Schnittstelle und die Records bleiben azyklisch, damit
+  `parseDsvStream` später additiv ist statt ein Rewrite. Das ist eine
+  M1-Designvorgabe, kein späteres Feature.
 
 ## Vorgehen: hybrid
 
@@ -71,6 +75,13 @@ gegeneinander prüft, als Drift-Wächter. M2 verlängert sich dann entsprechend.
 Ein dritter Weg wird nicht verfolgt — reine Typinferenz ist in
 `architecture.md` mit Begründung verworfen.
 
+`architecture.md` verwirft allerdings auch „Typen von Hand", und zwar wegen
+Drift. Genau dagegen richten sich die beiden Absicherungen: Der
+Schema-gegen-Typ-Test macht Drift zum Testfehler statt zum stillen
+Auseinanderlaufen. Fällt M0 auf diesen Pfad zurück, ist die Verwerfung in
+`architecture.md` entsprechend zu ergänzen — sonst steht dort ein Widerspruch
+statt einer Entscheidung.
+
 Abgeschlossen ist M0 mit der dokumentierten Entscheidung, nicht mit einem
 Release.
 
@@ -90,9 +101,9 @@ ist über alle Formatversionen identisch.
 M1 ist bereits nutzbar: ein generischer Record-Parser liest alle vier
 Listenarten, nur eben ohne Typen und Validierung.
 
-Mit M1 entfallen die Platzhalter-Exporte `parseLine`, `formatLine` und
-`DSV_FORMATS`. In `0.x` ist das folgenlos; dauerhaft wären sie tote Fläche in
-der öffentlichen API.
+Mit M1 entfallen die Platzhalter-Exporte `parseLine`, `formatLine`,
+`DSV_FORMATS`, `FIELD_SEPARATOR` und der Typ `DsvFormat`. In `0.x` ist das
+folgenlos; dauerhaft wären sie tote Fläche in der öffentlichen API.
 
 ### M2 — Wettkampfdefinitionsliste (0.2.0)
 
@@ -193,11 +204,11 @@ läuft als drei unabhängige Subagenten je Fund.
 Geschleift wird, bis keine **kritischen** und keine **wichtigen** Funde mehr
 übrig sind.
 
-| Schweregrad | Bedeutung                                                                               | blockiert          |
-| ----------- | --------------------------------------------------------------------------------------- | ------------------ |
-| kritisch    | Test widerspricht der Spec, oder Verhalten ist ungeprüft, das Testdateien auslösen      | ja                 |
-| wichtig     | Randfall der Spec ungeprüft, oder ein Test ließe eine fehlerhafte Implementierung durch | ja                 |
-| kosmetisch  | Benennung, Struktur, Redundanz                                                          | nein, wird notiert |
+| Schweregrad | Bedeutung                                                                                 | blockiert          |
+| ----------- | ----------------------------------------------------------------------------------------- | ------------------ |
+| kritisch    | Test widerspricht der Spec, oder Verhalten ist ungeprüft, das Realdaten-Fixtures auslösen | ja                 |
+| wichtig     | Randfall der Spec ungeprüft, oder ein Test ließe eine fehlerhafte Implementierung durch   | ja                 |
+| kosmetisch  | Benennung, Struktur, Redundanz                                                            | nein, wird notiert |
 
 Reichen drei Runden nicht, wird an den Menschen eskaliert statt weiter
 geschliffen — dann stimmt meist etwas an der Sache selbst nicht, nicht an den
@@ -229,21 +240,31 @@ und 4 gelten dort nicht.
 | M2, M3      | byte-identisch über alle Fixtures **der jeweiligen Listenart in DSV7**; DSV6 wird mit `fatal` abgelehnt                       |
 | M4, M5      | byte-identisch über die **synthetischen** Fixtures, zusätzlich Abdeckungsnachweis (siehe unten)                               |
 
-### Ersatzkriterium für M4 und M5
+### Ersatzkriterien für M4 und M5
 
-Für diese Meilensteine gibt es keine Realdaten, deshalb greifen dort zwei
-Kriterien, die entscheidbar sind:
+Beide Meilensteine haben keine Realdaten, brauchen aber unterschiedliche
+Ersatzkriterien — der Ruby-Parser ist ein **DSV7**-Parser und kann zu den
+DSV8-Neuerungen aus M5 per Konstruktion nichts sagen.
 
-1. **Abdeckung**: Jedes Schemafeld jeder betroffenen Listenart kommt in
-   mindestens einer synthetischen Fixture mit gesetztem **und** mit leerem Wert
-   vor.
+**Für M4** greifen zwei Kriterien:
+
+1. **Abdeckung**: Jedes Schemafeld der Vereinsmelde- und der
+   Vereinsergebnisliste kommt in mindestens einer synthetischen Fixture mit
+   gesetztem **und** mit leerem Wert vor.
 2. **Cross-Check**: Keine Abweichung gegenüber `vml_schema.rb` /
    `vrl_schema.rb` in Attributzahl, Attributreihenfolge, Pflichtfeldern oder
    Kardinalität — es sei denn, die Abweichung ist mit einer Zeilenangabe aus
    der Spec belegt aufgelöst und im Architekturdokument vermerkt.
 
-Für M4/M5 ersetzen diese beiden Punkte die zweite Hälfte des kritischen
-Schweregrads („Verhalten ungeprüft, das echte Dateien auslösen"), die dort
+**Für M5** greift die Abdeckung, bezogen auf die DSV8-Delta-Felder: Jedes Feld,
+das DSV8 gegenüber DSV7 hinzufügt oder umdeutet, kommt in mindestens einer
+synthetischen DSV8-Fixture je betroffener Listenart mit gesetztem und mit
+leerem Wert vor. Ein Cross-Check entfällt; an seine Stelle tritt ein
+zeilengenauer Abgleich jedes Delta-Felds gegen `dsv8.md`, dokumentiert als
+Zeilenangabe im Schema-Kommentar.
+
+Für M4 und M5 ersetzen diese Kriterien die zweite Hälfte des kritischen
+Schweregrads („Verhalten ungeprüft, das Realdaten-Fixtures auslösen"), die dort
 mangels Realdaten ins Leere liefe.
 
 ## Risiken
