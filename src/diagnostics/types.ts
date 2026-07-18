@@ -14,6 +14,7 @@ export type DiagnosticCode =
   | 'missing-format-element'
   | 'missing-dateiende-element'
   | 'format-not-first-element'
+  | 'element-order-violation'
   | 'unknown-encoding-replacement-character'
   | 'unterminated-field-list'
   | 'unexpected-field-count'

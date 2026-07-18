@@ -66,13 +66,31 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
     );
   }
 
-  if (source.lines.length > 0 && !elements.some((e) => e.element.toUpperCase() === 'DATEIENDE')) {
+  const dateiende = elements.find((e) => e.element.toUpperCase() === 'DATEIENDE');
+
+  if (source.lines.length > 0 && dateiende === undefined) {
     diagnostics.push(
       createDiagnostic(
         'missing-dateiende-element',
         'warning',
         'DATEIENDE element is missing',
         AT_START,
+      ),
+    );
+  } else if (dateiende !== undefined && elements[elements.length - 1] !== dateiende) {
+    // Gegenstück zu `format-not-first-element`: Kommentar- und Leerzeilen nach
+    // DATEIENDE zählen nicht mit — DATEIENDE muss nur das letzte ELEMENT sein
+    // (dsv8.md:325). Wie dort eine Warnung: Die Daten selbst bleiben lesbar.
+    diagnostics.push(
+      createDiagnostic(
+        'element-order-violation',
+        'warning',
+        'DATEIENDE is not the last element in the file',
+        {
+          start: { line: dateiende.line, column: 1 },
+          end: { line: dateiende.line, column: 1 },
+          data: { element: 'DATEIENDE' },
+        },
       ),
     );
   }

@@ -91,6 +91,37 @@ describe('parseDsv — Reihenfolge und Vollständigkeit', () => {
     expect(found?.start.line).toBe(2);
   });
 
+  it('meldet FORMAT an vierter Stelle als Warnung', () => {
+    const { diagnostics } = parseDsv(
+      'ERZEUGER:X;1;a@b.de;\r\nVERANSTALTER:A;\r\nAUSRICHTER:B;\r\nFORMAT:X;7;\r\nDATEIENDE\r\n',
+    );
+    const found = diagnostics.find((d) => d.code === 'format-not-first-element');
+
+    expect(found?.severity).toBe('warning');
+    expect(found?.start.line).toBe(4);
+  });
+
+  it('lässt Kommentare und Leerzeilen vor FORMAT zu', () => {
+    const { diagnostics } = parseDsv('(* Erzeuger XY *)\r\n\r\nFORMAT:X;7;\r\nDATEIENDE\r\n');
+
+    expect(diagnostics.map((d) => d.code)).toEqual([]);
+  });
+
+  it('meldet ein DATEIENDE, das nicht das letzte Element ist', () => {
+    const { diagnostics } = parseDsv('FORMAT:X;7;\r\nDATEIENDE\r\nERZEUGER:X;1;a@b.de;\r\n');
+    const found = diagnostics.find((d) => d.code === 'element-order-violation');
+
+    expect(found?.severity).toBe('warning');
+    expect(found?.start.line).toBe(2);
+    expect(found?.data).toMatchObject({ element: 'DATEIENDE' });
+  });
+
+  it('lässt Kommentare nach DATEIENDE zu', () => {
+    const { diagnostics } = parseDsv('FORMAT:X;7;\r\nDATEIENDE\r\n(* Ende *)\r\n');
+
+    expect(diagnostics.map((d) => d.code)).toEqual([]);
+  });
+
   it('liest auch die ältere Formatversion 6', () => {
     const { document } = parseDsv('FORMAT:Wettkampfergebnisliste;6;\r\nDATEIENDE\r\n');
     expect(document.version).toBe(6);
@@ -134,6 +165,13 @@ describe('parseDsv — Diagnostics vollständig', () => {
       name: 'FORMAT nicht als erstes Element',
       input: 'ERZEUGER:X;1;a@b.de;\r\nFORMAT:X;7;\r\nDATEIENDE\r\n',
       code: 'format-not-first-element',
+      severity: 'warning',
+      ok: true,
+    },
+    {
+      name: 'DATEIENDE nicht als letztes Element',
+      input: 'FORMAT:X;7;\r\nDATEIENDE\r\nERZEUGER:X;1;a@b.de;\r\n',
+      code: 'element-order-violation',
       severity: 'warning',
       ok: true,
     },
