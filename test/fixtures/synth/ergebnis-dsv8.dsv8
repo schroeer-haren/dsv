@@ -1,0 +1,23 @@
+(* synthetische Fixture — von scripts/build-synth-fixtures.ts erzeugt *)
+FORMAT:Wettkampfergebnisliste;8;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Synthetischer Wettkampf;Musterstadt;16;AUTOMATISCH;
+VERANSTALTER:SV Musterstadt;
+AUSRICHTER:SV Musterstadt;Muster, Max;Musterweg 1;12345;Musterstadt;GER;;;ausrichter@example.org;
+ABSCHNITT:1;15.03.2026;09:00;N;
+WETTKAMPF:1;E;1;1;100;L;GL;D;MS;;;
+WETTKAMPF:2;E;1;1;50;S;KB;D;MS;;;
+WETTKAMPF:3;E;1;1;50;S;KR;D;MS;;;
+WERTUNG:1;E;1;AK;20;25;D;Masters divers;
+WERTUNG:2;E;2;AK;20;25;D;Masters Kicks Bauch;
+WERTUNG:3;E;3;AK;20;25;D;Masters Kicks Rücken;
+VEREIN:SV Musterstadt;1234;10;GER;
+VEREIN:Auslandsverein;0;0;AUT;
+PNERGEBNIS:1;E;1;1;;Muster, Alex;100030;1;D;1999;25;SV Musterstadt;1234;00:01:04,00;;;GER;AUT;SUI;
+PNZWISCHENZEIT:1;1;E;50;00:00:31,00;
+PNREAKTION:1;1;E;+;00:00:00,72;
+STERGEBNIS:1;E;1;2;;1;9020;Auslandsverein;0;00:01:10,00;;;;
+STAFFELPERSON:9020;1;E;Muster, Bine;100031;1;D;1998;25;AUT;GER;SUI;
+STZWISCHENZEIT:9020;1;E;1;50;00:00:35,00;
+STABLOESE:9020;1;E;1;+;00:00:00,50;
+DATEIENDE

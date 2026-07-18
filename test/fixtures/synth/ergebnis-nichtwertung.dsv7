@@ -1,0 +1,31 @@
+(* synthetische Fixture — von scripts/build-synth-fixtures.ts erzeugt *)
+FORMAT:Wettkampfergebnisliste;7;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Synthetischer Wettkampf;Musterstadt;X;AUTOMATISCH;
+VERANSTALTER:SV Musterstadt;
+AUSRICHTER:SV Musterstadt;Muster, Max;Musterweg 1;12345;Musterstadt;GER;;;ausrichter@example.org;
+ABSCHNITT:1;15.03.2026;09:00;;
+WETTKAMPF:1;V;1;1;100;F;GL;W;SW;;;
+WETTKAMPF:20;E;1;4;200;L;GL;X;SW;;;
+WERTUNG:1;V;1;JG;0;9999;W;Offene Wertung;
+WERTUNG:20;E;2;AK;100;;X;Staffelwertung;
+VEREIN:SV Musterstadt;1234;10;GER;
+VEREIN:Auslandsverein;0;0;AUT;
+PNERGEBNIS:1;V;1;1;;Muster, Mia;100010;1;W;2005;;SV Musterstadt;1234;00:01:02,11;;E;GER;;;
+PNERGEBNIS:1;V;1;0;DS;Muster, Nina;100011;2;W;2005;;SV Musterstadt;1234;00:00:00,00;Wende nicht regelgerecht;F;GER;POL;UKR;
+PNERGEBNIS:1;V;1;0;NA;Muster, Olga;100012;3;W;2004;;SV Musterstadt;1234;00:00:00,00;;N;;;;
+PNERGEBNIS:1;V;1;0;AB;Muster, Pia;100013;4;W;2004;;Auslandsverein;0;00:00:00,00;;;AUT;;;
+PNERGEBNIS:1;V;1;0;AU;Muster, Rita;100014;5;D;2003;30;Auslandsverein;0;00:00:00,00;;;;;;
+PNERGEBNIS:1;V;1;0;ZU;Muster, Sina;100015;6;W;2003;;Auslandsverein;0;00:00:00,00;;;;;;
+PNZWISCHENZEIT:1;1;V;50;00:00:30,05;
+PNREAKTION:1;1;V;+;00:00:00,71;
+PNREAKTION:2;1;V;-;00:00:00,09;
+PNREAKTION:3;1;V;;00:00:00,64;
+STERGEBNIS:20;E;2;1;;1;9010;SV Musterstadt;1234;00:08:30,00;;;E;
+STERGEBNIS:20;E;2;0;DS;2;9011;SV Musterstadt;1234;00:00:00,00;4;Frühstart Ablösung;F;
+STERGEBNIS:20;E;2;0;NA;3;9012;Auslandsverein;0;00:00:00,00;;;;
+STERGEBNIS:20;E;2;0;AB;4;9013;Auslandsverein;0;00:00:00,00;;;;
+STERGEBNIS:20;E;2;0;AU;5;9014;Auslandsverein;0;00:00:00,00;;;;
+STERGEBNIS:20;E;2;0;ZU;6;9015;Auslandsverein;0;00:00:00,00;;;;
+STAFFELPERSON:9010;20;E;Muster, Tina;100016;1;W;2002;;;;;
+DATEIENDE
