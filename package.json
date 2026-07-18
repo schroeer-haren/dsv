@@ -1,0 +1,67 @@
+{
+  "name": "@schroeer-haren/dsv",
+  "version": "0.0.1",
+  "description": "TypeScript library for parsing and creating DSV files (DSV7 / DSV8) used in German swimming (DSV - Deutscher Schwimm-Verband)",
+  "keywords": [
+    "dsv",
+    "dsv7",
+    "dsv8",
+    "swimming",
+    "schwimmen",
+    "parser",
+    "wettkampf"
+  ],
+  "license": "MIT",
+  "author": "Philipp Schröer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schroeer-haren/dsv.git"
+  },
+  "homepage": "https://github.com/schroeer-haren/dsv#readme",
+  "bugs": {
+    "url": "https://github.com/schroeer-haren/dsv/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run typecheck && npm run test",
+    "prepublishOnly": "npm run check && npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.5",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.64.0",
+    "vitest": "^2.1.8"
+  }
+}
