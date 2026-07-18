@@ -17,10 +17,20 @@ nach dem Klonen einmalig befüllt werden:
 mkdir -p spec
 curl -L -o spec/dsv7.pdf "https://www.dsv.de/download-file?file_code=b991de636e&file_id=1258"
 curl -L -o spec/dsv8.pdf "https://www.dsv.de/download-file?file_code=9fbdf74a1f&file_id=10922"
+
+# Markdown-Fassungen zum Durchsuchen erzeugen (markitdown, via pipx/uv installierbar)
+markitdown spec/dsv7.pdf -o spec/dsv7.md
+markitdown spec/dsv8.pdf -o spec/dsv8.md
 ```
 
 - **DSV7** – „DSV Standard", Stand 31.08.2022, gültig ab 01.01.2023, 50 Seiten
+  – `spec/dsv7.pdf`, als Markdown `spec/dsv7.md`
 - **DSV8** – „DSV Standard", Stand 14.03.2026, gültig ab 01.08.2026, 52 Seiten
+  – `spec/dsv8.pdf`, als Markdown `spec/dsv8.md`
+
+Für Recherche im Alltag die `.md`-Fassungen nutzen – die sind direkt mit Read
+und Grep durchsuchbar. Bei Tabellen und exakter Feldreihenfolge im Zweifel
+gegen das PDF gegenprüfen: die Konvertierung glättet manche Layout-Tabellen.
 
 Übergangsfrist: DSV7 darf noch bis 31.12.2026 genutzt werden, ab 01.01.2027 gilt
 ausschließlich DSV8. Die Bibliothek muss daher beide Formate lesen und schreiben
@@ -31,10 +41,11 @@ Beide PDFs sind auf der DSV-Seite unter
 verlinkt (Abschnitt „DSV-Standard zur Datenübermittlung"). Falls die
 `file_id`-Links irgendwann brechen, dort die aktuellen Downloads suchen.
 
-Zum Nachschlagen im PDF eignet sich `pdftotext` (poppler):
+Nachschlagen, z. B.:
 
 ```bash
-pdftotext spec/dsv8.pdf - | grep -n -A20 "Wettkampfdefinitionsliste"
+grep -n -A20 "Wettkampfdefinitionsliste" spec/dsv8.md
+diff spec/dsv7.md spec/dsv8.md | less   # Unterschiede zwischen den Formaten
 ```
 
 ## Stack
