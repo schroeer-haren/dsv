@@ -1,0 +1,1017 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.30 vom 07.04.2025                       *)
+(* Registriert für: Ratzeburger SV - Abt. Schwimmen *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 28.09.2025 um 14:30 Uhr                *)
+FORMAT: Wettkampfergebnisliste;7;
+ERZEUGER: EasyWk;5.30;info@easywk.de;
+VERANSTALTUNG: Löwensprint 2025;Ratzeburg, Hallenbad Aqua Siwa;25;HANDZEIT;
+VERANSTALTER: Ratzeburger SV - Schwimmen;
+AUSRICHTER: Ratzeburger SV - Schwimmen;Otto, Pia ;;;;GER;;;theo.ziegler@example.org;
+ABSCHNITT: 1;27.09.2025;09:00;;
+ABSCHNITT: 2;27.09.2025;01:00;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+KAMPFGERICHT: 1;SCH;Vogel, Sophie;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;SCH;Vogel, Sophie;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;STA;Sommer, Greta;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;STA;Sommer, Greta;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;AUS;Walter, Emma;Möllner SV;
+KAMPFGERICHT: 1;PKF;Lang, Felix;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;SR;Vogel, Vincent;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;SR;Winkler, Alina;SG StoBa;
+KAMPFGERICHT: 1;ZR;Jung, Greta;Möllner SV;
+KAMPFGERICHT: 1;ZR;Otto, Ben;VfL Pinneberg;
+KAMPFGERICHT: 1;ZR;Engel, Emma;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;WR;Ulrich, Jana;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;WR;Ludwig, Maja;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;WR;Kaiser, Theo;SG StoBa;
+KAMPFGERICHT: 1;WR;Lehmann, Fiona;SV Neptun Kiel;
+KAMPFGERICHT: 1;WR;Lorenz, Jakob;Möllner SV;
+KAMPFGERICHT: 1;ZNO;Lorenz, Ruben;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;ZN;Stein, Emilia;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;ZN;Kramer, Karl;SG StoBa;
+KAMPFGERICHT: 1;ZN;Graf, Nele;Ahrensburger TSV;
+KAMPFGERICHT: 1;ZN;Kaiser, Sina;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;ZN;Kuhn, Leon;Möllner SV;
+KAMPFGERICHT: 1;SP;Dietrich, Ida;Ratzeburger SV von 1862;
+KAMPFGERICHT: 1;ZBV;Schröder, Mats;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;SCH;Vogel, Sophie;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;SCH;Vogel, Sophie;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;STA;Vogel, Sophie;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;STA;Vogel, Sophie;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;AUS;Walter, Emma;Möllner SV;
+KAMPFGERICHT: 2;PKF;Lang, Felix;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;SR;Schäfer, Elias;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;SR;Richter, Greta;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;ZR;Pohl, Greta;Möllner SV;
+KAMPFGERICHT: 2;ZR;Schäfer, Luis;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;ZR;Frank, Greta;Ahrensburger TSV;
+KAMPFGERICHT: 2;WR;Vogel, Clara;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;WR;Ludwig, Maja;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;WR;Neumann, Hannah;TSV Klausdorf;
+KAMPFGERICHT: 2;WR;Marquardt, Emilia;SG Bad Schwartau;
+KAMPFGERICHT: 2;WR;Kramer, Lina;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;ZNO;Ulrich, Jana;Ahrensburger TSV;
+KAMPFGERICHT: 2;ZN;Stein, Emilia;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;ZN;Koch, Rike;TSV Klausdorf;
+KAMPFGERICHT: 2;ZN;Schröder, Zoe;Ahrensburger TSV;
+KAMPFGERICHT: 2;ZN;Kaiser, Sina;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;ZN;Winkler, Pia;Möllner SV;
+KAMPFGERICHT: 2;SP;Sommer, Greta;Ratzeburger SV von 1862;
+KAMPFGERICHT: 2;ZBV;Schröder, Mats;Ratzeburger SV von 1862;
+WETTKAMPF: 1;E;1;1;25;X;X;W;KG;;; (* 25 m Schmetterlingsbeine in Bauchlage mit Brett weiblich - kindgerecht *)
+WETTKAMPF: 2;E;1;1;25;X;X;M;KG;;; (* 25 m Schmetterlingsbeine in Bauchlage mit Brett männlich - kindgerecht *)
+WETTKAMPF: 3;E;1;1;25;S;GL;W;SW;;; (* 25 m Schmetterlingsbeine in Rückenlage weiblich *)
+WETTKAMPF: 4;E;1;1;25;S;GL;M;SW;;; (* 25 m Schmetterlingsbeine in Rückenlage männlich *)
+WETTKAMPF: 5;E;1;1;25;B;GL;W;KG;;; (* 25 m Brust weiblich - kindgerecht *)
+WETTKAMPF: 6;E;1;1;25;B;GL;M;KG;;; (* 25 m Brust männlich - kindgerecht *)
+WETTKAMPF: 7;E;1;1;50;B;GL;W;SW;;; (* 50 m Brust weiblich *)
+WETTKAMPF: 8;E;1;1;50;B;GL;M;SW;;; (* 50 m Brust männlich *)
+WETTKAMPF: 9;E;1;1;25;R;GL;W;KG;;; (* 25 m Rücken weiblich - kindgerecht *)
+WETTKAMPF: 10;E;1;1;25;R;GL;M;KG;;; (* 25 m Rücken männlich - kindgerecht *)
+WETTKAMPF: 11;E;1;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 12;E;1;1;50;R;GL;M;SW;;; (* 50 m Rücken männlich *)
+WETTKAMPF: 13;E;1;1;25;F;GL;W;KG;;; (* 25 m Kraul weiblich - kindgerecht *)
+WETTKAMPF: 14;E;1;1;25;F;GL;M;KG;;; (* 25 m Kraul männlich - kindgerecht *)
+WETTKAMPF: 15;E;1;1;50;F;GL;W;SW;;; (* 50 m Kraul weiblich *)
+WETTKAMPF: 16;E;1;1;50;F;GL;M;SW;;; (* 50 m Kraul männlich *)
+WETTKAMPF: 17;E;1;4;25;X;X;X;KG;;; (* 4 x 25 m Kraulbeine mit Brett mixed *)
+WETTKAMPF: 18;E;1;4;50;F;GL;X;SW;;; (* 4 x 50 m Freistil mixed *)
+WETTKAMPF: 19;E;2;1;200;L;GL;W;SW;;; (* 200 m Lagen weiblich *)
+WETTKAMPF: 20;E;2;1;200;L;GL;M;SW;;; (* 200 m Lagen männlich *)
+WETTKAMPF: 21;E;2;1;50;S;GL;W;SW;;; (* 50 m Schmetterling weiblich *)
+WETTKAMPF: 22;E;2;1;50;S;GL;M;SW;;; (* 50 m Schmetterling männlich *)
+WETTKAMPF: 23;E;2;1;100;R;GL;W;SW;;; (* 100 m Rücken weiblich *)
+WETTKAMPF: 24;E;2;1;100;R;GL;M;SW;;; (* 100 m Rücken männlich *)
+WETTKAMPF: 25;E;2;1;50;F;GL;W;SW;;; (* 50 m Freistil weiblich *)
+WETTKAMPF: 26;E;2;1;50;F;GL;M;SW;;; (* 50 m Freistil männlich *)
+WETTKAMPF: 27;E;2;1;100;S;GL;W;SW;;; (* 100 m Schmetterling weiblich *)
+WETTKAMPF: 28;E;2;1;100;S;GL;M;SW;;; (* 100 m Schmetterling männlich *)
+WETTKAMPF: 29;E;2;1;50;B;GL;W;SW;;; (* 50 m Brust weiblich *)
+WETTKAMPF: 30;E;2;1;50;B;GL;M;SW;;; (* 50 m Brust männlich *)
+WETTKAMPF: 31;E;2;1;100;F;GL;W;SW;;; (* 100 m Freistil weiblich *)
+WETTKAMPF: 32;E;2;1;100;F;GL;M;SW;;; (* 100 m Freistil männlich *)
+WETTKAMPF: 33;E;2;1;50;R;GL;W;SW;;; (* 50 m Rücken weiblich *)
+WETTKAMPF: 34;E;2;1;50;R;GL;M;SW;;; (* 50 m Rücken männlich *)
+WETTKAMPF: 35;E;2;1;100;B;GL;W;SW;;; (* 100 m Brust weiblich *)
+WETTKAMPF: 36;E;2;1;100;B;GL;M;SW;;; (* 100 m Brust männlich *)
+WETTKAMPF: 37;E;2;4;50;L;GL;X;SW;;; (* 4 x 50 m Lagen mixed *)
+WETTKAMPF: 38;E;2;4;100;L;GL;X;SW;;; (* 4 x 100m Lagen mixed *)
+WERTUNG: 1;E;100005;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 1;E;100004;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 1;E;100001;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 1;E;100002;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 1;E;100003;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 2;E;200005;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 2;E;200004;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 2;E;200001;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 2;E;200002;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 2;E;200003;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 3;E;300002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 3;E;300001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 4;E;400002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 4;E;400001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 5;E;500005;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 5;E;500004;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 5;E;500001;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 5;E;500002;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 5;E;500003;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 6;E;600005;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 6;E;600004;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 6;E;600001;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 6;E;600002;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 6;E;600003;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 7;E;700002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 7;E;700001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 8;E;800002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 8;E;800001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 9;E;900005;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 9;E;900004;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 9;E;900001;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 9;E;900002;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 9;E;900003;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 10;E;1000005;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 10;E;1000004;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 10;E;1000001;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 10;E;1000002;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 10;E;1000003;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 11;E;1100002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 11;E;1100001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 12;E;1200002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 12;E;1200001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 13;E;1300005;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 13;E;1300004;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 13;E;1300001;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 13;E;1300002;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 13;E;1300003;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 14;E;3600005;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 14;E;3600004;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 14;E;3600001;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 14;E;3600002;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 14;E;3600003;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 15;E;3700002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 15;E;3700001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 16;E;3800002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 16;E;3800001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 17;E;1400001;JG;2018;2021;X;Offene Wertung;
+WERTUNG: 18;E;1500001;JG;2016;2017;X;Offene Wertung;
+WERTUNG: 19;E;1600007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 19;E;1600001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 19;E;1600002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 19;E;1600004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 19;E;1600005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 19;E;1600006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 20;E;1700007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 20;E;1700001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 20;E;1700002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 20;E;1700004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 20;E;1700005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 20;E;1700006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 21;E;1800007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 21;E;1800001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 21;E;1800002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 21;E;1800004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 21;E;1800005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 21;E;1800006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 22;E;1900007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 22;E;1900001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 22;E;1900002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 22;E;1900004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 22;E;1900005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 22;E;1900006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 23;E;2000007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 23;E;2000001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 23;E;2000002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 23;E;2000004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 23;E;2000005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 23;E;2000006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 24;E;2100007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 24;E;2100001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 24;E;2100002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 24;E;2100004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 24;E;2100005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 24;E;2100006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 25;E;2200007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 25;E;2200001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 25;E;2200002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 25;E;2200004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 25;E;2200005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 25;E;2200006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 26;E;2300007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 26;E;2300001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 26;E;2300002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 26;E;2300004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 26;E;2300005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 26;E;2300006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 27;E;2400007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 27;E;2400001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 27;E;2400002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 27;E;2400004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 27;E;2400005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 27;E;2400006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 28;E;2500007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 28;E;2500001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 28;E;2500002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 28;E;2500004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 28;E;2500005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 28;E;2500006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 29;E;2600007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 29;E;2600001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 29;E;2600002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 29;E;2600004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 29;E;2600005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 29;E;2600006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 30;E;2700007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 30;E;2700001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 30;E;2700002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 30;E;2700004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 30;E;2700005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 30;E;2700006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 31;E;2800007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 31;E;2800001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 31;E;2800002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 31;E;2800004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 31;E;2800005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 31;E;2800006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 32;E;2900007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 32;E;2900001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 32;E;2900002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 32;E;2900004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 32;E;2900005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 32;E;2900006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 33;E;3000007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 33;E;3000001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 33;E;3000002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 33;E;3000004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 33;E;3000005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 33;E;3000006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 34;E;3100007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 34;E;3100001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 34;E;3100002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 34;E;3100004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 34;E;3100005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 34;E;3100006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 35;E;3400007;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 35;E;3400001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 35;E;3400002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 35;E;3400004;JG;2012;2013;W;Jg. 2012/2013;
+WERTUNG: 35;E;3400005;JG;2010;2011;W;Jg. 2010/2011;
+WERTUNG: 35;E;3400006;JG;0;2009;W;Jg. 2009 und älter;
+WERTUNG: 36;E;3500007;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 36;E;3500001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 36;E;3500002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 36;E;3500004;JG;2012;2013;M;Jg. 2012/2013;
+WERTUNG: 36;E;3500005;JG;2010;2011;M;Jg. 2010/2011;
+WERTUNG: 36;E;3500006;JG;0;2009;M;Jg. 2009 und älter;
+WERTUNG: 37;E;3801001;JG;2013;2016;X;Offene Wertung;
+WERTUNG: 38;E;3802001;JG;0;2012;X;Offene Wertung;
+VEREIN: Ahrensburger TSV;3447;14;GER;
+VEREIN: Farmsener TV;4094;6;GER;
+VEREIN: Möllner SV;3467;14;GER;
+VEREIN: Ratzeburger SV von 1862;3485;14;GER;
+VEREIN: SC Delphin Lübeck v.1960 e.V.;3490;14;GER;
+VEREIN: SG Bad Schwartau;5196;14;GER;
+VEREIN: SG StoBa;6784;14;GER;
+VEREIN: SV Neptun Kiel;5129;14;GER;
+VEREIN: TSV Bargteheide;3515;14;GER;
+VEREIN: TSV Klausdorf;5274;14;GER;
+VEREIN: VfL Pinneberg;3559;14;GER;
+PNERGEBNIS: 1;E;100003;1;;Fischer, Rike;256215;156;W;2018;;SG StoBa;6784;00:00:30,71;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100003;2;;Vogel, Pia;429856;60;W;2018;;Farmsener TV;4094;00:00:31,34;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100003;3;;Kern, Leon;285484;102;W;2018;;SV Neptun Kiel;5129;00:00:32,06;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100003;4;;Sommer, Sophie;220250;59;W;2018;;Farmsener TV;4094;00:00:36,61;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100003;5;;Pohl, Niklas;256215;148;W;2018;;SG StoBa;6784;00:00:37,89;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100003;6;;Albers, Niklas;256215;131;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:39,96;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100003;0;NA;Reuter, Erik;256215;89;W;2018;;Möllner SV;3467;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100003;0;NA;Busch, Lina;256215;121;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;100002;1;;Peters, Nele;256215;153;W;2019;;SG StoBa;6784;00:00:27,55;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;100002;2;;Hahn, Linus;256215;116;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:39,97;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 2;E;200003;1;;Frank, Felix;256215;117;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:32,22;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;200003;2;;Stein, David;256215;147;M;2018;;SG StoBa;6784;00:00:34,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;200003;3;;Lorenz, Ruben;256215;149;M;2018;;SG StoBa;6784;00:00:34,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;200003;4;;Gross, Clara;256215;133;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:37,16;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;200003;5;;Sommer, Lina;256215;130;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:50,31;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;300001;1;;Neumann, Yara;872710;62;W;2016;;Farmsener TV;4094;00:00:27,51;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;2;;Schmitt, Hannah;748709;124;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,07;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;3;;Möller, Oskar;184682;25;W;2016;;Ratzeburger SV von 1862;3485;00:00:29,23;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;4;;Dietrich, Leon;873287;64;W;2016;;Farmsener TV;4094;00:00:31,81;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;5;;Schäfer, Karl;765707;122;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:34,72;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;5;;Bauer, Maja;393938;84;W;2016;;Möllner SV;3467;00:00:34,75;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;7;;Hartmann, Greta;371417;110;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,18;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;8;;Hahn, Julia;160825;103;W;2016;;SV Neptun Kiel;5129;00:00:36,66;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;8;;Koch, Fiona;356158;21;W;2016;;Ratzeburger SV von 1862;3485;00:00:36,75;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;8;;Busch, Tilda;949036;134;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,82;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;11;;Ludwig, Linus;972238;44;W;2016;;Ahrensburger TSV;3447;00:00:39,83;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;12;;Peters, Linus;483186;65;W;2016;;Farmsener TV;4094;00:00:44,48;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300001;13;;Ziegler, Jost;228525;63;W;2016;;Farmsener TV;4094;00:00:45,96;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 3;E;300002;1;;Klein, Jakob;636572;29;W;2017;;Ratzeburger SV von 1862;3485;00:00:23,40;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;2;;Voigt, Carla;786195;111;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:24,51;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;3;;Herrmann, Anton;803264;152;W;2017;;SG StoBa;6784;00:00:26,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;4;;Lehmann, Rike;789930;159;W;2017;;SG StoBa;6784;00:00:26,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;5;;Ziegler, Fiona;140519;125;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:27,32;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;6;;Sommer, Malte;603868;94;W;2017;;Möllner SV;3467;00:00:28,06;;;;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;6;;Sander, Marie;354540;174;W;2017;;VfL Pinneberg;3559;00:00:28,06;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;6;;Koch, Jana;104139;42;W;2017;;Ahrensburger TSV;3447;00:00:28,06;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;9;;Otto, Tilda;219598;27;W;2017;;Ratzeburger SV von 1862;3485;00:00:29,47;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;9;;Hahn, Leon;395757;137;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,47;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;9;;Voigt, Yara;718138;109;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,63;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;12;;Weiss, Sina;462900;112;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,74;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;13;;Stein, Jana;726149;83;W;2017;;Möllner SV;3467;00:00:29,97;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;14;;Pohl, Mats;286824;90;W;2017;;Möllner SV;3467;00:00:31,37;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;15;;Ludwig, Jana;717921;177;W;2017;;VfL Pinneberg;3559;00:00:34,78;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;16;;Brandt, Jana;931274;114;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,06;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;17;;Engel, Niklas;589599;49;W;2017;;Ahrensburger TSV;3447;00:00:37,42;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;18;;Lorenz, Oskar;282816;92;W;2017;;Möllner SV;3467;00:00:39,04;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;19;;Walter, Sophie;605275;158;W;2017;;SG StoBa;6784;00:00:42,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;20;;Frank, Lena;651367;87;W;2017;;Möllner SV;3467;00:00:43,24;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;21;;Walter, Karl;295091;61;W;2017;;Farmsener TV;4094;00:00:45,04;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;22;;Sander, David;735692;76;W;2017;;Möllner SV;3467;00:00:52,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;0;DS;Klein, Niklas;668549;96;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin machte nach dem Start Kraulbeine und Kraularme in Rückenlage entgegen der Ausschreibung. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;300002;0;DS;Weiss, Tom;470911;86;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin machte nach dem Start Kraulbeine und Kraularme in Rückenlage entgegen der Ausschreibung. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400001;1;;Neumann, Julia;325448;101;M;2016;;SV Neptun Kiel;5129;00:00:31,33;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400001;2;;Brandt, Jost;195188;79;M;2016;;Möllner SV;3467;00:00:33,03;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400001;3;;Weiss, Yara;708998;175;M;2016;;VfL Pinneberg;3559;00:00:37,58;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400001;4;;Möller, Alina;138700;95;M;2016;;Möllner SV;3467;00:00:41,24;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400001;5;;Koch, Erik;622042;178;M;2016;;VfL Pinneberg;3559;00:00:42,09;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400001;6;;Keller, Oskar;256215;160;M;2016;;SG StoBa;6784;00:00:49,74;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400001;0;DS;Kern, Erik;103947;119;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;Der Schwimmer nutzte entgegen der Ausschreibung die Arme auf der Schwimmstrecke. ;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400001;0;AB;Graf, Leon;965111;6;M;2016;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;400002;1;;Vogel, Lena;681758;46;M;2017;;Ahrensburger TSV;3447;00:00:27,21;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;2;;Weiss, Jost;212311;155;M;2017;;SG StoBa;6784;00:00:27,74;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;3;;Bauer, Lara;671815;69;M;2017;;Möllner SV;3467;00:00:31,52;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;4;;Thiele, Niklas;522615;157;M;2017;;SG StoBa;6784;00:00:31,74;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;5;;Kuhn, Maja;937025;154;M;2017;;SG StoBa;6784;00:00:33,67;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;6;;Möller, Emma;467549;150;M;2017;;SG StoBa;6784;00:00:34,20;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;7;;Albers, Milan;534692;161;M;2017;;SG StoBa;6784;00:00:38,15;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;8;;Otto, Ruben;766527;138;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:50,93;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;9;;Sommer, Oskar;932159;176;M;2017;;VfL Pinneberg;3559;00:00:56,33;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;0;DS;Sommer, Elias;479129;73;M;2017;;Möllner SV;3467;00:00:00,00;Der Schwimmer führte entgegen der Ausschreibung Wechselbeinschläge wiederholt auf der Schwimmstrecke durch. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;0;AB;Jung, Vincent;973748;78;M;2017;;Möllner SV;3467;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;400002;0;AB;Ludwig, Ida;480883;151;M;2017;;SG StoBa;6784;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 5;E;500003;1;;Vogel, Pia;429856;60;W;2018;;Farmsener TV;4094;00:00:28,79;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;500003;2;;Kern, Leon;285484;102;W;2018;;SV Neptun Kiel;5129;00:00:29,97;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;500003;3;;Sommer, Sophie;220250;59;W;2018;;Farmsener TV;4094;00:00:31,69;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;500003;4;;Fischer, Rike;256215;156;W;2018;;SG StoBa;6784;00:00:33,06;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;500003;5;;Albers, Niklas;256215;131;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,91;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;500003;6;;Pohl, Niklas;256215;148;W;2018;;SG StoBa;6784;00:00:38,09;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;500003;0;NA;Busch, Lina;256215;121;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;500002;1;;Peters, Nele;256215;153;W;2019;;SG StoBa;6784;00:00:33,51;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;500002;2;;Hahn, Linus;256215;116;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:44,36;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;600003;1;;Frank, Felix;256215;117;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:34,28;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;600003;2;;Gross, Clara;256215;133;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:35,29;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;600003;3;;Stein, David;256215;147;M;2018;;SG StoBa;6784;00:00:36,75;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;600003;4;;Sommer, Lina;256215;130;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,86;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;600003;5;;Lorenz, Ruben;256215;149;M;2018;;SG StoBa;6784;00:00:55,22;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;700001;1;;Neumann, Yara;872710;62;W;2016;;Farmsener TV;4094;00:00:55,68;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;2;;Hartmann, Greta;371417;110;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,03;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;3;;Möller, Oskar;184682;25;W;2016;;Ratzeburger SV von 1862;3485;00:00:58,12;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;4;;Hahn, Julia;160825;103;W;2016;;SV Neptun Kiel;5129;00:00:59,71;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;5;;Koch, Fiona;356158;21;W;2016;;Ratzeburger SV von 1862;3485;00:01:00,44;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;6;;Bauer, Maja;393938;84;W;2016;;Möllner SV;3467;00:01:01,03;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;7;;Busch, Tilda;949036;134;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:01,64;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;8;;Ziegler, Jost;228525;63;W;2016;;Farmsener TV;4094;00:01:01,65;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;9;;Peters, Linus;483186;65;W;2016;;Farmsener TV;4094;00:01:01,92;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;10;;Schäfer, Karl;765707;122;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:03,44;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;11;;Schmitt, Hannah;748709;124;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:03,57;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;12;;Ludwig, Linus;972238;44;W;2016;;Ahrensburger TSV;3447;00:01:03,57;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700001;13;;Dietrich, Leon;873287;64;W;2016;;Farmsener TV;4094;00:01:04,06;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;700002;1;;Klein, Jakob;636572;29;W;2017;;Ratzeburger SV von 1862;3485;00:00:53,15;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;2;;Koch, Jana;104139;42;W;2017;;Ahrensburger TSV;3447;00:00:54,96;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;3;;Engel, Niklas;589599;49;W;2017;;Ahrensburger TSV;3447;00:00:57,73;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;4;;Brandt, Jana;931274;114;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:58,02;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;5;;Sander, Marie;354540;174;W;2017;;VfL Pinneberg;3559;00:00:58,63;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;6;;Ziegler, Fiona;140519;125;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:58,98;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;7;;Ludwig, Jana;717921;177;W;2017;;VfL Pinneberg;3559;00:01:01,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;8;;Sommer, Malte;603868;94;W;2017;;Möllner SV;3467;00:01:02,23;;;;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;9;;Pohl, Mats;286824;90;W;2017;;Möllner SV;3467;00:01:02,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;10;;Voigt, Carla;786195;111;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:07,31;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;11;;Voigt, Yara;718138;109;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:07,62;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;12;;Otto, Tilda;219598;27;W;2017;;Ratzeburger SV von 1862;3485;00:01:07,78;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;13;;Herrmann, Anton;803264;152;W;2017;;SG StoBa;6784;00:01:08,27;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;14;;Weiss, Tom;470911;86;W;2017;;Möllner SV;3467;00:01:08,91;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;15;;Lehmann, Rike;789930;159;W;2017;;SG StoBa;6784;00:01:11,59;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;16;;Walter, Sophie;605275;158;W;2017;;SG StoBa;6784;00:01:12,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;17;;Frank, Milan;489272;15;W;2017;;Ratzeburger SV von 1862;3485;00:01:15,54;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;18;;Sander, David;735692;76;W;2017;;Möllner SV;3467;00:01:17,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;19;;Walter, Karl;295091;61;W;2017;;Farmsener TV;4094;00:01:18,62;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;20;;Lorenz, Oskar;282816;92;W;2017;;Möllner SV;3467;00:01:27,90;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;0;DS;Frank, Lena;651367;87;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin hat bei der 25m Wende und dem Zielanschlag nur mit einer Hand angeschlagen. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;0;DS;Weiss, Sina;462900;112;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;Nach dem Start hat die Schwimmerin mehrere Armzüge unter Wasser durchgeführt. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;0;DS;Hahn, Leon;395757;137;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;Die Schwimmerin führte nach dem Start mehrere Kraulbeinschläge aus. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;700002;0;DS;Stein, Jana;726149;83;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin startete vor dem Startsignal.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800001;1;;Kern, Erik;103947;119;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:57,33;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;2;;Neumann, Julia;325448;101;M;2016;;SV Neptun Kiel;5129;00:01:00,10;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;3;;Brandt, Jost;195188;79;M;2016;;Möllner SV;3467;00:01:06,47;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;4;;Möller, Alina;138700;95;M;2016;;Möllner SV;3467;00:01:08,19;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;0;DS;Seidel, Mia;185866;3;M;2016;;Ratzeburger SV von 1862;3485;00:00:00,00;Der Schwimmer hat bei der 25m Wende nicht angeschlagen. ;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;0;DS;Koch, Erik;622042;178;M;2016;;VfL Pinneberg;3559;00:00:00,00;Nach dem Start hat der Schwimmer zwei Armzüge während der Tauchphase durchgeführt.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;0;DS;Weiss, Yara;708998;175;M;2016;;VfL Pinneberg;3559;00:00:00,00;Der Schwimmer hat nach der 25m Wende den zweiten Armzug über die Hüftlinie nach hinten gebracht. ;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;0;DS;Keller, Oskar;256215;160;M;2016;;SG StoBa;6784;00:00:00,00;Der Schwimmer hat bei der 25m Wende nicht angeschlagen. ;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800001;0;AB;Graf, Leon;965111;6;M;2016;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 8;E;800002;1;;Vogel, Lena;681758;46;M;2017;;Ahrensburger TSV;3447;00:00:54,53;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;2;;Bauer, Lara;671815;69;M;2017;;Möllner SV;3467;00:00:56,28;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;3;;Sommer, Oskar;932159;176;M;2017;;VfL Pinneberg;3559;00:00:59,15;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;4;;Kuhn, Maja;937025;154;M;2017;;SG StoBa;6784;00:01:04,35;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;5;;Weiss, Jost;212311;155;M;2017;;SG StoBa;6784;00:01:05,74;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;6;;Möller, Emma;467549;150;M;2017;;SG StoBa;6784;00:01:06,11;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;7;;Thiele, Niklas;522615;157;M;2017;;SG StoBa;6784;00:01:14,10;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;8;;Sommer, Elias;479129;73;M;2017;;Möllner SV;3467;00:01:20,75;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;9;;Otto, Ruben;766527;138;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:24,47;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;0;DS;Albers, Milan;534692;161;M;2017;;SG StoBa;6784;00:00:00,00;Der Schwimmer hat bei der 25m Wende nur mit einer Hand angeschlagen. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;0;AB;Jung, Vincent;973748;78;M;2017;;Möllner SV;3467;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;800002;0;AB;Ludwig, Ida;480883;151;M;2017;;SG StoBa;6784;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;900003;1;;Fischer, Rike;256215;156;W;2018;;SG StoBa;6784;00:00:26,43;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;2;;Vogel, Pia;429856;60;W;2018;;Farmsener TV;4094;00:00:29,15;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;3;;Richter, Sophie;952105;22;W;2018;;Ratzeburger SV von 1862;3485;00:00:30,19;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;4;;Kern, Leon;285484;102;W;2018;;SV Neptun Kiel;5129;00:00:30,25;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;5;;Sommer, Sophie;220250;59;W;2018;;Farmsener TV;4094;00:00:30,25;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;6;;Albers, Niklas;256215;131;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:30,79;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;7;;Pohl, Niklas;256215;148;W;2018;;SG StoBa;6784;00:00:31,72;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;0;NA;Reuter, Erik;256215;89;W;2018;;Möllner SV;3467;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900003;0;NA;Busch, Lina;256215;121;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;900002;1;;Peters, Nele;256215;153;W;2019;;SG StoBa;6784;00:00:28,70;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 9;E;900002;2;;Hahn, Linus;256215;116;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,37;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 10;E;1000003;1;;Lorenz, Ruben;256215;149;M;2018;;SG StoBa;6784;00:00:26,90;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 10;E;1000003;2;;Gross, Clara;256215;133;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:28,19;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 10;E;1000003;3;;Frank, Felix;256215;117;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:28,45;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 10;E;1000003;4;;Stein, David;256215;147;M;2018;;SG StoBa;6784;00:00:33,83;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 10;E;1000003;5;;Sommer, Lina;256215;130;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:40,99;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 11;E;1100001;1;;Möller, Oskar;184682;25;W;2016;;Ratzeburger SV von 1862;3485;00:00:48,94;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;2;;Schäfer, Karl;765707;122;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,50;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;3;;Neumann, Yara;872710;62;W;2016;;Farmsener TV;4094;00:00:53,02;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;4;;Koch, Fiona;356158;21;W;2016;;Ratzeburger SV von 1862;3485;00:00:53,23;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;5;;Ludwig, Linus;972238;44;W;2016;;Ahrensburger TSV;3447;00:00:54,36;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;6;;Hartmann, Greta;371417;110;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:54,69;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;7;;Schmitt, Hannah;748709;124;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,86;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;8;;Dietrich, Leon;873287;64;W;2016;;Farmsener TV;4094;00:00:58,80;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;9;;Hahn, Julia;160825;103;W;2016;;SV Neptun Kiel;5129;00:01:00,69;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;10;;Busch, Tilda;949036;134;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:00,82;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;11;;Peters, Linus;483186;65;W;2016;;Farmsener TV;4094;00:01:02,07;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;12;;Bauer, Maja;393938;84;W;2016;;Möllner SV;3467;00:01:03,44;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100001;13;;Ziegler, Jost;228525;63;W;2016;;Farmsener TV;4094;00:01:09,65;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;1100002;1;;Klein, Jakob;636572;29;W;2017;;Ratzeburger SV von 1862;3485;00:00:48,45;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;2;;Sommer, Malte;603868;94;W;2017;;Möllner SV;3467;00:00:51,47;;;;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;3;;Koch, Jana;104139;42;W;2017;;Ahrensburger TSV;3447;00:00:53,07;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;4;;Brandt, Jana;931274;114;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,48;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;5;;Otto, Tilda;219598;27;W;2017;;Ratzeburger SV von 1862;3485;00:00:55,50;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;6;;Ziegler, Fiona;140519;125;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,21;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;7;;Voigt, Carla;786195;111;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,85;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;8;;Pohl, Mats;286824;90;W;2017;;Möllner SV;3467;00:00:57,61;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;9;;Herrmann, Anton;803264;152;W;2017;;SG StoBa;6784;00:00:57,73;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;10;;Lehmann, Rike;789930;159;W;2017;;SG StoBa;6784;00:00:57,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;11;;Sander, Marie;354540;174;W;2017;;VfL Pinneberg;3559;00:00:58,17;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;12;;Hahn, Leon;395757;137;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:59,90;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;13;;Ludwig, Jana;717921;177;W;2017;;VfL Pinneberg;3559;00:01:00,97;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;14;;Weiss, Sina;462900;112;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:01,66;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;15;;Engel, Niklas;589599;49;W;2017;;Ahrensburger TSV;3447;00:01:02,03;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;16;;Voigt, Yara;718138;109;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:02,06;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;17;;Lorenz, Oskar;282816;92;W;2017;;Möllner SV;3467;00:01:04,44;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;18;;Weiss, Tom;470911;86;W;2017;;Möllner SV;3467;00:01:05,61;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;19;;Frank, Milan;489272;15;W;2017;;Ratzeburger SV von 1862;3485;00:01:06,14;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;20;;Walter, Sophie;605275;158;W;2017;;SG StoBa;6784;00:01:07,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;21;;Walter, Karl;295091;61;W;2017;;Farmsener TV;4094;00:01:16,42;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;22;;Frank, Lena;651367;87;W;2017;;Möllner SV;3467;00:01:19,41;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;23;;Sander, David;735692;76;W;2017;;Möllner SV;3467;00:01:19,59;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;0;DS;Klein, Niklas;668549;96;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin schlug beim Zielanschlag in Bauchlage an. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;1100002;0;DS;Stein, Jana;726149;83;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin startete vor dem Startsignal. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200001;1;;Kern, Erik;103947;119;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:49,40;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;2;;Brandt, Jost;195188;79;M;2016;;Möllner SV;3467;00:00:53,40;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;3;;Möller, Alina;138700;95;M;2016;;Möllner SV;3467;00:00:54,80;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;4;;Weiss, Yara;708998;175;M;2016;;VfL Pinneberg;3559;00:00:55,19;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;5;;Neumann, Julia;325448;101;M;2016;;SV Neptun Kiel;5129;00:00:55,22;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;6;;Koch, Erik;622042;178;M;2016;;VfL Pinneberg;3559;00:01:00,71;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;7;;Seidel, Mia;185866;3;M;2016;;Ratzeburger SV von 1862;3485;00:01:02,29;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;8;;Keller, Oskar;256215;160;M;2016;;SG StoBa;6784;00:01:07,91;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200001;0;AB;Graf, Leon;965111;6;M;2016;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;1200002;1;;Bauer, Lara;671815;69;M;2017;;Möllner SV;3467;00:00:48,20;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;2;;Vogel, Lena;681758;46;M;2017;;Ahrensburger TSV;3447;00:00:48,83;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;3;;Kuhn, Maja;937025;154;M;2017;;SG StoBa;6784;00:00:48,83;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;4;;Weiss, Jost;212311;155;M;2017;;SG StoBa;6784;00:00:53,57;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;5;;Möller, Emma;467549;150;M;2017;;SG StoBa;6784;00:00:56,30;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;6;;Thiele, Niklas;522615;157;M;2017;;SG StoBa;6784;00:00:59,62;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;7;;Albers, Milan;534692;161;M;2017;;SG StoBa;6784;00:01:00,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;8;;Otto, Ruben;766527;138;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:04,76;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;9;;Sommer, Oskar;932159;176;M;2017;;VfL Pinneberg;3559;00:01:14,84;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;10;;Sommer, Elias;479129;73;M;2017;;Möllner SV;3467;00:01:17,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;0;AB;Ludwig, Ida;480883;151;M;2017;;SG StoBa;6784;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;1200002;0;AB;Jung, Vincent;973748;78;M;2017;;Möllner SV;3467;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;1300003;1;;Vogel, Pia;429856;60;W;2018;;Farmsener TV;4094;00:00:22,57;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300003;2;;Fischer, Rike;256215;156;W;2018;;SG StoBa;6784;00:00:23,46;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300003;3;;Kern, Leon;285484;102;W;2018;;SV Neptun Kiel;5129;00:00:24,75;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300003;4;;Pohl, Niklas;256215;148;W;2018;;SG StoBa;6784;00:00:29,83;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300003;5;;Albers, Niklas;256215;131;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,83;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300003;6;;Sommer, Sophie;220250;59;W;2018;;Farmsener TV;4094;00:00:30,11;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300003;0;NA;Reuter, Erik;256215;89;W;2018;;Möllner SV;3467;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300003;0;NA;Busch, Lina;256215;121;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;1300002;1;;Peters, Nele;256215;153;W;2019;;SG StoBa;6784;00:00:27,31;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 13;E;1300002;2;;Hahn, Linus;256215;116;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:41,29;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 14;E;3600003;1;;Frank, Felix;256215;117;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:24,51;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 14;E;3600003;2;;Lorenz, Ruben;256215;149;M;2018;;SG StoBa;6784;00:00:24,51;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 14;E;3600003;3;;Gross, Clara;256215;133;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:28,03;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 14;E;3600003;4;;Stein, David;256215;147;M;2018;;SG StoBa;6784;00:00:35,54;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 14;E;3600003;5;;Sommer, Lina;256215;130;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:45,45;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 15;E;3700001;1;;Koch, Fiona;356158;21;W;2016;;Ratzeburger SV von 1862;3485;00:00:45,74;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;2;;Möller, Oskar;184682;25;W;2016;;Ratzeburger SV von 1862;3485;00:00:46,36;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;3;;Schäfer, Karl;765707;122;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:47,86;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;4;;Schmitt, Hannah;748709;124;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,13;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;5;;Hartmann, Greta;371417;110;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,41;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;6;;Hahn, Julia;160825;103;W;2016;;SV Neptun Kiel;5129;00:00:49,85;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;7;;Neumann, Yara;872710;62;W;2016;;Farmsener TV;4094;00:00:50,83;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;8;;Ludwig, Linus;972238;44;W;2016;;Ahrensburger TSV;3447;00:00:50,98;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;9;;Möller, Ben;776819;33;W;2016;;Ratzeburger SV von 1862;3485;00:01:00,09;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;10;;Busch, Tilda;949036;134;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:01,88;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;11;;Peters, Linus;483186;65;W;2016;;Farmsener TV;4094;00:01:02,33;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;12;;Dietrich, Leon;873287;64;W;2016;;Farmsener TV;4094;00:01:03,86;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;13;;Bauer, Maja;393938;84;W;2016;;Möllner SV;3467;00:01:09,28;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700001;14;;Ziegler, Jost;228525;63;W;2016;;Farmsener TV;4094;00:01:10,06;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;3700002;1;;Klein, Jakob;636572;29;W;2017;;Ratzeburger SV von 1862;3485;00:00:41,74;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;2;;Ziegler, Fiona;140519;125;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:42,59;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;3;;Koch, Jana;104139;42;W;2017;;Ahrensburger TSV;3447;00:00:44,96;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;4;;Otto, Tilda;219598;27;W;2017;;Ratzeburger SV von 1862;3485;00:00:46,13;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;5;;Pohl, Mats;286824;90;W;2017;;Möllner SV;3467;00:00:47,46;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;6;;Sommer, Malte;603868;94;W;2017;;Möllner SV;3467;00:00:48,22;;;;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;7;;Herrmann, Anton;803264;152;W;2017;;SG StoBa;6784;00:00:49,57;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;8;;Engel, Niklas;589599;49;W;2017;;Ahrensburger TSV;3447;00:00:50,48;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;9;;Ludwig, Jana;717921;177;W;2017;;VfL Pinneberg;3559;00:00:51,17;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;10;;Hahn, Leon;395757;137;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,10;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;11;;Sander, Marie;354540;174;W;2017;;VfL Pinneberg;3559;00:00:52,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;12;;Voigt, Carla;786195;111;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:53,15;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;13;;Brandt, Jana;931274;114;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:53,42;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;14;;Lehmann, Rike;789930;159;W;2017;;SG StoBa;6784;00:00:54,13;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;15;;Voigt, Yara;718138;109;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;16;;Stein, Jana;726149;83;W;2017;;Möllner SV;3467;00:00:58,25;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;17;;Frank, Milan;489272;15;W;2017;;Ratzeburger SV von 1862;3485;00:01:00,14;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;18;;Weiss, Sina;462900;112;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:02,56;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;19;;Walter, Sophie;605275;158;W;2017;;SG StoBa;6784;00:01:06,16;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;20;;Lorenz, Oskar;282816;92;W;2017;;Möllner SV;3467;00:01:06,70;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;21;;Weiss, Tom;470911;86;W;2017;;Möllner SV;3467;00:01:07,19;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;22;;Walter, Karl;295091;61;W;2017;;Farmsener TV;4094;00:01:10,80;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;0;DS;Sander, David;735692;76;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin führte entgegen der Ausschreibung während der Schwimmstrecke mehrere Brustbeinschläge durch. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;0;DS;Klein, Niklas;668549;96;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin führte entgegen der Ausschreibung Brustbeinschläge auf der Schwimmstrecke aus. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;3700002;0;DS;Frank, Lena;651367;87;W;2017;;Möllner SV;3467;00:00:00,00;Die Schwimmerin führte entgegen der Ausschreibung die Arme nicht über Wasser nach vorne.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800001;1;;Weiss, Yara;708998;175;M;2016;;VfL Pinneberg;3559;00:00:46,78;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800001;2;;Kern, Erik;103947;119;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:46,84;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800001;3;;Brandt, Jost;195188;79;M;2016;;Möllner SV;3467;00:00:46,84;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800001;4;;Neumann, Julia;325448;101;M;2016;;SV Neptun Kiel;5129;00:00:47,15;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800001;5;;Koch, Erik;622042;178;M;2016;;VfL Pinneberg;3559;00:00:55,01;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800001;6;;Möller, Alina;138700;95;M;2016;;Möllner SV;3467;00:00:55,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800001;7;;Keller, Oskar;256215;160;M;2016;;SG StoBa;6784;00:01:03,32;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800001;0;AB;Graf, Leon;965111;6;M;2016;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;3800002;1;;Vogel, Lena;681758;46;M;2017;;Ahrensburger TSV;3447;00:00:40,97;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;2;;Bauer, Lara;671815;69;M;2017;;Möllner SV;3467;00:00:42,41;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;3;;Kuhn, Maja;937025;154;M;2017;;SG StoBa;6784;00:00:44,71;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;4;;Weiss, Jost;212311;155;M;2017;;SG StoBa;6784;00:00:49,88;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;5;;Möller, Emma;467549;150;M;2017;;SG StoBa;6784;00:00:50,58;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;6;;Thiele, Niklas;522615;157;M;2017;;SG StoBa;6784;00:00:56,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;7;;Otto, Ruben;766527;138;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:59,06;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;8;;Albers, Milan;534692;161;M;2017;;SG StoBa;6784;00:00:59,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;9;;Sommer, Oskar;932159;176;M;2017;;VfL Pinneberg;3559;00:01:09,73;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;0;DS;Sommer, Elias;479129;73;M;2017;;Möllner SV;3467;00:00:00,00;Der Schwimmer hat entgegen der Ausschreibung mehrere Brustbeinschläge ausgeführt.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;0;AB;Jung, Vincent;973748;78;M;2017;;Möllner SV;3467;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;3800002;0;AB;Ludwig, Ida;480883;151;M;2017;;SG StoBa;6784;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 19;E;1600002;1;;Sommer, Vincent;881392;48;W;2014;;Ahrensburger TSV;3447;00:03:14,16;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;1600002;2;;Vogel, Lina;489380;71;W;2014;;Möllner SV;3467;00:03:21,33;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;1600002;3;;Engel, Henri;394535;166;W;2014;;TSV Klausdorf;5274;00:03:22,38;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;1600002;4;;Herrmann, David;469189;127;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:25,25;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;1600002;5;;Lorenz, Luis;301285;7;W;2014;;Ratzeburger SV von 1862;3485;00:03:36,01;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;1600002;0;AB;Vogel, Lena;623666;97;W;2014;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;1600001;1;;Walter, Ruben;300098;108;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:15,38;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;2;;Pohl, Oskar;371683;80;W;2015;;Möllner SV;3467;00:03:33,48;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;3;;Winkler, Pia;949302;11;W;2015;;Ratzeburger SV von 1862;3485;00:03:39,47;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;4;;Kuhn, Leon;355780;167;W;2015;;TSV Klausdorf;5274;00:03:42,21;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;5;;Brandt, Emilia;924561;136;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:43,49;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;6;;Lehmann, David;626921;72;W;2015;;Möllner SV;3467;00:03:44,85;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;7;;Lang, Vincent;650701;50;W;2015;;Ahrensburger TSV;3447;00:03:48,14;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;8;;Gross, Sophie;155406;68;W;2015;;Möllner SV;3467;00:04:12,84;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;9;;Ludwig, Nora;759322;129;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:04:23,09;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600001;0;NA;Schmitt, Sina;405160;36;W;2015;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;1600007;1;;Peters, Paul;514861;74;W;2016;;Möllner SV;3467;00:03:37,31;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;1600006;1;;Frank, Vincent;889992;58;W;1999;25;TSV Bargteheide;3515;00:02:46,78;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 19;E;1600006;2;;Dietrich, Mia;672033;169;W;2002;20;TSV Klausdorf;5274;00:03:01,28;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 19;E;1600006;3;;Kern, Rike;871720;88;W;2008;;Möllner SV;3467;00:03:09,19;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 19;E;1600006;4;;Jung, Jakob;550345;162;W;2008;;TSV Klausdorf;5274;00:03:26,90;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 19;E;1600005;1;;Seidel, Yara;759996;8;W;2010;;Ratzeburger SV von 1862;3485;00:02:38,09;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;2;;Maier, Malte;240521;32;W;2011;;Ratzeburger SV von 1862;3485;00:02:48,66;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;3;;Pohl, Clara;223377;28;W;2011;;Ratzeburger SV von 1862;3485;00:02:49,53;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;4;;Pohl, Niklas;733853;24;W;2011;;Ratzeburger SV von 1862;3485;00:02:51,31;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;5;;Klein, Felix;146084;164;W;2011;;TSV Klausdorf;5274;00:03:09,56;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;6;;Reuter, Fiona;416434;56;W;2010;;TSV Bargteheide;3515;00:03:18,87;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;7;;Winkler, Niklas;492061;171;W;2010;;TSV Klausdorf;5274;00:03:25,17;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;8;;Stein, Paul;944159;13;W;2011;;Ratzeburger SV von 1862;3485;00:03:36,07;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;0;NA;Ziegler, Carla;626517;163;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600005;0;DS;Sommer, Mats;261541;18;W;2010;;Ratzeburger SV von 1862;3485;00:00:00,00;Die Schwimmerin hat auf der Teilstrecke Rücken bei der 75m Wende nach Verlassen der Rückenlage zwei Armzüge ausgeführt.;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 19;E;1600004;1;;Pohl, Milan;679519;26;W;2012;;Ratzeburger SV von 1862;3485;00:02:38,97;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 19;E;1600004;2;;Walter, Mats;439515;20;W;2013;;Ratzeburger SV von 1862;3485;00:02:59,80;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 19;E;1600004;3;;Sommer, Felix;236305;51;W;2013;;Ahrensburger TSV;3447;00:03:11,68;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 19;E;1600004;4;;Lang, Tilda;774551;23;W;2013;;Ratzeburger SV von 1862;3485;00:03:16,91;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 19;E;1600004;5;;Lang, Vincent;184277;91;W;2013;;Möllner SV;3467;00:03:53,31;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 19;E;1600004;0;DS;Kuhn, Nora;389650;170;W;2012;;TSV Klausdorf;5274;00:00:00,00;Die Schwimmerin hat sich bei der 75m Wende in der Rückenteilstrecke in Bauchlage abgestoßen und Brustschwimmzüge ausgeführt. ;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 19;E;1600004;0;AB;Peters, Rike;313654;98;W;2012;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 19;E;1600004;0;AB;Reuter, Tom;157070;113;W;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700002;1;;Richter, Milan;233484;45;M;2014;;Ahrensburger TSV;3447;00:03:11,44;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;1700002;2;;Maier, Niklas;478148;52;M;2014;;Ahrensburger TSV;3447;00:03:12,63;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;1700002;3;;Berger, Malte;824570;128;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:32,28;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;1700002;4;;Maier, Ruben;162707;43;M;2014;;Ahrensburger TSV;3447;00:03:55,36;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;1700002;0;AB;Jung, Mats;799803;30;M;2014;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;1700002;0;AB;Engel, Malte;213951;115;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;1700002;0;AB;Kuhn, Erik;772089;179;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;1700001;1;;Berger, Lena;539742;41;M;2015;;Ahrensburger TSV;3447;00:03:15,85;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;1700001;2;;Lorenz, Alina;261721;135;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:40,41;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;1700001;3;;Kaiser, Carla;255112;82;M;2015;;Möllner SV;3467;00:03:54,24;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;1700001;4;;Dietrich, Maja;160217;81;M;2015;;Möllner SV;3467;00:04:01,35;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;1700001;5;;Lorenz, Milan;425492;77;M;2015;;Möllner SV;3467;00:04:08,71;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;1700001;0;AB;Richter, Pia;333372;93;M;2015;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;1700007;1;;Frank, Emma;881893;126;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:34,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;1700006;1;;Seidel, Mia;869165;17;M;2009;;Ratzeburger SV von 1862;3485;00:02:39,32;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 20;E;1700006;2;;Neumann, Marie;928707;34;M;1970;55;Ratzeburger SV von 1862;3485;00:02:45,20;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 20;E;1700005;1;;Schäfer, Greta;562902;19;M;2010;;Ratzeburger SV von 1862;3485;00:02:41,09;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 20;E;1700005;2;;Bauer, Theo;868139;5;M;2011;;Ratzeburger SV von 1862;3485;00:02:44,67;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 20;E;1700005;0;AB;Kern, Fiona;603652;12;M;2010;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 20;E;1700005;0;AB;Bauer, Nele;437615;85;M;2011;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 20;E;1700004;1;;Kaiser, Ida;746662;31;M;2012;;Ratzeburger SV von 1862;3485;00:02:45,20;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;2;;Otto, Greta;424281;9;M;2012;;Ratzeburger SV von 1862;3485;00:02:50,95;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;3;;Jung, Milan;337635;118;M;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:08,43;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;4;;Hahn, Nele;603578;35;M;2012;;Ratzeburger SV von 1862;3485;00:03:10,59;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;5;;Ludwig, Carla;506658;99;M;2013;;Möllner SV;3467;00:03:17,79;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;6;;Thiele, Greta;650184;75;M;2013;;Möllner SV;3467;00:03:18,13;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;7;;Engel, Mats;309545;132;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:03:52,47;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;0;DS;Möller, Ben;583714;16;M;2013;;Ratzeburger SV von 1862;3485;00:00:00,00;Der Schwimmer führte bei der 25m Wende einen Brustarmzug durch. ;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;0;AB;Lehmann, Theo;531986;120;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 20;E;1700004;0;AB;Hartmann, Jonas;500390;123;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 21;E;1800002;1;;Kramer, Greta;897042;172;W;2014;;TSV Klausdorf;5274;00:00:40,16;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;1800001;1;;Lehmann, David;626921;72;W;2015;;Möllner SV;3467;00:00:47,16;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;1800001;2;;Winkler, Pia;949302;11;W;2015;;Ratzeburger SV von 1862;3485;00:00:52,13;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;1800006;1;;Maier, Luis;120886;14;W;1997;25;Ratzeburger SV von 1862;3485;00:00:31,38;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 21;E;1800006;2;;Kern, Rike;871720;88;W;2008;;Möllner SV;3467;00:00:36,69;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 21;E;1800005;1;;Seidel, Yara;759996;8;W;2010;;Ratzeburger SV von 1862;3485;00:00:31,61;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 21;E;1800005;2;;Winkler, Niklas;492061;171;W;2010;;TSV Klausdorf;5274;00:00:48,12;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 21;E;1800004;1;;Pohl, Milan;679519;26;W;2012;;Ratzeburger SV von 1862;3485;00:00:31,88;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 21;E;1800004;2;;Sommer, Felix;236305;51;W;2013;;Ahrensburger TSV;3447;00:00:41,15;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 21;E;1800004;0;AB;Maier, Jakob;555095;141;W;2012;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 21;E;1800004;0;AB;Lang, Felix;693845;55;W;2013;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 22;E;1900002;1;;Weiss, Sina;284504;54;M;2014;;Ahrensburger TSV;3447;00:00:50,10;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 22;E;1900006;0;AB;Kramer, Emma;764432;144;M;1970;55;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 22;E;1900004;1;;Neumann, Marie;726039;142;M;2013;;SG Bad Schwartau;5196;00:00:48,85;;;UKR;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 22;E;1900004;0;NA;Otto, Greta;424281;9;M;2012;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 22;E;1900004;0;NA;Hahn, Nele;603578;35;M;2012;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 23;E;2000002;1;;Kramer, Greta;897042;172;W;2014;;TSV Klausdorf;5274;00:01:27,78;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 23;E;2000002;2;;Vogel, Lina;489380;71;W;2014;;Möllner SV;3467;00:01:33,20;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 23;E;2000002;3;;Lorenz, Luis;301285;7;W;2014;;Ratzeburger SV von 1862;3485;00:01:35,44;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 23;E;2000002;4;;Sommer, Vincent;881392;48;W;2014;;Ahrensburger TSV;3447;00:01:36,33;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 23;E;2000002;5;;Engel, Henri;394535;166;W;2014;;TSV Klausdorf;5274;00:01:36,50;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 23;E;2000002;6;;Herrmann, David;469189;127;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:38,54;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 23;E;2000002;0;AB;Vogel, Lena;623666;97;W;2014;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 23;E;2000001;1;;Walter, Ruben;300098;108;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:25,47;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 23;E;2000001;2;;Kuhn, Leon;355780;167;W;2015;;TSV Klausdorf;5274;00:01:40,77;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 23;E;2000001;3;;Lang, Vincent;650701;50;W;2015;;Ahrensburger TSV;3447;00:01:42,91;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 23;E;2000001;4;;Gross, Sophie;155406;68;W;2015;;Möllner SV;3467;00:01:59,25;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 23;E;2000007;1;;Peters, Paul;514861;74;W;2016;;Möllner SV;3467;00:01:54,32;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 23;E;2000006;1;;Frank, Vincent;889992;58;W;1999;25;TSV Bargteheide;3515;00:01:15,32;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 23;E;2000006;2;;Jung, Jakob;550345;162;W;2008;;TSV Klausdorf;5274;00:01:31,95;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 23;E;2000006;3;;Seidel, Lara;176952;4;W;1982;40;Ratzeburger SV von 1862;3485;00:03:08,16;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 23;E;2000006;0;AB;Kern, Rike;871720;88;W;2008;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 23;E;2000005;1;;Sommer, Mats;261541;18;W;2010;;Ratzeburger SV von 1862;3485;00:01:08,56;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;2;;Seidel, Yara;759996;8;W;2010;;Ratzeburger SV von 1862;3485;00:01:14,35;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;3;;Pohl, Niklas;733853;24;W;2011;;Ratzeburger SV von 1862;3485;00:01:16,98;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;4;;Pohl, Clara;223377;28;W;2011;;Ratzeburger SV von 1862;3485;00:01:19,36;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;5;;Klein, Felix;146084;164;W;2011;;TSV Klausdorf;5274;00:01:23,65;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;6;;Reuter, Fiona;416434;56;W;2010;;TSV Bargteheide;3515;00:01:29,02;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;7;;Marquardt, Yara;114518;47;W;2011;;Ahrensburger TSV;3447;00:01:32,84;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;8;;Stein, Paul;944159;13;W;2011;;Ratzeburger SV von 1862;3485;00:01:48,28;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000005;0;NA;Ziegler, Carla;626517;163;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 23;E;2000004;1;;Pohl, Milan;679519;26;W;2012;;Ratzeburger SV von 1862;3485;00:01:11,16;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 23;E;2000004;2;;Walter, Mats;439515;20;W;2013;;Ratzeburger SV von 1862;3485;00:01:22,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 23;E;2000004;3;;Lang, Tilda;774551;23;W;2013;;Ratzeburger SV von 1862;3485;00:01:30,77;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 23;E;2000004;4;;Sommer, Felix;236305;51;W;2013;;Ahrensburger TSV;3447;00:01:33,59;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 23;E;2000004;5;;Lang, Vincent;184277;91;W;2013;;Möllner SV;3467;00:01:47,19;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 23;E;2000004;6;;Kuhn, Nora;389650;170;W;2012;;TSV Klausdorf;5274;00:01:59,78;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 23;E;2000004;0;AB;Peters, Rike;313654;98;W;2012;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100002;1;;Richter, Milan;233484;45;M;2014;;Ahrensburger TSV;3447;00:01:35,23;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;2100002;2;;Berger, Malte;824570;128;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:38,21;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;2100002;3;;Hahn, Emilia;784537;140;M;2014;;SG Bad Schwartau;5196;00:01:43,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;2100002;4;;Maier, Ruben;162707;43;M;2014;;Ahrensburger TSV;3447;00:01:56,01;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;2100002;0;AB;Jung, Mats;799803;30;M;2014;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;2100002;0;AB;Engel, Malte;213951;115;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;2100002;0;AB;Kuhn, Erik;772089;179;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;2100001;1;;Berger, Lena;539742;41;M;2015;;Ahrensburger TSV;3447;00:01:29,90;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;2100001;2;;Lorenz, Alina;261721;135;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:43,68;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;2100001;3;;Dietrich, Maja;160217;81;M;2015;;Möllner SV;3467;00:01:44,13;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;2100001;4;;Kaiser, Carla;255112;82;M;2015;;Möllner SV;3467;00:01:50,53;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;2100001;5;;Lorenz, Milan;425492;77;M;2015;;Möllner SV;3467;00:01:53,87;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;2100001;0;AB;Richter, Pia;333372;93;M;2015;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;2100007;1;;Frank, Emma;881893;126;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:42,24;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;2100007;2;;Kern, Erik;103947;119;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:45,91;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;2100006;1;;Seidel, Mia;869165;17;M;2009;;Ratzeburger SV von 1862;3485;00:01:11,37;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 24;E;2100006;2;;Neumann, Marie;928707;34;M;1970;55;Ratzeburger SV von 1862;3485;00:01:22,16;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 24;E;2100005;1;;Bauer, Theo;868139;5;M;2011;;Ratzeburger SV von 1862;3485;00:01:17,92;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 24;E;2100005;2;;Schäfer, Greta;562902;19;M;2010;;Ratzeburger SV von 1862;3485;00:01:18,06;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 24;E;2100005;0;AB;Bauer, Nele;437615;85;M;2011;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 24;E;2100004;1;;Otto, Greta;424281;9;M;2012;;Ratzeburger SV von 1862;3485;00:01:17,92;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;2;;Kaiser, Ida;746662;31;M;2012;;Ratzeburger SV von 1862;3485;00:01:17,92;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;3;;Jung, Milan;337635;118;M;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:23,98;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;4;;Möller, Ben;583714;16;M;2013;;Ratzeburger SV von 1862;3485;00:01:26,92;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;5;;Thiele, Greta;650184;75;M;2013;;Möllner SV;3467;00:01:30,10;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;6;;Hahn, Nele;603578;35;M;2012;;Ratzeburger SV von 1862;3485;00:01:32,26;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;7;;Ludwig, Carla;506658;99;M;2013;;Möllner SV;3467;00:01:33,39;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;8;;Lang, Mats;217361;40;M;2012;;Ahrensburger TSV;3447;00:01:44,99;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;9;;Engel, Mats;309545;132;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:46,97;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;0;DS;Reuter, Emilia;850576;70;M;2013;;Möllner SV;3467;00:00:00,00;Der Schwimmer startete vor dem Startsignal. ;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;0;AB;Lehmann, Theo;531986;120;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 24;E;2100004;0;AB;Hartmann, Jonas;500390;123;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 25;E;2200002;1;;Kramer, Greta;897042;172;W;2014;;TSV Klausdorf;5274;00:00:34,52;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 25;E;2200002;2;;Sommer, Vincent;881392;48;W;2014;;Ahrensburger TSV;3447;00:00:36,97;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 25;E;2200001;1;;Winkler, Pia;949302;11;W;2015;;Ratzeburger SV von 1862;3485;00:00:36,38;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;2200001;2;;Pohl, Oskar;371683;80;W;2015;;Möllner SV;3467;00:00:37,84;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;2200001;3;;Kern, David;296777;39;W;2015;;Ahrensburger TSV;3447;00:00:49,47;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;2200001;4;;Schäfer, Lena;317025;53;W;2015;;Ahrensburger TSV;3447;00:00:53,03;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;2200001;0;NA;Schmitt, Sina;405160;36;W;2015;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;2200007;1;;Peters, Paul;514861;74;W;2016;;Möllner SV;3467;00:00:42,46;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 25;E;2200006;1;;Frank, Vincent;889992;58;W;1999;25;TSV Bargteheide;3515;00:00:30,16;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 25;E;2200006;2;;Kern, Rike;871720;88;W;2008;;Möllner SV;3467;00:00:32,83;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 25;E;2200005;1;;Brandt, Ida;546546;165;W;2010;;TSV Klausdorf;5274;00:00:31,43;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 25;E;2200005;2;;Marquardt, Yara;114518;47;W;2011;;Ahrensburger TSV;3447;00:00:35,87;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 25;E;2200005;3;;Winkler, Niklas;492061;171;W;2010;;TSV Klausdorf;5274;00:00:38,50;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 25;E;2200005;4;;Stein, Paul;944159;13;W;2011;;Ratzeburger SV von 1862;3485;00:00:40,25;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 25;E;2200004;1;;Sommer, Felix;236305;51;W;2013;;Ahrensburger TSV;3447;00:00:34,80;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 25;E;2200004;0;AB;Lang, Felix;693845;55;W;2013;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 25;E;2200004;0;AB;Maier, Jakob;555095;141;W;2012;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 26;E;2300002;1;;Weiss, Sina;284504;54;M;2014;;Ahrensburger TSV;3447;00:00:36,12;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;2300002;0;NA;Weiss, Jost;672230;143;M;2014;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;2300001;0;AB;Richter, Pia;333372;93;M;2015;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;2300006;1;;Seidel, Mia;869165;17;M;2009;;Ratzeburger SV von 1862;3485;00:00:27,97;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 26;E;2300006;0;AB;Kramer, Emma;764432;144;M;1970;55;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 26;E;2300005;1;;Bauer, Theo;868139;5;M;2011;;Ratzeburger SV von 1862;3485;00:00:31,98;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 26;E;2300005;0;AB;Kern, Fiona;603652;12;M;2010;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 26;E;2300004;1;;Kaiser, Ida;746662;31;M;2012;;Ratzeburger SV von 1862;3485;00:00:29,77;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 26;E;2300004;2;;Möller, Ben;583714;16;M;2013;;Ratzeburger SV von 1862;3485;00:00:32,50;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 26;E;2300004;3;;Lang, Mats;217361;40;M;2012;;Ahrensburger TSV;3447;00:00:37,36;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 26;E;2300004;4;;Neumann, Marie;726039;142;M;2013;;SG Bad Schwartau;5196;00:00:41,38;;;UKR;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 26;E;2300004;5;;Reuter, Emilia;850576;70;M;2013;;Möllner SV;3467;00:00:45,21;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 27;E;2400002;1;;Herrmann, David;469189;127;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:35,75;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 27;E;2400001;1;;Walter, Ruben;300098;108;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:48,72;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 27;E;2400006;1;;Maier, Luis;120886;14;W;1997;25;Ratzeburger SV von 1862;3485;00:01:13,38;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 27;E;2400006;2;;Frank, Vincent;889992;58;W;1999;25;TSV Bargteheide;3515;00:01:18,04;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 27;E;2400006;3;;Dietrich, Mia;672033;169;W;2002;20;TSV Klausdorf;5274;00:01:21,68;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 27;E;2400005;1;;Seidel, Yara;759996;8;W;2010;;Ratzeburger SV von 1862;3485;00:01:12,78;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;2;;Pohl, Clara;223377;28;W;2011;;Ratzeburger SV von 1862;3485;00:01:15,85;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;3;;Pohl, Niklas;733853;24;W;2011;;Ratzeburger SV von 1862;3485;00:01:21,68;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;4;;Maier, Malte;240521;32;W;2011;;Ratzeburger SV von 1862;3485;00:01:23,18;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;5;;Brandt, Ida;546546;165;W;2010;;TSV Klausdorf;5274;00:01:27,12;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;6;;Klein, Felix;146084;164;W;2011;;TSV Klausdorf;5274;00:01:29,89;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;7;;Reuter, Fiona;416434;56;W;2010;;TSV Bargteheide;3515;00:01:46,03;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;8;;Stein, Paul;944159;13;W;2011;;Ratzeburger SV von 1862;3485;00:01:57,56;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400005;0;NA;Ziegler, Carla;626517;163;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 27;E;2400004;1;;Walter, Mats;439515;20;W;2013;;Ratzeburger SV von 1862;3485;00:01:25,06;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 27;E;2400004;2;;Sommer, Felix;236305;51;W;2013;;Ahrensburger TSV;3447;00:01:45,36;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 27;E;2400004;0;AB;Reuter, Tom;157070;113;W;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 28;E;2500002;1;;Maier, Niklas;478148;52;M;2014;;Ahrensburger TSV;3447;00:01:36,31;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;2500002;2;;Richter, Milan;233484;45;M;2014;;Ahrensburger TSV;3447;00:01:37,85;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;2500001;1;;Kaiser, Carla;255112;82;M;2015;;Möllner SV;3467;00:02:03,72;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;2500006;1;;Seidel, Mia;869165;17;M;2009;;Ratzeburger SV von 1862;3485;00:01:14,91;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 28;E;2500006;2;;Neumann, Marie;928707;34;M;1970;55;Ratzeburger SV von 1862;3485;00:01:20,40;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 28;E;2500005;1;;Bauer, Theo;868139;5;M;2011;;Ratzeburger SV von 1862;3485;00:01:20,59;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 28;E;2500005;0;AB;Kern, Fiona;603652;12;M;2010;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 28;E;2500004;1;;Jung, Milan;337635;118;M;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:28,50;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 29;E;2600002;1;;Kramer, Greta;897042;172;W;2014;;TSV Klausdorf;5274;00:00:46,69;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 29;E;2600002;2;;Vogel, Lina;489380;71;W;2014;;Möllner SV;3467;00:00:48,31;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 29;E;2600002;3;;Graf, Nora;736578;57;W;2014;;TSV Bargteheide;3515;00:00:54,34;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 29;E;2600002;0;AB;Vogel, Lena;623666;97;W;2014;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 29;E;2600001;0;NA;Schmitt, Sina;405160;36;W;2015;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 29;E;2600007;1;;Peters, Paul;514861;74;W;2016;;Möllner SV;3467;00:00:57,10;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 29;E;2600006;1;;Kern, Rike;871720;88;W;2008;;Möllner SV;3467;00:00:44,34;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 29;E;2600005;1;;Pohl, Niklas;733853;24;W;2011;;Ratzeburger SV von 1862;3485;00:00:40,31;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 29;E;2600005;2;;Brandt, Ida;546546;165;W;2010;;TSV Klausdorf;5274;00:00:42,78;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 29;E;2600005;3;;Marquardt, Yara;114518;47;W;2011;;Ahrensburger TSV;3447;00:00:45,03;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 29;E;2600004;0;AB;Lang, Felix;693845;55;W;2013;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 30;E;2700002;1;;Weiss, Sina;284504;54;M;2014;;Ahrensburger TSV;3447;00:00:50,47;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;2700002;0;NA;Weiss, Jost;672230;143;M;2014;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;2700001;1;;Lorenz, Milan;425492;77;M;2015;;Möllner SV;3467;00:00:57,65;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;2700006;0;AB;Kramer, Emma;764432;144;M;1970;55;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 30;E;2700005;1;;Schäfer, Greta;562902;19;M;2010;;Ratzeburger SV von 1862;3485;00:00:37,94;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 30;E;2700004;1;;Lang, Mats;217361;40;M;2012;;Ahrensburger TSV;3447;00:00:51,71;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800002;1;;Kramer, Greta;897042;172;W;2014;;TSV Klausdorf;5274;00:01:16,72;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800002;2;;Engel, Henri;394535;166;W;2014;;TSV Klausdorf;5274;00:01:20,15;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800002;3;;Sommer, Vincent;881392;48;W;2014;;Ahrensburger TSV;3447;00:01:24,95;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800002;4;;Vogel, Lina;489380;71;W;2014;;Möllner SV;3467;00:01:25,53;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800002;5;;Herrmann, David;469189;127;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:29,19;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800002;6;;Lorenz, Luis;301285;7;W;2014;;Ratzeburger SV von 1862;3485;00:01:34,33;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800002;7;;Graf, Nora;736578;57;W;2014;;TSV Bargteheide;3515;00:01:54,77;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800002;0;AB;Vogel, Lena;623666;97;W;2014;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;2800001;1;;Walter, Ruben;300098;108;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:19,40;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;2;;Winkler, Pia;949302;11;W;2015;;Ratzeburger SV von 1862;3485;00:01:21,50;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;3;;Kuhn, Leon;355780;167;W;2015;;TSV Klausdorf;5274;00:01:28,06;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;4;;Pohl, Oskar;371683;80;W;2015;;Möllner SV;3467;00:01:31,25;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;5;;Lehmann, David;626921;72;W;2015;;Möllner SV;3467;00:01:31,53;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;6;;Lang, Vincent;650701;50;W;2015;;Ahrensburger TSV;3447;00:01:32,75;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;7;;Brandt, Emilia;924561;136;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:40,49;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;8;;Gross, Sophie;155406;68;W;2015;;Möllner SV;3467;00:01:49,56;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;9;;Ludwig, Nora;759322;129;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:49,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800001;0;NA;Schmitt, Sina;405160;36;W;2015;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;2800007;1;;Peters, Paul;514861;74;W;2016;;Möllner SV;3467;00:01:36,22;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;2800006;1;;Maier, Luis;120886;14;W;1997;25;Ratzeburger SV von 1862;3485;00:01:04,19;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 31;E;2800006;2;;Frank, Vincent;889992;58;W;1999;25;TSV Bargteheide;3515;00:01:05,78;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 31;E;2800006;3;;Dietrich, Mia;672033;169;W;2002;20;TSV Klausdorf;5274;00:01:11,32;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 31;E;2800006;4;;Kern, Rike;871720;88;W;2008;;Möllner SV;3467;00:01:13,93;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 31;E;2800006;5;;Jung, Jakob;550345;162;W;2008;;TSV Klausdorf;5274;00:01:24,36;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 31;E;2800006;6;;Seidel, Lara;176952;4;W;1982;40;Ratzeburger SV von 1862;3485;00:02:33,28;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 31;E;2800005;1;;Maier, Malte;240521;32;W;2011;;Ratzeburger SV von 1862;3485;00:01:04,37;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;2;;Sommer, Mats;261541;18;W;2010;;Ratzeburger SV von 1862;3485;00:01:05,63;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;3;;Seidel, Yara;759996;8;W;2010;;Ratzeburger SV von 1862;3485;00:01:06,42;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;4;;Pohl, Clara;223377;28;W;2011;;Ratzeburger SV von 1862;3485;00:01:08,55;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;5;;Pohl, Niklas;733853;24;W;2011;;Ratzeburger SV von 1862;3485;00:01:09,97;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;6;;Reuter, Fiona;416434;56;W;2010;;TSV Bargteheide;3515;00:01:17,65;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;7;;Klein, Felix;146084;164;W;2011;;TSV Klausdorf;5274;00:01:19,36;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;8;;Winkler, Niklas;492061;171;W;2010;;TSV Klausdorf;5274;00:01:23,71;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;9;;Marquardt, Yara;114518;47;W;2011;;Ahrensburger TSV;3447;00:01:24,88;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;10;;Stein, Paul;944159;13;W;2011;;Ratzeburger SV von 1862;3485;00:01:32,69;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800005;0;NA;Ziegler, Carla;626517;163;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 31;E;2800004;1;;Pohl, Milan;679519;26;W;2012;;Ratzeburger SV von 1862;3485;00:01:02,66;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;2;;Walter, Mats;439515;20;W;2013;;Ratzeburger SV von 1862;3485;00:01:12,42;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;3;;Lang, Tilda;774551;23;W;2013;;Ratzeburger SV von 1862;3485;00:01:17,06;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;4;;Sommer, Felix;236305;51;W;2013;;Ahrensburger TSV;3447;00:01:17,45;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;5;;Lang, Vincent;184277;91;W;2013;;Möllner SV;3467;00:01:36,71;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;6;;Kuhn, Nora;389650;170;W;2012;;TSV Klausdorf;5274;00:01:45,80;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;0;AB;Peters, Rike;313654;98;W;2012;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;0;AB;Reuter, Tom;157070;113;W;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 31;E;2800004;0;AB;Maier, Jakob;555095;141;W;2012;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900002;1;;Weiss, Sina;284504;54;M;2014;;Ahrensburger TSV;3447;00:01:19,26;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;2;;Maier, Niklas;478148;52;M;2014;;Ahrensburger TSV;3447;00:01:20,79;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;3;;Richter, Milan;233484;45;M;2014;;Ahrensburger TSV;3447;00:01:23,61;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;4;;Berger, Malte;824570;128;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:27,63;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;5;;Hahn, Emilia;784537;140;M;2014;;SG Bad Schwartau;5196;00:01:31,24;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;6;;Maier, Ruben;162707;43;M;2014;;Ahrensburger TSV;3447;00:01:40,84;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;0;AB;Jung, Mats;799803;30;M;2014;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;0;AB;Engel, Malte;213951;115;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900002;0;AB;Kuhn, Erik;772089;179;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 32;E;2900001;1;;Berger, Lena;539742;41;M;2015;;Ahrensburger TSV;3447;00:01:22,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 32;E;2900001;2;;Dietrich, Maja;160217;81;M;2015;;Möllner SV;3467;00:01:34,78;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 32;E;2900001;3;;Lorenz, Alina;261721;135;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:35,90;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 32;E;2900001;0;AB;Richter, Pia;333372;93;M;2015;;Möllner SV;3467;00:00:00,00;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 32;E;2900007;1;;Frank, Emma;881893;126;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:23,61;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 32;E;2900006;1;;Neumann, Marie;928707;34;M;1970;55;Ratzeburger SV von 1862;3485;00:01:04,60;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 32;E;2900006;2;;Seidel, Mia;869165;17;M;2009;;Ratzeburger SV von 1862;3485;00:01:06,22;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 32;E;2900005;1;;Schäfer, Greta;562902;19;M;2010;;Ratzeburger SV von 1862;3485;00:01:08,18;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 32;E;2900005;2;;Bauer, Theo;868139;5;M;2011;;Ratzeburger SV von 1862;3485;00:01:10,03;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 32;E;2900005;0;AB;Kern, Fiona;603652;12;M;2010;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 32;E;2900005;0;AB;Bauer, Nele;437615;85;M;2011;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 32;E;2900004;1;;Kaiser, Ida;746662;31;M;2012;;Ratzeburger SV von 1862;3485;00:01:06,32;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;2;;Otto, Greta;424281;9;M;2012;;Ratzeburger SV von 1862;3485;00:01:11,34;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;3;;Möller, Ben;583714;16;M;2013;;Ratzeburger SV von 1862;3485;00:01:12,12;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;4;;Jung, Milan;337635;118;M;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:13,59;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;5;;Ludwig, Carla;506658;99;M;2013;;Möllner SV;3467;00:01:19,66;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;6;;Thiele, Greta;650184;75;M;2013;;Möllner SV;3467;00:01:21,03;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;7;;Hahn, Nele;603578;35;M;2012;;Ratzeburger SV von 1862;3485;00:01:21,60;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;8;;Lang, Mats;217361;40;M;2012;;Ahrensburger TSV;3447;00:01:28,44;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;9;;Neumann, Marie;726039;142;M;2013;;SG Bad Schwartau;5196;00:01:35,19;;;UKR;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;10;;Engel, Mats;309545;132;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:38,57;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;11;;Reuter, Emilia;850576;70;M;2013;;Möllner SV;3467;00:01:40,30;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;0;AB;Lehmann, Theo;531986;120;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 32;E;2900004;0;AB;Hartmann, Jonas;500390;123;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 33;E;3000002;1;;Kramer, Greta;897042;172;W;2014;;TSV Klausdorf;5274;00:00:39,59;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 33;E;3000002;2;;Lorenz, Luis;301285;7;W;2014;;Ratzeburger SV von 1862;3485;00:00:43,26;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 33;E;3000002;3;;Sommer, Vincent;881392;48;W;2014;;Ahrensburger TSV;3447;00:00:49,75;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 33;E;3000002;4;;Graf, Nora;736578;57;W;2014;;TSV Bargteheide;3515;00:01:02,87;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 33;E;3000001;1;;Lang, Vincent;650701;50;W;2015;;Ahrensburger TSV;3447;00:00:47,13;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 33;E;3000001;2;;Kern, David;296777;39;W;2015;;Ahrensburger TSV;3447;00:01:01,15;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 33;E;3000001;3;;Schäfer, Lena;317025;53;W;2015;;Ahrensburger TSV;3447;00:01:05,71;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 33;E;3000001;4;;Winkler, Luis;763485;10;W;2015;;Ratzeburger SV von 1862;3485;00:01:07,06;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 33;E;3000006;1;;Kern, Rike;871720;88;W;2008;;Möllner SV;3467;00:00:40,93;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 33;E;3000005;1;;Sommer, Mats;261541;18;W;2010;;Ratzeburger SV von 1862;3485;00:00:31,59;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 33;E;3000005;2;;Pohl, Clara;223377;28;W;2011;;Ratzeburger SV von 1862;3485;00:00:36,53;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 33;E;3000005;3;;Marquardt, Yara;114518;47;W;2011;;Ahrensburger TSV;3447;00:00:40,81;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 33;E;3000004;1;;Lang, Tilda;774551;23;W;2013;;Ratzeburger SV von 1862;3485;00:00:43,01;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 33;E;3000004;0;AB;Lang, Felix;693845;55;W;2013;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 34;E;3100002;1;;Weiss, Sina;284504;54;M;2014;;Ahrensburger TSV;3447;00:00:45,60;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;3100002;0;AB;Jung, Mats;799803;30;M;2014;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;3100006;0;AB;Kramer, Emma;764432;144;M;1970;55;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 34;E;3100004;1;;Lang, Mats;217361;40;M;2012;;Ahrensburger TSV;3447;00:00:47,77;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400002;1;;Engel, Henri;394535;166;W;2014;;TSV Klausdorf;5274;00:01:38,78;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 35;E;3400002;2;;Sommer, Vincent;881392;48;W;2014;;Ahrensburger TSV;3447;00:01:40,96;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 35;E;3400002;3;;Lorenz, Luis;301285;7;W;2014;;Ratzeburger SV von 1862;3485;00:01:59,44;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 35;E;3400001;1;;Brandt, Emilia;924561;136;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:46,66;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400001;2;;Pohl, Oskar;371683;80;W;2015;;Möllner SV;3467;00:01:57,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400001;3;;Winkler, Pia;949302;11;W;2015;;Ratzeburger SV von 1862;3485;00:01:57,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400001;4;;Lang, Vincent;650701;50;W;2015;;Ahrensburger TSV;3447;00:02:01,53;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400001;5;;Ludwig, Nora;759322;129;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:04,54;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400001;6;;Gross, Sophie;155406;68;W;2015;;Möllner SV;3467;00:02:04,66;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400001;7;;Lehmann, David;626921;72;W;2015;;Möllner SV;3467;00:02:05,34;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400001;0;NA;Schmitt, Sina;405160;36;W;2015;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;3400006;1;;Dietrich, Mia;672033;169;W;2002;20;TSV Klausdorf;5274;00:01:31,18;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 35;E;3400006;2;;Jung, Jakob;550345;162;W;2008;;TSV Klausdorf;5274;00:01:47,62;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 35;E;3400006;3;;Seidel, Lara;176952;4;W;1982;40;Ratzeburger SV von 1862;3485;00:03:35,78;;;;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 35;E;3400005;1;;Maier, Malte;240521;32;W;2011;;Ratzeburger SV von 1862;3485;00:01:27,53;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 35;E;3400005;2;;Sommer, Mats;261541;18;W;2010;;Ratzeburger SV von 1862;3485;00:01:31,06;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 35;E;3400005;3;;Marquardt, Yara;114518;47;W;2011;;Ahrensburger TSV;3447;00:01:44,59;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 35;E;3400005;4;;Reuter, Fiona;416434;56;W;2010;;TSV Bargteheide;3515;00:01:49,24;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 35;E;3400004;1;;Pohl, Milan;679519;26;W;2012;;Ratzeburger SV von 1862;3485;00:01:28,02;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;2;;Lang, Tilda;774551;23;W;2013;;Ratzeburger SV von 1862;3485;00:01:38,78;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;3;;Walter, Mats;439515;20;W;2013;;Ratzeburger SV von 1862;3485;00:01:40,84;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;4;;Lang, Vincent;184277;91;W;2013;;Möllner SV;3467;00:01:58,13;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;5;;Kuhn, Nora;389650;170;W;2012;;TSV Klausdorf;5274;00:03:20,49;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;0;AB;Lang, Felix;693845;55;W;2013;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;0;AB;Peters, Rike;313654;98;W;2012;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;0;AB;Reuter, Tom;157070;113;W;2013;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 35;E;3400004;0;AB;Maier, Jakob;555095;141;W;2012;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500002;1;;Maier, Niklas;478148;52;M;2014;;Ahrensburger TSV;3447;00:01:46,33;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;2;;Hahn, Emilia;784537;140;M;2014;;SG Bad Schwartau;5196;00:01:50,02;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;3;;Richter, Milan;233484;45;M;2014;;Ahrensburger TSV;3447;00:01:54,18;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;0;NA;Weiss, Jost;672230;143;M;2014;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;0;DS;Berger, Malte;824570;128;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;Der Schwimmer startete vor dem Startsignal.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;0;DS;Maier, Ruben;162707;43;M;2014;;Ahrensburger TSV;3447;00:00:00,00;Der Schwimmer ist nach dem Start Kraul geschwommen. ;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;0;AB;Jung, Mats;799803;30;M;2014;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;0;AB;Engel, Malte;213951;115;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500002;0;AB;Kuhn, Erik;772089;179;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 36;E;3500001;1;;Berger, Lena;539742;41;M;2015;;Ahrensburger TSV;3447;00:01:43,47;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 36;E;3500001;2;;Lorenz, Alina;261721;135;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:47,38;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 36;E;3500001;3;;Kaiser, Carla;255112;82;M;2015;;Möllner SV;3467;00:02:02,12;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 36;E;3500001;4;;Lorenz, Milan;425492;77;M;2015;;Möllner SV;3467;00:02:12,94;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 36;E;3500001;5;;Dietrich, Maja;160217;81;M;2015;;Möllner SV;3467;00:02:16,75;;;;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 36;E;3500007;1;;Frank, Emma;881893;126;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:47,84;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 36;E;3500006;1;;Neumann, Marie;928707;34;M;1970;55;Ratzeburger SV von 1862;3485;00:01:22,16;;;GER;;; (* Jg. 2009 und älter *)
+PNERGEBNIS: 36;E;3500005;1;;Schäfer, Greta;562902;19;M;2010;;Ratzeburger SV von 1862;3485;00:01:21,13;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 36;E;3500005;0;AB;Kern, Fiona;603652;12;M;2010;;Ratzeburger SV von 1862;3485;00:00:00,00;;;GER;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 36;E;3500005;0;AB;Bauer, Nele;437615;85;M;2011;;Möllner SV;3467;00:00:00,00;;;;;; (* Jg. 2010/2011 *)
+PNERGEBNIS: 36;E;3500004;1;;Kaiser, Ida;746662;31;M;2012;;Ratzeburger SV von 1862;3485;00:01:28,04;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;2;;Otto, Greta;424281;9;M;2012;;Ratzeburger SV von 1862;3485;00:01:30,50;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;3;;Neumann, Jost;487880;100;M;2013;;SV Neptun Kiel;5129;00:01:37,68;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;4;;Hahn, Nele;603578;35;M;2012;;Ratzeburger SV von 1862;3485;00:01:38,29;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;5;;Möller, Ben;583714;16;M;2013;;Ratzeburger SV von 1862;3485;00:01:43,79;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;6;;Ludwig, Carla;506658;99;M;2013;;Möllner SV;3467;00:01:44,25;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;7;;Thiele, Greta;650184;75;M;2013;;Möllner SV;3467;00:01:50,02;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;8;;Reuter, Emilia;850576;70;M;2013;;Möllner SV;3467;00:01:59,91;;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;9;;Engel, Mats;309545;132;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:02,42;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;0;DS;Neumann, Marie;726039;142;M;2013;;SG Bad Schwartau;5196;00:00:00,00;Der Schwimmer startete vor dem Startsignal.;;UKR;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;0;DS;Lang, Mats;217361;40;M;2012;;Ahrensburger TSV;3447;00:00:00,00;Der Schwimmer machte mehrere Kraularmzüge nach dem Start. ;;;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;0;AB;Lehmann, Theo;531986;120;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+PNERGEBNIS: 36;E;3500004;0;AB;Hartmann, Jonas;500390;123;M;2012;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jg. 2012/2013 *)
+STERGEBNIS: 17;E;1400001;1;;1;146;SG StoBa;6784;00:02:11,77;;;; (* Offene Wertung *)
+STAFFELPERSON: 146;17;E;Lorenz, Ruben;256215;1;M;2018;;;;;
+STAFFELPERSON: 146;17;E;Peters, Nele;256215;2;W;2019;;;;;
+STAFFELPERSON: 146;17;E;Stein, David;256215;3;M;2018;;;;;
+STAFFELPERSON: 146;17;E;Fischer, Rike;256215;4;W;2018;;;;;
+STERGEBNIS: 17;E;1400001;2;;1;106;SC Delphin Lübeck v.1960 e.V.;3490;00:02:49,90;;;; (* Offene Wertung *)
+STAFFELPERSON: 106;17;E;Albers, Niklas;256215;1;W;2018;;;;;
+STAFFELPERSON: 106;17;E;Sommer, Lina;256215;2;M;2018;;;;;
+STAFFELPERSON: 106;17;E;Hahn, Linus;256215;3;W;2019;;;;;
+STAFFELPERSON: 106;17;E;Frank, Felix;256215;4;M;2018;;;;;
+STERGEBNIS: 18;E;1500001;1;;1;66;Möllner SV;3467;00:03:05,69;;;; (* Offene Wertung *)
+STAFFELPERSON: 66;18;E;Bauer, Lara;671815;1;M;2017;;;;;
+STAFFELPERSON: 66;18;E;Pohl, Mats;286824;2;W;2017;;;;;
+STAFFELPERSON: 66;18;E;Brandt, Jost;195188;3;M;2016;;;;;
+STAFFELPERSON: 66;18;E;Sommer, Malte;603868;4;W;2017;;;;;
+STERGEBNIS: 18;E;1500001;2;;1;105;SC Delphin Lübeck v.1960 e.V.;3490;00:03:08,44;;;; (* Offene Wertung *)
+STAFFELPERSON: 105;18;E;Ziegler, Fiona;140519;1;W;2017;;;;;
+STAFFELPERSON: 105;18;E;Otto, Ruben;766527;2;M;2017;;;;;
+STAFFELPERSON: 105;18;E;Schmitt, Hannah;748709;3;W;2016;;;;;
+STAFFELPERSON: 105;18;E;Kern, Erik;103947;4;M;2016;;;;;
+STERGEBNIS: 18;E;1500001;3;;1;145;SG StoBa;6784;00:03:11,95;;;; (* Offene Wertung *)
+STAFFELPERSON: 145;18;E;Herrmann, Anton;803264;1;W;2017;;;;;
+STAFFELPERSON: 145;18;E;Möller, Emma;467549;2;M;2017;;;;;
+STAFFELPERSON: 145;18;E;Lehmann, Rike;789930;3;W;2017;;;;;
+STAFFELPERSON: 145;18;E;Kuhn, Maja;937025;4;M;2017;;;;;
+STERGEBNIS: 18;E;1500001;4;;1;173;VfL Pinneberg;3559;00:03:25,90;;;; (* Offene Wertung *)
+STAFFELPERSON: 173;18;E;Ludwig, Jana;717921;1;W;2017;;;;;
+STAFFELPERSON: 173;18;E;Weiss, Yara;708998;2;M;2016;;;;;
+STAFFELPERSON: 173;18;E;Koch, Erik;622042;3;M;2016;;;;;
+STAFFELPERSON: 173;18;E;Sander, Marie;354540;4;W;2017;;;;;
+STERGEBNIS: 18;E;1500001;5;;2;67;Möllner SV;3467;00:04:22,24;;;; (* Offene Wertung *)
+STAFFELPERSON: 67;18;E;Möller, Alina;138700;1;M;2016;;;;;
+STAFFELPERSON: 67;18;E;Sommer, Elias;479129;2;M;2017;;;;;
+STAFFELPERSON: 67;18;E;Stein, Jana;726149;3;W;2017;;;;;
+STAFFELPERSON: 67;18;E;Bauer, Maja;393938;4;W;2016;;;;;
+STERGEBNIS: 37;E;3801001;1;;1;104;SC Delphin Lübeck v.1960 e.V.;3490;00:02:39,94;;;; (* Offene Wertung *)
+STAFFELPERSON: 104;37;E;Walter, Ruben;300098;1;W;2015;;;;;
+STAFFELPERSON: 104;37;E;Berger, Malte;824570;2;M;2014;;;;;
+STAFFELPERSON: 104;37;E;Herrmann, David;469189;3;W;2014;;;;;
+STAFFELPERSON: 104;37;E;Jung, Milan;337635;4;M;2013;;;;;
+STERGEBNIS: 37;E;3801001;2;;1;37;Ahrensburger TSV;3447;00:02:42,36;;;; (* Offene Wertung *)
+STAFFELPERSON: 37;37;E;Berger, Lena;539742;1;M;2015;;;;;
+STAFFELPERSON: 37;37;E;Maier, Niklas;478148;2;M;2014;;;;;
+STAFFELPERSON: 37;37;E;Sommer, Vincent;881392;3;W;2014;;;;;
+STAFFELPERSON: 37;37;E;Sommer, Felix;236305;4;W;2013;;;;;
+STERGEBNIS: 37;E;3801001;3;;2;107;SC Delphin Lübeck v.1960 e.V.;3490;00:03:08,97;;;; (* Offene Wertung *)
+STAFFELPERSON: 107;37;E;Lorenz, Alina;261721;1;M;2015;;;;;
+STAFFELPERSON: 107;37;E;Frank, Emma;881893;2;M;2016;;;;;
+STAFFELPERSON: 107;37;E;Brandt, Emilia;924561;3;W;2015;;;;;
+STAFFELPERSON: 107;37;E;Ludwig, Nora;759322;4;W;2015;;;;;
+STERGEBNIS: 37;E;3801001;4;;2;38;Ahrensburger TSV;3447;00:03:15,93;;;; (* Offene Wertung *)
+STAFFELPERSON: 38;37;E;Lang, Vincent;650701;1;W;2015;;;;;
+STAFFELPERSON: 38;37;E;Richter, Milan;233484;2;M;2014;;;;;
+STAFFELPERSON: 38;37;E;Weiss, Sina;284504;3;M;2014;;;;;
+STAFFELPERSON: 38;37;E;Schäfer, Lena;317025;4;W;2015;;;;;
+STERGEBNIS: 38;E;3802001;1;;1;1;Ratzeburger SV von 1862;3485;00:04:48,53;;;; (* Offene Wertung *)
+STAFFELPERSON: 1;38;E;Pohl, Milan;679519;1;W;2012;;;;;
+STAFFELPERSON: 1;38;E;Schäfer, Greta;562902;2;M;2010;;;;;
+STAFFELPERSON: 1;38;E;Maier, Luis;120886;3;W;1997;25;;;;
+STAFFELPERSON: 1;38;E;Seidel, Mia;869165;4;M;2009;;;;;
+STZWISCHENZEIT: 1;38;E;1;100;00:01:09,74;
+STZWISCHENZEIT: 1;38;E;2;200;00:02:32,06;
+STZWISCHENZEIT: 1;38;E;3;300;00:03:46,41;
+STERGEBNIS: 38;E;3802001;2;;2;2;Ratzeburger SV von 1862;3485;00:05:08,09;;;; (* Offene Wertung *)
+STAFFELPERSON: 2;38;E;Sommer, Mats;261541;1;W;2010;;;;;
+STAFFELPERSON: 2;38;E;Kaiser, Ida;746662;2;M;2012;;;;;
+STAFFELPERSON: 2;38;E;Seidel, Yara;759996;3;W;2010;;;;;
+STAFFELPERSON: 2;38;E;Otto, Greta;424281;4;M;2012;;;;;
+STZWISCHENZEIT: 2;38;E;1;100;00:01:11,28;
+STZWISCHENZEIT: 2;38;E;2;200;00:02:40,59;
+STZWISCHENZEIT: 2;38;E;3;300;00:03:56,40;
+DATEIENDE

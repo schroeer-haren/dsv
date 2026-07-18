@@ -1,0 +1,798 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.32 Beta vom 24.10.2025                  *)
+(* Registriert für: Sport-Club Itzehoe *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 13.12.2025 um 19:55 Uhr                *)
+FORMAT: Wettkampfergebnisliste;7;
+ERZEUGER: EasyWk;5.32 Beta;info@easywk.de;
+VERANSTALTUNG: 2. offenes Adventsschwimmen 2025;Wilster;25;HANDZEIT;
+VERANSTALTER: Kreisschwimmverband Steinburg;
+AUSRICHTER: Sport-Club Itzehoe;Sommer, Clara;Ahornweg 79;25548;Kellinghusen;GER;04560 332197;;jana.peters@example.org;
+ABSCHNITT: 1;13.12.2025;13:15;;
+ABSCHNITT: 2;13.12.2025;00:30;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+KAMPFGERICHT: 1;SCH;Weiss, Paul;Kreisschwimmverband Steinburg;
+KAMPFGERICHT: 1;SCH;Vogel, Pia;Kreisschwimmverband Dithmarschen;
+KAMPFGERICHT: 1;STA;Weiss, Tom;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;AUS;Neumann, Theo;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;AUS;Fischer, Yara;Bremer SC;
+KAMPFGERICHT: 1;PKF;Stein, Hannah;Sport-Club Itzehoe;
+KAMPFGERICHT: 1;SR;Peters, Tom;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;SR;Sander, Paul;Elmshorner MTV;
+KAMPFGERICHT: 1;ZR;Seidel, Theo;Elmshorner MTV;
+KAMPFGERICHT: 1;ZR;Hartmann, Mats;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;ZR;Sander, Mia;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 1;WRO;Möller, Lena;Sport-Club Itzehoe;
+KAMPFGERICHT: 1;WR;Ludwig, Theo;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;WR;Stein, Jana;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 1;WR;Seidel, Emilia;Meldorfer SV 2010 e.V.;
+KAMPFGERICHT: 1;WR;Gross, Clara;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 1;ZNO;Kern, Rike;Elmshorner MTV;
+KAMPFGERICHT: 1;ZN;Lang, Sophie;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;ZN;Dietrich, Tom;Sport-Club Itzehoe;
+KAMPFGERICHT: 1;ZN;Seidel, Erik;Meldorfer SV 2010 e.V.;
+KAMPFGERICHT: 1;ZN;Sander, Julia;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 1;ZN;Busch, Emma;Niendorfer TSV;
+KAMPFGERICHT: 1;RZN;Graf, Nora;Meldorfer SV 2010 e.V.;
+KAMPFGERICHT: 1;SP;Kuhn, David;Sport-Club Itzehoe;
+KAMPFGERICHT: 1;ZBV;Fischer, Nora;Sport-Club Itzehoe;
+KAMPFGERICHT: 2;SCH;Weiss, Paul;Kreisschwimmverband Steinburg;
+KAMPFGERICHT: 2;SCH;Vogel, Pia;Kreisschwimmverband Dithmarschen;
+KAMPFGERICHT: 2;STA;Weiss, Tom;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;AUS;Neumann, Theo;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;AUS;Fischer, Yara;Bremer SC;
+KAMPFGERICHT: 2;PKF;Stein, Hannah;Sport-Club Itzehoe;
+KAMPFGERICHT: 2;SR;Peters, Tom;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;SR;Sander, Paul;Elmshorner MTV;
+KAMPFGERICHT: 2;ZR;Seidel, Theo;Elmshorner MTV;
+KAMPFGERICHT: 2;ZR;Sander, Ida;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;ZR;Sander, Mia;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 2;WRO;Möller, Lena;Sport-Club Itzehoe;
+KAMPFGERICHT: 2;WR;Ludwig, Theo;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;WR;Stein, Jana;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 2;WR;Seidel, Emilia;Meldorfer SV 2010 e.V.;
+KAMPFGERICHT: 2;WR;Gross, Clara;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 2;ZNO;Kern, Rike;Elmshorner MTV;
+KAMPFGERICHT: 2;ZN;Lang, Sophie;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;ZN;Dietrich, Tom;Sport-Club Itzehoe;
+KAMPFGERICHT: 2;ZN;Seidel, Erik;Meldorfer SV 2010 e.V.;
+KAMPFGERICHT: 2;ZN;Sander, Julia;SC Phönix 88 e.V. Heide;
+KAMPFGERICHT: 2;ZN;Busch, Emma;Niendorfer TSV;
+KAMPFGERICHT: 2;RZN;Graf, Nora;Meldorfer SV 2010 e.V.;
+KAMPFGERICHT: 2;SP;Kuhn, David;Sport-Club Itzehoe;
+KAMPFGERICHT: 2;ZBV;Fischer, Nora;Sport-Club Itzehoe;
+WETTKAMPF: 1;E;1;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 2;E;1;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 3;E;1;4;50;L;GL;X;SW;;; (* 4x50m Lagen mixed *)
+WETTKAMPF: 4;E;1;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 5;E;1;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 6;E;1;1;25;S;GL;W;SW;;; (* 25m Schmetterling weiblich *)
+WETTKAMPF: 7;E;1;1;25;S;GL;M;SW;;; (* 25m Schmetterling männlich *)
+WETTKAMPF: 8;E;2;1;25;X;X;W;KG;;; (* 25m Brustlage weiblich *)
+WETTKAMPF: 9;E;2;1;25;X;X;M;KG;;; (* 25m Brustlage männlich *)
+WETTKAMPF: 10;E;2;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 11;E;2;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 12;E;2;1;25;X;X;W;KG;;; (* 25m Rückenlage weiblich *)
+WETTKAMPF: 13;E;2;1;25;X;X;M;KG;;; (* 25m Rückenlage männlich *)
+WETTKAMPF: 14;E;2;1;100;L;GL;W;SW;;; (* 100m Lagen weiblich *)
+WETTKAMPF: 15;E;2;1;100;L;GL;M;SW;;; (* 100m Lagen männlich *)
+WETTKAMPF: 16;E;2;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 17;E;2;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WETTKAMPF: 18;E;2;1;25;F;GL;W;KG;;; (* 25m Freistil weiblich *)
+WETTKAMPF: 19;E;2;1;25;F;GL;M;KG;;; (* 25m Freistil männlich *)
+WETTKAMPF: 20;E;2;6;50;F;GL;X;SW;;; (* 6x50m Freistil mixed *)
+WERTUNG: 1;E;37001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 1;E;37002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 1;E;37003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 1;E;37004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 1;E;37005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 1;E;37006;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 1;E;37007;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 2;E;13001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 2;E;13002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 2;E;13003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 2;E;13004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 2;E;13005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 2;E;13006;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 2;E;13007;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 3;E;1001;JG;2011;2017;X;Offene Wertung;
+WERTUNG: 4;E;6001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 4;E;6002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 4;E;6003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 4;E;6004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 4;E;6005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 4;E;6006;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 4;E;6007;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 5;E;7001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 5;E;7002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 5;E;7003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 5;E;7004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 5;E;7005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 5;E;7006;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 5;E;7007;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 6;E;4001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 6;E;4002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 6;E;4003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 6;E;4004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 6;E;4005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 7;E;5001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 7;E;5002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 7;E;5003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 7;E;5004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 7;E;5005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 8;E;2006;JG;2020;2025;W;Jahrgang 2020;
+WERTUNG: 8;E;2007;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 8;E;2008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 9;E;3006;JG;2020;2025;M;Jahrgang 2020;
+WERTUNG: 9;E;3007;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 9;E;3008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 10;E;16001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 10;E;16002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 10;E;16003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 10;E;16004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 10;E;16005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 10;E;16006;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 10;E;16007;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 11;E;17001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 11;E;17002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 11;E;17003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 11;E;17004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 11;E;17005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 11;E;17006;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 11;E;17007;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 12;E;14006;JG;2020;2025;W;Jahrgang 2020;
+WERTUNG: 12;E;14007;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 12;E;14008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 13;E;15006;JG;2020;2025;M;Jahrgang 2020;
+WERTUNG: 13;E;15007;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 13;E;15008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 14;E;31001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 14;E;31002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 14;E;31003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 14;E;31004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 14;E;31005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 14;E;31006;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 14;E;31007;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 15;E;32001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 15;E;32002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 15;E;32003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 15;E;32004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 15;E;32005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 15;E;32006;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 15;E;32007;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 16;E;20001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 16;E;20002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 16;E;20003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 16;E;20004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 16;E;20005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 16;E;20006;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 16;E;20007;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 17;E;21001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 17;E;21002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 17;E;21003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 17;E;21004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 17;E;21005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 17;E;21006;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 17;E;21007;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 18;E;18006;JG;2020;2025;W;Jahrgang 2020;
+WERTUNG: 18;E;18007;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 18;E;18008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 19;E;19006;JG;2020;2025;M;Jahrgang 2020;
+WERTUNG: 19;E;19007;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 19;E;19008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 20;E;35001;JG;2011;2017;X;Offene Wertung;
+VEREIN: Elmshorner MTV;3454;14;GER;
+VEREIN: Meldorfer SV 2010 e.V.;6572;14;GER;
+VEREIN: MTV von 1860 e.V. Heide;3472;14;GER;
+VEREIN: Niendorfer TSV;3475;6;GER;
+VEREIN: SC Phönix 88 e.V. Heide;3491;14;GER;
+VEREIN: Sport-Club Itzehoe;6590;14;GER;
+VEREIN: SV Blau-Weiß Wesselburen;3450;14;GER;
+VEREIN: SV Neptun Kiel;5129;14;GER;
+VEREIN: SV Wiking Kiel;3513;14;GER;
+PNERGEBNIS: 1;E;37007;1;;Keller, Sophie;143905;72;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:42,94;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 1;E;37007;2;;Ludwig, Erik;622079;64;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:44,95;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 1;E;37007;3;;Kern, Mia;444793;120;W;2011;;Sport-Club Itzehoe;6590;00:00:45,99;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 1;E;37007;4;;Winkler, Alina;169925;30;W;2011;;Meldorfer SV 2010 e.V.;6572;00:00:49,55;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 1;E;37007;5;;Brandt, Carla;483016;124;W;2011;;Sport-Club Itzehoe;6590;00:00:54,45;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 1;E;37006;1;;Neumann, Ida;949014;97;W;2012;;SC Phönix 88 e.V. Heide;3491;00:00:49,34;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 1;E;37005;1;;Kuhn, Jost;955412;56;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:36,80;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;37005;2;;Herrmann, Maja;987350;78;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:48,80;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;37005;3;;Ludwig, Linus;126684;68;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:49,26;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;37005;4;;Hahn, Lara;305210;31;W;2013;;Meldorfer SV 2010 e.V.;6572;00:00:52,72;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;37005;0;NA;Schmitt, David;704725;65;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;37004;1;;Graf, Erik;966367;131;W;2014;;SV Neptun Kiel;5129;00:00:40,46;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;37004;2;;Richter, Niklas;980377;34;W;2014;;Meldorfer SV 2010 e.V.;6572;00:00:42,21;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;37004;3;;Busch, Niklas;494123;58;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:49,82;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;37004;4;;Koch, Hannah;793664;61;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:50,36;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;37004;5;;Möller, Henri;366540;70;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:52,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;37004;6;;Gross, Oskar;544859;128;W;2014;;SV Blau-Weiß Wesselburen;3450;00:01:02,99;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;37003;1;;Keller, Elias;950504;117;W;2015;;Sport-Club Itzehoe;6590;00:00:47,43;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;2;;Kuhn, Linus;611642;16;W;2015;;Elmshorner MTV;3454;00:00:51,60;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;3;;Richter, Mats;208911;54;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:53,45;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;4;;Schmitt, Marie;543027;112;W;2015;;SC Phönix 88 e.V. Heide;3491;00:00:53,99;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;5;;Kramer, Alina;921695;52;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:55,78;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;6;;Hahn, Linus;458220;14;W;2015;;Elmshorner MTV;3454;00:00:55,84;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;7;;Lorenz, Luis;705983;118;W;2015;;Sport-Club Itzehoe;6590;00:00:56,64;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;8;;Thiele, Malte;933488;106;W;2015;;SC Phönix 88 e.V. Heide;3491;00:00:57,84;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;9;;Richter, Sophie;903967;21;W;2015;;Elmshorner MTV;3454;00:00:59,80;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;10;;Herrmann, Nora;373588;111;W;2015;;SC Phönix 88 e.V. Heide;3491;00:01:12,80;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37003;0;DS;Winkler, Milan;616006;51;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Schwimmerin hat beim Zielanschlag nur mit einer Hand angeschlagen.;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;37002;1;;Voigt, Leon;753894;132;W;2016;;SV Neptun Kiel;5129;00:00:46,51;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;2;;Schröder, Luis;422334;20;W;2016;;Elmshorner MTV;3454;00:00:46,80;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;3;;Engel, Ben;735722;127;W;2016;;Sport-Club Itzehoe;6590;00:00:54,20;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;4;;Lehmann, Ida;189158;45;W;2016;;Meldorfer SV 2010 e.V.;6572;00:00:57,93;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;5;;Peters, Yara;377253;44;W;2016;;Meldorfer SV 2010 e.V.;6572;00:00:58,05;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;6;;Engel, Felix;919029;15;W;2016;;Elmshorner MTV;3454;00:00:58,39;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;7;;Seidel, Nora;122015;43;W;2016;;Meldorfer SV 2010 e.V.;6572;00:00:58,55;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;8;;Herrmann, Marie;876651;12;W;2016;;Elmshorner MTV;3454;00:01:01,85;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;9;;Winkler, Jonas;850547;79;W;2016;;MTV von 1860 e.V. Heide;3472;00:01:08,31;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;10;;Schmitt, Anton;717126;129;W;2016;;SV Blau-Weiß Wesselburen;3450;00:01:16,08;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;11;;Fischer, Anton;333339;53;W;2016;;MTV von 1860 e.V. Heide;3472;00:01:19,12;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37002;0;DS;Marquardt, Erik;670613;9;W;2016;;Elmshorner MTV;3454;00:00:00,00;Bei der Wende hat der Sportler nicht mit beiden Händen gleichzeitig angeschlagen.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;37001;1;;Lorenz, Clara;275802;133;W;2017;;SV Neptun Kiel;5129;00:00:52,29;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;2;;Engel, Vincent;934403;137;W;2017;;SV Wiking Kiel;3513;00:00:55,32;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;3;;Weiss, Emilia;256812;62;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:03,34;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;4;;Gross, Zoe;964049;41;W;2017;;Meldorfer SV 2010 e.V.;6572;00:01:06,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;5;;Koch, Anton;936448;4;W;2017;;Elmshorner MTV;3454;00:01:09,60;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;6;;Pohl, Pia;366173;89;W;2017;;Niendorfer TSV;3475;00:01:12,21;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;7;;Vogel, Elias;690381;73;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:19,12;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;8;;Bauer, Fiona;139507;130;W;2017;;SV Blau-Weiß Wesselburen;3450;00:01:24,15;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;37001;9;;Brandt, Julia;112762;69;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:29,12;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;13007;1;;Kuhn, Yara;880167;126;M;2011;;Sport-Club Itzehoe;6590;00:00:42,12;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 2;E;13007;2;;Lorenz, Alina;877223;116;M;2011;;Sport-Club Itzehoe;6590;00:00:46,33;;;UKR;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 2;E;13007;3;;Jung, Lina;814687;39;M;2011;;Meldorfer SV 2010 e.V.;6572;00:00:48,65;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 2;E;13007;0;NA;Kaiser, Yara;386117;75;M;2011;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 2;E;13006;1;;Sommer, Oskar;655704;77;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:37,74;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 2;E;13006;2;;Lorenz, Karl;237068;46;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:40,38;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 2;E;13006;3;;Winkler, Karl;147520;32;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:40,42;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 2;E;13006;4;;Peters, David;806662;33;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:48,15;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 2;E;13006;5;;Albers, Emma;262419;123;M;2012;;Sport-Club Itzehoe;6590;00:00:48,20;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 2;E;13006;6;;Ulrich, Yara;883781;59;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:57,04;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 2;E;13005;1;;Winkler, Ruben;254965;121;M;2013;;Sport-Club Itzehoe;6590;00:00:41,10;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 2;E;13005;2;;Neumann, Jost;487880;134;M;2013;;SV Neptun Kiel;5129;00:00:42,81;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 2;E;13005;3;;Engel, Lena;857828;115;M;2013;;Sport-Club Itzehoe;6590;00:00:51,98;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 2;E;13005;0;AB;Keller, Ruben;547277;42;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 2;E;13004;1;;Richter, Clara;385760;107;M;2014;;SC Phönix 88 e.V. Heide;3491;00:00:51,47;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 2;E;13004;2;;Lorenz, Alina;249412;105;M;2014;;SC Phönix 88 e.V. Heide;3491;00:01:04,70;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 2;E;13004;0;DS;Peters, Linus;645273;37;M;2014;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;Nach dem Start hat der Sportler zwei Delphinbeinschläge ausgeführt.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 2;E;13003;1;;Vogel, Jonas;797433;74;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:49,08;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;2;;Kramer, Niklas;102066;93;M;2015;;Niendorfer TSV;3475;00:00:49,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;3;;Winkler, Felix;117420;25;M;2015;;Elmshorner MTV;3454;00:00:53,42;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;4;;Pohl, Felix;305808;100;M;2015;;SC Phönix 88 e.V. Heide;3491;00:00:54,15;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;5;;Sander, Anton;763511;18;M;2015;;Elmshorner MTV;3454;00:00:56,52;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;6;;Pohl, Greta;415601;104;M;2015;;SC Phönix 88 e.V. Heide;3491;00:00:58,08;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;7;;Sommer, Milan;444287;57;M;2015;;MTV von 1860 e.V. Heide;3472;00:01:01,10;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;8;;Ludwig, Julia;307232;3;M;2015;;Elmshorner MTV;3454;00:01:02,88;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;9;;Schröder, Luis;120341;7;M;2015;;Elmshorner MTV;3454;00:01:07,51;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;0;DS;Pohl, Niklas;521342;66;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Der Sportler startete vor dem Startsignal;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13003;0;AB;Koch, Maja;140285;90;M;2015;;Niendorfer TSV;3475;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;13002;1;;Voigt, Lara;565457;91;M;2016;;Niendorfer TSV;3475;00:00:52,36;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;2;;Lang, Lina;992994;2;M;2016;;Elmshorner MTV;3454;00:00:53,29;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;3;;Marquardt, David;869305;6;M;2016;;Elmshorner MTV;3454;00:00:57,13;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;4;;Thiele, Jonas;167096;22;M;2016;;Elmshorner MTV;3454;00:00:57,56;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;5;;Graf, Linus;645167;24;M;2016;;Elmshorner MTV;3454;00:00:58,15;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;6;;Jung, Elias;469366;99;M;2016;;SC Phönix 88 e.V. Heide;3491;00:00:58,54;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;7;;Berger, Tilda;379507;87;M;2016;;Niendorfer TSV;3475;00:00:59,73;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;8;;Frank, Milan;628826;102;M;2016;;SC Phönix 88 e.V. Heide;3491;00:01:02,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;9;;Lehmann, Tom;306445;108;M;2016;;SC Phönix 88 e.V. Heide;3491;00:01:05,54;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;10;;Engel, Pia;960086;136;M;2016;;SV Neptun Kiel;5129;00:01:07,01;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13002;0;DS;Berger, Clara;386071;135;M;2016;;SV Neptun Kiel;5129;00:00:00,00;Der Schwimmer hat nach dem Start mehrere Tauchzüge durchgeführt.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;13001;1;;Maier, Clara;440731;98;M;2017;;SC Phönix 88 e.V. Heide;3491;00:01:01,40;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;13001;2;;Vogel, Zoe;701888;86;M;2017;;Niendorfer TSV;3475;00:01:04,70;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;13001;3;;Lang, Clara;656065;76;M;2017;;MTV von 1860 e.V. Heide;3472;00:01:15,35;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;13001;0;NA;Lang, Karl;121906;71;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;13001;0;DS;Hartmann, Zoe;957126;84;M;2017;;Niendorfer TSV;3475;00:00:00,00;Beim Zielanschlag hat der Sportler nicht mit beiden Händen gleichzeitig angeschlagen.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;13001;0;DS;Herrmann, Anton;951207;109;M;2017;;SC Phönix 88 e.V. Heide;3491;00:00:00,00;Der Sportler startete  vor dem Startsignal.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;13001;0;AB;Seidel, Fiona;252636;8;M;2017;;Elmshorner MTV;3454;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;6007;1;;Keller, Sophie;143905;72;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:37,37;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 4;E;6007;2;;Kern, Mia;444793;120;W;2011;;Sport-Club Itzehoe;6590;00:00:42,48;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 4;E;6007;3;;Ludwig, Erik;622079;64;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:42,95;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 4;E;6007;4;;Winkler, Alina;169925;30;W;2011;;Meldorfer SV 2010 e.V.;6572;00:00:44,47;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 4;E;6007;5;;Brandt, Carla;483016;124;W;2011;;Sport-Club Itzehoe;6590;00:00:47,33;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 4;E;6006;1;;Neumann, Ida;949014;97;W;2012;;SC Phönix 88 e.V. Heide;3491;00:01:00,23;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 4;E;6005;1;;Kuhn, Jost;955412;56;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:34,25;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 4;E;6005;0;NA;Schmitt, David;704725;65;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 4;E;6004;1;;Graf, Erik;966367;131;W;2014;;SV Neptun Kiel;5129;00:00:39,38;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 4;E;6004;2;;Richter, Niklas;980377;34;W;2014;;Meldorfer SV 2010 e.V.;6572;00:00:45,50;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 4;E;6004;3;;Busch, Niklas;494123;58;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:56,22;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 4;E;6003;1;;Keller, Elias;950504;117;W;2015;;Sport-Club Itzehoe;6590;00:00:40,04;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;6003;2;;Kuhn, Linus;611642;16;W;2015;;Elmshorner MTV;3454;00:00:55,37;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;6003;3;;Winkler, Milan;616006;51;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:56,12;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;6003;4;;Hahn, Linus;458220;14;W;2015;;Elmshorner MTV;3454;00:00:56,37;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;6003;5;;Richter, Mats;208911;54;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:58,32;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;6002;1;;Schröder, Luis;422334;20;W;2016;;Elmshorner MTV;3454;00:00:40,70;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;6002;2;;Voigt, Leon;753894;132;W;2016;;SV Neptun Kiel;5129;00:00:44,47;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;6002;3;;Peters, Yara;377253;44;W;2016;;Meldorfer SV 2010 e.V.;6572;00:01:07,54;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;6002;4;;Seidel, Nora;122015;43;W;2016;;Meldorfer SV 2010 e.V.;6572;00:01:13,32;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 4;E;6001;1;;Gross, Zoe;964049;41;W;2017;;Meldorfer SV 2010 e.V.;6572;00:00:53,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 5;E;7007;1;;Kuhn, Yara;880167;126;M;2011;;Sport-Club Itzehoe;6590;00:00:35,78;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 5;E;7007;2;;Jung, Lina;814687;39;M;2011;;Meldorfer SV 2010 e.V.;6572;00:00:42,47;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 5;E;7007;3;;Lorenz, Alina;877223;116;M;2011;;Sport-Club Itzehoe;6590;00:00:43,97;;;UKR;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 5;E;7007;0;NA;Kaiser, Yara;386117;75;M;2011;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 5;E;7006;1;;Peters, David;806662;33;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:37,01;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 5;E;7006;2;;Winkler, Karl;147520;32;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:38,12;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 5;E;7006;3;;Lorenz, Karl;237068;46;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:39,10;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 5;E;7006;4;;Albers, Emma;262419;123;M;2012;;Sport-Club Itzehoe;6590;00:00:50,77;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 5;E;7006;5;;Ulrich, Yara;883781;59;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:51,27;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 5;E;7006;0;DS;Sommer, Oskar;655704;77;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Der Sportler startete vor dem Startsignal;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 5;E;7005;1;;Winkler, Ruben;254965;121;M;2013;;Sport-Club Itzehoe;6590;00:00:39,91;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 5;E;7005;2;;Neumann, Jost;487880;134;M;2013;;SV Neptun Kiel;5129;00:00:44,95;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 5;E;7005;3;;Winkler, Ruben;354761;36;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:45,10;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 5;E;7005;4;;Engel, Lena;857828;115;M;2013;;Sport-Club Itzehoe;6590;00:01:01,43;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 5;E;7005;0;AB;Keller, Ruben;547277;42;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 5;E;7004;1;;Peters, Linus;645273;37;M;2014;;Meldorfer SV 2010 e.V.;6572;00:00:41,50;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 5;E;7004;2;;Richter, Clara;385760;107;M;2014;;SC Phönix 88 e.V. Heide;3491;00:00:48,18;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 5;E;7003;1;;Kramer, Niklas;102066;93;M;2015;;Niendorfer TSV;3475;00:00:51,78;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 5;E;7003;2;;Sander, Anton;763511;18;M;2015;;Elmshorner MTV;3454;00:00:57,19;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 5;E;7003;3;;Pohl, Niklas;521342;66;M;2015;;MTV von 1860 e.V. Heide;3472;00:01:06,45;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 5;E;7003;4;;Ludwig, Julia;307232;3;M;2015;;Elmshorner MTV;3454;00:01:25,13;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 5;E;7002;1;;Frank, Milan;628826;102;M;2016;;SC Phönix 88 e.V. Heide;3491;00:01:01,66;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 5;E;7002;2;;Jung, Tilda;964881;88;M;2016;;Niendorfer TSV;3475;00:01:03,73;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 5;E;7002;3;;Thiele, Jonas;167096;22;M;2016;;Elmshorner MTV;3454;00:01:04,33;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 5;E;7002;4;;Lang, Lina;992994;2;M;2016;;Elmshorner MTV;3454;00:01:06,41;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 5;E;7002;5;;Marquardt, David;869305;6;M;2016;;Elmshorner MTV;3454;00:01:12,03;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 5;E;7002;0;NA;Graf, Linus;645167;24;M;2016;;Elmshorner MTV;3454;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 5;E;7001;1;;Maier, Clara;440731;98;M;2017;;SC Phönix 88 e.V. Heide;3491;00:01:02,20;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 6;E;4005;1;;Herrmann, Maja;987350;78;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:22,99;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 6;E;4005;2;;Ludwig, Linus;126684;68;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:28,69;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 6;E;4004;1;;Möller, Henri;366540;70;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:27,35;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 6;E;4004;2;;Koch, Hannah;793664;61;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:28,09;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 6;E;4003;1;;Schmitt, Marie;543027;112;W;2015;;SC Phönix 88 e.V. Heide;3491;00:00:27,69;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 6;E;4003;2;;Kramer, Alina;921695;52;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:32,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 6;E;4003;3;;Lorenz, Luis;705983;118;W;2015;;Sport-Club Itzehoe;6590;00:00:32,90;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 6;E;4002;1;;Winkler, Jonas;850547;79;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:29,96;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 6;E;4002;2;;Engel, Ben;735722;127;W;2016;;Sport-Club Itzehoe;6590;00:00:30,11;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 6;E;4002;3;;Lehmann, Ida;189158;45;W;2016;;Meldorfer SV 2010 e.V.;6572;00:00:32,89;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;5003;1;;Pohl, Greta;415601;104;M;2015;;SC Phönix 88 e.V. Heide;3491;00:00:24,88;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;5003;2;;Vogel, Jonas;797433;74;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:27,91;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;5003;3;;Pohl, Felix;305808;100;M;2015;;SC Phönix 88 e.V. Heide;3491;00:00:35,60;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;5003;0;DS;Sommer, Milan;444287;57;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Arme wurden während der Schwimmstrecke nicht gleichzeitig über Wasser nach vorn gebracht.;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;5002;1;;Jung, Elias;469366;99;M;2016;;SC Phönix 88 e.V. Heide;3491;00:00:29,16;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;5002;0;NA;Lehmann, Tom;306445;108;M;2016;;SC Phönix 88 e.V. Heide;3491;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;5001;0;DS;Herrmann, Anton;951207;109;M;2017;;SC Phönix 88 e.V. Heide;3491;00:00:00,00;Die Arme wurden während der Schwimmstrecke nicht gleichzeitig über Wasser nach vorn gebracht.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;2008;1;;Marquardt, Rike;256215;101;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:29,41;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;2;;Kuhn, Sina;256215;23;W;2018;;Elmshorner MTV;3454;00:00:31,66;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;3;;Kuhn, Hannah;256215;11;W;2018;;Elmshorner MTV;3454;00:00:32,41;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;4;;Seidel, Marie;681642;119;W;2018;;Sport-Club Itzehoe;6590;00:00:33,53;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;5;;Vogel, Jakob;256215;96;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:33,91;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;6;;Neumann, Hannah;256215;63;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:34,11;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;7;;Fischer, Theo;256215;82;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:35,09;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;8;;Otto, Jakob;256215;10;W;2018;;Elmshorner MTV;3454;00:00:37,35;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;9;;Lehmann, Yara;111598;19;W;2018;;Elmshorner MTV;3454;00:00:38,48;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;10;;Thiele, Luis;256215;67;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:42,82;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;11;;Busch, Pia;256215;5;W;2018;;Elmshorner MTV;3454;00:00:43,19;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;12;;Otto, Malte;256215;95;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:45,02;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2008;13;;Busch, Alina;256215;1;W;2018;;Elmshorner MTV;3454;00:00:45,32;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;2007;1;;Möller, Clara;873218;29;W;2019;;Meldorfer SV 2010 e.V.;6572;00:00:33,19;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;2007;2;;Graf, Emilia;256215;13;W;2019;;Elmshorner MTV;3454;00:00:36,07;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;2007;3;;Albers, Mats;256215;80;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:38,20;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;2007;4;;Jung, Ben;256215;55;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:44,11;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;2006;1;;Keller, Luis;256215;81;W;2020;;MTV von 1860 e.V. Heide;3472;00:00:42,82;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 9;E;3008;1;;Thiele, Mats;256215;92;M;2018;;Niendorfer TSV;3475;00:00:30,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;2;;Brandt, Mia;256215;17;M;2018;;Elmshorner MTV;3454;00:00:32,69;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;3;;Kaiser, Mia;758629;40;M;2018;;Meldorfer SV 2010 e.V.;6572;00:00:32,69;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;4;;Bauer, Hannah;256215;85;M;2018;;Niendorfer TSV;3475;00:00:33,53;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;5;;Ludwig, Mia;256215;110;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:35,53;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;6;;Marquardt, Theo;256215;83;M;2018;;Niendorfer TSV;3475;00:00:38,16;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;7;;Bauer, Maja;256215;60;M;2018;;MTV von 1860 e.V. Heide;3472;00:00:40,18;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;8;;Richter, Pia;256215;103;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:40,43;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3008;9;;Busch, Felix;256215;113;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:43,19;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;3007;1;;Kramer, Ben;256215;125;M;2019;;Sport-Club Itzehoe;6590;00:00:37,82;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 9;E;3007;2;;Kuhn, Anton;181010;38;M;2019;;Meldorfer SV 2010 e.V.;6572;00:00:56,45;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 9;E;3007;0;AB;Frank, Milan;256215;35;M;2019;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 10;E;16007;1;;Keller, Sophie;143905;72;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:36,89;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 10;E;16007;2;;Ludwig, Erik;622079;64;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:39,37;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 10;E;16007;3;;Winkler, Alina;169925;30;W;2011;;Meldorfer SV 2010 e.V.;6572;00:00:43,85;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 10;E;16007;4;;Kern, Mia;444793;120;W;2011;;Sport-Club Itzehoe;6590;00:00:45,32;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 10;E;16007;5;;Brandt, Carla;483016;124;W;2011;;Sport-Club Itzehoe;6590;00:00:48,15;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 10;E;16006;1;;Neumann, Ida;949014;97;W;2012;;SC Phönix 88 e.V. Heide;3491;00:00:52,02;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 10;E;16005;1;;Kuhn, Jost;955412;56;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:36,95;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;16005;2;;Herrmann, Maja;987350;78;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:45,99;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;16005;3;;Ludwig, Linus;126684;68;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:51,74;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;16005;4;;Hahn, Lara;305210;31;W;2013;;Meldorfer SV 2010 e.V.;6572;00:01:01,72;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;16005;0;NA;Schmitt, David;704725;65;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;16004;1;;Graf, Erik;966367;131;W;2014;;SV Neptun Kiel;5129;00:00:37,60;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;16004;2;;Richter, Niklas;980377;34;W;2014;;Meldorfer SV 2010 e.V.;6572;00:00:43,31;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;16004;3;;Busch, Niklas;494123;58;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:49,78;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;16004;4;;Möller, Henri;366540;70;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:51,43;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;16004;5;;Koch, Hannah;793664;61;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:52,12;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;16004;6;;Gross, Oskar;544859;128;W;2014;;SV Blau-Weiß Wesselburen;3450;00:01:01,40;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;16003;1;;Keller, Elias;950504;117;W;2015;;Sport-Club Itzehoe;6590;00:00:42,80;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;2;;Kuhn, Linus;611642;16;W;2015;;Elmshorner MTV;3454;00:00:50,45;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;3;;Hahn, Linus;458220;14;W;2015;;Elmshorner MTV;3454;00:00:52,54;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;4;;Winkler, Milan;616006;51;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:52,78;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;5;;Richter, Mats;208911;54;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:54,37;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;6;;Schmitt, Marie;543027;112;W;2015;;SC Phönix 88 e.V. Heide;3491;00:00:57,57;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;7;;Richter, Sophie;903967;21;W;2015;;Elmshorner MTV;3454;00:00:58,32;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;8;;Thiele, Malte;933488;106;W;2015;;SC Phönix 88 e.V. Heide;3491;00:01:02,37;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16003;9;;Kramer, Alina;921695;52;W;2015;;MTV von 1860 e.V. Heide;3472;00:01:04,87;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;16002;1;;Voigt, Leon;753894;132;W;2016;;SV Neptun Kiel;5129;00:00:43,19;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;2;;Schröder, Luis;422334;20;W;2016;;Elmshorner MTV;3454;00:00:43,85;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;3;;Engel, Ben;735722;127;W;2016;;Sport-Club Itzehoe;6590;00:00:52,80;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;4;;Keller, Sophie;512582;122;W;2016;;Sport-Club Itzehoe;6590;00:00:57,68;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;5;;Winkler, Jonas;850547;79;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:57,94;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;6;;Marquardt, Erik;670613;9;W;2016;;Elmshorner MTV;3454;00:00:59,67;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;7;;Lehmann, Ida;189158;45;W;2016;;Meldorfer SV 2010 e.V.;6572;00:01:01,13;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;8;;Peters, Yara;377253;44;W;2016;;Meldorfer SV 2010 e.V.;6572;00:01:05,40;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;9;;Engel, Felix;919029;15;W;2016;;Elmshorner MTV;3454;00:01:05,68;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;10;;Seidel, Nora;122015;43;W;2016;;Meldorfer SV 2010 e.V.;6572;00:01:06,47;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;11;;Herrmann, Marie;876651;12;W;2016;;Elmshorner MTV;3454;00:01:11,61;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;12;;Schmitt, Anton;717126;129;W;2016;;SV Blau-Weiß Wesselburen;3450;00:01:13,27;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16002;13;;Fischer, Anton;333339;53;W;2016;;MTV von 1860 e.V. Heide;3472;00:01:15,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;16001;1;;Lorenz, Clara;275802;133;W;2017;;SV Neptun Kiel;5129;00:00:51,08;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;2;;Gross, Zoe;964049;41;W;2017;;Meldorfer SV 2010 e.V.;6572;00:00:57,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;3;;Pohl, Pia;366173;89;W;2017;;Niendorfer TSV;3475;00:00:58,30;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;4;;Engel, Vincent;934403;137;W;2017;;SV Wiking Kiel;3513;00:01:03,71;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;5;;Vogel, Elias;690381;73;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:04,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;6;;Koch, Anton;936448;4;W;2017;;Elmshorner MTV;3454;00:01:05,20;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;7;;Weiss, Emilia;256812;62;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:05,44;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;8;;Brandt, Julia;112762;69;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:11,17;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;16001;9;;Bauer, Fiona;139507;130;W;2017;;SV Blau-Weiß Wesselburen;3450;00:01:20,45;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;17007;1;;Jung, Lina;814687;39;M;2011;;Meldorfer SV 2010 e.V.;6572;00:00:39,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 11;E;17007;2;;Kuhn, Yara;880167;126;M;2011;;Sport-Club Itzehoe;6590;00:00:40,22;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 11;E;17007;0;NA;Kaiser, Yara;386117;75;M;2011;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 11;E;17006;1;;Sommer, Oskar;655704;77;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:34,71;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 11;E;17006;2;;Winkler, Karl;147520;32;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:40,31;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 11;E;17006;3;;Lorenz, Karl;237068;46;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:42,13;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 11;E;17006;4;;Peters, David;806662;33;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:42,50;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 11;E;17006;5;;Ulrich, Yara;883781;59;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:49,57;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 11;E;17005;1;;Winkler, Ruben;254965;121;M;2013;;Sport-Club Itzehoe;6590;00:00:40,37;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 11;E;17005;2;;Winkler, Ruben;354761;36;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:43,48;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 11;E;17005;3;;Neumann, Jost;487880;134;M;2013;;SV Neptun Kiel;5129;00:00:43,56;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 11;E;17005;4;;Engel, Lena;857828;115;M;2013;;Sport-Club Itzehoe;6590;00:00:52,12;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 11;E;17005;0;AB;Keller, Ruben;547277;42;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 11;E;17004;1;;Richter, Clara;385760;107;M;2014;;SC Phönix 88 e.V. Heide;3491;00:00:45,52;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;17004;2;;Peters, Linus;645273;37;M;2014;;Meldorfer SV 2010 e.V.;6572;00:00:49,15;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;17004;3;;Lorenz, Alina;249412;105;M;2014;;SC Phönix 88 e.V. Heide;3491;00:01:11,18;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;17003;1;;Kramer, Niklas;102066;93;M;2015;;Niendorfer TSV;3475;00:00:44,80;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;2;;Pohl, Niklas;521342;66;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:50,80;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;3;;Sander, Anton;763511;18;M;2015;;Elmshorner MTV;3454;00:00:51,44;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;4;;Pohl, Greta;415601;104;M;2015;;SC Phönix 88 e.V. Heide;3491;00:00:55,52;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;5;;Winkler, Felix;117420;25;M;2015;;Elmshorner MTV;3454;00:00:55,96;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;6;;Vogel, Jonas;797433;74;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:56,33;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;7;;Ludwig, Julia;307232;3;M;2015;;Elmshorner MTV;3454;00:00:57,79;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;8;;Sommer, Milan;444287;57;M;2015;;MTV von 1860 e.V. Heide;3472;00:01:01,85;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;9;;Pohl, Felix;305808;100;M;2015;;SC Phönix 88 e.V. Heide;3491;00:01:04,19;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17003;10;;Schröder, Luis;120341;7;M;2015;;Elmshorner MTV;3454;00:01:06,85;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;17002;1;;Lang, Lina;992994;2;M;2016;;Elmshorner MTV;3454;00:00:50,90;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;2;;Voigt, Lara;565457;91;M;2016;;Niendorfer TSV;3475;00:00:51,15;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;3;;Jung, Tilda;964881;88;M;2016;;Niendorfer TSV;3475;00:00:53,28;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;4;;Graf, Linus;645167;24;M;2016;;Elmshorner MTV;3454;00:00:56,22;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;5;;Marquardt, David;869305;6;M;2016;;Elmshorner MTV;3454;00:00:56,77;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;6;;Thiele, Jonas;167096;22;M;2016;;Elmshorner MTV;3454;00:00:57,25;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;7;;Jung, Elias;469366;99;M;2016;;SC Phönix 88 e.V. Heide;3491;00:00:58,35;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;8;;Berger, Tilda;379507;87;M;2016;;Niendorfer TSV;3475;00:00:58,57;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;9;;Engel, Pia;960086;136;M;2016;;SV Neptun Kiel;5129;00:01:00,20;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;10;;Lehmann, Tom;306445;108;M;2016;;SC Phönix 88 e.V. Heide;3491;00:01:11,85;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17002;0;DS;Frank, Milan;628826;102;M;2016;;SC Phönix 88 e.V. Heide;3491;00:00:00,00;Der Schwimmer hat die Schwimmstrecke nach der 25m Wende nicht in Rückenlage begonnen.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;17001;1;;Hartmann, Zoe;957126;84;M;2017;;Niendorfer TSV;3475;00:00:57,82;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;17001;2;;Maier, Clara;440731;98;M;2017;;SC Phönix 88 e.V. Heide;3491;00:00:59,65;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;17001;3;;Lang, Clara;656065;76;M;2017;;MTV von 1860 e.V. Heide;3472;00:01:00,38;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;17001;4;;Vogel, Zoe;701888;86;M;2017;;Niendorfer TSV;3475;00:01:00,70;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;17001;5;;Herrmann, Anton;951207;109;M;2017;;SC Phönix 88 e.V. Heide;3491;00:01:21,73;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;17001;0;NA;Lang, Karl;121906;71;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;17001;0;AB;Seidel, Fiona;252636;8;M;2017;;Elmshorner MTV;3454;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;14008;1;;Busch, Pia;256215;5;W;2018;;Elmshorner MTV;3454;00:00:29,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;2;;Kuhn, Hannah;256215;11;W;2018;;Elmshorner MTV;3454;00:00:33,53;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;3;;Kuhn, Sina;256215;23;W;2018;;Elmshorner MTV;3454;00:00:33,53;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;4;;Marquardt, Rike;256215;101;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:36,24;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;5;;Otto, Malte;256215;95;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:37,70;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;6;;Thiele, Luis;256215;67;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:37,85;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;7;;Otto, Jakob;256215;10;W;2018;;Elmshorner MTV;3454;00:00:38,77;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;8;;Vogel, Jakob;256215;96;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:41,79;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;9;;Seidel, Marie;681642;119;W;2018;;Sport-Club Itzehoe;6590;00:00:42,18;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;10;;Neumann, Hannah;256215;63;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:42,18;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;11;;Fischer, Theo;256215;82;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:43,43;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;12;;Busch, Alina;256215;1;W;2018;;Elmshorner MTV;3454;00:00:44,62;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14008;13;;Lehmann, Yara;111598;19;W;2018;;Elmshorner MTV;3454;00:00:51,43;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;14007;1;;Albers, Mats;256215;80;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:34,47;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 12;E;14007;2;;Möller, Clara;873218;29;W;2019;;Meldorfer SV 2010 e.V.;6572;00:00:34,75;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 12;E;14007;3;;Jung, Ben;256215;55;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:41,59;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 12;E;14007;4;;Graf, Emilia;256215;13;W;2019;;Elmshorner MTV;3454;00:00:47,56;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 12;E;14006;1;;Keller, Luis;256215;81;W;2020;;MTV von 1860 e.V. Heide;3472;00:00:57,72;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 13;E;15008;1;;Bauer, Hannah;256215;85;M;2018;;Niendorfer TSV;3475;00:00:27,26;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;2;;Thiele, Mats;256215;92;M;2018;;Niendorfer TSV;3475;00:00:27,72;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;3;;Brandt, Mia;256215;17;M;2018;;Elmshorner MTV;3454;00:00:30,14;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;4;;Marquardt, Theo;256215;83;M;2018;;Niendorfer TSV;3475;00:00:30,27;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;5;;Bauer, Maja;256215;60;M;2018;;MTV von 1860 e.V. Heide;3472;00:00:33,38;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;6;;Kaiser, Mia;758629;40;M;2018;;Meldorfer SV 2010 e.V.;6572;00:00:34,01;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;7;;Busch, Felix;256215;113;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:44,06;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;8;;Ludwig, Mia;256215;110;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:48,35;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15008;9;;Richter, Pia;256215;103;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:53,18;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;15007;1;;Kramer, Ben;256215;125;M;2019;;Sport-Club Itzehoe;6590;00:00:39,29;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 13;E;15007;2;;Kuhn, Anton;181010;38;M;2019;;Meldorfer SV 2010 e.V.;6572;00:00:53,57;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 13;E;15007;0;AB;Frank, Milan;256215;35;M;2019;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 14;E;31007;1;;Keller, Sophie;143905;72;W;2011;;MTV von 1860 e.V. Heide;3472;00:01:25,37;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 14;E;31007;2;;Ludwig, Erik;622079;64;W;2011;;MTV von 1860 e.V. Heide;3472;00:01:30,37;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 14;E;31007;3;;Winkler, Alina;169925;30;W;2011;;Meldorfer SV 2010 e.V.;6572;00:01:31,63;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 14;E;31007;4;;Brandt, Carla;483016;124;W;2011;;Sport-Club Itzehoe;6590;00:01:43,78;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 14;E;31007;0;NA;Kern, Mia;444793;120;W;2011;;Sport-Club Itzehoe;6590;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 14;E;31006;1;;Neumann, Ida;949014;97;W;2012;;SC Phönix 88 e.V. Heide;3491;00:01:54,09;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 14;E;31005;1;;Kuhn, Jost;955412;56;W;2013;;MTV von 1860 e.V. Heide;3472;00:01:17,25;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 14;E;31005;2;;Ludwig, Linus;126684;68;W;2013;;MTV von 1860 e.V. Heide;3472;00:01:56,72;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 14;E;31005;0;NA;Schmitt, David;704725;65;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 14;E;31004;1;;Graf, Erik;966367;131;W;2014;;SV Neptun Kiel;5129;00:01:24,45;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;31004;2;;Richter, Niklas;980377;34;W;2014;;Meldorfer SV 2010 e.V.;6572;00:01:30,25;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;31004;3;;Busch, Niklas;494123;58;W;2014;;MTV von 1860 e.V. Heide;3472;00:01:51,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;31004;4;;Koch, Hannah;793664;61;W;2014;;MTV von 1860 e.V. Heide;3472;00:01:52,10;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;31004;5;;Möller, Henri;366540;70;W;2014;;MTV von 1860 e.V. Heide;3472;00:01:57,07;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;31003;1;;Richter, Mats;208911;54;W;2015;;MTV von 1860 e.V. Heide;3472;00:01:49,69;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;31003;2;;Winkler, Milan;616006;51;W;2015;;MTV von 1860 e.V. Heide;3472;00:01:51,17;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;31003;3;;Kramer, Alina;921695;52;W;2015;;MTV von 1860 e.V. Heide;3472;00:02:12,73;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;31003;0;DS;Schmitt, Marie;543027;112;W;2015;;SC Phönix 88 e.V. Heide;3491;00:00:00,00;Bei der 2ten Wende wurde die Wand nicht berührt.;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;31002;1;;Voigt, Leon;753894;132;W;2016;;SV Neptun Kiel;5129;00:01:32,48;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;31002;2;;Engel, Ben;735722;127;W;2016;;Sport-Club Itzehoe;6590;00:01:56,13;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;31002;3;;Keller, Sophie;512582;122;W;2016;;Sport-Club Itzehoe;6590;00:01:56,56;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;31002;4;;Lehmann, Ida;189158;45;W;2016;;Meldorfer SV 2010 e.V.;6572;00:02:15,17;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;31002;5;;Seidel, Nora;122015;43;W;2016;;Meldorfer SV 2010 e.V.;6572;00:02:24,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;31001;1;;Lorenz, Clara;275802;133;W;2017;;SV Neptun Kiel;5129;00:01:50,46;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;32007;1;;Kuhn, Yara;880167;126;M;2011;;Sport-Club Itzehoe;6590;00:01:20,53;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 15;E;32007;2;;Jung, Lina;814687;39;M;2011;;Meldorfer SV 2010 e.V.;6572;00:01:28,35;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 15;E;32007;0;NA;Kaiser, Yara;386117;75;M;2011;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 15;E;32007;0;NA;Lorenz, Alina;877223;116;M;2011;;Sport-Club Itzehoe;6590;00:00:00,00;;;UKR;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 15;E;32006;1;;Sommer, Oskar;655704;77;M;2012;;MTV von 1860 e.V. Heide;3472;00:01:15,80;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 15;E;32006;2;;Winkler, Karl;147520;32;M;2012;;Meldorfer SV 2010 e.V.;6572;00:01:21,67;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 15;E;32006;3;;Lorenz, Karl;237068;46;M;2012;;Meldorfer SV 2010 e.V.;6572;00:01:24,21;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 15;E;32006;4;;Peters, David;806662;33;M;2012;;Meldorfer SV 2010 e.V.;6572;00:01:25,72;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 15;E;32006;5;;Ulrich, Yara;883781;59;M;2012;;MTV von 1860 e.V. Heide;3472;00:01:43,04;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 15;E;32006;6;;Albers, Emma;262419;123;M;2012;;Sport-Club Itzehoe;6590;00:01:44,26;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 15;E;32005;1;;Winkler, Ruben;254965;121;M;2013;;Sport-Club Itzehoe;6590;00:01:22,98;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 15;E;32005;2;;Neumann, Jost;487880;134;M;2013;;SV Neptun Kiel;5129;00:01:26,28;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 15;E;32005;3;;Engel, Lena;857828;115;M;2013;;Sport-Club Itzehoe;6590;00:01:47,53;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 15;E;32005;0;AB;Keller, Ruben;547277;42;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 15;E;32004;1;;Peters, Linus;645273;37;M;2014;;Meldorfer SV 2010 e.V.;6572;00:01:55,22;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;32003;1;;Pohl, Niklas;521342;66;M;2015;;MTV von 1860 e.V. Heide;3472;00:01:48,94;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 15;E;32002;1;;Frank, Milan;628826;102;M;2016;;SC Phönix 88 e.V. Heide;3491;00:02:01,44;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;32001;0;DS;Maier, Clara;440731;98;M;2017;;SC Phönix 88 e.V. Heide;3491;00:00:00,00;Der Schwimmer hat sich bei der 2. Wende in Rückenlage abgestoßen.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20007;1;;Keller, Sophie;143905;72;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:32,46;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 16;E;20007;2;;Ludwig, Erik;622079;64;W;2011;;MTV von 1860 e.V. Heide;3472;00:00:34,55;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 16;E;20007;3;;Brandt, Carla;483016;124;W;2011;;Sport-Club Itzehoe;6590;00:00:37,65;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 16;E;20007;0;NA;Kern, Mia;444793;120;W;2011;;Sport-Club Itzehoe;6590;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 16;E;20006;1;;Neumann, Ida;949014;97;W;2012;;SC Phönix 88 e.V. Heide;3491;00:00:49,28;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 16;E;20005;1;;Kuhn, Jost;955412;56;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:32,86;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 16;E;20005;2;;Herrmann, Maja;987350;78;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:39,49;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 16;E;20005;3;;Ludwig, Linus;126684;68;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:48,49;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 16;E;20005;4;;Hahn, Lara;305210;31;W;2013;;Meldorfer SV 2010 e.V.;6572;00:00:49,08;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 16;E;20005;0;NA;Schmitt, David;704725;65;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 16;E;20004;1;;Graf, Erik;966367;131;W;2014;;SV Neptun Kiel;5129;00:00:35,30;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;20004;2;;Richter, Niklas;980377;34;W;2014;;Meldorfer SV 2010 e.V.;6572;00:00:35,88;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;20004;3;;Koch, Hannah;793664;61;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:44,89;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;20004;4;;Möller, Henri;366540;70;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:46,51;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;20004;5;;Busch, Niklas;494123;58;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:47,79;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;20004;6;;Gross, Oskar;544859;128;W;2014;;SV Blau-Weiß Wesselburen;3450;00:00:49,81;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;20003;1;;Keller, Elias;950504;117;W;2015;;Sport-Club Itzehoe;6590;00:00:36,76;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;2;;Kuhn, Linus;611642;16;W;2015;;Elmshorner MTV;3454;00:00:42,27;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;3;;Hahn, Linus;458220;14;W;2015;;Elmshorner MTV;3454;00:00:45,11;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;4;;Winkler, Milan;616006;51;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:45,81;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;5;;Richter, Mats;208911;54;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:47,22;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;6;;Thiele, Malte;933488;106;W;2015;;SC Phönix 88 e.V. Heide;3491;00:00:51,78;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;7;;Schmitt, Marie;543027;112;W;2015;;SC Phönix 88 e.V. Heide;3491;00:00:52,35;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;8;;Lorenz, Luis;705983;118;W;2015;;Sport-Club Itzehoe;6590;00:00:52,93;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;9;;Kramer, Alina;921695;52;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:56,02;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;10;;Richter, Sophie;903967;21;W;2015;;Elmshorner MTV;3454;00:00:56,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20003;11;;Herrmann, Nora;373588;111;W;2015;;SC Phönix 88 e.V. Heide;3491;00:01:08,89;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;20002;1;;Voigt, Leon;753894;132;W;2016;;SV Neptun Kiel;5129;00:00:36,76;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;2;;Schröder, Luis;422334;20;W;2016;;Elmshorner MTV;3454;00:00:37,52;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;3;;Keller, Sophie;512582;122;W;2016;;Sport-Club Itzehoe;6590;00:00:45,16;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;4;;Engel, Ben;735722;127;W;2016;;Sport-Club Itzehoe;6590;00:00:46,20;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;5;;Winkler, Jonas;850547;79;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:46,67;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;6;;Peters, Yara;377253;44;W;2016;;Meldorfer SV 2010 e.V.;6572;00:00:55,46;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;7;;Lehmann, Ida;189158;45;W;2016;;Meldorfer SV 2010 e.V.;6572;00:00:56,25;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;8;;Engel, Felix;919029;15;W;2016;;Elmshorner MTV;3454;00:00:56,84;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;9;;Marquardt, Erik;670613;9;W;2016;;Elmshorner MTV;3454;00:00:59,47;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;10;;Herrmann, Marie;876651;12;W;2016;;Elmshorner MTV;3454;00:01:04,20;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;11;;Seidel, Nora;122015;43;W;2016;;Meldorfer SV 2010 e.V.;6572;00:01:08,60;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;12;;Fischer, Anton;333339;53;W;2016;;MTV von 1860 e.V. Heide;3472;00:01:08,60;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20002;13;;Schmitt, Anton;717126;129;W;2016;;SV Blau-Weiß Wesselburen;3450;00:01:17,96;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;20001;1;;Lorenz, Clara;275802;133;W;2017;;SV Neptun Kiel;5129;00:00:44,22;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;2;;Gross, Zoe;964049;41;W;2017;;Meldorfer SV 2010 e.V.;6572;00:00:53,49;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;3;;Pohl, Pia;366173;89;W;2017;;Niendorfer TSV;3475;00:00:53,84;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;4;;Koch, Anton;936448;4;W;2017;;Elmshorner MTV;3454;00:00:58,41;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;5;;Vogel, Elias;690381;73;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:02,52;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;6;;Weiss, Emilia;256812;62;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:03,11;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;7;;Engel, Vincent;934403;137;W;2017;;SV Wiking Kiel;3513;00:01:04,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;8;;Brandt, Julia;112762;69;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:04,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;20001;9;;Bauer, Fiona;139507;130;W;2017;;SV Blau-Weiß Wesselburen;3450;00:01:21,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;21007;1;;Kuhn, Yara;880167;126;M;2011;;Sport-Club Itzehoe;6590;00:00:31,14;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 17;E;21007;2;;Jung, Lina;814687;39;M;2011;;Meldorfer SV 2010 e.V.;6572;00:00:32,06;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 17;E;21007;0;NA;Kaiser, Yara;386117;75;M;2011;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 17;E;21007;0;NA;Lorenz, Alina;877223;116;M;2011;;Sport-Club Itzehoe;6590;00:00:00,00;;;UKR;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 17;E;21006;1;;Sommer, Oskar;655704;77;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:30,66;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 17;E;21006;2;;Winkler, Karl;147520;32;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:32,52;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 17;E;21006;3;;Peters, David;806662;33;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:33,35;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 17;E;21006;4;;Lorenz, Karl;237068;46;M;2012;;Meldorfer SV 2010 e.V.;6572;00:00:34,87;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 17;E;21006;5;;Albers, Emma;262419;123;M;2012;;Sport-Club Itzehoe;6590;00:00:39,88;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 17;E;21006;6;;Ulrich, Yara;883781;59;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:41,80;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 17;E;21005;1;;Winkler, Ruben;254965;121;M;2013;;Sport-Club Itzehoe;6590;00:00:32,97;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 17;E;21005;2;;Neumann, Jost;487880;134;M;2013;;SV Neptun Kiel;5129;00:00:34,50;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 17;E;21005;3;;Winkler, Ruben;354761;36;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:38,62;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 17;E;21005;4;;Engel, Lena;857828;115;M;2013;;Sport-Club Itzehoe;6590;00:00:40,63;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 17;E;21005;0;AB;Keller, Ruben;547277;42;M;2013;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 17;E;21004;1;;Richter, Clara;385760;107;M;2014;;SC Phönix 88 e.V. Heide;3491;00:00:37,49;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;21004;2;;Peters, Linus;645273;37;M;2014;;Meldorfer SV 2010 e.V.;6572;00:00:42,16;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;21004;3;;Lorenz, Alina;249412;105;M;2014;;SC Phönix 88 e.V. Heide;3491;00:00:58,97;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;21003;1;;Kramer, Niklas;102066;93;M;2015;;Niendorfer TSV;3475;00:00:40,25;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;2;;Vogel, Jonas;797433;74;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:40,63;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;3;;Sommer, Milan;444287;57;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:45,40;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;3;;Pohl, Niklas;521342;66;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:45,40;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;5;;Sander, Anton;763511;18;M;2015;;Elmshorner MTV;3454;00:00:45,69;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;6;;Pohl, Felix;305808;100;M;2015;;SC Phönix 88 e.V. Heide;3491;00:00:46,67;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;7;;Pohl, Greta;415601;104;M;2015;;SC Phönix 88 e.V. Heide;3491;00:00:46,85;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;8;;Ludwig, Julia;307232;3;M;2015;;Elmshorner MTV;3454;00:00:49,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;9;;Schröder, Luis;120341;7;M;2015;;Elmshorner MTV;3454;00:00:53,12;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;10;;Winkler, Felix;117420;25;M;2015;;Elmshorner MTV;3454;00:00:53,29;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21003;0;AB;Koch, Maja;140285;90;M;2015;;Niendorfer TSV;3475;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;21002;1;;Voigt, Lara;565457;91;M;2016;;Niendorfer TSV;3475;00:00:44,27;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;2;;Marquardt, David;869305;6;M;2016;;Elmshorner MTV;3454;00:00:44,27;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;3;;Lang, Lina;992994;2;M;2016;;Elmshorner MTV;3454;00:00:44,69;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;4;;Jung, Tilda;964881;88;M;2016;;Niendorfer TSV;3475;00:00:46,67;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;5;;Frank, Milan;628826;102;M;2016;;SC Phönix 88 e.V. Heide;3491;00:00:46,98;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;6;;Thiele, Jonas;167096;22;M;2016;;Elmshorner MTV;3454;00:00:53,38;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;7;;Graf, Linus;645167;24;M;2016;;Elmshorner MTV;3454;00:00:54,31;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;8;;Berger, Tilda;379507;87;M;2016;;Niendorfer TSV;3475;00:00:55,08;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;9;;Lehmann, Tom;306445;108;M;2016;;SC Phönix 88 e.V. Heide;3491;00:00:59,76;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;10;;Jung, Elias;469366;99;M;2016;;SC Phönix 88 e.V. Heide;3491;00:01:00,16;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;11;;Engel, Pia;960086;136;M;2016;;SV Neptun Kiel;5129;00:01:00,74;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21002;12;;Berger, Clara;386071;135;M;2016;;SV Neptun Kiel;5129;00:01:18,04;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;21001;1;;Hartmann, Zoe;957126;84;M;2017;;Niendorfer TSV;3475;00:00:47,24;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;21001;2;;Maier, Clara;440731;98;M;2017;;SC Phönix 88 e.V. Heide;3491;00:00:50,87;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;21001;3;;Vogel, Zoe;701888;86;M;2017;;Niendorfer TSV;3475;00:00:53,62;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;21001;4;;Lang, Clara;656065;76;M;2017;;MTV von 1860 e.V. Heide;3472;00:01:02,85;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;21001;5;;Herrmann, Anton;951207;109;M;2017;;SC Phönix 88 e.V. Heide;3491;00:01:15,91;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;21001;0;NA;Seidel, Fiona;252636;8;M;2017;;Elmshorner MTV;3454;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;21001;0;NA;Lang, Karl;121906;71;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 18;E;18008;1;;Kuhn, Sina;256215;23;W;2018;;Elmshorner MTV;3454;00:00:27,34;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;2;;Marquardt, Rike;256215;101;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:29,75;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;3;;Kuhn, Hannah;256215;11;W;2018;;Elmshorner MTV;3454;00:00:31,42;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;4;;Seidel, Marie;681642;119;W;2018;;Sport-Club Itzehoe;6590;00:00:36,61;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;5;;Otto, Jakob;256215;10;W;2018;;Elmshorner MTV;3454;00:00:36,87;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;6;;Otto, Malte;256215;95;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:37,46;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;7;;Thiele, Luis;256215;67;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:37,60;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;8;;Vogel, Jakob;256215;96;W;2018;;SC Phönix 88 e.V. Heide;3491;00:00:37,93;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;9;;Busch, Pia;256215;5;W;2018;;Elmshorner MTV;3454;00:00:38,91;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;10;;Fischer, Theo;256215;82;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:40,32;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;11;;Lehmann, Yara;111598;19;W;2018;;Elmshorner MTV;3454;00:00:43,27;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;12;;Busch, Alina;256215;1;W;2018;;Elmshorner MTV;3454;00:00:45,90;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18008;13;;Neumann, Hannah;256215;63;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:49,65;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 18;E;18007;1;;Möller, Clara;873218;29;W;2019;;Meldorfer SV 2010 e.V.;6572;00:00:41,29;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 18;E;18007;2;;Albers, Mats;256215;80;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:45,05;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 18;E;18007;3;;Graf, Emilia;256215;13;W;2019;;Elmshorner MTV;3454;00:00:45,54;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 18;E;18007;4;;Jung, Ben;256215;55;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:47,21;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 18;E;18006;1;;Keller, Luis;256215;81;W;2020;;MTV von 1860 e.V. Heide;3472;00:00:43,47;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 19;E;19008;1;;Bauer, Hannah;256215;85;M;2018;;Niendorfer TSV;3475;00:00:21,23;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;2;;Thiele, Mats;256215;92;M;2018;;Niendorfer TSV;3475;00:00:22,11;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;3;;Kaiser, Mia;758629;40;M;2018;;Meldorfer SV 2010 e.V.;6572;00:00:25,22;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;4;;Marquardt, Theo;256215;83;M;2018;;Niendorfer TSV;3475;00:00:28,64;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;5;;Bauer, Maja;256215;60;M;2018;;MTV von 1860 e.V. Heide;3472;00:00:32,53;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;6;;Brandt, Mia;256215;17;M;2018;;Elmshorner MTV;3454;00:00:36,23;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;7;;Ludwig, Mia;256215;110;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:38,41;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;8;;Richter, Pia;256215;103;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:42,92;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19008;9;;Busch, Felix;256215;113;M;2018;;SC Phönix 88 e.V. Heide;3491;00:00:47,65;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 19;E;19007;1;;Kramer, Ben;256215;125;M;2019;;Sport-Club Itzehoe;6590;00:00:39,89;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 19;E;19007;2;;Kuhn, Anton;181010;38;M;2019;;Meldorfer SV 2010 e.V.;6572;00:00:52,76;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 19;E;19007;0;AB;Frank, Milan;256215;35;M;2019;;Meldorfer SV 2010 e.V.;6572;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+STERGEBNIS: 3;E;1001;1;;1;47;MTV von 1860 e.V. Heide;3472;00:02:20,60;;;; (* Offene Wertung *)
+STAFFELPERSON: 47;3;E;Keller, Sophie;143905;1;W;2011;;;;;
+STAFFELPERSON: 47;3;E;Sommer, Oskar;655704;2;M;2012;;;;;
+STAFFELPERSON: 47;3;E;Kuhn, Jost;955412;3;W;2013;;;;;
+STAFFELPERSON: 47;3;E;Ludwig, Erik;622079;4;W;2011;;;;;
+STZWISCHENZEIT: 47;3;E;1;50;00:00:35,26;
+STZWISCHENZEIT: 47;3;E;2;100;00:01:14,03;
+STZWISCHENZEIT: 47;3;E;3;150;00:01:47,58;
+STERGEBNIS: 3;E;1001;2;;1;26;Meldorfer SV 2010 e.V.;6572;00:02:33,75;;;; (* Offene Wertung *)
+STAFFELPERSON: 26;3;E;Jung, Lina;814687;1;M;2011;;;;;
+STAFFELPERSON: 26;3;E;Winkler, Karl;147520;2;M;2012;;;;;
+STAFFELPERSON: 26;3;E;Peters, David;806662;3;M;2012;;;;;
+STAFFELPERSON: 26;3;E;Winkler, Alina;169925;4;W;2011;;;;;
+STZWISCHENZEIT: 26;3;E;1;50;00:00:39,39;
+STZWISCHENZEIT: 26;3;E;2;100;00:01:21,21;
+STZWISCHENZEIT: 26;3;E;3;150;00:01:58,42;
+STERGEBNIS: 3;E;1001;3;;1;114;Sport-Club Itzehoe;6590;00:02:36,99;;;; (* Offene Wertung *)
+STAFFELPERSON: 114;3;E;Winkler, Ruben;254965;1;M;2013;;;;;
+STAFFELPERSON: 114;3;E;Kern, Mia;444793;2;W;2011;;;;;
+STAFFELPERSON: 114;3;E;Kuhn, Yara;880167;3;M;2011;;;;;
+STAFFELPERSON: 114;3;E;Brandt, Carla;483016;4;W;2011;;;;;
+STZWISCHENZEIT: 114;3;E;1;50;00:00:40,40;
+STZWISCHENZEIT: 114;3;E;2;100;00:01:24,73;
+STZWISCHENZEIT: 114;3;E;3;150;00:02:00,36;
+STERGEBNIS: 3;E;1001;4;;2;27;Meldorfer SV 2010 e.V.;6572;00:02:43,10;;;; (* Offene Wertung *)
+STAFFELPERSON: 27;3;E;Winkler, Ruben;354761;1;M;2013;;;;;
+STAFFELPERSON: 27;3;E;Lorenz, Karl;237068;2;M;2012;;;;;
+STAFFELPERSON: 27;3;E;Peters, Linus;645273;3;M;2014;;;;;
+STAFFELPERSON: 27;3;E;Richter, Niklas;980377;4;W;2014;;;;;
+STZWISCHENZEIT: 27;3;E;1;50;00:00:43,00;
+STZWISCHENZEIT: 27;3;E;2;100;00:01:25,78;
+STZWISCHENZEIT: 27;3;E;3;150;00:02:06,95;
+STERGEBNIS: 3;E;1001;5;;3;28;Meldorfer SV 2010 e.V.;6572;00:03:48,89;;;; (* Offene Wertung *)
+STAFFELPERSON: 28;3;E;Peters, Yara;377253;1;W;2016;;;;;
+STAFFELPERSON: 28;3;E;Hahn, Lara;305210;2;W;2013;;;;;
+STAFFELPERSON: 28;3;E;Gross, Zoe;964049;3;W;2017;;;;;
+STAFFELPERSON: 28;3;E;Lehmann, Ida;189158;4;W;2016;;;;;
+STZWISCHENZEIT: 28;3;E;1;50;00:01:05,98;
+STZWISCHENZEIT: 28;3;E;2;100;00:01:58,64;
+STZWISCHENZEIT: 28;3;E;3;150;00:02:55,35;
+STERGEBNIS: 20;E;35001;1;;1;26;Meldorfer SV 2010 e.V.;6572;00:03:26,83;;;; (* Offene Wertung *)
+STAFFELPERSON: 26;20;E;Jung, Lina;814687;1;M;2011;;;;;
+STAFFELPERSON: 26;20;E;Lorenz, Karl;237068;2;M;2012;;;;;
+STAFFELPERSON: 26;20;E;Winkler, Ruben;354761;3;M;2013;;;;;
+STAFFELPERSON: 26;20;E;Winkler, Alina;169925;4;W;2011;;;;;
+STAFFELPERSON: 26;20;E;Peters, David;806662;5;M;2012;;;;;
+STAFFELPERSON: 26;20;E;Winkler, Karl;147520;6;M;2012;;;;;
+STZWISCHENZEIT: 26;20;E;1;50;00:00:32,28;
+STZWISCHENZEIT: 26;20;E;2;100;00:01:07,75;
+STZWISCHENZEIT: 26;20;E;3;150;00:01:45,15;
+STZWISCHENZEIT: 26;20;E;4;200;00:02:20,33;
+STZWISCHENZEIT: 26;20;E;5;250;00:02:54,61;
+STERGEBNIS: 20;E;35001;2;;3;50;MTV von 1860 e.V. Heide;3472;00:03:31,52;;;; (* Offene Wertung *)
+STAFFELPERSON: 50;20;E;Keller, Sophie;143905;1;W;2011;;;;;
+STAFFELPERSON: 50;20;E;Ludwig, Erik;622079;2;W;2011;;;;;
+STAFFELPERSON: 50;20;E;Ulrich, Yara;883781;3;M;2012;;;;;
+STAFFELPERSON: 50;20;E;Herrmann, Maja;987350;4;W;2013;;;;;
+STAFFELPERSON: 50;20;E;Kuhn, Jost;955412;5;W;2013;;;;;
+STAFFELPERSON: 50;20;E;Sommer, Oskar;655704;6;M;2012;;;;;
+STZWISCHENZEIT: 50;20;E;1;50;00:00:31,78;
+STZWISCHENZEIT: 50;20;E;2;100;00:01:05,63;
+STZWISCHENZEIT: 50;20;E;3;150;00:01:47,82;
+STZWISCHENZEIT: 50;20;E;4;200;00:02:28,78;
+STZWISCHENZEIT: 50;20;E;5;250;00:03:00,85;
+STERGEBNIS: 20;E;35001;3;;1;114;Sport-Club Itzehoe;6590;00:04:14,98;;;; (* Offene Wertung *)
+STAFFELPERSON: 114;20;E;Albers, Emma;262419;1;M;2012;;;;;
+STAFFELPERSON: 114;20;E;Engel, Ben;735722;2;W;2016;;;;;
+STAFFELPERSON: 114;20;E;Keller, Sophie;512582;3;W;2016;;;;;
+STAFFELPERSON: 114;20;E;Lorenz, Luis;705983;4;W;2015;;;;;
+STAFFELPERSON: 114;20;E;Winkler, Ruben;254965;5;M;2013;;;;;
+STAFFELPERSON: 114;20;E;Kuhn, Yara;880167;6;M;2011;;;;;
+STZWISCHENZEIT: 114;20;E;1;50;00:00:39,75;
+STZWISCHENZEIT: 114;20;E;2;100;00:01:27,63;
+STZWISCHENZEIT: 114;20;E;3;150;00:02:14,59;
+STZWISCHENZEIT: 114;20;E;4;200;00:03:09,03;
+STZWISCHENZEIT: 114;20;E;5;250;00:03:43,17;
+STERGEBNIS: 20;E;35001;4;;1;48;MTV von 1860 e.V. Heide;3472;00:04:35,34;;;; (* Offene Wertung *)
+STAFFELPERSON: 48;20;E;Busch, Niklas;494123;1;W;2014;;;;;
+STAFFELPERSON: 48;20;E;Richter, Mats;208911;2;W;2015;;;;;
+STAFFELPERSON: 48;20;E;Winkler, Milan;616006;3;W;2015;;;;;
+STAFFELPERSON: 48;20;E;Möller, Henri;366540;4;W;2014;;;;;
+STAFFELPERSON: 48;20;E;Pohl, Niklas;521342;5;M;2015;;;;;
+STAFFELPERSON: 48;20;E;Vogel, Jonas;797433;6;M;2015;;;;;
+STZWISCHENZEIT: 48;20;E;1;50;00:00:45,31;
+STZWISCHENZEIT: 48;20;E;2;100;00:01:33,38;
+STZWISCHENZEIT: 48;20;E;3;150;00:02:20,60;
+STZWISCHENZEIT: 48;20;E;4;200;00:03:07,59;
+STZWISCHENZEIT: 48;20;E;5;250;00:03:53,40;
+STERGEBNIS: 20;E;35001;5;;1;94;SC Phönix 88 e.V. Heide;3491;00:04:49,56;;;; (* Offene Wertung *)
+STAFFELPERSON: 94;20;E;Richter, Clara;385760;1;M;2014;;;;;
+STAFFELPERSON: 94;20;E;Schmitt, Marie;543027;2;W;2015;;;;;
+STAFFELPERSON: 94;20;E;Neumann, Ida;949014;3;W;2012;;;;;
+STAFFELPERSON: 94;20;E;Pohl, Greta;415601;4;M;2015;;;;;
+STAFFELPERSON: 94;20;E;Maier, Clara;440731;5;M;2017;;;;;
+STAFFELPERSON: 94;20;E;Frank, Milan;628826;6;M;2016;;;;;
+STZWISCHENZEIT: 94;20;E;1;50;00:00:38,75;
+STZWISCHENZEIT: 94;20;E;2;100;00:01:51,15;
+STZWISCHENZEIT: 94;20;E;3;150;00:02:19,62;
+STZWISCHENZEIT: 94;20;E;4;200;00:03:10,30;
+STZWISCHENZEIT: 94;20;E;5;250;00:04:02,92;
+STERGEBNIS: 20;E;35001;6;;2;27;Meldorfer SV 2010 e.V.;6572;00:05:02,39;;;; (* Offene Wertung *)
+STAFFELPERSON: 27;20;E;Seidel, Nora;122015;1;W;2016;;;;;
+STAFFELPERSON: 27;20;E;Richter, Niklas;980377;2;W;2014;;;;;
+STAFFELPERSON: 27;20;E;Peters, Linus;645273;3;M;2014;;;;;
+STAFFELPERSON: 27;20;E;Peters, Yara;377253;4;W;2016;;;;;
+STAFFELPERSON: 27;20;E;Hahn, Lara;305210;5;W;2013;;;;;
+STAFFELPERSON: 27;20;E;Gross, Zoe;964049;6;W;2017;;;;;
+STZWISCHENZEIT: 27;20;E;1;50;00:01:05,00;
+STZWISCHENZEIT: 27;20;E;2;100;00:01:40,62;
+STZWISCHENZEIT: 27;20;E;3;150;00:02:22,36;
+STZWISCHENZEIT: 27;20;E;4;200;00:03:16,50;
+STZWISCHENZEIT: 27;20;E;5;250;00:04:08,47;
+STERGEBNIS: 20;E;35001;7;;2;49;MTV von 1860 e.V. Heide;3472;00:05:05,67;;;; (* Offene Wertung *)
+STAFFELPERSON: 49;20;E;Koch, Hannah;793664;1;W;2014;;;;;
+STAFFELPERSON: 49;20;E;Ludwig, Linus;126684;2;W;2013;;;;;
+STAFFELPERSON: 49;20;E;Kramer, Alina;921695;3;W;2015;;;;;
+STAFFELPERSON: 49;20;E;Sommer, Milan;444287;4;M;2015;;;;;
+STAFFELPERSON: 49;20;E;Brandt, Julia;112762;5;W;2017;;;;;
+STAFFELPERSON: 49;20;E;Winkler, Jonas;850547;6;W;2016;;;;;
+STZWISCHENZEIT: 49;20;E;1;50;00:00:44,74;
+STZWISCHENZEIT: 49;20;E;2;100;00:01:34,46;
+STZWISCHENZEIT: 49;20;E;3;150;00:02:28,74;
+STZWISCHENZEIT: 49;20;E;4;200;00:03:14,38;
+STZWISCHENZEIT: 49;20;E;5;250;00:04:18,69;
+DATEIENDE

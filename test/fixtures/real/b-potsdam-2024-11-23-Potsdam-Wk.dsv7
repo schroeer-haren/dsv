@@ -1,0 +1,146 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.23 BETA vom 18.01.2023                  *)
+(* Registriert für: Potsdamer SV im OSC Potsdam *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 31.08.2024 um 14:23 Uhr                *)
+FORMAT: Wettkampfdefinitionsliste;7;
+ERZEUGER: EasyWk;5.23 BETA;info@easywk.de;
+VERANSTALTUNG: 21. Seepferdchen-Cup;Potsdam;25;HANDZEIT;
+VERANSTALTUNGSORT: Schwimmhalle "Blu";Am Brauhausberg 1;14473;Potsdam;GER;;;;
+AUSSCHREIBUNGIMNETZ: www.potsdamersv.de;
+VERANSTALTER: Potsdamer SV im OSC Potsdam;
+AUSRICHTER: Potsdamer SV im OSC Potsdam;Bauer, Paul;;;;;;;jost.neumann@example.org;
+MELDEADRESSE: Bauer, Paul;Gartenstrasse 38;14471;Potsdam;;;;jost.neumann@example.org;
+MELDESCHLUSS: 07.11.2024;18:00;
+BANKVERBINDUNG: MBS Potsdam;DE78 1234 5678 2023 6167 56;ABCDEFG1XXX;
+(* KONTOINHABER: Potsdamer SV im OSC Potsdam; *)
+BESONDERES: ;
+ABSCHNITT: 1;23.11.2024;08:50;09:30;10:00;;
+ABSCHNITT: 2;23.11.2024;00:00;00:30;01:00;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+WETTKAMPF: 1;E;1;1;25;R;BE;M;KG;;; (* 25m Rücken-Beine männlich *)
+WETTKAMPF: 2;E;1;1;25;R;BE;M;KG;;; (* 25m Rücken-Beine männlich *)
+WETTKAMPF: 3;E;1;1;25;R;BE;W;KG;;; (* 25m Rücken-Beine weiblich *)
+WETTKAMPF: 4;E;1;1;25;R;BE;W;KG;;; (* 25m Rücken-Beine weiblich *)
+WETTKAMPF: 5;E;1;1;25;B;GL;M;KG;;; (* 25m Brust männlich *)
+WETTKAMPF: 6;E;1;1;25;B;GL;M;KG;;; (* 25m Brust männlich *)
+WETTKAMPF: 7;E;1;1;25;B;GL;W;KG;;; (* 25m Brust weiblich *)
+WETTKAMPF: 8;E;1;1;25;B;GL;W;KG;;; (* 25m Brust weiblich *)
+WETTKAMPF: 9;E;1;1;25;F;BE;M;KG;;; (* 25m Kraul-Beine männlich *)
+WETTKAMPF: 10;E;1;1;25;F;BE;M;KG;;; (* 25m Kraul-Beine männlich *)
+WETTKAMPF: 11;E;1;1;25;F;BE;W;KG;;; (* 25m Kraul-Beine weiblich *)
+WETTKAMPF: 12;E;1;1;25;F;BE;W;KG;;; (* 25m Kraul-Beine weiblich *)
+WETTKAMPF: 13;E;1;1;25;R;GL;M;KG;;; (* 25m Rücken männlich *)
+WETTKAMPF: 14;E;1;1;25;R;GL;M;KG;;; (* 25m Rücken männlich *)
+WETTKAMPF: 15;E;1;1;25;R;GL;W;KG;;; (* 25m Rücken weiblich *)
+WETTKAMPF: 16;E;1;1;25;R;GL;W;KG;;; (* 25m Rücken weiblich *)
+WETTKAMPF: 17;E;1;1;25;F;GL;M;KG;;; (* 25m Kraul männlich *)
+WETTKAMPF: 18;E;1;1;25;F;GL;M;KG;;; (* 25m Kraul männlich *)
+WETTKAMPF: 19;E;1;1;25;F;GL;W;KG;;; (* 25m Kraul weiblich *)
+WETTKAMPF: 20;E;1;1;25;F;GL;W;KG;;; (* 25m Kraul weiblich *)
+WETTKAMPF: 21;E;1;4;25;X;X;X;KG;;; (* 4x25m Kraul Beine/ Rücken Beine/ Brust/ Rücken mixed *)
+WETTKAMPF: 22;E;1;4;25;X;X;X;KG;;; (* 4x25m Kraul Beine/ Rücken Beine/ Brust/ Rücken mixed *)
+WETTKAMPF: 23;E;2;1;25;S;GL;M;KG;;; (* 25m Schmetterling männlich *)
+WETTKAMPF: 24;E;2;1;25;S;GL;W;KG;;; (* 25m Schmetterling weiblich *)
+WETTKAMPF: 25;E;2;1;50;S;GL;M;KG;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 26;E;2;1;50;S;GL;W;KG;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 27;E;2;1;50;R;GL;M;KG;;; (* 50m Rücken männlich *)
+WETTKAMPF: 28;E;2;1;50;R;GL;W;KG;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 29;E;2;1;50;B;GL;M;KG;;; (* 50m Brust männlich *)
+WETTKAMPF: 30;E;2;1;50;B;GL;W;KG;;; (* 50m Brust weiblich *)
+WETTKAMPF: 31;E;2;1;50;F;GL;M;KG;;; (* 50m Freistil männlich *)
+WETTKAMPF: 32;E;2;1;50;F;GL;W;KG;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 33;E;2;1;100;L;GL;M;KG;;; (* 100m Lagen männlich *)
+WETTKAMPF: 34;E;2;1;100;L;GL;W;KG;;; (* 100m Lagen weiblich *)
+WETTKAMPF: 35;E;2;1;200;L;GL;M;KG;;; (* 200m Lagen männlich *)
+WETTKAMPF: 36;E;2;1;200;L;GL;W;KG;;; (* 200m Lagen weiblich *)
+WERTUNG: 1;E;1001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 2;E;2001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 3;E;3001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 4;E;4001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 5;E;5001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 6;E;6001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 7;E;7001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 8;E;8001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 9;E;9001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 10;E;10001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 11;E;11001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 12;E;12001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 13;E;13001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 14;E;14001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 15;E;15001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 16;E;16001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 17;E;17001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 18;E;18001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 19;E;19001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 20;E;20001;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 21;E;21001;JG;2018;2018;X;Jahrgang 2018;
+WERTUNG: 22;E;22001;JG;2017;2017;X;Jahrgang 2017;
+WERTUNG: 23;E;23001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 24;E;24001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 25;E;25001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 25;E;25002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 26;E;26001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 26;E;26002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 27;E;27001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 27;E;27002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 27;E;27003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 28;E;28001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 28;E;28002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 28;E;28003;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 29;E;29001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 29;E;29002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 29;E;29003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 30;E;30001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 30;E;30002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 30;E;30003;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 31;E;31001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 31;E;31002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 31;E;31003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 32;E;32001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 32;E;32002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 32;E;32003;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 33;E;33001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 33;E;33002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 34;E;34001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 34;E;34002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 35;E;35002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 35;E;35003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 36;E;36002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 36;E;36003;JG;2014;2014;W;Jahrgang 2014;
+MELDEGELD: Wkmeldegeld;4,00;1;
+MELDEGELD: Wkmeldegeld;4,00;2;
+MELDEGELD: Wkmeldegeld;4,00;3;
+MELDEGELD: Wkmeldegeld;4,00;4;
+MELDEGELD: Wkmeldegeld;4,00;5;
+MELDEGELD: Wkmeldegeld;4,00;6;
+MELDEGELD: Wkmeldegeld;4,00;7;
+MELDEGELD: Wkmeldegeld;4,00;8;
+MELDEGELD: Wkmeldegeld;4,00;9;
+MELDEGELD: Wkmeldegeld;4,00;10;
+MELDEGELD: Wkmeldegeld;4,00;11;
+MELDEGELD: Wkmeldegeld;4,00;12;
+MELDEGELD: Wkmeldegeld;4,00;13;
+MELDEGELD: Wkmeldegeld;4,00;14;
+MELDEGELD: Wkmeldegeld;4,00;15;
+MELDEGELD: Wkmeldegeld;4,00;16;
+MELDEGELD: Wkmeldegeld;4,00;17;
+MELDEGELD: Wkmeldegeld;4,00;18;
+MELDEGELD: Wkmeldegeld;4,00;19;
+MELDEGELD: Wkmeldegeld;4,00;20;
+MELDEGELD: Wkmeldegeld;4,00;21;
+MELDEGELD: Wkmeldegeld;4,00;22;
+MELDEGELD: Wkmeldegeld;4,00;23;
+MELDEGELD: Wkmeldegeld;4,00;24;
+MELDEGELD: Wkmeldegeld;4,00;25;
+MELDEGELD: Wkmeldegeld;4,00;26;
+MELDEGELD: Wkmeldegeld;4,00;27;
+MELDEGELD: Wkmeldegeld;4,00;28;
+MELDEGELD: Wkmeldegeld;4,00;29;
+MELDEGELD: Wkmeldegeld;4,00;30;
+MELDEGELD: Wkmeldegeld;4,00;31;
+MELDEGELD: Wkmeldegeld;4,00;32;
+MELDEGELD: Wkmeldegeld;4,00;33;
+MELDEGELD: Wkmeldegeld;4,00;34;
+MELDEGELD: Wkmeldegeld;4,00;35;
+MELDEGELD: Wkmeldegeld;4,00;36;
+DATEIENDE

@@ -1,0 +1,672 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.31 vom 03.09.2025                       *)
+(* Registriert für: Kaltenkirchener TS von 1894 *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 21.09.2025 um 13:53 Uhr                *)
+FORMAT: Wettkampfergebnisliste;7;
+ERZEUGER: EasyWk;5.31;info@easywk.de;
+VERANSTALTUNG: 8. Nordisches Flutlichtmeeting 2025;Bad Bramstedt;50;HANDZEIT;
+VERANSTALTER: Kaltenkirchener TS;
+AUSRICHTER: Kaltenkirchener TS;Otto, Pia ;;;;GER;;;leon.marquardt@example.org;
+ABSCHNITT: 1;20.09.2025;20:00;;
+KAMPFGERICHT: 1;SCH;Walter, Oskar;SG Wasserratten Norderstedt;
+KAMPFGERICHT: 1;SCH;Hartmann, Elias;SG Wasserratten Norderstedt;
+KAMPFGERICHT: 1;STA;Schäfer, Zoe;Barmstedter MTV;
+KAMPFGERICHT: 1;AUS;Schäfer, Ben;Kaltenkirchener TS;
+KAMPFGERICHT: 1;AUS;Fischer, Yara;Bremer SC;
+KAMPFGERICHT: 1;PKF;Schröder, Sophie;Kaltenkirchener TS;
+KAMPFGERICHT: 1;SR;Koch, Jana;Niendorfer TSV;
+KAMPFGERICHT: 1;SR;Voigt, Theo;PSV Stralsund;
+KAMPFGERICHT: 1;ZR;Hartmann, Felix;TV Gut Heil Billstedt;
+KAMPFGERICHT: 1;ZR;Hartmann, Karl;SSV Tönningstedt;
+KAMPFGERICHT: 1;ZR;Lorenz, Elias;Kaltenkirchener TS;
+KAMPFGERICHT: 1;WRO;Richter, Lena;TV Gut Heil Billstedt;
+KAMPFGERICHT: 1;WR;Richter, Lena;TV Gut Heil Billstedt;
+KAMPFGERICHT: 1;WR;Richter, Lena;TV Gut Heil Billstedt;
+KAMPFGERICHT: 1;WR;Lehmann, Julia;Kaltenkirchener TS;
+KAMPFGERICHT: 1;WR;Lehmann, Julia;Kaltenkirchener TS;
+KAMPFGERICHT: 1;WR;Bauer, Marie;Sport-Club Itzehoe;
+KAMPFGERICHT: 1;WR;Bauer, Marie;Sport-Club Itzehoe;
+KAMPFGERICHT: 1;ZNO;Keller, Sophie;Kaltenkirchener TS;
+KAMPFGERICHT: 1;ZNO;Jung, Mats;Kaltenkirchener TS;
+KAMPFGERICHT: 1;ZN;Jung, Tilda;TV Gut Heil Billstedt;
+KAMPFGERICHT: 1;ZN;Reuter, Marie;TSV Bargteheide;
+KAMPFGERICHT: 1;ZN;Sommer, Milan;TSV Malente 1900;
+KAMPFGERICHT: 1;ZN;Gross, Elias;Walddörfer SV;
+KAMPFGERICHT: 1;ZN;Ulrich, Lara;PSV Stralsund;
+KAMPFGERICHT: 1;ZN;Engel, Mats;Kaltenkirchener TS;
+KAMPFGERICHT: 1;ZN;Albers, Sophie;Kaltenkirchener TS;
+KAMPFGERICHT: 1;ZN;Otto, Alina;Kaltenkirchener TS;
+KAMPFGERICHT: 1;ZN;Reuter, Yara;Niendorfer TSV;
+KAMPFGERICHT: 1;ZN;Schröder, Luis;Kaltenkirchener TS;
+KAMPFGERICHT: 1;ZN;Otto, Clara;Kaltenkirchener TS;
+KAMPFGERICHT: 1;ZN;Kuhn, David;Sport-Club Itzehoe;
+KAMPFGERICHT: 1;RZN;Otto, Felix;SG Wasserratten Norderstedt;
+KAMPFGERICHT: 1;RZN;Vogel, Sophie;PSV Stralsund;
+KAMPFGERICHT: 1;SP;Stein, Leon;Kaltenkirchener TS;
+WETTKAMPF: 1;E;1;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 2;E;1;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 3;E;1;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 4;E;1;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 5;E;1;4;50;F;GL;X;SW;;; (* 4x50m Freistil mixed *)
+WETTKAMPF: 6;E;1;4;50;L;GL;X;SW;;; (* 4x50m Lagen mixed *)
+WETTKAMPF: 7;E;1;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 8;E;1;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 9;E;1;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 10;E;1;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WERTUNG: 1;E;2001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 1;E;2002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 1;E;2003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 1;E;2004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 1;E;2005;JG;2010;2011;W;Jahrgangsgruppe 2011/2010;
+WERTUNG: 1;E;2006;JG;2008;2009;W;Jahrgangsgruppe 2009/2008;
+WERTUNG: 1;E;2007;JG;2006;2007;W;Jahrgangsgruppe 2007/2006;
+WERTUNG: 1;E;2008;JG;1900;2005;W;Jahrgangsgruppe 2005 und älter;
+WERTUNG: 2;E;3001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 2;E;3002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 2;E;3003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 2;E;3004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 2;E;3005;JG;2010;2011;M;Jahrgangsgruppe 2011/2010;
+WERTUNG: 2;E;3006;JG;2008;2009;M;Jahrgangsgruppe 2009/2008;
+WERTUNG: 2;E;3007;JG;2006;2007;M;Jahrgangsgruppe 2007/2006;
+WERTUNG: 2;E;3008;JG;1900;2005;M;Jahrgangsgruppe 2005 und älter;
+WERTUNG: 3;E;4001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 3;E;4002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 3;E;4003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 3;E;4004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 3;E;4005;JG;2010;2011;W;Jahrgangsgruppe 2011/2010;
+WERTUNG: 3;E;4006;JG;2008;2009;W;Jahrgangsgruppe 2009/2008;
+WERTUNG: 3;E;4007;JG;2006;2007;W;Jahrgangsgruppe 2007/2006;
+WERTUNG: 3;E;4008;JG;1900;2005;W;Jahrgangsgruppe 2005 und älter;
+WERTUNG: 4;E;5001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 4;E;5002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 4;E;5003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 4;E;5004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 4;E;5005;JG;2010;2011;M;Jahrgangsgruppe 2011/2010;
+WERTUNG: 4;E;5006;JG;2008;2009;M;Jahrgangsgruppe 2009/2008;
+WERTUNG: 4;E;5007;JG;2006;2007;M;Jahrgangsgruppe 2007/2006;
+WERTUNG: 4;E;5008;JG;1900;2005;M;Jahrgangsgruppe 2005 und älter;
+WERTUNG: 5;E;6001;JG;1900;2015;X;Offene Wertung;
+WERTUNG: 6;E;7001;JG;1900;2015;X;Offene Wertung;
+WERTUNG: 7;E;8001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 7;E;8002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 7;E;8003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 7;E;8004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 7;E;8005;JG;2010;2011;W;Jahrgangsgruppe 2011/2010;
+WERTUNG: 7;E;8006;JG;2008;2009;W;Jahrgangsgruppe 2009/2008;
+WERTUNG: 7;E;8007;JG;2006;2007;W;Jahrgangsgruppe 2007/2006;
+WERTUNG: 7;E;8008;JG;1900;2005;W;Jahrgangsgruppe 2005 und älter;
+WERTUNG: 8;E;9001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 8;E;9002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 8;E;9003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 8;E;9004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 8;E;9005;JG;2010;2011;M;Jahrgangsgruppe 2011/2010;
+WERTUNG: 8;E;9006;JG;2008;2009;M;Jahrgangsgruppe 2009/2008;
+WERTUNG: 8;E;9007;JG;2006;2007;M;Jahrgangsgruppe 2007/2006;
+WERTUNG: 8;E;9008;JG;1900;2005;M;Jahrgangsgruppe 2005 und älter;
+WERTUNG: 9;E;10001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 9;E;10002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 9;E;10003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 9;E;10004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 9;E;10005;JG;2010;2011;W;Jahrgangsgruppe 2011/2010;
+WERTUNG: 9;E;10006;JG;2008;2009;W;Jahrgangsgruppe 2009/2008;
+WERTUNG: 9;E;10007;JG;2006;2007;W;Jahrgangsgruppe 2007/2006;
+WERTUNG: 9;E;10008;JG;1900;2005;W;Jahrgangsgruppe 2005 und älter;
+WERTUNG: 10;E;11001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 10;E;11002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 10;E;11003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 10;E;11004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 10;E;11005;JG;2010;2011;M;Jahrgangsgruppe 2011/2010;
+WERTUNG: 10;E;11006;JG;2008;2009;M;Jahrgangsgruppe 2009/2008;
+WERTUNG: 10;E;11007;JG;2006;2007;M;Jahrgangsgruppe 2007/2006;
+WERTUNG: 10;E;11008;JG;1900;2005;M;Jahrgangsgruppe 2005 und älter;
+VEREIN: Barmstedter MTV;3448;14;GER;
+VEREIN: Kaltenkirchener TS;3461;14;GER;
+VEREIN: Niendorfer TSV;3475;6;GER;
+VEREIN: Polizeisportverein Union Neumünster von 1973;3481;14;GER;
+VEREIN: PSV Stralsund;5478;8;GER;
+VEREIN: Sport-Club Itzehoe;6590;14;GER;
+VEREIN: SSV Tönningstedt;3504;14;GER;
+VEREIN: TSV Bargteheide;3515;14;GER;
+VEREIN: TSV Malente 1900;3545;14;GER;
+VEREIN: TV Gut Heil Billstedt;4128;6;GER;
+VEREIN: Walddörfer SV;4131;6;GER;
+VEREIN: Wasserfreunde Eckernförde;3560;14;GER;
+PNERGEBNIS: 1;E;2004;1;;Engel, Lina;873858;132;W;2012;;Kaltenkirchener TS;3461;00:00:48,17;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 1;E;2004;2;;Hartmann, Jonas;564448;100;W;2012;;PSV Stralsund;5478;00:00:49,11;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 1;E;2004;0;NA;Lorenz, Henri;531755;126;W;2012;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 1;E;2003;1;;Richter, Karl;908799;90;W;2013;;PSV Stralsund;5478;00:00:36,06;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2003;2;;Pohl, Mats;331180;99;W;2013;;PSV Stralsund;5478;00:00:38,62;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2003;3;;Kramer, Malte;653561;96;W;2013;;PSV Stralsund;5478;00:00:39,27;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2003;4;;Brandt, Maja;371411;47;W;2013;;TV Gut Heil Billstedt;4128;00:00:39,30;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2003;5;;Berger, Luis;381575;55;W;2013;;TV Gut Heil Billstedt;4128;00:00:44,99;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2003;6;;Schäfer, Pia;288697;81;W;2013;;Sport-Club Itzehoe;6590;00:00:46,88;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2003;7;;Jung, Henri;510079;111;W;2013;;Kaltenkirchener TS;3461;00:00:55,01;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2003;8;;Neumann, Anton;437340;78;W;2013;;Sport-Club Itzehoe;6590;00:00:56,03;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 1;E;2002;1;;Voigt, Mia;476755;36;W;2014;;Walddörfer SV;4131;00:01:01,21;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;2002;0;NA;Stein, Rike;301790;135;W;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;2002;0;DS;Sander, Lara;231215;38;W;2014;;Walddörfer SV;4131;00:00:00,00;Die Sportlerin hat die Arme nicht stets über Wasser nach vorne bewegt.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;2002;0;DS;Schäfer, Lena;553596;23;W;2014;;Walddörfer SV;4131;00:00:00,00;Die Schwimmerin führte auf der Schwimmstrecke Brustarmzüge aus und führte die Arme nicht über Wasser nach vorne.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 1;E;2001;1;;Keller, Elias;950504;80;W;2015;;Sport-Club Itzehoe;6590;00:00:41,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;2001;2;;Ziegler, Jost;266104;58;W;2015;;TV Gut Heil Billstedt;4128;00:00:47,69;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;2001;3;;Sommer, Alina;413914;49;W;2015;;TV Gut Heil Billstedt;4128;00:00:50,56;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;2001;4;;Walter, Lina;960613;31;W;2015;;Walddörfer SV;4131;00:00:59,21;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;2001;0;DS;Hahn, Jana;880661;32;W;2015;;Walddörfer SV;4131;00:00:00,00;Die Sportlerin hat die Arme nicht stets über Wasser nach vorne bewegt.;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;2001;0;DS;Lang, Ruben;450137;28;W;2015;;Walddörfer SV;4131;00:00:00,00;Die Sportlerin hat die Arme nicht stets über Wasser nach vorne bewegt.;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 1;E;2008;1;;Fischer, Emilia;590647;136;W;2002;20;Kaltenkirchener TS;3461;00:00:31,44;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;2;;Frank, Vincent;889992;15;W;1999;25;TSV Bargteheide;3515;00:00:33,23;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;3;;Reuter, Erik;905650;92;W;2003;20;PSV Stralsund;5478;00:00:35,10;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;4;;Voigt, Marie;517022;115;W;2003;20;Kaltenkirchener TS;3461;00:00:36,25;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;5;;Marquardt, Paul;266595;140;W;1978;45;Barmstedter MTV;3448;00:00:39,05;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;6;;Herrmann, Marie;717571;44;W;1964;60;TV Gut Heil Billstedt;4128;00:00:40,82;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;7;;Marquardt, Yara;818178;56;W;1998;25;TV Gut Heil Billstedt;4128;00:00:41,05;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;8;;Sander, Paul;752153;105;W;1992;30;Kaltenkirchener TS;3461;00:00:44,44;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;0;NA;Möller, Elias;110368;112;W;2005;20;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;0;NA;Kuhn, Lara;222664;123;W;1994;30;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2008;0;NA;Seidel, Jana;748567;129;W;1999;25;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 1;E;2007;1;;Kuhn, Nele;345104;101;W;2006;;PSV Stralsund;5478;00:00:35,81;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 1;E;2007;2;;Stein, Anton;175026;137;W;2007;;Kaltenkirchener TS;3461;00:00:55,18;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 1;E;2006;1;;Brandt, Nora;578574;59;W;2009;;Wasserfreunde Eckernförde;3560;00:00:31,85;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 1;E;2006;2;;Busch, Mats;548010;67;W;2009;;Niendorfer TSV;3475;00:00:33,17;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 1;E;2006;3;;Lorenz, Jakob;155576;66;W;2009;;Niendorfer TSV;3475;00:00:35,17;;;;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 1;E;2006;4;;Otto, Clara;872692;45;W;2009;;TV Gut Heil Billstedt;4128;00:00:38,24;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 1;E;2006;5;;Neumann, Anton;521461;113;W;2009;;Kaltenkirchener TS;3461;00:00:39,99;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 1;E;2006;6;;Sommer, Ben;667358;26;W;2009;;Walddörfer SV;4131;00:00:42,30;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 1;E;2005;1;;Herrmann, Theo;868811;43;W;2011;;TV Gut Heil Billstedt;4128;00:00:36,23;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;2;;Schmitt, Jost;189376;74;W;2011;;Niendorfer TSV;3475;00:00:36,88;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;3;;Ludwig, Yara;652457;91;W;2011;;PSV Stralsund;5478;00:00:39,04;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;4;;Stein, Jana;259855;139;W;2011;;Kaltenkirchener TS;3461;00:00:40,05;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;5;;Lorenz, Tilda;113528;57;W;2011;;TV Gut Heil Billstedt;4128;00:00:40,68;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;6;;Peters, Ida;307066;93;W;2010;;PSV Stralsund;5478;00:00:40,69;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;7;;Kern, Mia;444793;83;W;2011;;Sport-Club Itzehoe;6590;00:00:41,78;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;8;;Weiss, Lara;199628;95;W;2010;;PSV Stralsund;5478;00:00:42,19;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;9;;Reuter, Fiona;416434;8;W;2010;;TSV Bargteheide;3515;00:00:42,30;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;10;;Marquardt, Nele;533923;79;W;2010;;Sport-Club Itzehoe;6590;00:00:44,99;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;10;;Brandt, Carla;483016;85;W;2011;;Sport-Club Itzehoe;6590;00:00:44,99;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;12;;Kramer, Alina;738815;12;W;2010;;TSV Bargteheide;3515;00:00:50,44;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;13;;Brandt, Sina;752645;108;W;2010;;Kaltenkirchener TS;3461;00:01:05,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 1;E;2005;0;NA;Fischer, Yara;438441;125;W;2011;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3004;1;;Seidel, David;319718;130;M;2012;;Kaltenkirchener TS;3461;00:00:42,51;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 2;E;3003;1;;Winkler, Ruben;254965;84;M;2013;;Sport-Club Itzehoe;6590;00:00:41,46;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 2;E;3003;2;;Hahn, Yara;890721;122;M;2013;;Kaltenkirchener TS;3461;00:00:44,19;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 2;E;3003;3;;Thiele, Jakob;429727;94;M;2013;;PSV Stralsund;5478;00:00:45,69;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 2;E;3002;0;NA;Kuhn, Yara;274410;120;M;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 2;E;3001;1;;Lang, Ruben;991533;50;M;2015;;TV Gut Heil Billstedt;4128;00:00:51,90;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 2;E;3008;1;;Klein, Niklas;410715;87;M;2003;20;Sport-Club Itzehoe;6590;00:00:29,87;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 2;E;3008;2;;Vogel, Malte;726142;76;M;1959;65;Polizeisportverein Union Neumünster von 1973;3481;00:00:31,66;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 2;E;3008;3;;Herrmann, Tom;883294;75;M;1960;65;Polizeisportverein Union Neumünster von 1973;3481;00:00:42,47;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 2;E;3008;4;;Sander, Jost;818240;116;M;1972;50;Kaltenkirchener TS;3461;00:00:44,66;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 2;E;3008;0;NA;Dietrich, Leon;541792;48;M;1972;50;TV Gut Heil Billstedt;4128;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 2;E;3007;1;;Lehmann, Maja;785930;89;M;2006;;PSV Stralsund;5478;00:00:27,30;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 2;E;3007;2;;Richter, Lina;919115;86;M;2007;;Sport-Club Itzehoe;6590;00:00:33,48;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 2;E;3007;0;NA;Otto, Oskar;719614;124;M;2007;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 2;E;3006;1;;Seidel, Jost;800338;72;M;2009;;Niendorfer TSV;3475;00:00:29,87;;;;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 2;E;3006;2;;Kaiser, Nora;301477;68;M;2009;;Niendorfer TSV;3475;00:00:32,03;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 2;E;3006;3;;Möller, Lena;984061;82;M;2009;;Sport-Club Itzehoe;6590;00:00:32,85;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 2;E;3006;4;;Gross, Lina;755230;25;M;2009;;Walddörfer SV;4131;00:00:37,79;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 2;E;3006;0;NA;Bauer, Theo;977363;30;M;2009;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 2;E;3006;0;DS;Schröder, Luis;158562;127;M;2009;;Kaltenkirchener TS;3461;00:00:00,00;Der Sportler startete vor dem Startsignal.;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 2;E;3005;1;;Weiss, Erik;974838;97;M;2011;;PSV Stralsund;5478;00:00:28,21;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;2;;Brandt, Mia;311705;70;M;2010;;Niendorfer TSV;3475;00:00:29,77;;;;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;3;;Lorenz, Emma;920418;71;M;2010;;Niendorfer TSV;3475;00:00:30,13;;;;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;4;;Weiss, Hannah;827616;63;M;2010;;SSV Tönningstedt;3504;00:00:33,48;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;5;;Lang, Malte;431556;131;M;2011;;Kaltenkirchener TS;3461;00:00:35,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;6;;Maier, Felix;150504;119;M;2010;;Kaltenkirchener TS;3461;00:00:35,57;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;7;;Lehmann, Lara;269725;35;M;2010;;Walddörfer SV;4131;00:00:35,76;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;8;;Frank, Alina;546430;52;M;2011;;TV Gut Heil Billstedt;4128;00:00:36,85;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;9;;Kuhn, Maja;479287;46;M;2011;;TV Gut Heil Billstedt;4128;00:00:37,19;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;9;;Berger, Elias;585314;98;M;2011;;PSV Stralsund;5478;00:00:37,19;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;11;;Koch, Emilia;156906;53;M;2011;;TV Gut Heil Billstedt;4128;00:00:37,48;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;12;;Sander, Sina;288784;128;M;2010;;Kaltenkirchener TS;3461;00:00:37,49;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;13;;Graf, Carla;860220;62;M;2010;;SSV Tönningstedt;3504;00:00:39,51;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;14;;Fischer, Marie;517718;60;M;2010;;SSV Tönningstedt;3504;00:00:41,21;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;15;;Neumann, Marie;879596;54;M;2010;;TV Gut Heil Billstedt;4128;00:00:41,40;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 2;E;3005;16;;Herrmann, Paul;531927;107;M;2011;;Kaltenkirchener TS;3461;00:00:45,61;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4004;1;;Ziegler, Nele;245972;5;W;2012;;TSV Malente 1900;3545;00:00:44,61;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 3;E;4004;2;;Hartmann, Jonas;564448;100;W;2012;;PSV Stralsund;5478;00:00:48,52;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 3;E;4004;3;;Engel, Lina;873858;132;W;2012;;Kaltenkirchener TS;3461;00:00:48,94;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 3;E;4004;0;NA;Walter, Clara;106650;40;W;2012;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 3;E;4004;0;NA;Lorenz, Henri;531755;126;W;2012;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 3;E;4003;1;;Pohl, Mats;331180;99;W;2013;;PSV Stralsund;5478;00:00:41,21;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;2;;Berger, Luis;381575;55;W;2013;;TV Gut Heil Billstedt;4128;00:00:41,28;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;3;;Richter, Karl;908799;90;W;2013;;PSV Stralsund;5478;00:00:41,44;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;4;;Brandt, Maja;371411;47;W;2013;;TV Gut Heil Billstedt;4128;00:00:42,50;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;5;;Kramer, Malte;653561;96;W;2013;;PSV Stralsund;5478;00:00:43,11;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;6;;Jung, Henri;510079;111;W;2013;;Kaltenkirchener TS;3461;00:00:47,74;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;7;;Schäfer, Pia;288697;81;W;2013;;Sport-Club Itzehoe;6590;00:00:54,02;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;8;;Kern, Yara;659965;14;W;2013;;TSV Bargteheide;3515;00:00:55,61;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4003;9;;Neumann, Anton;437340;78;W;2013;;Sport-Club Itzehoe;6590;00:00:56,49;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 3;E;4002;1;;Sander, Lara;231215;38;W;2014;;Walddörfer SV;4131;00:01:00,81;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 3;E;4002;2;;Voigt, Mia;476755;36;W;2014;;Walddörfer SV;4131;00:01:01,53;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 3;E;4002;3;;Graf, Nora;736578;9;W;2014;;TSV Bargteheide;3515;00:01:01,74;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 3;E;4002;4;;Schäfer, Lena;553596;23;W;2014;;Walddörfer SV;4131;00:01:11,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 3;E;4002;5;;Brandt, Nele;193247;34;W;2014;;Walddörfer SV;4131;00:01:16,72;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 3;E;4002;0;NA;Klein, Sophie;113295;41;W;2014;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 3;E;4002;0;NA;Stein, Rike;301790;135;W;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 3;E;4001;1;;Keller, Elias;950504;80;W;2015;;Sport-Club Itzehoe;6590;00:00:44,22;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;2;;Ziegler, Jost;266104;58;W;2015;;TV Gut Heil Billstedt;4128;00:00:49,01;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;3;;Sommer, Alina;413914;49;W;2015;;TV Gut Heil Billstedt;4128;00:00:50,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;4;;Walter, Lina;960613;31;W;2015;;Walddörfer SV;4131;00:00:56,78;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;5;;Winkler, Jakob;266939;16;W;2015;;TSV Bargteheide;3515;00:00:57,69;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;6;;Lang, Ruben;450137;28;W;2015;;Walddörfer SV;4131;00:00:59,48;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;7;;Engel, Ben;146330;109;W;2015;;Kaltenkirchener TS;3461;00:01:05,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;8;;Graf, Carla;944484;117;W;2015;;Kaltenkirchener TS;3461;00:01:05,12;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4001;9;;Hahn, Jana;880661;32;W;2015;;Walddörfer SV;4131;00:01:35,34;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 3;E;4008;1;;Frank, Vincent;889992;15;W;1999;25;TSV Bargteheide;3515;00:00:35,98;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;2;;Voigt, Marie;517022;115;W;2003;20;Kaltenkirchener TS;3461;00:00:37,73;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;3;;Fischer, Emilia;590647;136;W;2002;20;Kaltenkirchener TS;3461;00:00:38,03;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;4;;Marquardt, Paul;266595;140;W;1978;45;Barmstedter MTV;3448;00:00:42,34;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;5;;Schmitt, Yara;358293;51;W;1969;55;TV Gut Heil Billstedt;4128;00:00:44,08;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;6;;Sander, Paul;752153;105;W;1992;30;Kaltenkirchener TS;3461;00:00:44,62;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;7;;Marquardt, Yara;818178;56;W;1998;25;TV Gut Heil Billstedt;4128;00:00:46,10;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;8;;Fischer, Paul;483577;11;W;1975;50;TSV Bargteheide;3515;00:00:49,13;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;0;NA;Stein, Linus;161196;13;W;1983;40;TSV Bargteheide;3515;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;0;NA;Möller, Elias;110368;112;W;2005;20;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;0;NA;Kuhn, Lara;222664;123;W;1994;30;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;0;NA;Seidel, Jana;748567;129;W;1999;25;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4008;0;DS;Reuter, Erik;905650;92;W;2003;20;PSV Stralsund;5478;00:00:00,00;Die Sportlerin ist nach dem Start mehr als 15m getaucht.;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 3;E;4007;1;;Kuhn, Nele;345104;101;W;2006;;PSV Stralsund;5478;00:00:38,85;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 3;E;4007;2;;Schmitt, Ida;943530;65;W;2007;;Niendorfer TSV;3475;00:00:43,52;;;;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 3;E;4007;3;;Stein, Anton;175026;137;W;2007;;Kaltenkirchener TS;3461;00:00:48,14;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 3;E;4006;1;;Brandt, Nora;578574;59;W;2009;;Wasserfreunde Eckernförde;3560;00:00:42,00;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 3;E;4006;2;;Neumann, Anton;521461;113;W;2009;;Kaltenkirchener TS;3461;00:00:42,47;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 3;E;4006;3;;Otto, Clara;872692;45;W;2009;;TV Gut Heil Billstedt;4128;00:00:43,42;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 3;E;4006;4;;Sommer, Ben;667358;26;W;2009;;Walddörfer SV;4131;00:00:43,74;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 3;E;4005;1;;Reuter, Fiona;416434;8;W;2010;;TSV Bargteheide;3515;00:00:39,60;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;2;;Stein, Jana;259855;139;W;2011;;Kaltenkirchener TS;3461;00:00:40,60;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;3;;Herrmann, Theo;868811;43;W;2011;;TV Gut Heil Billstedt;4128;00:00:41,12;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;4;;Peters, Ida;307066;93;W;2010;;PSV Stralsund;5478;00:00:41,21;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;5;;Herrmann, Paul;240365;7;W;2010;;TSV Malente 1900;3545;00:00:43,35;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;6;;Ludwig, Yara;652457;91;W;2011;;PSV Stralsund;5478;00:00:43,93;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;7;;Marquardt, Nele;533923;79;W;2010;;Sport-Club Itzehoe;6590;00:00:44,34;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;8;;Kern, Mia;444793;83;W;2011;;Sport-Club Itzehoe;6590;00:00:46,35;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;9;;Lorenz, Tilda;113528;57;W;2011;;TV Gut Heil Billstedt;4128;00:00:46,76;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;10;;Albers, Zoe;354832;10;W;2010;;TSV Bargteheide;3515;00:00:47,93;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;11;;Weiss, Lara;199628;95;W;2010;;PSV Stralsund;5478;00:00:49,16;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;12;;Keller, Ben;163246;134;W;2010;;Kaltenkirchener TS;3461;00:00:50,97;;;ROU;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;13;;Brandt, Carla;483016;85;W;2011;;Sport-Club Itzehoe;6590;00:00:51,54;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;14;;Kramer, Alina;738815;12;W;2010;;TSV Bargteheide;3515;00:00:53,19;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;15;;Brandt, Sina;752645;108;W;2010;;Kaltenkirchener TS;3461;00:00:55,48;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;16;;Seidel, Marie;629967;138;W;2011;;Kaltenkirchener TS;3461;00:00:57,06;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;0;NA;Klein, Lina;343832;106;W;2011;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 3;E;4005;0;NA;Fischer, Yara;438441;125;W;2011;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5004;1;;Bauer, Lara;464713;29;M;2012;;Walddörfer SV;4131;00:00:48,59;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 4;E;5004;2;;Seidel, David;319718;130;M;2012;;Kaltenkirchener TS;3461;00:00:48,59;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 4;E;5004;3;;Jung, Lena;949199;2;M;2012;;TSV Malente 1900;3545;00:00:48,87;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 4;E;5004;4;;Klein, Mats;219183;121;M;2012;;Kaltenkirchener TS;3461;00:00:49,14;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 4;E;5004;0;NA;Pohl, Vincent;630436;3;M;2012;;TSV Malente 1900;3545;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 4;E;5003;1;;Winkler, Ruben;254965;84;M;2013;;Sport-Club Itzehoe;6590;00:00:41,19;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 4;E;5003;2;;Thiele, Jakob;429727;94;M;2013;;PSV Stralsund;5478;00:00:47,91;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 4;E;5003;3;;Hahn, Yara;890721;122;M;2013;;Kaltenkirchener TS;3461;00:00:50,28;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 4;E;5002;0;NA;Engel, Jonas;301390;27;M;2014;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 4;E;5002;0;NA;Kuhn, Yara;274410;120;M;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 4;E;5001;1;;Engel, Lena;657428;133;M;2015;;Kaltenkirchener TS;3461;00:00:48,82;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;5001;2;;Lang, Ruben;991533;50;M;2015;;TV Gut Heil Billstedt;4128;00:00:49,76;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;5001;3;;Möller, Oskar;135757;114;M;2015;;Kaltenkirchener TS;3461;00:01:07,21;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;5001;4;;Ulrich, Sina;451203;37;M;2015;;Walddörfer SV;4131;00:01:07,54;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;5001;5;;Weiss, Ida;458138;118;M;2015;;Kaltenkirchener TS;3461;00:01:08,95;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 4;E;5008;1;;Klein, Niklas;410715;87;M;2003;20;Sport-Club Itzehoe;6590;00:00:36,50;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 4;E;5008;2;;Herrmann, Tom;883294;75;M;1960;65;Polizeisportverein Union Neumünster von 1973;3481;00:00:46,41;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 4;E;5008;3;;Sommer, Sophie;576397;110;M;1979;45;Kaltenkirchener TS;3461;00:00:50,19;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 4;E;5008;4;;Sander, Jost;818240;116;M;1972;50;Kaltenkirchener TS;3461;00:00:53,19;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 4;E;5008;0;NA;Engel, Greta;409274;6;M;1978;45;TSV Malente 1900;3545;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 4;E;5008;0;NA;Dietrich, Leon;541792;48;M;1972;50;TV Gut Heil Billstedt;4128;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 4;E;5007;1;;Richter, Lina;919115;86;M;2007;;Sport-Club Itzehoe;6590;00:00:36,91;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 4;E;5007;2;;Ludwig, David;657525;4;M;2007;;TSV Malente 1900;3545;00:00:48,59;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 4;E;5007;0;NA;Otto, Oskar;719614;124;M;2007;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 4;E;5007;0;DS;Lehmann, Maja;785930;89;M;2006;;PSV Stralsund;5478;00:00:00,00;Der Sportler ist nach dem Start mehr als 15m getaucht.;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 4;E;5006;1;;Möller, Lena;984061;82;M;2009;;Sport-Club Itzehoe;6590;00:00:34,50;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 4;E;5006;2;;Schröder, Luis;158562;127;M;2009;;Kaltenkirchener TS;3461;00:00:40,04;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 4;E;5005;1;;Weiss, Erik;974838;97;M;2011;;PSV Stralsund;5478;00:00:31,03;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;2;;Weiss, Hannah;827616;63;M;2010;;SSV Tönningstedt;3504;00:00:36,42;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;3;;Lang, Malte;431556;131;M;2011;;Kaltenkirchener TS;3461;00:00:37,85;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;4;;Graf, Carla;860220;62;M;2010;;SSV Tönningstedt;3504;00:00:38,30;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;5;;Koch, Emilia;156906;53;M;2011;;TV Gut Heil Billstedt;4128;00:00:38,30;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;6;;Kuhn, Maja;479287;46;M;2011;;TV Gut Heil Billstedt;4128;00:00:38,86;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;7;;Sander, Sina;288784;128;M;2010;;Kaltenkirchener TS;3461;00:00:39,10;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;8;;Lehmann, Lara;269725;35;M;2010;;Walddörfer SV;4131;00:00:40,21;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;9;;Neumann, Marie;879596;54;M;2010;;TV Gut Heil Billstedt;4128;00:00:40,78;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;10;;Maier, Felix;150504;119;M;2010;;Kaltenkirchener TS;3461;00:00:42,15;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;11;;Jung, Greta;610487;61;M;2011;;SSV Tönningstedt;3504;00:00:42,78;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;12;;Berger, Elias;585314;98;M;2011;;PSV Stralsund;5478;00:00:43,19;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;13;;Fischer, Marie;517718;60;M;2010;;SSV Tönningstedt;3504;00:00:43,19;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;14;;Frank, Alina;546430;52;M;2011;;TV Gut Heil Billstedt;4128;00:00:44,96;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 4;E;5005;15;;Herrmann, Paul;531927;107;M;2011;;Kaltenkirchener TS;3461;00:00:47,91;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8004;1;;Engel, Lina;873858;132;W;2012;;Kaltenkirchener TS;3461;00:00:45,47;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 7;E;8004;2;;Hartmann, Jonas;564448;100;W;2012;;PSV Stralsund;5478;00:00:47,62;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 7;E;8004;3;;Ziegler, Nele;245972;5;W;2012;;TSV Malente 1900;3545;00:00:49,35;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 7;E;8004;0;NA;Walter, Clara;106650;40;W;2012;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 7;E;8004;0;NA;Lorenz, Henri;531755;126;W;2012;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 7;E;8003;1;;Richter, Karl;908799;90;W;2013;;PSV Stralsund;5478;00:00:41,97;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;2;;Kramer, Malte;653561;96;W;2013;;PSV Stralsund;5478;00:00:46,49;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;3;;Pohl, Mats;331180;99;W;2013;;PSV Stralsund;5478;00:00:48,39;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;4;;Brandt, Maja;371411;47;W;2013;;TV Gut Heil Billstedt;4128;00:00:48,62;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;5;;Berger, Luis;381575;55;W;2013;;TV Gut Heil Billstedt;4128;00:00:49,11;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;6;;Neumann, Anton;437340;78;W;2013;;Sport-Club Itzehoe;6590;00:00:49,33;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;7;;Schäfer, Pia;288697;81;W;2013;;Sport-Club Itzehoe;6590;00:00:51,78;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;8;;Kern, Yara;659965;14;W;2013;;TSV Bargteheide;3515;00:00:52,88;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8003;9;;Jung, Henri;510079;111;W;2013;;Kaltenkirchener TS;3461;00:00:57,64;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 7;E;8002;1;;Graf, Nora;736578;9;W;2014;;TSV Bargteheide;3515;00:00:55,66;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;8002;2;;Sander, Lara;231215;38;W;2014;;Walddörfer SV;4131;00:00:57,64;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;8002;3;;Brandt, Nele;193247;34;W;2014;;Walddörfer SV;4131;00:00:58,31;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;8002;4;;Schäfer, Lena;553596;23;W;2014;;Walddörfer SV;4131;00:00:59,07;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;8002;5;;Voigt, Mia;476755;36;W;2014;;Walddörfer SV;4131;00:01:02,58;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;8002;0;NA;Klein, Sophie;113295;41;W;2014;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;8002;0;NA;Stein, Rike;301790;135;W;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;8001;1;;Keller, Elias;950504;80;W;2015;;Sport-Club Itzehoe;6590;00:00:51,03;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;2;;Walter, Lina;960613;31;W;2015;;Walddörfer SV;4131;00:00:51,32;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;3;;Engel, Ben;146330;109;W;2015;;Kaltenkirchener TS;3461;00:00:54,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;4;;Lang, Ruben;450137;28;W;2015;;Walddörfer SV;4131;00:00:56,84;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;5;;Winkler, Jakob;266939;16;W;2015;;TSV Bargteheide;3515;00:00:56,85;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;6;;Sommer, Alina;413914;49;W;2015;;TV Gut Heil Billstedt;4128;00:00:59,18;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;7;;Ziegler, Jost;266104;58;W;2015;;TV Gut Heil Billstedt;4128;00:01:02,44;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;8;;Hahn, Jana;880661;32;W;2015;;Walddörfer SV;4131;00:01:02,73;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8001;9;;Graf, Carla;944484;117;W;2015;;Kaltenkirchener TS;3461;00:01:15,29;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;8008;1;;Reuter, Erik;905650;92;W;2003;20;PSV Stralsund;5478;00:00:36,87;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;2;;Voigt, Marie;517022;115;W;2003;20;Kaltenkirchener TS;3461;00:00:41,70;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;3;;Fischer, Emilia;590647;136;W;2002;20;Kaltenkirchener TS;3461;00:00:41,72;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;4;;Marquardt, Paul;266595;140;W;1978;45;Barmstedter MTV;3448;00:00:44,89;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;5;;Schmitt, Yara;358293;51;W;1969;55;TV Gut Heil Billstedt;4128;00:00:49,63;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;6;;Fischer, Paul;483577;11;W;1975;50;TSV Bargteheide;3515;00:00:49,68;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;7;;Sander, Paul;752153;105;W;1992;30;Kaltenkirchener TS;3461;00:00:51,06;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;0;NA;Stein, Linus;161196;13;W;1983;40;TSV Bargteheide;3515;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;0;NA;Möller, Elias;110368;112;W;2005;20;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;0;NA;Kuhn, Lara;222664;123;W;1994;30;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8008;0;NA;Seidel, Jana;748567;129;W;1999;25;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 7;E;8007;1;;Kuhn, Nele;345104;101;W;2006;;PSV Stralsund;5478;00:00:40,69;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 7;E;8007;2;;Schmitt, Ida;943530;65;W;2007;;Niendorfer TSV;3475;00:00:51,59;;;;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 7;E;8007;3;;Stein, Anton;175026;137;W;2007;;Kaltenkirchener TS;3461;00:00:52,69;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 7;E;8006;1;;Busch, Mats;548010;67;W;2009;;Niendorfer TSV;3475;00:00:42,11;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 7;E;8006;2;;Brandt, Nora;578574;59;W;2009;;Wasserfreunde Eckernförde;3560;00:00:42,59;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 7;E;8006;3;;Lorenz, Jakob;155576;66;W;2009;;Niendorfer TSV;3475;00:00:43,47;;;;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 7;E;8006;4;;Sommer, Ben;667358;26;W;2009;;Walddörfer SV;4131;00:00:43,51;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 7;E;8006;5;;Neumann, Anton;521461;113;W;2009;;Kaltenkirchener TS;3461;00:00:52,88;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 7;E;8005;1;;Schmitt, Jost;189376;74;W;2011;;Niendorfer TSV;3475;00:00:42,13;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;2;;Stein, Jana;259855;139;W;2011;;Kaltenkirchener TS;3461;00:00:43,80;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;3;;Herrmann, Paul;240365;7;W;2010;;TSV Malente 1900;3545;00:00:45,10;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;4;;Marquardt, Nele;533923;79;W;2010;;Sport-Club Itzehoe;6590;00:00:45,14;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;5;;Ludwig, Yara;652457;91;W;2011;;PSV Stralsund;5478;00:00:45,67;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;6;;Peters, Ida;307066;93;W;2010;;PSV Stralsund;5478;00:00:46,67;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;7;;Kern, Mia;444793;83;W;2011;;Sport-Club Itzehoe;6590;00:00:47,06;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;8;;Reuter, Fiona;416434;8;W;2010;;TSV Bargteheide;3515;00:00:48,02;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;9;;Keller, Ben;163246;134;W;2010;;Kaltenkirchener TS;3461;00:00:49,18;;;ROU;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;10;;Weiss, Lara;199628;95;W;2010;;PSV Stralsund;5478;00:00:49,51;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;11;;Lorenz, Tilda;113528;57;W;2011;;TV Gut Heil Billstedt;4128;00:00:50,22;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;12;;Albers, Zoe;354832;10;W;2010;;TSV Bargteheide;3515;00:00:50,55;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;13;;Kramer, Alina;738815;12;W;2010;;TSV Bargteheide;3515;00:00:51,28;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;14;;Brandt, Carla;483016;85;W;2011;;Sport-Club Itzehoe;6590;00:00:55,79;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;15;;Brandt, Sina;752645;108;W;2010;;Kaltenkirchener TS;3461;00:00:58,28;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;16;;Seidel, Marie;629967;138;W;2011;;Kaltenkirchener TS;3461;00:01:02,06;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;0;NA;Klein, Lina;343832;106;W;2011;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 7;E;8005;0;NA;Fischer, Yara;438441;125;W;2011;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9004;1;;Seidel, David;319718;130;M;2012;;Kaltenkirchener TS;3461;00:00:43,32;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 8;E;9004;2;;Bauer, Lara;464713;29;M;2012;;Walddörfer SV;4131;00:00:50,26;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 8;E;9004;3;;Klein, Mats;219183;121;M;2012;;Kaltenkirchener TS;3461;00:00:53,82;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 8;E;9004;4;;Jung, Lena;949199;2;M;2012;;TSV Malente 1900;3545;00:00:55,18;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 8;E;9004;0;NA;Pohl, Vincent;630436;3;M;2012;;TSV Malente 1900;3545;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 8;E;9003;1;;Winkler, Ruben;254965;84;M;2013;;Sport-Club Itzehoe;6590;00:00:45,52;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 8;E;9003;2;;Hahn, Yara;890721;122;M;2013;;Kaltenkirchener TS;3461;00:00:48,96;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 8;E;9003;3;;Thiele, Jakob;429727;94;M;2013;;PSV Stralsund;5478;00:00:51,43;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 8;E;9003;4;;Lorenz, Sophie;752694;39;M;2013;;Walddörfer SV;4131;00:00:55,90;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 8;E;9002;1;;Schäfer, Lena;844353;33;M;2014;;Walddörfer SV;4131;00:01:00,29;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 8;E;9002;0;NA;Engel, Jonas;301390;27;M;2014;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 8;E;9002;0;NA;Kuhn, Yara;274410;120;M;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 8;E;9001;1;;Lang, Ruben;991533;50;M;2015;;TV Gut Heil Billstedt;4128;00:00:56,13;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 8;E;9001;2;;Engel, Lena;657428;133;M;2015;;Kaltenkirchener TS;3461;00:00:57,10;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 8;E;9001;3;;Weiss, Ida;458138;118;M;2015;;Kaltenkirchener TS;3461;00:00:59,62;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 8;E;9001;4;;Ulrich, Sina;451203;37;M;2015;;Walddörfer SV;4131;00:01:06,57;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 8;E;9001;5;;Möller, Oskar;135757;114;M;2015;;Kaltenkirchener TS;3461;00:01:11,75;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 8;E;9008;1;;Klein, Niklas;410715;87;M;2003;20;Sport-Club Itzehoe;6590;00:00:38,71;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 8;E;9008;2;;Sander, Jost;818240;116;M;1972;50;Kaltenkirchener TS;3461;00:00:39,17;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 8;E;9008;3;;Vogel, Malte;726142;76;M;1959;65;Polizeisportverein Union Neumünster von 1973;3481;00:00:39,54;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 8;E;9008;4;;Herrmann, Tom;883294;75;M;1960;65;Polizeisportverein Union Neumünster von 1973;3481;00:00:46,16;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 8;E;9008;5;;Sommer, Sophie;576397;110;M;1979;45;Kaltenkirchener TS;3461;00:00:52,71;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 8;E;9008;0;NA;Engel, Greta;409274;6;M;1978;45;TSV Malente 1900;3545;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 8;E;9008;0;NA;Dietrich, Leon;541792;48;M;1972;50;TV Gut Heil Billstedt;4128;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 8;E;9007;1;;Lehmann, Maja;785930;89;M;2006;;PSV Stralsund;5478;00:00:32,70;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 8;E;9007;2;;Richter, Lina;919115;86;M;2007;;Sport-Club Itzehoe;6590;00:00:44,32;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 8;E;9007;3;;Ludwig, David;657525;4;M;2007;;TSV Malente 1900;3545;00:00:46,42;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 8;E;9007;0;NA;Otto, Oskar;719614;124;M;2007;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 8;E;9006;1;;Seidel, Jost;800338;72;M;2009;;Niendorfer TSV;3475;00:00:38,66;;;;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 8;E;9006;2;;Möller, Lena;984061;82;M;2009;;Sport-Club Itzehoe;6590;00:00:38,90;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 8;E;9006;3;;Kaiser, Nora;301477;68;M;2009;;Niendorfer TSV;3475;00:00:39,93;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 8;E;9006;4;;Schröder, Luis;158562;127;M;2009;;Kaltenkirchener TS;3461;00:00:41,59;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 8;E;9006;5;;Gross, Lina;755230;25;M;2009;;Walddörfer SV;4131;00:00:43,40;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 8;E;9005;1;;Lorenz, Emma;920418;71;M;2010;;Niendorfer TSV;3475;00:00:36,16;;;;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;2;;Weiss, Erik;974838;97;M;2011;;PSV Stralsund;5478;00:00:36,25;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;3;;Brandt, Mia;311705;70;M;2010;;Niendorfer TSV;3475;00:00:38,35;;;;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;4;;Berger, Elias;585314;98;M;2011;;PSV Stralsund;5478;00:00:39,69;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;5;;Weiss, Hannah;827616;63;M;2010;;SSV Tönningstedt;3504;00:00:40,03;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;6;;Otto, Felix;755230;24;M;2011;;Walddörfer SV;4131;00:00:40,62;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;7;;Maier, Felix;150504;119;M;2010;;Kaltenkirchener TS;3461;00:00:40,62;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;8;;Lang, Malte;431556;131;M;2011;;Kaltenkirchener TS;3461;00:00:40,69;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;9;;Sander, Sina;288784;128;M;2010;;Kaltenkirchener TS;3461;00:00:42,58;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;10;;Graf, Carla;860220;62;M;2010;;SSV Tönningstedt;3504;00:00:44,37;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;11;;Neumann, Marie;879596;54;M;2010;;TV Gut Heil Billstedt;4128;00:00:44,37;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;12;;Lehmann, Lara;269725;35;M;2010;;Walddörfer SV;4131;00:00:44,72;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;13;;Kuhn, Maja;479287;46;M;2011;;TV Gut Heil Billstedt;4128;00:00:44,88;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;14;;Frank, Alina;546430;52;M;2011;;TV Gut Heil Billstedt;4128;00:00:44,99;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;15;;Herrmann, Paul;531927;107;M;2011;;Kaltenkirchener TS;3461;00:00:45,12;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;16;;Jung, Greta;610487;61;M;2011;;SSV Tönningstedt;3504;00:00:46,42;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;17;;Koch, Emilia;156906;53;M;2011;;TV Gut Heil Billstedt;4128;00:00:48,29;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 8;E;9005;18;;Fischer, Marie;517718;60;M;2010;;SSV Tönningstedt;3504;00:00:51,13;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10004;1;;Hartmann, Jonas;564448;100;W;2012;;PSV Stralsund;5478;00:00:37,89;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 9;E;10004;2;;Engel, Lina;873858;132;W;2012;;Kaltenkirchener TS;3461;00:00:38,91;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 9;E;10004;3;;Ziegler, Nele;245972;5;W;2012;;TSV Malente 1900;3545;00:00:39,83;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 9;E;10004;0;NA;Walter, Clara;106650;40;W;2012;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 9;E;10004;0;NA;Lorenz, Henri;531755;126;W;2012;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 9;E;10003;1;;Berger, Luis;381575;55;W;2013;;TV Gut Heil Billstedt;4128;00:00:33,85;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;2;;Richter, Karl;908799;90;W;2013;;PSV Stralsund;5478;00:00:35,09;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;3;;Kramer, Malte;653561;96;W;2013;;PSV Stralsund;5478;00:00:35,29;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;4;;Pohl, Mats;331180;99;W;2013;;PSV Stralsund;5478;00:00:35,69;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;5;;Brandt, Maja;371411;47;W;2013;;TV Gut Heil Billstedt;4128;00:00:36,30;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;6;;Jung, Henri;510079;111;W;2013;;Kaltenkirchener TS;3461;00:00:39,21;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;7;;Schäfer, Pia;288697;81;W;2013;;Sport-Club Itzehoe;6590;00:00:39,83;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;8;;Neumann, Anton;437340;78;W;2013;;Sport-Club Itzehoe;6590;00:00:41,15;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10003;9;;Kern, Yara;659965;14;W;2013;;TSV Bargteheide;3515;00:00:45,47;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;10002;1;;Sander, Lara;231215;38;W;2014;;Walddörfer SV;4131;00:00:47,75;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;10002;2;;Graf, Nora;736578;9;W;2014;;TSV Bargteheide;3515;00:00:51,28;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;10002;3;;Voigt, Mia;476755;36;W;2014;;Walddörfer SV;4131;00:00:53,87;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;10002;4;;Brandt, Nele;193247;34;W;2014;;Walddörfer SV;4131;00:01:09,62;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;10002;5;;Schäfer, Lena;553596;23;W;2014;;Walddörfer SV;4131;00:01:16,47;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;10002;0;NA;Klein, Sophie;113295;41;W;2014;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;10002;0;NA;Stein, Rike;301790;135;W;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;10001;1;;Keller, Elias;950504;80;W;2015;;Sport-Club Itzehoe;6590;00:00:36,79;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;2;;Ziegler, Jost;266104;58;W;2015;;TV Gut Heil Billstedt;4128;00:00:40,76;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;3;;Sommer, Alina;413914;49;W;2015;;TV Gut Heil Billstedt;4128;00:00:42,60;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;4;;Winkler, Jakob;266939;16;W;2015;;TSV Bargteheide;3515;00:00:49,92;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;5;;Walter, Lina;960613;31;W;2015;;Walddörfer SV;4131;00:00:50,50;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;6;;Engel, Ben;146330;109;W;2015;;Kaltenkirchener TS;3461;00:00:51,32;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;7;;Lang, Ruben;450137;28;W;2015;;Walddörfer SV;4131;00:00:59,01;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;8;;Graf, Carla;944484;117;W;2015;;Kaltenkirchener TS;3461;00:01:04,19;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10001;9;;Hahn, Jana;880661;32;W;2015;;Walddörfer SV;4131;00:01:20,22;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;10008;1;;Fischer, Emilia;590647;136;W;2002;20;Kaltenkirchener TS;3461;00:00:29,75;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;2;;Reuter, Erik;905650;92;W;2003;20;PSV Stralsund;5478;00:00:29,91;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;3;;Voigt, Marie;517022;115;W;2003;20;Kaltenkirchener TS;3461;00:00:30,84;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;4;;Frank, Vincent;889992;15;W;1999;25;TSV Bargteheide;3515;00:00:30,91;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;5;;Marquardt, Yara;818178;56;W;1998;25;TV Gut Heil Billstedt;4128;00:00:33,97;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;6;;Marquardt, Paul;266595;140;W;1978;45;Barmstedter MTV;3448;00:00:36,24;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;7;;Sander, Paul;752153;105;W;1992;30;Kaltenkirchener TS;3461;00:00:37,09;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;8;;Fischer, Paul;483577;11;W;1975;50;TSV Bargteheide;3515;00:00:40,47;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;0;NA;Stein, Linus;161196;13;W;1983;40;TSV Bargteheide;3515;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;0;NA;Möller, Elias;110368;112;W;2005;20;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;0;NA;Kuhn, Lara;222664;123;W;1994;30;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10008;0;NA;Seidel, Jana;748567;129;W;1999;25;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 9;E;10007;1;;Kuhn, Nele;345104;101;W;2006;;PSV Stralsund;5478;00:00:31,89;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 9;E;10007;2;;Schmitt, Ida;943530;65;W;2007;;Niendorfer TSV;3475;00:00:37,59;;;;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 9;E;10007;3;;Stein, Anton;175026;137;W;2007;;Kaltenkirchener TS;3461;00:00:40,76;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 9;E;10006;1;;Busch, Mats;548010;67;W;2009;;Niendorfer TSV;3475;00:00:31,35;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 9;E;10006;2;;Lorenz, Jakob;155576;66;W;2009;;Niendorfer TSV;3475;00:00:32,23;;;;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 9;E;10006;3;;Brandt, Nora;578574;59;W;2009;;Wasserfreunde Eckernförde;3560;00:00:33,36;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 9;E;10006;4;;Otto, Clara;872692;45;W;2009;;TV Gut Heil Billstedt;4128;00:00:33,36;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 9;E;10006;5;;Neumann, Anton;521461;113;W;2009;;Kaltenkirchener TS;3461;00:00:34,92;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 9;E;10006;6;;Sommer, Ben;667358;26;W;2009;;Walddörfer SV;4131;00:00:36,41;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 9;E;10005;1;;Stein, Jana;259855;139;W;2011;;Kaltenkirchener TS;3461;00:00:33,47;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;2;;Schmitt, Jost;189376;74;W;2011;;Niendorfer TSV;3475;00:00:33,69;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;3;;Herrmann, Theo;868811;43;W;2011;;TV Gut Heil Billstedt;4128;00:00:33,97;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;4;;Ludwig, Yara;652457;91;W;2011;;PSV Stralsund;5478;00:00:33,99;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;5;;Reuter, Fiona;416434;8;W;2010;;TSV Bargteheide;3515;00:00:34,61;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;6;;Marquardt, Nele;533923;79;W;2010;;Sport-Club Itzehoe;6590;00:00:34,72;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;7;;Kern, Mia;444793;83;W;2011;;Sport-Club Itzehoe;6590;00:00:35,09;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;7;;Peters, Ida;307066;93;W;2010;;PSV Stralsund;5478;00:00:35,09;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;9;;Lorenz, Tilda;113528;57;W;2011;;TV Gut Heil Billstedt;4128;00:00:35,27;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;10;;Keller, Ben;163246;134;W;2010;;Kaltenkirchener TS;3461;00:00:36,70;;;ROU;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;11;;Herrmann, Paul;240365;7;W;2010;;TSV Malente 1900;3545;00:00:37,32;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;12;;Albers, Zoe;354832;10;W;2010;;TSV Bargteheide;3515;00:00:38,31;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;13;;Brandt, Carla;483016;85;W;2011;;Sport-Club Itzehoe;6590;00:00:38,63;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;14;;Weiss, Lara;199628;95;W;2010;;PSV Stralsund;5478;00:00:39,19;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;15;;Kramer, Alina;738815;12;W;2010;;TSV Bargteheide;3515;00:00:40,41;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;16;;Brandt, Sina;752645;108;W;2010;;Kaltenkirchener TS;3461;00:00:40,76;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;17;;Seidel, Marie;629967;138;W;2011;;Kaltenkirchener TS;3461;00:00:50,69;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;0;NA;Klein, Lina;343832;106;W;2011;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 9;E;10005;0;NA;Fischer, Yara;438441;125;W;2011;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11004;1;;Seidel, David;319718;130;M;2012;;Kaltenkirchener TS;3461;00:00:38,12;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 10;E;11004;2;;Bauer, Lara;464713;29;M;2012;;Walddörfer SV;4131;00:00:41,79;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 10;E;11004;3;;Jung, Lena;949199;2;M;2012;;TSV Malente 1900;3545;00:00:42,45;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 10;E;11004;4;;Klein, Mats;219183;121;M;2012;;Kaltenkirchener TS;3461;00:00:43,50;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 10;E;11004;0;NA;Pohl, Vincent;630436;3;M;2012;;TSV Malente 1900;3545;00:00:00,00;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 10;E;11003;1;;Winkler, Ruben;254965;84;M;2013;;Sport-Club Itzehoe;6590;00:00:34,20;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;11003;2;;Hahn, Yara;890721;122;M;2013;;Kaltenkirchener TS;3461;00:00:37,53;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;11003;3;;Thiele, Jakob;429727;94;M;2013;;PSV Stralsund;5478;00:00:38,57;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;11003;4;;Lorenz, Sophie;752694;39;M;2013;;Walddörfer SV;4131;00:00:42,18;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 10;E;11002;1;;Schäfer, Lena;844353;33;M;2014;;Walddörfer SV;4131;00:00:59,10;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;11002;0;NA;Engel, Jonas;301390;27;M;2014;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;11002;0;NA;Kuhn, Yara;274410;120;M;2014;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;11001;1;;Engel, Lena;657428;133;M;2015;;Kaltenkirchener TS;3461;00:00:40,84;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;11001;2;;Lang, Ruben;991533;50;M;2015;;TV Gut Heil Billstedt;4128;00:00:43,85;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;11001;3;;Weiss, Ida;458138;118;M;2015;;Kaltenkirchener TS;3461;00:00:52,03;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;11001;4;;Möller, Oskar;135757;114;M;2015;;Kaltenkirchener TS;3461;00:00:59,31;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;11008;1;;Gross, Sophie;588582;69;M;1998;25;Niendorfer TSV;3475;00:00:27,95;;;;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;2;;Klein, Niklas;410715;87;M;2003;20;Sport-Club Itzehoe;6590;00:00:29,13;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;3;;Vogel, Malte;726142;76;M;1959;65;Polizeisportverein Union Neumünster von 1973;3481;00:00:29,87;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;4;;Hahn, Jana;299693;73;M;1979;45;Niendorfer TSV;3475;00:00:33,06;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;5;;Herrmann, Tom;883294;75;M;1960;65;Polizeisportverein Union Neumünster von 1973;3481;00:00:33,20;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;6;;Sander, Jost;818240;116;M;1972;50;Kaltenkirchener TS;3461;00:00:35,22;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;7;;Sommer, Sophie;576397;110;M;1979;45;Kaltenkirchener TS;3461;00:00:38,17;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;0;NA;Engel, Greta;409274;6;M;1978;45;TSV Malente 1900;3545;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11008;0;NA;Dietrich, Leon;541792;48;M;1972;50;TV Gut Heil Billstedt;4128;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2005 und älter *)
+PNERGEBNIS: 10;E;11007;1;;Lehmann, Maja;785930;89;M;2006;;PSV Stralsund;5478;00:00:26,43;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 10;E;11007;2;;Richter, Lina;919115;86;M;2007;;Sport-Club Itzehoe;6590;00:00:31,34;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 10;E;11007;3;;Ludwig, David;657525;4;M;2007;;TSV Malente 1900;3545;00:00:38,07;;;GER;;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 10;E;11007;0;NA;Otto, Oskar;719614;124;M;2007;;Kaltenkirchener TS;3461;00:00:00,00;;;GER;GER;; (* Jahrgangsgruppe 2007/2006 *)
+PNERGEBNIS: 10;E;11006;1;;Seidel, Jost;800338;72;M;2009;;Niendorfer TSV;3475;00:00:27,82;;;;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 10;E;11006;2;;Kaiser, Nora;301477;68;M;2009;;Niendorfer TSV;3475;00:00:28,85;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 10;E;11006;3;;Möller, Lena;984061;82;M;2009;;Sport-Club Itzehoe;6590;00:00:30,28;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 10;E;11006;4;;Schröder, Luis;158562;127;M;2009;;Kaltenkirchener TS;3461;00:00:30,60;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 10;E;11006;5;;Gross, Lina;755230;25;M;2009;;Walddörfer SV;4131;00:00:31,34;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 10;E;11006;0;NA;Bauer, Theo;977363;30;M;2009;;Walddörfer SV;4131;00:00:00,00;;;GER;;; (* Jahrgangsgruppe 2009/2008 *)
+PNERGEBNIS: 10;E;11005;1;;Brandt, Mia;311705;70;M;2010;;Niendorfer TSV;3475;00:00:27,13;;;;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;2;;Lorenz, Emma;920418;71;M;2010;;Niendorfer TSV;3475;00:00:27,82;;;;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;3;;Weiss, Erik;974838;97;M;2011;;PSV Stralsund;5478;00:00:28,15;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;4;;Weiss, Hannah;827616;63;M;2010;;SSV Tönningstedt;3504;00:00:30,09;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;5;;Lang, Malte;431556;131;M;2011;;Kaltenkirchener TS;3461;00:00:30,10;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;6;;Sander, Sina;288784;128;M;2010;;Kaltenkirchener TS;3461;00:00:30,94;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;7;;Kuhn, Maja;479287;46;M;2011;;TV Gut Heil Billstedt;4128;00:00:31,64;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;8;;Maier, Felix;150504;119;M;2010;;Kaltenkirchener TS;3461;00:00:31,80;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;9;;Koch, Emilia;156906;53;M;2011;;TV Gut Heil Billstedt;4128;00:00:32,14;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;10;;Berger, Elias;585314;98;M;2011;;PSV Stralsund;5478;00:00:32,17;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;11;;Graf, Carla;860220;62;M;2010;;SSV Tönningstedt;3504;00:00:32,48;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;12;;Frank, Alina;546430;52;M;2011;;TV Gut Heil Billstedt;4128;00:00:33,67;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;13;;Otto, Felix;755230;24;M;2011;;Walddörfer SV;4131;00:00:33,67;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;14;;Lehmann, Lara;269725;35;M;2010;;Walddörfer SV;4131;00:00:34,75;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;15;;Jung, Greta;610487;61;M;2011;;SSV Tönningstedt;3504;00:00:35,08;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;16;;Herrmann, Paul;531927;107;M;2011;;Kaltenkirchener TS;3461;00:00:35,35;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;17;;Neumann, Marie;879596;54;M;2010;;TV Gut Heil Billstedt;4128;00:00:37,17;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+PNERGEBNIS: 10;E;11005;17;;Fischer, Marie;517718;60;M;2010;;SSV Tönningstedt;3504;00:00:37,17;;;GER;;; (* Jahrgangsgruppe 2011/2010 *)
+STERGEBNIS: 5;E;6001;1;;1;64;Niendorfer TSV;3475;00:01:57,19;;;; (* Offene Wertung *)
+STAFFELPERSON: 64;5;E;Seidel, Jost;800338;1;M;2009;;;;;
+STAFFELPERSON: 64;5;E;Lorenz, Jakob;155576;2;W;2009;;;;;
+STAFFELPERSON: 64;5;E;Busch, Mats;548010;3;W;2009;;;;;
+STAFFELPERSON: 64;5;E;Lorenz, Emma;920418;4;M;2010;;;;;
+STERGEBNIS: 5;E;6001;2;;1;102;Kaltenkirchener TS;3461;00:02:02,49;;;; (* Offene Wertung *)
+STAFFELPERSON: 102;5;E;Schröder, Luis;158562;1;M;2009;;;;;
+STAFFELPERSON: 102;5;E;Voigt, Marie;517022;2;W;2003;20;;;;
+STAFFELPERSON: 102;5;E;Lang, Malte;431556;3;M;2011;;;;;
+STAFFELPERSON: 102;5;E;Fischer, Emilia;590647;4;W;2002;20;;;;
+STERGEBNIS: 5;E;6001;3;;1;42;TV Gut Heil Billstedt;4128;00:02:11,88;;;; (* Offene Wertung *)
+STAFFELPERSON: 42;5;E;Otto, Clara;872692;1;W;2009;;;;;
+STAFFELPERSON: 42;5;E;Kuhn, Maja;479287;2;M;2011;;;;;
+STAFFELPERSON: 42;5;E;Berger, Luis;381575;3;W;2013;;;;;
+STAFFELPERSON: 42;5;E;Koch, Emilia;156906;4;M;2011;;;;;
+STERGEBNIS: 5;E;6001;4;;1;77;Sport-Club Itzehoe;6590;00:02:15,09;;;; (* Offene Wertung *)
+STAFFELPERSON: 77;5;E;Marquardt, Nele;533923;1;W;2010;;;;;
+STAFFELPERSON: 77;5;E;Winkler, Ruben;254965;2;M;2013;;;;;
+STAFFELPERSON: 77;5;E;Keller, Elias;950504;3;W;2015;;;;;
+STAFFELPERSON: 77;5;E;Möller, Lena;984061;4;M;2009;;;;;
+STERGEBNIS: 5;E;6001;5;;6;22;Walddörfer SV;4131;00:02:25,04;;;; (* Offene Wertung *)
+STAFFELPERSON: 22;5;E;Sommer, Ben;667358;1;W;2009;;;;;
+STAFFELPERSON: 22;5;E;Walter, Lina;960613;2;W;2015;;;;;
+STAFFELPERSON: 22;5;E;Otto, Felix;755230;3;M;2011;;;;;
+STAFFELPERSON: 22;5;E;Gross, Lina;755230;4;M;2009;;;;;
+STERGEBNIS: 5;E;6001;6;;3;104;Kaltenkirchener TS;3461;00:02:31,77;;;; (* Offene Wertung *)
+STAFFELPERSON: 104;5;E;Jung, Henri;510079;1;W;2013;;;;;
+STAFFELPERSON: 104;5;E;Brandt, Sina;752645;2;W;2010;;;;;
+STAFFELPERSON: 104;5;E;Hahn, Yara;890721;3;M;2013;;;;;
+STAFFELPERSON: 104;5;E;Sander, Sina;288784;4;M;2010;;;;;
+STERGEBNIS: 5;E;6001;7;;1;1;TSV Malente 1900;3545;00:02:34,96;;;; (* Offene Wertung *)
+STAFFELPERSON: 1;5;E;Herrmann, Paul;240365;1;W;2010;;;;;
+STAFFELPERSON: 1;5;E;Jung, Lena;949199;2;M;2012;;;;;
+STAFFELPERSON: 1;5;E;Ziegler, Nele;245972;3;W;2012;;;;;
+STAFFELPERSON: 1;5;E;Ludwig, David;657525;4;M;2007;;;;;
+STERGEBNIS: 5;E;6001;8;;2;103;Kaltenkirchener TS;3461;00:02:38,61;;;; (* Offene Wertung *)
+STAFFELPERSON: 103;5;E;Stein, Anton;175026;1;W;2007;;;;;
+STAFFELPERSON: 103;5;E;Engel, Ben;146330;2;W;2015;;;;;
+STAFFELPERSON: 103;5;E;Herrmann, Paul;531927;3;M;2011;;;;;
+STAFFELPERSON: 103;5;E;Maier, Felix;150504;4;M;2010;;;;;
+STERGEBNIS: 5;E;6001;9;;5;21;Walddörfer SV;4131;00:02:59,71;;;; (* Offene Wertung *)
+STAFFELPERSON: 21;5;E;Bauer, Lara;464713;1;M;2012;;;;;
+STAFFELPERSON: 21;5;E;Voigt, Mia;476755;2;W;2014;;;;;
+STAFFELPERSON: 21;5;E;Sander, Lara;231215;3;W;2014;;;;;
+STAFFELPERSON: 21;5;E;Lorenz, Sophie;752694;4;M;2013;;;;;
+STERGEBNIS: 6;E;7001;1;;1;88;PSV Stralsund;5478;00:02:10,44;;;; (* Offene Wertung *)
+STAFFELPERSON: 88;6;E;Weiss, Erik;974838;1;M;2011;;;;;
+STAFFELPERSON: 88;6;E;Lehmann, Maja;785930;2;M;2006;;;;;
+STAFFELPERSON: 88;6;E;Kuhn, Nele;345104;3;W;2006;;;;;
+STAFFELPERSON: 88;6;E;Reuter, Erik;905650;4;W;2003;20;;;;
+STERGEBNIS: 6;E;7001;2;;1;64;Niendorfer TSV;3475;00:02:29,06;;;; (* Offene Wertung *)
+STAFFELPERSON: 64;6;E;Schmitt, Ida;943530;1;W;2007;;;;;
+STAFFELPERSON: 64;6;E;Kaiser, Nora;301477;2;M;2009;;;;;
+STAFFELPERSON: 64;6;E;Schmitt, Jost;189376;3;W;2011;;;;;
+STAFFELPERSON: 64;6;E;Brandt, Mia;311705;4;M;2010;;;;;
+STERGEBNIS: 6;E;7001;3;;1;77;Sport-Club Itzehoe;6590;00:02:31,02;;;; (* Offene Wertung *)
+STAFFELPERSON: 77;6;E;Richter, Lina;919115;1;M;2007;;;;;
+STAFFELPERSON: 77;6;E;Kern, Mia;444793;2;W;2011;;;;;
+STAFFELPERSON: 77;6;E;Klein, Niklas;410715;3;M;2003;20;;;;
+STAFFELPERSON: 77;6;E;Brandt, Carla;483016;4;W;2011;;;;;
+STERGEBNIS: 6;E;7001;4;;2;103;Kaltenkirchener TS;3461;00:02:40,02;;;; (* Offene Wertung *)
+STAFFELPERSON: 103;6;E;Voigt, Marie;517022;1;W;2003;20;;;;
+STAFFELPERSON: 103;6;E;Seidel, David;319718;2;M;2012;;;;;
+STAFFELPERSON: 103;6;E;Maier, Felix;150504;3;M;2010;;;;;
+STAFFELPERSON: 103;6;E;Keller, Ben;163246;4;W;2010;;;;;
+STERGEBNIS: 6;E;7001;5;;1;42;TV Gut Heil Billstedt;4128;00:02:40,40;;;; (* Offene Wertung *)
+STAFFELPERSON: 42;6;E;Herrmann, Theo;868811;1;W;2011;;;;;
+STAFFELPERSON: 42;6;E;Neumann, Marie;879596;2;M;2010;;;;;
+STAFFELPERSON: 42;6;E;Lorenz, Tilda;113528;3;W;2011;;;;;
+STAFFELPERSON: 42;6;E;Frank, Alina;546430;4;M;2011;;;;;
+STERGEBNIS: 6;E;7001;6;;1;102;Kaltenkirchener TS;3461;00:02:57,30;;;; (* Offene Wertung *)
+STAFFELPERSON: 102;6;E;Seidel, Marie;629967;1;W;2011;;;;;
+STAFFELPERSON: 102;6;E;Engel, Lina;873858;2;W;2012;;;;;
+STAFFELPERSON: 102;6;E;Stein, Jana;259855;3;W;2011;;;;;
+STAFFELPERSON: 102;6;E;Sander, Jost;818240;4;M;1972;50;;;;
+STERGEBNIS: 6;E;7001;7;;2;18;Walddörfer SV;4131;00:03:10,69;;;; (* Offene Wertung *)
+STAFFELPERSON: 18;6;E;Brandt, Nele;193247;1;W;2014;;;;;
+STAFFELPERSON: 18;6;E;Sommer, Ben;667358;2;W;2009;;;;;
+STAFFELPERSON: 18;6;E;Lehmann, Lara;269725;3;M;2010;;;;;
+STAFFELPERSON: 18;6;E;Gross, Lina;755230;4;M;2009;;;;;
+STERGEBNIS: 6;E;7001;8;;3;104;Kaltenkirchener TS;3461;00:03:42,79;;;; (* Offene Wertung *)
+STAFFELPERSON: 104;6;E;Möller, Oskar;135757;1;M;2015;;;;;
+STAFFELPERSON: 104;6;E;Engel, Lena;657428;2;M;2015;;;;;
+STAFFELPERSON: 104;6;E;Neumann, Anton;521461;3;W;2009;;;;;
+STAFFELPERSON: 104;6;E;Graf, Carla;944484;4;W;2015;;;;;
+STERGEBNIS: 6;E;7001;9;;3;19;Walddörfer SV;4131;00:04:02,47;;;; (* Offene Wertung *)
+STAFFELPERSON: 19;6;E;Schäfer, Lena;844353;1;M;2014;;;;;
+STAFFELPERSON: 19;6;E;Walter, Lina;960613;2;W;2015;;;;;
+STAFFELPERSON: 19;6;E;Bauer, Lara;464713;3;M;2012;;;;;
+STAFFELPERSON: 19;6;E;Hahn, Jana;880661;4;W;2015;;;;;
+STERGEBNIS: 6;E;7001;10;;1;17;Walddörfer SV;4131;00:04:05,62;;;; (* Offene Wertung *)
+STAFFELPERSON: 17;6;E;Schäfer, Lena;553596;1;W;2014;;;;;
+STAFFELPERSON: 17;6;E;Lang, Ruben;450137;2;W;2015;;;;;
+STAFFELPERSON: 17;6;E;Lorenz, Sophie;752694;3;M;2013;;;;;
+STAFFELPERSON: 17;6;E;Ulrich, Sina;451203;4;M;2015;;;;;
+STERGEBNIS: 6;E;7001;0;NA;4;20;Walddörfer SV;4131;00:00:00,00;;;; (* Offene Wertung *)
+DATEIENDE

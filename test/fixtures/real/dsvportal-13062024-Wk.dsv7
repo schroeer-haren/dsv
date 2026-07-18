@@ -1,0 +1,101 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.25 vom 24.03.2024                       *)
+(* Registriert für: Männer-Schwimm-Verein München *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 08.09.2024 um 20:45 Uhr                *)
+FORMAT: Wettkampfdefinitionsliste;7;
+ERZEUGER: EasyWk;5.25;info@easywk.de;
+VERANSTALTUNG: 27. Deutschen Mannschaftswettbewerb Schwimmen der Masters Landesentscheid Bayern;München;25;HANDZEIT;
+VERANSTALTUNGSORT: Anton-Fingerle-Bildungszentrum;Schlierseestr. 47;81539;München;GER;;;;
+AUSSCHREIBUNGIMNETZ: ;
+VERANSTALTER: Bayerischer Schwimmverband;
+AUSRICHTER: Männer-Schwimm-Verein München;Kramer, Alina;;;;;;;marie.kern@example.org;
+MELDEADRESSE: Kramer, Alina;;;;;;;marie.kern@example.org;
+MELDESCHLUSS: 12.10.2024;20:00;
+BANKVERBINDUNG: HypoVereinsbank;DE47 1234 5678 0804 6176 19;ABCDEFG1XXX;
+(* KONTOINHABER: Männer-Schwimm-Verein München; *)
+ABSCHNITT: 1;19.10.2024;09:30;10:15;11:00;;
+ABSCHNITT: 2;19.10.2024;00:00;00:00;01:00;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+WETTKAMPF: 1;E;1;1;200;F;GL;X;MS;;; (* 200m Freistil *)
+WETTKAMPF: 2;E;1;1;100;B;GL;X;MS;;; (* 100m Brust *)
+WETTKAMPF: 3;E;1;1;50;R;GL;X;MS;;; (* 50m Rücken *)
+WETTKAMPF: 4;E;1;1;100;S;GL;X;MS;;; (* 100m Schmetterling *)
+WETTKAMPF: 5;E;1;1;200;L;GL;X;MS;;; (* 200m Lagen *)
+WETTKAMPF: 6;E;1;1;800;F;GL;X;MS;;; (* 800m Freistil *)
+WETTKAMPF: 7;E;1;1;50;B;GL;X;MS;;; (* 50m Brust *)
+WETTKAMPF: 8;E;1;1;100;R;GL;X;MS;;; (* 100m Rücken *)
+WETTKAMPF: 9;E;1;1;200;S;GL;X;MS;;; (* 200m Schmetterling *)
+WETTKAMPF: 10;E;1;1;100;L;GL;X;MS;;; (* 100m Lagen *)
+WETTKAMPF: 11;E;1;1;400;F;GL;X;MS;;; (* 400m Freistil *)
+WETTKAMPF: 12;E;1;1;100;F;GL;X;MS;;; (* 100m Freistil *)
+WETTKAMPF: 102;N;1;1;100;B;GL;X;MS;;; (* 100m Brust (Nachschwimmen) *)
+WETTKAMPF: 107;N;1;1;50;B;GL;X;MS;;; (* 50m Brust (Nachschwimmen) *)
+WETTKAMPF: 109;N;1;1;200;S;GL;X;MS;;; (* 200m Schmetterling (Nachschwimmen) *)
+WETTKAMPF: 13;E;2;1;200;F;GL;X;MS;;; (* 200m Freistil *)
+WETTKAMPF: 14;E;2;1;100;B;GL;X;MS;;; (* 100m Brust *)
+WETTKAMPF: 15;E;2;1;200;R;GL;X;MS;;; (* 200m Rücken *)
+WETTKAMPF: 16;E;2;1;100;S;GL;X;MS;;; (* 100m Schmetterling *)
+WETTKAMPF: 17;E;2;1;200;L;GL;X;MS;;; (* 200m Lagen *)
+WETTKAMPF: 18;E;2;1;50;F;GL;X;MS;;; (* 50m Freistil *)
+WETTKAMPF: 19;E;2;1;200;B;GL;X;MS;;; (* 200m Brust *)
+WETTKAMPF: 20;E;2;1;100;R;GL;X;MS;;; (* 100m Rücken *)
+WETTKAMPF: 21;E;2;1;50;S;GL;X;MS;;; (* 50m Schmetterling *)
+WETTKAMPF: 22;E;2;1;400;L;GL;X;MS;;; (* 400m Lagen *)
+WETTKAMPF: 23;E;2;1;400;F;GL;X;MS;;; (* 400m Freistil *)
+WETTKAMPF: 24;E;2;1;100;F;GL;X;MS;;; (* 100m Freistil *)
+WERTUNG: 1;E;1001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 2;E;2001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 3;E;3001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 4;E;4001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 5;E;5001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 6;E;6001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 7;E;7001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 8;E;8001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 9;E;9001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 10;E;10001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 11;E;11001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 12;E;12001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 102;N;25001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 107;N;26001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 109;N;27001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 13;E;13001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 14;E;14001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 15;E;15001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 16;E;16001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 17;E;17001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 18;E;18001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 19;E;19001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 20;E;20001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 21;E;21001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 22;E;22001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 23;E;23001;JG;0;2004;X;Offene Wertung;
+WERTUNG: 24;E;24001;JG;0;2004;X;Offene Wertung;
+MELDEGELD: Wkmeldegeld;0,00;1;
+MELDEGELD: Wkmeldegeld;0,00;2;
+MELDEGELD: Wkmeldegeld;0,00;3;
+MELDEGELD: Wkmeldegeld;0,00;4;
+MELDEGELD: Wkmeldegeld;0,00;5;
+MELDEGELD: Wkmeldegeld;0,00;6;
+MELDEGELD: Wkmeldegeld;0,00;7;
+MELDEGELD: Wkmeldegeld;0,00;8;
+MELDEGELD: Wkmeldegeld;0,00;9;
+MELDEGELD: Wkmeldegeld;0,00;10;
+MELDEGELD: Wkmeldegeld;0,00;11;
+MELDEGELD: Wkmeldegeld;0,00;12;
+MELDEGELD: Wkmeldegeld;0,00;102;
+MELDEGELD: Wkmeldegeld;0,00;107;
+MELDEGELD: Wkmeldegeld;0,00;109;
+MELDEGELD: Wkmeldegeld;0,00;13;
+MELDEGELD: Wkmeldegeld;0,00;14;
+MELDEGELD: Wkmeldegeld;0,00;15;
+MELDEGELD: Wkmeldegeld;0,00;16;
+MELDEGELD: Wkmeldegeld;0,00;17;
+MELDEGELD: Wkmeldegeld;0,00;18;
+MELDEGELD: Wkmeldegeld;0,00;19;
+MELDEGELD: Wkmeldegeld;0,00;20;
+MELDEGELD: Wkmeldegeld;0,00;21;
+MELDEGELD: Wkmeldegeld;0,00;22;
+MELDEGELD: Wkmeldegeld;0,00;23;
+MELDEGELD: Wkmeldegeld;0,00;24;
+MELDEGELD: Meldegeldpauschale;145,00;;
+DATEIENDE

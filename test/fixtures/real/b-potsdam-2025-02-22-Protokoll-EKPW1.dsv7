@@ -1,0 +1,699 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.23 BETA vom 18.01.2023                  *)
+(* Registriert für: Potsdamer SV im OSC Potsdam *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 26.02.2025 um 09:05 Uhr                *)
+FORMAT: Wettkampfergebnisliste;7;
+ERZEUGER: EasyWk;5.23 BETA;info@easywk.de;
+VERANSTALTUNG: 1. Einladungs-/Kaderprüfungswettkampf 2025;Potsdam;50;HANDZEIT;
+VERANSTALTER: Potsdamer SV im OSC Potsdam;
+AUSRICHTER: Potsdamer SV im OSC Potsdam;Bauer, Paul;;;;;;;jost.neumann@example.org;
+ABSCHNITT: 1;22.02.2025;09:00;;
+ABSCHNITT: 2;22.02.2025;11:00;;
+ABSCHNITT: 3;22.02.2025;13:45;;
+KAMPFGERICHT: 1;SCH;Klein, Ben;Potsdamer SV;
+KAMPFGERICHT: 1;STA;Bauer, David;Potsdamer SV;
+KAMPFGERICHT: 1;AUS;Ulrich, Mia;Potsdamer SV;
+KAMPFGERICHT: 1;PKF;Ulrich, Mia;Potsdamer SV;
+KAMPFGERICHT: 1;SR;Sommer, Felix;Potsdamer SV;
+KAMPFGERICHT: 1;ZRO;Lehmann, Emilia;Potsdamer SV;
+KAMPFGERICHT: 1;ZR;Lehmann, Emilia;Potsdamer SV;
+KAMPFGERICHT: 1;ZR;Lang, Lina;Potsdamer SV;
+KAMPFGERICHT: 1;ZR;Graf, Carla;Potsdamer SV;
+KAMPFGERICHT: 1;ZNO;Sander, Mia;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 1;ZN;Koch, Jost;SC Potsdam;
+KAMPFGERICHT: 1;ZN;Lorenz, Luis;SC Potsdam;
+KAMPFGERICHT: 1;ZN;Kern, Nele;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 1;ZN;Sander, Mia;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 1;ZN;Kern, Mia;Potsdamer SV;
+KAMPFGERICHT: 1;ZN;Kuhn, Fiona;Potsdamer SV;
+KAMPFGERICHT: 1;ZN;Kramer, Elias;Potsdamer SV;
+KAMPFGERICHT: 1;ZN;Winkler, Emma;Potsdamer SV;
+KAMPFGERICHT: 1;SP;Hahn, Rike;Potsdamer SV;
+KAMPFGERICHT: 2;SCH;Klein, Ben;Potsdamer SV;
+KAMPFGERICHT: 2;STA;Bauer, David;Potsdamer SV;
+KAMPFGERICHT: 2;AUS;Ulrich, Mia;Potsdamer SV;
+KAMPFGERICHT: 2;PKF;Ulrich, Mia;Potsdamer SV;
+KAMPFGERICHT: 2;SR;Sander, Mia;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 2;ZRO;Lehmann, Emilia;Potsdamer SV;
+KAMPFGERICHT: 2;ZR;Lehmann, Emilia;Potsdamer SV;
+KAMPFGERICHT: 2;ZR;Lang, Lina;Potsdamer SV;
+KAMPFGERICHT: 2;ZR;Schmitt, Leon;Potsdamer SV;
+KAMPFGERICHT: 2;ZNO;Kern, Mia;Potsdamer SV;
+KAMPFGERICHT: 2;ZN;Koch, Jost;SC Potsdam;
+KAMPFGERICHT: 2;ZN;Lorenz, Luis;SC Potsdam;
+KAMPFGERICHT: 2;ZN;Kern, Nele;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 2;ZN;Reuter, Ida;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 2;ZN;Kern, Mia;Potsdamer SV;
+KAMPFGERICHT: 2;ZN;Marquardt, Mia;SC Potsdam;
+KAMPFGERICHT: 2;ZN;Frank, Jonas;SC Potsdam;
+KAMPFGERICHT: 2;ZN;Walter, Pia;SC Potsdam;
+KAMPFGERICHT: 2;SP;Hahn, Rike;Potsdamer SV;
+KAMPFGERICHT: 3;SCH;Klein, Ben;Potsdamer SV;
+KAMPFGERICHT: 3;STA;Bauer, David;Potsdamer SV;
+KAMPFGERICHT: 3;AUS;Ulrich, Mia;Potsdamer SV;
+KAMPFGERICHT: 3;PKF;Ulrich, Mia;Potsdamer SV;
+KAMPFGERICHT: 3;SR;Sander, Mia;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 3;SR;Schmitt, Leon;Potsdamer SV;
+KAMPFGERICHT: 3;ZRO;Lehmann, Emilia;Potsdamer SV;
+KAMPFGERICHT: 3;ZR;Lehmann, Emilia;Potsdamer SV;
+KAMPFGERICHT: 3;ZR;Lang, Lina;Potsdamer SV;
+KAMPFGERICHT: 3;ZR;Weiss, Carla;Potsdamer SV;
+KAMPFGERICHT: 3;WRO;Sommer, Felix;Potsdamer SV;
+KAMPFGERICHT: 3;WR;Koch, Jost;SC Potsdam;
+KAMPFGERICHT: 3;WR;Kern, Nele;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 3;WR;Sommer, Felix;Potsdamer SV;
+KAMPFGERICHT: 3;WR;Marquardt, Jost;Potsdamer SV;
+KAMPFGERICHT: 3;ZNO;Kern, Mia;Potsdamer SV;
+KAMPFGERICHT: 3;ZN;Marquardt, Lara;Potsdamer SV;
+KAMPFGERICHT: 3;ZN;Lorenz, Luis;SC Potsdam;
+KAMPFGERICHT: 3;ZN;Neumann, Theo;SV Wasserfreunde Brandenburg e.V.;
+KAMPFGERICHT: 3;ZN;Reuter, Ida;SG Einheit Rathenow e.V.;
+KAMPFGERICHT: 3;ZN;Kern, Mia;Potsdamer SV;
+KAMPFGERICHT: 3;ZN;Marquardt, Mia;SC Potsdam;
+KAMPFGERICHT: 3;ZN;Frank, Jonas;SC Potsdam;
+KAMPFGERICHT: 3;ZN;Walter, Pia;SC Potsdam;
+KAMPFGERICHT: 3;SP;Hahn, Rike;Potsdamer SV;
+WETTKAMPF: 1;E;1;1;25;R;BE;X;SW;;; (* 25m Rückenbeine mixed Einlage Jg. 2019 *)
+WETTKAMPF: 2;E;1;1;25;R;BE;X;KG;;; (* 25m Rückenbeine mixed *)
+WETTKAMPF: 3;E;1;1;25;R;BE;X;SW;;; (* 25m Rückenbeine mixed *)
+WETTKAMPF: 4;E;1;1;25;F;GL;X;SW;;; (* 25m Freistil mixed Einlage Jg. 2019 *)
+WETTKAMPF: 5;E;1;1;25;F;GL;X;KG;;; (* 25m Freistil mixed *)
+WETTKAMPF: 6;E;1;1;25;F;GL;X;SW;;; (* 25m Freistil mixed *)
+WETTKAMPF: 7;E;1;1;25;B;BE;X;KG;;; (* 25m Brustbeine mixed *)
+WETTKAMPF: 8;E;1;1;25;B;BE;X;SW;;; (* 25m Brustbeine mixed *)
+WETTKAMPF: 9;E;1;1;25;F;BE;X;KG;;; (* 25m Kraulbeine mixed *)
+WETTKAMPF: 10;E;1;1;25;F;BE;X;SW;;; (* 25m Kraulbeine mixed *)
+WETTKAMPF: 11;E;1;1;25;R;GL;X;KG;;; (* 25m Rücken mixed *)
+WETTKAMPF: 12;E;1;1;25;R;GL;X;SW;;; (* 25m Rücken mixed *)
+WETTKAMPF: 13;E;1;1;25;S;BE;X;KG;;; (* 25m Delfinbewegung mixed *)
+WETTKAMPF: 14;E;1;1;25;S;BE;X;SW;;; (* 25m Delfinbewegung mixed *)
+WETTKAMPF: 15;E;1;1;25;B;GL;X;KG;;; (* 25m Brust mixed *)
+WETTKAMPF: 16;E;1;1;25;B;GL;X;SW;;; (* 25m Brust mixed *)
+WETTKAMPF: 25;E;2;1;25;X;X;X;SW;;; (* 25m Delfinbewegung Bauchlage mixed *)
+WETTKAMPF: 26;E;2;1;25;X;X;X;SW;;; (* 25m Delfinbewegung Rückenlage mixed *)
+WETTKAMPF: 17;E;2;1;50;S;BE;X;SW;;; (* 50m Delfinbeine mixed *)
+WETTKAMPF: 18;E;2;1;50;R;BE;X;SW;;; (* 50m Rückenbeine mixed *)
+WETTKAMPF: 19;E;2;1;50;B;BE;X;SW;;; (* 50m Brustbeine mixed *)
+WETTKAMPF: 20;E;2;1;50;F;BE;X;SW;;; (* 50m Kraulbeine mixed *)
+WETTKAMPF: 21;E;2;1;50;S;GL;X;SW;;; (* 50m Schmetterling mixed *)
+WETTKAMPF: 22;E;2;1;50;R;GL;X;SW;;; (* 50m Rücken mixed *)
+WETTKAMPF: 23;E;2;1;50;B;GL;X;SW;;; (* 50m Brust mixed *)
+WETTKAMPF: 24;E;2;1;50;F;GL;X;SW;;; (* 50m Freistil mixed *)
+WETTKAMPF: 27;E;3;1;100;F;GL;X;SW;;; (* 100m Freistil mixed *)
+WETTKAMPF: 28;E;3;1;200;B;GL;X;SW;;; (* 200m Brust mixed *)
+WETTKAMPF: 29;E;3;1;200;R;GL;X;SW;;; (* 200m Rücken mixed *)
+WETTKAMPF: 30;E;3;1;100;S;GL;X;SW;;; (* 100m Schmetterling mixed *)
+WETTKAMPF: 31;E;3;1;50;F;GL;X;SW;;; (* 50m Freistil mixed *)
+WETTKAMPF: 32;E;3;1;50;B;GL;X;SW;;; (* 50m Brust mixed *)
+WETTKAMPF: 33;E;3;1;50;R;GL;X;SW;;; (* 50m Rücken mixed *)
+WETTKAMPF: 34;E;3;1;50;S;GL;X;SW;;; (* 50m Schmetterling mixed *)
+WETTKAMPF: 35;E;3;1;200;F;GL;X;SW;;; (* 200m Freistil mixed *)
+WETTKAMPF: 36;E;3;1;100;B;GL;X;SW;;; (* 100m Brust mixed *)
+WETTKAMPF: 37;E;3;1;100;R;GL;X;SW;;; (* 100m Rücken mixed *)
+WETTKAMPF: 38;E;3;1;200;S;GL;X;SW;;; (* 200m Schmetterling mixed *)
+WERTUNG: 1;E;1001;JG;2019;2019;W;Jahrgang 2019 - weiblich;
+WERTUNG: 1;E;1002;JG;2019;2019;M;Jahrgang 2019 - männlich;
+WERTUNG: 2;E;2001;JG;2018;2018;W;Jahrgang 2018 - weiblich;
+WERTUNG: 2;E;2002;JG;2018;2018;M;Jahrgang 2018 - männlich;
+WERTUNG: 3;E;3001;JG;2017;2017;W;Jahrgang 2017 - weiblich;
+WERTUNG: 3;E;3002;JG;2017;2017;M;Jahrgang 2017 - männlich;
+WERTUNG: 4;E;4001;JG;2019;2019;W;Jahrgang 2019 - weiblich;
+WERTUNG: 4;E;4002;JG;2019;2019;M;Jahrgang 2019 - männlich;
+WERTUNG: 5;E;5001;JG;2018;2018;W;Jahrgang 2018 - weiblich;
+WERTUNG: 5;E;5002;JG;2018;2018;M;Jahrgang 2018 - männlich;
+WERTUNG: 6;E;6001;JG;2017;2017;W;Jahrgang 2017 - weiblich;
+WERTUNG: 6;E;6002;JG;2017;2017;M;Jahrgang 2017 - männlich;
+WERTUNG: 7;E;7001;JG;2018;2018;W;Jahrgang 2018 - weiblich;
+WERTUNG: 7;E;7002;JG;2018;2018;M;Jahrgang 2018 - männlich;
+WERTUNG: 8;E;8001;JG;2017;2017;W;Jahrgang 2017 - weiblich;
+WERTUNG: 8;E;8002;JG;2017;2017;M;Jahrgang 2017 - männlich;
+WERTUNG: 9;E;9001;JG;2018;2018;W;Jahrgang 2018 - weiblich;
+WERTUNG: 9;E;9002;JG;2018;2018;M;Jahrgang 2018 - männlich;
+WERTUNG: 10;E;10001;JG;2017;2017;W;Jahrgang 2017 - weiblich;
+WERTUNG: 10;E;10002;JG;2017;2017;M;Jahrgang 2017 - männlich;
+WERTUNG: 11;E;11001;JG;2018;2018;W;Jahrgang 2018 - weiblich;
+WERTUNG: 11;E;11002;JG;2018;2018;M;Jahrgang 2018 - männlich;
+WERTUNG: 12;E;12001;JG;2017;2017;W;Jahrgang 2017 - weiblich;
+WERTUNG: 12;E;12002;JG;2017;2017;M;Jahrgang 2017 - männlich;
+WERTUNG: 13;E;13001;JG;2018;2018;W;Jahrgang 2018 - weiblich;
+WERTUNG: 13;E;13002;JG;2018;2018;M;Jahrgang 2018 - männlich;
+WERTUNG: 14;E;14001;JG;2017;2017;W;Jahrgang 2017 - weiblich;
+WERTUNG: 14;E;14002;JG;2017;2017;M;Jahrgang 2017 - männlich;
+WERTUNG: 15;E;15001;JG;2018;2018;W;Jahrgang 2018 - weiblich;
+WERTUNG: 15;E;15002;JG;2018;2018;M;Jahrgang 2018 - männlich;
+WERTUNG: 16;E;16001;JG;2017;2017;W;Jahrgang 2017 - weiblich;
+WERTUNG: 16;E;16002;JG;2017;2017;M;Jahrgang 2017 - männlich;
+WERTUNG: 25;E;17001;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 25;E;17002;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 25;E;17003;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 25;E;17004;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 26;E;18001;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 26;E;18002;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 26;E;18003;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 26;E;18004;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 17;E;19001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 17;E;19002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 17;E;19003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 17;E;19004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 17;E;19005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 17;E;19006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 17;E;19007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 17;E;19008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 17;E;19009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 17;E;19010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 18;E;20001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 18;E;20002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 18;E;20003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 18;E;20004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 18;E;20005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 18;E;20006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 18;E;20007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 18;E;20008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 18;E;20009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 18;E;20010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 19;E;21001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 19;E;21002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 19;E;21003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 19;E;21004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 19;E;21005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 19;E;21006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 19;E;21007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 19;E;21008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 19;E;21009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 19;E;21010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 20;E;22001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 20;E;22002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 20;E;22003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 20;E;22004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 20;E;22005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 20;E;22006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 20;E;22007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 20;E;22008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 20;E;22009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 20;E;22010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 21;E;23001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 21;E;23002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 21;E;23003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 21;E;23004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 21;E;23005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 21;E;23006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 21;E;23007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 21;E;23008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 21;E;23009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 21;E;23010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 22;E;24001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 22;E;24002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 22;E;24003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 22;E;24004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 22;E;24005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 22;E;24006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 22;E;24007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 22;E;24008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 22;E;24009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 22;E;24010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 23;E;25001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 23;E;25002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 23;E;25003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 23;E;25004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 23;E;25005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 23;E;25006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 23;E;25007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 23;E;25008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 23;E;25009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 23;E;25010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 24;E;26001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 24;E;26002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 24;E;26003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 24;E;26004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 24;E;26005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 24;E;26006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 24;E;26007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 24;E;26008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 24;E;26009;JG;2012;2012;W;Jahrgang 2012 - weiblich;
+WERTUNG: 24;E;26010;JG;2012;2012;M;Jahrgang 2012 - männlich;
+WERTUNG: 27;E;27001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 27;E;27002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 27;E;27003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 27;E;27004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 27;E;27005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 27;E;27006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 27;E;27007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 27;E;27008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 27;E;27009;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 27;E;27010;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+WERTUNG: 28;E;28001;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 28;E;28002;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 28;E;28003;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 28;E;28004;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 28;E;28005;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 28;E;28006;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 28;E;28007;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 28;E;28008;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+WERTUNG: 29;E;29001;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 29;E;29002;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 29;E;29003;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 29;E;29004;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 29;E;29005;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 29;E;29006;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 29;E;29007;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 29;E;29008;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+WERTUNG: 30;E;30001;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 30;E;30002;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 30;E;30003;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 30;E;30004;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 30;E;30005;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 30;E;30006;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 30;E;30007;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 30;E;30008;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+WERTUNG: 31;E;31001;JG;0;2011;W;Jahrgang 2011 und älter - weiblich;
+WERTUNG: 31;E;31002;JG;0;2011;M;Jahrgang 2011 und älter - männlich;
+WERTUNG: 32;E;32001;JG;0;2011;W;Jahrgang 2011 und älter - weiblich;
+WERTUNG: 32;E;32002;JG;0;2011;M;Jahrgang 2011 und älter - männlich;
+WERTUNG: 33;E;33001;JG;0;2011;W;Jahrgang 2011 und älter - weiblich;
+WERTUNG: 33;E;33002;JG;0;2011;M;Jahrgang 2011 und älter - männlich;
+WERTUNG: 34;E;34001;JG;0;2011;W;Jahrgang 2011 und älter - weiblich;
+WERTUNG: 34;E;34002;JG;0;2011;M;Jahrgang 2011 und älter - männlich;
+WERTUNG: 35;E;35001;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 35;E;35002;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 35;E;35003;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 35;E;35004;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 35;E;35005;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 35;E;35006;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 35;E;35007;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 35;E;35008;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+WERTUNG: 36;E;36001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 36;E;36002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 36;E;36003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 36;E;36004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 36;E;36005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 36;E;36006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 36;E;36007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 36;E;36008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 36;E;36009;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 36;E;36010;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+WERTUNG: 37;E;37001;JG;2016;2016;W;Jahrgang 2016 - weiblich;
+WERTUNG: 37;E;37002;JG;2016;2016;M;Jahrgang 2016 - männlich;
+WERTUNG: 37;E;37003;JG;2015;2015;W;Jahrgang 2015 - weiblich;
+WERTUNG: 37;E;37004;JG;2015;2015;M;Jahrgang 2015 - männlich;
+WERTUNG: 37;E;37005;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 37;E;37006;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 37;E;37007;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 37;E;37008;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 37;E;37009;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 37;E;37010;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+WERTUNG: 38;E;38001;JG;2014;2014;W;Jahrgang 2014 - weiblich;
+WERTUNG: 38;E;38002;JG;2014;2014;M;Jahrgang 2014 - männlich;
+WERTUNG: 38;E;38003;JG;2013;2013;W;Jahrgang 2013 - weiblich;
+WERTUNG: 38;E;38004;JG;2013;2013;M;Jahrgang 2013 - männlich;
+WERTUNG: 38;E;38005;JG;0;2012;W;Jahrgang 2012 und älter - weiblich;
+WERTUNG: 38;E;38006;JG;0;2012;M;Jahrgang 2012 und älter - männlich;
+VEREIN: Potsdamer SV;6411;4;GER;
+VEREIN: SC Potsdam;6541;4;GER;
+VEREIN: SG Einheit Rathenow e.V.;4737;4;GER;
+VEREIN: SV Wasserfreunde Brandenburg e.V.;4750;4;GER;
+VEREIN: Zehlendorfer TSV von 1888 e.V.;5637;3;GER;
+PNERGEBNIS: 2;E;2002;1;;Kuhn, Leon;256215;83;M;2018;;Potsdamer SV;6411;00:00:35,73;;;GER;;; (* Jahrgang 2018 - männlich *)
+PNERGEBNIS: 2;E;2001;1;;Pohl, Pia;256215;21;W;2018;;Potsdamer SV;6411;00:00:32,91;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 2;E;2001;2;;Engel, Felix;256215;32;W;2018;;Potsdamer SV;6411;00:00:41,57;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 2;E;2001;3;;Fischer, David;256215;56;W;2018;;Potsdamer SV;6411;00:00:41,71;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 3;E;3002;1;;Pohl, Vincent;236240;23;M;2017;;Potsdamer SV;6411;00:00:38,24;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 3;E;3002;2;;Kern, Hannah;451561;33;M;2017;;Potsdamer SV;6411;00:00:40,19;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 3;E;3002;3;;Richter, Sophie;631685;51;M;2017;;Potsdamer SV;6411;00:00:44,60;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 3;E;3002;0;NA;Kramer, Alina;129180;27;M;2017;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 3;E;3002;0;DS;Sommer, Elias;196323;52;M;2017;;Potsdamer SV;6411;00:00:00,00;Der Sportler hat die Rückenlage verlassen.;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 3;E;3001;1;;Seidel, Jana;785517;15;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:27,95;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 3;E;3001;2;;Schmitt, Ida;706799;44;W;2017;;Potsdamer SV;6411;00:00:29,94;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 3;E;3001;3;;Voigt, Sina;384418;35;W;2017;;Potsdamer SV;6411;00:00:38,11;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 5;E;5002;1;;Kuhn, Leon;256215;83;M;2018;;Potsdamer SV;6411;00:00:19,84;;;GER;;; (* Jahrgang 2018 - männlich *)
+PNERGEBNIS: 5;E;5001;1;;Engel, Felix;256215;32;W;2018;;Potsdamer SV;6411;00:00:35,51;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 5;E;5001;2;;Fischer, David;256215;56;W;2018;;Potsdamer SV;6411;00:00:35,66;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 5;E;5001;3;;Pohl, Pia;256215;21;W;2018;;Potsdamer SV;6411;00:00:36,04;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 6;E;6002;1;;Bauer, Erik;221232;13;M;2017;;SG Einheit Rathenow e.V.;4737;00:00:22,89;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 6;E;6002;2;;Kern, Hannah;451561;33;M;2017;;Potsdamer SV;6411;00:00:24,96;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 6;E;6002;3;;Richter, Sophie;631685;51;M;2017;;Potsdamer SV;6411;00:00:29,16;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 6;E;6002;4;;Sommer, Elias;196323;52;M;2017;;Potsdamer SV;6411;00:00:34,67;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 6;E;6002;5;;Pohl, Vincent;236240;23;M;2017;;Potsdamer SV;6411;00:00:38,66;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 6;E;6002;0;NA;Kramer, Alina;129180;27;M;2017;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 6;E;6001;1;;Weiss, Maja;207898;9;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:20,61;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 6;E;6001;2;;Schmitt, Ida;706799;44;W;2017;;Potsdamer SV;6411;00:00:21,29;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 6;E;6001;3;;Seidel, Jana;785517;15;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:21,33;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 6;E;6001;4;;Stein, Erik;680487;61;W;2017;;SC Potsdam;6541;00:00:24,68;;;GER;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 6;E;6001;5;;Brandt, Julia;962037;25;W;2017;;Potsdamer SV;6411;00:00:27,30;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 6;E;6001;6;;Voigt, Sina;384418;35;W;2017;;Potsdamer SV;6411;00:00:28,58;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 6;E;6001;7;;Walter, Tilda;828853;42;W;2017;;Potsdamer SV;6411;00:00:28,80;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 7;E;7002;1;;Kuhn, Leon;256215;83;M;2018;;Potsdamer SV;6411;00:00:35,68;;;GER;;; (* Jahrgang 2018 - männlich *)
+PNERGEBNIS: 7;E;7001;1;;Engel, Felix;256215;32;W;2018;;Potsdamer SV;6411;00:00:29,73;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 7;E;7001;2;;Pohl, Pia;256215;21;W;2018;;Potsdamer SV;6411;00:00:37,31;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 8;E;8002;1;;Bauer, Erik;221232;13;M;2017;;SG Einheit Rathenow e.V.;4737;00:00:29,82;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 8;E;8002;2;;Kern, Hannah;451561;33;M;2017;;Potsdamer SV;6411;00:00:34,19;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 8;E;8002;3;;Richter, Sophie;631685;51;M;2017;;Potsdamer SV;6411;00:00:37,18;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 8;E;8001;1;;Schmitt, Ida;706799;44;W;2017;;Potsdamer SV;6411;00:00:29,55;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 8;E;8001;2;;Brandt, Julia;962037;25;W;2017;;Potsdamer SV;6411;00:00:32,64;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 8;E;8001;3;;Stein, Erik;680487;61;W;2017;;SC Potsdam;6541;00:00:34,62;;;GER;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 8;E;8001;4;;Walter, Tilda;828853;42;W;2017;;Potsdamer SV;6411;00:00:36,41;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 9;E;9001;1;;Fischer, David;256215;56;W;2018;;Potsdamer SV;6411;00:00:51,00;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 10;E;10002;1;;Richter, Sophie;631685;51;M;2017;;Potsdamer SV;6411;00:00:38,79;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 10;E;10002;2;;Pohl, Vincent;236240;23;M;2017;;Potsdamer SV;6411;00:00:38,92;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 10;E;10002;3;;Sommer, Elias;196323;52;M;2017;;Potsdamer SV;6411;00:00:48,50;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 10;E;10002;0;NA;Kramer, Alina;129180;27;M;2017;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 10;E;10001;1;;Walter, Tilda;828853;42;W;2017;;Potsdamer SV;6411;00:00:25,55;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 10;E;10001;2;;Weiss, Maja;207898;9;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:26,91;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 10;E;10001;3;;Stein, Erik;680487;61;W;2017;;SC Potsdam;6541;00:00:29,97;;;GER;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 10;E;10001;4;;Brandt, Julia;962037;25;W;2017;;Potsdamer SV;6411;00:00:30,78;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 10;E;10001;5;;Voigt, Sina;384418;35;W;2017;;Potsdamer SV;6411;00:00:32,89;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 11;E;11002;1;;Kuhn, Leon;256215;83;M;2018;;Potsdamer SV;6411;00:00:25,74;;;GER;;; (* Jahrgang 2018 - männlich *)
+PNERGEBNIS: 11;E;11001;1;;Pohl, Pia;256215;21;W;2018;;Potsdamer SV;6411;00:00:30,17;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 11;E;11001;2;;Engel, Felix;256215;32;W;2018;;Potsdamer SV;6411;00:00:37,15;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 11;E;11001;3;;Fischer, David;256215;56;W;2018;;Potsdamer SV;6411;00:00:47,35;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 12;E;12002;1;;Bauer, Erik;221232;13;M;2017;;SG Einheit Rathenow e.V.;4737;00:00:26,73;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 12;E;12002;2;;Kern, Hannah;451561;33;M;2017;;Potsdamer SV;6411;00:00:29,46;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 12;E;12002;3;;Pohl, Vincent;236240;23;M;2017;;Potsdamer SV;6411;00:00:35,26;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 12;E;12002;4;;Sommer, Elias;196323;52;M;2017;;Potsdamer SV;6411;00:00:37,37;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 12;E;12002;5;;Richter, Sophie;631685;51;M;2017;;Potsdamer SV;6411;00:00:38,60;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 12;E;12002;0;NA;Kramer, Alina;129180;27;M;2017;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 12;E;12001;1;;Schmitt, Ida;706799;44;W;2017;;Potsdamer SV;6411;00:00:23,11;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 12;E;12001;2;;Weiss, Maja;207898;9;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:23,66;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 12;E;12001;3;;Stein, Erik;680487;61;W;2017;;SC Potsdam;6541;00:00:27,70;;;GER;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 12;E;12001;4;;Walter, Tilda;828853;42;W;2017;;Potsdamer SV;6411;00:00:28,70;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 12;E;12001;5;;Brandt, Julia;962037;25;W;2017;;Potsdamer SV;6411;00:00:30,51;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 12;E;12001;6;;Voigt, Sina;384418;35;W;2017;;Potsdamer SV;6411;00:00:30,51;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 14;E;14001;1;;Seidel, Jana;785517;15;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:26,27;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 14;E;14001;2;;Stein, Erik;680487;61;W;2017;;SC Potsdam;6541;00:00:28,92;;;GER;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 14;E;14001;3;;Weiss, Maja;207898;9;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:31,36;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 14;E;14001;4;;Schmitt, Ida;706799;44;W;2017;;Potsdamer SV;6411;00:00:32,01;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 14;E;14001;5;;Walter, Tilda;828853;42;W;2017;;Potsdamer SV;6411;00:00:33,26;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 14;E;14001;6;;Brandt, Julia;962037;25;W;2017;;Potsdamer SV;6411;00:00:35,15;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 14;E;14001;7;;Voigt, Sina;384418;35;W;2017;;Potsdamer SV;6411;00:00:49,78;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 15;E;15002;1;;Kuhn, Leon;256215;83;M;2018;;Potsdamer SV;6411;00:00:28,50;;;GER;;; (* Jahrgang 2018 - männlich *)
+PNERGEBNIS: 15;E;15001;1;;Engel, Felix;256215;32;W;2018;;Potsdamer SV;6411;00:00:30,28;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 15;E;15001;2;;Pohl, Pia;256215;21;W;2018;;Potsdamer SV;6411;00:00:35,72;;;GER;;; (* Jahrgang 2018 - weiblich *)
+PNERGEBNIS: 16;E;16002;1;;Bauer, Erik;221232;13;M;2017;;SG Einheit Rathenow e.V.;4737;00:00:26,24;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 16;E;16002;2;;Kern, Hannah;451561;33;M;2017;;Potsdamer SV;6411;00:00:29,37;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 16;E;16002;3;;Pohl, Vincent;236240;23;M;2017;;Potsdamer SV;6411;00:00:31,73;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 16;E;16002;4;;Richter, Sophie;631685;51;M;2017;;Potsdamer SV;6411;00:00:34,80;;;;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 16;E;16002;0;NA;Kramer, Alina;129180;27;M;2017;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2017 - männlich *)
+PNERGEBNIS: 16;E;16001;1;;Schmitt, Ida;706799;44;W;2017;;Potsdamer SV;6411;00:00:27,37;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 16;E;16001;2;;Seidel, Jana;785517;15;W;2017;;SG Einheit Rathenow e.V.;4737;00:00:27,80;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 16;E;16001;3;;Stein, Erik;680487;61;W;2017;;SC Potsdam;6541;00:00:29,76;;;GER;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 16;E;16001;4;;Brandt, Julia;962037;25;W;2017;;Potsdamer SV;6411;00:00:31,54;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 16;E;16001;5;;Voigt, Sina;384418;35;W;2017;;Potsdamer SV;6411;00:00:32,23;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 16;E;16001;6;;Walter, Tilda;828853;42;W;2017;;Potsdamer SV;6411;00:00:32,70;;;;;; (* Jahrgang 2017 - weiblich *)
+PNERGEBNIS: 25;E;17004;1;;Maier, Mats;995994;4;M;2013;;SG Einheit Rathenow e.V.;4737;00:00:17,42;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 25;E;17004;2;;Klein, Emma;949567;46;M;2013;;Potsdamer SV;6411;00:00:18,89;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 25;E;17004;0;AB;Voigt, Marie;748823;68;M;2013;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 25;E;17003;1;;Weiss, David;780845;45;W;2013;;Potsdamer SV;6411;00:00:16,57;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 25;E;17003;2;;Lorenz, Jakob;995747;17;W;2013;;Potsdamer SV;6411;00:00:20,26;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 25;E;17002;1;;Weiss, Jana;814935;63;M;2014;;SC Potsdam;6541;00:00:20,50;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 25;E;17002;0;AB;Graf, Julia;194504;69;M;2014;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 25;E;17001;1;;Stein, Rike;709990;26;W;2014;;Potsdamer SV;6411;00:00:18,18;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 26;E;18004;1;;Maier, Mats;995994;4;M;2013;;SG Einheit Rathenow e.V.;4737;00:00:18,68;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 26;E;18004;2;;Klein, Emma;949567;46;M;2013;;Potsdamer SV;6411;00:00:20,58;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 26;E;18004;0;AB;Voigt, Marie;748823;68;M;2013;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 26;E;18003;1;;Weiss, David;780845;45;W;2013;;Potsdamer SV;6411;00:00:18,02;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 26;E;18003;2;;Lorenz, Jakob;995747;17;W;2013;;Potsdamer SV;6411;00:00:24,11;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 26;E;18002;1;;Weiss, Jana;814935;63;M;2014;;SC Potsdam;6541;00:00:24,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 26;E;18002;0;AB;Graf, Julia;194504;69;M;2014;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 26;E;18001;1;;Stein, Rike;709990;26;W;2014;;Potsdamer SV;6411;00:00:20,53;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 26;E;18001;2;;Stein, Anton;812299;50;W;2014;;Potsdamer SV;6411;00:00:27,17;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 17;E;19010;1;;Bauer, Ida;474973;31;M;2012;;Potsdamer SV;6411;00:00:48,23;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 17;E;19007;1;;Lorenz, Jakob;995747;17;W;2013;;Potsdamer SV;6411;00:00:47,54;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 17;E;19004;1;;Dietrich, Erik;447043;1;M;2015;;SG Einheit Rathenow e.V.;4737;00:00:52,44;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 17;E;19004;2;;Pohl, Lena;471607;59;M;2015;;SC Potsdam;6541;00:00:56,91;;;GER;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 17;E;19003;1;;Winkler, Henri;425249;67;W;2015;;SC Potsdam;6541;00:00:59,10;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 17;E;19003;2;;Lehmann, Lara;497005;3;W;2015;;SG Einheit Rathenow e.V.;4737;00:00:59,99;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 17;E;19003;0;AB;Weiss, Julia;210006;70;W;2015;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 17;E;19002;1;;Koch, Julia;955467;71;M;2016;;SC Potsdam;6541;00:01:10,14;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 17;E;19002;2;;Gross, Greta;518704;43;M;2016;;Potsdamer SV;6411;00:01:12,78;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 17;E;19002;0;AB;Brandt, Rike;532387;65;M;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 17;E;19001;1;;Bauer, Paul;695839;58;W;2016;;SC Potsdam;6541;00:01:00,45;;;GER;VEN;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 17;E;19001;2;;Engel, Zoe;549537;6;W;2016;;SG Einheit Rathenow e.V.;4737;00:01:00,75;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 17;E;19001;3;;Bauer, Julia;692262;60;W;2016;;SC Potsdam;6541;00:01:01,10;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 17;E;19001;4;;Herrmann, Lara;786930;57;W;2016;;Potsdamer SV;6411;00:01:03,06;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 17;E;19001;5;;Vogel, Ruben;384597;34;W;2016;;Potsdamer SV;6411;00:01:03,71;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 17;E;19001;6;;Lang, Lena;129359;84;W;2016;;Potsdamer SV;6411;00:01:16,20;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 17;E;19001;0;AB;Koch, Lara;793988;72;W;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 18;E;20010;1;;Berger, Lena;979229;37;M;2012;;Potsdamer SV;6411;00:00:46,34;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 18;E;20010;2;;Otto, Felix;786922;18;M;2012;;Potsdamer SV;6411;00:00:48,05;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 18;E;20008;0;AB;Voigt, Marie;748823;68;M;2013;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 18;E;20007;1;;Weiss, David;780845;45;W;2013;;Potsdamer SV;6411;00:00:44,86;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 18;E;20006;1;;Weiss, Jana;814935;63;M;2014;;SC Potsdam;6541;00:00:55,21;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 18;E;20006;0;NA;Hahn, Yara;595857;53;M;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 18;E;20005;1;;Peters, Nele;525693;75;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:06,46;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 18;E;20005;2;;Stein, Anton;812299;50;W;2014;;Potsdamer SV;6411;00:01:11,96;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 18;E;20004;1;;Engel, Pia;769424;12;M;2015;;SG Einheit Rathenow e.V.;4737;00:00:50,51;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 18;E;20003;1;;Gross, Tilda;803438;79;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:59,85;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 18;E;20002;1;;Winkler, Henri;700229;55;M;2016;;Potsdamer SV;6411;00:01:00,53;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 18;E;20002;2;;Marquardt, Julia;310705;49;M;2016;;Potsdamer SV;6411;00:01:07,17;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 18;E;20002;3;;Gross, Greta;518704;43;M;2016;;Potsdamer SV;6411;00:01:08,47;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 18;E;20002;4;;Kramer, Vincent;122610;38;M;2016;;Potsdamer SV;6411;00:01:09,83;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 18;E;20001;1;;Bauer, Julia;692262;60;W;2016;;SC Potsdam;6541;00:01:06,31;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 18;E;20001;2;;Lang, Lena;129359;84;W;2016;;Potsdamer SV;6411;00:01:25,31;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 18;E;20001;3;;Dietrich, Linus;727346;54;W;2016;;Potsdamer SV;6411;00:01:30,26;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 19;E;21009;1;;Koch, Erik;492554;62;W;2012;;SC Potsdam;6541;00:00:55,51;;;GER;;; (* Jahrgang 2012 - weiblich *)
+PNERGEBNIS: 19;E;21006;1;;Pohl, Karl;581655;8;M;2014;;SG Einheit Rathenow e.V.;4737;00:00:57,55;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 19;E;21006;2;;Graf, Julia;368385;7;M;2014;;SG Einheit Rathenow e.V.;4737;00:01:02,30;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 19;E;21006;3;;Dietrich, David;951824;78;M;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:09,38;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 19;E;21006;0;NA;Hahn, Yara;595857;53;M;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 19;E;21005;1;;Otto, Malte;205465;2;W;2014;;SG Einheit Rathenow e.V.;4737;00:00:56,17;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 19;E;21005;2;;Walter, Zoe;623623;10;W;2014;;SG Einheit Rathenow e.V.;4737;00:00:56,24;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 19;E;21005;3;;Stein, Tom;475295;77;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:10,88;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 19;E;21004;1;;Pohl, Lena;471607;59;M;2015;;SC Potsdam;6541;00:00:57,26;;;GER;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 19;E;21003;1;;Weiss, Yara;204927;36;W;2015;;Potsdamer SV;6411;00:01:16,76;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 19;E;21003;0;AB;Weiss, Julia;210006;70;W;2015;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 19;E;21001;1;;Vogel, Ruben;384597;34;W;2016;;Potsdamer SV;6411;00:01:00,37;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 19;E;21001;2;;Bauer, Paul;695839;58;W;2016;;SC Potsdam;6541;00:01:04,59;;;GER;VEN;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 19;E;21001;3;;Herrmann, Lara;786930;57;W;2016;;Potsdamer SV;6411;00:01:13,47;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 19;E;21001;0;DS;Dietrich, Linus;727346;54;W;2016;;Potsdamer SV;6411;00:00:00,00;Der Anschlag erfplgte nur mit dem Brett und nicht mit den Händen.;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 20;E;22010;1;;Berger, Lena;979229;37;M;2012;;Potsdamer SV;6411;00:00:45,20;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 20;E;22010;2;;Otto, Felix;786922;18;M;2012;;Potsdamer SV;6411;00:00:51,98;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 20;E;22009;1;;Koch, Erik;492554;62;W;2012;;SC Potsdam;6541;00:00:53,22;;;GER;;; (* Jahrgang 2012 - weiblich *)
+PNERGEBNIS: 20;E;22008;1;;Klein, Emma;949567;46;M;2013;;Potsdamer SV;6411;00:00:40,33;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 20;E;22008;2;;Maier, Mats;995994;4;M;2013;;SG Einheit Rathenow e.V.;4737;00:00:46,06;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 20;E;22008;3;;Vogel, Oskar;970815;11;M;2013;;SG Einheit Rathenow e.V.;4737;00:00:46,47;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 20;E;22007;1;;Lorenz, Jakob;995747;17;W;2013;;Potsdamer SV;6411;00:00:48,74;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 20;E;22007;2;;Winkler, Sophie;848074;80;W;2013;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:07,30;;;;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 20;E;22006;1;;Graf, Julia;368385;7;M;2014;;SG Einheit Rathenow e.V.;4737;00:01:05,38;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 20;E;22006;0;NA;Hahn, Yara;595857;53;M;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 20;E;22006;0;AB;Graf, Julia;194504;69;M;2014;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 20;E;22005;1;;Stein, Rike;709990;26;W;2014;;Potsdamer SV;6411;00:00:45,31;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 20;E;22005;2;;Stein, Anton;812299;50;W;2014;;Potsdamer SV;6411;00:00:56,80;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 20;E;22003;1;;Lehmann, Lara;497005;3;W;2015;;SG Einheit Rathenow e.V.;4737;00:00:55,59;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 20;E;22003;2;;Winkler, Henri;425249;67;W;2015;;SC Potsdam;6541;00:00:56,70;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 20;E;22003;3;;Kern, Leon;881242;82;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:01:06,79;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 20;E;22003;0;DS;Peters, Jana;502373;81;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:00:00,00;Auf der 50m Strecke wurden Brustbeine augeführt.;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 20;E;22002;1;;Gross, Greta;518704;43;M;2016;;Potsdamer SV;6411;00:00:58,49;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 20;E;22002;2;;Koch, Julia;955467;71;M;2016;;SC Potsdam;6541;00:00:58,77;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 20;E;22002;3;;Kramer, Vincent;122610;38;M;2016;;Potsdamer SV;6411;00:01:00,89;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 20;E;22002;4;;Winkler, Henri;700229;55;M;2016;;Potsdamer SV;6411;00:01:06,75;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 20;E;22002;5;;Marquardt, Julia;310705;49;M;2016;;Potsdamer SV;6411;00:01:08,93;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 20;E;22002;0;AB;Brandt, Rike;532387;65;M;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 20;E;22001;1;;Engel, Zoe;549537;6;W;2016;;SG Einheit Rathenow e.V.;4737;00:01:03,48;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 20;E;22001;2;;Lang, Lena;129359;84;W;2016;;Potsdamer SV;6411;00:01:20,92;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 20;E;22001;3;;Dietrich, Linus;727346;54;W;2016;;Potsdamer SV;6411;00:01:25,47;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 20;E;22001;0;AB;Koch, Lara;793988;72;W;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 21;E;23010;1;;Bauer, Ida;474973;31;M;2012;;Potsdamer SV;6411;00:00:35,64;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 21;E;23005;1;;Otto, Malte;205465;2;W;2014;;SG Einheit Rathenow e.V.;4737;00:00:44,03;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 21;E;23004;1;;Dietrich, Erik;447043;1;M;2015;;SG Einheit Rathenow e.V.;4737;00:00:39,56;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 21;E;23004;2;;Pohl, Lena;471607;59;M;2015;;SC Potsdam;6541;00:00:47,67;;;GER;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 21;E;23003;0;AB;Weiss, Julia;210006;70;W;2015;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 21;E;23001;1;;Bauer, Paul;695839;58;W;2016;;SC Potsdam;6541;00:00:52,74;;;GER;VEN;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 21;E;23001;2;;Bauer, Julia;692262;60;W;2016;;SC Potsdam;6541;00:00:54,81;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 21;E;23001;3;;Vogel, Ruben;384597;34;W;2016;;Potsdamer SV;6411;00:00:58,16;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 21;E;23001;0;AB;Koch, Lara;793988;72;W;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 22;E;24010;1;;Otto, Felix;786922;18;M;2012;;Potsdamer SV;6411;00:00:37,45;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 22;E;24009;1;;Koch, Erik;492554;62;W;2012;;SC Potsdam;6541;00:00:44,25;;;GER;;; (* Jahrgang 2012 - weiblich *)
+PNERGEBNIS: 22;E;24007;1;;Winkler, Sophie;848074;80;W;2013;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:48,67;;;;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 22;E;24006;1;;Dietrich, David;951824;78;M;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:00,47;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 22;E;24005;1;;Walter, Zoe;623623;10;W;2014;;SG Einheit Rathenow e.V.;4737;00:00:43,03;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 22;E;24005;2;;Peters, Nele;525693;75;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:51,86;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 22;E;24004;1;;Engel, Pia;769424;12;M;2015;;SG Einheit Rathenow e.V.;4737;00:00:39,54;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 22;E;24003;1;;Gross, Tilda;803438;79;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:46,64;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 22;E;24003;2;;Kern, Leon;881242;82;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:00:50,60;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 22;E;24003;3;;Peters, Jana;502373;81;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:00:50,70;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 22;E;24002;1;;Winkler, Henri;700229;55;M;2016;;Potsdamer SV;6411;00:00:49,28;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 22;E;24002;2;;Kramer, Vincent;122610;38;M;2016;;Potsdamer SV;6411;00:00:52,34;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 22;E;24002;3;;Marquardt, Julia;310705;49;M;2016;;Potsdamer SV;6411;00:00:55,35;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 22;E;24002;4;;Gross, Greta;518704;43;M;2016;;Potsdamer SV;6411;00:00:57,63;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 22;E;24002;0;AB;Brandt, Rike;532387;65;M;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 22;E;24001;1;;Herrmann, Lara;786930;57;W;2016;;Potsdamer SV;6411;00:00:51,01;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 22;E;24001;2;;Bauer, Paul;695839;58;W;2016;;SC Potsdam;6541;00:00:51,85;;;GER;VEN;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 22;E;24001;3;;Lang, Lena;129359;84;W;2016;;Potsdamer SV;6411;00:01:06,10;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 22;E;24001;4;;Dietrich, Linus;727346;54;W;2016;;Potsdamer SV;6411;00:01:22,61;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 23;E;25009;1;;Koch, Erik;492554;62;W;2012;;SC Potsdam;6541;00:00:45,67;;;GER;;; (* Jahrgang 2012 - weiblich *)
+PNERGEBNIS: 23;E;25008;1;;Vogel, Oskar;970815;11;M;2013;;SG Einheit Rathenow e.V.;4737;00:00:45,91;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 23;E;25008;2;;Bauer, Nora;187375;66;M;2013;;SC Potsdam;6541;00:00:54,68;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 23;E;25006;1;;Pohl, Karl;581655;8;M;2014;;SG Einheit Rathenow e.V.;4737;00:00:48,23;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 23;E;25005;1;;Stein, Tom;475295;77;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:58,87;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 23;E;25003;1;;Winkler, Henri;425249;67;W;2015;;SC Potsdam;6541;00:00:51,28;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 23;E;25003;2;;Kern, Leon;881242;82;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:00:57,25;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 23;E;25003;3;;Weiss, Yara;204927;36;W;2015;;Potsdamer SV;6411;00:01:02,57;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 23;E;25002;1;;Koch, Julia;955467;71;M;2016;;SC Potsdam;6541;00:01:07,56;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 23;E;25002;0;AB;Brandt, Rike;532387;65;M;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 23;E;25001;1;;Bauer, Julia;692262;60;W;2016;;SC Potsdam;6541;00:00:55,42;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 23;E;25001;2;;Vogel, Ruben;384597;34;W;2016;;Potsdamer SV;6411;00:00:56,07;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 23;E;25001;3;;Engel, Zoe;549537;6;W;2016;;SG Einheit Rathenow e.V.;4737;00:01:02,34;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 23;E;25001;4;;Dietrich, Linus;727346;54;W;2016;;Potsdamer SV;6411;00:01:12,31;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 23;E;25001;0;AB;Koch, Lara;793988;72;W;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 24;E;26010;1;;Bauer, Ida;474973;31;M;2012;;Potsdamer SV;6411;00:00:30,26;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 24;E;26010;2;;Otto, Felix;786922;18;M;2012;;Potsdamer SV;6411;00:00:31,55;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 24;E;26010;3;;Berger, Lena;979229;37;M;2012;;Potsdamer SV;6411;00:00:33,25;;;GER;;; (* Jahrgang 2012 - männlich *)
+PNERGEBNIS: 24;E;26009;1;;Koch, Erik;492554;62;W;2012;;SC Potsdam;6541;00:00:38,36;;;GER;;; (* Jahrgang 2012 - weiblich *)
+PNERGEBNIS: 24;E;26008;1;;Vogel, Oskar;970815;11;M;2013;;SG Einheit Rathenow e.V.;4737;00:00:32,99;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 24;E;26008;2;;Maier, Mats;995994;4;M;2013;;SG Einheit Rathenow e.V.;4737;00:00:34,83;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 24;E;26008;3;;Bauer, Nora;187375;66;M;2013;;SC Potsdam;6541;00:00:43,79;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 24;E;26008;0;AB;Voigt, Marie;748823;68;M;2013;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 24;E;26007;1;;Lorenz, Jakob;995747;17;W;2013;;Potsdamer SV;6411;00:00:34,69;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 24;E;26007;2;;Winkler, Sophie;848074;80;W;2013;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:42,05;;;;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 24;E;26006;1;;Weiss, Jana;814935;63;M;2014;;SC Potsdam;6541;00:00:34,67;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 24;E;26006;2;;Pohl, Karl;581655;8;M;2014;;SG Einheit Rathenow e.V.;4737;00:00:37,78;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 24;E;26006;3;;Graf, Julia;368385;7;M;2014;;SG Einheit Rathenow e.V.;4737;00:00:37,92;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 24;E;26006;4;;Dietrich, David;951824;78;M;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:47,41;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 24;E;26006;0;AB;Graf, Julia;194504;69;M;2014;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 24;E;26005;1;;Stein, Rike;709990;26;W;2014;;Potsdamer SV;6411;00:00:32,51;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 24;E;26005;2;;Otto, Malte;205465;2;W;2014;;SG Einheit Rathenow e.V.;4737;00:00:38,25;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 24;E;26005;3;;Walter, Zoe;623623;10;W;2014;;SG Einheit Rathenow e.V.;4737;00:00:39,25;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 24;E;26005;4;;Peters, Nele;525693;75;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:40,09;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 24;E;26004;1;;Engel, Pia;769424;12;M;2015;;SG Einheit Rathenow e.V.;4737;00:00:34,02;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 24;E;26004;2;;Dietrich, Erik;447043;1;M;2015;;SG Einheit Rathenow e.V.;4737;00:00:35,60;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 24;E;26003;1;;Lehmann, Lara;497005;3;W;2015;;SG Einheit Rathenow e.V.;4737;00:00:40,14;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 24;E;26003;2;;Gross, Tilda;803438;79;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:41,77;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 24;E;26003;3;;Winkler, Henri;425249;67;W;2015;;SC Potsdam;6541;00:00:43,63;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 24;E;26003;4;;Peters, Jana;502373;81;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:00:44,60;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 24;E;26003;0;AB;Weiss, Julia;210006;70;W;2015;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 24;E;26002;1;;Gross, Greta;518704;43;M;2016;;Potsdamer SV;6411;00:00:50,92;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 24;E;26002;2;;Marquardt, Julia;310705;49;M;2016;;Potsdamer SV;6411;00:00:51,39;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 24;E;26002;3;;Kramer, Vincent;122610;38;M;2016;;Potsdamer SV;6411;00:00:51,82;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 24;E;26002;4;;Winkler, Henri;700229;55;M;2016;;Potsdamer SV;6411;00:00:52,05;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 24;E;26002;5;;Koch, Julia;955467;71;M;2016;;SC Potsdam;6541;00:00:53,98;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 24;E;26002;0;AB;Brandt, Rike;532387;65;M;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 24;E;26001;1;;Herrmann, Lara;786930;57;W;2016;;Potsdamer SV;6411;00:00:45,27;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 24;E;26001;2;;Lang, Lena;129359;84;W;2016;;Potsdamer SV;6411;00:01:07,76;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 24;E;26001;3;;Dietrich, Linus;727346;54;W;2016;;Potsdamer SV;6411;00:01:14,89;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 24;E;26001;0;AB;Koch, Lara;793988;72;W;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 27;E;27010;1;;Walter, Tilda;726861;19;M;1987;35;Potsdamer SV;6411;00:01:01,89;;;;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 27;E;27010;2;;Bauer, Ida;474973;31;M;2012;;Potsdamer SV;6411;00:01:07,00;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 27;E;27010;3;;Otto, Felix;786922;18;M;2012;;Potsdamer SV;6411;00:01:09,74;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 27;E;27010;4;;Berger, Lena;979229;37;M;2012;;Potsdamer SV;6411;00:01:16,85;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 27;E;27010;0;NA;Berger, Oskar;481557;22;M;2011;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 27;E;27008;1;;Klein, Emma;949567;46;M;2013;;Potsdamer SV;6411;00:01:10,70;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 27;E;27008;2;;Vogel, Oskar;970815;11;M;2013;;SG Einheit Rathenow e.V.;4737;00:01:14,94;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 27;E;27008;3;;Maier, Mats;995994;4;M;2013;;SG Einheit Rathenow e.V.;4737;00:01:17,02;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 27;E;27008;4;;Bauer, Nora;187375;66;M;2013;;SC Potsdam;6541;00:01:40,14;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 27;E;27008;0;AB;Voigt, Marie;748823;68;M;2013;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 27;E;27007;1;;Lorenz, Jakob;995747;17;W;2013;;Potsdamer SV;6411;00:01:17,49;;;GER;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 27;E;27007;2;;Winkler, Sophie;848074;80;W;2013;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:36,92;;;;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 27;E;27006;1;;Weiss, Jana;814935;63;M;2014;;SC Potsdam;6541;00:01:19,71;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 27;E;27006;2;;Pohl, Karl;581655;8;M;2014;;SG Einheit Rathenow e.V.;4737;00:01:27,09;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 27;E;27006;3;;Graf, Julia;368385;7;M;2014;;SG Einheit Rathenow e.V.;4737;00:01:29,36;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 27;E;27006;4;;Dietrich, David;951824;78;M;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:49,86;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 27;E;27006;0;NA;Hahn, Yara;595857;53;M;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 27;E;27006;0;AB;Graf, Julia;194504;69;M;2014;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 27;E;27005;1;;Walter, Zoe;623623;10;W;2014;;SG Einheit Rathenow e.V.;4737;00:01:31,55;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 27;E;27005;2;;Peters, Nele;525693;75;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:35,95;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 27;E;27005;3;;Stein, Tom;475295;77;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:42,03;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 27;E;27005;4;;Stein, Anton;812299;50;W;2014;;Potsdamer SV;6411;00:01:44,50;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 27;E;27005;0;NA;Stein, Rike;709990;26;W;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 27;E;27003;1;;Winkler, Alina;615926;76;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:19,26;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 27;E;27003;2;;Lehmann, Lara;497005;3;W;2015;;SG Einheit Rathenow e.V.;4737;00:01:27,42;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 27;E;27003;3;;Gross, Tilda;803438;79;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:41,82;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 27;E;27003;4;;Peters, Jana;502373;81;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:01:41,83;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 27;E;27003;5;;Winkler, Henri;425249;67;W;2015;;SC Potsdam;6541;00:01:45,94;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 27;E;27003;6;;Weiss, Yara;204927;36;W;2015;;Potsdamer SV;6411;00:01:51,24;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 27;E;27003;7;;Kern, Leon;881242;82;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:01:55,06;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 27;E;27002;1;;Winkler, Henri;700229;55;M;2016;;Potsdamer SV;6411;00:01:47,57;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 27;E;27002;2;;Kramer, Vincent;122610;38;M;2016;;Potsdamer SV;6411;00:01:59,39;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 27;E;27002;3;;Marquardt, Julia;310705;49;M;2016;;Potsdamer SV;6411;00:02:02,97;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 27;E;27002;4;;Koch, Julia;955467;71;M;2016;;SC Potsdam;6541;00:02:04,04;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 27;E;27002;0;AB;Brandt, Rike;532387;65;M;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 27;E;27001;1;;Herrmann, Lara;786930;57;W;2016;;Potsdamer SV;6411;00:01:44,92;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 27;E;27001;2;;Bauer, Julia;692262;60;W;2016;;SC Potsdam;6541;00:01:46,02;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 27;E;27001;3;;Engel, Zoe;549537;6;W;2016;;SG Einheit Rathenow e.V.;4737;00:01:47,00;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 27;E;27001;0;AB;Koch, Lara;793988;72;W;2016;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 28;E;28003;1;;Otto, Malte;205465;2;W;2014;;SG Einheit Rathenow e.V.;4737;00:03:48,85;;;;;; (* Jahrgang 2014 - weiblich *)
+PNZWISCHENZEIT: 2;28;E;100;00:01:51,01;
+PNERGEBNIS: 28;E;28002;1;;Pohl, Lena;471607;59;M;2015;;SC Potsdam;6541;00:04:01,91;;;GER;;; (* Jahrgang 2015 - männlich *)
+PNZWISCHENZEIT: 59;28;E;100;00:01:58,27;
+PNERGEBNIS: 29;E;29008;1;;Bauer, Ida;474973;31;M;2012;;Potsdamer SV;6411;00:02:48,00;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNZWISCHENZEIT: 31;29;E;100;00:01:23,19;
+PNERGEBNIS: 29;E;29008;2;;Berger, Lena;979229;37;M;2012;;Potsdamer SV;6411;00:02:59,15;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNZWISCHENZEIT: 37;29;E;100;00:01:28,62;
+PNERGEBNIS: 29;E;29002;1;;Engel, Pia;769424;12;M;2015;;SG Einheit Rathenow e.V.;4737;00:02:59,48;;;;;; (* Jahrgang 2015 - männlich *)
+PNZWISCHENZEIT: 12;29;E;100;00:01:28,89;
+PNERGEBNIS: 30;E;30002;1;;Dietrich, Erik;447043;1;M;2015;;SG Einheit Rathenow e.V.;4737;00:01:37,37;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 30;E;30002;2;;Pohl, Lena;471607;59;M;2015;;SC Potsdam;6541;00:02:00,23;;;GER;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 31;E;31002;1;;Walter, Tilda;726861;19;M;1987;35;Potsdamer SV;6411;00:00:28,50;;;;;; (* Jahrgang 2011 und älter - männlich *)
+PNERGEBNIS: 31;E;31002;0;NA;Berger, Oskar;481557;22;M;2011;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2011 und älter - männlich *)
+PNERGEBNIS: 31;E;31001;1;;Schäfer, Felix;254518;73;W;2011;;SC Potsdam;6541;00:00:41,73;;;GER;;; (* Jahrgang 2011 und älter - weiblich *)
+PNERGEBNIS: 32;E;32001;1;;Schäfer, Felix;254518;73;W;2011;;SC Potsdam;6541;00:00:48,80;;;GER;;; (* Jahrgang 2011 und älter - weiblich *)
+PNERGEBNIS: 33;E;33002;0;NA;Berger, Oskar;481557;22;M;2011;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2011 und älter - männlich *)
+PNERGEBNIS: 33;E;33001;1;;Schäfer, Felix;254518;73;W;2011;;SC Potsdam;6541;00:00:52,25;;;GER;;; (* Jahrgang 2011 und älter - weiblich *)
+PNERGEBNIS: 34;E;34001;0;AB;Kuhn, David;509756;64;W;2008;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2011 und älter - weiblich *)
+PNERGEBNIS: 35;E;35008;1;;Walter, Tilda;726861;19;M;1987;35;Potsdamer SV;6411;00:02:22,21;;;;;; (* Jahrgang 2012 und älter - männlich *)
+PNZWISCHENZEIT: 19;35;E;100;00:01:10,15;
+PNERGEBNIS: 35;E;35008;2;;Bauer, Ida;474973;31;M;2012;;Potsdamer SV;6411;00:02:29,33;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNZWISCHENZEIT: 31;35;E;100;00:01:12,86;
+PNERGEBNIS: 35;E;35008;0;NA;Berger, Oskar;481557;22;M;2011;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 35;E;35007;0;AB;Kuhn, David;509756;64;W;2008;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2012 und älter - weiblich *)
+PNERGEBNIS: 35;E;35006;1;;Klein, Emma;949567;46;M;2013;;Potsdamer SV;6411;00:02:38,43;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNZWISCHENZEIT: 46;35;E;100;00:01:18,00;
+PNERGEBNIS: 35;E;35006;2;;Vogel, Oskar;970815;11;M;2013;;SG Einheit Rathenow e.V.;4737;00:02:44,17;;;;;; (* Jahrgang 2013 - männlich *)
+PNZWISCHENZEIT: 11;35;E;100;00:01:19,28;
+PNERGEBNIS: 35;E;35006;3;;Maier, Mats;995994;4;M;2013;;SG Einheit Rathenow e.V.;4737;00:03:00,08;;;;;; (* Jahrgang 2013 - männlich *)
+PNZWISCHENZEIT: 4;35;E;100;00:01:27,72;
+PNERGEBNIS: 35;E;35006;0;AB;Voigt, Marie;748823;68;M;2013;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 35;E;35004;1;;Weiss, Jana;814935;63;M;2014;;SC Potsdam;6541;00:02:49,30;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNZWISCHENZEIT: 63;35;E;100;00:01:23,26;
+PNERGEBNIS: 35;E;35004;2;;Graf, Julia;368385;7;M;2014;;SG Einheit Rathenow e.V.;4737;00:03:25,11;;;;;; (* Jahrgang 2014 - männlich *)
+PNZWISCHENZEIT: 7;35;E;100;00:01:34,95;
+PNERGEBNIS: 35;E;35004;0;NA;Hahn, Yara;595857;53;M;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 35;E;35004;0;AB;Graf, Julia;194504;69;M;2014;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 35;E;35003;1;;Stein, Anton;812299;50;W;2014;;Potsdamer SV;6411;00:03:48,89;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNZWISCHENZEIT: 50;35;E;100;00:01:51,50;
+PNERGEBNIS: 35;E;35002;1;;Dietrich, Erik;447043;1;M;2015;;SG Einheit Rathenow e.V.;4737;00:03:01,90;;;;;; (* Jahrgang 2015 - männlich *)
+PNZWISCHENZEIT: 1;35;E;100;00:01:27,85;
+PNERGEBNIS: 35;E;35001;1;;Winkler, Alina;615926;76;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:02:52,04;;;;;; (* Jahrgang 2015 - weiblich *)
+PNZWISCHENZEIT: 76;35;E;100;00:01:22,21;
+PNERGEBNIS: 35;E;35001;2;;Lehmann, Lara;497005;3;W;2015;;SG Einheit Rathenow e.V.;4737;00:03:09,10;;;;;; (* Jahrgang 2015 - weiblich *)
+PNZWISCHENZEIT: 3;35;E;100;00:01:31,07;
+PNERGEBNIS: 35;E;35001;3;;Winkler, Henri;425249;67;W;2015;;SC Potsdam;6541;00:03:43,50;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNZWISCHENZEIT: 67;35;E;100;00:01:34,95;
+PNERGEBNIS: 35;E;35001;4;;Weiss, Yara;204927;36;W;2015;;Potsdamer SV;6411;00:03:59,86;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNZWISCHENZEIT: 36;35;E;100;00:01:58,86;
+PNERGEBNIS: 35;E;35001;0;AB;Weiss, Julia;210006;70;W;2015;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 36;E;36009;1;;Koch, Erik;492554;62;W;2012;;SC Potsdam;6541;00:01:42,68;;;GER;;; (* Jahrgang 2012 und älter - weiblich *)
+PNERGEBNIS: 36;E;36009;2;;Schäfer, Felix;254518;73;W;2011;;SC Potsdam;6541;00:01:52,73;;;GER;;; (* Jahrgang 2012 und älter - weiblich *)
+PNERGEBNIS: 36;E;36008;1;;Bauer, Nora;187375;66;M;2013;;SC Potsdam;6541;00:02:01,01;;;;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 36;E;36007;0;DS;Winkler, Sophie;848074;80;W;2013;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:00,00;Beim Anschlag an der ersten Wende hat der Sportler nicht mit beiden Händen gleichzeitig angeschlagen.;;;;; (* Jahrgang 2013 - weiblich *)
+PNERGEBNIS: 36;E;36006;1;;Pohl, Karl;581655;8;M;2014;;SG Einheit Rathenow e.V.;4737;00:01:46,04;;;;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 36;E;36006;2;;Dietrich, David;951824;78;M;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:02:17,31;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 36;E;36005;1;;Otto, Malte;205465;2;W;2014;;SG Einheit Rathenow e.V.;4737;00:01:47,36;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 36;E;36005;2;;Walter, Zoe;623623;10;W;2014;;SG Einheit Rathenow e.V.;4737;00:01:55,83;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 36;E;36005;0;NA;Stein, Rike;709990;26;W;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 36;E;36005;0;DS;Stein, Tom;475295;77;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:00:00,00;Beim Anschlag an der ersten Wende hat der Sportler nicht mit beiden Händen gleichzeitig angeschlagen.;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 36;E;36004;1;;Pohl, Lena;471607;59;M;2015;;SC Potsdam;6541;00:01:55,41;;;GER;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 36;E;36003;1;;Kern, Leon;881242;82;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:02:00,20;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 36;E;36003;2;;Weiss, Yara;204927;36;W;2015;;Potsdamer SV;6411;00:02:26,05;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 36;E;36002;1;;Koch, Julia;955467;71;M;2016;;SC Potsdam;6541;00:02:24,27;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 36;E;36001;1;;Bauer, Paul;695839;58;W;2016;;SC Potsdam;6541;00:01:59,32;;;GER;VEN;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 36;E;36001;2;;Vogel, Ruben;384597;34;W;2016;;Potsdamer SV;6411;00:02:00,38;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 37;E;37010;1;;Otto, Felix;786922;18;M;2012;;Potsdamer SV;6411;00:01:18,12;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 37;E;37010;2;;Berger, Lena;979229;37;M;2012;;Potsdamer SV;6411;00:01:23,29;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 37;E;37010;0;NA;Berger, Oskar;481557;22;M;2011;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2012 und älter - männlich *)
+PNERGEBNIS: 37;E;37008;1;;Klein, Emma;949567;46;M;2013;;Potsdamer SV;6411;00:01:27,54;;;GER;;; (* Jahrgang 2013 - männlich *)
+PNERGEBNIS: 37;E;37006;0;NA;Hahn, Yara;595857;53;M;2014;;Potsdamer SV;6411;00:00:00,00;;;GER;;; (* Jahrgang 2014 - männlich *)
+PNERGEBNIS: 37;E;37005;1;;Stein, Anton;812299;50;W;2014;;Potsdamer SV;6411;00:01:44,61;;;GER;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 37;E;37005;2;;Peters, Nele;525693;75;W;2014;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:58,08;;;;;; (* Jahrgang 2014 - weiblich *)
+PNERGEBNIS: 37;E;37004;1;;Engel, Pia;769424;12;M;2015;;SG Einheit Rathenow e.V.;4737;00:01:26,79;;;;;; (* Jahrgang 2015 - männlich *)
+PNERGEBNIS: 37;E;37003;1;;Winkler, Alina;615926;76;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:32,44;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 37;E;37003;2;;Gross, Tilda;803438;79;W;2015;;SV Wasserfreunde Brandenburg e.V.;4750;00:01:46,70;;;;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 37;E;37003;3;;Peters, Jana;502373;81;W;2015;;Zehlendorfer TSV von 1888 e.V.;5637;00:01:51,17;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 37;E;37003;0;AB;Weiss, Julia;210006;70;W;2015;;SC Potsdam;6541;00:00:00,00;;;GER;;; (* Jahrgang 2015 - weiblich *)
+PNERGEBNIS: 37;E;37002;1;;Winkler, Henri;700229;55;M;2016;;Potsdamer SV;6411;00:01:48,05;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 37;E;37002;2;;Kramer, Vincent;122610;38;M;2016;;Potsdamer SV;6411;00:01:53,64;;;GER;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 37;E;37002;3;;Marquardt, Julia;310705;49;M;2016;;Potsdamer SV;6411;00:02:22,92;;;;;; (* Jahrgang 2016 - männlich *)
+PNERGEBNIS: 37;E;37001;1;;Herrmann, Lara;786930;57;W;2016;;Potsdamer SV;6411;00:01:50,39;;;;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 37;E;37001;2;;Bauer, Paul;695839;58;W;2016;;SC Potsdam;6541;00:01:54,32;;;GER;VEN;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 37;E;37001;3;;Bauer, Julia;692262;60;W;2016;;SC Potsdam;6541;00:01:55,36;;;GER;;; (* Jahrgang 2016 - weiblich *)
+PNERGEBNIS: 37;E;37001;4;;Vogel, Ruben;384597;34;W;2016;;Potsdamer SV;6411;00:02:00,65;;;;;; (* Jahrgang 2016 - weiblich *)
+DATEIENDE

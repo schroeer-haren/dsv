@@ -1,0 +1,104 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.34 vom 05.02.2026                       *)
+(* Registriert für: Kaltenkirchener TS von 1894 *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 25.06.2026 um 12:15 Uhr                *)
+FORMAT: Wettkampfdefinitionsliste;7;
+ERZEUGER: EasyWk;5.34;info@easywk.de;
+VERANSTALTUNG: 9. Nordisches Flutlichtmeeting 2026;Bad Bramstedt;50;HANDZEIT;
+VERANSTALTUNGSORT: Roland Oase;Am Badesteig 5;24576;Bad Bramstedt;GER;01176 338291;;;
+AUSSCHREIBUNGIMNETZ: ;
+VERANSTALTER: Kaltenkirchener TS;
+AUSRICHTER: Kaltenkirchener TS;Otto, Pia ;;;;GER;;;leon.marquardt@example.org;
+MELDEADRESSE: Kaiser, Erik;Schulstrasse 41;25486;Alveslohe;;;;leon.marquardt@example.org;
+MELDESCHLUSS: 07.09.2026;23:59;
+BANKVERBINDUNG: Sparkasse Südholstein;DE22 1234 5678 2459 2842 48;ABCDEFG1XXX;
+(* KONTOINHABER: Kaltenkirchener Turnerschaft von 1894 e.V.; *)
+ABSCHNITT: 1;19.09.2026;18:00;18:15;19:00;;
+WETTKAMPF: 1;E;1;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 2;E;1;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 3;E;1;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 4;E;1;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 5;E;1;4;50;F;GL;X;SW;;; (* 4x50m Freistil mixed *)
+WETTKAMPF: 6;E;1;4;50;L;GL;X;SW;;; (* 4x50m Lagen mixed *)
+WETTKAMPF: 7;E;1;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 8;E;1;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 9;E;1;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 10;E;1;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WERTUNG: 1;E;2001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 1;E;2002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 1;E;2003;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 1;E;2004;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 1;E;2005;JG;2011;2012;W;Jahrgangsgruppe 2012/2011;
+WERTUNG: 1;E;2006;JG;2009;2010;W;Jahrgangsgruppe 2010/2009;
+WERTUNG: 1;E;2007;JG;2007;2008;W;Jahrgangsgruppe 2008/2007;
+WERTUNG: 1;E;2008;JG;1900;2006;W;Jahrgangsgruppe 2006 und älter;
+WERTUNG: 2;E;3001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 2;E;3002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 2;E;3003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 2;E;3004;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 2;E;3005;JG;2011;2012;M;Jahrgangsgruppe 2012/2011;
+WERTUNG: 2;E;3006;JG;2009;2010;M;Jahrgangsgruppe 2010/2009;
+WERTUNG: 2;E;3007;JG;2007;2008;M;Jahrgangsgruppe 2008/2007;
+WERTUNG: 2;E;3008;JG;1900;2006;M;Jahrgangsgruppe 2006 und älter;
+WERTUNG: 3;E;4001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 3;E;4002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 3;E;4003;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 3;E;4004;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 3;E;4005;JG;2011;2012;W;Jahrgangsgruppe 2012/2011;
+WERTUNG: 3;E;4006;JG;2009;2010;W;Jahrgangsgruppe 2010/2009;
+WERTUNG: 3;E;4007;JG;2007;2008;W;Jahrgangsgruppe 2008/2007;
+WERTUNG: 3;E;4008;JG;1900;2006;W;Jahrgangsgruppe 2006 und älter;
+WERTUNG: 4;E;5001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 4;E;5002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 4;E;5003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 4;E;5004;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 4;E;5005;JG;2011;2012;M;Jahrgangsgruppe 2012/2011;
+WERTUNG: 4;E;5006;JG;2009;2010;M;Jahrgangsgruppe 2010/2009;
+WERTUNG: 4;E;5007;JG;2007;2008;M;Jahrgangsgruppe 2008/2007;
+WERTUNG: 4;E;5008;JG;1900;2006;M;Jahrgangsgruppe 2006 und älter;
+WERTUNG: 5;E;6001;JG;1900;2016;X;Offene Wertung;
+WERTUNG: 6;E;7001;JG;1900;2016;X;Offene Wertung;
+WERTUNG: 7;E;8001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 7;E;8002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 7;E;8003;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 7;E;8004;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 7;E;8005;JG;2011;2012;W;Jahrgangsgruppe 2012/2011;
+WERTUNG: 7;E;8006;JG;2009;2010;W;Jahrgangsgruppe 2010/2009;
+WERTUNG: 7;E;8007;JG;2007;2008;W;Jahrgangsgruppe 2008/2007;
+WERTUNG: 7;E;8008;JG;1900;2006;W;Jahrgangsgruppe 2006 und älter;
+WERTUNG: 8;E;9001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 8;E;9002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 8;E;9003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 8;E;9004;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 8;E;9005;JG;2011;2012;M;Jahrgangsgruppe 2012/2011;
+WERTUNG: 8;E;9006;JG;2009;2010;M;Jahrgangsgruppe 2010/2009;
+WERTUNG: 8;E;9007;JG;2007;2008;M;Jahrgangsgruppe 2008/2007;
+WERTUNG: 8;E;9008;JG;1900;2006;M;Jahrgangsgruppe 2006 und älter;
+WERTUNG: 9;E;10001;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 9;E;10002;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 9;E;10003;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 9;E;10004;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 9;E;10005;JG;2011;2012;W;Jahrgangsgruppe 2012/2011;
+WERTUNG: 9;E;10006;JG;2009;2010;W;Jahrgangsgruppe 2010/2009;
+WERTUNG: 9;E;10007;JG;2007;2008;W;Jahrgangsgruppe 2008/2007;
+WERTUNG: 9;E;10008;JG;1900;2006;W;Jahrgangsgruppe 2006 und älter;
+WERTUNG: 10;E;11001;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 10;E;11002;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 10;E;11003;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 10;E;11004;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 10;E;11005;JG;2011;2012;M;Jahrgangsgruppe 2012/2011;
+WERTUNG: 10;E;11006;JG;2009;2010;M;Jahrgangsgruppe 2010/2009;
+WERTUNG: 10;E;11007;JG;2007;2008;M;Jahrgangsgruppe 2008/2007;
+WERTUNG: 10;E;11008;JG;1900;2006;M;Jahrgangsgruppe 2006 und älter;
+MELDEGELD: Wkmeldegeld;5,50;1;
+MELDEGELD: Wkmeldegeld;5,50;2;
+MELDEGELD: Wkmeldegeld;5,50;3;
+MELDEGELD: Wkmeldegeld;5,50;4;
+MELDEGELD: Wkmeldegeld;8,00;5;
+MELDEGELD: Wkmeldegeld;8,00;6;
+MELDEGELD: Wkmeldegeld;5,50;7;
+MELDEGELD: Wkmeldegeld;5,50;8;
+MELDEGELD: Wkmeldegeld;5,50;9;
+MELDEGELD: Wkmeldegeld;5,50;10;
+DATEIENDE

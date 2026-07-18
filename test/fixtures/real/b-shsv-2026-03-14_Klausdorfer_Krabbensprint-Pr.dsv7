@@ -1,0 +1,985 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.33 vom 16.12.2025                       *)
+(* Registriert für: TSV Klausdorf *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 17.03.2026 um 19:32 Uhr                *)
+FORMAT: Wettkampfergebnisliste;7;
+ERZEUGER: EasyWk;5.33;info@easywk.de;
+VERANSTALTUNG: 2. Klausdorfer Krabben-Sprint;Klausdorf;25;HANDZEIT;
+VERANSTALTER: TSV Klausdorf;
+AUSRICHTER: TSV Klausdorf;Otto, Niklas;Buchenweg 34;24222;Schwentinental;GER;;;jost.neumann@example.org;
+ABSCHNITT: 1;14.03.2026;11:00;;
+ABSCHNITT: 2;14.03.2026;00:30;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+KAMPFGERICHT: 1;SCH;Lorenz, Oskar;TSV Klausdorf;
+KAMPFGERICHT: 1;SCH;Frank, Zoe;SV Neptun Kiel;
+KAMPFGERICHT: 1;STA;Frank, Pia;Preetzer TSV;
+KAMPFGERICHT: 1;STA;Schmitt, Nora;Preetzer TSV;
+KAMPFGERICHT: 1;AUS;Lehmann, Fiona;SV Neptun Kiel;
+KAMPFGERICHT: 1;AUS;Fischer, Yara;Bremer SC;
+KAMPFGERICHT: 1;PKF;Frank, Felix;TSV Klausdorf;
+KAMPFGERICHT: 1;SR;Winkler, Elias;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;SR;Graf, Nele;Ahrensburger TSV;
+KAMPFGERICHT: 1;ZR;Richter, Milan;TSV Klausdorf;
+KAMPFGERICHT: 1;ZR;Lehmann, Theo;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;ZR;Frank, Greta;Ahrensburger TSV;
+KAMPFGERICHT: 1;WR;Hartmann, Karl;SSV Tönningstedt;
+KAMPFGERICHT: 1;WR;Bauer, Rike;SV Wiking Kiel;
+KAMPFGERICHT: 1;WR;Hartmann, Lena;TSV Westerland;
+KAMPFGERICHT: 1;ZNO;Albers, Greta;TSV Westerland;
+KAMPFGERICHT: 1;ZN;Schmitt, Sina;Wasserfreunde Eckernförde von 1972;
+KAMPFGERICHT: 1;ZN;Jung, Greta;TSV Klausdorf;
+KAMPFGERICHT: 1;ZN;Brandt, Jana;SV Wiking Kiel;
+KAMPFGERICHT: 1;ZN;Peters, Nora;Ahrensburger TSV;
+KAMPFGERICHT: 1;ZN;Lang, Sophie;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 1;ZN;Fischer, Anton;SV Wiking Kiel;
+KAMPFGERICHT: 1;SP;Maier, Jakob;TSV Klausdorf;
+KAMPFGERICHT: 1;SP;Busch, Mats;TSV Klausdorf;
+KAMPFGERICHT: 1;ZBV;Dietrich, Nele;TSV Klausdorf;
+KAMPFGERICHT: 2;SCH;Frank, Zoe;SV Neptun Kiel;
+KAMPFGERICHT: 2;SCH;Lorenz, Oskar;TSV Klausdorf;
+KAMPFGERICHT: 2;STA;Frank, Pia;Preetzer TSV;
+KAMPFGERICHT: 2;STA;Schmitt, Nora;Preetzer TSV;
+KAMPFGERICHT: 2;AUS;Lehmann, Fiona;SV Neptun Kiel;
+KAMPFGERICHT: 2;AUS;Fischer, Yara;Bremer SC;
+KAMPFGERICHT: 2;PKF;Frank, Felix;TSV Klausdorf;
+KAMPFGERICHT: 2;SR;Kern, Erik;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;SR;Graf, Nele;Ahrensburger TSV;
+KAMPFGERICHT: 2;ZR;Richter, Milan;TSV Klausdorf;
+KAMPFGERICHT: 2;ZR;Sander, Ida;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;ZR;Frank, Greta;Ahrensburger TSV;
+KAMPFGERICHT: 2;WR;Seidel, Jost;SSV Tönningstedt;
+KAMPFGERICHT: 2;WR;Bauer, Rike;SV Wiking Kiel;
+KAMPFGERICHT: 2;WR;Hartmann, Lena;TSV Westerland;
+KAMPFGERICHT: 2;ZNO;Albers, Greta;TSV Westerland;
+KAMPFGERICHT: 2;ZN;Schmitt, Sina;Wasserfreunde Eckernförde von 1972;
+KAMPFGERICHT: 2;ZN;Jung, Greta;TSV Klausdorf;
+KAMPFGERICHT: 2;ZN;Brandt, Jana;SV Wiking Kiel;
+KAMPFGERICHT: 2;ZN;Peters, Nora;Ahrensburger TSV;
+KAMPFGERICHT: 2;ZN;Lang, Sophie;MTV von 1860 e.V. Heide;
+KAMPFGERICHT: 2;SP;Maier, Jakob;TSV Klausdorf;
+KAMPFGERICHT: 2;SP;Busch, Mats;TSV Klausdorf;
+KAMPFGERICHT: 2;ZBV;Dietrich, Nele;TSV Klausdorf;
+WETTKAMPF: 1;E;1;1;100;L;GL;W;SW;;; (* 100m Lagen weiblich *)
+WETTKAMPF: 2;E;1;1;100;L;GL;M;SW;;; (* 100m Lagen männlich *)
+WETTKAMPF: 3;E;1;1;25;S;BE;W;SW;;; (* 25m Schmetterlingsbeine in Rückenlage weiblich *)
+WETTKAMPF: 4;E;1;1;25;S;BE;M;SW;;; (* 25m Schmetterlingsbeine in Rückenlage männlich *)
+WETTKAMPF: 5;E;1;1;25;S;BE;X;KG;;; (* 25m Schmetterlingsbeine in Bauchlage mixed *)
+WETTKAMPF: 6;E;1;1;25;S;GL;W;SW;;; (* 25m Schmetterling weiblich *)
+WETTKAMPF: 7;E;1;1;25;S;GL;M;SW;;; (* 25m Schmetterling männlich *)
+WETTKAMPF: 8;E;1;1;25;B;GL;X;KG;;; (* 25m Brustlage *)
+WETTKAMPF: 9;E;1;1;25;B;GL;W;SW;;; (* 25m Brust weiblich *)
+WETTKAMPF: 10;E;1;1;25;B;GL;M;SW;;; (* 25m Brust  männlich *)
+WETTKAMPF: 11;E;1;1;25;F;GL;X;KG;;; (* 25m Kraul mixed *)
+WETTKAMPF: 12;E;1;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 13;E;1;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 14;E;1;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 15;E;1;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 16;E;1;1;100;B;GL;W;SW;;; (* 100m Brust weiblich *)
+WETTKAMPF: 17;E;1;1;100;B;GL;M;SW;;; (* 100m Brust männlich *)
+WETTKAMPF: 18;E;1;1;100;R;GL;W;SW;;; (* 100m Rücken weiblich *)
+WETTKAMPF: 19;E;1;1;100;R;GL;M;SW;;; (* 100m Rücken männlich *)
+WETTKAMPF: 20;E;1;1;25;F;BE;X;KG;;; (* 25m Kraulbeine mixed *)
+WETTKAMPF: 21;E;1;1;25;R;GL;W;SW;;; (* 25m Rücken weiblich *)
+WETTKAMPF: 22;E;1;1;25;R;GL;M;SW;;; (* 25m Rücken männlich *)
+WETTKAMPF: 23;E;1;1;25;R;GL;X;KG;;; (* 25m Rücken mixed *)
+WETTKAMPF: 24;E;1;1;25;F;GL;W;SW;;; (* 25m Freistil weiblich *)
+WETTKAMPF: 25;E;1;1;25;F;GL;M;SW;;; (* 25m Freistil männlich *)
+WETTKAMPF: 26;E;2;1;200;L;GL;W;SW;;; (* 200m Lagen weiblich *)
+WETTKAMPF: 27;E;2;1;200;L;GL;M;SW;;; (* 200m Lagen männlich *)
+WETTKAMPF: 28;E;2;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 29;E;2;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 30;E;2;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 31;E;2;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WETTKAMPF: 32;E;2;1;100;S;GL;W;SW;;; (* 100m Schmetterling weiblich *)
+WETTKAMPF: 33;E;2;1;100;S;GL;M;SW;;; (* 100m Schmetterling männlich *)
+WETTKAMPF: 34;E;2;1;100;F;GL;W;SW;;; (* 100m Freistil weiblich *)
+WETTKAMPF: 35;E;2;1;100;F;GL;M;SW;;; (* 100m Freistil männlich *)
+WERTUNG: 1;E;1003;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 1;E;1004;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 2;E;2001;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 2;E;2002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 3;E;3001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 3;E;3002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 4;E;4004;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 4;E;4005;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 5;E;5001;JG;2019;2019;X;Jahrgang 2019;
+WERTUNG: 5;E;5002;JG;2020;2020;X;Jahrgang 2020;
+WERTUNG: 5;E;5003;JG;2021;2021;X;Jahrgang 2021;
+WERTUNG: 6;E;6008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 6;E;6007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 6;E;6006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 6;E;6001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 6;E;6002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 6;E;6003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 6;E;6004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 6;E;6005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 7;E;7008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 7;E;7007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 7;E;7006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 7;E;7001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 7;E;7002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 7;E;7003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 7;E;7004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 7;E;7005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 8;E;34001;JG;2019;2019;X;Jahrgang 2019;
+WERTUNG: 8;E;34002;JG;2020;2020;X;Jahrgang 2020;
+WERTUNG: 8;E;34003;JG;2021;2021;X;Jahrgang 2021;
+WERTUNG: 8;E;34004;JG;2022;2022;X;Jahrgang 2022;
+WERTUNG: 9;E;8008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 9;E;8007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 9;E;8006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 9;E;8001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 9;E;8002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 9;E;8003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 9;E;8004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 9;E;8005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 10;E;32008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 10;E;32007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 10;E;32006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 10;E;32001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 10;E;32002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 10;E;32003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 10;E;32004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 10;E;32005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 11;E;36001;JG;2019;2019;X;Jahrgang 2019;
+WERTUNG: 11;E;36002;JG;2020;2020;X;Jahrgang 2020;
+WERTUNG: 11;E;36003;JG;2021;2021;X;Jahrgang 2021;
+WERTUNG: 11;E;36004;JG;2022;2022;X;Jahrgang 2022;
+WERTUNG: 12;E;9008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 12;E;9007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 12;E;9006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 12;E;9001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 12;E;9002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 12;E;9003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 12;E;9004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 12;E;9005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 13;E;10008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 13;E;10007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 13;E;10006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 13;E;10001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 13;E;10002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 13;E;10003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 13;E;10004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 13;E;10005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 14;E;11007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 14;E;11006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 14;E;11001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 14;E;11002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 14;E;11003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 14;E;11004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 14;E;11005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 15;E;12007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 15;E;12006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 15;E;12001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 15;E;12002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 15;E;12003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 15;E;12004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 15;E;12005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 16;E;13007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 16;E;13006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 16;E;13001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 16;E;13002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 16;E;13003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 16;E;13004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 16;E;13005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 17;E;14007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 17;E;14006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 17;E;14001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 17;E;14002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 17;E;14003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 17;E;14004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 17;E;14005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 18;E;15008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 18;E;15007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 18;E;15006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 18;E;15001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 18;E;15002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 18;E;15003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 18;E;15004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 18;E;15005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 19;E;16008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 19;E;16007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 19;E;16006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 19;E;16001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 19;E;16002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 19;E;16003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 19;E;16004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 19;E;16005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 20;E;35001;JG;2019;2019;X;Jahrgang 2019;
+WERTUNG: 20;E;35002;JG;2020;2020;X;Jahrgang 2020;
+WERTUNG: 20;E;35003;JG;2021;2021;X;Jahrgang 2021;
+WERTUNG: 21;E;18008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 21;E;18007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 21;E;18006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 21;E;18001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 21;E;18002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 21;E;18003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 21;E;18004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 21;E;18005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 22;E;19008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 22;E;19007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 22;E;19006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 22;E;19001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 22;E;19002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 22;E;19003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 22;E;19004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 22;E;19005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 23;E;17001;JG;2019;2019;X;Jahrgang 2019;
+WERTUNG: 23;E;17002;JG;2020;2020;X;Jahrgang 2020;
+WERTUNG: 23;E;17003;JG;2021;2021;X;Jahrgang 2021;
+WERTUNG: 23;E;17004;JG;2022;2022;X;Jahrgang 2022;
+WERTUNG: 24;E;20008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 24;E;20007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 24;E;20006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 24;E;20001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 24;E;20002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 24;E;20003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 24;E;20004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 24;E;20005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 25;E;21008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 25;E;21007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 25;E;21006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 25;E;21001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 25;E;21002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 25;E;21003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 25;E;21004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 25;E;21005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 26;E;23006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 26;E;23001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 26;E;23002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 26;E;23003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 26;E;23004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 26;E;23005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 27;E;24006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 27;E;24001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 27;E;24002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 27;E;24003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 27;E;24004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 27;E;24005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 28;E;25008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 28;E;25007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 28;E;25006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 28;E;25001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 28;E;25002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 28;E;25003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 28;E;25004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 28;E;25005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 29;E;26008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 29;E;26007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 29;E;26006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 29;E;26001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 29;E;26002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 29;E;26003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 29;E;26004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 29;E;26005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 30;E;27008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 30;E;27007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 30;E;27006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 30;E;27001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 30;E;27002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 30;E;27003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 30;E;27004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 30;E;27005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 31;E;28008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 31;E;28007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 31;E;28006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 31;E;28001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 31;E;28002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 31;E;28003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 31;E;28004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 31;E;28005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 32;E;29006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 32;E;29001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 32;E;29002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 32;E;29003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 32;E;29004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 32;E;29005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 33;E;30006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 33;E;30001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 33;E;30002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 33;E;30003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 33;E;30004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 33;E;30005;JG;2011;2011;M;Jahrgang 2011;
+WERTUNG: 34;E;31008;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 34;E;31007;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 34;E;31006;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 34;E;31001;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 34;E;31002;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 34;E;31003;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 34;E;31004;JG;2012;2012;W;Jahrgang 2012;
+WERTUNG: 34;E;31005;JG;2011;2011;W;Jahrgang 2011;
+WERTUNG: 35;E;33008;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 35;E;33007;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 35;E;33006;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 35;E;33001;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 35;E;33002;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 35;E;33003;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 35;E;33004;JG;2012;2012;M;Jahrgang 2012;
+WERTUNG: 35;E;33005;JG;2011;2011;M;Jahrgang 2011;
+VEREIN: Ahrensburger TSV;3447;14;GER;
+VEREIN: MTV von 1860 e.V. Heide;3472;14;GER;
+VEREIN: Preetzer TSV;3484;14;GER;
+VEREIN: SSV Tönningstedt;3504;14;GER;
+VEREIN: SV Neptun;5129;14;GER;
+VEREIN: SV Neptun Kiel;5129;14;GER;
+VEREIN: SV Wiking Kiel;3513;14;GER;
+VEREIN: TSV Klausdorf;5274;14;GER;
+VEREIN: TSV Westerland;3536;14;GER;
+VEREIN: Wasserfreunde Eckernförde von 1972;3560;14;GER;
+PNERGEBNIS: 1;E;1004;1;;Kuhn, Paul;875765;89;W;2016;;TSV Klausdorf;5274;00:01:41,01;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;1004;2;;Winkler, Karl;847228;125;W;2016;;SV Wiking Kiel;3513;00:01:55,64;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;1004;3;;Möller, Felix;222596;103;W;2016;;TSV Klausdorf;5274;00:02:08,26;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;1004;0;DS;Engel, Pia;625829;44;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Schwimmerin hat auf der Schmetterlingsteilstrecke die Arme nicht ständig über Wasser nach vorne geführt;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;1004;0;DS;Ludwig, Linus;972238;10;W;2016;;Ahrensburger TSV;3447;00:00:00,00;Die Schwimmerin hat die Rückenteilstrecke nicht in Rückenlage beendet. Kein Handanschlag;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;1004;0;AB;Winkler, Jonas;850547;59;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;1004;0;AB;Hahn, Julia;160825;64;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 1;E;1003;1;;Koch, Jana;104139;7;W;2017;;Ahrensburger TSV;3447;00:01:43,40;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;1003;2;;Engel, Niklas;589599;15;W;2017;;Ahrensburger TSV;3447;00:01:52,38;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;1003;3;;Neumann, Rike;202466;119;W;2017;;SV Wiking Kiel;3513;00:02:18,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 1;E;1003;0;DS;Fischer, Leon;229110;104;W;2017;;TSV Klausdorf;5274;00:00:00,00;Die Schwimmerin startete vor dem StartsignalDie Schwimmerin hatte auf der Schmetterlingsteilstrecke die Arme nicht über Wasser nach vorne geführt;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;2002;1;;Neumann, Julia;325448;62;M;2016;;SV Neptun Kiel;5129;00:02:06,47;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 2;E;2001;1;;Sommer, Emma;933399;83;M;2017;;TSV Klausdorf;5274;00:01:47,51;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;2001;2;;Thiele, Alina;155453;100;M;2017;;TSV Klausdorf;5274;00:02:03,22;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 2;E;2001;0;DS;Lorenz, Greta;463781;33;M;2017;;TSV Westerland;3536;00:00:00,00;Der Schwimmer hat zu Beginn der Brustteilstrecke mehr als einen Schmetterlingsbeinschlag ausgeführt. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;1;;Koch, Jana;104139;7;W;2017;;Ahrensburger TSV;3447;00:00:28,80;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;2;;Engel, Niklas;589599;15;W;2017;;Ahrensburger TSV;3447;00:00:31,75;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;3;;Pohl, Luis;261052;113;W;2017;;SV Wiking Kiel;3513;00:00:34,16;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;4;;Vogel, Elias;690381;56;W;2017;;MTV von 1860 e.V. Heide;3472;00:00:38,35;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;5;;Voigt, Anton;582811;81;W;2017;;TSV Klausdorf;5274;00:00:40,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;6;;Engel, Vincent;934403;129;W;2017;;SV Wiking Kiel;3513;00:00:41,50;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;7;;Brandt, Julia;112762;53;W;2017;;MTV von 1860 e.V. Heide;3472;00:00:49,69;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;8;;Neumann, David;616411;124;W;2017;;SV Wiking Kiel;3513;00:00:55,35;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3002;0;DS;Seidel, Leon;689726;24;W;2017;;TSV Westerland;3536;00:00:00,00;Die Schwimmerin hat sich an der Leine nach vorne gezogen.Die Schwimmerin hat Wechselbeinschläge durchgeführt;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 3;E;3001;1;;Schäfer, Vincent;256215;23;W;2018;;TSV Westerland;3536;00:00:35,94;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;2;;Kern, Leon;285484;63;W;2018;;SV Neptun Kiel;5129;00:00:38,22;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;3;;Marquardt, Nora;750907;82;W;2018;;TSV Klausdorf;5274;00:00:40,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;4;;Lehmann, Paul;667368;80;W;2018;;TSV Klausdorf;5274;00:00:42,57;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;5;;Gross, Jakob;651669;29;W;2018;;TSV Westerland;3536;00:00:43,14;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;6;;Weiss, Lara;277111;120;W;2018;;SV Wiking Kiel;3513;00:00:53,25;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;7;;Maier, Zoe;528374;95;W;2018;;TSV Klausdorf;5274;00:01:03,58;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;8;;Kramer, Karl;438136;28;W;2018;;TSV Westerland;3536;00:01:05,40;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;0;DS;Albers, Zoe;948612;31;W;2018;;TSV Westerland;3536;00:00:00,00;Die Schwimmerin hat entgegen der Sonderbestimmung die Hände nicht oben am Brett gehalten;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3001;0;AB;Voigt, Jana;802294;86;W;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;1;;Thiele, Alina;155453;100;M;2017;;TSV Klausdorf;5274;00:00:41,75;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;4005;2;;Lang, Karl;121906;55;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:42,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;4005;3;;Winkler, Pia;800406;26;M;2017;;TSV Westerland;3536;00:00:44,06;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;4005;4;;Lang, Clara;656065;57;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:48,77;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 4;E;4004;1;;Bauer, Maja;628175;46;M;2018;;MTV von 1860 e.V. Heide;3472;00:00:50,05;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4004;2;;Thiele, Clara;978669;91;M;2018;;TSV Klausdorf;5274;00:01:08,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4004;0;AB;Dietrich, Paul;479913;84;M;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5001;1;;Bauer, Leon;256215;22;M;2019;;TSV Westerland;3536;00:00:31,12;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5001;2;;Ulrich, Maja;256215;35;W;2019;;TSV Westerland;3536;00:00:40,16;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5001;3;;Albers, Mats;256215;60;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:51,05;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5001;4;;Jung, Ben;256215;41;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:51,96;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5001;5;;Herrmann, Paul;256215;107;W;2019;;TSV Klausdorf;5274;00:00:58,13;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5001;0;DS;Schäfer, Milan;256215;30;M;2019;;TSV Westerland;3536;00:00:00,00;Der Schwimmer hat entgegen der Sonderbestimmung Wechselbeinschläge durchgeführt.;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;6005;1;;Berger, Greta;831775;93;W;2011;;TSV Klausdorf;5274;00:00:16,80;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 6;E;6005;0;AB;Ziegler, Carla;626517;88;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 6;E;6004;1;;Schröder, Lena;964957;130;W;2012;;SV Wiking Kiel;3513;00:00:17,42;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 6;E;6004;2;;Busch, Oskar;761838;70;W;2012;;SSV Tönningstedt;3504;00:00:18,70;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 6;E;6003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:16,22;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 6;E;6003;2;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:18,35;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 6;E;6002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:16,94;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 6;E;6002;2;;Koch, Hannah;793664;47;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:23,66;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 6;E;6002;3;;Möller, Henri;366540;54;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:24,85;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 6;E;6002;4;;Busch, Mats;421387;74;W;2014;;SSV Tönningstedt;3504;00:00:27,94;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 6;E;6001;1;;Schäfer, Lena;317025;18;W;2015;;Ahrensburger TSV;3447;00:00:25,19;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 6;E;6001;2;;Richter, Felix;256215;32;W;2015;;TSV Westerland;3536;00:00:26,88;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 6;E;6001;3;;Bauer, Anton;684036;69;W;2015;;SSV Tönningstedt;3504;00:00:28,15;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 6;E;6001;4;;Kramer, Alina;921695;38;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:29,55;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 6;E;6006;0;DS;Albers, Karl;871649;122;W;2016;;SV Wiking Kiel;3513;00:00:00,00;Die Schwimmerin hat beim Zielanschlag nur mit einer Hand angeschlagen.Die Schwimmerin hat die Arme nicht ständig überwasser nach vorne geführt.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 6;E;6008;1;;Kern, Leon;285484;63;W;2018;;SV Neptun Kiel;5129;00:00:33,91;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7002;1;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:00:18,10;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;7002;1;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:00:18,10;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 7;E;7001;0;AB;Sommer, Milan;444287;42;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 7;E;7006;1;;Marquardt, Theo;733955;36;M;2016;;Preetzer TSV;3484;00:00:24,73;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;7006;0;DS;Engel, Pia;960086;79;M;2016;;SV Neptun;5129;00:00:00,00;Der Schwimmer hat auf der Schmetterlingslingstrecke die Arme nicht ständig über Wasser nach vorne gebracht. ;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;7006;0;DS;Otto, Henri;752209;76;M;2016;;SSV Tönningstedt;3504;00:00:00,00;Der Schwimmer hat auf der Schmetterlingslingstrecke die Arme nicht ständig über Wasser nach vorne gebracht. ;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;7006;0;DS;Berger, Clara;386071;78;M;2016;;SV Neptun;5129;00:00:00,00;Der Schwimmer hat auf der Schmetterlingslingstrecke die Arme nicht ständig über Wasser nach vorne gebracht. ;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 7;E;7007;1;;Sommer, Emma;933399;83;M;2017;;TSV Klausdorf;5274;00:00:23,65;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 7;E;7007;2;;Thiele, Alina;155453;100;M;2017;;TSV Klausdorf;5274;00:00:26,92;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 8;E;34001;1;;Albers, Mats;256215;60;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:37,93;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;34001;2;;Ulrich, Maja;256215;35;W;2019;;TSV Westerland;3536;00:00:38,75;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;34001;3;;Jung, Ben;256215;41;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:41,53;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;34001;4;;Schmitt, Lara;256215;87;M;2019;;TSV Klausdorf;5274;00:00:42,68;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;34001;0;DS;Bauer, Leon;256215;22;M;2019;;TSV Westerland;3536;00:00:00,00;Der Schwimmer hat nach jedem Brustbeinschlag einen Schmetterlingsbeinschlag ausgeführt. ;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;34001;0;DS;Herrmann, Paul;256215;107;W;2019;;TSV Klausdorf;5274;00:00:00,00;Der Schwimmer hat  nur mit einer Hand angeschlagen.;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;34001;0;DS;Schäfer, Milan;256215;30;M;2019;;TSV Westerland;3536;00:00:00,00;Der Schwimmer hat nicht mit beiden Händen angeschlagen: Der Schwimmer hat auf der Strecke mehrere Tauchzüge gemacht.;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;34002;1;;Maier, Jakob;256215;123;M;2020;;SV Wiking Kiel;3513;00:00:32,52;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 8;E;34002;2;;Keller, Luis;256215;61;W;2020;;MTV von 1860 e.V. Heide;3472;00:00:39,45;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 9;E;8005;1;;Kuhn, Paul;801784;102;W;2011;;TSV Klausdorf;5274;00:00:18,25;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 9;E;8003;1;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:20,11;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;8003;2;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:21,45;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;8003;3;;Keller, Alina;709719;118;W;2013;;SV Wiking Kiel;3513;00:00:21,63;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;8003;4;;Ludwig, Linus;126684;52;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:22,42;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;8003;5;;Herrmann, Maja;987350;58;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:22,56;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;8003;0;DS;Schmitt, Yara;893724;2;W;2013;;Wasserfreunde Eckernförde von 1972;3560;00:00:00,00;Die Schwimmerin hat nach dem Start drei Armzüge unter Wasser gemacht;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 9;E;8002;1;;Engel, Henri;394535;98;W;2014;;TSV Klausdorf;5274;00:00:19,32;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;8002;2;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:19,75;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;8002;3;;Möller, Felix;396057;109;W;2014;;TSV Klausdorf;5274;00:00:21,60;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;8002;4;;Marquardt, Mia;790782;68;W;2014;;SSV Tönningstedt;3504;00:00:24,51;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;8002;5;;Winkler, Mats;576923;67;W;2014;;SSV Tönningstedt;3504;00:00:26,95;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 9;E;8001;1;;Peters, Paul;730381;101;W;2015;;TSV Klausdorf;5274;00:00:19,75;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;8001;2;;Graf, Theo;882922;12;W;2015;;Ahrensburger TSV;3447;00:00:22,26;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;8001;3;;Schäfer, Lena;317025;18;W;2015;;Ahrensburger TSV;3447;00:00:25,10;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;8001;4;;Schmitt, Sina;729947;92;W;2015;;TSV Klausdorf;5274;00:00:25,89;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;8001;5;;Frank, Malte;503844;13;W;2015;;Ahrensburger TSV;3447;00:00:30,34;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 9;E;8006;1;;Kuhn, Paul;875765;89;W;2016;;TSV Klausdorf;5274;00:00:21,71;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;2;;Engel, Pia;625829;44;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:22,89;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;3;;Möller, Felix;222596;103;W;2016;;TSV Klausdorf;5274;00:00:25,50;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;4;;Ludwig, Rike;256215;66;W;2016;;SSV Tönningstedt;3504;00:00:28,29;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;5;;Dietrich, Fiona;529229;116;W;2016;;SV Wiking Kiel;3513;00:00:28,68;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;6;;Maier, Pia;743430;132;W;2016;;TSV Klausdorf;5274;00:00:29,06;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;7;;Fischer, Anton;333339;39;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:36,31;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;0;DS;Sommer, Zoe;287700;6;W;2016;;Ahrensburger TSV;3447;00:00:00,00;Die Schwimmerin startete mit einem Krauelarmzug nach dem Auftauchen.Die Schwimmerin hat nur mit einer Hand angeschlagen;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8006;0;AB;Kern, Jana;256215;77;W;2016;;SSV Tönningstedt;3504;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 9;E;8007;1;;Engel, Niklas;589599;15;W;2017;;Ahrensburger TSV;3447;00:00:25,50;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8007;2;;Kern, Marie;868064;97;W;2017;;TSV Klausdorf;5274;00:00:26,90;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8007;3;;Neumann, Rike;202466;119;W;2017;;SV Wiking Kiel;3513;00:00:28,68;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8007;4;;Voigt, Anton;582811;81;W;2017;;TSV Klausdorf;5274;00:00:29,95;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8007;5;;Sommer, Henri;333233;73;W;2017;;SSV Tönningstedt;3504;00:00:30,11;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8007;6;;Albers, Tilda;596372;112;W;2017;;SV Wiking Kiel;3513;00:00:31,45;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8007;7;;Brandt, Julia;112762;53;W;2017;;MTV von 1860 e.V. Heide;3472;00:00:36,77;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8007;8;;Schmitt, Mia;480009;134;W;2017;;SSV Tönningstedt;3504;00:00:37,58;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 9;E;8008;1;;Lehmann, Paul;667368;80;W;2018;;TSV Klausdorf;5274;00:00:31,09;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;8008;2;;Marquardt, Nora;750907;82;W;2018;;TSV Klausdorf;5274;00:00:31,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;8008;3;;Maier, Zoe;528374;95;W;2018;;TSV Klausdorf;5274;00:00:31,36;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;8008;4;;Kramer, Karl;438136;28;W;2018;;TSV Westerland;3536;00:00:38,29;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 9;E;8008;0;AB;Voigt, Jana;802294;86;W;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 10;E;32004;0;DS;Lang, Mats;217361;5;M;2012;;Ahrensburger TSV;3447;00:00:00,00;Der Schwimmer startete vor derm Startsignal.;;;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 10;E;32002;1;;Maier, Ruben;162707;9;M;2014;;Ahrensburger TSV;3447;00:00:22,60;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;32002;2;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:00:22,95;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;32001;1;;Pohl, Niklas;521342;50;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:20,74;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;32001;2;;Vogel, Karl;308876;72;M;2015;;SSV Tönningstedt;3504;00:00:28,39;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;32001;3;;Albers, Alina;346006;128;M;2015;;SV Wiking Kiel;3513;00:00:28,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;32006;1;;Seidel, Paul;174590;75;M;2016;;SSV Tönningstedt;3504;00:00:24,87;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;32006;2;;Otto, Henri;752209;76;M;2016;;SSV Tönningstedt;3504;00:00:29,03;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;32006;3;;Bauer, Linus;256215;34;M;2016;;TSV Westerland;3536;00:00:35,48;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;32007;1;;Sommer, Emma;933399;83;M;2017;;TSV Klausdorf;5274;00:00:23,71;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;32007;2;;Schmitt, Marie;394687;126;M;2017;;SV Wiking Kiel;3513;00:00:32,78;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;32008;0;DS;Thiele, Clara;978669;91;M;2018;;TSV Klausdorf;5274;00:00:00,00;Der Schwimmer hat auf der Schwimmstrecke bei der Rückwärtsbewegung der Beine den linken Fuß nicht nach außen gedreht.  ;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 10;E;32008;0;AB;Dietrich, Paul;479913;84;M;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 11;E;36001;1;;Ulrich, Maja;256215;35;W;2019;;TSV Westerland;3536;00:00:33,93;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 11;E;36001;2;;Albers, Mats;256215;60;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:37,20;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 11;E;36001;3;;Bauer, Leon;256215;22;M;2019;;TSV Westerland;3536;00:00:39,01;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 11;E;36001;4;;Herrmann, Paul;256215;107;W;2019;;TSV Klausdorf;5274;00:00:41,19;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 11;E;36001;5;;Jung, Ben;256215;41;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:41,57;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 11;E;36001;6;;Schäfer, Milan;256215;30;M;2019;;TSV Westerland;3536;00:00:41,64;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 11;E;36002;1;;Keller, Luis;256215;61;W;2020;;MTV von 1860 e.V. Heide;3472;00:00:52,06;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 12;E;9005;1;;Klein, Felix;146084;96;W;2011;;TSV Klausdorf;5274;00:00:38,13;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 12;E;9004;1;;Busch, Oskar;761838;70;W;2012;;SSV Tönningstedt;3504;00:00:45,16;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 12;E;9003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:37,04;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 12;E;9003;2;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:42,71;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 12;E;9003;3;;Herrmann, Maja;987350;58;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:46,18;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 12;E;9003;4;;Ludwig, Linus;126684;52;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:53,36;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 12;E;9002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:40,96;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;9002;2;;Möller, Felix;634113;85;W;2014;;TSV Klausdorf;5274;00:00:42,71;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;9002;3;;Hahn, Marie;502943;21;W;2014;;TSV Westerland;3536;00:00:47,23;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;9002;4;;Busch, Niklas;494123;43;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:50,14;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;9002;5;;Busch, Mats;421387;74;W;2014;;SSV Tönningstedt;3504;00:00:52,47;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;9002;6;;Koch, Hannah;793664;47;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:52,70;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;9001;1;;Lang, Vincent;650701;16;W;2015;;Ahrensburger TSV;3447;00:00:43,04;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;2;;Ziegler, Maja;440822;127;W;2015;;SV Wiking Kiel;3513;00:00:43,49;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;3;;Graf, Theo;882922;12;W;2015;;Ahrensburger TSV;3447;00:00:45,18;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;4;;Richter, Mats;208911;40;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:48,33;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;5;;Kaiser, Tom;800215;94;W;2015;;TSV Klausdorf;5274;00:00:49,56;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;6;;Winkler, Milan;616006;37;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:50,01;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;7;;Frank, Malte;503844;13;W;2015;;Ahrensburger TSV;3447;00:00:56,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;8;;Bauer, Anton;684036;69;W;2015;;SSV Tönningstedt;3504;00:00:58,60;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9001;9;;Richter, Felix;256215;32;W;2015;;TSV Westerland;3536;00:01:00,23;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;9006;1;;Sommer, Zoe;287700;6;W;2016;;Ahrensburger TSV;3447;00:00:49,57;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9006;2;;Ludwig, Linus;972238;10;W;2016;;Ahrensburger TSV;3447;00:00:51,67;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9006;3;;Frank, Clara;582952;25;W;2016;;TSV Westerland;3536;00:00:52,29;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9006;4;;Winkler, Karl;847228;125;W;2016;;SV Wiking Kiel;3513;00:00:53,30;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9006;5;;Maier, Pia;743430;132;W;2016;;TSV Klausdorf;5274;00:01:03,78;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9006;6;;Albers, Karl;871649;122;W;2016;;SV Wiking Kiel;3513;00:01:06,30;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9006;7;;Fischer, Anton;333339;39;W;2016;;MTV von 1860 e.V. Heide;3472;00:01:10,74;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9006;0;AB;Winkler, Jonas;850547;59;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;9007;1;;Bauer, Hannah;264920;117;W;2017;;SV Wiking Kiel;3513;00:00:53,30;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;2;;Pohl, Luis;261052;113;W;2017;;SV Wiking Kiel;3513;00:00:59,08;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;3;;Weiss, Emilia;256812;48;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:00,31;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;4;;Möller, Emma;802390;133;W;2017;;SSV Tönningstedt;3504;00:01:05,63;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;5;;Vogel, Elias;690381;56;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:06,35;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;6;;Neumann, David;616411;124;W;2017;;SV Wiking Kiel;3513;00:01:06,66;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;7;;Voigt, Anton;582811;81;W;2017;;TSV Klausdorf;5274;00:01:10,88;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;8;;Brandt, Julia;112762;53;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:11,44;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;9;;Seidel, Leon;689726;24;W;2017;;TSV Westerland;3536;00:01:34,28;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9007;0;DS;Engel, Vincent;934403;129;W;2017;;SV Wiking Kiel;3513;00:00:00,00;Der Schwimmer hat bei der Wende die Wand nicht berührt. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;9008;1;;Gross, Jakob;651669;29;W;2018;;TSV Westerland;3536;00:01:08,24;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;9008;2;;Thiele, Luis;222138;51;W;2018;;MTV von 1860 e.V. Heide;3472;00:01:10,42;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;9008;3;;Weiss, Lara;277111;120;W;2018;;SV Wiking Kiel;3513;00:01:15,84;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;9008;4;;Schäfer, Vincent;256215;23;W;2018;;TSV Westerland;3536;00:01:17,43;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;9008;5;;Kern, Erik;799757;49;W;2018;;MTV von 1860 e.V. Heide;3472;00:01:20,91;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 12;E;9008;6;;Kramer, Karl;438136;28;W;2018;;TSV Westerland;3536;00:01:44,79;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;10005;1;;Jung, Greta;610487;71;M;2011;;SSV Tönningstedt;3504;00:00:39,21;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 13;E;10004;1;;Sander, Hannah;486103;1;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:00:38,75;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 13;E;10004;2;;Hahn, Sina;166661;3;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:00:43,11;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 13;E;10004;3;;Lang, Mats;217361;5;M;2012;;Ahrensburger TSV;3447;00:00:47,33;;;;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 13;E;10004;4;;Ulrich, Yara;883781;45;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:47,47;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 13;E;10003;1;;Seidel, Ida;759438;4;M;2013;;Wasserfreunde Eckernförde von 1972;3560;00:00:47,47;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 13;E;10002;1;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:00:40,15;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;10002;2;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:00:43,11;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;10001;1;;Albers, Alina;346006;128;M;2015;;SV Wiking Kiel;3513;00:01:05,81;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 13;E;10001;0;AB;Sommer, Milan;444287;42;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 13;E;10006;1;;Pohl, Luis;475386;27;M;2016;;TSV Westerland;3536;00:00:49,66;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;2;;Neumann, Julia;325448;62;M;2016;;SV Neptun Kiel;5129;00:00:52,56;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;3;;Marquardt, Theo;733955;36;M;2016;;Preetzer TSV;3484;00:00:55,16;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;4;;Frank, Jakob;985896;121;M;2016;;SV Wiking Kiel;3513;00:00:58,51;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;5;;Engel, Pia;960086;79;M;2016;;SV Neptun;5129;00:00:58,72;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;6;;Reuter, Nora;296948;20;M;2016;;Ahrensburger TSV;3447;00:01:01,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;7;;Berger, Clara;386071;78;M;2016;;SV Neptun;5129;00:01:15,32;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;8;;Bauer, Linus;256215;34;M;2016;;TSV Westerland;3536;00:01:19,71;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;0;DS;Seidel, Paul;174590;75;M;2016;;SSV Tönningstedt;3504;00:00:00,00;Der Schwimmer hat bei der 25m Wende nach Verlassen der Rückenlage und Beendigung des letzten Armzuges die Wende nicht unverzüglich eingeleitet;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;0;DS;Otto, Henri;752209;76;M;2016;;SSV Tönningstedt;3504;00:00:00,00;Der Schwimmer hat die Wende in Brustlage verlassen;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10006;0;AB;Hartmann, Ben;327573;90;M;2016;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;10007;1;;Lorenz, Greta;463781;33;M;2017;;TSV Westerland;3536;00:00:50,41;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;10007;2;;Lang, Karl;121906;55;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:58,13;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;10007;3;;Winkler, Pia;800406;26;M;2017;;TSV Westerland;3536;00:00:58,37;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;10007;4;;Lang, Clara;656065;57;M;2017;;MTV von 1860 e.V. Heide;3472;00:01:01,87;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;10008;1;;Bauer, Maja;628175;46;M;2018;;MTV von 1860 e.V. Heide;3472;00:01:05,45;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 13;E;10008;2;;Ludwig, Erik;494915;111;M;2018;;SV Wiking Kiel;3513;00:01:10,30;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 14;E;11005;1;;Berger, Greta;831775;93;W;2011;;TSV Klausdorf;5274;00:00:40,49;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 14;E;11005;0;AB;Ziegler, Carla;626517;88;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 14;E;11004;1;;Schröder, Lena;964957;130;W;2012;;SV Wiking Kiel;3513;00:00:38,55;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 14;E;11003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:37,19;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 14;E;11003;2;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:42,79;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 14;E;11002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:39,31;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;11002;2;;Hahn, Marie;502943;21;W;2014;;TSV Westerland;3536;00:00:46,94;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;11001;1;;Lang, Vincent;650701;16;W;2015;;Ahrensburger TSV;3447;00:00:51,51;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;11006;1;;Frank, Clara;582952;25;W;2016;;TSV Westerland;3536;00:00:51,34;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;12005;1;;Jung, Greta;610487;71;M;2011;;SSV Tönningstedt;3504;00:00:41,94;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 15;E;12002;1;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:00:42,51;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;12006;1;;Pohl, Luis;475386;27;M;2016;;TSV Westerland;3536;00:00:59,71;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;12007;1;;Lorenz, Greta;463781;33;M;2017;;TSV Westerland;3536;00:00:51,12;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;13005;1;;Kuhn, Paul;801784;102;W;2011;;TSV Klausdorf;5274;00:01:28,87;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 16;E;13004;0;DS;Busch, Oskar;761838;70;W;2012;;SSV Tönningstedt;3504;00:00:00,00;Die Schwimmerin hat in der Rückwärtsbewegung der Beine den Fuß (links) nicht nach außen gedreht. ;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 16;E;13003;1;;Keller, Alina;709719;118;W;2013;;SV Wiking Kiel;3513;00:01:42,88;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 16;E;13003;2;;Ludwig, Linus;126684;52;W;2013;;MTV von 1860 e.V. Heide;3472;00:01:53,22;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 16;E;13002;1;;Engel, Henri;394535;98;W;2014;;TSV Klausdorf;5274;00:01:34,24;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;13002;2;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:01:34,56;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;13002;3;;Möller, Felix;396057;109;W;2014;;TSV Klausdorf;5274;00:01:46,86;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;13002;4;;Möller, Henri;366540;54;W;2014;;MTV von 1860 e.V. Heide;3472;00:01:48,55;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;13002;5;;Koch, Hannah;793664;47;W;2014;;MTV von 1860 e.V. Heide;3472;00:01:53,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;13002;0;DS;Hahn, Marie;502943;21;W;2014;;TSV Westerland;3536;00:00:00,00;Die Schwimmerin startete vor dem Startsignal.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;13001;1;;Peters, Paul;730381;101;W;2015;;TSV Klausdorf;5274;00:01:39,78;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;13001;2;;Graf, Theo;882922;12;W;2015;;Ahrensburger TSV;3447;00:01:47,91;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;13001;3;;Kramer, Alina;921695;38;W;2015;;MTV von 1860 e.V. Heide;3472;00:02:01,15;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;13001;4;;Schmitt, Sina;729947;92;W;2015;;TSV Klausdorf;5274;00:02:03,98;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;13001;0;DS;Richter, Felix;256215;32;W;2015;;TSV Westerland;3536;00:00:00,00;Die Schwimmerin machte bei der 25m- und der 75m-Wende eine Rollwende ohne anzuschlagen.Die Schwimmerin hat bei der 50m Wende nicht mit beiden Händen angeschlagen. ;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;13006;1;;Kuhn, Paul;875765;89;W;2016;;TSV Klausdorf;5274;00:01:44,40;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;13006;2;;Frank, Clara;582952;25;W;2016;;TSV Westerland;3536;00:02:04,47;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;13006;3;;Möller, Felix;222596;103;W;2016;;TSV Klausdorf;5274;00:02:09,99;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;13006;4;;Dietrich, Fiona;529229;116;W;2016;;SV Wiking Kiel;3513;00:02:24,29;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;13006;0;DS;Engel, Pia;625829;44;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Schwimmerin startete vor dem Startsignal;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;13007;1;;Koch, Jana;104139;7;W;2017;;Ahrensburger TSV;3447;00:01:52,31;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;13007;2;;Engel, Niklas;589599;15;W;2017;;Ahrensburger TSV;3447;00:02:04,63;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;13007;3;;Neumann, Rike;202466;119;W;2017;;SV Wiking Kiel;3513;00:02:15,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;13007;4;;Marquardt, Lara;273991;115;W;2017;;SV Wiking Kiel;3513;00:02:23,32;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;13007;5;;Seidel, Leon;689726;24;W;2017;;TSV Westerland;3536;00:02:55,39;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;13007;0;DS;Albers, Tilda;596372;112;W;2017;;SV Wiking Kiel;3513;00:00:00,00;Die Schwimmerin hat nach 50m-Wende einen Kraularmzug durchgeführt. ;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;14002;1;;Maier, Ruben;162707;9;M;2014;;Ahrensburger TSV;3447;00:01:53,72;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;14001;1;;Pohl, Niklas;521342;50;M;2015;;MTV von 1860 e.V. Heide;3472;00:01:45,35;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;14006;1;;Pohl, Luis;475386;27;M;2016;;TSV Westerland;3536;00:02:02,82;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;14006;2;;Frank, Jakob;985896;121;M;2016;;SV Wiking Kiel;3513;00:02:14,29;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;14006;0;DS;Reuter, Nora;296948;20;M;2016;;Ahrensburger TSV;3447;00:00:00,00;Der Schwimmer hat in der Rückwärtsbewegung der Beine den rechten Fuß nicht nach außen gestellt;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;14007;1;;Sommer, Emma;933399;83;M;2017;;TSV Klausdorf;5274;00:01:56,57;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;14007;2;;Lorenz, Greta;463781;33;M;2017;;TSV Westerland;3536;00:02:04,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;14007;3;;Schmitt, Marie;394687;126;M;2017;;SV Wiking Kiel;3513;00:02:27,68;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 18;E;15005;1;;Klein, Felix;146084;96;W;2011;;TSV Klausdorf;5274;00:01:23,19;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 18;E;15002;1;;Möller, Felix;634113;85;W;2014;;TSV Klausdorf;5274;00:01:30,07;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 18;E;15002;2;;Hahn, Marie;502943;21;W;2014;;TSV Westerland;3536;00:01:46,84;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 18;E;15002;3;;Ludwig, Maja;143877;114;W;2014;;SV Wiking Kiel;3513;00:02:03,54;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 18;E;15002;0;DS;Möller, Henri;366540;54;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Schwimmerin hat bei der 50m Wende beim Verlassen der Rückenlage und nach Beendigung des letzten Armzug die Wende nicht unverzüglich eingeleitet;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 18;E;15001;1;;Richter, Mats;208911;40;W;2015;;MTV von 1860 e.V. Heide;3472;00:01:45,89;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 18;E;15001;2;;Kaiser, Tom;800215;94;W;2015;;TSV Klausdorf;5274;00:01:50,36;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 18;E;15006;1;;Ludwig, Linus;972238;10;W;2016;;Ahrensburger TSV;3447;00:01:50,53;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;15006;2;;Winkler, Karl;847228;125;W;2016;;SV Wiking Kiel;3513;00:01:52,36;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;15006;3;;Frank, Clara;582952;25;W;2016;;TSV Westerland;3536;00:02:00,70;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;15007;1;;Engel, Niklas;589599;15;W;2017;;Ahrensburger TSV;3447;00:02:08,14;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 18;E;15007;2;;Weiss, Emilia;256812;48;W;2017;;MTV von 1860 e.V. Heide;3472;00:02:20,48;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 18;E;15007;3;;Vogel, Elias;690381;56;W;2017;;MTV von 1860 e.V. Heide;3472;00:02:26,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 19;E;16004;1;;Hahn, Sina;166661;3;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:01:40,08;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 19;E;16003;0;DS;Seidel, Ida;759438;4;M;2013;;Wasserfreunde Eckernförde von 1972;3560;00:00:00,00;Der Schwimmer startete vor dem Startsignal;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 19;E;16002;1;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:01:28,11;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;16006;1;;Neumann, Julia;325448;62;M;2016;;SV Neptun Kiel;5129;00:01:48,06;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;16006;2;;Pohl, Luis;475386;27;M;2016;;TSV Westerland;3536;00:01:50,69;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;16006;3;;Reuter, Nora;296948;20;M;2016;;Ahrensburger TSV;3447;00:02:06,84;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;16007;1;;Lorenz, Greta;463781;33;M;2017;;TSV Westerland;3536;00:01:47,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 19;E;16007;2;;Lang, Clara;656065;57;M;2017;;MTV von 1860 e.V. Heide;3472;00:02:10,75;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 19;E;16007;3;;Winkler, Pia;800406;26;M;2017;;TSV Westerland;3536;00:02:13,49;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;35001;1;;Ulrich, Maja;256215;35;W;2019;;TSV Westerland;3536;00:00:35,76;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 20;E;35001;2;;Herrmann, Paul;256215;107;W;2019;;TSV Klausdorf;5274;00:00:36,09;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 20;E;35001;3;;Jung, Ben;256215;41;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:44,07;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 20;E;35001;4;;Albers, Mats;256215;60;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:45,25;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 20;E;35001;5;;Schmitt, Lara;256215;87;M;2019;;TSV Klausdorf;5274;00:01:08,15;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 20;E;35001;0;DS;Bauer, Leon;256215;22;M;2019;;TSV Westerland;3536;00:00:00,00;Entgegen der Sonderbestimmung hat der Schwimmer das Brett an der Seite festgehalten;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 20;E;35001;0;DS;Schäfer, Milan;256215;30;M;2019;;TSV Westerland;3536;00:00:00,00;Der Schwimmer hat beim Anschlag entgegen der Sonderbestimmung nicht beide Hände am Brett gehabt;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 20;E;35002;1;;Busch, Lina;256215;131;M;2020;;TSV Klausdorf;5274;00:00:49,43;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 20;E;35002;0;DS;Keller, Luis;256215;61;W;2020;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Schwimmerin hat entgegen der Sonderbestimmung beim Zielanschlag nicht beide Hände am Brett gehabt;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 21;E;18005;1;;Klein, Felix;146084;96;W;2011;;TSV Klausdorf;5274;00:00:18,06;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 21;E;18003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:17,62;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 21;E;18003;2;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:18,83;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 21;E;18002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:20,08;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;18002;2;;Möller, Felix;634113;85;W;2014;;TSV Klausdorf;5274;00:00:20,30;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;18002;3;;Busch, Mats;421387;74;W;2014;;SSV Tönningstedt;3504;00:00:22,69;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;18002;4;;Marquardt, Mia;790782;68;W;2014;;SSV Tönningstedt;3504;00:00:25,02;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;18001;1;;Kaiser, Tom;800215;94;W;2015;;TSV Klausdorf;5274;00:00:22,35;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;18001;2;;Richter, Mats;208911;40;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:23,14;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;18001;3;;Bauer, Anton;684036;69;W;2015;;SSV Tönningstedt;3504;00:00:24,29;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;18001;4;;Frank, Malte;503844;13;W;2015;;Ahrensburger TSV;3447;00:00:25,02;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;18001;5;;Schäfer, Lena;317025;18;W;2015;;Ahrensburger TSV;3447;00:00:26,20;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;18006;1;;Ludwig, Linus;972238;10;W;2016;;Ahrensburger TSV;3447;00:00:23,14;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;18006;2;;Winkler, Karl;847228;125;W;2016;;SV Wiking Kiel;3513;00:00:24,85;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;18006;3;;Kern, Jana;256215;77;W;2016;;SSV Tönningstedt;3504;00:00:27,63;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;18006;4;;Fischer, Anton;333339;39;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:31,97;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;18006;5;;Ludwig, Rike;256215;66;W;2016;;SSV Tönningstedt;3504;00:00:38,09;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;18006;0;DS;Sommer, Zoe;287700;6;W;2016;;Ahrensburger TSV;3447;00:00:00,00;Die Schwimmerin hat die Strecke in Bauchlage beendet;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;18007;1;;Möller, Emma;802390;133;W;2017;;SSV Tönningstedt;3504;00:00:24,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;18007;2;;Pohl, Luis;261052;113;W;2017;;SV Wiking Kiel;3513;00:00:26,61;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;18007;3;;Sommer, Jonas;297835;65;W;2017;;SSV Tönningstedt;3504;00:00:31,21;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;18007;4;;Kern, Marie;868064;97;W;2017;;TSV Klausdorf;5274;00:00:32,06;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;18007;5;;Albers, Tilda;596372;112;W;2017;;SV Wiking Kiel;3513;00:00:34,21;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;18007;6;;Sommer, Henri;333233;73;W;2017;;SSV Tönningstedt;3504;00:00:35,25;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;18007;7;;Schmitt, Mia;480009;134;W;2017;;SSV Tönningstedt;3504;00:00:37,07;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;18008;1;;Marquardt, Nora;750907;82;W;2018;;TSV Klausdorf;5274;00:00:28,11;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;2;;Lehmann, Paul;667368;80;W;2018;;TSV Klausdorf;5274;00:00:30,78;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;3;;Gross, Jakob;651669;29;W;2018;;TSV Westerland;3536;00:00:31,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;4;;Maier, Zoe;528374;95;W;2018;;TSV Klausdorf;5274;00:00:31,93;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;5;;Thiele, Luis;222138;51;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:33,22;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;6;;Schäfer, Vincent;256215;23;W;2018;;TSV Westerland;3536;00:00:36,28;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;7;;Kern, Erik;799757;49;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:40,52;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;8;;Kramer, Karl;438136;28;W;2018;;TSV Westerland;3536;00:00:44,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;0;DS;Albers, Zoe;948612;31;W;2018;;TSV Westerland;3536;00:00:00,00;Die Schwimmerin ist auf der Strecke in Brustlage geschwommen und hat in Brustlage angeschlagen;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 21;E;18008;0;AB;Voigt, Jana;802294;86;W;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 22;E;19004;1;;Lang, Mats;217361;5;M;2012;;Ahrensburger TSV;3447;00:00:21,79;;;;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 22;E;19002;1;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:00:19,51;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 22;E;19001;1;;Albers, Alina;346006;128;M;2015;;SV Wiking Kiel;3513;00:00:29,79;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 22;E;19001;2;;Vogel, Karl;308876;72;M;2015;;SSV Tönningstedt;3504;00:00:31,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 22;E;19006;1;;Neumann, Julia;325448;62;M;2016;;SV Neptun Kiel;5129;00:00:23,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 22;E;19006;2;;Frank, Jakob;985896;121;M;2016;;SV Wiking Kiel;3513;00:00:27,51;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 22;E;19006;3;;Bauer, Linus;256215;34;M;2016;;TSV Westerland;3536;00:00:36,87;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 22;E;19007;1;;Schmitt, Marie;394687;126;M;2017;;SV Wiking Kiel;3513;00:00:32,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 22;E;19008;1;;Bauer, Maja;628175;46;M;2018;;MTV von 1860 e.V. Heide;3472;00:00:31,90;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 22;E;19008;2;;Ludwig, Erik;494915;111;M;2018;;SV Wiking Kiel;3513;00:00:34,09;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 22;E;19008;3;;Thiele, Clara;978669;91;M;2018;;TSV Klausdorf;5274;00:00:41,99;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 22;E;19008;0;AB;Dietrich, Paul;479913;84;M;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 23;E;17001;1;;Ulrich, Maja;256215;35;W;2019;;TSV Westerland;3536;00:00:32,14;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 23;E;17001;2;;Herrmann, Paul;256215;107;W;2019;;TSV Klausdorf;5274;00:00:34,20;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 23;E;17001;3;;Albers, Mats;256215;60;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:35,31;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 23;E;17001;4;;Bauer, Leon;256215;22;M;2019;;TSV Westerland;3536;00:00:45,32;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 23;E;17001;5;;Jung, Ben;256215;41;W;2019;;MTV von 1860 e.V. Heide;3472;00:00:45,77;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 23;E;17001;0;DS;Schäfer, Milan;256215;30;M;2019;;TSV Westerland;3536;00:00:00,00;Der Schwimmer hat in Bauchlage angeschlagen;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 23;E;17002;1;;Maier, Jakob;256215;123;M;2020;;SV Wiking Kiel;3513;00:00:48,12;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 23;E;17002;2;;Keller, Luis;256215;61;W;2020;;MTV von 1860 e.V. Heide;3472;00:00:50,46;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 24;E;20004;1;;Schröder, Lena;964957;130;W;2012;;SV Wiking Kiel;3513;00:00:15,71;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 24;E;20004;2;;Kuhn, Nora;389650;105;W;2012;;TSV Klausdorf;5274;00:00:19,35;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 24;E;20003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:15,59;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 24;E;20003;2;;Keller, Alina;709719;118;W;2013;;SV Wiking Kiel;3513;00:00:16,17;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 24;E;20003;3;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:16,90;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 24;E;20003;4;;Herrmann, Maja;987350;58;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:17,84;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 24;E;20002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:16,44;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;20002;2;;Busch, Niklas;494123;43;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:18,92;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;20002;3;;Marquardt, Mia;790782;68;W;2014;;SSV Tönningstedt;3504;00:00:19,08;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;20002;4;;Ludwig, Maja;143877;114;W;2014;;SV Wiking Kiel;3513;00:00:19,68;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;20002;5;;Winkler, Mats;576923;67;W;2014;;SSV Tönningstedt;3504;00:00:22,04;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;20002;0;AB;Kramer, Greta;897042;108;W;2014;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 24;E;20001;1;;Kuhn, Leon;355780;99;W;2015;;TSV Klausdorf;5274;00:00:17,25;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20001;2;;Lang, Vincent;650701;16;W;2015;;Ahrensburger TSV;3447;00:00:17,50;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20001;3;;Ziegler, Maja;440822;127;W;2015;;SV Wiking Kiel;3513;00:00:18,40;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20001;4;;Winkler, Milan;616006;37;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:18,84;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20001;5;;Frank, Malte;503844;13;W;2015;;Ahrensburger TSV;3447;00:00:23,72;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20001;5;;Kramer, Alina;921695;38;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:23,72;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20001;7;;Richter, Felix;256215;32;W;2015;;TSV Westerland;3536;00:00:27,11;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20001;0;DS;Schäfer, Lena;317025;18;W;2015;;Ahrensburger TSV;3447;00:00:00,00;Die Schwimmerin statete vor dem Startsignal;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 24;E;20006;1;;Sommer, Zoe;287700;6;W;2016;;Ahrensburger TSV;3447;00:00:20,24;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;20006;2;;Maier, Pia;743430;132;W;2016;;TSV Klausdorf;5274;00:00:25,58;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;20006;3;;Albers, Karl;871649;122;W;2016;;SV Wiking Kiel;3513;00:00:28,02;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;20006;4;;Kern, Jana;256215;77;W;2016;;SSV Tönningstedt;3504;00:00:37,96;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;20006;0;AB;Winkler, Jonas;850547;59;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;20006;0;AB;Hahn, Julia;160825;64;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 24;E;20007;1;;Koch, Jana;104139;7;W;2017;;Ahrensburger TSV;3447;00:00:17,46;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;2;;Bauer, Hannah;264920;117;W;2017;;SV Wiking Kiel;3513;00:00:22,03;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;3;;Engel, Vincent;934403;129;W;2017;;SV Wiking Kiel;3513;00:00:22,42;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;4;;Weiss, Emilia;256812;48;W;2017;;MTV von 1860 e.V. Heide;3472;00:00:27,14;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;5;;Fischer, Leon;229110;104;W;2017;;TSV Klausdorf;5274;00:00:27,27;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;6;;Möller, Emma;802390;133;W;2017;;SSV Tönningstedt;3504;00:00:27,54;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;7;;Kern, Marie;868064;97;W;2017;;TSV Klausdorf;5274;00:00:28,27;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;8;;Marquardt, Lara;273991;115;W;2017;;SV Wiking Kiel;3513;00:00:31,43;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;9;;Sommer, Henri;333233;73;W;2017;;SSV Tönningstedt;3504;00:00:31,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;10;;Sommer, Jonas;297835;65;W;2017;;SSV Tönningstedt;3504;00:00:31,87;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;11;;Neumann, David;616411;124;W;2017;;SV Wiking Kiel;3513;00:00:32,57;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20007;12;;Seidel, Leon;689726;24;W;2017;;TSV Westerland;3536;00:00:48,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 24;E;20008;1;;Kern, Leon;285484;63;W;2018;;SV Neptun Kiel;5129;00:00:22,61;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;2;;Lehmann, Paul;667368;80;W;2018;;TSV Klausdorf;5274;00:00:27,23;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;3;;Maier, Zoe;528374;95;W;2018;;TSV Klausdorf;5274;00:00:27,76;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;4;;Marquardt, Nora;750907;82;W;2018;;TSV Klausdorf;5274;00:00:31,94;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;5;;Thiele, Luis;222138;51;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:36,23;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;6;;Kern, Erik;799757;49;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:37,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;7;;Schäfer, Vincent;256215;23;W;2018;;TSV Westerland;3536;00:00:37,36;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;8;;Weiss, Lara;277111;120;W;2018;;SV Wiking Kiel;3513;00:00:39,80;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;9;;Kramer, Karl;438136;28;W;2018;;TSV Westerland;3536;00:00:46,86;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;10;;Albers, Zoe;948612;31;W;2018;;TSV Westerland;3536;00:00:54,72;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 24;E;20008;0;AB;Voigt, Jana;802294;86;W;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 25;E;21005;1;;Jung, Greta;610487;71;M;2011;;SSV Tönningstedt;3504;00:00:15,32;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 25;E;21004;1;;Sander, Hannah;486103;1;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:00:14,27;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 25;E;21004;2;;Lang, Mats;217361;5;M;2012;;Ahrensburger TSV;3447;00:00:15,86;;;;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 25;E;21004;3;;Ulrich, Yara;883781;45;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:17,49;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 25;E;21002;1;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:00:15,05;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 25;E;21002;2;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:00:16,04;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 25;E;21002;3;;Klein, Felix;252280;106;M;2014;;TSV Klausdorf;5274;00:00:17,49;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 25;E;21002;4;;Reuter, Marie;146448;110;M;2014;;TSV Klausdorf;5274;00:00:19,08;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 25;E;21001;1;;Albers, Alina;346006;128;M;2015;;SV Wiking Kiel;3513;00:00:26,87;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;21001;2;;Vogel, Karl;308876;72;M;2015;;SSV Tönningstedt;3504;00:00:29,09;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;21001;0;AB;Sommer, Milan;444287;42;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 25;E;21006;1;;Marquardt, Theo;733955;36;M;2016;;Preetzer TSV;3484;00:00:20,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 25;E;21006;2;;Seidel, Paul;174590;75;M;2016;;SSV Tönningstedt;3504;00:00:21,82;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 25;E;21006;3;;Engel, Pia;960086;79;M;2016;;SV Neptun;5129;00:00:24,10;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 25;E;21006;4;;Otto, Henri;752209;76;M;2016;;SSV Tönningstedt;3504;00:00:24,71;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 25;E;21006;5;;Berger, Clara;386071;78;M;2016;;SV Neptun;5129;00:00:38,13;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 25;E;21006;6;;Bauer, Linus;256215;34;M;2016;;TSV Westerland;3536;00:00:38,22;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 25;E;21007;1;;Winkler, Pia;800406;26;M;2017;;TSV Westerland;3536;00:00:21,12;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 25;E;21007;2;;Lang, Karl;121906;55;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:23,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 25;E;21007;3;;Lang, Clara;656065;57;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:25,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 25;E;21007;0;DS;Thiele, Alina;155453;100;M;2017;;TSV Klausdorf;5274;00:00:00,00;Schwimmer startete vor dem Startsignal;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 25;E;21008;1;;Bauer, Maja;628175;46;M;2018;;MTV von 1860 e.V. Heide;3472;00:00:26,82;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 25;E;21008;2;;Ludwig, Erik;494915;111;M;2018;;SV Wiking Kiel;3513;00:00:33,56;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 25;E;21008;3;;Thiele, Clara;978669;91;M;2018;;TSV Klausdorf;5274;00:00:37,03;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 25;E;21008;0;AB;Dietrich, Paul;479913;84;M;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 26;E;23005;1;;Kuhn, Paul;801784;102;W;2011;;TSV Klausdorf;5274;00:02:57,56;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 26;E;23005;2;;Klein, Felix;146084;96;W;2011;;TSV Klausdorf;5274;00:03:04,20;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 26;E;23005;3;;Berger, Greta;831775;93;W;2011;;TSV Klausdorf;5274;00:03:12,42;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 26;E;23005;0;AB;Ziegler, Carla;626517;88;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 26;E;23004;1;;Schröder, Lena;964957;130;W;2012;;SV Wiking Kiel;3513;00:03:08,97;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 26;E;23004;2;;Kuhn, Nora;389650;105;W;2012;;TSV Klausdorf;5274;00:04:52,73;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 26;E;23003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:03:03,15;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 26;E;23003;2;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:03:12,08;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 26;E;23003;3;;Keller, Alina;709719;118;W;2013;;SV Wiking Kiel;3513;00:03:24,75;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 26;E;23003;4;;Herrmann, Maja;987350;58;W;2013;;MTV von 1860 e.V. Heide;3472;00:03:49,96;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 26;E;23003;5;;Ludwig, Linus;126684;52;W;2013;;MTV von 1860 e.V. Heide;3472;00:04:10,53;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 26;E;23002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:03:05,26;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23002;2;;Engel, Henri;394535;98;W;2014;;TSV Klausdorf;5274;00:03:07,70;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23002;3;;Möller, Felix;634113;85;W;2014;;TSV Klausdorf;5274;00:03:19,06;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23002;4;;Hahn, Marie;502943;21;W;2014;;TSV Westerland;3536;00:03:40,10;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23002;5;;Möller, Felix;396057;109;W;2014;;TSV Klausdorf;5274;00:03:51,03;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23002;6;;Busch, Niklas;494123;43;W;2014;;MTV von 1860 e.V. Heide;3472;00:04:00,44;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23002;0;DS;Ludwig, Maja;143877;114;W;2014;;SV Wiking Kiel;3513;00:00:00,00;Die Schwimmerin hat auf der Schmetterlingsteilstrecke die Arme nicht ständig über Wasser nach vorne geführt;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23002;0;AB;Kramer, Greta;897042;108;W;2014;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 26;E;23001;1;;Peters, Paul;730381;101;W;2015;;TSV Klausdorf;5274;00:03:15,14;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;2;;Kuhn, Leon;355780;99;W;2015;;TSV Klausdorf;5274;00:03:20,15;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;3;;Lang, Vincent;650701;16;W;2015;;Ahrensburger TSV;3447;00:03:26,66;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;4;;Graf, Theo;882922;12;W;2015;;Ahrensburger TSV;3447;00:03:33,27;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;5;;Ziegler, Maja;440822;127;W;2015;;SV Wiking Kiel;3513;00:03:34,12;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;6;;Richter, Mats;208911;40;W;2015;;MTV von 1860 e.V. Heide;3472;00:03:47,56;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;7;;Winkler, Milan;616006;37;W;2015;;MTV von 1860 e.V. Heide;3472;00:03:51,87;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;8;;Schmitt, Sina;729947;92;W;2015;;TSV Klausdorf;5274;00:04:28,14;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23001;0;DS;Kaiser, Tom;800215;94;W;2015;;TSV Klausdorf;5274;00:00:00,00;Die Schwimmerin hat die Rückenteilstrecke nicht in Rückenlage beendet;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 26;E;23006;1;;Frank, Clara;582952;25;W;2016;;TSV Westerland;3536;00:04:00,95;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 27;E;24005;1;;Jung, Greta;610487;71;M;2011;;SSV Tönningstedt;3504;00:03:18,11;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 27;E;24004;1;;Ulrich, Yara;883781;45;M;2012;;MTV von 1860 e.V. Heide;3472;00:03:46,21;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 27;E;24002;1;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:03:09,07;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 27;E;24002;2;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:03:11,17;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 27;E;24002;3;;Maier, Ruben;162707;9;M;2014;;Ahrensburger TSV;3447;00:03:48,46;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 27;E;24002;4;;Reuter, Marie;146448;110;M;2014;;TSV Klausdorf;5274;00:04:03,77;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 27;E;24002;0;DS;Klein, Felix;252280;106;M;2014;;TSV Klausdorf;5274;00:00:00,00;Der Schwimmer hat die Rückenteilstrecke nicht in Rückenlage beendet.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 27;E;24001;1;;Pohl, Niklas;521342;50;M;2015;;MTV von 1860 e.V. Heide;3472;00:03:56,41;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 27;E;24006;1;;Pohl, Luis;475386;27;M;2016;;TSV Westerland;3536;00:04:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 28;E;25005;1;;Kuhn, Paul;801784;102;W;2011;;TSV Klausdorf;5274;00:00:40,40;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 28;E;25004;0;DS;Busch, Oskar;761838;70;W;2012;;SSV Tönningstedt;3504;00:00:00,00;Die Schwimmerin hat in der Rückwärtsbewegung der Beine den Fuß nicht nach außen gedreht;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 28;E;25003;1;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:46,38;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 28;E;25003;2;;Keller, Alina;709719;118;W;2013;;SV Wiking Kiel;3513;00:00:47,03;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 28;E;25003;3;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:48,76;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 28;E;25003;4;;Ludwig, Linus;126684;52;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:52,66;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 28;E;25003;5;;Schmitt, Yara;893724;2;W;2013;;Wasserfreunde Eckernförde von 1972;3560;00:00:55,61;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 28;E;25002;1;;Engel, Henri;394535;98;W;2014;;TSV Klausdorf;5274;00:00:44,13;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;25002;2;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:44,62;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;25002;3;;Möller, Felix;396057;109;W;2014;;TSV Klausdorf;5274;00:00:50,24;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;25002;4;;Koch, Hannah;793664;47;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:51,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;25002;5;;Möller, Henri;366540;54;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:51,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;25002;6;;Busch, Mats;421387;74;W;2014;;SSV Tönningstedt;3504;00:01:01,59;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;25002;7;;Winkler, Mats;576923;67;W;2014;;SSV Tönningstedt;3504;00:01:03,17;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 28;E;25001;1;;Lang, Vincent;650701;16;W;2015;;Ahrensburger TSV;3447;00:00:50,04;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25001;2;;Graf, Theo;882922;12;W;2015;;Ahrensburger TSV;3447;00:00:51,48;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25001;3;;Kramer, Alina;921695;38;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:57,50;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25001;4;;Schmitt, Sina;729947;92;W;2015;;TSV Klausdorf;5274;00:00:59,70;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25001;5;;Richter, Felix;256215;32;W;2015;;TSV Westerland;3536;00:01:03,52;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25001;6;;Frank, Malte;503844;13;W;2015;;Ahrensburger TSV;3447;00:01:09,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25001;0;DS;Peters, Paul;730381;101;W;2015;;TSV Klausdorf;5274;00:00:00,00;Die Schwimmerin startete vor dem Startsignal;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25001;0;DS;Schäfer, Lena;317025;18;W;2015;;Ahrensburger TSV;3447;00:00:00,00;Die Schwimmerin hat bei der Rückwärtsbewegung der Beine den Fuß nicht nach außen gestellt;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 28;E;25006;1;;Kuhn, Paul;875765;89;W;2016;;TSV Klausdorf;5274;00:00:49,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 28;E;25006;2;;Engel, Pia;625829;44;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:51,10;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 28;E;25006;3;;Möller, Felix;222596;103;W;2016;;TSV Klausdorf;5274;00:00:59,28;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 28;E;25006;4;;Dietrich, Fiona;529229;116;W;2016;;SV Wiking Kiel;3513;00:01:04,85;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 28;E;25006;0;DS;Sommer, Zoe;287700;6;W;2016;;Ahrensburger TSV;3447;00:00:00,00;Die Schwimmerin hat beim Zielanschlag nur mit einer Hand angeschlagen;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 28;E;25007;1;;Engel, Niklas;589599;15;W;2017;;Ahrensburger TSV;3447;00:00:57,75;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;2;;Kern, Marie;868064;97;W;2017;;TSV Klausdorf;5274;00:01:00,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;3;;Bauer, Hannah;264920;117;W;2017;;SV Wiking Kiel;3513;00:01:01,54;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;4;;Marquardt, Lara;273991;115;W;2017;;SV Wiking Kiel;3513;00:01:04,92;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;5;;Voigt, Anton;582811;81;W;2017;;TSV Klausdorf;5274;00:01:05,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;6;;Albers, Tilda;596372;112;W;2017;;SV Wiking Kiel;3513;00:01:11,30;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;7;;Sommer, Jonas;297835;65;W;2017;;SSV Tönningstedt;3504;00:01:13,10;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;8;;Sommer, Henri;333233;73;W;2017;;SSV Tönningstedt;3504;00:01:13,60;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;9;;Seidel, Leon;689726;24;W;2017;;TSV Westerland;3536;00:01:22,28;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;0;DS;Neumann, Rike;202466;119;W;2017;;SV Wiking Kiel;3513;00:00:00,00;Der Sportler startete vor dem Startsignal;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25007;0;DS;Weiss, Emilia;256812;48;W;2017;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Bei der 25m Wende hat der Schwimmerin nur mit einer Hand angeschlagen;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 28;E;25008;1;;Lehmann, Paul;667368;80;W;2018;;TSV Klausdorf;5274;00:01:06,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;2;;Maier, Zoe;528374;95;W;2018;;TSV Klausdorf;5274;00:01:11,13;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;3;;Gross, Jakob;651669;29;W;2018;;TSV Westerland;3536;00:01:12,96;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;4;;Schäfer, Vincent;256215;23;W;2018;;TSV Westerland;3536;00:01:27,37;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;5;;Albers, Zoe;948612;31;W;2018;;TSV Westerland;3536;00:01:40,12;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;0;DS;Marquardt, Nora;750907;82;W;2018;;TSV Klausdorf;5274;00:00:00,00;Die Schwimmerin startete vor dem Startsignal;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;0;DS;Kern, Erik;799757;49;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Schwimmerin hat bei der 25m Wende die Wand nicht berührt;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;0;DS;Kramer, Karl;438136;28;W;2018;;TSV Westerland;3536;00:00:00,00;Die Schwimmerin hat bei der 25m Wende die Wand nicht berührt;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;0;DS;Thiele, Luis;222138;51;W;2018;;MTV von 1860 e.V. Heide;3472;00:00:00,00;Die Schwimmerin startete vor dem Startsignal;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 28;E;25008;0;AB;Voigt, Jana;802294;86;W;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 29;E;26005;1;;Jung, Greta;610487;71;M;2011;;SSV Tönningstedt;3504;00:00:43,46;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 29;E;26004;1;;Lang, Mats;217361;5;M;2012;;Ahrensburger TSV;3447;00:00:47,36;;;;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 29;E;26004;2;;Hahn, Sina;166661;3;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:00:48,61;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 29;E;26002;1;;Maier, Ruben;162707;9;M;2014;;Ahrensburger TSV;3447;00:00:53,15;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 29;E;26001;1;;Pohl, Niklas;521342;50;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:48,91;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 29;E;26001;2;;Vogel, Karl;308876;72;M;2015;;SSV Tönningstedt;3504;00:01:12,15;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 29;E;26001;0;DS;Albers, Alina;346006;128;M;2015;;SV Wiking Kiel;3513;00:00:00,00;Bei der Rückwärtsbewegung der Beine wurde der linke Fuß nicht nach außen gestellt. ;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 29;E;26006;1;;Frank, Jakob;985896;121;M;2016;;SV Wiking Kiel;3513;00:01:02,70;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 29;E;26006;2;;Otto, Henri;752209;76;M;2016;;SSV Tönningstedt;3504;00:01:05,06;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 29;E;26006;3;;Reuter, Nora;296948;20;M;2016;;Ahrensburger TSV;3447;00:01:14,52;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 29;E;26006;0;DS;Bauer, Linus;256215;34;M;2016;;TSV Westerland;3536;00:00:00,00;Bei der Rückwärtsbewegung der Beine wurde der linke Fuß nicht nach außen gestellt.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 29;E;26006;0;AB;Hartmann, Ben;327573;90;M;2016;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 29;E;26007;1;;Sommer, Emma;933399;83;M;2017;;TSV Klausdorf;5274;00:00:52,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 29;E;26007;2;;Lang, Karl;121906;55;M;2017;;MTV von 1860 e.V. Heide;3472;00:01:06,09;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 29;E;26007;3;;Schmitt, Marie;394687;126;M;2017;;SV Wiking Kiel;3513;00:01:11,93;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 29;E;26008;1;;Ludwig, Erik;494915;111;M;2018;;SV Wiking Kiel;3513;00:01:15,16;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 29;E;26008;2;;Thiele, Clara;978669;91;M;2018;;TSV Klausdorf;5274;00:01:16,68;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 29;E;26008;0;AB;Dietrich, Paul;479913;84;M;2018;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 30;E;27004;1;;Schröder, Lena;964957;130;W;2012;;SV Wiking Kiel;3513;00:00:34,44;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 30;E;27004;2;;Busch, Oskar;761838;70;W;2012;;SSV Tönningstedt;3504;00:00:38,10;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 30;E;27004;3;;Kuhn, Nora;389650;105;W;2012;;TSV Klausdorf;5274;00:00:45,55;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 30;E;27003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:00:34,31;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 30;E;27003;2;;Keller, Alina;709719;118;W;2013;;SV Wiking Kiel;3513;00:00:35,12;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 30;E;27003;3;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:00:38,15;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 30;E;27003;4;;Herrmann, Maja;987350;58;W;2013;;MTV von 1860 e.V. Heide;3472;00:00:39,70;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 30;E;27003;5;;Schmitt, Yara;893724;2;W;2013;;Wasserfreunde Eckernförde von 1972;3560;00:00:46,41;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 30;E;27002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:00:36,62;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;27002;2;;Ludwig, Maja;143877;114;W;2014;;SV Wiking Kiel;3513;00:00:44,04;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;27002;3;;Busch, Mats;421387;74;W;2014;;SSV Tönningstedt;3504;00:00:44,24;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;27002;4;;Möller, Henri;366540;54;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:45,67;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;27002;5;;Busch, Niklas;494123;43;W;2014;;MTV von 1860 e.V. Heide;3472;00:00:47,29;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;27002;6;;Winkler, Mats;576923;67;W;2014;;SSV Tönningstedt;3504;00:00:55,68;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;27002;0;AB;Kramer, Greta;897042;108;W;2014;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 30;E;27001;1;;Kuhn, Leon;355780;99;W;2015;;TSV Klausdorf;5274;00:00:36,14;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;2;;Lang, Vincent;650701;16;W;2015;;Ahrensburger TSV;3447;00:00:38,85;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;3;;Ziegler, Maja;440822;127;W;2015;;SV Wiking Kiel;3513;00:00:40,58;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;4;;Graf, Theo;882922;12;W;2015;;Ahrensburger TSV;3447;00:00:40,89;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;5;;Winkler, Milan;616006;37;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:43,36;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;6;;Richter, Mats;208911;40;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:43,50;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;7;;Kaiser, Tom;800215;94;W;2015;;TSV Klausdorf;5274;00:00:47,75;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;8;;Schäfer, Lena;317025;18;W;2015;;Ahrensburger TSV;3447;00:00:51,12;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;9;;Schmitt, Sina;729947;92;W;2015;;TSV Klausdorf;5274;00:00:54,13;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;10;;Frank, Malte;503844;13;W;2015;;Ahrensburger TSV;3447;00:00:56,40;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;11;;Kramer, Alina;921695;38;W;2015;;MTV von 1860 e.V. Heide;3472;00:00:59,91;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27001;0;DS;Bauer, Anton;684036;69;W;2015;;SSV Tönningstedt;3504;00:00:00,00;Die Schwimmerin startete vor dem Startsignal. ;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 30;E;27006;1;;Winkler, Karl;847228;125;W;2016;;SV Wiking Kiel;3513;00:00:47,56;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;2;;Sommer, Zoe;287700;6;W;2016;;Ahrensburger TSV;3447;00:00:47,93;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;3;;Ludwig, Linus;972238;10;W;2016;;Ahrensburger TSV;3447;00:00:50,20;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;4;;Engel, Pia;625829;44;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:53,01;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;5;;Maier, Pia;743430;132;W;2016;;TSV Klausdorf;5274;00:01:02,32;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;6;;Albers, Karl;871649;122;W;2016;;SV Wiking Kiel;3513;00:01:06,40;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;7;;Fischer, Anton;333339;39;W;2016;;MTV von 1860 e.V. Heide;3472;00:01:10,69;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;0;AB;Winkler, Jonas;850547;59;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27006;0;AB;Hahn, Julia;160825;64;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 30;E;27007;1;;Koch, Jana;104139;7;W;2017;;Ahrensburger TSV;3447;00:00:41,45;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;2;;Engel, Vincent;934403;129;W;2017;;SV Wiking Kiel;3513;00:00:51,19;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;3;;Bauer, Hannah;264920;117;W;2017;;SV Wiking Kiel;3513;00:00:51,59;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;4;;Fischer, Leon;229110;104;W;2017;;TSV Klausdorf;5274;00:00:54,71;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;5;;Vogel, Elias;690381;56;W;2017;;MTV von 1860 e.V. Heide;3472;00:00:58,97;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;6;;Pohl, Luis;261052;113;W;2017;;SV Wiking Kiel;3513;00:01:01,34;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;7;;Schmitt, Mia;480009;134;W;2017;;SSV Tönningstedt;3504;00:01:02,71;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;8;;Brandt, Julia;112762;53;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:03,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;9;;Marquardt, Lara;273991;115;W;2017;;SV Wiking Kiel;3513;00:01:05,85;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;10;;Weiss, Emilia;256812;48;W;2017;;MTV von 1860 e.V. Heide;3472;00:01:06,15;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;11;;Neumann, David;616411;124;W;2017;;SV Wiking Kiel;3513;00:01:10,33;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;12;;Voigt, Anton;582811;81;W;2017;;TSV Klausdorf;5274;00:01:19,56;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27007;13;;Seidel, Leon;689726;24;W;2017;;TSV Westerland;3536;00:02:02,43;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 30;E;27008;1;;Kern, Leon;285484;63;W;2018;;SV Neptun Kiel;5129;00:00:54,36;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 30;E;27008;2;;Weiss, Lara;277111;120;W;2018;;SV Wiking Kiel;3513;00:01:16,73;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 30;E;27008;3;;Gross, Jakob;651669;29;W;2018;;TSV Westerland;3536;00:01:17,50;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 30;E;27008;4;;Kern, Erik;799757;49;W;2018;;MTV von 1860 e.V. Heide;3472;00:01:20,31;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 30;E;27008;5;;Schäfer, Vincent;256215;23;W;2018;;TSV Westerland;3536;00:01:22,16;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 30;E;27008;6;;Thiele, Luis;222138;51;W;2018;;MTV von 1860 e.V. Heide;3472;00:01:26,34;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 30;E;27008;7;;Albers, Zoe;948612;31;W;2018;;TSV Westerland;3536;00:01:56,05;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 31;E;28005;1;;Jung, Greta;610487;71;M;2011;;SSV Tönningstedt;3504;00:00:36,17;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 31;E;28004;1;;Sander, Hannah;486103;1;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:00:33,21;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 31;E;28004;2;;Lang, Mats;217361;5;M;2012;;Ahrensburger TSV;3447;00:00:35,01;;;;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 31;E;28004;3;;Ulrich, Yara;883781;45;M;2012;;MTV von 1860 e.V. Heide;3472;00:00:39,99;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 31;E;28004;4;;Hahn, Sina;166661;3;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:00:41,16;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 31;E;28003;1;;Seidel, Ida;759438;4;M;2013;;Wasserfreunde Eckernförde von 1972;3560;00:00:38,95;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 31;E;28002;1;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:00:34,41;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;28002;2;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:00:35,79;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;28002;3;;Klein, Felix;252280;106;M;2014;;TSV Klausdorf;5274;00:00:37,70;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;28002;4;;Reuter, Marie;146448;110;M;2014;;TSV Klausdorf;5274;00:00:46,69;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 31;E;28001;1;;Pohl, Niklas;521342;50;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:43,46;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;28001;2;;Vogel, Karl;308876;72;M;2015;;SSV Tönningstedt;3504;00:01:03,10;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;28001;0;AB;Sommer, Milan;444287;42;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 31;E;28006;1;;Marquardt, Theo;733955;36;M;2016;;Preetzer TSV;3484;00:00:48,78;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;28006;2;;Reuter, Nora;296948;20;M;2016;;Ahrensburger TSV;3447;00:00:53,29;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;28006;3;;Otto, Henri;752209;76;M;2016;;SSV Tönningstedt;3504;00:00:55,35;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;28006;4;;Engel, Pia;960086;79;M;2016;;SV Neptun;5129;00:00:59,44;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;28006;5;;Berger, Clara;386071;78;M;2016;;SV Neptun;5129;00:01:23,15;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;28006;6;;Bauer, Linus;256215;34;M;2016;;TSV Westerland;3536;00:01:35,42;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;28006;0;AB;Hartmann, Ben;327573;90;M;2016;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 31;E;28007;1;;Winkler, Pia;800406;26;M;2017;;TSV Westerland;3536;00:00:46,50;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 31;E;28007;2;;Thiele, Alina;155453;100;M;2017;;TSV Klausdorf;5274;00:00:46,88;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 31;E;28007;3;;Lang, Karl;121906;55;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:58,17;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 31;E;28007;4;;Lang, Clara;656065;57;M;2017;;MTV von 1860 e.V. Heide;3472;00:00:59,44;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 31;E;28008;1;;Bauer, Maja;628175;46;M;2018;;MTV von 1860 e.V. Heide;3472;00:01:03,20;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 32;E;29005;1;;Berger, Greta;831775;93;W;2011;;TSV Klausdorf;5274;00:01:34,96;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 32;E;29005;0;NA;Ziegler, Carla;626517;88;W;2011;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2011 *)
+PNERGEBNIS: 32;E;29004;1;;Schröder, Lena;964957;130;W;2012;;SV Wiking Kiel;3513;00:01:30,21;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 34;E;31004;1;;Schröder, Lena;964957;130;W;2012;;SV Wiking Kiel;3513;00:01:17,62;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 34;E;31004;2;;Busch, Oskar;761838;70;W;2012;;SSV Tönningstedt;3504;00:01:27,17;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 34;E;31004;3;;Kuhn, Nora;389650;105;W;2012;;TSV Klausdorf;5274;00:01:49,63;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 34;E;31003;1;;Ulrich, Jana;236305;17;W;2013;;Ahrensburger TSV;3447;00:01:13,82;;;;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 34;E;31003;2;;Lorenz, Henri;305324;8;W;2013;;Ahrensburger TSV;3447;00:01:22,85;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 34;E;31003;3;;Keller, Alina;709719;118;W;2013;;SV Wiking Kiel;3513;00:01:23,02;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 34;E;31003;4;;Herrmann, Maja;987350;58;W;2013;;MTV von 1860 e.V. Heide;3472;00:01:29,96;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 34;E;31003;5;;Schmitt, Yara;893724;2;W;2013;;Wasserfreunde Eckernförde von 1972;3560;00:01:44,30;;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 34;E;31002;1;;Sommer, Vincent;881392;14;W;2014;;Ahrensburger TSV;3447;00:01:19,20;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;31002;2;;Hahn, Marie;502943;21;W;2014;;TSV Westerland;3536;00:01:34,21;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;31002;3;;Koch, Hannah;793664;47;W;2014;;MTV von 1860 e.V. Heide;3472;00:01:36,55;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;31002;4;;Ludwig, Maja;143877;114;W;2014;;SV Wiking Kiel;3513;00:01:47,84;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;31002;5;;Busch, Niklas;494123;43;W;2014;;MTV von 1860 e.V. Heide;3472;00:01:49,48;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;31002;0;AB;Kramer, Greta;897042;108;W;2014;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 34;E;31001;1;;Kuhn, Leon;355780;99;W;2015;;TSV Klausdorf;5274;00:01:19,53;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 34;E;31001;2;;Lang, Vincent;650701;16;W;2015;;Ahrensburger TSV;3447;00:01:29,07;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 34;E;31001;3;;Ziegler, Maja;440822;127;W;2015;;SV Wiking Kiel;3513;00:01:29,76;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 34;E;31001;4;;Graf, Theo;882922;12;W;2015;;Ahrensburger TSV;3447;00:01:33,80;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 34;E;31001;5;;Winkler, Milan;616006;37;W;2015;;MTV von 1860 e.V. Heide;3472;00:01:39,23;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 34;E;31001;6;;Bauer, Anton;684036;69;W;2015;;SSV Tönningstedt;3504;00:01:48,59;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 34;E;31001;7;;Richter, Felix;256215;32;W;2015;;TSV Westerland;3536;00:02:09,35;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 34;E;31006;1;;Kuhn, Paul;875765;89;W;2016;;TSV Klausdorf;5274;00:01:35,79;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 34;E;31006;2;;Frank, Clara;582952;25;W;2016;;TSV Westerland;3536;00:01:44,48;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 34;E;31006;3;;Möller, Felix;222596;103;W;2016;;TSV Klausdorf;5274;00:02:00,43;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 34;E;31006;4;;Maier, Pia;743430;132;W;2016;;TSV Klausdorf;5274;00:02:13,75;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 34;E;31006;5;;Fischer, Anton;333339;39;W;2016;;MTV von 1860 e.V. Heide;3472;00:02:35,22;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 34;E;31006;0;AB;Winkler, Jonas;850547;59;W;2016;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 34;E;31006;0;AB;Hahn, Julia;160825;64;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 34;E;31007;1;;Koch, Jana;104139;7;W;2017;;Ahrensburger TSV;3447;00:01:35,39;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 34;E;31007;2;;Fischer, Leon;229110;104;W;2017;;TSV Klausdorf;5274;00:02:03,37;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 34;E;31007;3;;Vogel, Elias;690381;56;W;2017;;MTV von 1860 e.V. Heide;3472;00:02:11,11;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 34;E;31007;4;;Brandt, Julia;112762;53;W;2017;;MTV von 1860 e.V. Heide;3472;00:02:25,86;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 34;E;31008;1;;Kern, Leon;285484;63;W;2018;;SV Neptun Kiel;5129;00:01:59,83;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 34;E;31008;2;;Gross, Jakob;651669;29;W;2018;;TSV Westerland;3536;00:02:55,40;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 35;E;33004;1;;Sander, Hannah;486103;1;M;2012;;Wasserfreunde Eckernförde von 1972;3560;00:01:15,06;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 35;E;33004;2;;Lang, Mats;217361;5;M;2012;;Ahrensburger TSV;3447;00:01:23,00;;;;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 35;E;33004;3;;Ulrich, Yara;883781;45;M;2012;;MTV von 1860 e.V. Heide;3472;00:01:35,28;;;GER;;; (* Jahrgang 2012 *)
+PNERGEBNIS: 35;E;33003;0;DS;Seidel, Ida;759438;4;M;2013;;Wasserfreunde Eckernförde von 1972;3560;00:00:00,00;Der Schwimmer startete vor dem Startsignal.;;GER;;; (* Jahrgang 2013 *)
+PNERGEBNIS: 35;E;33002;1;;Weiss, Sina;284504;19;M;2014;;Ahrensburger TSV;3447;00:01:16,04;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 35;E;33002;2;;Richter, Milan;233484;11;M;2014;;Ahrensburger TSV;3447;00:01:21,30;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 35;E;33002;3;;Klein, Felix;252280;106;M;2014;;TSV Klausdorf;5274;00:01:27,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 35;E;33002;4;;Reuter, Marie;146448;110;M;2014;;TSV Klausdorf;5274;00:01:49,79;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 35;E;33001;0;AB;Sommer, Milan;444287;42;M;2015;;MTV von 1860 e.V. Heide;3472;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 35;E;33006;1;;Pohl, Luis;475386;27;M;2016;;TSV Westerland;3536;00:01:44,48;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 35;E;33006;2;;Reuter, Nora;296948;20;M;2016;;Ahrensburger TSV;3447;00:01:59,10;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 35;E;33006;0;AB;Hartmann, Ben;327573;90;M;2016;;TSV Klausdorf;5274;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 35;E;33007;1;;Lorenz, Greta;463781;33;M;2017;;TSV Westerland;3536;00:01:34,08;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 35;E;33007;2;;Thiele, Alina;155453;100;M;2017;;TSV Klausdorf;5274;00:01:47,44;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 35;E;33007;3;;Winkler, Pia;800406;26;M;2017;;TSV Westerland;3536;00:01:52,40;;;GER;;; (* Jahrgang 2017 *)
+DATEIENDE

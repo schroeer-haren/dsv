@@ -1,0 +1,927 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.32 Beta vom 24.10.2025                  *)
+(* Registriert für: VfL Bad Schwartau *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 30.11.2025 um 19:24 Uhr                *)
+FORMAT: Wettkampfergebnisliste;7;
+ERZEUGER: EasyWk;5.32 Beta;info@easywk.de;
+VERANSTALTUNG: 27. Adventsschwimmen der SG Bad Schwartau;Bad Schwartau;25;HANDZEIT;
+VERANSTALTER: SG Bad Schwartau;
+AUSRICHTER: SG Bad Schwartau;Otto, Pia ;;;;GER;;;jana.brandt@example.org;
+ABSCHNITT: 1;30.11.2025;10:00;;
+ABSCHNITT: 2;30.11.2025;00:00;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+KAMPFGERICHT: 1;ZBV;Winkler, Greta;SG Lübeck;
+KAMPFGERICHT: 1;ZBV;Schröder, Lina;SG Bad Schwartau;
+KAMPFGERICHT: 1;ZBV;Maier, Clara;SG Lübeck;
+KAMPFGERICHT: 1;ZBV;Ulrich, Sina;SG Bad Schwartau;
+KAMPFGERICHT: 1;ZBV;Albers, Niklas;SG Bad Schwartau;
+KAMPFGERICHT: 1;ZBV;Lorenz, Ruben;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;ZBV;Schmitt, Jost;AMTV-WTB Hamburg;
+KAMPFGERICHT: 1;ZBV;Lehmann, Fiona;SG Lübeck;
+KAMPFGERICHT: 1;ZBV;Marquardt, Ida;SG Bad Schwartau;
+KAMPFGERICHT: 1;SCH;Vogel, Jonas;MTV Lübeck;
+KAMPFGERICHT: 1;STA;Graf, Lara;SG Bad Schwartau;
+KAMPFGERICHT: 1;AUS;Ziegler, Nele;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;PKF;Ludwig, Marie;SG Bad Schwartau;
+KAMPFGERICHT: 1;SR;Fischer, Yara;Bremer Sportclub;
+KAMPFGERICHT: 1;SR;Lehmann, Fiona;SV Neptun Kiel;
+KAMPFGERICHT: 1;ZR;Peters, Lara;SG Lübeck;
+KAMPFGERICHT: 1;ZR;Graf, Nele;SG Bad Schwartau;
+KAMPFGERICHT: 1;ZR;Möller, Henri;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;WRO;Lorenz, Alina;SG Lübeck;
+KAMPFGERICHT: 1;WR;Lorenz, Alina;SG Lübeck;
+KAMPFGERICHT: 1;WR;Herrmann, Tom;SG Lübeck;
+KAMPFGERICHT: 1;WR;Vogel, Vincent;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;WR;Vogel, Vincent;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 1;ZNO;Neumann, Fiona;SG Bad Schwartau;
+KAMPFGERICHT: 1;ZN;Ludwig, Maja;SG Lübeck;
+KAMPFGERICHT: 1;ZN;Herrmann, Linus;SG Bad Schwartau;
+KAMPFGERICHT: 1;ZN;Marquardt, Jost;AMTV-WTB Hamburg;
+KAMPFGERICHT: 1;ZN;Möller, Malte;SG Lübeck;
+KAMPFGERICHT: 1;RZN;Lorenz, Sophie;Möllner SV;
+KAMPFGERICHT: 2;ZBV;Möller, Jakob;Ahrensburger TSV;
+KAMPFGERICHT: 2;ZBV;Ulrich, Sina;SG Bad Schwartau;
+KAMPFGERICHT: 2;ZBV;Albers, Niklas;SG Bad Schwartau;
+KAMPFGERICHT: 2;ZBV;Maier, Clara;SG Lübeck;
+KAMPFGERICHT: 2;ZBV;Winkler, Greta;SG Lübeck;
+KAMPFGERICHT: 2;ZBV;Schröder, Lina;SG Bad Schwartau;
+KAMPFGERICHT: 2;ZBV;Lehmann, Fiona;SG Lübeck;
+KAMPFGERICHT: 2;ZBV;Marquardt, Ida;SG Bad Schwartau;
+KAMPFGERICHT: 2;ZBV;Schmitt, Jost;AMTV-WTB Hamburg;
+KAMPFGERICHT: 2;ZBV;Lorenz, Ruben;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;SCH;Vogel, Jonas;MTV Lübeck;
+KAMPFGERICHT: 2;STA;Graf, Lara;SG Bad Schwartau;
+KAMPFGERICHT: 2;AUS;Ziegler, Nele;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;PKF;Ludwig, Marie;SG Bad Schwartau;
+KAMPFGERICHT: 2;SR;Fischer, Yara;Bremer Sportclub;
+KAMPFGERICHT: 2;SR;Lehmann, Fiona;SV Neptun Kiel;
+KAMPFGERICHT: 2;ZR;Kaiser, David;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;ZR;Kaiser, Carla;SG Lübeck;
+KAMPFGERICHT: 2;ZR;Kramer, Emma;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;WRO;Maier, Lena;SG Bad Schwartau;
+KAMPFGERICHT: 2;WR;Maier, Lena;SG Bad Schwartau;
+KAMPFGERICHT: 2;WR;Graf, Nele;Ahrensburger TSV;
+KAMPFGERICHT: 2;WR;Ulrich, Maja;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;WR;Ulrich, Maja;SC Delphin Lübeck v.1960 e.V.;
+KAMPFGERICHT: 2;ZNO;Neumann, Fiona;SG Bad Schwartau;
+KAMPFGERICHT: 2;ZN;Ludwig, Maja;SG Lübeck;
+KAMPFGERICHT: 2;ZN;Weiss, Mia;SVE Hamburg;
+KAMPFGERICHT: 2;ZN;Marquardt, Jost;AMTV-WTB Hamburg;
+KAMPFGERICHT: 2;ZN;Richter, Greta;Ratzeburger SV von 1862;
+WETTKAMPF: 1;E;1;1;25;X;X;W;KG;;; (* 25m Bauchlage weiblich *)
+WETTKAMPF: 2;E;1;1;25;X;X;M;KG;;; (* 25m Bauchlage männlich *)
+WETTKAMPF: 3;E;1;1;25;X;X;W;KG;;; (* 25m Freistil Beine weiblich *)
+WETTKAMPF: 4;E;1;1;25;X;X;M;KG;;; (* 25m Freistil Beine männlich *)
+WETTKAMPF: 5;E;1;1;25;X;X;W;KG;;; (* 25m Rückenlage weiblich *)
+WETTKAMPF: 6;E;1;1;25;X;X;M;KG;;; (* 25m Rückenlage männlich *)
+WETTKAMPF: 7;E;1;1;25;X;X;W;KG;;; (* 25m Schmetterling Beine weiblich *)
+WETTKAMPF: 8;E;1;1;25;X;X;M;KG;;; (* 25m Schmetterling Beine männlich *)
+WETTKAMPF: 9;E;1;4;25;F;GL;X;KG;;; (* 4x25m Freistil mixed *)
+WETTKAMPF: 10;E;2;1;50;X;X;W;SW;;; (* 50m Freistil Beine weiblich *)
+WETTKAMPF: 11;E;2;1;50;X;X;M;SW;;; (* 50m Freistil Beine männlich *)
+WETTKAMPF: 12;E;2;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 13;E;2;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 14;E;2;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 15;E;2;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WETTKAMPF: 16;E;2;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 17;E;2;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 18;E;2;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 19;E;2;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 20;E;2;1;100;L;GL;W;SW;;; (* 100m Lagen weiblich *)
+WETTKAMPF: 21;E;2;1;100;L;GL;M;SW;;; (* 100m Lagen männlich *)
+WETTKAMPF: 22;E;2;4;25;F;GL;X;SW;;; (* 4x25m Freistil mixed *)
+WERTUNG: 1;E;1006;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 1;E;1002;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 1;E;1003;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 1;E;1004;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 1;E;1005;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 2;E;2006;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 2;E;2002;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 2;E;2003;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 2;E;2004;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 2;E;2005;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 3;E;3006;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 3;E;3002;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 3;E;3003;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 3;E;3004;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 3;E;3005;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 4;E;4006;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 4;E;4002;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 4;E;4003;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 4;E;4004;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 4;E;4005;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 5;E;5006;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 5;E;5002;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 5;E;5003;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 5;E;5004;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 5;E;5005;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 6;E;6006;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 6;E;6002;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 6;E;6003;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 6;E;6004;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 6;E;6005;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 7;E;7006;JG;2022;2022;W;Jahrgang 2022;
+WERTUNG: 7;E;7002;JG;2021;2021;W;Jahrgang 2021;
+WERTUNG: 7;E;7003;JG;2020;2020;W;Jahrgang 2020;
+WERTUNG: 7;E;7004;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 7;E;7005;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 8;E;8006;JG;2022;2022;M;Jahrgang 2022;
+WERTUNG: 8;E;8002;JG;2021;2021;M;Jahrgang 2021;
+WERTUNG: 8;E;8003;JG;2020;2020;M;Jahrgang 2020;
+WERTUNG: 8;E;8004;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 8;E;8005;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 9;E;9001;JG;2018;2022;X;offene Wertung;
+WERTUNG: 10;E;10002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 10;E;10003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 10;E;10004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 10;E;10005;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 11;E;11002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 11;E;11003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 11;E;11004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 11;E;11005;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 12;E;12002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 12;E;12003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 12;E;12004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 12;E;12005;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 13;E;13002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 13;E;13003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 13;E;13004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 13;E;13005;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 14;E;14002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 14;E;14003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 14;E;14004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 14;E;14005;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 15;E;15002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 15;E;15003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 15;E;15004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 15;E;15005;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 16;E;16002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 16;E;16003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 16;E;16004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 16;E;16005;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 17;E;17002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 17;E;17003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 17;E;17004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 17;E;17005;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 18;E;18002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 18;E;18003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 18;E;18004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 18;E;18005;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 19;E;19002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 19;E;19003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 19;E;19004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 19;E;19005;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 20;E;20002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 20;E;20003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 20;E;20004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 20;E;20005;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 21;E;21002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 21;E;21003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 21;E;21004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 21;E;21005;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 22;E;22001;JG;2014;2017;X;offene Wertung;
+VEREIN: Ahrensburger TSV;3447;14;GER;
+VEREIN: AMTV-WTB Hamburg;7291;6;GER;
+VEREIN: Ratzeburger SV von 1862;3485;14;GER;
+VEREIN: SC Delphin Lübeck v.1960 e.V.;3490;14;GER;
+VEREIN: SG Bad Schwartau;5196;14;GER;
+VEREIN: SG Lübeck;3496;14;GER;
+VEREIN: SV Neptun Kiel;5129;14;GER;
+VEREIN: SVE Hamburg;5738;6;GER;
+PNERGEBNIS: 1;E;1005;1;;Kern, Leon;285484;203;W;2018;;SV Neptun Kiel;5129;00:00:23,42;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;2;;Thiele, Henri;256215;28;W;2018;;AMTV-WTB Hamburg;7291;00:00:25,57;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;3;;Ludwig, Jost;256215;55;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:26,29;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;4;;Albers, Niklas;256215;79;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:26,63;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;5;;Lang, Milan;256215;189;W;2018;;SG Lübeck;3496;00:00:27,04;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;6;;Busch, Lina;256215;69;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,61;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;7;;Herrmann, Paul;256215;84;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,98;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;8;;Schmitt, Nora;256215;106;W;2018;;SG Bad Schwartau;5196;00:00:30,67;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;9;;Schmitt, Nele;256215;142;W;2018;;SG Bad Schwartau;5196;00:00:31,42;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;10;;Koch, Leon;256215;112;W;2018;;SG Bad Schwartau;5196;00:00:33,64;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;11;;Frank, Luis;256215;130;W;2018;;SG Bad Schwartau;5196;00:00:35,34;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;12;;Kuhn, Theo;256215;62;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:35,64;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;13;;Schröder, Mats;256215;159;W;2018;;SG Lübeck;3496;00:00:37,02;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;14;;Maier, Oskar;256215;52;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:37,29;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;15;;Winkler, Mats;256215;111;W;2018;;SG Bad Schwartau;5196;00:00:37,47;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;16;;Maier, Milan;256215;114;W;2018;;SG Bad Schwartau;5196;00:00:39,58;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;17;;Walter, Vincent;256215;102;W;2018;;SG Bad Schwartau;5196;00:00:39,93;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;18;;Engel, Pia;256215;172;W;2018;;SG Lübeck;3496;00:00:43,03;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;19;;Peters, Lara;256215;177;W;2018;;SG Lübeck;3496;00:00:47,50;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;20;;Schäfer, Alina;256215;173;W;2018;;SG Lübeck;3496;00:00:49,38;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;21;;Berger, Emma;256215;98;W;2018;;SG Bad Schwartau;5196;00:00:51,67;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;22;;Engel, Elias;256215;64;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:57,12;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;23;;Koch, Hannah;256215;179;W;2018;;SG Lübeck;3496;00:00:58,40;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;0;AB;Winkler, Mats;256215;101;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;0;AB;Sander, Fiona;256215;132;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1005;0;AB;Lang, Zoe;262386;199;W;2018;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 1;E;1004;1;;Möller, Lina;256215;135;W;2019;;SG Bad Schwartau;5196;00:00:26,76;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;2;;Thiele, Sophie;256215;26;W;2019;;AMTV-WTB Hamburg;7291;00:00:31,98;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;3;;Hahn, Linus;256215;61;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:32,67;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;4;;Schäfer, Greta;256215;104;W;2019;;SG Bad Schwartau;5196;00:00:33,86;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;5;;Gross, Tilda;256215;66;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:34,28;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;6;;Richter, Mats;256215;129;W;2019;;SG Bad Schwartau;5196;00:00:39,58;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;7;;Stein, Fiona;256215;109;W;2019;;SG Bad Schwartau;5196;00:00:42,36;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;8;;Klein, Jakob;256215;180;W;2019;;SG Lübeck;3496;00:00:43,23;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;9;;Brandt, Linus;256215;127;W;2019;;SG Bad Schwartau;5196;00:00:43,54;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;10;;Sander, Carla;256215;94;W;2019;;SG Bad Schwartau;5196;00:00:43,54;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;11;;Pohl, Luis;256215;125;W;2019;;SG Bad Schwartau;5196;00:00:49,98;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;12;;Thiele, Sophie;256215;152;W;2019;;SG Bad Schwartau;5196;00:00:51,98;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;13;;Pohl, Henri;256215;97;W;2019;;SG Bad Schwartau;5196;00:00:53,79;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;14;;Richter, Oskar;256215;182;W;2019;;SG Lübeck;3496;00:01:18,60;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;0;NA;Seidel, Maja;256215;59;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1004;0;AB;Walter, Tilda;256215;30;W;2019;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 1;E;1003;1;;Koch, Leon;256215;184;W;2020;;SG Lübeck;3496;00:00:46,72;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 1;E;1003;2;;Winkler, Sophie;256215;54;W;2020;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:53,79;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 1;E;1003;3;;Fischer, Anton;256215;116;W;2020;;SG Bad Schwartau;5196;00:01:13,69;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 1;E;1003;0;AB;Otto, Clara;256215;165;W;2020;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 1;E;1003;0;AB;Koch, Leon;256215;191;W;2020;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 2;E;2005;1;;Maier, Alina;256215;117;M;2018;;SG Bad Schwartau;5196;00:00:23,58;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;2;;Frank, Felix;256215;63;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:23,59;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;3;;Gross, Clara;256215;81;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:24,20;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;4;;Herrmann, Marie;256215;17;M;2018;;AMTV-WTB Hamburg;7291;00:00:24,42;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;5;;Pohl, Mats;256215;170;M;2018;;SG Lübeck;3496;00:00:24,63;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;6;;Frank, Mats;256215;87;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,31;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;7;;Lorenz, Karl;256215;156;M;2018;;SG Lübeck;3496;00:00:32,28;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;8;;Ziegler, Emilia;256215;147;M;2018;;SG Bad Schwartau;5196;00:00:32,71;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;9;;Ludwig, Jost;256215;21;M;2018;;AMTV-WTB Hamburg;7291;00:00:33,77;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;10;;Sommer, Lina;256215;78;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:34,25;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;11;;Herrmann, Hannah;256215;110;M;2018;;SG Bad Schwartau;5196;00:00:35,82;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;12;;Engel, Lena;256215;137;M;2018;;SG Bad Schwartau;5196;00:00:36,88;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;13;;Fischer, Marie;256215;15;M;2018;;AMTV-WTB Hamburg;7291;00:00:37,48;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;14;;Koch, Theo;256215;166;M;2018;;SG Lübeck;3496;00:00:39,35;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;15;;Hartmann, Niklas;256215;176;M;2018;;SG Lübeck;3496;00:00:39,76;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;16;;Keller, Milan;256215;113;M;2018;;SG Bad Schwartau;5196;00:00:40,01;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;17;;Pohl, Lena;256215;188;M;2018;;SG Lübeck;3496;00:00:40,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;18;;Kaiser, Sina;256215;187;M;2018;;SG Lübeck;3496;00:00:42,83;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2005;19;;Herrmann, Anton;256215;131;M;2018;;SG Bad Schwartau;5196;00:01:17,02;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 2;E;2004;1;;Thiele, Malte;256215;162;M;2019;;SG Lübeck;3496;00:00:43,56;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 2;E;2004;2;;Herrmann, Hannah;256215;107;M;2019;;SG Bad Schwartau;5196;00:00:56,04;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 2;E;2004;0;DS;Frank, Elias;256215;119;M;2019;;SG Bad Schwartau;5196;00:00:00,00;Der Sportler hat an der Leine gezogen.;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 2;E;2004;0;AB;Kaiser, Carla;256215;80;M;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 2;E;2004;0;AB;Gross, Jakob;256215;158;M;2019;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3005;1;;Busch, Lina;256215;69;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:28,32;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;2;;Schröder, Mats;256215;159;W;2018;;SG Lübeck;3496;00:00:29,40;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;3;;Ludwig, Jost;256215;55;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,64;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;4;;Herrmann, Paul;256215;84;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:29,89;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;5;;Lang, Milan;256215;189;W;2018;;SG Lübeck;3496;00:00:30,62;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;6;;Kern, Leon;285484;203;W;2018;;SV Neptun Kiel;5129;00:00:31,57;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;7;;Pohl, Jonas;256215;92;W;2018;;SG Bad Schwartau;5196;00:00:33,29;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;8;;Thiele, Henri;256215;28;W;2018;;AMTV-WTB Hamburg;7291;00:00:33,38;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;9;;Schmitt, Nele;256215;142;W;2018;;SG Bad Schwartau;5196;00:00:33,55;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;10;;Frank, Luis;256215;130;W;2018;;SG Bad Schwartau;5196;00:00:34,32;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;11;;Winkler, Mats;256215;111;W;2018;;SG Bad Schwartau;5196;00:00:35,52;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;12;;Koch, Leon;256215;112;W;2018;;SG Bad Schwartau;5196;00:00:36,64;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;13;;Maier, Oskar;256215;52;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,77;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;14;;Maier, Milan;256215;114;W;2018;;SG Bad Schwartau;5196;00:00:37,42;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;15;;Kuhn, Theo;256215;62;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:40,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;16;;Walter, Vincent;256215;102;W;2018;;SG Bad Schwartau;5196;00:00:42,30;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;17;;Peters, Lara;256215;177;W;2018;;SG Lübeck;3496;00:00:43,77;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;18;;Koch, Hannah;256215;179;W;2018;;SG Lübeck;3496;00:00:44,60;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;19;;Engel, Pia;256215;172;W;2018;;SG Lübeck;3496;00:00:45,98;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;20;;Albers, Niklas;256215;79;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:46,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;21;;Schmitt, Nora;256215;106;W;2018;;SG Bad Schwartau;5196;00:00:47,72;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;22;;Berger, Emma;256215;98;W;2018;;SG Bad Schwartau;5196;00:00:47,86;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;23;;Fischer, Jost;256215;100;W;2018;;SG Bad Schwartau;5196;00:00:55,27;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;24;;Schäfer, Alina;256215;173;W;2018;;SG Lübeck;3496;00:01:04,38;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;25;;Engel, Elias;256215;64;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:07,56;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;0;AB;Lang, Zoe;262386;199;W;2018;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;0;AB;Winkler, Mats;256215;101;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;0;AB;Hahn, Yara;256215;121;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;0;AB;Koch, Hannah;256215;122;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3005;0;AB;Sander, Fiona;256215;132;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 3;E;3004;1;;Möller, Lina;256215;135;W;2019;;SG Bad Schwartau;5196;00:00:27,43;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;2;;Gross, Tilda;256215;66;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:35,48;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;3;;Thiele, Sophie;256215;26;W;2019;;AMTV-WTB Hamburg;7291;00:00:36,13;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;4;;Brandt, Linus;256215;127;W;2019;;SG Bad Schwartau;5196;00:00:37,41;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;5;;Peters, Linus;256215;108;W;2019;;SG Bad Schwartau;5196;00:00:38,98;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;6;;Stein, Fiona;256215;109;W;2019;;SG Bad Schwartau;5196;00:00:39,23;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;7;;Richter, Mats;256215;129;W;2019;;SG Bad Schwartau;5196;00:00:39,90;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;8;;Schäfer, Greta;256215;104;W;2019;;SG Bad Schwartau;5196;00:00:40,36;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;9;;Thiele, Sophie;256215;152;W;2019;;SG Bad Schwartau;5196;00:00:42,04;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;10;;Sander, Carla;256215;94;W;2019;;SG Bad Schwartau;5196;00:00:42,21;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;11;;Pohl, Luis;256215;125;W;2019;;SG Bad Schwartau;5196;00:00:42,25;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;12;;Pohl, Henri;256215;97;W;2019;;SG Bad Schwartau;5196;00:00:42,55;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;13;;Hahn, Linus;256215;61;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:42,58;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;14;;Ulrich, Erik;256215;171;W;2019;;SG Lübeck;3496;00:00:42,95;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;15;;Vogel, Emma;256215;48;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:43,23;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;16;;Klein, Jakob;256215;180;W;2019;;SG Lübeck;3496;00:00:44,68;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;17;;Richter, Oskar;256215;182;W;2019;;SG Lübeck;3496;00:00:52,11;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;0;NA;Seidel, Maja;256215;59;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3004;0;AB;Sander, Jost;256215;190;W;2019;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 3;E;3003;1;;Sander, Hannah;256215;181;W;2020;;SG Lübeck;3496;00:00:33,36;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 3;E;3003;2;;Koch, Leon;256215;184;W;2020;;SG Lübeck;3496;00:00:41,98;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 3;E;3003;3;;Winkler, Sophie;256215;54;W;2020;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,03;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 3;E;3003;0;DS;Fischer, Anton;256215;116;W;2020;;SG Bad Schwartau;5196;00:00:00,00;Die Sportlerin hat sich an der Leine vorgezogen,;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 3;E;3003;0;AB;Koch, Leon;256215;191;W;2020;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 3;E;3003;0;AB;Otto, Clara;256215;165;W;2020;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 4;E;4005;1;;Frank, Mats;256215;87;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:26,37;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;2;;Maier, Alina;256215;117;M;2018;;SG Bad Schwartau;5196;00:00:27,58;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;3;;Frank, Felix;256215;63;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:27,89;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;4;;Engel, Lena;256215;137;M;2018;;SG Bad Schwartau;5196;00:00:32,07;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;5;;Herrmann, Marie;256215;17;M;2018;;AMTV-WTB Hamburg;7291;00:00:33,61;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;6;;Lorenz, Karl;256215;156;M;2018;;SG Lübeck;3496;00:00:34,77;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;7;;Koch, Theo;256215;166;M;2018;;SG Lübeck;3496;00:00:35,29;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;8;;Pohl, Mats;256215;170;M;2018;;SG Lübeck;3496;00:00:35,49;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;9;;Herrmann, Hannah;256215;110;M;2018;;SG Bad Schwartau;5196;00:00:35,65;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;10;;Kaiser, Sina;256215;187;M;2018;;SG Lübeck;3496;00:00:36,28;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;11;;Keller, Milan;256215;113;M;2018;;SG Bad Schwartau;5196;00:00:36,48;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;11;;Ziegler, Emilia;256215;147;M;2018;;SG Bad Schwartau;5196;00:00:36,48;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;13;;Sommer, Lina;256215;78;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:37,16;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;14;;Fischer, Marie;256215;15;M;2018;;AMTV-WTB Hamburg;7291;00:00:37,40;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;15;;Gross, Clara;256215;81;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:37,87;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;16;;Hartmann, Niklas;256215;176;M;2018;;SG Lübeck;3496;00:00:42,60;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;17;;Ludwig, Jost;256215;21;M;2018;;AMTV-WTB Hamburg;7291;00:00:43,18;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;18;;Herrmann, Anton;256215;131;M;2018;;SG Bad Schwartau;5196;00:00:50,21;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4005;19;;Pohl, Lena;256215;188;M;2018;;SG Lübeck;3496;00:00:52,18;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 4;E;4004;1;;Schmitt, Erik;256215;186;M;2019;;SG Lübeck;3496;00:00:38,86;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 4;E;4004;2;;Herrmann, Hannah;256215;107;M;2019;;SG Bad Schwartau;5196;00:00:47,67;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 4;E;4004;3;;Frank, Elias;256215;119;M;2019;;SG Bad Schwartau;5196;00:00:48,28;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 4;E;4004;4;;Thiele, Malte;256215;162;M;2019;;SG Lübeck;3496;00:00:59,59;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 4;E;4004;0;AB;Kaiser, Carla;256215;80;M;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 4;E;4004;0;AB;Gross, Jakob;256215;158;M;2019;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 4;E;4003;1;;Engel, Milan;256215;118;M;2020;;SG Bad Schwartau;5196;00:00:48,48;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 4;E;4003;0;DS;Schmitt, Nora;256215;167;M;2020;;SG Lübeck;3496;00:00:00,00;Der Sportler hat sich an der Leine vorgezogen.;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 5;E;5005;1;;Herrmann, Paul;256215;84;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:27,07;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;2;;Schmitt, Nele;256215;142;W;2018;;SG Bad Schwartau;5196;00:00:28,49;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;3;;Frank, Luis;256215;130;W;2018;;SG Bad Schwartau;5196;00:00:28,62;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;4;;Winkler, Mats;256215;111;W;2018;;SG Bad Schwartau;5196;00:00:28,83;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;5;;Koch, Leon;256215;112;W;2018;;SG Bad Schwartau;5196;00:00:28,86;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;6;;Lang, Milan;256215;189;W;2018;;SG Lübeck;3496;00:00:29,80;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;7;;Busch, Lina;256215;69;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:30,25;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;8;;Kern, Leon;285484;203;W;2018;;SV Neptun Kiel;5129;00:00:30,32;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;9;;Albers, Niklas;256215;79;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:31,45;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;10;;Ludwig, Jost;256215;55;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:33,73;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;11;;Walter, Vincent;256215;102;W;2018;;SG Bad Schwartau;5196;00:00:33,85;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;12;;Thiele, Henri;256215;28;W;2018;;AMTV-WTB Hamburg;7291;00:00:34,08;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;13;;Maier, Milan;256215;114;W;2018;;SG Bad Schwartau;5196;00:00:34,12;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;14;;Schmitt, Nora;256215;106;W;2018;;SG Bad Schwartau;5196;00:00:34,76;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;15;;Schröder, Mats;256215;159;W;2018;;SG Lübeck;3496;00:00:35,22;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;16;;Engel, Pia;256215;172;W;2018;;SG Lübeck;3496;00:00:36,02;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;17;;Pohl, Jonas;256215;92;W;2018;;SG Bad Schwartau;5196;00:00:36,49;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;18;;Maier, Oskar;256215;52;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,84;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;19;;Berger, Emma;256215;98;W;2018;;SG Bad Schwartau;5196;00:00:38,46;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;20;;Kuhn, Theo;256215;62;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:41,32;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;21;;Koch, Hannah;256215;179;W;2018;;SG Lübeck;3496;00:00:44,07;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;22;;Schäfer, Alina;256215;173;W;2018;;SG Lübeck;3496;00:00:46,54;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;23;;Engel, Elias;256215;64;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;24;;Peters, Lara;256215;177;W;2018;;SG Lübeck;3496;00:00:57,87;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;25;;Fischer, Jost;256215;100;W;2018;;SG Bad Schwartau;5196;00:00:58,79;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;0;AB;Winkler, Mats;256215;101;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;0;AB;Hahn, Yara;256215;121;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;0;AB;Koch, Hannah;256215;122;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;0;AB;Sander, Fiona;256215;132;W;2018;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5005;0;AB;Lang, Zoe;262386;199;W;2018;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 5;E;5004;1;;Möller, Lina;256215;135;W;2019;;SG Bad Schwartau;5196;00:00:27,72;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;2;;Thiele, Sophie;256215;26;W;2019;;AMTV-WTB Hamburg;7291;00:00:30,32;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;3;;Richter, Mats;256215;129;W;2019;;SG Bad Schwartau;5196;00:00:32,98;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;4;;Schäfer, Greta;256215;104;W;2019;;SG Bad Schwartau;5196;00:00:33,29;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;5;;Stein, Fiona;256215;109;W;2019;;SG Bad Schwartau;5196;00:00:34,12;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;6;;Brandt, Linus;256215;127;W;2019;;SG Bad Schwartau;5196;00:00:35,92;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;7;;Hahn, Linus;256215;61;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,48;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;8;;Sander, Carla;256215;94;W;2019;;SG Bad Schwartau;5196;00:00:36,98;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;9;;Pohl, Henri;256215;97;W;2019;;SG Bad Schwartau;5196;00:00:37,15;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;10;;Gross, Tilda;256215;66;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:40,50;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;11;;Peters, Linus;256215;108;W;2019;;SG Bad Schwartau;5196;00:00:40,87;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;12;;Ulrich, Erik;256215;171;W;2019;;SG Lübeck;3496;00:00:42,15;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;13;;Klein, Jakob;256215;180;W;2019;;SG Lübeck;3496;00:00:46,36;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;14;;Thiele, Sophie;256215;152;W;2019;;SG Bad Schwartau;5196;00:00:48,45;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;15;;Richter, Oskar;256215;182;W;2019;;SG Lübeck;3496;00:00:50,87;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;16;;Pohl, Luis;256215;125;W;2019;;SG Bad Schwartau;5196;00:00:50,97;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;17;;Vogel, Emma;256215;48;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,82;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;0;NA;Seidel, Maja;256215;59;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;0;AB;Walter, Tilda;256215;30;W;2019;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5004;0;AB;Sander, Jost;256215;190;W;2019;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 5;E;5003;1;;Sander, Hannah;256215;181;W;2020;;SG Lübeck;3496;00:00:47,29;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 5;E;5003;2;;Koch, Leon;256215;184;W;2020;;SG Lübeck;3496;00:00:49,82;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 5;E;5003;3;;Winkler, Sophie;256215;54;W;2020;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:11,28;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 5;E;5003;0;DS;Fischer, Anton;256215;116;W;2020;;SG Bad Schwartau;5196;00:00:00,00;Die Sportlerin hat nach dem Start ihren Wettkampf abgebrochen.;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 5;E;5003;0;AB;Otto, Clara;256215;165;W;2020;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 5;E;5003;0;AB;Koch, Leon;256215;191;W;2020;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 6;E;6005;1;;Herrmann, Marie;256215;17;M;2018;;AMTV-WTB Hamburg;7291;00:00:23,99;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;2;;Maier, Alina;256215;117;M;2018;;SG Bad Schwartau;5196;00:00:26,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;3;;Frank, Felix;256215;63;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:26,56;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;4;;Frank, Mats;256215;87;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:28,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;5;;Gross, Clara;256215;81;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:28,03;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;6;;Pohl, Mats;256215;170;M;2018;;SG Lübeck;3496;00:00:29,90;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;7;;Ziegler, Emilia;256215;147;M;2018;;SG Bad Schwartau;5196;00:00:30,55;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;8;;Lorenz, Karl;256215;156;M;2018;;SG Lübeck;3496;00:00:31,07;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;9;;Kaiser, Sina;256215;187;M;2018;;SG Lübeck;3496;00:00:32,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;10;;Ludwig, Jost;256215;21;M;2018;;AMTV-WTB Hamburg;7291;00:00:33,33;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;11;;Herrmann, Hannah;256215;110;M;2018;;SG Bad Schwartau;5196;00:00:33,39;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;12;;Fischer, Marie;256215;15;M;2018;;AMTV-WTB Hamburg;7291;00:00:33,68;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;13;;Sommer, Lina;256215;78;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:35,37;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;14;;Hartmann, Niklas;256215;176;M;2018;;SG Lübeck;3496;00:00:36,07;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;15;;Keller, Milan;256215;113;M;2018;;SG Bad Schwartau;5196;00:00:36,88;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;16;;Engel, Lena;256215;137;M;2018;;SG Bad Schwartau;5196;00:00:38,80;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;17;;Herrmann, Anton;256215;131;M;2018;;SG Bad Schwartau;5196;00:00:41,02;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;18;;Koch, Theo;256215;166;M;2018;;SG Lübeck;3496;00:00:42,89;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6005;19;;Pohl, Lena;256215;188;M;2018;;SG Lübeck;3496;00:00:46,13;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 6;E;6004;1;;Thiele, Malte;256215;162;M;2019;;SG Lübeck;3496;00:00:37,16;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;6004;2;;Schmitt, Erik;256215;186;M;2019;;SG Lübeck;3496;00:00:39,73;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;6004;3;;Herrmann, Hannah;256215;107;M;2019;;SG Bad Schwartau;5196;00:00:42,36;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;6004;4;;Frank, Elias;256215;119;M;2019;;SG Bad Schwartau;5196;00:00:45,76;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;6004;0;AB;Kaiser, Carla;256215;80;M;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;6004;0;AB;Gross, Jakob;256215;158;M;2019;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 6;E;6003;1;;Engel, Milan;256215;118;M;2020;;SG Bad Schwartau;5196;00:00:59,21;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 6;E;6003;2;;Schmitt, Nora;256215;167;M;2020;;SG Lübeck;3496;00:01:11,09;;;GER;;; (* Jahrgang 2020 *)
+PNERGEBNIS: 7;E;7005;1;;Kern, Leon;285484;203;W;2018;;SV Neptun Kiel;5129;00:00:32,72;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;2;;Busch, Lina;256215;69;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:33,53;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;3;;Herrmann, Paul;256215;84;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,19;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;4;;Ludwig, Jost;256215;55;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:37,80;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;5;;Winkler, Mats;256215;111;W;2018;;SG Bad Schwartau;5196;00:00:39,40;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;6;;Maier, Milan;256215;114;W;2018;;SG Bad Schwartau;5196;00:00:42,12;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;7;;Albers, Niklas;256215;79;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:46,02;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;8;;Kuhn, Theo;256215;62;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:47,33;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;9;;Koch, Leon;256215;112;W;2018;;SG Bad Schwartau;5196;00:00:52,81;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;10;;Maier, Oskar;256215;52;W;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:53,30;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7005;0;AB;Lang, Zoe;262386;199;W;2018;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 7;E;7004;1;;Möller, Lina;256215;135;W;2019;;SG Bad Schwartau;5196;00:00:32,22;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 7;E;7004;2;;Hahn, Linus;256215;61;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:43,69;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 7;E;7004;3;;Sander, Carla;256215;94;W;2019;;SG Bad Schwartau;5196;00:00:48,88;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 7;E;7004;4;;Schäfer, Greta;256215;104;W;2019;;SG Bad Schwartau;5196;00:00:49,36;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 7;E;7004;5;;Pohl, Luis;256215;125;W;2019;;SG Bad Schwartau;5196;00:01:08,13;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 7;E;7004;0;NA;Seidel, Maja;256215;59;W;2019;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2019 *)
+PNERGEBNIS: 8;E;8005;1;;Frank, Felix;256215;63;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:28,70;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;8005;2;;Frank, Mats;256215;87;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,90;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;8005;3;;Maier, Alina;256215;117;M;2018;;SG Bad Schwartau;5196;00:00:37,22;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;8005;4;;Gross, Clara;256215;81;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:41,86;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;8005;5;;Sommer, Lina;256215;78;M;2018;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:49,55;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 8;E;8005;6;;Keller, Milan;256215;113;M;2018;;SG Bad Schwartau;5196;00:00:50,55;;;GER;;; (* Jahrgang 2018 *)
+PNERGEBNIS: 10;E;10005;1;;Dietrich, Erik;802204;32;W;2014;;AMTV-WTB Hamburg;7291;00:01:00,07;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;10005;2;;Schröder, Felix;899713;50;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:08,03;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;10005;0;NA;Dietrich, Lara;918657;68;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 10;E;10004;1;;Ludwig, Emilia;760708;22;W;2015;;AMTV-WTB Hamburg;7291;00:00:49,35;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;2;;Kaiser, Nora;671380;145;W;2015;;SG Bad Schwartau;5196;00:00:50,37;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;3;;Gross, Lina;427544;120;W;2015;;SG Bad Schwartau;5196;00:00:51,95;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;4;;Winkler, Pia;949302;39;W;2015;;Ratzeburger SV von 1862;3485;00:00:54,78;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;5;;Kern, David;296777;2;W;2015;;Ahrensburger TSV;3447;00:00:58,79;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;6;;Kern, Paul;508690;29;W;2015;;AMTV-WTB Hamburg;7291;00:00:59,17;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;7;;Brandt, Emilia;924561;86;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:00,30;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;8;;Sander, Julia;289953;198;W;2015;;SV Neptun Kiel;5129;00:01:02,29;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;9;;Pohl, Zoe;949328;144;W;2015;;SG Bad Schwartau;5196;00:01:02,96;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;10;;Möller, Karl;596342;200;W;2015;;SV Neptun Kiel;5129;00:01:07,92;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;11;;Voigt, Anton;537015;201;W;2015;;SV Neptun Kiel;5129;00:01:14,19;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;12;;Albers, Oskar;875180;56;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:15,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;13;;Ziegler, Paul;488209;25;W;2015;;AMTV-WTB Hamburg;7291;00:01:25,71;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;14;;Otto, Vincent;557779;71;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:32,77;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;0;AB;Lang, Luis;493295;20;W;2015;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10004;0;AB;Kern, Julia;499107;35;W;2015;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 10;E;10003;1;;Ziegler, David;585757;19;W;2016;;AMTV-WTB Hamburg;7291;00:00:53,01;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;2;;Schmitt, Sina;467942;90;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;3;;Schmitt, Hannah;748709;72;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:00,93;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;4;;Möller, Milan;568161;23;W;2016;;AMTV-WTB Hamburg;7291;00:01:01,54;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;5;;Hartmann, Greta;371417;51;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:03,10;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;6;;Möller, Oskar;184682;40;W;2016;;Ratzeburger SV von 1862;3485;00:01:11,19;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;7;;Keller, Vincent;232971;31;W;2016;;AMTV-WTB Hamburg;7291;00:01:11,90;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;8;;Schäfer, Tilda;693798;77;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:24,10;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;9;;Lehmann, Nele;745158;150;W;2016;;SG Bad Schwartau;5196;00:01:32,14;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;0;NA;Gross, Vincent;931115;34;W;2016;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;0;AB;Kramer, Jonas;213281;140;W;2016;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10003;0;AB;Hahn, Julia;160825;204;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 10;E;10002;1;;Klein, Jakob;636572;42;W;2017;;Ratzeburger SV von 1862;3485;00:00:51,54;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;2;;Voigt, Fiona;528941;126;W;2017;;SG Bad Schwartau;5196;00:01:00,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;3;;Otto, Tilda;219598;41;W;2017;;Ratzeburger SV von 1862;3485;00:01:01,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;4;;Engel, Mats;986276;13;W;2017;;AMTV-WTB Hamburg;7291;00:01:02,22;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;5;;Peters, Julia;498635;160;W;2017;;SG Lübeck;3496;00:01:09,20;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;6;;Berger, Luis;741064;168;W;2017;;SG Lübeck;3496;00:01:14,72;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;7;;Ziegler, Rike;208547;192;W;2017;;SG Lübeck;3496;00:01:17,94;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;8;;Pohl, Sophie;919133;16;W;2017;;AMTV-WTB Hamburg;7291;00:01:19,85;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;9;;Graf, Lara;341514;14;W;2017;;AMTV-WTB Hamburg;7291;00:01:19,85;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;10;;Ludwig, Emilia;230588;169;W;2017;;SG Lübeck;3496;00:01:26,48;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;11;;Engel, Niklas;589599;6;W;2017;;Ahrensburger TSV;3447;00:01:26,71;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;12;;Schmitt, Anton;167539;138;W;2017;;SG Bad Schwartau;5196;00:01:29,77;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;13;;Schäfer, Henri;793370;85;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:39,50;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 10;E;10002;0;AB;Vogel, Lina;899295;95;W;2017;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11005;1;;Berger, Malte;824570;75;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,93;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;2;;Stein, Jost;678539;37;M;2014;;Ratzeburger SV von 1862;3485;00:00:54,06;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;3;;Weiss, Jost;672230;146;M;2014;;SG Bad Schwartau;5196;00:01:00,16;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;4;;Graf, Paul;672285;88;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:03,99;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;5;;Jung, Mats;999283;148;M;2014;;SG Bad Schwartau;5196;00:01:05,03;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;6;;Engel, Malte;213951;60;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:06,03;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;7;;Otto, Pia;509116;33;M;2014;;AMTV-WTB Hamburg;7291;00:01:09,23;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;8;;Ulrich, Maja;653034;67;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:17,37;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;0;AB;Weiss, Sina;284504;8;M;2014;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;0;AB;Schröder, Alina;779258;27;M;2014;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11005;0;AB;Kuhn, Erik;772089;197;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 11;E;11004;1;;Lorenz, Alina;261721;83;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:11,98;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;11004;2;;Fischer, Marie;507692;5;M;2015;;Ahrensburger TSV;3447;00:01:32,08;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 11;E;11003;1;;Marquardt, Rike;810333;36;M;2016;;AMTV-WTB Hamburg;7291;00:00:53,05;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;11003;2;;Graf, Leon;965111;38;M;2016;;Ratzeburger SV von 1862;3485;00:00:56,73;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;11003;3;;Kern, Erik;103947;65;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,99;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;11003;4;;Neumann, Julia;325448;202;M;2016;;SV Neptun Kiel;5129;00:01:03,86;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;11003;5;;Frank, Emma;881893;74;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:08,88;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;11003;6;;Thiele, Lena;933510;139;M;2016;;SG Bad Schwartau;5196;00:01:37,92;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 11;E;11002;1;;Albers, Vincent;627709;133;M;2017;;SG Bad Schwartau;5196;00:00:53,60;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;2;;Marquardt, Yara;399560;93;M;2017;;SG Bad Schwartau;5196;00:00:58,54;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;3;;Dietrich, Emilia;753873;185;M;2017;;SG Lübeck;3496;00:01:02,08;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;4;;Busch, Greta;464856;178;M;2017;;SG Lübeck;3496;00:01:02,92;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;5;;Lorenz, Emma;332417;141;M;2017;;SG Bad Schwartau;5196;00:01:08,73;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;6;;Walter, Lena;932467;18;M;2017;;AMTV-WTB Hamburg;7291;00:01:19,68;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;7;;Reuter, Jana;821488;24;M;2017;;AMTV-WTB Hamburg;7291;00:01:26,92;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;8;;Seidel, Ida;432687;96;M;2017;;SG Bad Schwartau;5196;00:01:42,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 11;E;11002;9;;Schröder, Pia;950090;103;M;2017;;SG Bad Schwartau;5196;00:01:50,33;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12005;1;;Voigt, Nora;363354;153;W;2014;;SG Bad Schwartau;5196;00:00:56,05;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;12005;2;;Schröder, Felix;899713;50;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:03,80;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;12005;0;NA;Dietrich, Lara;918657;68;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 12;E;12004;1;;Ludwig, Emilia;760708;22;W;2015;;AMTV-WTB Hamburg;7291;00:00:47,56;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;2;;Pohl, Zoe;949328;144;W;2015;;SG Bad Schwartau;5196;00:00:48,07;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;3;;Winkler, Pia;949302;39;W;2015;;Ratzeburger SV von 1862;3485;00:00:48,35;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;4;;Kaiser, Nora;671380;145;W;2015;;SG Bad Schwartau;5196;00:00:49,98;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;5;;Ziegler, Paul;488209;25;W;2015;;AMTV-WTB Hamburg;7291;00:00:56,53;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;6;;Ludwig, Nora;759322;76;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,86;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;7;;Gross, Lina;427544;120;W;2015;;SG Bad Schwartau;5196;00:00:57,44;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;8;;Möller, Karl;596342;200;W;2015;;SV Neptun Kiel;5129;00:00:58,20;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;9;;Brandt, Emilia;924561;86;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:58,54;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;10;;Möller, Vincent;575133;115;W;2015;;SG Bad Schwartau;5196;00:01:02,60;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;11;;Voigt, Anton;537015;201;W;2015;;SV Neptun Kiel;5129;00:01:03,71;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;12;;Sander, Julia;289953;198;W;2015;;SV Neptun Kiel;5129;00:01:05,50;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;13;;Otto, Vincent;557779;71;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:07,07;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;14;;Albers, Oskar;875180;56;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:07,64;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;0;NA;Peters, Ida;993761;99;W;2015;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;0;DS;Sommer, Alina;910848;136;W;2015;;SG Bad Schwartau;5196;00:00:00,00;Die Schwimmerin hat beim Zielanschlag nur mit einer Hand angeschlagen.;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12004;0;AB;Lang, Luis;493295;20;W;2015;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 12;E;12003;1;;Sander, Tom;548404;195;W;2016;;SVE Hamburg;5738;00:00:49,07;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;2;;Weiss, Nora;155318;124;W;2016;;SG Bad Schwartau;5196;00:00:51,65;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;3;;Schmitt, Sina;467942;90;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:54,74;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;4;;Richter, Milan;555610;193;W;2016;;SVE Hamburg;5738;00:00:54,91;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;5;;Lang, Elias;206918;123;W;2016;;SG Bad Schwartau;5196;00:00:55,50;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;6;;Möller, Oskar;184682;40;W;2016;;Ratzeburger SV von 1862;3485;00:00:56,82;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;7;;Seidel, Tom;359866;134;W;2016;;SG Bad Schwartau;5196;00:00:57,59;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;8;;Hartmann, Greta;371417;51;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:57,68;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;9;;Busch, Tilda;949036;82;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:59,38;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;10;;Ludwig, Linus;972238;3;W;2016;;Ahrensburger TSV;3447;00:01:01,58;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;11;;Schmitt, Hannah;748709;72;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:03,26;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;12;;Schäfer, Karl;765707;70;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:04,90;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;13;;Schäfer, Tilda;693798;77;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:05,24;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;14;;Lehmann, Nele;745158;150;W;2016;;SG Bad Schwartau;5196;00:01:07,10;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;15;;Stein, Yara;870360;128;W;2016;;SG Bad Schwartau;5196;00:01:08,99;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12003;0;AB;Hahn, Julia;160825;204;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 12;E;12002;1;;Klein, Jakob;636572;42;W;2017;;Ratzeburger SV von 1862;3485;00:00:51,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;2;;Brandt, Jana;931274;57;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:54,31;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;3;;Ziegler, Fiona;140519;73;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,04;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;4;;Pohl, Sophie;919133;16;W;2017;;AMTV-WTB Hamburg;7291;00:00:57,47;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;5;;Engel, Niklas;589599;6;W;2017;;Ahrensburger TSV;3447;00:00:57,50;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;6;;Ziegler, Mia;565778;174;W;2017;;SG Lübeck;3496;00:00:57,58;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;7;;Hahn, Leon;395757;89;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:02,16;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;8;;Voigt, David;673921;164;W;2017;;SG Lübeck;3496;00:01:02,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;9;;Weiss, Sina;462900;53;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:02,61;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;10;;Graf, Lara;341514;14;W;2017;;AMTV-WTB Hamburg;7291;00:01:04,28;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;11;;Winkler, Pia;351540;163;W;2017;;SG Lübeck;3496;00:01:04,79;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;12;;Engel, Greta;929159;175;W;2017;;SG Lübeck;3496;00:01:05,12;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;13;;Voigt, Yara;718138;49;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:07,02;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;14;;Otto, Tilda;219598;41;W;2017;;Ratzeburger SV von 1862;3485;00:01:08,29;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;15;;Schäfer, Henri;793370;85;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:10,86;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;16;;Peters, Julia;498635;160;W;2017;;SG Lübeck;3496;00:01:11,25;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;17;;Ziegler, Rike;208547;192;W;2017;;SG Lübeck;3496;00:01:14,25;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;18;;Ludwig, Emilia;230588;169;W;2017;;SG Lübeck;3496;00:01:14,45;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;19;;Berger, Luis;741064;168;W;2017;;SG Lübeck;3496;00:01:19,76;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;0;NA;Schmitt, Anton;167539;138;W;2017;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 12;E;12002;0;AB;Jung, Emma;243397;157;W;2017;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;13005;1;;Berger, Malte;824570;75;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:47,60;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;2;;Engel, Malte;213951;60;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,20;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;3;;Hahn, Emilia;784537;105;M;2014;;SG Bad Schwartau;5196;00:00:51,40;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;4;;Weiss, Jost;672230;146;M;2014;;SG Bad Schwartau;5196;00:00:55,58;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;5;;Ulrich, Maja;653034;67;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,87;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;6;;Stein, Jost;678539;37;M;2014;;Ratzeburger SV von 1862;3485;00:00:56,90;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;7;;Graf, Paul;672285;88;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:21,48;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;0;DS;Jung, Mats;999283;148;M;2014;;SG Bad Schwartau;5196;00:00:00,00;Der Sportler hatte nicht mit beiden Händen gleichzeitig bei der Wende angeschlagen.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;0;AB;Weiss, Sina;284504;8;M;2014;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;0;AB;Schröder, Alina;779258;27;M;2014;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13005;0;AB;Kuhn, Erik;772089;197;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 13;E;13004;1;;Lorenz, Alina;261721;83;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:50,08;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 13;E;13004;2;;Kern, Theo;547979;151;M;2015;;SG Bad Schwartau;5196;00:01:05,06;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 13;E;13003;1;;Frank, Emma;881893;74;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,12;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;13003;2;;Marquardt, Rike;810333;36;M;2016;;AMTV-WTB Hamburg;7291;00:00:50,81;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;13003;3;;Kern, Erik;103947;65;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:57,22;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;13003;4;;Graf, Leon;965111;38;M;2016;;Ratzeburger SV von 1862;3485;00:01:00,31;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;13003;5;;Neumann, Julia;325448;202;M;2016;;SV Neptun Kiel;5129;00:01:06,81;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;13003;6;;Reuter, Nora;296948;9;M;2016;;Ahrensburger TSV;3447;00:01:09,40;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 13;E;13002;1;;Vogel, Lena;681758;4;M;2017;;Ahrensburger TSV;3447;00:00:56,86;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;13002;2;;Ludwig, Sina;431492;161;M;2017;;SG Lübeck;3496;00:00:59,23;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;13002;3;;Otto, Ruben;766527;91;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:06,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;13002;4;;Dietrich, Emilia;753873;185;M;2017;;SG Lübeck;3496;00:01:09,39;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 13;E;13002;5;;Busch, Greta;464856;178;M;2017;;SG Lübeck;3496;00:01:09,91;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14005;1;;Voigt, Nora;363354;153;W;2014;;SG Bad Schwartau;5196;00:00:41,20;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;14005;2;;Dietrich, Erik;802204;32;W;2014;;AMTV-WTB Hamburg;7291;00:00:48,01;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;14005;3;;Schröder, Felix;899713;50;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:54,98;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;14005;0;NA;Dietrich, Lara;918657;68;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 14;E;14004;1;;Winkler, Pia;949302;39;W;2015;;Ratzeburger SV von 1862;3485;00:00:34,90;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;2;;Pohl, Zoe;949328;144;W;2015;;SG Bad Schwartau;5196;00:00:39,03;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;3;;Brandt, Emilia;924561;86;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:41,32;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;4;;Kaiser, Nora;671380;145;W;2015;;SG Bad Schwartau;5196;00:00:41,58;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;5;;Gross, Lina;427544;120;W;2015;;SG Bad Schwartau;5196;00:00:43,92;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;6;;Kern, Paul;508690;29;W;2015;;AMTV-WTB Hamburg;7291;00:00:45,12;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;7;;Kern, David;296777;2;W;2015;;Ahrensburger TSV;3447;00:00:47,07;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;8;;Ziegler, Paul;488209;25;W;2015;;AMTV-WTB Hamburg;7291;00:00:52,48;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;9;;Albers, Oskar;875180;56;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:54,10;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;10;;Möller, Vincent;575133;115;W;2015;;SG Bad Schwartau;5196;00:00:54,59;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;11;;Sommer, Alina;910848;136;W;2015;;SG Bad Schwartau;5196;00:00:57,50;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;12;;Sander, Julia;289953;198;W;2015;;SV Neptun Kiel;5129;00:00:57,96;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;13;;Voigt, Anton;537015;201;W;2015;;SV Neptun Kiel;5129;00:01:04,31;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;14;;Otto, Vincent;557779;71;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:08,58;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;15;;Möller, Karl;596342;200;W;2015;;SV Neptun Kiel;5129;00:01:12,45;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;0;NA;Peters, Ida;993761;99;W;2015;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14004;0;AB;Kern, Julia;499107;35;W;2015;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 14;E;14003;1;;Schmitt, Sina;467942;90;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:40,40;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;2;;Möller, Oskar;184682;40;W;2016;;Ratzeburger SV von 1862;3485;00:00:42,37;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;3;;Weiss, Nora;155318;124;W;2016;;SG Bad Schwartau;5196;00:00:43,53;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;4;;Sander, Paul;468452;194;W;2016;;SVE Hamburg;5738;00:00:45,16;;;UKR;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;5;;Keller, Vincent;232971;31;W;2016;;AMTV-WTB Hamburg;7291;00:00:46,83;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;6;;Lang, Elias;206918;123;W;2016;;SG Bad Schwartau;5196;00:00:47,62;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;7;;Ludwig, Linus;972238;3;W;2016;;Ahrensburger TSV;3447;00:00:48,01;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;8;;Hartmann, Greta;371417;51;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,09;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;9;;Schäfer, Karl;765707;70;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,23;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;10;;Schmitt, Hannah;748709;72;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,31;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;11;;Seidel, Tom;359866;134;W;2016;;SG Bad Schwartau;5196;00:00:50,38;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;12;;Busch, Tilda;949036;82;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,19;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;13;;Schäfer, Tilda;693798;77;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:09,64;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;14;;Lehmann, Nele;745158;150;W;2016;;SG Bad Schwartau;5196;00:01:19,46;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;0;NA;Gross, Vincent;931115;34;W;2016;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;0;AB;Kramer, Jonas;213281;140;W;2016;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14003;0;AB;Hahn, Julia;160825;204;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 14;E;14002;1;;Klein, Jakob;636572;42;W;2017;;Ratzeburger SV von 1862;3485;00:00:39,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;2;;Ziegler, Fiona;140519;73;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:43,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;3;;Otto, Tilda;219598;41;W;2017;;Ratzeburger SV von 1862;3485;00:00:47,91;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;4;;Brandt, Jana;931274;57;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,67;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;5;;Ziegler, Mia;565778;174;W;2017;;SG Lübeck;3496;00:00:50,53;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;6;;Hahn, Leon;395757;89;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:50,83;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;7;;Engel, Greta;929159;175;W;2017;;SG Lübeck;3496;00:00:52,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;8;;Engel, Niklas;589599;6;W;2017;;Ahrensburger TSV;3447;00:00:52,53;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;9;;Voigt, Fiona;528941;126;W;2017;;SG Bad Schwartau;5196;00:00:53,43;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;10;;Voigt, David;673921;164;W;2017;;SG Lübeck;3496;00:00:53,44;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;11;;Weiss, Sina;462900;53;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:54,59;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;12;;Voigt, Yara;718138;49;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,57;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;13;;Ludwig, Emilia;230588;169;W;2017;;SG Lübeck;3496;00:01:00,03;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;14;;Winkler, Pia;351540;163;W;2017;;SG Lübeck;3496;00:01:00,32;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;15;;Peters, Julia;498635;160;W;2017;;SG Lübeck;3496;00:01:06,45;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;16;;Ziegler, Rike;208547;192;W;2017;;SG Lübeck;3496;00:01:08,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;17;;Berger, Luis;741064;168;W;2017;;SG Lübeck;3496;00:01:10,18;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;18;;Schäfer, Henri;793370;85;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:13,78;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;0;AB;Vogel, Lina;899295;95;W;2017;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 14;E;14002;0;AB;Jung, Emma;243397;157;W;2017;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15005;1;;Berger, Malte;824570;75;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:36,59;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;2;;Otto, Pia;509116;33;M;2014;;AMTV-WTB Hamburg;7291;00:00:37,11;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;3;;Hahn, Emilia;784537;105;M;2014;;SG Bad Schwartau;5196;00:00:39,57;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;4;;Engel, Malte;213951;60;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:40,34;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;5;;Stein, Jost;678539;37;M;2014;;Ratzeburger SV von 1862;3485;00:00:42,15;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;6;;Ulrich, Maja;653034;67;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:44,52;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;7;;Weiss, Jost;672230;146;M;2014;;SG Bad Schwartau;5196;00:00:52,91;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;8;;Graf, Paul;672285;88;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:53,96;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;9;;Jung, Mats;999283;148;M;2014;;SG Bad Schwartau;5196;00:00:54,27;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;0;AB;Weiss, Sina;284504;8;M;2014;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15005;0;AB;Kuhn, Erik;772089;197;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 15;E;15004;1;;Lorenz, Alina;261721;83;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:41,21;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 15;E;15004;2;;Kern, Theo;547979;151;M;2015;;SG Bad Schwartau;5196;00:00:48,44;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 15;E;15003;1;;Schmitt, Nora;643361;183;M;2016;;SG Lübeck;3496;00:00:38,08;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;2;;Frank, Emma;881893;74;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:38,22;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;3;;Graf, Leon;965111;38;M;2016;;Ratzeburger SV von 1862;3485;00:00:42,52;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;4;;Kern, Erik;103947;65;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:43,48;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;5;;Neumann, Julia;325448;202;M;2016;;SV Neptun Kiel;5129;00:00:50,84;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;6;;Thiele, Lena;933510;139;M;2016;;SG Bad Schwartau;5196;00:00:51,71;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;7;;Klein, Milan;988026;149;M;2016;;SG Bad Schwartau;5196;00:00:53,75;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;8;;Engel, Pia;503913;143;M;2016;;SG Bad Schwartau;5196;00:00:55,93;;;GBR;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15003;9;;Reuter, Nora;296948;9;M;2016;;Ahrensburger TSV;3447;00:00:56,92;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 15;E;15002;1;;Vogel, Lena;681758;4;M;2017;;Ahrensburger TSV;3447;00:00:41,21;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;2;;Dietrich, Emilia;753873;185;M;2017;;SG Lübeck;3496;00:00:46,96;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;3;;Ludwig, Sina;431492;161;M;2017;;SG Lübeck;3496;00:00:50,84;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;4;;Otto, Ruben;766527;91;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,58;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;5;;Albers, Vincent;627709;133;M;2017;;SG Bad Schwartau;5196;00:00:53,96;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;6;;Marquardt, Yara;399560;93;M;2017;;SG Bad Schwartau;5196;00:00:54,13;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;7;;Schröder, Pia;950090;103;M;2017;;SG Bad Schwartau;5196;00:00:54,27;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;8;;Busch, Greta;464856;178;M;2017;;SG Lübeck;3496;00:00:55,93;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;9;;Lorenz, Emma;332417;141;M;2017;;SG Bad Schwartau;5196;00:01:01,09;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;10;;Reuter, Jana;821488;24;M;2017;;AMTV-WTB Hamburg;7291;00:01:11,10;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 15;E;15002;11;;Seidel, Ida;432687;96;M;2017;;SG Bad Schwartau;5196;00:01:23,37;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16005;1;;Voigt, Nora;363354;153;W;2014;;SG Bad Schwartau;5196;00:00:50,34;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;16005;2;;Schröder, Felix;899713;50;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:00,81;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;16005;0;NA;Dietrich, Lara;918657;68;W;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 16;E;16004;1;;Ludwig, Emilia;760708;22;W;2015;;AMTV-WTB Hamburg;7291;00:00:43,92;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;2;;Winkler, Pia;949302;39;W;2015;;Ratzeburger SV von 1862;3485;00:00:44,96;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;3;;Kaiser, Nora;671380;145;W;2015;;SG Bad Schwartau;5196;00:00:45,25;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;4;;Gross, Lina;427544;120;W;2015;;SG Bad Schwartau;5196;00:00:48,33;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;5;;Pohl, Zoe;949328;144;W;2015;;SG Bad Schwartau;5196;00:00:48,60;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;6;;Brandt, Emilia;924561;86;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:51,04;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;7;;Voigt, Anton;537015;201;W;2015;;SV Neptun Kiel;5129;00:00:55,18;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;8;;Kern, Paul;508690;29;W;2015;;AMTV-WTB Hamburg;7291;00:00:56,08;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;9;;Sander, Julia;289953;198;W;2015;;SV Neptun Kiel;5129;00:00:58,61;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;10;;Sommer, Alina;910848;136;W;2015;;SG Bad Schwartau;5196;00:01:00,16;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;11;;Kern, David;296777;2;W;2015;;Ahrensburger TSV;3447;00:01:01,14;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;12;;Möller, Karl;596342;200;W;2015;;SV Neptun Kiel;5129;00:01:01,91;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;13;;Albers, Oskar;875180;56;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:07,83;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;14;;Otto, Vincent;557779;71;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:10,62;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;0;NA;Peters, Ida;993761;99;W;2015;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;0;AB;Lang, Luis;493295;20;W;2015;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16004;0;AB;Kern, Julia;499107;35;W;2015;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 16;E;16003;1;;Weiss, Nora;155318;124;W;2016;;SG Bad Schwartau;5196;00:00:48,82;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;2;;Schmitt, Sina;467942;90;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,88;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;3;;Möller, Oskar;184682;40;W;2016;;Ratzeburger SV von 1862;3485;00:00:49,13;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;4;;Schäfer, Karl;765707;70;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,06;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;5;;Ludwig, Linus;972238;3;W;2016;;Ahrensburger TSV;3447;00:00:52,42;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;6;;Seidel, Tom;359866;134;W;2016;;SG Bad Schwartau;5196;00:00:54,52;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;7;;Hartmann, Greta;371417;51;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,20;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;8;;Lang, Elias;206918;123;W;2016;;SG Bad Schwartau;5196;00:00:55,65;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;9;;Schmitt, Hannah;748709;72;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,37;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;10;;Möller, Milan;568161;23;W;2016;;AMTV-WTB Hamburg;7291;00:00:58,61;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;11;;Busch, Tilda;949036;82;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:02,13;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;12;;Schäfer, Tilda;693798;77;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:15,92;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;0;NA;Gross, Vincent;931115;34;W;2016;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;0;NA;Lehmann, Nele;745158;150;W;2016;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;0;DS;Richter, Milan;555610;193;W;2016;;SVE Hamburg;5738;00:00:00,00;Die Schwimmerin hat die Wand bei der Wende nicht berührt.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;0;AB;Kramer, Jonas;213281;140;W;2016;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16003;0;AB;Hahn, Julia;160825;204;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 16;E;16002;1;;Klein, Jakob;636572;42;W;2017;;Ratzeburger SV von 1862;3485;00:00:45,51;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;2;;Ziegler, Fiona;140519;73;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:50,65;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;3;;Ziegler, Mia;565778;174;W;2017;;SG Lübeck;3496;00:00:54,56;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;4;;Engel, Greta;929159;175;W;2017;;SG Lübeck;3496;00:00:54,84;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;5;;Hahn, Leon;395757;89;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,05;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;6;;Weiss, Sina;462900;53;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:56,90;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;7;;Voigt, Fiona;528941;126;W;2017;;SG Bad Schwartau;5196;00:00:57,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;8;;Voigt, David;673921;164;W;2017;;SG Lübeck;3496;00:00:58,29;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;9;;Engel, Niklas;589599;6;W;2017;;Ahrensburger TSV;3447;00:01:00,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;10;;Berger, Luis;741064;168;W;2017;;SG Lübeck;3496;00:01:03,94;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;11;;Ludwig, Emilia;230588;169;W;2017;;SG Lübeck;3496;00:01:06,19;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;12;;Peters, Julia;498635;160;W;2017;;SG Lübeck;3496;00:01:06,57;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;13;;Voigt, Yara;718138;49;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:06,89;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;14;;Ziegler, Rike;208547;192;W;2017;;SG Lübeck;3496;00:01:12,88;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;15;;Schäfer, Henri;793370;85;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:20,40;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;0;NA;Schmitt, Anton;167539;138;W;2017;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;0;DS;Brandt, Jana;931274;57;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;Die Schwimmerhin hat bei der Wende nicht die Wand berührt.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;0;DS;Otto, Tilda;219598;41;W;2017;;Ratzeburger SV von 1862;3485;00:00:00,00;Die Sportlerin hat mehrfach die Rückenlage verlassen.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;0;DS;Winkler, Pia;351540;163;W;2017;;SG Lübeck;3496;00:00:00,00;Die Schwimmerin hat in Bauchlage abgestoßen.;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;0;AB;Jung, Emma;243397;157;W;2017;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 16;E;16002;0;AB;Vogel, Lina;899295;95;W;2017;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17005;1;;Engel, Malte;213951;60;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:44,32;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;2;;Berger, Malte;824570;75;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:44,80;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;3;;Hahn, Emilia;784537;105;M;2014;;SG Bad Schwartau;5196;00:00:48,47;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;4;;Weiss, Jost;672230;146;M;2014;;SG Bad Schwartau;5196;00:00:53,13;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;5;;Stein, Jost;678539;37;M;2014;;Ratzeburger SV von 1862;3485;00:00:53,98;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;6;;Jung, Mats;999283;148;M;2014;;SG Bad Schwartau;5196;00:00:56,57;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;7;;Graf, Paul;672285;88;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:00,16;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;0;DS;Ulrich, Maja;653034;67;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;Der Schwimmer verließ die Wende in Bauchlage.;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;0;AB;Weiss, Sina;284504;8;M;2014;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;0;AB;Schröder, Alina;779258;27;M;2014;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17005;0;AB;Kuhn, Erik;772089;197;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 17;E;17004;1;;Lorenz, Alina;261721;83;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,22;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;17004;2;;Kern, Theo;547979;151;M;2015;;SG Bad Schwartau;5196;00:00:49,88;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;17004;3;;Fischer, Marie;507692;5;M;2015;;Ahrensburger TSV;3447;00:01:06,76;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 17;E;17003;1;;Schmitt, Nora;643361;183;M;2016;;SG Lübeck;3496;00:00:45,21;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;2;;Frank, Emma;881893;74;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:48,58;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;3;;Kern, Erik;103947;65;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:49,09;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;4;;Graf, Leon;965111;38;M;2016;;Ratzeburger SV von 1862;3485;00:00:49,57;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;5;;Engel, Pia;503913;143;M;2016;;SG Bad Schwartau;5196;00:00:55,07;;;GBR;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;6;;Neumann, Julia;325448;202;M;2016;;SV Neptun Kiel;5129;00:00:57,32;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;7;;Thiele, Lena;933510;139;M;2016;;SG Bad Schwartau;5196;00:00:58,57;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;8;;Klein, Milan;988026;149;M;2016;;SG Bad Schwartau;5196;00:01:06,27;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17003;0;DS;Reuter, Nora;296948;9;M;2016;;Ahrensburger TSV;3447;00:00:00,00;Der Schwimmer hat die Wende in Bauchlage verlassen.;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 17;E;17002;1;;Vogel, Lena;681758;4;M;2017;;Ahrensburger TSV;3447;00:00:54,12;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;2;;Busch, Greta;464856;178;M;2017;;SG Lübeck;3496;00:00:55,26;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;3;;Marquardt, Yara;399560;93;M;2017;;SG Bad Schwartau;5196;00:00:56,64;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;4;;Lorenz, Emma;332417;141;M;2017;;SG Bad Schwartau;5196;00:00:57,10;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;5;;Albers, Vincent;627709;133;M;2017;;SG Bad Schwartau;5196;00:00:57,97;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;6;;Walter, Lena;932467;18;M;2017;;AMTV-WTB Hamburg;7291;00:00:58,36;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;7;;Ludwig, Sina;431492;161;M;2017;;SG Lübeck;3496;00:00:58,63;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;8;;Otto, Ruben;766527;91;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:00,16;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;9;;Schröder, Pia;950090;103;M;2017;;SG Bad Schwartau;5196;00:01:00,16;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;10;;Dietrich, Emilia;753873;185;M;2017;;SG Lübeck;3496;00:01:05,26;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 17;E;17002;11;;Seidel, Ida;432687;96;M;2017;;SG Bad Schwartau;5196;00:01:23,11;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 18;E;18005;1;;Dietrich, Erik;802204;32;W;2014;;AMTV-WTB Hamburg;7291;00:01:09,37;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 18;E;18004;1;;Winkler, Pia;949302;39;W;2015;;Ratzeburger SV von 1862;3485;00:00:44,93;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 18;E;18004;2;;Brandt, Emilia;924561;86;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:51,14;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 18;E;18004;3;;Gross, Lina;427544;120;W;2015;;SG Bad Schwartau;5196;00:00:51,94;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 18;E;18004;4;;Pohl, Zoe;949328;144;W;2015;;SG Bad Schwartau;5196;00:00:53,11;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 18;E;18004;5;;Kaiser, Nora;671380;145;W;2015;;SG Bad Schwartau;5196;00:00:57,15;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 18;E;18003;1;;Sander, Tom;548404;195;W;2016;;SVE Hamburg;5738;00:00:49,30;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;2;;Sander, Paul;468452;194;W;2016;;SVE Hamburg;5738;00:00:53,75;;;UKR;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;3;;Schmitt, Sina;467942;90;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,27;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;4;;Ziegler, David;585757;19;W;2016;;AMTV-WTB Hamburg;7291;00:00:56,42;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;5;;Weiss, Nora;155318;124;W;2016;;SG Bad Schwartau;5196;00:00:56,58;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;6;;Hartmann, Greta;371417;51;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:59,24;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;7;;Seidel, Tom;359866;134;W;2016;;SG Bad Schwartau;5196;00:01:00,93;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;8;;Möller, Oskar;184682;40;W;2016;;Ratzeburger SV von 1862;3485;00:01:02,78;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;9;;Lang, Elias;206918;123;W;2016;;SG Bad Schwartau;5196;00:01:09,28;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;0;NA;Schmitt, Hannah;748709;72;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18003;0;AB;Kramer, Jonas;213281;140;W;2016;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 18;E;18002;1;;Engel, Mats;986276;13;W;2017;;AMTV-WTB Hamburg;7291;00:00:48,45;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 18;E;18002;2;;Otto, Tilda;219598;41;W;2017;;Ratzeburger SV von 1862;3485;00:00:59,90;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 19;E;19005;1;;Engel, Malte;213951;60;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:45,12;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;19005;2;;Berger, Malte;824570;75;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:46,49;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;19005;3;;Otto, Pia;509116;33;M;2014;;AMTV-WTB Hamburg;7291;00:00:46,92;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;19005;4;;Stein, Jost;678539;37;M;2014;;Ratzeburger SV von 1862;3485;00:00:56,01;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;19005;0;AB;Weiss, Sina;284504;8;M;2014;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 19;E;19004;1;;Lorenz, Alina;261721;83;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:55,03;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 19;E;19003;1;;Schmitt, Nora;643361;183;M;2016;;SG Lübeck;3496;00:00:45,90;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;19003;2;;Marquardt, Rike;810333;36;M;2016;;AMTV-WTB Hamburg;7291;00:00:50,36;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;19003;3;;Frank, Emma;881893;74;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:52,64;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;19003;4;;Kern, Erik;103947;65;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:54,32;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;19003;5;;Graf, Leon;965111;38;M;2016;;Ratzeburger SV von 1862;3485;00:00:55,60;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 19;E;19002;1;;Vogel, Lena;681758;4;M;2017;;Ahrensburger TSV;3447;00:00:59,76;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20005;1;;Dietrich, Erik;802204;32;W;2014;;AMTV-WTB Hamburg;7291;00:02:01,22;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 20;E;20004;1;;Winkler, Pia;949302;39;W;2015;;Ratzeburger SV von 1862;3485;00:01:31,97;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;2;;Ludwig, Emilia;760708;22;W;2015;;AMTV-WTB Hamburg;7291;00:01:32,10;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;3;;Pohl, Zoe;949328;144;W;2015;;SG Bad Schwartau;5196;00:01:39,46;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;4;;Brandt, Emilia;924561;86;W;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:42,16;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;5;;Kaiser, Nora;671380;145;W;2015;;SG Bad Schwartau;5196;00:01:46,39;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;6;;Gross, Lina;427544;120;W;2015;;SG Bad Schwartau;5196;00:01:50,16;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;7;;Kern, Paul;508690;29;W;2015;;AMTV-WTB Hamburg;7291;00:02:02,69;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;0;NA;Peters, Ida;993761;99;W;2015;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20004;0;AB;Lang, Luis;493295;20;W;2015;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 20;E;20003;1;;Schmitt, Sina;467942;90;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:48,38;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;2;;Weiss, Nora;155318;124;W;2016;;SG Bad Schwartau;5196;00:01:48,91;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;3;;Möller, Oskar;184682;40;W;2016;;Ratzeburger SV von 1862;3485;00:01:55,32;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;4;;Hartmann, Greta;371417;51;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:57,24;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;5;;Seidel, Tom;359866;134;W;2016;;SG Bad Schwartau;5196;00:01:59,15;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;6;;Ziegler, David;585757;19;W;2016;;AMTV-WTB Hamburg;7291;00:01:59,68;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;7;;Keller, Vincent;232971;31;W;2016;;AMTV-WTB Hamburg;7291;00:02:00,01;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;8;;Schmitt, Hannah;748709;72;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:01,66;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;9;;Lang, Elias;206918;123;W;2016;;SG Bad Schwartau;5196;00:02:01,85;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;10;;Möller, Milan;568161;23;W;2016;;AMTV-WTB Hamburg;7291;00:02:08,06;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;11;;Busch, Tilda;949036;82;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:08,91;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;12;;Schäfer, Karl;765707;70;W;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:12,86;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;0;AB;Kramer, Jonas;213281;140;W;2016;;SG Bad Schwartau;5196;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20003;0;AB;Hahn, Julia;160825;204;W;2016;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 20;E;20002;1;;Klein, Jakob;636572;42;W;2017;;Ratzeburger SV von 1862;3485;00:01:42,28;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;2;;Engel, Mats;986276;13;W;2017;;AMTV-WTB Hamburg;7291;00:01:45,57;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;3;;Ziegler, Fiona;140519;73;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:54,62;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;4;;Pohl, Sophie;919133;16;W;2017;;AMTV-WTB Hamburg;7291;00:01:56,32;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;5;;Ziegler, Mia;565778;174;W;2017;;SG Lübeck;3496;00:02:03,81;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;6;;Otto, Tilda;219598;41;W;2017;;Ratzeburger SV von 1862;3485;00:02:05,58;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;7;;Voigt, David;673921;164;W;2017;;SG Lübeck;3496;00:02:08,55;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;8;;Weiss, Sina;462900;53;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:09,20;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;9;;Hahn, Leon;395757;89;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:10,44;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;10;;Engel, Greta;929159;175;W;2017;;SG Lübeck;3496;00:02:11,37;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;11;;Voigt, Yara;718138;49;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:18,83;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;12;;Winkler, Pia;351540;163;W;2017;;SG Lübeck;3496;00:02:33,88;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;0;NA;Brandt, Jana;931274;57;W;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 20;E;20002;0;AB;Jung, Emma;243397;157;W;2017;;SG Lübeck;3496;00:00:00,00;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;21005;1;;Berger, Malte;824570;75;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:31,83;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21005;2;;Otto, Pia;509116;33;M;2014;;AMTV-WTB Hamburg;7291;00:01:36,31;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21005;3;;Engel, Malte;213951;60;M;2014;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:42,21;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21005;4;;Hahn, Emilia;784537;105;M;2014;;SG Bad Schwartau;5196;00:01:45,08;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21005;5;;Stein, Jost;678539;37;M;2014;;Ratzeburger SV von 1862;3485;00:01:54,14;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21005;0;AB;Weiss, Sina;284504;8;M;2014;;Ahrensburger TSV;3447;00:00:00,00;;;;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21005;0;AB;Schröder, Alina;779258;27;M;2014;;AMTV-WTB Hamburg;7291;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21005;0;AB;Kuhn, Erik;772089;197;M;2014;;SV Neptun Kiel;5129;00:00:00,00;;;GER;;; (* Jahrgang 2014 *)
+PNERGEBNIS: 21;E;21004;1;;Lorenz, Alina;261721;83;M;2015;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:43,82;;;GER;;; (* Jahrgang 2015 *)
+PNERGEBNIS: 21;E;21003;1;;Marquardt, Rike;810333;36;M;2016;;AMTV-WTB Hamburg;7291;00:01:37,66;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;21003;2;;Schmitt, Nora;643361;183;M;2016;;SG Lübeck;3496;00:01:40,56;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;21003;3;;Frank, Emma;881893;74;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:41,83;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;21003;4;;Kern, Erik;103947;65;M;2016;;SC Delphin Lübeck v.1960 e.V.;3490;00:01:49,93;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;21003;5;;Graf, Leon;965111;38;M;2016;;Ratzeburger SV von 1862;3485;00:01:55,36;;;GER;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;21003;6;;Neumann, Julia;325448;202;M;2016;;SV Neptun Kiel;5129;00:02:17,45;;;;;; (* Jahrgang 2016 *)
+PNERGEBNIS: 21;E;21002;1;;Vogel, Lena;681758;4;M;2017;;Ahrensburger TSV;3447;00:01:55,99;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;21002;2;;Walter, Lena;932467;18;M;2017;;AMTV-WTB Hamburg;7291;00:02:03,25;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;21002;3;;Ludwig, Sina;431492;161;M;2017;;SG Lübeck;3496;00:02:11,32;;;GER;;; (* Jahrgang 2017 *)
+PNERGEBNIS: 21;E;21002;4;;Otto, Ruben;766527;91;M;2017;;SC Delphin Lübeck v.1960 e.V.;3490;00:02:14,39;;;GER;;; (* Jahrgang 2017 *)
+STERGEBNIS: 9;E;9001;1;;1;44;SC Delphin Lübeck v.1960 e.V.;3490;00:01:31,61;;;; (* offene Wertung *)
+STAFFELPERSON: 44;9;E;Frank, Felix;256215;1;M;2018;;;;;
+STAFFELPERSON: 44;9;E;Ludwig, Jost;256215;2;W;2018;;;;;
+STAFFELPERSON: 44;9;E;Gross, Clara;256215;3;M;2018;;;;;
+STAFFELPERSON: 44;9;E;Albers, Niklas;256215;4;W;2018;;;;;
+STERGEBNIS: 9;E;9001;2;;1;11;AMTV-WTB Hamburg;7291;00:01:55,87;;;; (* offene Wertung *)
+STAFFELPERSON: 11;9;E;Thiele, Henri;256215;1;W;2018;;;;;
+STAFFELPERSON: 11;9;E;Herrmann, Marie;256215;2;M;2018;;;;;
+STAFFELPERSON: 11;9;E;Ludwig, Jost;256215;3;M;2018;;;;;
+STAFFELPERSON: 11;9;E;Thiele, Sophie;256215;4;W;2019;;;;;
+STERGEBNIS: 9;E;9001;3;;2;155;SG Lübeck;3496;00:02:07,87;;;; (* offene Wertung *)
+STAFFELPERSON: 155;9;E;Lorenz, Karl;256215;1;M;2018;;;;;
+STAFFELPERSON: 155;9;E;Schröder, Mats;256215;2;W;2018;;;;;
+STAFFELPERSON: 155;9;E;Pohl, Mats;256215;3;M;2018;;;;;
+STAFFELPERSON: 155;9;E;Lang, Milan;256215;4;W;2018;;;;;
+STERGEBNIS: 9;E;9001;4;;2;46;SC Delphin Lübeck v.1960 e.V.;3490;00:02:18,89;;;; (* offene Wertung *)
+STAFFELPERSON: 46;9;E;Sommer, Lina;256215;1;M;2018;;;;;
+STAFFELPERSON: 46;9;E;Busch, Lina;256215;2;W;2018;;;;;
+STAFFELPERSON: 46;9;E;Frank, Mats;256215;3;M;2018;;;;;
+STAFFELPERSON: 46;9;E;Herrmann, Paul;256215;4;W;2018;;;;;
+STERGEBNIS: 9;E;9001;5;;1;154;SG Lübeck;3496;00:02:43,41;;;; (* offene Wertung *)
+STAFFELPERSON: 154;9;E;Koch, Theo;256215;1;M;2018;;;;;
+STAFFELPERSON: 154;9;E;Schäfer, Alina;256215;2;W;2018;;;;;
+STAFFELPERSON: 154;9;E;Engel, Pia;256215;3;W;2018;;;;;
+STAFFELPERSON: 154;9;E;Kaiser, Sina;256215;4;M;2018;;;;;
+STERGEBNIS: 9;E;9001;0;NA;3;47;SC Delphin Lübeck v.1960 e.V.;3490;00:00:00,00;;;; (* offene Wertung *)
+STERGEBNIS: 22;E;22001;1;;1;43;SC Delphin Lübeck v.1960 e.V.;3490;00:01:12,81;;;; (* offene Wertung *)
+STAFFELPERSON: 43;22;E;Frank, Emma;881893;1;M;2016;;;;;
+STAFFELPERSON: 43;22;E;Schmitt, Sina;467942;2;W;2016;;;;;
+STAFFELPERSON: 43;22;E;Berger, Malte;824570;3;M;2014;;;;;
+STAFFELPERSON: 43;22;E;Brandt, Emilia;924561;4;W;2015;;;;;
+STERGEBNIS: 22;E;22001;2;;1;10;AMTV-WTB Hamburg;7291;00:01:14,82;;;; (* offene Wertung *)
+STAFFELPERSON: 10;22;E;Ludwig, Emilia;760708;1;W;2015;;;;;
+STAFFELPERSON: 10;22;E;Otto, Pia;509116;2;M;2014;;;;;
+STAFFELPERSON: 10;22;E;Engel, Mats;986276;3;W;2017;;;;;
+STAFFELPERSON: 10;22;E;Marquardt, Rike;810333;4;M;2016;;;;;
+STERGEBNIS: 22;E;22001;3;;2;45;SC Delphin Lübeck v.1960 e.V.;3490;00:01:22,53;;;; (* offene Wertung *)
+STAFFELPERSON: 45;22;E;Kern, Erik;103947;1;M;2016;;;;;
+STAFFELPERSON: 45;22;E;Hartmann, Greta;371417;2;W;2016;;;;;
+STAFFELPERSON: 45;22;E;Engel, Malte;213951;3;M;2014;;;;;
+STAFFELPERSON: 45;22;E;Ziegler, Fiona;140519;4;W;2017;;;;;
+STERGEBNIS: 22;E;22001;4;;1;1;Ahrensburger TSV;3447;00:01:27,99;;;; (* offene Wertung *)
+STAFFELPERSON: 1;22;E;Reuter, Nora;296948;1;M;2016;;;;;
+STAFFELPERSON: 1;22;E;Ludwig, Linus;972238;2;W;2016;;;;;
+STAFFELPERSON: 1;22;E;Vogel, Lena;681758;3;M;2017;;;;;
+STAFFELPERSON: 1;22;E;Engel, Niklas;589599;4;W;2017;;;;;
+STERGEBNIS: 22;E;22001;5;;2;12;AMTV-WTB Hamburg;7291;00:01:36,15;;;; (* offene Wertung *)
+STAFFELPERSON: 12;22;E;Kern, Paul;508690;1;W;2015;;;;;
+STAFFELPERSON: 12;22;E;Walter, Lena;932467;2;M;2017;;;;;
+STAFFELPERSON: 12;22;E;Reuter, Jana;821488;3;M;2017;;;;;
+STAFFELPERSON: 12;22;E;Ziegler, David;585757;4;W;2016;;;;;
+STERGEBNIS: 22;E;22001;0;NA;1;196;SV Neptun Kiel;5129;00:00:00,00;;;; (* offene Wertung *)
+DATEIENDE

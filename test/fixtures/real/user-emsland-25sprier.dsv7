@@ -1,0 +1,1478 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.27 vom 31.12.2024                       *)
+(* Registriert für: Kreisschwimmverband Emsland *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 23.08.2025 um 18:09 Uhr                *)
+FORMAT: Wettkampfergebnisliste;7;
+ERZEUGER: EasyWk;5.27;info@easywk.de;
+VERANSTALTUNG: Kreis-, Kreisjahrgangs- und Kreismastersmeisterschaften Sprint;Twist;25;AUTOMATISCH;
+VERANSTALTER: Kreisschwimmverband Emsland;
+AUSRICHTER: SC Twist;Stein, Mia;Ahornweg 3;49716;Meppen;GER;04790 542158;09672 219796;maja.koch@example.org;
+ABSCHNITT: 1;23.08.2025;10:00;;
+ABSCHNITT: 2;23.08.2025;13:45;;
+KAMPFGERICHT: 1;ZBV;Kuhn, Maja;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 1;SCH;Engel, Luis;KSV EL / HAselünner SV;
+KAMPFGERICHT: 1;SCH;Stein, Erik;KSV EL / SV Concordia Emsbüren;
+KAMPFGERICHT: 1;STA;Lang, Malte;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 1;STA;Lang, Malte;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 1;AUS;Keller, Felix;SC Twist;
+KAMPFGERICHT: 1;AUS;Voigt, Mia;TV Meppen;
+KAMPFGERICHT: 1;PKF;Stein, Mia;SV Sigiltra Sögel;
+KAMPFGERICHT: 1;SR;Klein, Alina;SV Sigiltra Sögel;
+KAMPFGERICHT: 1;SR;Schröder, Lina;SV Blau-Weiß Lingen;
+KAMPFGERICHT: 1;ZR;Maier, Milan;SV Haren;
+KAMPFGERICHT: 1;ZR;Klein, Jonas;SG Freren;
+KAMPFGERICHT: 1;ZR;Ziegler, Nora;Haselünner SV;
+KAMPFGERICHT: 1;WRO;Fischer, Ida;SV Sigiltra Sögel;
+KAMPFGERICHT: 1;WR;Fischer, Ida;SV Sigiltra Sögel;
+KAMPFGERICHT: 1;WR;Fischer, Ida;SV Sigiltra Sögel;
+KAMPFGERICHT: 1;WR;Lehmann, Hannah;SV Concordia Emsbüren;
+KAMPFGERICHT: 1;WR;Lehmann, Hannah;SV Concordia Emsbüren;
+KAMPFGERICHT: 1;ZNO;Brandt, Jost;SV Wasserfreunde Völlen-Papenburg;
+KAMPFGERICHT: 1;ZN;Schäfer, Lena;SV Haren;
+KAMPFGERICHT: 1;ZN;Kern, Paul;TV Meppen;
+KAMPFGERICHT: 1;ZN;Hartmann, Tilda;SV Wasserfreunde Völlen-Papenburg;
+KAMPFGERICHT: 1;ZN;Lehmann, Marie;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 1;RZN;Albers, Niklas;SG Freren;
+KAMPFGERICHT: 1;ZBV;Ulrich, Hannah;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 1;SP;Peters, Lara;SC Twist;
+KAMPFGERICHT: 2;ZBV;Jung, Elias;SV Wasserfreunde Völlen-Papenburg;
+KAMPFGERICHT: 2;SCH;Engel, Luis;KSV EL / HAselünner SV;
+KAMPFGERICHT: 2;SCH;Stein, Erik;KSV EL / SV Concordia Emsbüren;
+KAMPFGERICHT: 2;STA;Lang, Malte;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 2;STA;Kuhn, Maja;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 2;AUS;Voigt, Mia;TV Meppen;
+KAMPFGERICHT: 2;AUS;Keller, Felix;SC Twist;
+KAMPFGERICHT: 2;PKF;Stein, Mia;SV Sigiltra Sögel;
+KAMPFGERICHT: 2;SR;Weiss, Marie;SV Concordia Emsbüren;
+KAMPFGERICHT: 2;SR;Schäfer, Lena;SV Haren;
+KAMPFGERICHT: 2;ZR;Walter, Jakob;TV Meppen;
+KAMPFGERICHT: 2;ZR;Hahn, Mia;SG Freren;
+KAMPFGERICHT: 2;ZR;Dietrich, Jana;SV Wasserfreunde Völlen-Papenburg;
+KAMPFGERICHT: 2;WRO;Ziegler, Nora;Haselünner SV;
+KAMPFGERICHT: 2;WR;Ziegler, Nora;Haselünner SV;
+KAMPFGERICHT: 2;WR;Ziegler, Nora;Haselünner SV;
+KAMPFGERICHT: 2;WR;Maier, Milan;SV Haren;
+KAMPFGERICHT: 2;WR;Maier, Milan;SV Haren;
+KAMPFGERICHT: 2;ZNO;Pohl, Luis;SG Freren;
+KAMPFGERICHT: 2;ZN;Fischer, Erik;SV Blau-Weiß Lingen;
+KAMPFGERICHT: 2;ZN;Bauer, Mia;SG Freren;
+KAMPFGERICHT: 2;ZN;Gross, Greta;SV Concordia Emsbüren;
+KAMPFGERICHT: 2;ZN;Schmitt, Leon;SV Wasserfreunde Dalum;
+KAMPFGERICHT: 2;RZN;Klein, Alina;SV Sigiltra Sögel;
+KAMPFGERICHT: 2;ZBV;Ulrich, Hannah;SV Wasserfreunde Völlen-Papenburg;
+KAMPFGERICHT: 2;SP;Peters, Lara;SC Twist;
+WETTKAMPF: 101;E;1;4;50;L;GL;M;SW;;; (* 4x50m Lagen männlich *)
+WETTKAMPF: 102;E;1;4;50;L;GL;W;SW;;; (* 4x50m Lagen weiblich *)
+WETTKAMPF: 11;E;1;1;50;F;GL;M;MS;;; (* 50m Freistil männlich *)
+WETTKAMPF: 12;E;1;1;50;F;GL;W;MS;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 1;E;1;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WETTKAMPF: 2;E;1;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 13;E;1;1;50;S;GL;M;MS;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 14;E;1;1;50;S;GL;W;MS;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 3;E;1;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 4;E;1;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 15;E;1;1;100;L;GL;M;MS;;; (* 100m Lagen männlich *)
+WETTKAMPF: 16;E;1;1;100;L;GL;W;MS;;; (* 100m Lagen weiblich *)
+WETTKAMPF: 5;E;1;1;100;L;GL;M;SW;;; (* 100m Lagen männlich *)
+WETTKAMPF: 103;E;1;4;50;L;GL;X;SW;;; (* 4x50m Lagen mixed *)
+WETTKAMPF: 104;E;2;4;50;F;GL;X;SW;;; (* 4x50m Freistil mixed *)
+WETTKAMPF: 6;E;2;1;100;L;GL;W;SW;;; (* 100m Lagen weiblich *)
+WETTKAMPF: 17;E;2;1;50;R;GL;M;MS;;; (* 50m Rücken männlich *)
+WETTKAMPF: 18;E;2;1;50;R;GL;W;MS;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 7;E;2;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 8;E;2;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 19;E;2;1;50;B;GL;M;MS;;; (* 50m Brust männlich *)
+WETTKAMPF: 20;E;2;1;50;B;GL;W;MS;;; (* 50m Brust weiblich *)
+WETTKAMPF: 9;E;2;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 10;E;2;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 105;E;2;4;50;F;GL;M;SW;;; (* 4x50m Freistil männlich *)
+WETTKAMPF: 106;E;2;4;50;F;GL;W;SW;;; (* 4x50m Freistil weiblich *)
+WERTUNG: 101;E;1001;JG;0;0;M;Offene Wertung;
+WERTUNG: 101;E;1002;JG;0;0;M;Offene Wertung;
+WERTUNG: 102;E;2001;JG;0;0;W;Offene Wertung;
+WERTUNG: 102;E;2002;JG;0;0;W;Offene Wertung;
+WERTUNG: 11;E;3001;JG;1932;1925;M;AK 100 - Emsland;
+WERTUNG: 11;E;3002;JG;1932;1930;M;AK 95 - Emsland;
+WERTUNG: 11;E;3003;JG;1932;1935;M;AK 90 - Emsland;
+WERTUNG: 11;E;3004;JG;1936;1940;M;AK 85 - Emsland;
+WERTUNG: 11;E;3005;JG;1941;1945;M;AK 80 - Emsland;
+WERTUNG: 11;E;3006;JG;1946;1950;M;AK 75 - Emsland;
+WERTUNG: 11;E;3007;JG;1951;1955;M;AK 70 - Emsland;
+WERTUNG: 11;E;3008;JG;1956;1960;M;AK 65 - Emsland;
+WERTUNG: 11;E;3009;JG;1961;1965;M;AK 60 - Emsland;
+WERTUNG: 11;E;3010;JG;1966;1970;M;AK 55 - Emsland;
+WERTUNG: 11;E;3011;JG;1971;1975;M;AK 50 - Emsland;
+WERTUNG: 11;E;3012;JG;1976;1980;M;AK 45 - Emsland;
+WERTUNG: 11;E;3013;JG;1981;1985;M;AK 40 - Emsland;
+WERTUNG: 11;E;3014;JG;1986;1990;M;AK 35 - Emsland;
+WERTUNG: 11;E;3015;JG;1991;1995;M;AK 30 - Emsland;
+WERTUNG: 11;E;3016;JG;1996;2000;M;AK 25 - Emsland;
+WERTUNG: 11;E;3017;JG;2001;2005;M;AK 20 - Emsland;
+WERTUNG: 11;E;3018;JG;1932;1925;M;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3019;JG;1932;1930;M;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3020;JG;1932;1935;M;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3021;JG;1936;1940;M;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3022;JG;1941;1945;M;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3023;JG;1946;1950;M;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3024;JG;1951;1955;M;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3025;JG;1956;1960;M;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3026;JG;1961;1965;M;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3027;JG;1966;1970;M;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3028;JG;1971;1975;M;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3029;JG;1976;1980;M;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3030;JG;1981;1985;M;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3031;JG;1986;1990;M;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3032;JG;1991;1995;M;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3033;JG;1996;2000;M;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 11;E;3034;JG;2001;2005;M;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4001;JG;1932;1925;W;AK 100 - Emsland;
+WERTUNG: 12;E;4002;JG;1932;1930;W;AK 95 - Emsland;
+WERTUNG: 12;E;4003;JG;1932;1935;W;AK 90 - Emsland;
+WERTUNG: 12;E;4004;JG;1936;1940;W;AK 85 - Emsland;
+WERTUNG: 12;E;4005;JG;1941;1945;W;AK 80 - Emsland;
+WERTUNG: 12;E;4006;JG;1946;1950;W;AK 75 - Emsland;
+WERTUNG: 12;E;4007;JG;1951;1955;W;AK 70 - Emsland;
+WERTUNG: 12;E;4008;JG;1956;1960;W;AK 65 - Emsland;
+WERTUNG: 12;E;4009;JG;1961;1965;W;AK 60 - Emsland;
+WERTUNG: 12;E;4010;JG;1966;1970;W;AK 55 - Emsland;
+WERTUNG: 12;E;4011;JG;1971;1975;W;AK 50 - Emsland;
+WERTUNG: 12;E;4012;JG;1976;1980;W;AK 45 - Emsland;
+WERTUNG: 12;E;4013;JG;1981;1985;W;AK 40 - Emsland;
+WERTUNG: 12;E;4014;JG;1986;1990;W;AK 35 - Emsland;
+WERTUNG: 12;E;4015;JG;1991;1995;W;AK 30 - Emsland;
+WERTUNG: 12;E;4016;JG;1996;2000;W;AK 25 - Emsland;
+WERTUNG: 12;E;4017;JG;2001;2005;W;AK 20 - Emsland;
+WERTUNG: 12;E;4018;JG;1932;1925;W;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4019;JG;1932;1930;W;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4020;JG;1932;1935;W;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4021;JG;1936;1940;W;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4022;JG;1941;1945;W;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4023;JG;1946;1950;W;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4024;JG;1951;1955;W;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4025;JG;1956;1960;W;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4026;JG;1961;1965;W;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4027;JG;1966;1970;W;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4028;JG;1971;1975;W;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4029;JG;1976;1980;W;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4030;JG;1981;1985;W;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4031;JG;1986;1990;W;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4032;JG;1991;1995;W;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4033;JG;1996;2000;W;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 12;E;4034;JG;2001;2005;W;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6001;JG;2017;2017;M;Jahrgang 2017 - Emsland;
+WERTUNG: 1;E;6002;JG;2016;2016;M;Jahrgang 2016 - Emsland;
+WERTUNG: 1;E;6003;JG;2015;2015;M;Jahrgang 2015 - Emsland;
+WERTUNG: 1;E;6004;JG;2014;2014;M;Jahrgang 2014 - Emsland;
+WERTUNG: 1;E;6005;JG;2013;2013;M;Jahrgang 2013 - Emsland;
+WERTUNG: 1;E;6006;JG;2012;2012;M;Jahrgang 2012 - Emsland;
+WERTUNG: 1;E;6007;JG;2011;2011;M;Jahrgang 2011 - Emsland;
+WERTUNG: 1;E;6008;JG;2010;2010;M;Jahrgang 2010 - Emsland;
+WERTUNG: 1;E;6009;JG;2009;2009;M;Jahrgang 2009 - Emsland;
+WERTUNG: 1;E;6010;JG;2008;2008;M;Jahrgang 2008 - Emsland;
+WERTUNG: 1;E;6011;JG;2007;2007;M;Jahrgang 2007 - Emsland;
+WERTUNG: 1;E;6012;JG;2006;2006;M;Jahrgang 2006 - Emsland;
+WERTUNG: 1;E;6013;JG;1932;2005;M;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 1;E;6016;JG;2017;2017;M;Jahrgang 2017 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6017;JG;2016;2016;M;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6018;JG;2015;2015;M;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6019;JG;2014;2014;M;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6020;JG;2013;2013;M;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6021;JG;2012;2012;M;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6022;JG;2011;2011;M;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6023;JG;2010;2010;M;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6024;JG;2009;2009;M;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6025;JG;2008;2008;M;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6026;JG;2007;2007;M;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6027;JG;2006;2006;M;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 1;E;6028;JG;1932;2005;M;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7001;JG;2017;2017;W;Jahrgang 2017 - Emsland;
+WERTUNG: 2;E;7002;JG;2016;2016;W;Jahrgang 2016 - Emsland;
+WERTUNG: 2;E;7003;JG;2015;2015;W;Jahrgang 2015 - Emsland;
+WERTUNG: 2;E;7004;JG;2014;2014;W;Jahrgang 2014 - Emsland;
+WERTUNG: 2;E;7005;JG;2013;2013;W;Jahrgang 2013 - Emsland;
+WERTUNG: 2;E;7006;JG;2012;2012;W;Jahrgang 2012 - Emsland;
+WERTUNG: 2;E;7007;JG;2011;2011;W;Jahrgang 2011 - Emsland;
+WERTUNG: 2;E;7008;JG;2010;2010;W;Jahrgang 2010 - Emsland;
+WERTUNG: 2;E;7009;JG;2009;2009;W;Jahrgang 2009 - Emsland;
+WERTUNG: 2;E;7010;JG;2008;2008;W;Jahrgang 2008 - Emsland;
+WERTUNG: 2;E;7011;JG;2007;2007;W;Jahrgang 2007 - Emsland;
+WERTUNG: 2;E;7012;JG;2006;2006;W;Jahrgang 2006 - Emsland;
+WERTUNG: 2;E;7013;JG;1932;2005;W;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 2;E;7016;JG;2017;2017;W;Jahrgang 2017 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7017;JG;2016;2016;W;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7018;JG;2015;2015;W;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7019;JG;2014;2014;W;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7020;JG;2013;2013;W;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7021;JG;2012;2012;W;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7022;JG;2011;2011;W;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7023;JG;2010;2010;W;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7024;JG;2009;2009;W;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7025;JG;2008;2008;W;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7026;JG;2007;2007;W;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7027;JG;2006;2006;W;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 2;E;7028;JG;1932;2005;W;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8001;JG;1932;1925;M;AK 100 - Emsland;
+WERTUNG: 13;E;8002;JG;1932;1930;M;AK 95 - Emsland;
+WERTUNG: 13;E;8003;JG;1932;1935;M;AK 90 - Emsland;
+WERTUNG: 13;E;8004;JG;1936;1940;M;AK 85 - Emsland;
+WERTUNG: 13;E;8005;JG;1941;1945;M;AK 80 - Emsland;
+WERTUNG: 13;E;8006;JG;1946;1950;M;AK 75 - Emsland;
+WERTUNG: 13;E;8007;JG;1951;1955;M;AK 70 - Emsland;
+WERTUNG: 13;E;8008;JG;1956;1960;M;AK 65 - Emsland;
+WERTUNG: 13;E;8009;JG;1961;1965;M;AK 60 - Emsland;
+WERTUNG: 13;E;8010;JG;1966;1970;M;AK 55 - Emsland;
+WERTUNG: 13;E;8011;JG;1971;1975;M;AK 50 - Emsland;
+WERTUNG: 13;E;8012;JG;1976;1980;M;AK 45 - Emsland;
+WERTUNG: 13;E;8013;JG;1981;1985;M;AK 40 - Emsland;
+WERTUNG: 13;E;8014;JG;1986;1990;M;AK 35 - Emsland;
+WERTUNG: 13;E;8015;JG;1991;1995;M;AK 30 - Emsland;
+WERTUNG: 13;E;8016;JG;1996;2000;M;AK 25 - Emsland;
+WERTUNG: 13;E;8017;JG;2001;2005;M;AK 20 - Emsland;
+WERTUNG: 13;E;8018;JG;1932;1925;M;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8019;JG;1932;1930;M;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8020;JG;1932;1935;M;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8021;JG;1936;1940;M;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8022;JG;1941;1945;M;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8023;JG;1946;1950;M;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8024;JG;1951;1955;M;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8025;JG;1956;1960;M;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8026;JG;1961;1965;M;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8027;JG;1966;1970;M;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8028;JG;1971;1975;M;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8029;JG;1976;1980;M;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8030;JG;1981;1985;M;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8031;JG;1986;1990;M;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8032;JG;1991;1995;M;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8033;JG;1996;2000;M;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 13;E;8034;JG;2001;2005;M;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9001;JG;1932;1925;W;AK 100 - Emsland;
+WERTUNG: 14;E;9002;JG;1932;1930;W;AK 95 - Emsland;
+WERTUNG: 14;E;9003;JG;1932;1935;W;AK 90 - Emsland;
+WERTUNG: 14;E;9004;JG;1936;1940;W;AK 85 - Emsland;
+WERTUNG: 14;E;9005;JG;1941;1945;W;AK 80 - Emsland;
+WERTUNG: 14;E;9006;JG;1946;1950;W;AK 75 - Emsland;
+WERTUNG: 14;E;9007;JG;1951;1955;W;AK 70 - Emsland;
+WERTUNG: 14;E;9008;JG;1956;1960;W;AK 65 - Emsland;
+WERTUNG: 14;E;9009;JG;1961;1965;W;AK 60 - Emsland;
+WERTUNG: 14;E;9010;JG;1966;1970;W;AK 55 - Emsland;
+WERTUNG: 14;E;9011;JG;1971;1975;W;AK 50 - Emsland;
+WERTUNG: 14;E;9012;JG;1976;1980;W;AK 45 - Emsland;
+WERTUNG: 14;E;9013;JG;1981;1985;W;AK 40 - Emsland;
+WERTUNG: 14;E;9014;JG;1986;1990;W;AK 35 - Emsland;
+WERTUNG: 14;E;9015;JG;1991;1995;W;AK 30 - Emsland;
+WERTUNG: 14;E;9016;JG;1996;2000;W;AK 25 - Emsland;
+WERTUNG: 14;E;9017;JG;2001;2005;W;AK 20 - Emsland;
+WERTUNG: 14;E;9018;JG;1932;1925;W;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9019;JG;1932;1930;W;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9020;JG;1932;1935;W;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9021;JG;1936;1940;W;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9022;JG;1941;1945;W;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9023;JG;1946;1950;W;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9024;JG;1951;1955;W;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9025;JG;1956;1960;W;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9026;JG;1961;1965;W;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9027;JG;1966;1970;W;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9028;JG;1971;1975;W;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9029;JG;1976;1980;W;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9030;JG;1981;1985;W;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9031;JG;1986;1990;W;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9032;JG;1991;1995;W;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9033;JG;1996;2000;W;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 14;E;9034;JG;2001;2005;W;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10002;JG;2016;2016;M;Jahrgang 2016 - Emsland;
+WERTUNG: 3;E;10003;JG;2015;2015;M;Jahrgang 2015 - Emsland;
+WERTUNG: 3;E;10004;JG;2014;2014;M;Jahrgang 2014 - Emsland;
+WERTUNG: 3;E;10005;JG;2013;2013;M;Jahrgang 2013 - Emsland;
+WERTUNG: 3;E;10006;JG;2012;2012;M;Jahrgang 2012 - Emsland;
+WERTUNG: 3;E;10007;JG;2011;2011;M;Jahrgang 2011 - Emsland;
+WERTUNG: 3;E;10008;JG;2010;2010;M;Jahrgang 2010 - Emsland;
+WERTUNG: 3;E;10009;JG;2009;2009;M;Jahrgang 2009 - Emsland;
+WERTUNG: 3;E;10010;JG;2008;2008;M;Jahrgang 2008 - Emsland;
+WERTUNG: 3;E;10011;JG;2007;2007;M;Jahrgang 2007 - Emsland;
+WERTUNG: 3;E;10012;JG;2006;2006;M;Jahrgang 2006 - Emsland;
+WERTUNG: 3;E;10013;JG;1932;2005;M;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 3;E;10017;JG;2016;2016;M;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10018;JG;2015;2015;M;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10019;JG;2014;2014;M;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10020;JG;2013;2013;M;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10021;JG;2012;2012;M;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10022;JG;2011;2011;M;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10023;JG;2010;2010;M;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10024;JG;2009;2009;M;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10025;JG;2008;2008;M;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10026;JG;2007;2007;M;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10027;JG;2006;2006;M;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 3;E;10028;JG;1932;2005;M;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11002;JG;2016;2016;W;Jahrgang 2016 - Emsland;
+WERTUNG: 4;E;11003;JG;2015;2015;W;Jahrgang 2015 - Emsland;
+WERTUNG: 4;E;11004;JG;2014;2014;W;Jahrgang 2014 - Emsland;
+WERTUNG: 4;E;11005;JG;2013;2013;W;Jahrgang 2013 - Emsland;
+WERTUNG: 4;E;11006;JG;2012;2012;W;Jahrgang 2012 - Emsland;
+WERTUNG: 4;E;11007;JG;2011;2011;W;Jahrgang 2011 - Emsland;
+WERTUNG: 4;E;11008;JG;2010;2010;W;Jahrgang 2010 - Emsland;
+WERTUNG: 4;E;11009;JG;2009;2009;W;Jahrgang 2009 - Emsland;
+WERTUNG: 4;E;11010;JG;2008;2008;W;Jahrgang 2008 - Emsland;
+WERTUNG: 4;E;11011;JG;2007;2007;W;Jahrgang 2007 - Emsland;
+WERTUNG: 4;E;11012;JG;2006;2006;W;Jahrgang 2006 - Emsland;
+WERTUNG: 4;E;11013;JG;1932;2005;W;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 4;E;11017;JG;2016;2016;W;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11018;JG;2015;2015;W;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11019;JG;2014;2014;W;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11020;JG;2013;2013;W;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11021;JG;2012;2012;W;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11022;JG;2011;2011;W;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11023;JG;2010;2010;W;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11024;JG;2009;2009;W;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11025;JG;2008;2008;W;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11026;JG;2007;2007;W;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11027;JG;2006;2006;W;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 4;E;11028;JG;1932;2005;W;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12001;JG;1932;1925;M;AK 100 - Emsland;
+WERTUNG: 15;E;12002;JG;1932;1930;M;AK 95 - Emsland;
+WERTUNG: 15;E;12003;JG;1932;1935;M;AK 90 - Emsland;
+WERTUNG: 15;E;12004;JG;1936;1940;M;AK 85 - Emsland;
+WERTUNG: 15;E;12005;JG;1941;1945;M;AK 80 - Emsland;
+WERTUNG: 15;E;12006;JG;1946;1950;M;AK 75 - Emsland;
+WERTUNG: 15;E;12007;JG;1951;1955;M;AK 70 - Emsland;
+WERTUNG: 15;E;12008;JG;1956;1960;M;AK 65 - Emsland;
+WERTUNG: 15;E;12009;JG;1961;1965;M;AK 60 - Emsland;
+WERTUNG: 15;E;12010;JG;1966;1970;M;AK 55 - Emsland;
+WERTUNG: 15;E;12011;JG;1971;1975;M;AK 50 - Emsland;
+WERTUNG: 15;E;12012;JG;1976;1980;M;AK 45 - Emsland;
+WERTUNG: 15;E;12013;JG;1981;1985;M;AK 40 - Emsland;
+WERTUNG: 15;E;12014;JG;1986;1990;M;AK 35 - Emsland;
+WERTUNG: 15;E;12015;JG;1991;1995;M;AK 30 - Emsland;
+WERTUNG: 15;E;12016;JG;1996;2000;M;AK 25 - Emsland;
+WERTUNG: 15;E;12017;JG;2001;2005;M;AK 20 - Emsland;
+WERTUNG: 15;E;12018;JG;1932;1925;M;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12019;JG;1932;1930;M;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12020;JG;1932;1935;M;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12021;JG;1936;1940;M;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12022;JG;1941;1945;M;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12023;JG;1946;1950;M;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12024;JG;1951;1955;M;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12025;JG;1956;1960;M;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12026;JG;1961;1965;M;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12027;JG;1966;1970;M;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12028;JG;1971;1975;M;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12029;JG;1976;1980;M;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12030;JG;1981;1985;M;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12031;JG;1986;1990;M;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12032;JG;1991;1995;M;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12033;JG;1996;2000;M;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 15;E;12034;JG;2001;2005;M;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13001;JG;1932;1925;W;AK 100 - Emsland;
+WERTUNG: 16;E;13002;JG;1932;1930;W;AK 95 - Emsland;
+WERTUNG: 16;E;13003;JG;1932;1935;W;AK 90 - Emsland;
+WERTUNG: 16;E;13004;JG;1936;1940;W;AK 85 - Emsland;
+WERTUNG: 16;E;13005;JG;1941;1945;W;AK 80 - Emsland;
+WERTUNG: 16;E;13006;JG;1946;1950;W;AK 75 - Emsland;
+WERTUNG: 16;E;13007;JG;1951;1955;W;AK 70 - Emsland;
+WERTUNG: 16;E;13008;JG;1956;1960;W;AK 65 - Emsland;
+WERTUNG: 16;E;13009;JG;1961;1965;W;AK 60 - Emsland;
+WERTUNG: 16;E;13010;JG;1966;1970;W;AK 55 - Emsland;
+WERTUNG: 16;E;13011;JG;1971;1975;W;AK 50 - Emsland;
+WERTUNG: 16;E;13012;JG;1976;1980;W;AK 45 - Emsland;
+WERTUNG: 16;E;13013;JG;1981;1985;W;AK 40 - Emsland;
+WERTUNG: 16;E;13014;JG;1986;1990;W;AK 35 - Emsland;
+WERTUNG: 16;E;13015;JG;1991;1995;W;AK 30 - Emsland;
+WERTUNG: 16;E;13016;JG;1996;2000;W;AK 25 - Emsland;
+WERTUNG: 16;E;13017;JG;2001;2005;W;AK 20 - Emsland;
+WERTUNG: 16;E;13018;JG;1932;1925;W;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13019;JG;1932;1930;W;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13020;JG;1932;1935;W;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13021;JG;1936;1940;W;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13022;JG;1941;1945;W;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13023;JG;1946;1950;W;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13024;JG;1951;1955;W;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13025;JG;1956;1960;W;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13026;JG;1961;1965;W;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13027;JG;1966;1970;W;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13028;JG;1971;1975;W;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13029;JG;1976;1980;W;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13030;JG;1981;1985;W;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13031;JG;1986;1990;W;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13032;JG;1991;1995;W;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13033;JG;1996;2000;W;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 16;E;13034;JG;2001;2005;W;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14002;JG;2016;2016;M;Jahrgang 2016 - Emsland;
+WERTUNG: 5;E;14003;JG;2015;2015;M;Jahrgang 2015 - Emsland;
+WERTUNG: 5;E;14004;JG;2014;2014;M;Jahrgang 2014 - Emsland;
+WERTUNG: 5;E;14005;JG;2013;2013;M;Jahrgang 2013 - Emsland;
+WERTUNG: 5;E;14006;JG;2012;2012;M;Jahrgang 2012 - Emsland;
+WERTUNG: 5;E;14007;JG;2011;2011;M;Jahrgang 2011 - Emsland;
+WERTUNG: 5;E;14008;JG;2010;2010;M;Jahrgang 2010 - Emsland;
+WERTUNG: 5;E;14009;JG;2009;2009;M;Jahrgang 2009 - Emsland;
+WERTUNG: 5;E;14010;JG;2008;2008;M;Jahrgang 2008 - Emsland;
+WERTUNG: 5;E;14011;JG;2007;2007;M;Jahrgang 2007 - Emsland;
+WERTUNG: 5;E;14012;JG;2006;2006;M;Jahrgang 2006 - Emsland;
+WERTUNG: 5;E;14013;JG;1932;2005;M;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 5;E;14017;JG;2016;2016;M;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14018;JG;2015;2015;M;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14019;JG;2014;2014;M;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14020;JG;2013;2013;M;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14021;JG;2012;2012;M;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14022;JG;2011;2011;M;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14023;JG;2010;2010;M;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14024;JG;2009;2009;M;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14025;JG;2008;2008;M;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14026;JG;2007;2007;M;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14027;JG;2006;2006;M;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 5;E;14028;JG;1932;2005;M;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 103;E;15001;JG;0;0;X;Offene Wertung;
+WERTUNG: 103;E;15002;JG;0;0;X;Offene Wertung;
+WERTUNG: 104;E;16001;JG;0;0;X;Offene Wertung;
+WERTUNG: 104;E;16002;JG;0;0;X;Offene Wertung;
+WERTUNG: 6;E;17002;JG;2016;2016;W;Jahrgang 2016 - Emsland;
+WERTUNG: 6;E;17003;JG;2015;2015;W;Jahrgang 2015 - Emsland;
+WERTUNG: 6;E;17004;JG;2014;2014;W;Jahrgang 2014 - Emsland;
+WERTUNG: 6;E;17005;JG;2013;2013;W;Jahrgang 2013 - Emsland;
+WERTUNG: 6;E;17006;JG;2012;2012;W;Jahrgang 2012 - Emsland;
+WERTUNG: 6;E;17007;JG;2011;2011;W;Jahrgang 2011 - Emsland;
+WERTUNG: 6;E;17008;JG;2010;2010;W;Jahrgang 2010 - Emsland;
+WERTUNG: 6;E;17009;JG;2009;2009;W;Jahrgang 2009 - Emsland;
+WERTUNG: 6;E;17010;JG;2008;2008;W;Jahrgang 2008 - Emsland;
+WERTUNG: 6;E;17011;JG;2007;2007;W;Jahrgang 2007 - Emsland;
+WERTUNG: 6;E;17012;JG;2006;2006;W;Jahrgang 2006 - Emsland;
+WERTUNG: 6;E;17013;JG;1932;2005;W;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 6;E;17017;JG;2016;2016;W;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17018;JG;2015;2015;W;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17019;JG;2014;2014;W;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17020;JG;2013;2013;W;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17021;JG;2012;2012;W;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17022;JG;2011;2011;W;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17023;JG;2010;2010;W;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17024;JG;2009;2009;W;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17025;JG;2008;2008;W;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17026;JG;2007;2007;W;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17027;JG;2006;2006;W;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 6;E;17028;JG;1932;2005;W;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18001;JG;1932;1925;M;AK 100 - Emsland;
+WERTUNG: 17;E;18002;JG;1932;1930;M;AK 95 - Emsland;
+WERTUNG: 17;E;18003;JG;1932;1935;M;AK 90 - Emsland;
+WERTUNG: 17;E;18004;JG;1936;1940;M;AK 85 - Emsland;
+WERTUNG: 17;E;18005;JG;1941;1945;M;AK 80 - Emsland;
+WERTUNG: 17;E;18006;JG;1946;1950;M;AK 75 - Emsland;
+WERTUNG: 17;E;18007;JG;1951;1955;M;AK 70 - Emsland;
+WERTUNG: 17;E;18008;JG;1956;1960;M;AK 65 - Emsland;
+WERTUNG: 17;E;18009;JG;1961;1965;M;AK 60 - Emsland;
+WERTUNG: 17;E;18010;JG;1966;1970;M;AK 55 - Emsland;
+WERTUNG: 17;E;18011;JG;1971;1975;M;AK 50 - Emsland;
+WERTUNG: 17;E;18012;JG;1976;1980;M;AK 45 - Emsland;
+WERTUNG: 17;E;18013;JG;1981;1985;M;AK 40 - Emsland;
+WERTUNG: 17;E;18014;JG;1986;1990;M;AK 35 - Emsland;
+WERTUNG: 17;E;18015;JG;1991;1995;M;AK 30 - Emsland;
+WERTUNG: 17;E;18016;JG;1996;2000;M;AK 25 - Emsland;
+WERTUNG: 17;E;18017;JG;2001;2005;M;AK 20 - Emsland;
+WERTUNG: 17;E;18018;JG;1932;1925;M;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18019;JG;1932;1930;M;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18020;JG;1932;1935;M;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18021;JG;1936;1940;M;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18022;JG;1941;1945;M;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18023;JG;1946;1950;M;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18024;JG;1951;1955;M;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18025;JG;1956;1960;M;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18026;JG;1961;1965;M;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18027;JG;1966;1970;M;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18028;JG;1971;1975;M;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18029;JG;1976;1980;M;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18030;JG;1981;1985;M;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18031;JG;1986;1990;M;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18032;JG;1991;1995;M;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18033;JG;1996;2000;M;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 17;E;18034;JG;2001;2005;M;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19001;JG;1932;1925;W;AK 100 - Emsland;
+WERTUNG: 18;E;19002;JG;1932;1930;W;AK 95 - Emsland;
+WERTUNG: 18;E;19003;JG;1932;1935;W;AK 90 - Emsland;
+WERTUNG: 18;E;19004;JG;1936;1940;W;AK 85 - Emsland;
+WERTUNG: 18;E;19005;JG;1941;1945;W;AK 80 - Emsland;
+WERTUNG: 18;E;19006;JG;1946;1950;W;AK 75 - Emsland;
+WERTUNG: 18;E;19007;JG;1951;1955;W;AK 70 - Emsland;
+WERTUNG: 18;E;19008;JG;1956;1960;W;AK 65 - Emsland;
+WERTUNG: 18;E;19009;JG;1961;1965;W;AK 60 - Emsland;
+WERTUNG: 18;E;19010;JG;1966;1970;W;AK 55 - Emsland;
+WERTUNG: 18;E;19011;JG;1971;1975;W;AK 50 - Emsland;
+WERTUNG: 18;E;19012;JG;1976;1980;W;AK 45 - Emsland;
+WERTUNG: 18;E;19013;JG;1981;1985;W;AK 40 - Emsland;
+WERTUNG: 18;E;19014;JG;1986;1990;W;AK 35 - Emsland;
+WERTUNG: 18;E;19015;JG;1991;1995;W;AK 30 - Emsland;
+WERTUNG: 18;E;19016;JG;1996;2000;W;AK 25 - Emsland;
+WERTUNG: 18;E;19017;JG;2001;2005;W;AK 20 - Emsland;
+WERTUNG: 18;E;19018;JG;1932;1925;W;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19019;JG;1932;1930;W;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19020;JG;1932;1935;W;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19021;JG;1936;1940;W;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19022;JG;1941;1945;W;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19023;JG;1946;1950;W;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19024;JG;1951;1955;W;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19025;JG;1956;1960;W;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19026;JG;1961;1965;W;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19027;JG;1966;1970;W;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19028;JG;1971;1975;W;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19029;JG;1976;1980;W;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19030;JG;1981;1985;W;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19031;JG;1986;1990;W;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19032;JG;1991;1995;W;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19033;JG;1996;2000;W;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 18;E;19034;JG;2001;2005;W;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20001;JG;2017;2017;M;Jahrgang 2017 - Emsland;
+WERTUNG: 7;E;20002;JG;2016;2016;M;Jahrgang 2016 - Emsland;
+WERTUNG: 7;E;20003;JG;2015;2015;M;Jahrgang 2015 - Emsland;
+WERTUNG: 7;E;20004;JG;2014;2014;M;Jahrgang 2014 - Emsland;
+WERTUNG: 7;E;20005;JG;2013;2013;M;Jahrgang 2013 - Emsland;
+WERTUNG: 7;E;20006;JG;2012;2012;M;Jahrgang 2012 - Emsland;
+WERTUNG: 7;E;20007;JG;2011;2011;M;Jahrgang 2011 - Emsland;
+WERTUNG: 7;E;20008;JG;2010;2010;M;Jahrgang 2010 - Emsland;
+WERTUNG: 7;E;20009;JG;2009;2009;M;Jahrgang 2009 - Emsland;
+WERTUNG: 7;E;20010;JG;2008;2008;M;Jahrgang 2008 - Emsland;
+WERTUNG: 7;E;20011;JG;2007;2007;M;Jahrgang 2007 - Emsland;
+WERTUNG: 7;E;20012;JG;2006;2006;M;Jahrgang 2006 - Emsland;
+WERTUNG: 7;E;20013;JG;1932;2005;M;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 7;E;20016;JG;2017;2017;M;Jahrgang 2017 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20017;JG;2016;2016;M;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20018;JG;2015;2015;M;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20019;JG;2014;2014;M;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20020;JG;2013;2013;M;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20021;JG;2012;2012;M;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20022;JG;2011;2011;M;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20023;JG;2010;2010;M;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20024;JG;2009;2009;M;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20025;JG;2008;2008;M;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20026;JG;2007;2007;M;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20027;JG;2006;2006;M;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 7;E;20028;JG;1932;2005;M;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21001;JG;2017;2017;W;Jahrgang 2017 - Emsland;
+WERTUNG: 8;E;21002;JG;2016;2016;W;Jahrgang 2016 - Emsland;
+WERTUNG: 8;E;21003;JG;2015;2015;W;Jahrgang 2015 - Emsland;
+WERTUNG: 8;E;21004;JG;2014;2014;W;Jahrgang 2014 - Emsland;
+WERTUNG: 8;E;21005;JG;2013;2013;W;Jahrgang 2013 - Emsland;
+WERTUNG: 8;E;21006;JG;2012;2012;W;Jahrgang 2012 - Emsland;
+WERTUNG: 8;E;21007;JG;2011;2011;W;Jahrgang 2011 - Emsland;
+WERTUNG: 8;E;21008;JG;2010;2010;W;Jahrgang 2010 - Emsland;
+WERTUNG: 8;E;21009;JG;2009;2009;W;Jahrgang 2009 - Emsland;
+WERTUNG: 8;E;21010;JG;2008;2008;W;Jahrgang 2008 - Emsland;
+WERTUNG: 8;E;21011;JG;2007;2007;W;Jahrgang 2007 - Emsland;
+WERTUNG: 8;E;21012;JG;2006;2006;W;Jahrgang 2006 - Emsland;
+WERTUNG: 8;E;21013;JG;1932;2005;W;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 8;E;21016;JG;2017;2017;W;Jahrgang 2017 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21017;JG;2016;2016;W;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21018;JG;2015;2015;W;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21019;JG;2014;2014;W;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21020;JG;2013;2013;W;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21021;JG;2012;2012;W;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21022;JG;2011;2011;W;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21023;JG;2010;2010;W;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21024;JG;2009;2009;W;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21025;JG;2008;2008;W;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21026;JG;2007;2007;W;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21027;JG;2006;2006;W;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 8;E;21028;JG;1932;2005;W;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22001;JG;1932;1925;M;AK 100 - Emsland;
+WERTUNG: 19;E;22002;JG;1932;1930;M;AK 95 - Emsland;
+WERTUNG: 19;E;22003;JG;1932;1935;M;AK 90 - Emsland;
+WERTUNG: 19;E;22004;JG;1936;1940;M;AK 85 - Emsland;
+WERTUNG: 19;E;22005;JG;1941;1945;M;AK 80 - Emsland;
+WERTUNG: 19;E;22006;JG;1946;1950;M;AK 75 - Emsland;
+WERTUNG: 19;E;22007;JG;1951;1955;M;AK 70 - Emsland;
+WERTUNG: 19;E;22008;JG;1956;1960;M;AK 65 - Emsland;
+WERTUNG: 19;E;22009;JG;1961;1965;M;AK 60 - Emsland;
+WERTUNG: 19;E;22010;JG;1966;1970;M;AK 55 - Emsland;
+WERTUNG: 19;E;22011;JG;1971;1975;M;AK 50 - Emsland;
+WERTUNG: 19;E;22012;JG;1976;1980;M;AK 45 - Emsland;
+WERTUNG: 19;E;22013;JG;1981;1985;M;AK 40 - Emsland;
+WERTUNG: 19;E;22014;JG;1986;1990;M;AK 35 - Emsland;
+WERTUNG: 19;E;22015;JG;1991;1995;M;AK 30 - Emsland;
+WERTUNG: 19;E;22016;JG;1996;2000;M;AK 25 - Emsland;
+WERTUNG: 19;E;22017;JG;2001;2005;M;AK 20 - Emsland;
+WERTUNG: 19;E;22018;JG;1932;1925;M;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22019;JG;1932;1930;M;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22020;JG;1932;1935;M;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22021;JG;1936;1940;M;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22022;JG;1941;1945;M;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22023;JG;1946;1950;M;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22024;JG;1951;1955;M;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22025;JG;1956;1960;M;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22026;JG;1961;1965;M;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22027;JG;1966;1970;M;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22028;JG;1971;1975;M;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22029;JG;1976;1980;M;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22030;JG;1981;1985;M;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22031;JG;1986;1990;M;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22032;JG;1991;1995;M;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22033;JG;1996;2000;M;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 19;E;22034;JG;2001;2005;M;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23001;JG;1932;1925;W;AK 100 - Emsland;
+WERTUNG: 20;E;23002;JG;1932;1930;W;AK 95 - Emsland;
+WERTUNG: 20;E;23003;JG;1932;1935;W;AK 90 - Emsland;
+WERTUNG: 20;E;23004;JG;1936;1940;W;AK 85 - Emsland;
+WERTUNG: 20;E;23005;JG;1941;1945;W;AK 80 - Emsland;
+WERTUNG: 20;E;23006;JG;1946;1950;W;AK 75 - Emsland;
+WERTUNG: 20;E;23007;JG;1951;1955;W;AK 70 - Emsland;
+WERTUNG: 20;E;23008;JG;1956;1960;W;AK 65 - Emsland;
+WERTUNG: 20;E;23009;JG;1961;1965;W;AK 60 - Emsland;
+WERTUNG: 20;E;23010;JG;1966;1970;W;AK 55 - Emsland;
+WERTUNG: 20;E;23011;JG;1971;1975;W;AK 50 - Emsland;
+WERTUNG: 20;E;23012;JG;1976;1980;W;AK 45 - Emsland;
+WERTUNG: 20;E;23013;JG;1981;1985;W;AK 40 - Emsland;
+WERTUNG: 20;E;23014;JG;1986;1990;W;AK 35 - Emsland;
+WERTUNG: 20;E;23015;JG;1991;1995;W;AK 30 - Emsland;
+WERTUNG: 20;E;23016;JG;1996;2000;W;AK 25 - Emsland;
+WERTUNG: 20;E;23017;JG;2001;2005;W;AK 20 - Emsland;
+WERTUNG: 20;E;23018;JG;1932;1925;W;AK 100 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23019;JG;1932;1930;W;AK 95 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23020;JG;1932;1935;W;AK 90 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23021;JG;1936;1940;W;AK 85 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23022;JG;1941;1945;W;AK 80 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23023;JG;1946;1950;W;AK 75 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23024;JG;1951;1955;W;AK 70 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23025;JG;1956;1960;W;AK 65 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23026;JG;1961;1965;W;AK 60 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23027;JG;1966;1970;W;AK 55 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23028;JG;1971;1975;W;AK 50 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23029;JG;1976;1980;W;AK 45 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23030;JG;1981;1985;W;AK 40 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23031;JG;1986;1990;W;AK 35 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23032;JG;1991;1995;W;AK 30 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23033;JG;1996;2000;W;AK 25 - Nicht-Emsländische Vereine;
+WERTUNG: 20;E;23034;JG;2001;2005;W;AK 20 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24001;JG;2017;2017;M;Jahrgang 2017 - Emsland;
+WERTUNG: 9;E;24002;JG;2016;2016;M;Jahrgang 2016 - Emsland;
+WERTUNG: 9;E;24003;JG;2015;2015;M;Jahrgang 2015 - Emsland;
+WERTUNG: 9;E;24004;JG;2014;2014;M;Jahrgang 2014 - Emsland;
+WERTUNG: 9;E;24005;JG;2013;2013;M;Jahrgang 2013 - Emsland;
+WERTUNG: 9;E;24006;JG;2012;2012;M;Jahrgang 2012 - Emsland;
+WERTUNG: 9;E;24007;JG;2011;2011;M;Jahrgang 2011 - Emsland;
+WERTUNG: 9;E;24008;JG;2010;2010;M;Jahrgang 2010 - Emsland;
+WERTUNG: 9;E;24009;JG;2009;2009;M;Jahrgang 2009 - Emsland;
+WERTUNG: 9;E;24010;JG;2008;2008;M;Jahrgang 2008 - Emsland;
+WERTUNG: 9;E;24011;JG;2007;2007;M;Jahrgang 2007 - Emsland;
+WERTUNG: 9;E;24012;JG;2006;2006;M;Jahrgang 2006 - Emsland;
+WERTUNG: 9;E;24013;JG;1932;2005;M;Jahrgang 2005 und älter - Emsland;
+WERTUNG: 9;E;24016;JG;2017;2017;M;Jahrgang 2017 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24017;JG;2016;2016;M;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24018;JG;2015;2015;M;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24019;JG;2014;2014;M;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24020;JG;2013;2013;M;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24021;JG;2012;2012;M;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24022;JG;2011;2011;M;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24023;JG;2010;2010;M;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24024;JG;2009;2009;M;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24025;JG;2008;2008;M;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24026;JG;2007;2007;M;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24027;JG;2006;2006;M;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 9;E;24028;JG;1932;2005;M;Jahrgang 2005 und älter - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25001;JG;2017;2017;W;Jahrgang 2017 - Emsland;
+WERTUNG: 10;E;25002;JG;2016;2016;W;Jahrgang 2016 - Emsland;
+WERTUNG: 10;E;25003;JG;2015;2015;W;Jahrgang 2015 - Emsland;
+WERTUNG: 10;E;25004;JG;2014;2014;W;Jahrgang 2014 - Emsland;
+WERTUNG: 10;E;25005;JG;2013;2013;W;Jahrgang 2013 - Emsland;
+WERTUNG: 10;E;25006;JG;2012;2012;W;Jahrgang 2012 - Emsland;
+WERTUNG: 10;E;25007;JG;2011;2011;W;Jahrgang 2011 - Emsland;
+WERTUNG: 10;E;25008;JG;2010;2010;W;Jahrgang 2010 - Emsland;
+WERTUNG: 10;E;25009;JG;2009;2009;W;Jahrgang 2009 - Emsland;
+WERTUNG: 10;E;25010;JG;2008;2008;W;Jahrgang 2008 - Emsland;
+WERTUNG: 10;E;25011;JG;2007;2007;W;Jahrgang 2007 - Emsland;
+WERTUNG: 10;E;25012;JG;2006;2006;W;Jahrgang 2006 - Emsland;
+WERTUNG: 10;E;25013;JG;1932;2005;W;Jahrgang 2005 - Emsland;
+WERTUNG: 10;E;25016;JG;2017;2017;W;Jahrgang 2017 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25017;JG;2016;2016;W;Jahrgang 2016 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25018;JG;2015;2015;W;Jahrgang 2015 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25019;JG;2014;2014;W;Jahrgang 2014 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25020;JG;2013;2013;W;Jahrgang 2013 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25021;JG;2012;2012;W;Jahrgang 2012 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25022;JG;2011;2011;W;Jahrgang 2011 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25023;JG;2010;2010;W;Jahrgang 2010 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25024;JG;2009;2009;W;Jahrgang 2009 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25025;JG;2008;2008;W;Jahrgang 2008 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25026;JG;2007;2007;W;Jahrgang 2007 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25027;JG;2006;2006;W;Jahrgang 2006 - Nicht-Emsländische Vereine;
+WERTUNG: 10;E;25028;JG;1932;2005;W;Jahrgang 2005 - Nicht-Emsländische Vereine;
+WERTUNG: 105;E;26001;JG;0;0;M;Offene Wertung;
+WERTUNG: 105;E;26002;JG;0;0;M;Offene Wertung;
+WERTUNG: 106;E;27001;JG;0;0;W;Offene Wertung;
+WERTUNG: 106;E;27002;JG;0;0;W;Offene Wertung;
+VEREIN: Haselünner SV;3708;9;GER;
+VEREIN: SC Twist;3783;9;GER;
+VEREIN: SG Freren;6696;9;GER;
+VEREIN: SV Blau-Weiß Lingen;3855;9;GER;
+VEREIN: SV Concordia Emsbüren;3857;9;GER;
+VEREIN: SV Haren;3867;9;GER;
+VEREIN: SV Sigiltra Sögel;3882;9;GER;
+VEREIN: SV Wasserfreunde Dalum;3887;9;GER;
+VEREIN: SV Wasserfreunde Völlen-Papenburg;4037;9;GER;
+VEREIN: TV Meppen;3998;9;GER;
+PNERGEBNIS: 11;E;3017;1;;Schmitt, Nora;778009;135;M;2002;20;SC Twist;3783;00:00:29,39;;;;;; (* AK 20 - Emsland *)
+PNERGEBNIS: 11;E;3017;2;;Pohl, Luis;918513;39;M;2002;20;SV Sigiltra Sögel;3882;00:00:29,49;;;GER;;; (* AK 20 - Emsland *)
+PNERGEBNIS: 11;E;3015;1;;Ludwig, Paul;585746;41;M;1992;30;SV Sigiltra Sögel;3882;00:00:29,83;;;GER;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 11;E;3012;1;;Seidel, Linus;722486;40;M;1976;45;SV Sigiltra Sögel;3882;00:00:26,79;;;GER;;; (* AK 45 - Emsland *)
+PNERGEBNIS: 11;E;3009;1;;Sander, David;730351;42;M;1962;60;SV Sigiltra Sögel;3882;00:00:37,94;;;GER;;; (* AK 60 - Emsland *)
+PNERGEBNIS: 11;E;3006;1;;Kramer, Oskar;787460;96;M;1950;75;TV Meppen;3998;00:00:37,57;;;GER;;; (* AK 75 - Emsland *)
+PNERGEBNIS: 12;E;4016;1;;Walter, Tilda;885263;38;W;1999;25;SV Sigiltra Sögel;3882;00:00:29,82;;;GER;;; (* AK 25 - Emsland *)
+PNERGEBNIS: 12;E;4016;2;;Ulrich, Maja;862542;98;W;1997;25;TV Meppen;3998;00:00:31,92;;;GER;;; (* AK 25 - Emsland *)
+PNERGEBNIS: 12;E;4015;1;;Peters, Paul;578665;136;W;1991;30;SC Twist;3783;00:00:33,04;;;;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 12;E;4015;0;NA;Gross, Alina;994064;25;W;1993;30;SV Wasserfreunde Völlen-Papenburg;4037;00:00:00,00;;;GER;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 12;E;4013;0;DS;Frank, Pia;319287;43;W;1985;40;SV Sigiltra Sögel;3882;00:00:00,00;Start vor dem Startsignal ;;;;; (* AK 40 - Emsland *)
+PNERGEBNIS: 12;E;4011;1;;Kramer, Henri;371774;97;W;1975;50;TV Meppen;3998;00:00:31,33;;;GER;;; (* AK 50 - Emsland *)
+PNERGEBNIS: 1;E;6013;1;;Ziegler, Paul;218996;30;M;2001;20;SV Sigiltra Sögel;3882;00:00:25,30;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 1;E;6013;0;NA;Maier, Luis;948923;81;M;2004;20;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 1;E;6012;1;;Schröder, Emma;873717;3;M;2006;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:27,66;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 1;E;6011;1;;Winkler, Jakob;334979;61;M;2007;;SG Freren;6696;00:00:26,00;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 1;E;6011;2;;Möller, Ben;258462;89;M;2007;;TV Meppen;3998;00:00:26,06;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 1;E;6011;3;;Pohl, Ben;203076;5;M;2007;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:28,49;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 1;E;6010;1;;Berger, Karl;768664;47;M;2008;;SV Wasserfreunde Dalum;3887;00:00:26,72;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 1;E;6010;2;;Sander, David;989524;117;M;2008;;SC Twist;3783;00:00:29,14;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 1;E;6010;3;;Seidel, Tom;473949;154;M;2008;;SV Wasserfreunde Dalum;3887;00:00:34,29;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 1;E;6010;4;;Fischer, Erik;624654;82;M;2008;;SV Blau-Weiß Lingen;3855;00:00:34,56;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 1;E;6009;1;;Pohl, Henri;228955;1;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:27,63;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 1;E;6009;2;;Herrmann, Jost;940632;7;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:29,76;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 1;E;6009;3;;Marquardt, Jost;355474;62;M;2009;;SG Freren;6696;00:00:29,88;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 1;E;6008;1;;Schmitt, Tom;149690;4;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:26,54;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 1;E;6008;2;;Albers, Zoe;910102;2;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:26,69;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 1;E;6008;3;;Kaiser, Yara;362006;100;M;2010;;SV Concordia Emsbüren;3857;00:00:28,10;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 1;E;6008;4;;Voigt, Mia;673005;101;M;2010;;SV Concordia Emsbüren;3857;00:00:29,68;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 1;E;6008;5;;Hartmann, Lena;432834;9;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:34,98;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 1;E;6008;0;DS;Koch, Emilia;891045;31;M;2010;;SV Sigiltra Sögel;3882;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 1;E;6008;0;DS;Graf, Rike;853989;10;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:00,00;Der Schwimmer hat bei der Wende nicht die Wand berührt;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 1;E;6007;1;;Busch, Pia;748610;48;M;2011;;SV Wasserfreunde Dalum;3887;00:00:27,84;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 1;E;6007;2;;Herrmann, Mia;794452;6;M;2011;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:28,31;;;;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 1;E;6006;1;;Fischer, Mia;976188;118;M;2012;;SC Twist;3783;00:00:45,28;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 1;E;6005;1;;Kaiser, Marie;906037;148;M;2013;;SV Haren;3867;00:00:31,14;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 1;E;6005;2;;Engel, Jakob;957560;8;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:34,75;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 1;E;6005;3;;Richter, Sophie;156761;139;M;2013;;Haselünner SV;3708;00:00:38,42;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 1;E;6005;4;;Richter, Jonas;860409;14;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:50,51;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 1;E;6005;0;DS;Stein, Marie;217730;102;M;2013;;SV Concordia Emsbüren;3857;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 1;E;6004;1;;Ulrich, Yara;798938;63;M;2014;;SG Freren;6696;00:00:35,01;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 1;E;6004;2;;Bauer, Julia;328014;64;M;2014;;SG Freren;6696;00:00:40,42;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 1;E;6004;3;;Ludwig, Mia;581487;141;M;2014;;Haselünner SV;3708;00:00:57,99;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 1;E;6004;4;;Fischer, David;995640;33;M;2014;;SV Sigiltra Sögel;3882;00:01:02,96;;;;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 1;E;6004;0;DS;Busch, Jakob;298178;32;M;2014;;SV Sigiltra Sögel;3882;00:00:00,00;Start vor dem Startsignal;;HUN;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 1;E;6003;1;;Schmitt, Fiona;229338;49;M;2015;;SV Wasserfreunde Dalum;3887;00:00:35,69;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 1;E;6003;2;;Brandt, Ida;209905;11;M;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,10;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 1;E;6003;3;;Otto, Mats;926265;50;M;2015;;SV Wasserfreunde Dalum;3887;00:00:40,33;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 1;E;6003;4;;Reuter, Linus;152158;140;M;2015;;Haselünner SV;3708;00:00:42,45;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 1;E;6003;5;;Bauer, Anton;100641;119;M;2015;;SC Twist;3783;00:00:50,98;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 1;E;6003;6;;Kaiser, Paul;142362;66;M;2015;;SG Freren;6696;00:00:52,25;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 1;E;6002;1;;Neumann, Sina;647269;149;M;2016;;SV Haren;3867;00:00:47,91;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 1;E;6002;2;;Fischer, Nele;680358;105;M;2016;;SV Concordia Emsbüren;3857;00:00:58,11;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 1;E;6002;3;;Peters, Nele;718619;67;M;2016;;SG Freren;6696;00:00:58,15;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 1;E;6002;0;DS;Peters, Mia;158551;83;M;2016;;SV Blau-Weiß Lingen;3855;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 1;E;6001;1;;Ludwig, Linus;460019;65;M;2017;;SG Freren;6696;00:00:43,87;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 1;E;6001;2;;Brandt, Jana;993733;13;M;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:48,46;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 1;E;6001;3;;Weiss, David;884215;104;M;2017;;SV Concordia Emsbüren;3857;00:00:48,68;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 1;E;6001;4;;Reuter, Hannah;306596;103;M;2017;;SV Concordia Emsbüren;3857;00:00:48,84;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 1;E;6001;5;;Keller, Zoe;197859;120;M;2017;;SC Twist;3783;00:01:20,83;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7013;1;;Otto, Sophie;303361;51;W;1999;25;SV Wasserfreunde Dalum;3887;00:00:28,05;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 2;E;7013;2;;Ziegler, Emilia;532121;142;W;2003;20;Haselünner SV;3708;00:00:29,24;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 2;E;7013;3;;Frank, Lina;318504;56;W;2002;20;SV Wasserfreunde Dalum;3887;00:00:30,86;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 2;E;7013;4;;Schäfer, Jonas;654642;121;W;2001;20;SC Twist;3783;00:00:32,53;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 2;E;7012;1;;Albers, Mats;695655;91;W;2006;;TV Meppen;3998;00:00:30,20;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 2;E;7012;2;;Neumann, Anton;298200;54;W;2006;;SV Wasserfreunde Dalum;3887;00:00:31,08;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 2;E;7012;0;NA;Ziegler, Theo;758665;35;W;2006;;SV Sigiltra Sögel;3882;00:00:00,00;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 2;E;7011;1;;Schmitt, Carla;115204;106;W;2007;;SV Concordia Emsbüren;3857;00:00:28,10;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 2;E;7011;2;;Pohl, Emma;501228;90;W;2007;;TV Meppen;3998;00:00:29,41;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 2;E;7011;3;;Lang, Sophie;241183;108;W;2007;;SV Concordia Emsbüren;3857;00:00:32,29;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 2;E;7010;1;;Winkler, Luis;676800;34;W;2008;;SV Sigiltra Sögel;3882;00:00:29,77;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 2;E;7010;2;;Marquardt, Carla;818802;107;W;2008;;SV Concordia Emsbüren;3857;00:00:30,28;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 2;E;7010;3;;Lorenz, Malte;546466;68;W;2008;;SG Freren;6696;00:00:30,84;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 2;E;7010;4;;Kern, David;502917;150;W;2008;;SV Haren;3867;00:00:31,44;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 2;E;7010;5;;Engel, Pia;114178;85;W;2008;;SV Blau-Weiß Lingen;3855;00:00:33,92;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 2;E;7010;6;;Koch, Sina;811407;74;W;2008;;SG Freren;6696;00:00:36,13;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 2;E;7009;1;;Keller, Greta;622603;52;W;2009;;SV Wasserfreunde Dalum;3887;00:00:30,45;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 2;E;7009;2;;Richter, Emma;980449;69;W;2009;;SG Freren;6696;00:00:31,14;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 2;E;7009;3;;Koch, Tom;328494;94;W;2009;;TV Meppen;3998;00:00:31,24;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 2;E;7009;4;;Peters, David;252023;70;W;2009;;SG Freren;6696;00:00:31,69;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 2;E;7009;5;;Engel, Zoe;282878;109;W;2009;;SV Concordia Emsbüren;3857;00:00:32,36;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 2;E;7009;6;;Lang, Karl;434961;86;W;2009;;SV Blau-Weiß Lingen;3855;00:00:35,84;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 2;E;7009;7;;Lehmann, Marie;482832;151;W;2009;;SV Haren;3867;00:00:36,64;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 2;E;7008;1;;Maier, Malte;277520;93;W;2010;;TV Meppen;3998;00:00:30,54;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 2;E;7008;2;;Weiss, Theo;471073;57;W;2010;;SV Wasserfreunde Dalum;3887;00:00:32,23;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 2;E;7008;3;;Berger, Milan;682030;84;W;2010;;SV Blau-Weiß Lingen;3855;00:00:32,70;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 2;E;7008;4;;Schmitt, Tom;620839;55;W;2010;;SV Wasserfreunde Dalum;3887;00:00:32,88;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 2;E;7008;5;;Koch, Nele;407305;72;W;2010;;SG Freren;6696;00:00:33,20;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 2;E;7008;6;;Winkler, Alina;684387;110;W;2010;;SV Concordia Emsbüren;3857;00:00:35,33;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 2;E;7008;0;NA;Thiele, Greta;545567;95;W;2010;;TV Meppen;3998;00:00:00,00;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 2;E;7007;1;;Frank, Henri;747573;92;W;2011;;TV Meppen;3998;00:00:29,61;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 2;E;7007;2;;Weiss, Anton;426229;53;W;2011;;SV Wasserfreunde Dalum;3887;00:00:30,22;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 2;E;7007;3;;Kuhn, Maja;454108;122;W;2011;;SC Twist;3783;00:00:31,51;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 2;E;7006;1;;Kaiser, Marie;950779;71;W;2012;;SG Freren;6696;00:00:31,21;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7006;2;;Thiele, Karl;582003;73;W;2012;;SG Freren;6696;00:00:32,54;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7006;3;;Ulrich, Nele;242677;15;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:32,57;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7006;4;;Weiss, Fiona;963911;16;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:34,43;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7006;5;;Hahn, Carla;742015;112;W;2012;;SV Concordia Emsbüren;3857;00:00:36,18;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7006;6;;Bauer, Marie;238762;17;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,29;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7006;7;;Engel, Elias;459902;124;W;2012;;SC Twist;3783;00:00:37,17;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7006;8;;Otto, Mats;367487;125;W;2012;;SC Twist;3783;00:00:39,68;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 2;E;7005;1;;Kuhn, Lara;590096;111;W;2013;;SV Concordia Emsbüren;3857;00:00:35,42;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7005;2;;Jung, Greta;561143;20;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,42;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7005;3;;Maier, Henri;217838;152;W;2013;;SV Haren;3867;00:00:36,46;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7005;4;;Stein, Rike;392226;19;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,71;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7005;5;;Hahn, Ida;753275;123;W;2013;;SC Twist;3783;00:00:37,09;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7005;6;;Stein, Anton;816381;153;W;2013;;SV Haren;3867;00:00:41,35;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7005;7;;Winkler, Niklas;741106;127;W;2013;;SC Twist;3783;00:00:42,29;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7005;8;;Ziegler, Jost;436885;76;W;2013;;SG Freren;6696;00:00:46,06;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 2;E;7004;1;;Kuhn, Jana;660716;113;W;2014;;SV Concordia Emsbüren;3857;00:00:37,99;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 2;E;7004;2;;Otto, Tilda;771628;143;W;2014;;Haselünner SV;3708;00:00:39,03;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 2;E;7004;3;;Frank, Zoe;319149;22;W;2014;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:39,33;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 2;E;7004;4;;Weiss, Carla;821814;59;W;2014;;SV Wasserfreunde Dalum;3887;00:00:43,09;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 2;E;7004;5;;Koch, Jost;449247;144;W;2014;;Haselünner SV;3708;00:00:51,87;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 2;E;7003;1;;Marquardt, Carla;666308;18;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:35,97;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 2;E;7003;2;;Richter, Jakob;453435;21;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:40,19;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 2;E;7003;3;;Graf, Sina;970523;58;W;2015;;SV Wasserfreunde Dalum;3887;00:00:42,00;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 2;E;7003;4;;Klein, Greta;639125;128;W;2015;;SC Twist;3783;00:00:48,24;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 2;E;7003;5;;Hahn, Theo;548391;145;W;2015;;Haselünner SV;3708;00:00:51,26;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 2;E;7003;6;;Keller, Ruben;710103;36;W;2015;;SV Sigiltra Sögel;3882;00:01:02,88;;;;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 2;E;7002;1;;Ziegler, Anton;754303;126;W;2016;;SC Twist;3783;00:00:39,82;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;2;;Fischer, Marie;532611;130;W;2016;;SC Twist;3783;00:00:47,52;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;3;;Busch, Niklas;251795;131;W;2016;;SC Twist;3783;00:00:47,61;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;4;;Sommer, Felix;854992;129;W;2016;;SC Twist;3783;00:00:50,12;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;5;;Keller, Zoe;465769;77;W;2016;;SG Freren;6696;00:00:56,52;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;6;;Busch, Greta;474836;116;W;2016;;SV Concordia Emsbüren;3857;00:00:58,47;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;7;;Sommer, Mats;998646;115;W;2016;;SV Concordia Emsbüren;3857;00:00:58,61;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;8;;Hartmann, Karl;423185;147;W;2016;;Haselünner SV;3708;00:01:12,55;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7002;0;DS;Frank, Niklas;409047;75;W;2016;;SG Freren;6696;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 2;E;7001;1;;Hahn, Tom;508025;114;W;2017;;SV Concordia Emsbüren;3857;00:00:45,11;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7001;2;;Frank, Vincent;654676;24;W;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:55,21;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7001;3;;Neumann, Nele;881699;60;W;2017;;SV Wasserfreunde Dalum;3887;00:00:56,58;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7001;4;;Jung, Henri;875360;23;W;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:59,02;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7001;5;;Schröder, Tilda;520240;133;W;2017;;SC Twist;3783;00:01:01,13;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7001;6;;Schröder, Niklas;453097;132;W;2017;;SC Twist;3783;00:01:03,04;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7001;7;;Neumann, Maja;733065;134;W;2017;;SC Twist;3783;00:01:17,63;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 2;E;7001;8;;Schmitt, Carla;523486;146;W;2017;;Haselünner SV;3708;00:01:24,85;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 13;E;8017;1;;Pohl, Luis;918513;39;M;2002;20;SV Sigiltra Sögel;3882;00:00:34,60;;;GER;;; (* AK 20 - Emsland *)
+PNERGEBNIS: 13;E;8015;1;;Ludwig, Paul;585746;41;M;1992;30;SV Sigiltra Sögel;3882;00:00:31,44;;;GER;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 13;E;8012;1;;Seidel, Linus;722486;40;M;1976;45;SV Sigiltra Sögel;3882;00:00:28,80;;;GER;;; (* AK 45 - Emsland *)
+PNERGEBNIS: 13;E;8009;1;;Sander, David;730351;42;M;1962;60;SV Sigiltra Sögel;3882;00:00:43,39;;;GER;;; (* AK 60 - Emsland *)
+PNERGEBNIS: 13;E;8006;1;;Kramer, Oskar;787460;96;M;1950;75;TV Meppen;3998;00:00:50,39;;;GER;;; (* AK 75 - Emsland *)
+PNERGEBNIS: 14;E;9017;1;;Schäfer, Jonas;654642;121;W;2001;20;SC Twist;3783;00:00:35,71;;;GER;;; (* AK 20 - Emsland *)
+PNERGEBNIS: 14;E;9016;1;;Ulrich, Maja;862542;98;W;1997;25;TV Meppen;3998;00:00:34,84;;;GER;;; (* AK 25 - Emsland *)
+PNERGEBNIS: 14;E;9016;2;;Walter, Tilda;885263;38;W;1999;25;SV Sigiltra Sögel;3882;00:00:35,06;;;GER;;; (* AK 25 - Emsland *)
+PNERGEBNIS: 14;E;9015;1;;Peters, Paul;578665;136;W;1991;30;SC Twist;3783;00:00:37,04;;;;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 14;E;9015;0;NA;Gross, Alina;994064;25;W;1993;30;SV Wasserfreunde Völlen-Papenburg;4037;00:00:00,00;;;GER;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 14;E;9013;1;;Frank, Pia;319287;43;W;1985;40;SV Sigiltra Sögel;3882;00:00:37,76;;;;;; (* AK 40 - Emsland *)
+PNERGEBNIS: 3;E;10013;1;;Ziegler, Paul;218996;30;M;2001;20;SV Sigiltra Sögel;3882;00:00:26,05;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 3;E;10013;2;;Seidel, Theo;804917;37;M;1993;30;SV Sigiltra Sögel;3882;00:00:26,84;;;;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 3;E;10013;0;NA;Maier, Luis;948923;81;M;2004;20;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 3;E;10012;1;;Schröder, Emma;873717;3;M;2006;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:30,20;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 3;E;10011;1;;Winkler, Jakob;334979;61;M;2007;;SG Freren;6696;00:00:28,27;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 3;E;10011;2;;Möller, Ben;258462;89;M;2007;;TV Meppen;3998;00:00:29,45;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 3;E;10011;3;;Pohl, Ben;203076;5;M;2007;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:32,86;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 3;E;10010;1;;Berger, Karl;768664;47;M;2008;;SV Wasserfreunde Dalum;3887;00:00:29,53;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 3;E;10010;2;;Sander, David;989524;117;M;2008;;SC Twist;3783;00:00:33,69;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 3;E;10009;1;;Pohl, Henri;228955;1;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:31,81;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 3;E;10009;2;;Herrmann, Jost;940632;7;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:33,03;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 3;E;10009;3;;Marquardt, Jost;355474;62;M;2009;;SG Freren;6696;00:00:38,64;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 3;E;10008;1;;Albers, Zoe;910102;2;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:30,45;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 3;E;10008;2;;Schmitt, Tom;149690;4;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:31,74;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 3;E;10008;3;;Kaiser, Yara;362006;100;M;2010;;SV Concordia Emsbüren;3857;00:00:33,72;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 3;E;10008;4;;Voigt, Mia;673005;101;M;2010;;SV Concordia Emsbüren;3857;00:00:35,95;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 3;E;10008;5;;Graf, Rike;853989;10;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:42,10;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 3;E;10008;6;;Hartmann, Lena;432834;9;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:42,96;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 3;E;10007;1;;Busch, Pia;748610;48;M;2011;;SV Wasserfreunde Dalum;3887;00:00:31,40;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 3;E;10007;2;;Herrmann, Mia;794452;6;M;2011;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:32,13;;;;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 3;E;10005;1;;Kaiser, Marie;906037;148;M;2013;;SV Haren;3867;00:00:38,87;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 3;E;10005;2;;Engel, Jakob;957560;8;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:45,19;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 3;E;10005;3;;Stein, Marie;217730;102;M;2013;;SV Concordia Emsbüren;3857;00:00:59,85;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 3;E;10004;1;;Ulrich, Yara;798938;63;M;2014;;SG Freren;6696;00:00:46,63;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 3;E;10004;2;;Bauer, Julia;328014;64;M;2014;;SG Freren;6696;00:01:01,92;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 3;E;10003;1;;Brandt, Ida;209905;11;M;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:46,42;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 3;E;10003;2;;Schmitt, Fiona;229338;49;M;2015;;SV Wasserfreunde Dalum;3887;00:00:46,60;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 3;E;10003;3;;Reuter, Linus;152158;140;M;2015;;Haselünner SV;3708;00:00:53,90;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 3;E;10003;4;;Otto, Mats;926265;50;M;2015;;SV Wasserfreunde Dalum;3887;00:00:56,47;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 3;E;10003;5;;Kaiser, Paul;142362;66;M;2015;;SG Freren;6696;00:01:22,58;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 4;E;11013;1;;Otto, Sophie;303361;51;W;1999;25;SV Wasserfreunde Dalum;3887;00:00:29,92;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 4;E;11013;2;;Ziegler, Emilia;532121;142;W;2003;20;Haselünner SV;3708;00:00:31,98;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 4;E;11013;3;;Frank, Lina;318504;56;W;2002;20;SV Wasserfreunde Dalum;3887;00:00:37,69;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 4;E;11012;1;;Neumann, Anton;298200;54;W;2006;;SV Wasserfreunde Dalum;3887;00:00:33,98;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 4;E;11012;2;;Albers, Mats;695655;91;W;2006;;TV Meppen;3998;00:00:33,99;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 4;E;11012;0;NA;Ziegler, Theo;758665;35;W;2006;;SV Sigiltra Sögel;3882;00:00:00,00;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 4;E;11011;1;;Schmitt, Carla;115204;106;W;2007;;SV Concordia Emsbüren;3857;00:00:29,71;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 4;E;11011;2;;Pohl, Emma;501228;90;W;2007;;TV Meppen;3998;00:00:32,31;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 4;E;11011;3;;Lang, Sophie;241183;108;W;2007;;SV Concordia Emsbüren;3857;00:00:37,07;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 4;E;11010;1;;Winkler, Luis;676800;34;W;2008;;SV Sigiltra Sögel;3882;00:00:31,97;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 4;E;11010;2;;Marquardt, Carla;818802;107;W;2008;;SV Concordia Emsbüren;3857;00:00:32,84;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 4;E;11010;3;;Kern, David;502917;150;W;2008;;SV Haren;3867;00:00:37,02;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 4;E;11010;4;;Lorenz, Malte;546466;68;W;2008;;SG Freren;6696;00:00:37,06;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 4;E;11010;5;;Engel, Pia;114178;85;W;2008;;SV Blau-Weiß Lingen;3855;00:00:37,58;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 4;E;11010;6;;Koch, Sina;811407;74;W;2008;;SG Freren;6696;00:00:42,54;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 4;E;11009;1;;Keller, Greta;622603;52;W;2009;;SV Wasserfreunde Dalum;3887;00:00:33,78;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 4;E;11009;2;;Peters, David;252023;70;W;2009;;SG Freren;6696;00:00:35,14;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 4;E;11009;3;;Richter, Emma;980449;69;W;2009;;SG Freren;6696;00:00:35,86;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 4;E;11009;4;;Koch, Tom;328494;94;W;2009;;TV Meppen;3998;00:00:35,97;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 4;E;11009;5;;Engel, Zoe;282878;109;W;2009;;SV Concordia Emsbüren;3857;00:00:37,29;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 4;E;11009;6;;Lang, Karl;434961;86;W;2009;;SV Blau-Weiß Lingen;3855;00:00:41,95;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 4;E;11009;7;;Lehmann, Marie;482832;151;W;2009;;SV Haren;3867;00:00:43,43;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 4;E;11008;1;;Schmitt, Tom;620839;55;W;2010;;SV Wasserfreunde Dalum;3887;00:00:36,44;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 4;E;11008;2;;Maier, Malte;277520;93;W;2010;;TV Meppen;3998;00:00:37,12;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 4;E;11008;3;;Weiss, Theo;471073;57;W;2010;;SV Wasserfreunde Dalum;3887;00:00:37,47;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 4;E;11008;4;;Berger, Milan;682030;84;W;2010;;SV Blau-Weiß Lingen;3855;00:00:38,73;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 4;E;11008;5;;Koch, Nele;407305;72;W;2010;;SG Freren;6696;00:00:42,12;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 4;E;11008;6;;Winkler, Alina;684387;110;W;2010;;SV Concordia Emsbüren;3857;00:00:45,72;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 4;E;11008;0;NA;Thiele, Greta;545567;95;W;2010;;TV Meppen;3998;00:00:00,00;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 4;E;11007;1;;Frank, Henri;747573;92;W;2011;;TV Meppen;3998;00:00:31,49;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 4;E;11007;2;;Weiss, Anton;426229;53;W;2011;;SV Wasserfreunde Dalum;3887;00:00:37,31;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 4;E;11007;3;;Kuhn, Maja;454108;122;W;2011;;SC Twist;3783;00:00:40,09;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 4;E;11006;1;;Kaiser, Marie;950779;71;W;2012;;SG Freren;6696;00:00:34,78;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 4;E;11006;2;;Thiele, Karl;582003;73;W;2012;;SG Freren;6696;00:00:39,34;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 4;E;11006;3;;Ulrich, Nele;242677;15;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:41,78;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 4;E;11006;4;;Bauer, Marie;238762;17;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:46,37;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 4;E;11006;5;;Engel, Elias;459902;124;W;2012;;SC Twist;3783;00:00:47,23;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 4;E;11006;6;;Otto, Mats;367487;125;W;2012;;SC Twist;3783;00:00:54,16;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 4;E;11006;0;DS;Weiss, Fiona;963911;16;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 4;E;11005;1;;Maier, Henri;217838;152;W;2013;;SV Haren;3867;00:00:42,39;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 4;E;11005;2;;Hahn, Ida;753275;123;W;2013;;SC Twist;3783;00:00:46,20;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 4;E;11005;3;;Stein, Rike;392226;19;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:46,39;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 4;E;11005;4;;Kuhn, Lara;590096;111;W;2013;;SV Concordia Emsbüren;3857;00:00:46,69;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 4;E;11005;5;;Jung, Greta;561143;20;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:50,53;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 4;E;11005;6;;Stein, Anton;816381;153;W;2013;;SV Haren;3867;00:00:51,80;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 4;E;11005;7;;Winkler, Niklas;741106;127;W;2013;;SC Twist;3783;00:00:55,13;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 4;E;11004;1;;Frank, Zoe;319149;22;W;2014;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:45,53;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 4;E;11004;2;;Kuhn, Jana;660716;113;W;2014;;SV Concordia Emsbüren;3857;00:00:47,39;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 4;E;11004;3;;Otto, Tilda;771628;143;W;2014;;Haselünner SV;3708;00:00:53,70;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 4;E;11003;1;;Marquardt, Carla;666308;18;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:44,51;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 4;E;11003;2;;Richter, Jakob;453435;21;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:52,84;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 4;E;11003;0;DS;Klein, Greta;639125;128;W;2015;;SC Twist;3783;00:00:00,00;Die Schwimmerin führte einen Brustarmzug aus;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 4;E;11002;1;;Ziegler, Anton;754303;126;W;2016;;SC Twist;3783;00:00:55,21;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 4;E;11002;0;DS;Frank, Niklas;409047;75;W;2016;;SG Freren;6696;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 15;E;12017;1;;Pohl, Luis;918513;39;M;2002;20;SV Sigiltra Sögel;3882;00:01:14,33;;;GER;;; (* AK 20 - Emsland *)
+PNZWISCHENZEIT: 39;15;E;50;00:00:35,52;
+PNERGEBNIS: 15;E;12017;0;DS;Schmitt, Nora;778009;135;M;2002;20;SC Twist;3783;00:00:00,00;Start vor dem Startsignal;;;;; (* AK 20 - Emsland *)
+PNERGEBNIS: 15;E;12006;1;;Kramer, Oskar;787460;96;M;1950;75;TV Meppen;3998;00:01:43,15;;;GER;;; (* AK 75 - Emsland *)
+PNZWISCHENZEIT: 96;15;E;50;00:00:52,11;
+PNERGEBNIS: 16;E;13017;1;;Ziegler, Emilia;532121;142;W;2003;20;Haselünner SV;3708;00:01:14,19;;;GER;;; (* AK 20 - Emsland *)
+PNZWISCHENZEIT: 142;16;E;50;00:00:33,76;
+PNERGEBNIS: 16;E;13017;2;;Schäfer, Jonas;654642;121;W;2001;20;SC Twist;3783;00:01:21,91;;;GER;;; (* AK 20 - Emsland *)
+PNZWISCHENZEIT: 121;16;E;50;00:00:38,26;
+PNERGEBNIS: 16;E;13016;1;;Ulrich, Maja;862542;98;W;1997;25;TV Meppen;3998;00:01:21,59;;;GER;;; (* AK 25 - Emsland *)
+PNZWISCHENZEIT: 98;16;E;50;00:00:38,10;
+PNERGEBNIS: 16;E;13015;1;;Peters, Paul;578665;136;W;1991;30;SC Twist;3783;00:01:24,96;;;;;; (* AK 30 - Emsland *)
+PNZWISCHENZEIT: 136;16;E;50;00:00:38,88;
+PNERGEBNIS: 16;E;13013;1;;Frank, Pia;319287;43;W;1985;40;SV Sigiltra Sögel;3882;00:01:25,83;;;;;; (* AK 40 - Emsland *)
+PNZWISCHENZEIT: 43;16;E;50;00:00:40,48;
+PNERGEBNIS: 5;E;14013;1;;Seidel, Theo;804917;37;M;1993;30;SV Sigiltra Sögel;3882;00:01:04,93;;;;;; (* Jahrgang 2005 und älter - Emsland *)
+PNZWISCHENZEIT: 37;5;E;50;00:00:30,17;
+PNERGEBNIS: 5;E;14013;0;NA;Maier, Luis;948923;81;M;2004;20;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 5;E;14012;1;;Schröder, Emma;873717;3;M;2006;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:09,60;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNZWISCHENZEIT: 3;5;E;50;00:00:32,05;
+PNERGEBNIS: 5;E;14011;1;;Möller, Ben;258462;89;M;2007;;TV Meppen;3998;00:01:07,24;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNZWISCHENZEIT: 89;5;E;50;00:00:32,12;
+PNERGEBNIS: 5;E;14011;2;;Pohl, Ben;203076;5;M;2007;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:11,50;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNZWISCHENZEIT: 5;5;E;50;00:00:34,45;
+PNERGEBNIS: 5;E;14011;0;NA;Winkler, Jakob;334979;61;M;2007;;SG Freren;6696;00:00:00,00;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 5;E;14010;1;;Berger, Karl;768664;47;M;2008;;SV Wasserfreunde Dalum;3887;00:01:09,88;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 47;5;E;50;00:00:33,30;
+PNERGEBNIS: 5;E;14010;2;;Fischer, Erik;624654;82;M;2008;;SV Blau-Weiß Lingen;3855;00:01:33,52;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 82;5;E;50;00:00:41,51;
+PNERGEBNIS: 5;E;14009;1;;Pohl, Henri;228955;1;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:16,15;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNZWISCHENZEIT: 1;5;E;50;00:00:36,75;
+PNERGEBNIS: 5;E;14009;2;;Herrmann, Jost;940632;7;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:17,01;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNZWISCHENZEIT: 7;5;E;50;00:00:37,06;
+PNERGEBNIS: 5;E;14009;0;DS;Marquardt, Jost;355474;62;M;2009;;SG Freren;6696;00:00:00,00;Die Teilstrecke Rücken wurde nicht in Rückenlage beendet;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 5;E;14008;1;;Schmitt, Tom;149690;4;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:07,49;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 4;5;E;50;00:00:31,33;
+PNERGEBNIS: 5;E;14008;2;;Albers, Zoe;910102;2;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:11,25;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 2;5;E;50;00:00:33,57;
+PNERGEBNIS: 5;E;14008;3;;Kaiser, Yara;362006;100;M;2010;;SV Concordia Emsbüren;3857;00:01:14,12;;;;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 100;5;E;50;00:00:34,78;
+PNERGEBNIS: 5;E;14008;4;;Voigt, Mia;673005;101;M;2010;;SV Concordia Emsbüren;3857;00:01:19,04;;;;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 101;5;E;50;00:00:37,16;
+PNERGEBNIS: 5;E;14008;5;;Graf, Rike;853989;10;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:28,01;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 10;5;E;50;00:00:44,17;
+PNERGEBNIS: 5;E;14008;6;;Hartmann, Lena;432834;9;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:32,28;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 9;5;E;50;00:01:32,11;
+PNERGEBNIS: 5;E;14007;1;;Busch, Pia;748610;48;M;2011;;SV Wasserfreunde Dalum;3887;00:01:10,67;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNZWISCHENZEIT: 48;5;E;50;00:00:33,16;
+PNERGEBNIS: 5;E;14007;2;;Herrmann, Mia;794452;6;M;2011;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:13,07;;;;;; (* Jahrgang 2011 - Emsland *)
+PNZWISCHENZEIT: 6;5;E;50;00:00:35,93;
+PNERGEBNIS: 5;E;14005;1;;Kaiser, Marie;906037;148;M;2013;;SV Haren;3867;00:01:22,99;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 148;5;E;50;00:00:39,76;
+PNERGEBNIS: 5;E;14005;2;;Engel, Jakob;957560;8;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:31,23;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 8;5;E;50;00:00:43,58;
+PNERGEBNIS: 5;E;14005;3;;Richter, Sophie;156761;139;M;2013;;Haselünner SV;3708;00:01:49,00;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 139;5;E;50;00:00:52,97;
+PNERGEBNIS: 5;E;14005;4;;Stein, Marie;217730;102;M;2013;;SV Concordia Emsbüren;3857;00:01:59,25;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 102;5;E;50;00:01:03,43;
+PNERGEBNIS: 5;E;14004;1;;Ulrich, Yara;798938;63;M;2014;;SG Freren;6696;00:01:36,21;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNZWISCHENZEIT: 63;5;E;50;00:00:45,17;
+PNERGEBNIS: 5;E;14004;2;;Bauer, Julia;328014;64;M;2014;;SG Freren;6696;00:01:58,48;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNZWISCHENZEIT: 64;5;E;50;00:00:56,48;
+PNERGEBNIS: 5;E;14003;1;;Schmitt, Fiona;229338;49;M;2015;;SV Wasserfreunde Dalum;3887;00:01:34,10;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNZWISCHENZEIT: 49;5;E;50;00:00:44,51;
+PNERGEBNIS: 5;E;14003;2;;Brandt, Ida;209905;11;M;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:39,12;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNZWISCHENZEIT: 11;5;E;50;00:00:48,52;
+PNERGEBNIS: 5;E;14003;3;;Otto, Mats;926265;50;M;2015;;SV Wasserfreunde Dalum;3887;00:01:50,54;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNZWISCHENZEIT: 50;5;E;50;00:00:51,14;
+PNERGEBNIS: 5;E;14003;4;;Kaiser, Paul;142362;66;M;2015;;SG Freren;6696;00:02:26,53;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNZWISCHENZEIT: 66;5;E;50;00:01:15,20;
+PNERGEBNIS: 5;E;14002;1;;Peters, Nele;718619;67;M;2016;;SG Freren;6696;00:02:49,83;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNZWISCHENZEIT: 67;5;E;50;00:02:49,65;
+PNERGEBNIS: 6;E;17013;1;;Otto, Sophie;303361;51;W;1999;25;SV Wasserfreunde Dalum;3887;00:01:09,73;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNZWISCHENZEIT: 51;6;E;50;00:00:30,88;
+PNERGEBNIS: 6;E;17013;2;;Frank, Lina;318504;56;W;2002;20;SV Wasserfreunde Dalum;3887;00:01:23,43;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNZWISCHENZEIT: 56;6;E;50;00:00:37,69;
+PNERGEBNIS: 6;E;17012;1;;Neumann, Anton;298200;54;W;2006;;SV Wasserfreunde Dalum;3887;00:01:14,87;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNZWISCHENZEIT: 54;6;E;50;00:00:33,99;
+PNERGEBNIS: 6;E;17012;2;;Albers, Mats;695655;91;W;2006;;TV Meppen;3998;00:01:16,31;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNZWISCHENZEIT: 91;6;E;50;00:00:35,94;
+PNERGEBNIS: 6;E;17011;1;;Schmitt, Carla;115204;106;W;2007;;SV Concordia Emsbüren;3857;00:01:10,41;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNZWISCHENZEIT: 106;6;E;50;00:00:31,60;
+PNERGEBNIS: 6;E;17011;2;;Lang, Sophie;241183;108;W;2007;;SV Concordia Emsbüren;3857;00:01:23,15;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNZWISCHENZEIT: 108;6;E;50;00:00:38,87;
+PNERGEBNIS: 6;E;17010;1;;Marquardt, Carla;818802;107;W;2008;;SV Concordia Emsbüren;3857;00:01:14,17;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 107;6;E;50;00:00:35,02;
+PNERGEBNIS: 6;E;17010;2;;Winkler, Luis;676800;34;W;2008;;SV Sigiltra Sögel;3882;00:01:16,97;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 34;6;E;50;00:00:33,77;
+PNERGEBNIS: 6;E;17010;3;;Kern, David;502917;150;W;2008;;SV Haren;3867;00:01:22,62;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 150;6;E;50;00:00:38,80;
+PNERGEBNIS: 6;E;17010;4;;Lorenz, Malte;546466;68;W;2008;;SG Freren;6696;00:01:23,55;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 68;6;E;50;00:00:40,43;
+PNERGEBNIS: 6;E;17010;5;;Engel, Pia;114178;85;W;2008;;SV Blau-Weiß Lingen;3855;00:01:25,19;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 85;6;E;50;00:00:38,27;
+PNERGEBNIS: 6;E;17010;6;;Koch, Sina;811407;74;W;2008;;SG Freren;6696;00:01:36,23;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNZWISCHENZEIT: 74;6;E;50;00:00:45,20;
+PNERGEBNIS: 6;E;17009;1;;Keller, Greta;622603;52;W;2009;;SV Wasserfreunde Dalum;3887;00:01:17,42;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNZWISCHENZEIT: 52;6;E;50;00:00:36,49;
+PNERGEBNIS: 6;E;17009;2;;Peters, David;252023;70;W;2009;;SG Freren;6696;00:01:18,38;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNZWISCHENZEIT: 70;6;E;50;00:00:37,74;
+PNERGEBNIS: 6;E;17009;3;;Richter, Emma;980449;69;W;2009;;SG Freren;6696;00:01:21,79;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNZWISCHENZEIT: 69;6;E;50;00:00:38,43;
+PNERGEBNIS: 6;E;17009;4;;Lehmann, Marie;482832;151;W;2009;;SV Haren;3867;00:01:34,51;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNZWISCHENZEIT: 151;6;E;50;00:00:44,06;
+PNERGEBNIS: 6;E;17008;1;;Weiss, Theo;471073;57;W;2010;;SV Wasserfreunde Dalum;3887;00:01:21,55;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 57;6;E;50;00:00:37,52;
+PNERGEBNIS: 6;E;17008;2;;Berger, Milan;682030;84;W;2010;;SV Blau-Weiß Lingen;3855;00:01:23,02;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 84;6;E;50;00:00:39,21;
+PNERGEBNIS: 6;E;17008;3;;Schmitt, Tom;620839;55;W;2010;;SV Wasserfreunde Dalum;3887;00:01:24,46;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 55;6;E;50;00:00:38,01;
+PNERGEBNIS: 6;E;17008;4;;Winkler, Alina;684387;110;W;2010;;SV Concordia Emsbüren;3857;00:01:33,93;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 110;6;E;50;00:00:43,36;
+PNERGEBNIS: 6;E;17008;5;;Koch, Nele;407305;72;W;2010;;SG Freren;6696;00:01:36,07;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNZWISCHENZEIT: 72;6;E;50;00:00:43,23;
+PNERGEBNIS: 6;E;17007;1;;Weiss, Anton;426229;53;W;2011;;SV Wasserfreunde Dalum;3887;00:01:19,60;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNZWISCHENZEIT: 53;6;E;50;00:00:37,29;
+PNERGEBNIS: 6;E;17006;1;;Kaiser, Marie;950779;71;W;2012;;SG Freren;6696;00:01:18,81;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 71;6;E;50;00:00:36,78;
+PNERGEBNIS: 6;E;17006;2;;Ulrich, Nele;242677;15;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:25,03;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 15;6;E;50;00:00:40,91;
+PNERGEBNIS: 6;E;17006;3;;Thiele, Karl;582003;73;W;2012;;SG Freren;6696;00:01:26,79;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 73;6;E;50;00:00:42,70;
+PNERGEBNIS: 6;E;17006;4;;Weiss, Fiona;963911;16;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:32,27;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 16;6;E;50;00:00:43,13;
+PNERGEBNIS: 6;E;17006;5;;Engel, Elias;459902;124;W;2012;;SC Twist;3783;00:01:35,77;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 124;6;E;50;00:00:47,31;
+PNERGEBNIS: 6;E;17006;6;;Bauer, Marie;238762;17;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:35,91;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 17;6;E;50;00:00:49,68;
+PNERGEBNIS: 6;E;17006;7;;Hahn, Carla;742015;112;W;2012;;SV Concordia Emsbüren;3857;00:01:39,36;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 112;6;E;50;00:00:49,81;
+PNERGEBNIS: 6;E;17006;8;;Otto, Mats;367487;125;W;2012;;SC Twist;3783;00:01:44,65;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNZWISCHENZEIT: 125;6;E;50;00:00:49,75;
+PNERGEBNIS: 6;E;17005;1;;Stein, Rike;392226;19;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:31,27;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 19;6;E;50;00:00:43,50;
+PNERGEBNIS: 6;E;17005;2;;Jung, Greta;561143;20;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:31,88;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 20;6;E;50;00:00:45,57;
+PNERGEBNIS: 6;E;17005;3;;Maier, Henri;217838;152;W;2013;;SV Haren;3867;00:01:33,06;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 152;6;E;50;00:00:42,90;
+PNERGEBNIS: 6;E;17005;4;;Stein, Anton;816381;153;W;2013;;SV Haren;3867;00:01:50,69;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 153;6;E;50;00:00:50,80;
+PNERGEBNIS: 6;E;17005;5;;Winkler, Niklas;741106;127;W;2013;;SC Twist;3783;00:01:54,13;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 127;6;E;50;00:00:59,16;
+PNERGEBNIS: 6;E;17005;6;;Ziegler, Jost;436885;76;W;2013;;SG Freren;6696;00:02:21,13;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNZWISCHENZEIT: 76;6;E;50;00:01:11,41;
+PNERGEBNIS: 6;E;17004;1;;Frank, Zoe;319149;22;W;2014;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:38,31;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNZWISCHENZEIT: 22;6;E;50;00:00:46,22;
+PNERGEBNIS: 6;E;17004;2;;Otto, Tilda;771628;143;W;2014;;Haselünner SV;3708;00:01:52,82;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNZWISCHENZEIT: 143;6;E;50;00:00:50,87;
+PNERGEBNIS: 6;E;17003;1;;Marquardt, Carla;666308;18;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:37,55;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNZWISCHENZEIT: 18;6;E;50;00:00:43,06;
+PNERGEBNIS: 6;E;17003;2;;Richter, Jakob;453435;21;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:44,52;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNZWISCHENZEIT: 21;6;E;50;00:00:52,40;
+PNERGEBNIS: 6;E;17002;1;;Keller, Zoe;465769;77;W;2016;;SG Freren;6696;00:02:33,03;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNZWISCHENZEIT: 77;6;E;50;00:01:19,00;
+PNERGEBNIS: 6;E;17002;0;NA;Frank, Niklas;409047;75;W;2016;;SG Freren;6696;00:00:00,00;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 17;E;18017;1;;Schmitt, Nora;778009;135;M;2002;20;SC Twist;3783;00:00:33,74;;;;;; (* AK 20 - Emsland *)
+PNERGEBNIS: 17;E;18017;2;;Pohl, Luis;918513;39;M;2002;20;SV Sigiltra Sögel;3882;00:00:34,00;;;GER;;; (* AK 20 - Emsland *)
+PNERGEBNIS: 18;E;19015;1;;Peters, Paul;578665;136;W;1991;30;SC Twist;3783;00:00:40,39;;;;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 7;E;20013;0;NA;Maier, Luis;948923;81;M;2004;20;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 7;E;20012;1;;Schröder, Emma;873717;3;M;2006;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:33,27;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 7;E;20011;1;;Winkler, Jakob;334979;61;M;2007;;SG Freren;6696;00:00:30,31;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 7;E;20011;2;;Pohl, Ben;203076;5;M;2007;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:34,13;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 7;E;20010;1;;Berger, Karl;768664;47;M;2008;;SV Wasserfreunde Dalum;3887;00:00:33,67;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 7;E;20010;2;;Sander, David;989524;117;M;2008;;SC Twist;3783;00:00:34,42;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 7;E;20010;3;;Seidel, Tom;473949;154;M;2008;;SV Wasserfreunde Dalum;3887;00:00:44,58;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 7;E;20009;1;;Marquardt, Jost;355474;62;M;2009;;SG Freren;6696;00:00:36,41;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 7;E;20009;2;;Pohl, Henri;228955;1;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,94;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 7;E;20009;3;;Herrmann, Jost;940632;7;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:38,97;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 7;E;20008;1;;Schmitt, Tom;149690;4;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:32,33;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 7;E;20008;2;;Albers, Zoe;910102;2;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:34,05;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 7;E;20008;3;;Kaiser, Yara;362006;100;M;2010;;SV Concordia Emsbüren;3857;00:00:35,91;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 7;E;20008;4;;Voigt, Mia;673005;101;M;2010;;SV Concordia Emsbüren;3857;00:00:36,35;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 7;E;20008;5;;Hartmann, Lena;432834;9;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:40,25;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 7;E;20008;6;;Graf, Rike;853989;10;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:41,33;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 7;E;20008;7;;Koch, Emilia;891045;31;M;2010;;SV Sigiltra Sögel;3882;00:00:46,34;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 7;E;20007;1;;Busch, Pia;748610;48;M;2011;;SV Wasserfreunde Dalum;3887;00:00:31,88;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 7;E;20007;2;;Herrmann, Mia;794452;6;M;2011;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,74;;;;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 7;E;20006;1;;Fischer, Mia;976188;118;M;2012;;SC Twist;3783;00:00:58,81;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 7;E;20005;1;;Kaiser, Marie;906037;148;M;2013;;SV Haren;3867;00:00:38,49;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 7;E;20005;2;;Engel, Jakob;957560;8;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:41,98;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 7;E;20005;3;;Richter, Jonas;860409;14;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:01,18;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 7;E;20005;0;AB;Richter, Sophie;156761;139;M;2013;;Haselünner SV;3708;00:00:00,00;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 7;E;20004;1;;Ulrich, Yara;798938;63;M;2014;;SG Freren;6696;00:00:43,43;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 7;E;20004;2;;Bauer, Julia;328014;64;M;2014;;SG Freren;6696;00:00:51,06;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 7;E;20004;3;;Ludwig, Mia;581487;141;M;2014;;Haselünner SV;3708;00:01:07,22;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 7;E;20003;1;;Schmitt, Fiona;229338;49;M;2015;;SV Wasserfreunde Dalum;3887;00:00:46,09;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 7;E;20003;2;;Reuter, Linus;152158;140;M;2015;;Haselünner SV;3708;00:00:46,50;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 7;E;20003;3;;Brandt, Ida;209905;11;M;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:47,15;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 7;E;20003;4;;Otto, Mats;926265;50;M;2015;;SV Wasserfreunde Dalum;3887;00:00:50,89;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 7;E;20003;5;;Bauer, Anton;100641;119;M;2015;;SC Twist;3783;00:01:02,03;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 7;E;20003;0;NA;Kaiser, Paul;142362;66;M;2015;;SG Freren;6696;00:00:00,00;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 7;E;20002;1;;Neumann, Sina;647269;149;M;2016;;SV Haren;3867;00:01:00,82;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 7;E;20002;2;;Fischer, Nele;680358;105;M;2016;;SV Concordia Emsbüren;3857;00:01:09,48;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 7;E;20002;3;;Peters, Nele;718619;67;M;2016;;SG Freren;6696;00:01:18,25;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 7;E;20001;1;;Brandt, Jana;993733;13;M;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:59,80;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 7;E;20001;2;;Ludwig, Linus;460019;65;M;2017;;SG Freren;6696;00:01:00,45;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 7;E;20001;3;;Reuter, Hannah;306596;103;M;2017;;SV Concordia Emsbüren;3857;00:01:06,23;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 7;E;20001;4;;Keller, Zoe;197859;120;M;2017;;SC Twist;3783;00:01:19,81;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 7;E;20001;5;;Weiss, David;884215;104;M;2017;;SV Concordia Emsbüren;3857;00:01:35,05;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 8;E;21013;1;;Otto, Sophie;303361;51;W;1999;25;SV Wasserfreunde Dalum;3887;00:00:31,82;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 8;E;21013;2;;Walter, Tilda;885263;38;W;1999;25;SV Sigiltra Sögel;3882;00:00:34,91;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 8;E;21013;3;;Frank, Lina;318504;56;W;2002;20;SV Wasserfreunde Dalum;3887;00:00:37,81;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 8;E;21012;1;;Neumann, Anton;298200;54;W;2006;;SV Wasserfreunde Dalum;3887;00:00:35,04;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 8;E;21012;2;;Albers, Mats;695655;91;W;2006;;TV Meppen;3998;00:00:35,37;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 8;E;21011;1;;Schmitt, Carla;115204;106;W;2007;;SV Concordia Emsbüren;3857;00:00:32,54;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 8;E;21011;2;;Pohl, Emma;501228;90;W;2007;;TV Meppen;3998;00:00:34,74;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 8;E;21011;3;;Lang, Sophie;241183;108;W;2007;;SV Concordia Emsbüren;3857;00:00:39,89;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 8;E;21010;1;;Marquardt, Carla;818802;107;W;2008;;SV Concordia Emsbüren;3857;00:00:34,76;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 8;E;21010;2;;Winkler, Luis;676800;34;W;2008;;SV Sigiltra Sögel;3882;00:00:36,09;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 8;E;21010;3;;Kern, David;502917;150;W;2008;;SV Haren;3867;00:00:40,69;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 8;E;21010;4;;Lorenz, Malte;546466;68;W;2008;;SG Freren;6696;00:00:41,83;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 8;E;21010;5;;Koch, Sina;811407;74;W;2008;;SG Freren;6696;00:00:45,26;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 8;E;21010;0;NA;Engel, Pia;114178;85;W;2008;;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 8;E;21009;1;;Engel, Zoe;282878;109;W;2009;;SV Concordia Emsbüren;3857;00:00:36,07;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 8;E;21009;2;;Keller, Greta;622603;52;W;2009;;SV Wasserfreunde Dalum;3887;00:00:36,77;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 8;E;21009;3;;Koch, Tom;328494;94;W;2009;;TV Meppen;3998;00:00:37,15;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 8;E;21009;4;;Peters, David;252023;70;W;2009;;SG Freren;6696;00:00:37,74;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 8;E;21009;5;;Richter, Emma;980449;69;W;2009;;SG Freren;6696;00:00:40,41;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 8;E;21009;6;;Lehmann, Marie;482832;151;W;2009;;SV Haren;3867;00:00:45,13;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 8;E;21008;1;;Maier, Malte;277520;93;W;2010;;TV Meppen;3998;00:00:37,51;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 8;E;21008;2;;Weiss, Theo;471073;57;W;2010;;SV Wasserfreunde Dalum;3887;00:00:37,87;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 8;E;21008;3;;Schmitt, Tom;620839;55;W;2010;;SV Wasserfreunde Dalum;3887;00:00:39,88;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 8;E;21008;4;;Winkler, Alina;684387;110;W;2010;;SV Concordia Emsbüren;3857;00:00:43,22;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 8;E;21008;5;;Koch, Nele;407305;72;W;2010;;SG Freren;6696;00:00:47,23;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 8;E;21008;0;NA;Berger, Milan;682030;84;W;2010;;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 8;E;21008;0;NA;Thiele, Greta;545567;95;W;2010;;TV Meppen;3998;00:00:00,00;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 8;E;21007;1;;Frank, Henri;747573;92;W;2011;;TV Meppen;3998;00:00:33,17;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 8;E;21007;2;;Kuhn, Maja;454108;122;W;2011;;SC Twist;3783;00:00:38,25;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 8;E;21007;3;;Weiss, Anton;426229;53;W;2011;;SV Wasserfreunde Dalum;3887;00:00:38,63;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 8;E;21006;1;;Kaiser, Marie;950779;71;W;2012;;SG Freren;6696;00:00:36,46;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 8;E;21006;2;;Ulrich, Nele;242677;15;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:40,37;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 8;E;21006;3;;Weiss, Fiona;963911;16;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:42,43;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 8;E;21006;4;;Thiele, Karl;582003;73;W;2012;;SG Freren;6696;00:00:43,62;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 8;E;21006;5;;Engel, Elias;459902;124;W;2012;;SC Twist;3783;00:00:47,05;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 8;E;21006;6;;Bauer, Marie;238762;17;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:47,26;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 8;E;21006;7;;Otto, Mats;367487;125;W;2012;;SC Twist;3783;00:00:48,11;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 8;E;21005;1;;Kuhn, Lara;590096;111;W;2013;;SV Concordia Emsbüren;3857;00:00:40,51;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;2;;Hahn, Ida;753275;123;W;2013;;SC Twist;3783;00:00:41,69;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;3;;Maier, Henri;217838;152;W;2013;;SV Haren;3867;00:00:42,91;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;4;;Stein, Rike;392226;19;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:43,01;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;5;;Jung, Greta;561143;20;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:43,58;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;6;;Weiss, Theo;687740;88;W;2013;;SV Blau-Weiß Lingen;3855;00:00:51,19;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;7;;Ulrich, Ida;676294;87;W;2013;;SV Blau-Weiß Lingen;3855;00:00:54,35;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;8;;Winkler, Niklas;741106;127;W;2013;;SC Twist;3783;00:00:57,86;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;9;;Ziegler, Jost;436885;76;W;2013;;SG Freren;6696;00:01:07,49;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21005;0;DS;Stein, Anton;816381;153;W;2013;;SV Haren;3867;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 8;E;21004;1;;Frank, Zoe;319149;22;W;2014;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:46,64;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 8;E;21004;2;;Otto, Tilda;771628;143;W;2014;;Haselünner SV;3708;00:00:48,36;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 8;E;21004;3;;Kuhn, Jana;660716;113;W;2014;;SV Concordia Emsbüren;3857;00:00:49,41;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 8;E;21004;4;;Weiss, Carla;821814;59;W;2014;;SV Wasserfreunde Dalum;3887;00:00:51,79;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 8;E;21004;5;;Koch, Jost;449247;144;W;2014;;Haselünner SV;3708;00:01:00,81;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 8;E;21003;1;;Marquardt, Carla;666308;18;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:43,94;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 8;E;21003;2;;Klein, Greta;639125;128;W;2015;;SC Twist;3783;00:00:52,90;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 8;E;21003;3;;Graf, Sina;970523;58;W;2015;;SV Wasserfreunde Dalum;3887;00:00:54,38;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 8;E;21003;4;;Richter, Jakob;453435;21;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:57,70;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 8;E;21002;1;;Ziegler, Anton;754303;126;W;2016;;SC Twist;3783;00:00:51,11;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;2;;Sommer, Felix;854992;129;W;2016;;SC Twist;3783;00:00:53,18;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;3;;Fischer, Marie;532611;130;W;2016;;SC Twist;3783;00:00:57,77;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;4;;Busch, Niklas;251795;131;W;2016;;SC Twist;3783;00:00:59,28;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;5;;Sommer, Mats;998646;115;W;2016;;SV Concordia Emsbüren;3857;00:01:11,89;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;6;;Busch, Greta;474836;116;W;2016;;SV Concordia Emsbüren;3857;00:01:15,65;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;7;;Keller, Zoe;465769;77;W;2016;;SG Freren;6696;00:01:30,99;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;0;NA;Frank, Niklas;409047;75;W;2016;;SG Freren;6696;00:00:00,00;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21002;0;NA;Hartmann, Karl;423185;147;W;2016;;Haselünner SV;3708;00:00:00,00;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 8;E;21001;1;;Frank, Vincent;654676;24;W;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:57,95;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 8;E;21001;2;;Jung, Henri;875360;23;W;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:59,24;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 8;E;21001;3;;Hahn, Tom;508025;114;W;2017;;SV Concordia Emsbüren;3857;00:00:59,57;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 8;E;21001;4;;Schmitt, Carla;523486;146;W;2017;;Haselünner SV;3708;00:01:16,91;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 8;E;21001;5;;Neumann, Maja;733065;134;W;2017;;SC Twist;3783;00:01:21,78;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 8;E;21001;0;NA;Schröder, Niklas;453097;132;W;2017;;SC Twist;3783;00:00:00,00;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 8;E;21001;0;NA;Schröder, Tilda;520240;133;W;2017;;SC Twist;3783;00:00:00,00;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 19;E;22009;1;;Sander, David;730351;42;M;1962;60;SV Sigiltra Sögel;3882;00:00:41,99;;;GER;;; (* AK 60 - Emsland *)
+PNERGEBNIS: 19;E;22006;1;;Kramer, Oskar;787460;96;M;1950;75;TV Meppen;3998;00:00:41,29;;;GER;;; (* AK 75 - Emsland *)
+PNERGEBNIS: 20;E;23015;1;;Peters, Paul;578665;136;W;1991;30;SC Twist;3783;00:00:43,81;;;;;; (* AK 30 - Emsland *)
+PNERGEBNIS: 20;E;23013;0;NA;Frank, Pia;319287;43;W;1985;40;SV Sigiltra Sögel;3882;00:00:00,00;;;;;; (* AK 40 - Emsland *)
+PNERGEBNIS: 9;E;24013;1;;Pohl, Luis;918513;39;M;2002;20;SV Sigiltra Sögel;3882;00:00:35,45;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 9;E;24013;0;NA;Maier, Luis;948923;81;M;2004;20;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2005 und älter - Emsland *)
+PNERGEBNIS: 9;E;24012;1;;Schröder, Emma;873717;3;M;2006;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:34,90;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 9;E;24011;1;;Winkler, Jakob;334979;61;M;2007;;SG Freren;6696;00:00:32,21;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 9;E;24011;2;;Pohl, Ben;203076;5;M;2007;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,81;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 9;E;24010;1;;Berger, Karl;768664;47;M;2008;;SV Wasserfreunde Dalum;3887;00:00:35,12;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 9;E;24010;2;;Sander, David;989524;117;M;2008;;SC Twist;3783;00:00:40,00;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 9;E;24010;3;;Seidel, Tom;473949;154;M;2008;;SV Wasserfreunde Dalum;3887;00:00:44,12;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 9;E;24009;1;;Herrmann, Jost;940632;7;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:38,15;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 9;E;24009;2;;Marquardt, Jost;355474;62;M;2009;;SG Freren;6696;00:00:42,25;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 9;E;24009;0;NA;Pohl, Henri;228955;1;M;2009;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:00,00;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 9;E;24008;1;;Schmitt, Tom;149690;4;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:33,70;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 9;E;24008;2;;Albers, Zoe;910102;2;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:36,21;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 9;E;24008;3;;Kaiser, Yara;362006;100;M;2010;;SV Concordia Emsbüren;3857;00:00:38,10;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 9;E;24008;4;;Voigt, Mia;673005;101;M;2010;;SV Concordia Emsbüren;3857;00:00:41,69;;;;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 9;E;24008;5;;Graf, Rike;853989;10;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:42,82;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 9;E;24008;6;;Hartmann, Lena;432834;9;M;2010;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:46,75;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 9;E;24007;1;;Herrmann, Mia;794452;6;M;2011;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:34,43;;;;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 9;E;24007;2;;Busch, Pia;748610;48;M;2011;;SV Wasserfreunde Dalum;3887;00:00:37,49;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 9;E;24006;1;;Fischer, Mia;976188;118;M;2012;;SC Twist;3783;00:00:58,38;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 9;E;24005;1;;Kaiser, Marie;906037;148;M;2013;;SV Haren;3867;00:00:42,51;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 9;E;24005;2;;Engel, Jakob;957560;8;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:46,96;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 9;E;24005;3;;Stein, Marie;217730;102;M;2013;;SV Concordia Emsbüren;3857;00:00:53,10;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 9;E;24005;4;;Richter, Jonas;860409;14;M;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:01,91;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 9;E;24005;0;NA;Richter, Sophie;156761;139;M;2013;;Haselünner SV;3708;00:00:00,00;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 9;E;24004;1;;Ulrich, Yara;798938;63;M;2014;;SG Freren;6696;00:00:52,71;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 9;E;24004;2;;Ludwig, Mia;581487;141;M;2014;;Haselünner SV;3708;00:01:00,41;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 9;E;24004;3;;Fischer, David;995640;33;M;2014;;SV Sigiltra Sögel;3882;00:01:00,70;;;;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 9;E;24004;4;;Bauer, Julia;328014;64;M;2014;;SG Freren;6696;00:01:05,81;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 9;E;24003;1;;Schmitt, Fiona;229338;49;M;2015;;SV Wasserfreunde Dalum;3887;00:00:52,53;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 9;E;24003;2;;Brandt, Ida;209905;11;M;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:55,26;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 9;E;24003;3;;Bauer, Anton;100641;119;M;2015;;SC Twist;3783;00:00:56,79;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 9;E;24003;0;NA;Kaiser, Paul;142362;66;M;2015;;SG Freren;6696;00:00:00,00;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 9;E;24002;1;;Neumann, Sina;647269;149;M;2016;;SV Haren;3867;00:01:00,89;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 9;E;24002;2;;Fischer, Nele;680358;105;M;2016;;SV Concordia Emsbüren;3857;00:01:05,17;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 9;E;24002;3;;Peters, Nele;718619;67;M;2016;;SG Freren;6696;00:01:07,81;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 9;E;24001;1;;Reuter, Hannah;306596;103;M;2017;;SV Concordia Emsbüren;3857;00:01:02,43;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 9;E;24001;2;;Weiss, David;884215;104;M;2017;;SV Concordia Emsbüren;3857;00:01:06,79;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 9;E;24001;3;;Brandt, Jana;993733;13;M;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:07,63;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 9;E;24001;0;DS;Ludwig, Linus;460019;65;M;2017;;SG Freren;6696;00:00:00,00;Der Schwimmer hat bei der Wende nur mit einer Hand angeschlagen;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 10;E;25013;1;;Otto, Sophie;303361;51;W;1999;25;SV Wasserfreunde Dalum;3887;00:00:37,91;;;GER;;; (* Jahrgang 2005 - Emsland *)
+PNERGEBNIS: 10;E;25013;2;;Frank, Lina;318504;56;W;2002;20;SV Wasserfreunde Dalum;3887;00:00:42,82;;;GER;;; (* Jahrgang 2005 - Emsland *)
+PNERGEBNIS: 10;E;25012;1;;Neumann, Anton;298200;54;W;2006;;SV Wasserfreunde Dalum;3887;00:00:40,58;;;GER;;; (* Jahrgang 2006 - Emsland *)
+PNERGEBNIS: 10;E;25011;1;;Schmitt, Carla;115204;106;W;2007;;SV Concordia Emsbüren;3857;00:00:37,20;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 10;E;25011;2;;Lang, Sophie;241183;108;W;2007;;SV Concordia Emsbüren;3857;00:00:43,63;;;GER;;; (* Jahrgang 2007 - Emsland *)
+PNERGEBNIS: 10;E;25010;1;;Marquardt, Carla;818802;107;W;2008;;SV Concordia Emsbüren;3857;00:00:36,06;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 10;E;25010;2;;Lorenz, Malte;546466;68;W;2008;;SG Freren;6696;00:00:41,35;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 10;E;25010;3;;Koch, Sina;811407;74;W;2008;;SG Freren;6696;00:00:44,05;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 10;E;25010;4;;Kern, David;502917;150;W;2008;;SV Haren;3867;00:00:44,59;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 10;E;25010;0;NA;Engel, Pia;114178;85;W;2008;;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2008 - Emsland *)
+PNERGEBNIS: 10;E;25009;1;;Peters, David;252023;70;W;2009;;SG Freren;6696;00:00:39,46;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 10;E;25009;2;;Keller, Greta;622603;52;W;2009;;SV Wasserfreunde Dalum;3887;00:00:40,72;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 10;E;25009;3;;Koch, Tom;328494;94;W;2009;;TV Meppen;3998;00:00:41,11;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 10;E;25009;4;;Richter, Emma;980449;69;W;2009;;SG Freren;6696;00:00:41,88;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 10;E;25009;5;;Lang, Karl;434961;86;W;2009;;SV Blau-Weiß Lingen;3855;00:00:45,91;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 10;E;25009;6;;Lehmann, Marie;482832;151;W;2009;;SV Haren;3867;00:00:48,92;;;GER;;; (* Jahrgang 2009 - Emsland *)
+PNERGEBNIS: 10;E;25008;1;;Maier, Malte;277520;93;W;2010;;TV Meppen;3998;00:00:41,92;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 10;E;25008;2;;Weiss, Theo;471073;57;W;2010;;SV Wasserfreunde Dalum;3887;00:00:44,69;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 10;E;25008;3;;Koch, Nele;407305;72;W;2010;;SG Freren;6696;00:00:44,78;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 10;E;25008;0;NA;Schmitt, Tom;620839;55;W;2010;;SV Wasserfreunde Dalum;3887;00:00:00,00;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 10;E;25008;0;NA;Berger, Milan;682030;84;W;2010;;SV Blau-Weiß Lingen;3855;00:00:00,00;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 10;E;25008;0;NA;Thiele, Greta;545567;95;W;2010;;TV Meppen;3998;00:00:00,00;;;GER;;; (* Jahrgang 2010 - Emsland *)
+PNERGEBNIS: 10;E;25007;1;;Frank, Henri;747573;92;W;2011;;TV Meppen;3998;00:00:39,77;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 10;E;25007;2;;Kuhn, Maja;454108;122;W;2011;;SC Twist;3783;00:00:40,89;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 10;E;25007;3;;Weiss, Anton;426229;53;W;2011;;SV Wasserfreunde Dalum;3887;00:00:42,21;;;GER;;; (* Jahrgang 2011 - Emsland *)
+PNERGEBNIS: 10;E;25006;1;;Kaiser, Marie;950779;71;W;2012;;SG Freren;6696;00:00:40,68;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25006;2;;Thiele, Karl;582003;73;W;2012;;SG Freren;6696;00:00:41,67;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25006;3;;Ulrich, Nele;242677;15;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:44,04;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25006;4;;Hahn, Carla;742015;112;W;2012;;SV Concordia Emsbüren;3857;00:00:47,10;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25006;5;;Engel, Elias;459902;124;W;2012;;SC Twist;3783;00:00:47,40;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25006;6;;Weiss, Fiona;963911;16;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:47,70;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25006;7;;Bauer, Marie;238762;17;W;2012;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:49,08;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25006;8;;Otto, Mats;367487;125;W;2012;;SC Twist;3783;00:00:55,75;;;GER;;; (* Jahrgang 2012 - Emsland *)
+PNERGEBNIS: 10;E;25005;1;;Stein, Rike;392226;19;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:44,08;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;2;;Maier, Henri;217838;152;W;2013;;SV Haren;3867;00:00:44,22;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;3;;Kuhn, Lara;590096;111;W;2013;;SV Concordia Emsbüren;3857;00:00:45,40;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;4;;Jung, Greta;561143;20;W;2013;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:45,83;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;5;;Weiss, Theo;687740;88;W;2013;;SV Blau-Weiß Lingen;3855;00:00:50,00;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;6;;Ulrich, Ida;676294;87;W;2013;;SV Blau-Weiß Lingen;3855;00:00:54,52;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;7;;Winkler, Niklas;741106;127;W;2013;;SC Twist;3783;00:00:54,93;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;8;;Stein, Anton;816381;153;W;2013;;SV Haren;3867;00:00:55,39;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25005;9;;Ziegler, Jost;436885;76;W;2013;;SG Freren;6696;00:01:06,02;;;GER;;; (* Jahrgang 2013 - Emsland *)
+PNERGEBNIS: 10;E;25004;1;;Kuhn, Jana;660716;113;W;2014;;SV Concordia Emsbüren;3857;00:00:49,19;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 10;E;25004;2;;Frank, Zoe;319149;22;W;2014;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:49,97;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 10;E;25004;3;;Weiss, Carla;821814;59;W;2014;;SV Wasserfreunde Dalum;3887;00:00:52,52;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 10;E;25004;4;;Koch, Jost;449247;144;W;2014;;Haselünner SV;3708;00:00:56,35;;;GER;;; (* Jahrgang 2014 - Emsland *)
+PNERGEBNIS: 10;E;25003;1;;Richter, Jakob;453435;21;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:54,52;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 10;E;25003;2;;Marquardt, Carla;666308;18;W;2015;;SV Wasserfreunde Völlen-Papenburg;4037;00:00:55,18;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 10;E;25003;3;;Graf, Sina;970523;58;W;2015;;SV Wasserfreunde Dalum;3887;00:00:59,44;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 10;E;25003;4;;Keller, Ruben;710103;36;W;2015;;SV Sigiltra Sögel;3882;00:01:00,73;;;;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 10;E;25003;0;NA;Hahn, Theo;548391;145;W;2015;;Haselünner SV;3708;00:00:00,00;;;GER;;; (* Jahrgang 2015 - Emsland *)
+PNERGEBNIS: 10;E;25002;1;;Fischer, Marie;532611;130;W;2016;;SC Twist;3783;00:00:58,01;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25002;2;;Ziegler, Anton;754303;126;W;2016;;SC Twist;3783;00:01:00,62;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25002;3;;Busch, Greta;474836;116;W;2016;;SV Concordia Emsbüren;3857;00:01:01,11;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25002;4;;Busch, Niklas;251795;131;W;2016;;SC Twist;3783;00:01:08,39;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25002;5;;Keller, Zoe;465769;77;W;2016;;SG Freren;6696;00:01:13,14;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25002;6;;Sommer, Mats;998646;115;W;2016;;SV Concordia Emsbüren;3857;00:01:13,46;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25002;0;NA;Frank, Niklas;409047;75;W;2016;;SG Freren;6696;00:00:00,00;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25002;0;NA;Hartmann, Karl;423185;147;W;2016;;Haselünner SV;3708;00:00:00,00;;;GER;;; (* Jahrgang 2016 - Emsland *)
+PNERGEBNIS: 10;E;25001;1;;Frank, Vincent;654676;24;W;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:01,88;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 10;E;25001;2;;Hahn, Tom;508025;114;W;2017;;SV Concordia Emsbüren;3857;00:01:02,31;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 10;E;25001;3;;Jung, Henri;875360;23;W;2017;;SV Wasserfreunde Völlen-Papenburg;4037;00:01:10,16;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 10;E;25001;4;;Neumann, Nele;881699;60;W;2017;;SV Wasserfreunde Dalum;3887;00:01:10,82;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 10;E;25001;0;NA;Schröder, Niklas;453097;132;W;2017;;SC Twist;3783;00:00:00,00;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 10;E;25001;0;NA;Schröder, Tilda;520240;133;W;2017;;SC Twist;3783;00:00:00,00;;;GER;;; (* Jahrgang 2017 - Emsland *)
+PNERGEBNIS: 10;E;25001;0;DS;Neumann, Maja;733065;134;W;2017;;SC Twist;3783;00:00:00,00;Start vor dem Startsignal;;GER;;; (* Jahrgang 2017 - Emsland *)
+STERGEBNIS: 101;E;1001;1;;1;44;SV Sigiltra Sögel;3882;00:01:57,11;;;; (* Offene Wertung *)
+STAFFELPERSON: 44;101;E;Ziegler, Paul;218996;1;M;2001;20;;;;
+STAFFELPERSON: 44;101;E;Pohl, Luis;918513;2;M;2002;20;;;;
+STAFFELPERSON: 44;101;E;Seidel, Theo;804917;3;M;1993;30;;;;
+STAFFELPERSON: 44;101;E;Seidel, Linus;722486;4;M;1976;45;;;;
+STZWISCHENZEIT: 44;101;E;1;50;00:00:28,38;
+STZWISCHENZEIT: 44;101;E;2;100;00:01:02,77;
+STZWISCHENZEIT: 44;101;E;3;150;00:01:29,50;
+STERGEBNIS: 101;E;1001;2;;1;26;SV Wasserfreunde Völlen-Papenburg;4037;00:02:01,18;;;; (* Offene Wertung *)
+STAFFELPERSON: 26;101;E;Schmitt, Tom;149690;1;M;2010;;;;;
+STAFFELPERSON: 26;101;E;Herrmann, Mia;794452;2;M;2011;;;;;
+STAFFELPERSON: 26;101;E;Schröder, Emma;873717;3;M;2006;;;;;
+STAFFELPERSON: 26;101;E;Albers, Zoe;910102;4;M;2010;;;;;
+STZWISCHENZEIT: 26;101;E;1;50;00:00:31,70;
+STZWISCHENZEIT: 26;101;E;2;100;00:01:05,28;
+STZWISCHENZEIT: 26;101;E;3;150;00:01:35,20;
+STERGEBNIS: 101;E;1001;3;;2;27;SV Wasserfreunde Völlen-Papenburg;4037;00:02:22,88;;;; (* Offene Wertung *)
+STAFFELPERSON: 27;101;E;Pohl, Ben;203076;1;M;2007;;;;;
+STAFFELPERSON: 27;101;E;Graf, Rike;853989;2;M;2010;;;;;
+STAFFELPERSON: 27;101;E;Herrmann, Jost;940632;3;M;2009;;;;;
+STAFFELPERSON: 27;101;E;Engel, Jakob;957560;4;M;2013;;;;;
+STZWISCHENZEIT: 27;101;E;1;50;00:00:33,20;
+STZWISCHENZEIT: 27;101;E;2;100;00:01:14,92;
+STZWISCHENZEIT: 27;101;E;3;150;00:01:48,66;
+STERGEBNIS: 101;E;1001;4;;1;137;SC Twist;3783;00:02:58,09;;;; (* Offene Wertung *)
+STAFFELPERSON: 137;101;E;Sander, David;989524;1;M;2008;;;;;
+STAFFELPERSON: 137;101;E;Fischer, Mia;976188;2;M;2012;;;;;
+STAFFELPERSON: 137;101;E;Schmitt, Nora;778009;3;M;2002;20;;;;
+STAFFELPERSON: 137;101;E;Bauer, Anton;100641;4;M;2015;;;;;
+STZWISCHENZEIT: 137;101;E;1;50;00:00:35,47;
+STZWISCHENZEIT: 137;101;E;2;100;00:01:33,03;
+STZWISCHENZEIT: 137;101;E;3;150;00:02:06,52;
+STERGEBNIS: 102;E;2001;1;;1;45;SV Sigiltra Sögel;3882;00:02:15,29;;;; (* Offene Wertung *)
+STAFFELPERSON: 45;102;E;Walter, Tilda;885263;1;W;1999;25;;;;
+STAFFELPERSON: 45;102;E;Dietrich, Emilia;791090;2;W;2001;20;;;;
+STAFFELPERSON: 45;102;E;Winkler, Luis;676800;3;W;2008;;;;;
+STAFFELPERSON: 45;102;E;Frank, Pia;319287;4;W;1985;40;;;;
+STZWISCHENZEIT: 45;102;E;1;50;00:00:34,20;
+STZWISCHENZEIT: 45;102;E;2;100;00:01:11,80;
+STZWISCHENZEIT: 45;102;E;3;150;00:01:42,99;
+STERGEBNIS: 102;E;2001;2;;1;99;TV Meppen;3998;00:02:16,21;;;; (* Offene Wertung *)
+STAFFELPERSON: 99;102;E;Albers, Mats;695655;1;W;2006;;;;;
+STAFFELPERSON: 99;102;E;Koch, Tom;328494;2;W;2009;;;;;
+STAFFELPERSON: 99;102;E;Pohl, Emma;501228;3;W;2007;;;;;
+STAFFELPERSON: 99;102;E;Kramer, Henri;371774;4;W;1975;50;;;;
+STZWISCHENZEIT: 99;102;E;1;50;00:00:33,65;
+STZWISCHENZEIT: 99;102;E;2;100;00:01:14,32;
+STZWISCHENZEIT: 99;102;E;3;150;00:01:45,80;
+STERGEBNIS: 102;E;2001;3;;1;78;SG Freren;6696;00:02:25,05;;;; (* Offene Wertung *)
+STAFFELPERSON: 78;102;E;Kaiser, Marie;950779;1;W;2012;;;;;
+STAFFELPERSON: 78;102;E;Thiele, Karl;582003;2;W;2012;;;;;
+STAFFELPERSON: 78;102;E;Peters, David;252023;3;W;2009;;;;;
+STAFFELPERSON: 78;102;E;Lorenz, Malte;546466;4;W;2008;;;;;
+STZWISCHENZEIT: 78;102;E;1;50;00:00:36,91;
+STZWISCHENZEIT: 78;102;E;2;100;00:01:18,13;
+STZWISCHENZEIT: 78;102;E;3;150;00:01:54,36;
+STERGEBNIS: 102;E;2001;4;;1;138;SC Twist;3783;00:02:31,52;;;; (* Offene Wertung *)
+STAFFELPERSON: 138;102;E;Hahn, Ida;753275;1;W;2013;;;;;
+STAFFELPERSON: 138;102;E;Kuhn, Maja;454108;2;W;2011;;;;;
+STAFFELPERSON: 138;102;E;Schäfer, Jonas;654642;3;W;2001;20;;;;
+STAFFELPERSON: 138;102;E;Engel, Elias;459902;4;W;2012;;;;;
+STZWISCHENZEIT: 138;102;E;1;50;00:00:41,71;
+STZWISCHENZEIT: 138;102;E;2;100;00:01:20,25;
+STZWISCHENZEIT: 138;102;E;3;150;00:01:54,95;
+STERGEBNIS: 102;E;2001;5;;1;28;SV Wasserfreunde Völlen-Papenburg;4037;00:02:43,34;;;; (* Offene Wertung *)
+STAFFELPERSON: 28;102;E;Stein, Rike;392226;1;W;2013;;;;;
+STAFFELPERSON: 28;102;E;Ulrich, Nele;242677;2;W;2012;;;;;
+STAFFELPERSON: 28;102;E;Bauer, Marie;238762;3;W;2012;;;;;
+STAFFELPERSON: 28;102;E;Jung, Greta;561143;4;W;2013;;;;;
+STZWISCHENZEIT: 28;102;E;1;50;00:00:41,68;
+STZWISCHENZEIT: 28;102;E;2;100;00:01:24,70;
+STZWISCHENZEIT: 28;102;E;3;150;00:02:08,00;
+STERGEBNIS: 103;E;15001;1;;1;46;SV Sigiltra Sögel;3882;00:02:00,02;;;; (* Offene Wertung *)
+STAFFELPERSON: 46;103;E;Walter, Tilda;885263;1;W;1999;25;;;;
+STAFFELPERSON: 46;103;E;Seidel, Theo;804917;2;M;1993;30;;;;
+STAFFELPERSON: 46;103;E;Ziegler, Paul;218996;3;M;2001;20;;;;
+STAFFELPERSON: 46;103;E;Winkler, Luis;676800;4;W;2008;;;;;
+STZWISCHENZEIT: 46;103;E;1;50;00:00:35,11;
+STZWISCHENZEIT: 46;103;E;2;100;00:01:05,47;
+STZWISCHENZEIT: 46;103;E;3;150;00:01:31,13;
+STERGEBNIS: 103;E;15001;2;;1;79;SG Freren;6696;00:02:19,39;;;; (* Offene Wertung *)
+STAFFELPERSON: 79;103;E;Winkler, Jakob;334979;1;M;2007;;;;;
+STAFFELPERSON: 79;103;E;Koch, Sina;811407;2;W;2008;;;;;
+STAFFELPERSON: 79;103;E;Kaiser, Marie;950779;3;W;2012;;;;;
+STAFFELPERSON: 79;103;E;Marquardt, Jost;355474;4;M;2009;;;;;
+STZWISCHENZEIT: 79;103;E;1;50;00:00:30,99;
+STZWISCHENZEIT: 79;103;E;2;100;00:01:13,81;
+STZWISCHENZEIT: 79;103;E;3;150;00:01:48,64;
+STERGEBNIS: 103;E;15001;3;;1;29;SV Wasserfreunde Völlen-Papenburg;4037;00:03:01,37;;;; (* Offene Wertung *)
+STAFFELPERSON: 29;103;E;Hartmann, Lena;432834;1;M;2010;;;;;
+STAFFELPERSON: 29;103;E;Frank, Zoe;319149;2;W;2014;;;;;
+STAFFELPERSON: 29;103;E;Richter, Jakob;453435;3;W;2015;;;;;
+STAFFELPERSON: 29;103;E;Brandt, Ida;209905;4;M;2015;;;;;
+STZWISCHENZEIT: 29;103;E;1;50;00:00:39,64;
+STZWISCHENZEIT: 29;103;E;2;100;00:01:28,70;
+STZWISCHENZEIT: 29;103;E;3;150;00:02:22,96;
+STERGEBNIS: 104;E;16001;1;;1;29;SV Wasserfreunde Völlen-Papenburg;4037;00:03:47,06;;;; (* Offene Wertung *)
+STAFFELPERSON: 29;104;E;Frank, Vincent;654676;1;W;2017;;;;;
+STAFFELPERSON: 29;104;E;Jung, Henri;875360;2;W;2017;;;;;
+STAFFELPERSON: 29;104;E;Richter, Jonas;860409;3;M;2013;;;;;
+STAFFELPERSON: 29;104;E;Brandt, Jana;993733;4;M;2017;;;;;
+STZWISCHENZEIT: 29;104;E;1;50;00:01:00,61;
+STZWISCHENZEIT: 29;104;E;2;100;00:02:00,01;
+STZWISCHENZEIT: 29;104;E;3;150;00:02:55,53;
+STERGEBNIS: 105;E;26001;1;;1;26;SV Wasserfreunde Völlen-Papenburg;4037;00:01:47,87;;;; (* Offene Wertung *)
+STAFFELPERSON: 26;105;E;Albers, Zoe;910102;1;M;2010;;;;;
+STAFFELPERSON: 26;105;E;Schmitt, Tom;149690;2;M;2010;;;;;
+STAFFELPERSON: 26;105;E;Pohl, Henri;228955;3;M;2009;;;;;
+STAFFELPERSON: 26;105;E;Schröder, Emma;873717;4;M;2006;;;;;
+STZWISCHENZEIT: 26;105;E;1;50;00:00:27,58;
+STZWISCHENZEIT: 26;105;E;2;100;00:00:53,91;
+STZWISCHENZEIT: 26;105;E;3;150;00:01:20,58;
+STERGEBNIS: 105;E;26001;2;;2;27;SV Wasserfreunde Völlen-Papenburg;4037;00:02:04,50;;;; (* Offene Wertung *)
+STAFFELPERSON: 27;105;E;Pohl, Ben;203076;1;M;2007;;;;;
+STAFFELPERSON: 27;105;E;Engel, Jakob;957560;2;M;2013;;;;;
+STAFFELPERSON: 27;105;E;Herrmann, Jost;940632;3;M;2009;;;;;
+STAFFELPERSON: 27;105;E;Herrmann, Mia;794452;4;M;2011;;;;;
+STZWISCHENZEIT: 27;105;E;1;50;00:00:28,90;
+STZWISCHENZEIT: 27;105;E;2;100;00:01:05,67;
+STZWISCHENZEIT: 27;105;E;3;150;00:01:35,40;
+STERGEBNIS: 105;E;26001;3;;1;80;SG Freren;6696;00:02:15,49;;;; (* Offene Wertung *)
+STAFFELPERSON: 80;105;E;Winkler, Jakob;334979;1;M;2007;;;;;
+STAFFELPERSON: 80;105;E;Bauer, Julia;328014;2;M;2014;;;;;
+STAFFELPERSON: 80;105;E;Ulrich, Yara;798938;3;M;2014;;;;;
+STAFFELPERSON: 80;105;E;Marquardt, Jost;355474;4;M;2009;;;;;
+STZWISCHENZEIT: 80;105;E;1;50;00:00:26,60;
+STZWISCHENZEIT: 80;105;E;2;100;00:01:10,03;
+STZWISCHENZEIT: 80;105;E;3;150;00:01:45,28;
+STERGEBNIS: 106;E;27001;1;;1;99;TV Meppen;3998;00:01:59,71;;;; (* Offene Wertung *)
+STAFFELPERSON: 99;106;E;Pohl, Emma;501228;1;W;2007;;;;;
+STAFFELPERSON: 99;106;E;Maier, Malte;277520;2;W;2010;;;;;
+STAFFELPERSON: 99;106;E;Frank, Henri;747573;3;W;2011;;;;;
+STAFFELPERSON: 99;106;E;Albers, Mats;695655;4;W;2006;;;;;
+STZWISCHENZEIT: 99;106;E;1;50;00:00:29,44;
+STZWISCHENZEIT: 99;106;E;2;100;00:01:00,49;
+STZWISCHENZEIT: 99;106;E;3;150;00:01:29,78;
+STERGEBNIS: 106;E;27001;2;;1;78;SG Freren;6696;00:02:11,55;;;; (* Offene Wertung *)
+STAFFELPERSON: 78;106;E;Richter, Emma;980449;1;W;2009;;;;;
+STAFFELPERSON: 78;106;E;Thiele, Karl;582003;2;W;2012;;;;;
+STAFFELPERSON: 78;106;E;Peters, David;252023;3;W;2009;;;;;
+STAFFELPERSON: 78;106;E;Kaiser, Marie;950779;4;W;2012;;;;;
+STZWISCHENZEIT: 78;106;E;1;50;00:00:31,88;
+STZWISCHENZEIT: 78;106;E;2;100;00:01:07,23;
+STZWISCHENZEIT: 78;106;E;3;150;00:01:39,95;
+STERGEBNIS: 106;E;27001;3;;1;138;SC Twist;3783;00:02:22,12;;;; (* Offene Wertung *)
+STAFFELPERSON: 138;106;E;Hahn, Ida;753275;1;W;2013;;;;;
+STAFFELPERSON: 138;106;E;Engel, Elias;459902;2;W;2012;;;;;
+STAFFELPERSON: 138;106;E;Kuhn, Maja;454108;3;W;2011;;;;;
+STAFFELPERSON: 138;106;E;Peters, Paul;578665;4;W;1991;30;;;;
+STZWISCHENZEIT: 138;106;E;1;50;00:00:37,36;
+STZWISCHENZEIT: 138;106;E;2;100;00:01:16,72;
+STZWISCHENZEIT: 138;106;E;3;150;00:01:48,96;
+STERGEBNIS: 106;E;27001;4;;1;28;SV Wasserfreunde Völlen-Papenburg;4037;00:02:23,74;;;; (* Offene Wertung *)
+STAFFELPERSON: 28;106;E;Weiss, Fiona;963911;1;W;2012;;;;;
+STAFFELPERSON: 28;106;E;Bauer, Marie;238762;2;W;2012;;;;;
+STAFFELPERSON: 28;106;E;Marquardt, Carla;666308;3;W;2015;;;;;
+STAFFELPERSON: 28;106;E;Ulrich, Nele;242677;4;W;2012;;;;;
+STZWISCHENZEIT: 28;106;E;1;50;00:00:35,26;
+STZWISCHENZEIT: 28;106;E;2;100;00:01:12,08;
+STZWISCHENZEIT: 28;106;E;3;150;00:01:49,99;
+DATEIENDE

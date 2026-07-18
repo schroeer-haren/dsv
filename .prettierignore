@@ -1,0 +1,4 @@
+# Fixtures sind byte-genaue Abbilder echter DSV-Dateien – Formatierung würde
+# genau die Eigenheiten zerstören, wegen derer sie hier liegen
+test/fixtures/
+dist/

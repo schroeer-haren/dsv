@@ -1,0 +1,150 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.34 vom 05.02.2026                       *)
+(* Registriert für: Kaltenkirchener TS von 1894 *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 23.04.2026 um 14:17 Uhr                *)
+FORMAT: Wettkampfdefinitionsliste;7;
+ERZEUGER: EasyWk;5.34;info@easywk.de;
+VERANSTALTUNG: Offene Kreis-Sprint-Mehrkampf-Meisterschaften 2026;Bad Bramstedt;50;HANDZEIT;
+VERANSTALTUNGSORT: Roland-Oase;Am Badesteig 5;24576;Bad Bramstedt;GER;;;;
+AUSSCHREIBUNGIMNETZ: ;
+VERANSTALTER: Segeberger Kreisschwimmverband e.V.;
+AUSRICHTER: Kaltenkirchener TS;Otto, Pia ;;;;GER;;;leon.marquardt@example.org;
+MELDEADRESSE: Schröder, Sophie;Gartenstrasse 71;24568;Kaltenkirchen;;;;leon.marquardt@example.org;
+MELDESCHLUSS: 05.06.2026;23:30;
+BANKVERBINDUNG: Sparkasse Südholstein;DE46 1234 5678 1598 8188 26;ABCDEFG1XXX;
+(* KONTOINHABER: SKSV; *)
+ABSCHNITT: 1;14.06.2026;09:00;09:30;10:00;;
+WETTKAMPF: 1;E;1;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 2;E;1;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 3;E;1;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 4;E;1;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 5;E;1;6;50;F;GL;X;SW;;; (* 6 x 50m Freistil mixed *)
+WETTKAMPF: 6;E;1;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 7;E;1;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 8;E;1;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 9;E;1;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WERTUNG: 1;E;1002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 1;E;1009;JG;2016;2016;W;Jahrgang 2016 kreisoffen;
+WERTUNG: 1;E;1003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 1;E;1010;JG;2015;2015;W;Jahrgang 2015 kreisoffen;
+WERTUNG: 1;E;1004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 1;E;1011;JG;2014;2014;W;Jahrgang 2014 kreisoffen;
+WERTUNG: 1;E;1005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 1;E;1012;JG;2013;2013;W;Jahrgang 2013 kreisoffen;
+WERTUNG: 1;E;1006;JG;2010;2012;W;Jahrgänge 2012 bis 2010;
+WERTUNG: 1;E;1013;JG;2010;2012;W;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 1;E;1007;JG;0;2009;W;Jahrgang 2009 und älter;
+WERTUNG: 1;E;1014;JG;0;2009;W;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 1;E;1008;JG;0;2016;W;Offene Wertung;
+WERTUNG: 1;E;1015;JG;0;2016;W;Offene Wertung kreisoffen;
+WERTUNG: 2;E;2002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 2;E;2009;JG;2016;2016;M;Jahrgang 2016 kreisoffen;
+WERTUNG: 2;E;2003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 2;E;2010;JG;2015;2015;M;Jahrgang 2015 kreisoffen;
+WERTUNG: 2;E;2004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 2;E;2011;JG;2014;2014;M;Jahrgang 2014 kreisoffen;
+WERTUNG: 2;E;2005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 2;E;2012;JG;2013;2013;M;Jahrgang 2013 kreisoffen;
+WERTUNG: 2;E;2006;JG;2010;2012;M;Jahrgänge 2012 bis 2010;
+WERTUNG: 2;E;2013;JG;2010;2012;M;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 2;E;2007;JG;0;2009;M;Jahrgang 2009 und älter;
+WERTUNG: 2;E;2014;JG;0;2009;M;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 2;E;2008;JG;0;2016;M;Offene Wertung;
+WERTUNG: 2;E;2015;JG;0;2016;M;Offene Wertung kreisoffen;
+WERTUNG: 3;E;3002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 3;E;3009;JG;2016;2016;W;Jahrgang 2016 kreisoffen;
+WERTUNG: 3;E;3003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 3;E;3010;JG;2015;2015;W;Jahrgang 2015 kreisoffen;
+WERTUNG: 3;E;3004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 3;E;3011;JG;2014;2014;W;Jahrgang 2014 kreisoffen;
+WERTUNG: 3;E;3005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 3;E;3012;JG;2013;2013;W;Jahrgang 2013 kreisoffen;
+WERTUNG: 3;E;3006;JG;2010;2012;W;Jahrgänge 2012 bis 2010;
+WERTUNG: 3;E;3013;JG;2010;2012;W;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 3;E;3007;JG;0;2009;W;Jahrgang 2009 und älter;
+WERTUNG: 3;E;3014;JG;0;2009;W;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 3;E;3008;JG;0;2016;W;Offene Wertung;
+WERTUNG: 3;E;3015;JG;0;2016;W;Offene Wertung kreisoffen;
+WERTUNG: 4;E;4002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 4;E;4009;JG;2016;2016;M;Jahrgang 2016 kreisoffen;
+WERTUNG: 4;E;4003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 4;E;4010;JG;2015;2015;M;Jahrgang 2015 kreisoffen;
+WERTUNG: 4;E;4004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 4;E;4011;JG;2014;2014;M;Jahrgang 2014 kreisoffen;
+WERTUNG: 4;E;4005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 4;E;4012;JG;2013;2013;M;Jahrgang 2013 kreisoffen;
+WERTUNG: 4;E;4006;JG;2010;2012;M;Jahrgänge 2012 bis 2010;
+WERTUNG: 4;E;4013;JG;2010;2012;M;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 4;E;4007;JG;0;2009;M;Jahrgang 2009 und älter;
+WERTUNG: 4;E;4014;JG;0;2009;M;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 4;E;4008;JG;0;2016;M;Offene Wertung;
+WERTUNG: 4;E;4015;JG;0;2016;M;Offene Wertung kreisoffen;
+WERTUNG: 5;E;6001;JG;0;2016;X;Offene Wertung;
+WERTUNG: 5;E;6002;JG;0;2016;X;Offene Wertung kreisoffen;
+WERTUNG: 6;E;5002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 6;E;5009;JG;2016;2016;W;Jahrgang 2016 kreisoffen;
+WERTUNG: 6;E;5003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 6;E;5010;JG;2015;2015;W;Jahrgang 2015 kreisoffen;
+WERTUNG: 6;E;5004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 6;E;5011;JG;2014;2014;W;Jahrgang 2014 kreisoffen;
+WERTUNG: 6;E;5005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 6;E;5012;JG;2013;2013;W;Jahrgang 2013 kreisoffen;
+WERTUNG: 6;E;5006;JG;2010;2012;W;Jahrgänge 2012 bis 2010;
+WERTUNG: 6;E;5013;JG;2010;2012;W;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 6;E;5007;JG;0;2009;W;Jahrgang 2009 und älter;
+WERTUNG: 6;E;5014;JG;0;2009;W;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 6;E;5008;JG;0;2016;W;Offene Wertung;
+WERTUNG: 6;E;5015;JG;0;2016;W;Offene Wertung kreisoffen;
+WERTUNG: 7;E;8002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 7;E;8009;JG;2016;2016;M;Jahrgang 2016 kreisoffen;
+WERTUNG: 7;E;8003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 7;E;8010;JG;2015;2015;M;Jahrgang 2015 kreisoffen;
+WERTUNG: 7;E;8004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 7;E;8011;JG;2014;2014;M;Jahrgang 2014 kreisoffen;
+WERTUNG: 7;E;8005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 7;E;8012;JG;2013;2013;M;Jahrgang 2013 kreisoffen;
+WERTUNG: 7;E;8006;JG;2010;2012;M;Jahrgänge 2012 bis 2010;
+WERTUNG: 7;E;8013;JG;2010;2012;M;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 7;E;8007;JG;0;2009;M;Jahrgang 2009 und älter;
+WERTUNG: 7;E;8014;JG;0;2009;M;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 7;E;8008;JG;0;2016;M;Offene Wertung;
+WERTUNG: 7;E;8015;JG;0;2016;M;Offene Wertung kreisoffen;
+WERTUNG: 8;E;9002;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 8;E;9009;JG;2016;2016;W;Jahrgang 2016 kreisoffen;
+WERTUNG: 8;E;9003;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 8;E;9010;JG;2015;2015;W;Jahrgang 2015 kreisoffen;
+WERTUNG: 8;E;9004;JG;2014;2014;W;Jahrgang 2014;
+WERTUNG: 8;E;9011;JG;2014;2014;W;Jahrgang 2014 kreisoffen;
+WERTUNG: 8;E;9005;JG;2013;2013;W;Jahrgang 2013;
+WERTUNG: 8;E;9012;JG;2013;2013;W;Jahrgang 2013 kreisoffen;
+WERTUNG: 8;E;9006;JG;2010;2012;W;Jahrgänge 2012 bis 2010;
+WERTUNG: 8;E;9013;JG;2010;2012;W;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 8;E;9007;JG;0;2009;W;Jahrgang 2009 und älter;
+WERTUNG: 8;E;9014;JG;0;2009;W;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 8;E;9008;JG;0;2016;W;Offene Wertung;
+WERTUNG: 8;E;9015;JG;0;2016;W;Offene Wertung kreisoffen;
+WERTUNG: 9;E;10002;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 9;E;10009;JG;2016;2016;M;Jahrgang 2016 kreisoffen;
+WERTUNG: 9;E;10003;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 9;E;10010;JG;2015;2015;M;Jahrgang 2015 kreisoffen;
+WERTUNG: 9;E;10004;JG;2014;2014;M;Jahrgang 2014;
+WERTUNG: 9;E;10011;JG;2014;2014;M;Jahrgang 2014 kreisoffen;
+WERTUNG: 9;E;10005;JG;2013;2013;M;Jahrgang 2013;
+WERTUNG: 9;E;10012;JG;2013;2013;M;Jahrgang 2013 kreisoffen;
+WERTUNG: 9;E;10006;JG;2010;2012;M;Jahrgänge 2012 bis 2010;
+WERTUNG: 9;E;10013;JG;2010;2012;M;Jahrgänge 2012 bis 2010 kreisoffen;
+WERTUNG: 9;E;10007;JG;0;2009;M;Jahrgang 2009 und älter;
+WERTUNG: 9;E;10014;JG;0;2009;M;Jahrgang 2009 und älter kreisoffen;
+WERTUNG: 9;E;10008;JG;0;2016;M;Offene Wertung;
+WERTUNG: 9;E;10015;JG;0;2016;M;Offene Wertung kreisoffen;
+MELDEGELD: Wkmeldegeld;3,50;1;
+MELDEGELD: Wkmeldegeld;3,50;2;
+MELDEGELD: Wkmeldegeld;3,50;3;
+MELDEGELD: Wkmeldegeld;3,50;4;
+MELDEGELD: Wkmeldegeld;3,50;5;
+MELDEGELD: Wkmeldegeld;3,50;6;
+MELDEGELD: Wkmeldegeld;3,50;7;
+MELDEGELD: Wkmeldegeld;3,50;8;
+MELDEGELD: Wkmeldegeld;3,50;9;
+DATEIENDE

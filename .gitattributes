@@ -1,0 +1,12 @@
+# DSV-Dateien sind byte-genaue Testgegenstände. Git darf ihre Zeilenenden
+# niemals normalisieren – CRLF vs. LF ist Teil dessen, was geprüft wird.
+# Ohne diese Regel zerstört ein Checkout mit core.autocrlf=true
+# (Windows-Standard) den Fixture-Bestand.
+*.dsv  -text
+*.dsv6 -text
+*.dsv7 -text
+*.dsv8 -text
+*.DSV  -text
+*.DSV6 -text
+*.DSV7 -text
+*.DSV8 -text

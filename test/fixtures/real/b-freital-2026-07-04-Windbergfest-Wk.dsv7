@@ -1,0 +1,349 @@
+(* erzeugt mit EasyWk - DAS Schwimmwettkampfprogramm *)
+(* Version 5.34 vom 05.02.2026                       *)
+(* Registriert für: Hainsberger Sportverein *)
+(* www.easywk.de / info@easywk.de *)
+(* erzeugt am 18.03.2026 um 17:47 Uhr                *)
+FORMAT: Wettkampfdefinitionsliste;7;
+ERZEUGER: EasyWk;5.34;info@easywk.de;
+VERANSTALTUNG: 28. Schwimmfest am Windberg;Freital;25;HALBAUTOMATISCH;
+VERANSTALTUNGSORT: Familienbad „Windi“;Rotkopf-Görg-Straße;01705;Freital;GER;;;;
+AUSSCHREIBUNGIMNETZ: scfreital.de/schwimmen;
+VERANSTALTER: Sportclub Freital e.V.;
+AUSRICHTER: Sportclub Freital e.V.;Ludwig, Hannah;Erlenring 44;01705;Freital;GER;05471 579714;;elias.frank@example.org;
+MELDEADRESSE: Ludwig, Hannah;Erlenring 44;01705;Freital;;05471 579714;;elias.frank@example.org;
+MELDESCHLUSS: 26.06.2026;23:59;
+BANKVERBINDUNG: Ostsächsische Sparkasse Dresden;DE16 1234 5678 4187 5766 44;ABCDEFG1XXX;
+(* KONTOINHABER: Sportclub Freital e.V.; *)
+ABSCHNITT: 1;04.07.2026;07:30;08:15;08:50;;
+ABSCHNITT: 2;04.07.2026;00:00;00:00;00:45;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+ABSCHNITT: 3;05.07.2026;07:30;08:30;09:00;;
+ABSCHNITT: 4;05.07.2026;00:00;00:00;00:30;J; (* Uhrzeiten relativ nach vorherigem Abschnitt *)
+WETTKAMPF: 1;E;1;1;50;R;BE;W;SW;;; (* 50m Rückenkraulbeine weiblich *)
+WETTKAMPF: 2;E;1;1;50;R;BE;M;SW;;; (* 50m Rückenkraulbeine männlich *)
+WETTKAMPF: 3;E;1;1;50;S;GL;W;SW;;; (* 50m Schmetterling weiblich *)
+WETTKAMPF: 4;E;1;1;50;S;GL;M;SW;;; (* 50m Schmetterling männlich *)
+WETTKAMPF: 5;E;1;1;100;R;GL;W;SW;;; (* 100m Rücken weiblich *)
+WETTKAMPF: 6;E;1;1;100;R;GL;M;SW;;; (* 100m Rücken männlich *)
+WETTKAMPF: 7;E;1;1;50;B;BE;W;SW;;; (* 50m Brustbeine weiblich *)
+WETTKAMPF: 8;E;1;1;50;B;BE;M;SW;;; (* 50m Brustbeine männlich *)
+WETTKAMPF: 9;E;1;1;100;F;GL;W;SW;;; (* 100m Freistil weiblich *)
+WETTKAMPF: 10;E;1;1;100;F;GL;M;SW;;; (* 100m Freistil männlich *)
+WETTKAMPF: 11;E;1;1;200;B;GL;W;SW;;; (* 200m Brust weiblich *)
+WETTKAMPF: 12;E;1;1;200;B;GL;M;SW;;; (* 200m Brust männlich *)
+WETTKAMPF: 13;E;1;8;50;F;GL;X;SW;;; (* 8x50m Freistil mixed *)
+WETTKAMPF: 101;E;2;1;25;F;BE;W;KG;;; (* 25m Kraulbeine weiblich *)
+WETTKAMPF: 102;E;2;1;25;F;BE;M;KG;;; (* 25m Kraulbeine männlich *)
+WETTKAMPF: 103;E;2;1;25;B;GL;W;KG;;; (* 25m Brust weiblich *)
+WETTKAMPF: 104;E;2;1;25;B;GL;M;KG;;; (* 25m Brust männlich *)
+WETTKAMPF: 105;E;2;1;25;R;BE;W;KG;;; (* 25m Rückenkraulbeine weiblich *)
+WETTKAMPF: 106;E;2;1;25;R;BE;M;KG;;; (* 25m Rückenkraulbeine männlich *)
+WETTKAMPF: 14;E;2;1;25;S;BE;W;SW;;; (* 25m Schmetterlingbeine weiblich *)
+WETTKAMPF: 15;E;2;1;25;S;BE;M;SW;;; (* 25m Schmetterlingbeine männlich *)
+WETTKAMPF: 16;E;2;1;50;S;BE;W;SW;;; (* 50m Schmetterlingbeine weiblich *)
+WETTKAMPF: 17;E;2;1;50;S;BE;M;SW;;; (* 50m Schmetterlingbeine männlich *)
+WETTKAMPF: 18;E;2;1;200;S;GL;W;SW;;; (* 200m Schmetterling weiblich *)
+WETTKAMPF: 19;E;2;1;200;S;GL;M;SW;;; (* 200m Schmetterling männlich *)
+WETTKAMPF: 20;E;2;1;50;B;GL;W;SW;;; (* 50m Brust weiblich *)
+WETTKAMPF: 21;E;2;1;50;B;GL;M;SW;;; (* 50m Brust männlich *)
+WETTKAMPF: 107;E;2;1;25;F;GL;W;KG;;; (* 25m Freistil weiblich *)
+WETTKAMPF: 108;E;2;1;25;F;GL;M;KG;;; (* 25m Freistil männlich *)
+WETTKAMPF: 109;E;2;1;25;B;BE;W;KG;;; (* 25m Brustbeine weiblich *)
+WETTKAMPF: 110;E;2;1;25;B;BE;M;KG;;; (* 25m Brustbeine männlich *)
+WETTKAMPF: 111;E;2;1;25;R;GL;W;KG;;; (* 25m Rücken weiblich *)
+WETTKAMPF: 112;E;2;1;25;R;GL;M;KG;;; (* 25m Rücken männlich *)
+WETTKAMPF: 22;E;2;1;25;S;GL;W;SW;;; (* 25m Schmetterling weiblich *)
+WETTKAMPF: 23;E;2;1;25;S;GL;M;SW;;; (* 25m Schmetterling männlich *)
+WETTKAMPF: 24;E;2;1;100;S;GL;W;SW;;; (* 100m Schmetterling weiblich *)
+WETTKAMPF: 25;E;2;1;100;S;GL;M;SW;;; (* 100m Schmetterling männlich *)
+WETTKAMPF: 26;E;2;1;50;F;GL;W;SW;;; (* 50m Freistil weiblich *)
+WETTKAMPF: 27;E;2;1;50;F;GL;M;SW;;; (* 50m Freistil männlich *)
+WETTKAMPF: 28;E;2;1;200;R;GL;W;SW;;; (* 200m Rücken weiblich *)
+WETTKAMPF: 29;E;2;1;200;R;GL;M;SW;;; (* 200m Rücken männlich *)
+WETTKAMPF: 30;E;3;1;50;R;GL;W;SW;;; (* 50m Rücken weiblich *)
+WETTKAMPF: 31;E;3;1;50;R;GL;M;SW;;; (* 50m Rücken männlich *)
+WETTKAMPF: 32;E;3;1;100;B;GL;W;SW;;; (* 100m Brust weiblich *)
+WETTKAMPF: 33;E;3;1;100;B;GL;M;SW;;; (* 100m Brust männlich *)
+WETTKAMPF: 34;E;3;1;50;F;BE;W;SW;;; (* 50m Kraulbeine weiblich *)
+WETTKAMPF: 35;E;3;1;50;F;BE;M;SW;;; (* 50m Kraulbeine männlich *)
+WETTKAMPF: 36;E;3;1;200;F;GL;W;SW;;; (* 200m Freistil weiblich *)
+WETTKAMPF: 37;E;3;1;200;F;GL;M;SW;;; (* 200m Freistil männlich *)
+WETTKAMPF: 38;E;3;8;50;L;GL;X;SW;;; (* 8x50m Lagen mixed *)
+WETTKAMPF: 201;F;4;1;100;L;GL;W;SW;;; (* 100m Lagen weiblich (Mehrkampffinale 2017) *)
+WETTKAMPF: 202;F;4;1;100;L;GL;M;SW;;; (* 100m Lagen männlich (Mehrkampffinale 2017) *)
+WETTKAMPF: 203;F;4;1;100;L;GL;W;SW;;; (* 100m Lagen weiblich (Mehrkampffinale 2016) *)
+WETTKAMPF: 204;F;4;1;100;L;GL;M;SW;;; (* 100m Lagen männlich (Mehrkampffinale 2016) *)
+WETTKAMPF: 205;F;4;1;100;L;GL;W;SW;;; (* 100m Lagen weiblich (Mehrkampffinale 2015) *)
+WETTKAMPF: 206;F;4;1;100;L;GL;M;SW;;; (* 100m Lagen männlich (Mehrkampffinale 2015) *)
+WETTKAMPF: 207;F;4;1;200;L;GL;W;SW;;; (* 200m Lagen weiblich (Mehrkampffinale 2013 und 2014) *)
+WETTKAMPF: 208;F;4;1;200;L;GL;M;SW;;; (* 200m Lagen männlich (Mehrkampffinale 2013 und 2014) *)
+WETTKAMPF: 209;F;4;1;200;L;GL;W;SW;;; (* 200m Lagen weiblich (Mehrkampffinale 2011 und 2012) *)
+WETTKAMPF: 210;F;4;1;200;L;GL;M;SW;;; (* 200m Lagen männlich (Mehrkampffinale 2011 und 2012) *)
+WETTKAMPF: 211;F;4;1;200;L;GL;W;SW;;; (* 200m Lagen weiblich (Mehrkampffinale 2010 und älter) *)
+WETTKAMPF: 212;F;4;1;200;L;GL;M;SW;;; (* 200m Lagen männlich (Mehrkampffinale 2010 und älter) *)
+WERTUNG: 1;E;1001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 1;E;1002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 1;E;1003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 1;E;1004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 2;E;2001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 2;E;2002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 2;E;2003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 2;E;2004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 3;E;3002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 3;E;3003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 3;E;3004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 3;E;3006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 3;E;3007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 3;E;3008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 4;E;4002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 4;E;4003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 4;E;4004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 4;E;4006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 4;E;4007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 4;E;4008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 5;E;5003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 5;E;5004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 5;E;5006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 5;E;5007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 5;E;5008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 6;E;6003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 6;E;6004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 6;E;6006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 6;E;6007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 6;E;6008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 7;E;7001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 7;E;7002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 7;E;7003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 7;E;7004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 8;E;8001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 8;E;8002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 8;E;8003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 8;E;8004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 9;E;9003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 9;E;9004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 9;E;9006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 9;E;9007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 9;E;9008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 10;E;10003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 10;E;10004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 10;E;10006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 10;E;10007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 10;E;10008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 11;E;11003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 11;E;11004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 11;E;11006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 11;E;11007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 11;E;11008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 12;E;12003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 12;E;12004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 12;E;12006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 12;E;12007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 12;E;12008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 13;E;64001;JG;0;0;X;Offene Wertung;
+WERTUNG: 101;E;13002;JG;2020;2026;W;Jahrgang 2020 und jünger;
+WERTUNG: 101;E;13001;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 102;E;14002;JG;2020;2026;M;Jahrgang 2020 und jünger;
+WERTUNG: 102;E;14001;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 103;E;15002;JG;2020;2026;W;Jahrgang 2020 und jünger;
+WERTUNG: 103;E;15001;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 104;E;16002;JG;2020;2026;M;Jahrgang 2020 und jünger;
+WERTUNG: 104;E;16001;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 105;E;17002;JG;2020;2026;W;Jahrgang 2020 und jünger;
+WERTUNG: 105;E;17001;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 106;E;18002;JG;2020;2026;M;Jahrgang 2020 und jünger;
+WERTUNG: 106;E;18001;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 14;E;19001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 15;E;20001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 16;E;21002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 16;E;21003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 16;E;21004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 17;E;22002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 17;E;22003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 17;E;22004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 18;E;23004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 18;E;23006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 18;E;23007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 18;E;23008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 19;E;24004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 19;E;24006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 19;E;24007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 19;E;24008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 20;E;25001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 20;E;25002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 20;E;25003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 20;E;25004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 20;E;25006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 20;E;25007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 20;E;25008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 21;E;26001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 21;E;26002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 21;E;26003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 21;E;26004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 21;E;26006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 21;E;26007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 21;E;26008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 107;E;27002;JG;2020;2026;W;Jahrgang 2020 und jünger;
+WERTUNG: 107;E;27001;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 108;E;28002;JG;2020;2026;M;Jahrgang 2020 und jünger;
+WERTUNG: 108;E;28001;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 109;E;29002;JG;2020;2026;W;Jahrgang 2020 und jünger;
+WERTUNG: 109;E;29001;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 110;E;30002;JG;2020;2026;M;Jahrgang 2020 und jünger;
+WERTUNG: 110;E;30001;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 111;E;31002;JG;2020;2026;W;Jahrgang 2020 und jünger;
+WERTUNG: 111;E;31001;JG;2019;2019;W;Jahrgang 2019;
+WERTUNG: 112;E;32002;JG;2020;2026;M;Jahrgang 2020 und jünger;
+WERTUNG: 112;E;32001;JG;2019;2019;M;Jahrgang 2019;
+WERTUNG: 22;E;33001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 23;E;34001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 24;E;35003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 24;E;35004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 24;E;35006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 24;E;35007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 24;E;35008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 25;E;36003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 25;E;36004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 25;E;36006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 25;E;36007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 25;E;36008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 26;E;37001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 26;E;37002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 26;E;37003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 26;E;37004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 26;E;37006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 26;E;37007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 26;E;37008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 27;E;38001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 27;E;38002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 27;E;38003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 27;E;38004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 27;E;38006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 27;E;38007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 27;E;38008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 28;E;39003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 28;E;39004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 28;E;39006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 28;E;39007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 28;E;39008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 29;E;40003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 29;E;40004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 29;E;40006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 29;E;40007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 29;E;40008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 30;E;41001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 30;E;41002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 30;E;41003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 30;E;41004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 30;E;41006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 30;E;41007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 30;E;41008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 31;E;42001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 31;E;42002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 31;E;42003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 31;E;42004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 31;E;42006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 31;E;42007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 31;E;42008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 32;E;43003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 32;E;43004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 32;E;43006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 32;E;43007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 32;E;43008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 33;E;44003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 33;E;44004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 33;E;44006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 33;E;44007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 33;E;44008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 34;E;45001;JG;2018;2018;W;Jahrgang 2018;
+WERTUNG: 34;E;45002;JG;2017;2017;W;Jahrgang 2017;
+WERTUNG: 34;E;45003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 34;E;45004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 35;E;46001;JG;2018;2018;M;Jahrgang 2018;
+WERTUNG: 35;E;46002;JG;2017;2017;M;Jahrgang 2017;
+WERTUNG: 35;E;46003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 35;E;46004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 36;E;47003;JG;2016;2016;W;Jahrgang 2016;
+WERTUNG: 36;E;47004;JG;2015;2015;W;Jahrgang 2015;
+WERTUNG: 36;E;47006;JG;2013;2014;W;Jahrgang 2013 und 2014;
+WERTUNG: 36;E;47007;JG;2011;2012;W;Jahrgang 2011 und 2012;
+WERTUNG: 36;E;47008;JG;0;2010;W;Jahrgang 2010 und älter;
+WERTUNG: 37;E;48003;JG;2016;2016;M;Jahrgang 2016;
+WERTUNG: 37;E;48004;JG;2015;2015;M;Jahrgang 2015;
+WERTUNG: 37;E;48006;JG;2013;2014;M;Jahrgang 2013 und 2014;
+WERTUNG: 37;E;48007;JG;2011;2012;M;Jahrgang 2011 und 2012;
+WERTUNG: 37;E;48008;JG;0;2010;M;Jahrgang 2010 und älter;
+WERTUNG: 38;E;49001;JG;0;0;X;Offene Wertung;
+WERTUNG: 201;F;50001;JG;0;2026;W;Mehrkampffinale;
+WERTUNG: 202;F;51001;JG;0;2026;M;Mehrkampffinale;
+WERTUNG: 203;F;52001;JG;0;2026;W;Mehrkampffinale;
+WERTUNG: 204;F;53001;JG;0;2026;M;Mehrkampffinale;
+WERTUNG: 205;F;54001;JG;0;2026;W;Mehrkampffinale;
+WERTUNG: 206;F;55001;JG;0;2026;M;Mehrkampffinale;
+WERTUNG: 207;F;56001;JG;0;2026;W;Mehrkampffinale;
+WERTUNG: 208;F;57001;JG;0;2026;M;Mehrkampffinale;
+WERTUNG: 209;F;60001;JG;0;2026;W;Mehrkampffinale;
+WERTUNG: 210;F;61001;JG;0;2026;M;Mehrkampffinale;
+WERTUNG: 211;F;62001;JG;0;2026;W;Mehrkampffinale;
+WERTUNG: 212;F;63001;JG;0;2026;M;Mehrkampffinale;
+MELDEGELD: Wkmeldegeld;5,50;1;
+MELDEGELD: Wkmeldegeld;5,50;2;
+MELDEGELD: Wkmeldegeld;5,50;3;
+MELDEGELD: Wkmeldegeld;5,50;4;
+MELDEGELD: Wkmeldegeld;5,50;5;
+MELDEGELD: Wkmeldegeld;5,50;6;
+MELDEGELD: Wkmeldegeld;5,50;7;
+MELDEGELD: Wkmeldegeld;5,50;8;
+MELDEGELD: Wkmeldegeld;5,50;9;
+MELDEGELD: Wkmeldegeld;5,50;10;
+MELDEGELD: Wkmeldegeld;5,50;11;
+MELDEGELD: Wkmeldegeld;5,50;12;
+MELDEGELD: Wkmeldegeld;8,50;13;
+MELDEGELD: Wkmeldegeld;5,50;101;
+MELDEGELD: Wkmeldegeld;5,50;102;
+MELDEGELD: Wkmeldegeld;5,50;103;
+MELDEGELD: Wkmeldegeld;5,50;104;
+MELDEGELD: Wkmeldegeld;5,50;105;
+MELDEGELD: Wkmeldegeld;5,50;106;
+MELDEGELD: Wkmeldegeld;5,50;14;
+MELDEGELD: Wkmeldegeld;5,50;15;
+MELDEGELD: Wkmeldegeld;5,50;16;
+MELDEGELD: Wkmeldegeld;5,50;17;
+MELDEGELD: Wkmeldegeld;5,50;18;
+MELDEGELD: Wkmeldegeld;5,50;19;
+MELDEGELD: Wkmeldegeld;5,50;20;
+MELDEGELD: Wkmeldegeld;5,50;21;
+MELDEGELD: Wkmeldegeld;5,50;107;
+MELDEGELD: Wkmeldegeld;5,50;108;
+MELDEGELD: Wkmeldegeld;5,50;109;
+MELDEGELD: Wkmeldegeld;5,50;110;
+MELDEGELD: Wkmeldegeld;5,50;111;
+MELDEGELD: Wkmeldegeld;5,50;112;
+MELDEGELD: Wkmeldegeld;5,50;22;
+MELDEGELD: Wkmeldegeld;5,50;23;
+MELDEGELD: Wkmeldegeld;5,50;24;
+MELDEGELD: Wkmeldegeld;5,50;25;
+MELDEGELD: Wkmeldegeld;5,50;26;
+MELDEGELD: Wkmeldegeld;5,50;27;
+MELDEGELD: Wkmeldegeld;5,50;28;
+MELDEGELD: Wkmeldegeld;5,50;29;
+MELDEGELD: Wkmeldegeld;5,50;30;
+MELDEGELD: Wkmeldegeld;5,50;31;
+MELDEGELD: Wkmeldegeld;5,50;32;
+MELDEGELD: Wkmeldegeld;5,50;33;
+MELDEGELD: Wkmeldegeld;5,50;34;
+MELDEGELD: Wkmeldegeld;5,50;35;
+MELDEGELD: Wkmeldegeld;5,50;36;
+MELDEGELD: Wkmeldegeld;5,50;37;
+MELDEGELD: Wkmeldegeld;8,50;38;
+MELDEGELD: Wkmeldegeld;0,00;201;
+MELDEGELD: Wkmeldegeld;0,00;202;
+MELDEGELD: Wkmeldegeld;0,00;203;
+MELDEGELD: Wkmeldegeld;0,00;204;
+MELDEGELD: Wkmeldegeld;0,00;205;
+MELDEGELD: Wkmeldegeld;0,00;206;
+MELDEGELD: Wkmeldegeld;0,00;207;
+MELDEGELD: Wkmeldegeld;0,00;208;
+MELDEGELD: Wkmeldegeld;0,00;209;
+MELDEGELD: Wkmeldegeld;0,00;210;
+MELDEGELD: Wkmeldegeld;0,00;211;
+MELDEGELD: Wkmeldegeld;0,00;212;
+DATEIENDE

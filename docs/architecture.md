@@ -501,11 +501,10 @@ erzeugt eine Diagnostic, damit sie sichtbar bleibt statt still zu wirken.
 Daraus abgeleitete Entscheidungen zu den bekannten Lücken:
 
 - **Kommentare hinter einem Element auf derselben Zeile**: Die Spec sagt dazu
-  nichts (dsv8.md:191–199). Ein `(*` innerhalb einer Elementzeile wird **nicht**
-  als Kommentar interpretiert, sondern als normaler ZK-Inhalt – der Datentyp
-  erlaubt beliebige Zeichen, und eine Sonderbehandlung würde gültige Daten
-  zerstören. Nur Zeilen, die (nach Whitespace) mit `(*` beginnen, sind
-  Kommentare.
+  nichts (dsv8.md:191–199), die Realdaten dafür umso deutlicher – siehe den
+  Befund unten. Ein `(* … *)` **am Zeilenende, nach dem letzten `;`**, ist ein
+  Kommentar und wird abgetrennt (für den Round-Trip aber mitgeführt). Ein `(*`
+  **innerhalb** eines Feldes bleibt ZK-Inhalt.
 - **`SB10` fehlt in der Brust-Startklassenliste** (dsv8.md:2320 ff.): mit hoher
   Wahrscheinlichkeit eine Spec-Lücke, da `SB1`–`SB9` und `SB11`–`SB14`
   vorhanden sind. Wird beim Lesen akzeptiert, beim Schreiben ebenfalls erlaubt,
