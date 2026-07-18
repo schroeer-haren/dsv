@@ -1,6 +1,6 @@
 import type { DsvDocument } from '../document/types.js';
 
-const BOM = '﻿';
+const BOM = '\uFEFF';
 
 /**
  * Gibt das Dokument als Text aus. Solange die Records unverändert sind, ist das

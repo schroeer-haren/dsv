@@ -29,13 +29,18 @@ describe('Round-Trip über echte Dateien', () => {
 describe('Zerlegung echter Dateien', () => {
   it.each(files)('%s: kein Feld enthält ein Trennzeichen', (name) => {
     const text = readFileSync(join(DIR, name), 'utf8');
+    // Nur bei einem Treffer assertieren: Ein expect je Feld ergäbe
+    // hunderttausende Assertions und dominierte die Laufzeit der Suite.
+    const offenders: string[] = [];
+
     for (const item of parseDsv(text).document.items) {
       if (item.kind !== 'element') continue;
       for (const f of item.fields) {
-        expect(f).not.toContain(';');
-        expect(f).not.toContain('\n');
+        if (f.includes(';') || f.includes('\n')) offenders.push(f);
       }
     }
+
+    expect(offenders).toEqual([]);
   });
 
   it.each(files)('%s: gleichnamige Elemente haben gleich viele Felder', (name) => {
