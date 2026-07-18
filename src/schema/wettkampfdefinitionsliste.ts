@@ -356,6 +356,7 @@ export const WETTKAMPF = element('WETTKAMPF', [
   field('qualifikationswettkampfnr', 'Zahl', {
     doc: 'Nummer des qualifizierenden Vor- oder Zwischenlaufs.',
     specRef: 'dsv8.md:1081',
+    range: { min: 0, max: 999 },
   }),
   field('qualifikationswettkampfart', 'Zeichen', {
     doc: 'Art des qualifizierenden Wettkampfes.',

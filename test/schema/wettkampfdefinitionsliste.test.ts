@@ -245,6 +245,15 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
     expect(WETTKAMPF.fields.find((f) => f.name === 'anzahlStarter')?.default).toBe('1');
   });
 
+  it('begrenzt die qualifizierende Wettkampfnummer wie die Wettkampfnummer selbst', () => {
+    // Die Wettkampfnummer ist laut dsv8.md:993 maximal dreistellig — unabhängig
+    // davon, ob sie den Wettkampf selbst oder den qualifizierenden nennt.
+    expect(WETTKAMPF.fields.find((f) => f.name === 'qualifikationswettkampfnr')?.range).toEqual({
+      min: 0,
+      max: 999,
+    });
+  });
+
   it('zählt die Ausübungen des WETTKAMPFs samt Versionsmarkierung auf', () => {
     expect(enumEntries(WETTKAMPF, 'ausuebung')).toEqual([
       ['GL', undefined],
