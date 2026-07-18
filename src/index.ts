@@ -12,6 +12,12 @@
 export { parseDsv, parseDsvOrThrow, DsvParseError } from './parse/parse-dsv.js';
 export { parseWettkampfdefinitionsliste } from './parse/parse-wettkampfdefinitionsliste.js';
 export { writeDsv } from './write/write-dsv.js';
+export {
+  writeWettkampfdefinitionsliste,
+  DsvWriteError,
+} from './write/write-wettkampfdefinitionsliste.js';
+
+export type { WriteOptions } from './write/write-wettkampfdefinitionsliste.js';
 
 export type {
   TypedRecord,

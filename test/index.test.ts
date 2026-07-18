@@ -5,10 +5,12 @@ describe('öffentliche API', () => {
   it('exportiert genau die vorgesehene Oberfläche', () => {
     expect(Object.keys(api).sort()).toEqual([
       'DsvParseError',
+      'DsvWriteError',
       'parseDsv',
       'parseDsvOrThrow',
       'parseWettkampfdefinitionsliste',
       'writeDsv',
+      'writeWettkampfdefinitionsliste',
     ]);
   });
 
