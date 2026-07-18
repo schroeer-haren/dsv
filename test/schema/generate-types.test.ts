@@ -31,6 +31,7 @@ describe('renderElement', () => {
           since: 8 as const,
           doc: 'Neu',
           specRef: 'dsv8.md:1',
+          caseInsensitive: false,
         },
       ],
     };
@@ -58,6 +59,7 @@ describe('renderBothVersions', () => {
           since: 8 as const,
           doc: 'Neu',
           specRef: 'dsv8.md:1',
+          caseInsensitive: false,
         },
       ],
     };
