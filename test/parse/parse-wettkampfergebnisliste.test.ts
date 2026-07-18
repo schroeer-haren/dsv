@@ -73,6 +73,24 @@ describe('parseWettkampfergebnisliste', () => {
     expect(result.ok).toBe(false);
     expect(result.document.records.length).toBeGreaterThan(0);
   });
+
+  it('belegt fehlende Felder am Zeilenende mit der leeren Zeichenkette', () => {
+    // Die Zusage von `TypedRecord.values`: Jedes Feld des Schemas ist
+    // vorhanden, fehlende sind ''. `undefined` in einem als
+    // `Record<string, string>` typisierten Objekt wäre ein Bruch dieser
+    // Zusage — und ein fehlender Schlüssel ein anderer.
+    const kurz = minimal().replace(
+      line('ABSCHNITT', ['1', '10.05.2026', '09:00', '']),
+      'ABSCHNITT:1;01.02.2026;09:00;',
+    );
+    const values = parseWettkampfergebnisliste(kurz).document.records.find(
+      (r) => r.element === 'ABSCHNITT',
+    )?.values;
+
+    expect(values).toBeDefined();
+    expect('relativeAngabe' in (values ?? {})).toBe(true);
+    expect(values?.['relativeAngabe']).toBe('');
+  });
 });
 
 /**

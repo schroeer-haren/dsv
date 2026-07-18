@@ -50,6 +50,43 @@ function pnergebnis(over: Partial<Record<string, string>> = {}): string {
   return line('PNERGEBNIS', Object.values(v) as string[]);
 }
 
+/** Ein STERGEBNIS mit den üblichen Werten; `over` überschreibt einzelne Felder. */
+function stergebnis(over: Partial<Record<string, string>> = {}): string {
+  const v = {
+    wettkampfnr: '2',
+    wettkampfart: 'E',
+    wertungsId: '5',
+    platz: '1',
+    grundDerNichtwertung: '',
+    nummerDerMannschaft: '1',
+    veranstaltungsId: '900',
+    verein: 'SV Test',
+    vereinskennzahl: '1234',
+    endzeit: '00:04:00,00',
+    startnummerDisqualifiziert: '',
+    disqualifikationsbemerkung: '',
+    erhoehtesNachtraeglichesMeldegeld: '',
+    ...over,
+  };
+  return line('STERGEBNIS', Object.values(v) as string[]);
+}
+
+const STAFFEL_WETTKAMPF = line('WETTKAMPF', [
+  '2',
+  'E',
+  '1',
+  '4',
+  '100',
+  'F',
+  'GL',
+  'X',
+  'SW',
+  '',
+  '',
+]);
+const STAFFEL_WERTUNG = line('WERTUNG', ['2', 'E', '5', 'AK', '100', '', 'X', 'Staffel']);
+const STAFFEL_WERTUNG2 = line('WERTUNG', ['2', 'E', '6', 'AK', '120', '', 'X', 'Staffel Masters']);
+
 const ABSCHNITT = line('ABSCHNITT', ['1', '10.05.2026', '09:00', '']);
 const WETTKAMPF = line('WETTKAMPF', ['1', 'E', '1', '1', '50', 'F', 'GL', 'M', 'SW', '', '']);
 const WERTUNG = line('WERTUNG', ['1', 'E', '1', 'JG', '2010', '', '', 'offene Wertung']);
@@ -185,6 +222,88 @@ describe('projectWettkampfergebnisliste', () => {
       { startnummer: 1, art: '+', zeit: 50, line: expect.any(Number) },
     ]);
     expect(graph.abschnitte[0]?.wettkaempfe[0]?.staffeln).toHaveLength(1);
+  });
+
+  it('fasst die Zeilen einer Staffel zu einem Ergebnis mit mehreren Platzierungen zusammen', () => {
+    // Wie auf der Personenseite: Eine Staffel erscheint einmal je Wertung. In
+    // den 75 echten Ergebnislisten tragen 134 STERGEBNIS-Schlüssel mehr als
+    // eine Zeile. Ohne diese Zusammenfassung ergäbe jede Wertungszeile eine
+    // eigene Staffel, und nur die letzte bliebe im Index.
+    const { graph, diagnostics } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      STAFFEL_WERTUNG,
+      STAFFEL_WERTUNG2,
+      VEREIN,
+      stergebnis({ wertungsId: '5', platz: '1' }),
+      stergebnis({ wertungsId: '6', platz: '3' }),
+    );
+
+    expect(diagnostics).toEqual([]);
+    const staffeln = graph.abschnitte[0]?.wettkaempfe[0]?.staffeln ?? [];
+    expect(staffeln).toHaveLength(1);
+    expect(staffeln[0]?.endzeit).toBe(24000);
+    expect(staffeln[0]?.platzierungen.map((p) => [p.wertungsId, p.platz])).toEqual([
+      [5, 1],
+      [6, 3],
+    ]);
+    expect(graph.staffelByKey.get('900:2:E')?.platzierungen).toHaveLength(2);
+  });
+
+  it('meldet einen Widerspruch, wenn zwei Zeilen derselben Staffel nicht übereinstimmen', () => {
+    const { graph, diagnostics } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      STAFFEL_WERTUNG,
+      STAFFEL_WERTUNG2,
+      VEREIN,
+      stergebnis({ wertungsId: '5' }),
+      stergebnis({ wertungsId: '6', endzeit: '00:04:01,00' }),
+    );
+
+    expect(diagnostics.map((d) => d.code)).toEqual(['ambiguous-reference']);
+    // Der erste Wert gewinnt, beide Platzierungen bleiben erhalten.
+    const staffel = graph.staffelByKey.get('900:2:E');
+    expect(staffel?.endzeit).toBe(24000);
+    expect(staffel?.platzierungen).toHaveLength(2);
+  });
+
+  it('meldet Staffel-Unterelemente, deren STERGEBNIS fehlt', () => {
+    // Ein stilles Überspringen wäre Datenverlust ohne Meldung.
+    for (const zeile of [
+      line('STAFFELPERSON', [
+        '777',
+        '2',
+        'E',
+        'Muster, Mia',
+        '100002',
+        '1',
+        'W',
+        '2009',
+        '',
+        '',
+        '',
+        '',
+      ]),
+      line('STZWISCHENZEIT', ['777', '2', 'E', '1', '50', '00:00:30,00']),
+      line('STABLOESE', ['777', '2', 'E', '1', '+', '00:00:00,50']),
+    ]) {
+      const { diagnostics } = project(
+        ABSCHNITT,
+        STAFFEL_WETTKAMPF,
+        STAFFEL_WERTUNG,
+        VEREIN,
+        stergebnis(),
+        zeile,
+      );
+
+      expect(diagnostics).toHaveLength(1);
+      expect(diagnostics[0]?.code).toBe('dangling-reference');
+      expect(diagnostics[0]?.data).toMatchObject({
+        element: zeile.slice(0, zeile.indexOf(':')),
+        key: '777:2:E',
+      });
+    }
   });
 
   it('führt Index-Maps auf oberster Ebene und bleibt frei von Zyklen', () => {
