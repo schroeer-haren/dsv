@@ -759,7 +759,7 @@ export interface WertungV7 {
   mindestJgAk: string;
 
   /**
-   * Grösster Jahrgang oder kleinste Altersklasse; ohne Angabe gilt der Mindestwert.
+   * Grösster Jahrgang oder kleinste Altersklasse; ohne Angabe gilt der Wert von mindestJgAk.
    *
    * @see dsv8.md:1174
    */
@@ -827,7 +827,7 @@ export interface PflichtzeitV7 {
   mindestJgAk: string;
 
   /**
-   * Grösster Jahrgang oder kleinste Altersklasse.
+   * Grösster Jahrgang oder kleinste Altersklasse; ohne Angabe gilt der Wert von mindestJgAk.
    *
    * @see dsv8.md:1290
    */

@@ -324,6 +324,17 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
     expect(enumValues(WERTUNG, 'wertungsklasseTyp')).toEqual(['JG', 'AK']);
   });
 
+  it.each([
+    ['WERTUNG', WERTUNG],
+    ['PFLICHTZEIT', PFLICHTZEIT],
+  ])('modelliert %s.maximalJgAk ohne statischen Unterlassungswert', (_name, def) => {
+    // Der Unterlassungswert ist der Wert von mindestJgAk, also kontextabhängig.
+    // Ein statischer Default wäre falsch — der Verweis steht nur im Doc-Text.
+    const maximal = def.fields.find((f) => f.name === 'maximalJgAk');
+    expect(maximal?.default).toBeUndefined();
+    expect(maximal?.doc).toContain('mindestJgAk');
+  });
+
   it('benennt PFLICHTZEIT', () => {
     expect(names(PFLICHTZEIT)).toEqual([
       'wettkampfnr',

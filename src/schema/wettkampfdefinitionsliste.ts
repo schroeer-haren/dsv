@@ -415,8 +415,11 @@ export const WERTUNG = element('WERTUNG', [
     doc: 'Kleinster Jahrgang oder grösste Altersklasse; 0 für die offene Klasse.',
     specRef: 'dsv8.md:1171',
   }),
+  // Der Unterlassungswert ist der Wert von mindestJgAk (dsv8.md:1214) und damit
+  // kontextabhängig — er wird bewusst nicht als statischer `default` modelliert,
+  // denn ein fester Wert wäre in jedem konkreten Record falsch.
   field('maximalJgAk', 'JGAK', {
-    doc: 'Grösster Jahrgang oder kleinste Altersklasse; ohne Angabe gilt der Mindestwert.',
+    doc: 'Grösster Jahrgang oder kleinste Altersklasse; ohne Angabe gilt der Wert von mindestJgAk.',
     specRef: 'dsv8.md:1174',
   }),
   // Eigener Wertevorrat — andere Reihenfolge als bei WETTKAMPF (dsv8.md:1062).
@@ -461,8 +464,10 @@ export const PFLICHTZEIT = element('PFLICHTZEIT', [
     doc: 'Kleinster Jahrgang oder grösste Altersklasse; 0 für die offene Klasse.',
     specRef: 'dsv8.md:1287',
   }),
+  // Wie bei WERTUNG: Unterlassungswert ist der Wert von mindestJgAk
+  // (dsv8.md:1312), also kontextabhängig und kein statischer `default`.
   field('maximalJgAk', 'JGAK', {
-    doc: 'Grösster Jahrgang oder kleinste Altersklasse.',
+    doc: 'Grösster Jahrgang oder kleinste Altersklasse; ohne Angabe gilt der Wert von mindestJgAk.',
     specRef: 'dsv8.md:1290',
   }),
   field('pflichtzeit', 'Zeit', {
