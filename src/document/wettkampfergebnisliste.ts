@@ -27,6 +27,21 @@ import { decodeZeit } from '../values/zeit.js';
  * doch einmal etwas ab, gewinnt die erste Zeile und es entsteht ein
  * `ambiguous-reference`.
  *
+ * Bewusst nicht durchgesetzt: die Umkehrung derselben Stelle. dsv8.md:5019
+ * verlangt, dass "für jede definierte Wertung [...] jeweils die erreichte
+ * Platzierung ausgegeben werden" muss — jede WERTUNG also mindestens einen
+ * Ergebnissatz trägt. Gemessen an den 48 fehlerfreien echten Dateien bleiben
+ * 7860 von 16989 Wertungen (46 %) ohne jeden Ergebnissatz, verteilt über 46
+ * der 48 Dateien.
+ *
+ * Das ist kein Mangel der Dateien, sondern die Arbeitsweise der
+ * Ausschreibung: Sie erzeugt das volle Kreuzprodukt aus Jahrgang und
+ * Geschlecht, und die meisten dieser Klassen bekommen nie eine Meldung. Die
+ * leere Wertung ist der Normalfall, nicht die Ausnahme. Eine Warnung, die
+ * 7860 mal feuert und die niemand abstellen kann, wäre Lärm, der die echten
+ * Befunde zudeckt — deshalb wird die Regel hier nicht geprüft. Die Lücke ist
+ * bekannt und gewollt, nicht übersehen.
+ *
  * Bewusste Festlegungen, wie beim anderen Objektgraph:
  *
  * - Nur einfache Objekte, keine Klassen. Beim Dual-Publish für ESM und CJS gibt

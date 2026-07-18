@@ -141,6 +141,13 @@ describe('projectWettkampfergebnisliste', () => {
   it('fasst die Zeilen einer Person zu einem Start mit mehreren Platzierungen zusammen', () => {
     // dsv8.md:5019 — dieselbe Person erscheint einmal je Wertung. Die Zeilen
     // beschreiben denselben Schwimmvorgang, nur unterschiedlich gewertet.
+    //
+    // Geprüft wird nur diese Richtung. Die Umkehrung derselben Stelle — jede
+    // definierte Wertung trägt einen Ergebnissatz — bleibt bewusst
+    // ungeprüft: 7860 von 16989 Wertungen (46 %) in 46 der 48 echten Dateien
+    // haben keinen, weil die Ausschreibung das volle Kreuzprodukt aus
+    // Jahrgang und Geschlecht erzeugt und die meisten Klassen ohne Meldung
+    // bleiben. Näheres im Doc-Kommentar von wettkampfergebnisliste.ts.
     const { graph, diagnostics } = project(
       ABSCHNITT,
       WETTKAMPF,
