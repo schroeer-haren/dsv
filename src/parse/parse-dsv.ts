@@ -103,3 +103,19 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
     ok: !diagnostics.some((d) => d.severity === 'error' || d.severity === 'fatal'),
   };
 }
+
+export class DsvParseError extends Error {
+  constructor(readonly diagnostics: readonly Diagnostic[]) {
+    const first = diagnostics[0];
+    super(first === undefined ? 'DSV parse failed' : `${first.code}: ${first.message}`);
+    this.name = 'DsvParseError';
+  }
+}
+
+export function parseDsvOrThrow(input: string): DsvDocument {
+  const result = parseDsv(input);
+  if (!result.ok) {
+    throw new DsvParseError(result.diagnostics.filter((d) => d.severity !== 'warning'));
+  }
+  return result.document;
+}

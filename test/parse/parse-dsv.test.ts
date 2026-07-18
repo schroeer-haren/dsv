@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseDsv } from '../../src/parse/parse-dsv.js';
+import { parseDsv, parseDsvOrThrow } from '../../src/parse/parse-dsv.js';
 
 const FILE = [
   '(* erzeugt mit EasyWk *)',
@@ -41,5 +41,19 @@ describe('parseDsv', () => {
 
   it('meldet leere Eingabe als fatal', () => {
     expect(parseDsv('').diagnostics[0]?.severity).toBe('fatal');
+  });
+});
+
+describe('parseDsvOrThrow', () => {
+  it('liefert das Dokument bei fehlerfreier Eingabe', () => {
+    expect(parseDsvOrThrow(FILE).listenart).toBe('Wettkampfergebnisliste');
+  });
+
+  it('wirft bei einer Diagnostic der Severity error', () => {
+    expect(() => parseDsvOrThrow('DATEIENDE\r\n')).toThrow(/missing-format-element/);
+  });
+
+  it('wirft nicht bei blossen Warnungen', () => {
+    expect(() => parseDsvOrThrow(FILE)).not.toThrow();
   });
 });
