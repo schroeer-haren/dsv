@@ -95,8 +95,8 @@ import { element, field } from '../../src/schema/types.js';
 describe('element', () => {
   it('hält Name und Felder in Reihenfolge', () => {
     const def = element('ABSCHNITT', [
-      field('abschnittsnr', 'Zahl', { required: true, doc: 'Nummer', specRef: 'dsv8.md:914' }),
-      field('einlass', 'Uhrzeit', { doc: 'Einlass', specRef: 'dsv8.md:920' }),
+      field('abschnittsnr', 'Zahl', { required: true, doc: 'Nummer', specRef: 'dsv8.md:904' }),
+      field('einlass', 'Uhrzeit', { doc: 'Einlass', specRef: 'dsv8.md:922' }),
     ]);
 
     expect(def.name).toBe('ABSCHNITT');
@@ -130,7 +130,7 @@ Expected: FAIL — `Failed to resolve import "../../src/schema/types.js"`
 ```ts
 /** Skalare Datentypen des DSV-Standards (dsv8.md:249–300). */
 export type ScalarType =
-  'ZK' | 'Zahl' | 'Zeichen' | 'Zeit' | 'Datum' | 'Uhrzeit' | 'Betrag' | 'JGAK' | 'JN';
+  'ZK' | 'Zahl' | 'Zeichen' | 'Zeit' | 'Datum' | 'Uhrzeit' | 'Betrag' | 'JGAK';
 
 export interface FieldDef {
   readonly name: string;
@@ -140,7 +140,7 @@ export interface FieldDef {
   readonly since?: 8;
   /** Wird als JSDoc in die generierten Typen übernommen. */
   readonly doc: string;
-  /** Fundstelle in der Spezifikation, z. B. `dsv8.md:914`. */
+  /** Fundstelle in der Spezifikation, z. B. `dsv8.md:904`. */
   readonly specRef: string;
 }
 
@@ -258,29 +258,29 @@ export const ABSCHNITT_WKDEF = element('ABSCHNITT', [
   field('abschnittsnr', 'Zahl', {
     required: true,
     doc: 'Nummer des Abschnitts, maximal zweistellig.',
-    specRef: 'dsv8.md:914',
+    specRef: 'dsv8.md:904',
   }),
   field('abschnittsdatum', 'Datum', {
     required: true,
     doc: 'Datum, an dem der Abschnitt stattfindet.',
-    specRef: 'dsv8.md:916',
+    specRef: 'dsv8.md:918',
   }),
   field('einlass', 'Uhrzeit', {
     doc: 'Uhrzeit des Einlasses.',
-    specRef: 'dsv8.md:918',
+    specRef: 'dsv8.md:922',
   }),
   field('kampfrichtersitzung', 'Uhrzeit', {
     doc: 'Uhrzeit der Kampfrichtersitzung.',
-    specRef: 'dsv8.md:920',
+    specRef: 'dsv8.md:926',
   }),
   field('anfangszeit', 'Uhrzeit', {
     required: true,
     doc: 'Uhrzeit, zu der der Abschnitt beginnt.',
-    specRef: 'dsv8.md:922',
+    specRef: 'dsv8.md:928',
   }),
-  field('relativeAngabe', 'JN', {
+  field('relativeAngabe', 'Zeichen', {
     doc: 'J, wenn die Anfangszeit relativ zum Ende des Vorabschnitts zu verstehen ist. Unterlassungswert N.',
-    specRef: 'dsv8.md:924',
+    specRef: 'dsv8.md:932',
   }),
 ]);
 
@@ -341,7 +341,7 @@ describe('renderElement', () => {
 
   it('schreibt JSDoc mit Spec-Fundstelle an jedes Feld', () => {
     expect(dsv7).toContain('Nummer des Abschnitts, maximal zweistellig.');
-    expect(dsv7).toContain('@see dsv8.md:914');
+    expect(dsv7).toContain('@see dsv8.md:904');
   });
 
   it('lässt seit DSV8 hinzugekommene Felder in der DSV7-Fassung weg', () => {
@@ -379,7 +379,7 @@ Expected: FAIL — Modul nicht gefunden
  * Die Typen werden generiert statt inferiert, weil aus Mapped Types
  * entstandene Keys kein JSDoc tragen können — siehe docs/architecture.md.
  *
- *     node scripts/generate-types.ts
+ *     npx tsx scripts/generate-types.ts
  */
 
 import { writeFileSync } from 'node:fs';
@@ -434,22 +434,27 @@ Ohne diese Typen scheitert `npm run typecheck` an jedem `node:fs`-Import — und
 damit auch der Release-Workflow, der `typecheck` ausführt.
 
 ```bash
-npm install -D @types/node
+npm install -D @types/node tsx
 npx tsc --noEmit
 ```
 
 Expected: keine Ausgabe
 
+`tsx` wird gebraucht, weil Node zwar Typen entfernt, aber `.js`-Importe **nicht**
+auf `.ts` umschreibt. Das Projekt schreibt unter `moduleResolution: "Bundler"`
+durchgängig `.js`-Endungen auf TypeScript-Dateien; Node löst sie wörtlich auf
+und findet nichts.
+
 - [ ] **Step 6: Generate and wire up the script**
 
 ```bash
-node scripts/generate-types.ts
+npx tsx scripts/generate-types.ts
 ```
 
 In `package.json` unter `scripts` ergänzen:
 
 ```json
-"generate": "node scripts/generate-types.ts",
+"generate": "tsx scripts/generate-types.ts",
 "generate:check": "npm run generate && git diff --exit-code src/schema/generated.ts"
 ```
 
@@ -576,6 +581,7 @@ export type DiagnosticCode =
   | 'format-not-first-element'
   | 'unknown-encoding-replacement-character'
   | 'unterminated-field-list'
+  | 'unexpected-field-count'
   | 'empty-input';
 
 export interface Diagnostic {
@@ -911,7 +917,8 @@ export interface LexedElement {
 export type LexedLine = LexedComment | LexedBlank | LexedElement;
 ```
 
-und ersetze das `throw` durch:
+und ersetze das `throw` durch (der `bare`-Zweig braucht ebenfalls
+`comment: null`, sonst meldet `tsc` ein fehlendes Feld):
 
 ```ts
 const colon = raw.indexOf(':');
@@ -1640,7 +1647,7 @@ Expected: FAIL — Modul nicht gefunden
 
 ```ts
 /**
- * Schwimmzeit im Format `HH:MM:SS,hh` (dsv8.md:264), intern als Hundertstel.
+ * Schwimmzeit im Format `HH:MM:SS,hh` (dsv8.md:267), intern als Hundertstel.
  *
  * `00:00:00,00` ist der spezifizierte Unterlassungswert für „keine Zeit" und
  * wird bewusst nicht auf `null` abgebildet — sonst ginge beim Zurückschreiben
@@ -1699,8 +1706,8 @@ it('encode und decode sind zueinander invers', () => {
 
 - [ ] **Step 6: Datum und Uhrzeit nach demselben Muster**
 
-`Datum` ist `TT.MM.JJJJ` (dsv8.md:266), `Uhrzeit` ist `HH:MM` im
-24-Stunden-Format (dsv8.md:268). Beide mit `decode`/`encode`, beide geben bei
+`Datum` ist `TT.MM.JJJJ` (dsv8.md:271), `Uhrzeit` ist `HH:MM` im
+24-Stunden-Format (dsv8.md:275). Beide mit `decode`/`encode`, beide geben bei
 ungültiger Eingabe `null` zurück statt zu raten.
 
 - [ ] **Step 7: Commit**
