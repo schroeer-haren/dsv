@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { parseDsv } from '../../src/parse/parse-dsv.js';
 import { WETTKAMPFDEFINITIONSLISTE } from '../../src/schema/wettkampfdefinitionsliste.js';
+import { WETTKAMPFERGEBNISLISTE } from '../../src/schema/wettkampfergebnisliste.js';
 import { validateDocument } from '../../src/validate/validate-document.js';
 
 /** Baut eine Elementzeile; jedes Attribut wird mit `;` terminiert. */
@@ -296,6 +297,133 @@ describe('validateDocument', () => {
       const lines = replace(minimal(), 'MELDESCHLUSS', ['31.13.2026', '18:00']);
 
       expect(validate(lines)[0]?.start.line).toBe(9);
+    });
+  });
+});
+
+/** Die Zeilen einer vollständigen, gültigen Minimal-Ergebnisliste. */
+function minimalErgebnis(version: 7 | 8 = 8): string[] {
+  return [
+    line('FORMAT', ['Wettkampfergebnisliste', String(version)]),
+    line('ERZEUGER', ['Testsoftware', '1.0', 'info@example.org']),
+    line('VERANSTALTUNG', ['Testwettkampf', 'Kiel', '25', 'HANDZEIT']),
+    line('VERANSTALTER', ['SV Test']),
+    line('AUSRICHTER', ['SV Test', 'Max Mustermann', '', '', '', '', '', '', 'info@example.org']),
+    line('ABSCHNITT', ['1', '10.05.2026', '09:00', '']),
+    line('WETTKAMPF', ['1', 'E', '1', '1', '50', 'F', 'GL', 'M', 'SW', '', '']),
+    line('WERTUNG', ['1', 'E', '1', 'JG', '2010', '', '', 'offene Wertung']),
+    line('VEREIN', ['SV Test', '1234', '5', 'GER']),
+    'DATEIENDE',
+  ];
+}
+
+/** Validiert eine Ergebnisliste aus den gegebenen Zeilen. */
+function validateErgebnis(lines: readonly string[]) {
+  const { document } = parseDsv(`${lines.join('\n')}\n`);
+  return validateDocument(document, WETTKAMPFERGEBNISLISTE);
+}
+
+/** Ein PNERGEBNIS mit gegebenem Platz und Grund der Nichtwertung. */
+function pnergebnis(platz: string, grund: string): string {
+  return line('PNERGEBNIS', [
+    '1',
+    'E',
+    '1',
+    platz,
+    grund,
+    'Mustermann, Max',
+    '123456',
+    '1',
+    'M',
+    '2010',
+    '',
+    'SV Test',
+    '1234',
+    '00:00:30,00',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+}
+
+/** Ein STERGEBNIS mit gegebenem Platz und Grund der Nichtwertung. */
+function stergebnis(platz: string, grund: string): string {
+  return line('STERGEBNIS', [
+    '1',
+    'E',
+    '1',
+    platz,
+    grund,
+    '1',
+    '1',
+    'SV Test',
+    '1234',
+    '00:02:00,00',
+    '',
+    '',
+    '',
+  ]);
+}
+
+describe('validateDocument für die Wettkampfergebnisliste', () => {
+  it('meldet für eine vollständige Minimalliste gar nichts', () => {
+    expect(validateErgebnis(minimalErgebnis(8))).toEqual([]);
+    expect(validateErgebnis(minimalErgebnis(7))).toEqual([]);
+  });
+
+  it('lehnt eine DSV6-Ergebnisliste fatal ab', () => {
+    const lines = replace(minimalErgebnis(), 'FORMAT', ['Wettkampfergebnisliste', '6']);
+
+    expect(validateErgebnis(lines).map((d) => d.severity)).toEqual(['fatal']);
+  });
+
+  describe('Kicks nur bei Schmetterling', () => {
+    it('greift auch in der Ergebnisliste', () => {
+      const lines = replace(minimalErgebnis(8), 'WETTKAMPF', [
+        '1',
+        'E',
+        '1',
+        '1',
+        '50',
+        'F',
+        'KB',
+        'M',
+        'SW',
+        '',
+        '',
+      ]);
+
+      expect(validateErgebnis(lines).map((d) => d.code)).toEqual(['invalid-value']);
+    });
+  });
+
+  describe('Platz 0 bei Nichtwertung', () => {
+    it.each(['PNERGEBNIS', 'STERGEBNIS'])('akzeptiert Platz 0 mit Grund in %s', (element) => {
+      const record = element === 'PNERGEBNIS' ? pnergebnis('0', 'DS') : stergebnis('0', 'DS');
+
+      expect(validateErgebnis([...minimalErgebnis(), record])).toEqual([]);
+    });
+
+    it.each(['PNERGEBNIS', 'STERGEBNIS'])('akzeptiert einen Platz ohne Grund in %s', (element) => {
+      const record = element === 'PNERGEBNIS' ? pnergebnis('3', '') : stergebnis('3', '');
+
+      expect(validateErgebnis([...minimalErgebnis(), record])).toEqual([]);
+    });
+
+    it.each(['PNERGEBNIS', 'STERGEBNIS'])('meldet Platz ungleich 0 mit Grund in %s', (element) => {
+      const record = element === 'PNERGEBNIS' ? pnergebnis('3', 'DS') : stergebnis('3', 'DS');
+      const diagnostics = validateErgebnis([...minimalErgebnis(), record]);
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.severity).toBe('error');
+      expect(diagnostics[0]?.data).toMatchObject({
+        element,
+        field: 'platz',
+        value: '3',
+        grundDerNichtwertung: 'DS',
+      });
     });
   });
 });

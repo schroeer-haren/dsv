@@ -74,12 +74,25 @@ const WETTKAMPF_QUALIFIKATIONSNR = 9;
  */
 const QUALIFIZIERENDE_ARTEN = new Set(['Z', 'F']);
 
+/**
+ * Ergebniselemente der Wettkampfergebnisliste. In beiden liegen Platz und Grund
+ * der Nichtwertung an derselben Stelle (dsv8.md:5046/5052 und
+ * dsv8.md:5397/5403).
+ */
+const ERGEBNIS_ELEMENTE = ['PNERGEBNIS', 'STERGEBNIS'];
+const ERGEBNIS_PLATZ = 3;
+const ERGEBNIS_GRUND = 4;
+
 /** Ausübungswerte, die nur bei Technik `S` zulässig sind (dsv8.md:1070). */
 const KICK_AUSUEBUNGEN = new Set(['KB', 'KR']);
 
 /**
- * Querregeln zwischen Elementen: Meldegelder werden entweder überwiesen oder
- * eingezogen, nicht beides (dsv8.md:813).
+ * Querregeln zwischen Elementen und zwischen Feldern eines Elements, etwa: Meldegelder
+ * werden entweder überwiesen oder eingezogen, nicht beides (dsv8.md:813).
+ *
+ * Die Regeln gelten listenartübergreifend. Sie greifen über Elementnamen, und
+ * Elemente, die eine Listenart nicht kennt, kommen dort schlicht nicht vor —
+ * die zugehörige Regel bleibt dann folgenlos.
  */
 function validateCrossRules(byElement: Map<string, DsvRecord[]>): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
@@ -141,6 +154,35 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>): Diagnostic[] {
               element: 'WETTKAMPF',
               field: 'qualifikationswettkampfnr',
               condition: art,
+            },
+          },
+        ),
+      );
+    }
+  }
+
+  for (const element of ERGEBNIS_ELEMENTE) {
+    for (const record of byElement.get(element) ?? []) {
+      // Wer nicht gewertet wird, belegt keinen Platz (dsv8.md:5093,
+      // dsv8.md:5476).
+      const grund = (record.fields[ERGEBNIS_GRUND] ?? '').trim();
+      if (grund === '') continue;
+
+      const platz = (record.fields[ERGEBNIS_PLATZ] ?? '').trim();
+      if (platz === '0') continue;
+
+      diagnostics.push(
+        createDiagnostic(
+          'invalid-value',
+          'error',
+          `${element}.platz must be 0 when grundDerNichtwertung is set, found "${platz}"`,
+          {
+            ...at(record.line),
+            data: {
+              element,
+              field: 'platz',
+              value: platz,
+              grundDerNichtwertung: grund,
             },
           },
         ),
