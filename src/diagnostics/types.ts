@@ -1,0 +1,30 @@
+/**
+ * `fatal` bedeutet: Die Eingabe ist keine verwertbare DSV-Datei. Nur diese
+ * Stufe wirft auch in der nicht-werfenden API.
+ */
+export type Severity = 'fatal' | 'error' | 'warning' | 'info';
+
+/** 1-basiert; `column` zählt UTF-16-Code-Units. */
+export interface Position {
+  readonly line: number;
+  readonly column: number;
+}
+
+export type DiagnosticCode =
+  | 'missing-format-element'
+  | 'missing-dateiende-element'
+  | 'format-not-first-element'
+  | 'unknown-encoding-replacement-character'
+  | 'unterminated-field-list'
+  | 'unexpected-field-count'
+  | 'empty-input';
+
+export interface Diagnostic {
+  readonly code: DiagnosticCode;
+  readonly severity: Severity;
+  /** Englisch. Lokalisierung erfolgt über `code` und `data`. */
+  readonly message: string;
+  readonly start: Position;
+  readonly end: Position;
+  readonly data?: Readonly<Record<string, unknown>>;
+}
