@@ -6,7 +6,7 @@
  * ungültige Angaben stillschweigend verschieben (der 32.01. würde zum 01.02.).
  */
 export interface Datum {
-  /** Tag im Monat, 1–31. */
+  /** Tag im Monat, 1 bis zur Länge des Monats. */
   readonly day: number;
   /** Monat, 1–12. */
   readonly month: number;
@@ -16,12 +16,35 @@ export interface Datum {
 
 const PATTERN = /^(\d{2})\.(\d{2})\.(\d{4})$/;
 
+const MONATSLAENGEN = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] as const;
+
+/** Schaltjahr nach der vollen gregorianischen Regel. */
+function istSchaltjahr(year: number): boolean {
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+}
+
+/** Länge eines Monats in Tagen; `month` muss zwischen 1 und 12 liegen. */
+function tageImMonat(month: number, year: number): number {
+  if (month === 2 && istSchaltjahr(year)) return 29;
+  return MONATSLAENGEN[month - 1] ?? 0;
+}
+
 /**
  * Liest ein Datum, oder `null` bei ungültiger Eingabe.
  *
- * Geprüft werden Tag (1–31) und Monat (1–12); die Länge des jeweiligen Monats
- * wird bewusst nicht geprüft, damit das Lesen nicht an Angaben scheitert, die
- * ein Wettkampfprogramm so ausgegeben hat.
+ * Geprüft werden Form, Monat (1–12) und der Kalender: Der Tag muss es im
+ * angegebenen Monat wirklich geben, Schaltjahre eingeschlossen — der
+ * 29.02.2024 ist gültig, der 29.02.2025 nicht. Früher prüfte diese Funktion
+ * nur die Form (Tag 1–31), um beim Lesen nicht an Angaben zu scheitern, die
+ * ein Wettkampfprogramm so ausgegeben hat. Ein Abgleich über alle
+ * Testdateien ergab jedoch keine einzige unmögliche Angabe, und eine
+ * unabhängige Fremdimplementierung desselben Formats prüft hier ebenfalls
+ * den echten Kalender. Der 31.02. ist damit kein Datum, das die Bibliothek
+ * weiterreicht, sondern ein Fehler in der Quelldatei.
+ *
+ * Die Prüfung kommt ohne `Date` aus: `Date` trägt eine Zeitzone mit sich, die
+ * im Format nicht vorkommt, und verschöbe ungültige Angaben stillschweigend
+ * (der 31.02. würde zum 03.03.), statt sie zu melden.
  */
 export function decodeDatum(value: string): Datum | null {
   const m = PATTERN.exec(value);
@@ -30,9 +53,11 @@ export function decodeDatum(value: string): Datum | null {
   const [, dd, mm, yyyy] = m as unknown as [string, string, string, string];
   const day = Number(dd);
   const month = Number(mm);
-  if (day < 1 || day > 31 || month < 1 || month > 12) return null;
+  const year = Number(yyyy);
+  if (month < 1 || month > 12) return null;
+  if (day < 1 || day > tageImMonat(month, year)) return null;
 
-  return { day, month, year: Number(yyyy) };
+  return { day, month, year };
 }
 
 /** Schreibt ein Datum als `TT.MM.JJJJ` mit führenden Nullen. */
