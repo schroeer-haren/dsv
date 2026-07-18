@@ -4,7 +4,26 @@ Entwurf für den Aufbau von `@schroeer-haren/dsv`. Grundlage sind die
 Spezifikationen DSV7 und DSV8 (siehe CLAUDE.md, Abschnitt „Spezifikationen").
 Zeilenangaben `dsv8.md:NNN` beziehen sich auf die Markdown-Fassung in `spec/`.
 
-Fassung 2, nach fachlichem Review gegen die Spec und Design-Review.
+Fassung 3, nach fachlichem Review gegen die Spec, Design-Review und
+Festlegung der Zielsetzung.
+
+## Zielsetzung
+
+**Vollständige Formatabdeckung: alle vier Listenarten, lesen und schreiben,
+DSV7 und DSV8.** Es gibt keinen einzelnen Treiber-Anwendungsfall, dem die
+Bibliothek untergeordnet wird – Anzeigen, Melden und Konvertieren sind
+gleichrangig.
+
+Das hat eine Konsequenz, die den Rest des Dokuments prägt: Weil kein
+Anwendungsfall priorisiert wird, kann keiner die Architektur retten, wenn sie
+für einen anderen falsch ist. Der Schema-Ansatz ist deshalb keine
+Bequemlichkeit, sondern die Bedingung dafür, dass der volle Umfang überhaupt
+erreichbar ist – 20 Elemente × 4 Listenarten × 2 Versionen × (lesen + schreiben
+
+- validieren) von Hand sind rund 640 Codepfade.
+
+Aus dem vollen Umfang folgt außerdem, dass die Reihenfolge der Umsetzung
+umso wichtiger wird: Breite entsteht am Ende, nicht am Anfang.
 
 ## Ausgangslage aus der Spec
 
@@ -319,18 +338,46 @@ bietet sonst niemand an.
 - bei gesetztem „Grund der Nichtwertung" muss `Platz` = 0 sein
 - Vergleiche von Listart und Enum-Werten **case-insensitiv**
 
-## Testkonzept
+## Testdaten und Datenschutz
 
-`spec/` ist gitignored – die Spec-PDFs stehen in CI **nicht** zur Verfügung, und
-ihre Beispiele enthalten Tippfehler (Befund 9). Sie taugen deshalb nicht als
-Fixture-Quelle.
+Echte DSV-Dateien sind unverzichtbar, weil die Spec nicht beschreibt, was
+erzeugende Programme tatsächlich schreiben – trailing Semikola, Leerzeichen,
+Zeilenenden, Groß-/Kleinschreibung der Listart. Genau diese Abweichungen sind
+das, wogegen die Bibliothek robust sein muss.
 
-- Eingecheckter **eigener, synthetischer Fixture-Korpus**, dazu anonymisierte
-  Realdateien.
+Echte Dateien enthalten aber **personenbezogene Daten**: Klarname, Jahrgang,
+Geschlecht, DSV-ID und Verein, bei Nachwuchswettkämpfen also Daten von Kindern.
+In einem öffentlichen Repository wären sie dauerhaft abrufbar, suchmaschinen-
+indexiert und über die Git-History auch nach einem Löschen noch vorhanden.
+
+Deshalb zwei getrennte Korpora:
+
+| Zweck                      | Ort                    | Git       | Inhalt                            |
+| -------------------------- | ---------------------- | --------- | --------------------------------- |
+| Entwicklung gegen Realität | `spec/samples/`        | ignoriert | Originaldateien, unverändert      |
+| CI und Repository          | `test/fixtures/real/`  | committet | dieselben Dateien, anonymisiert   |
+| Schema-Abdeckung           | `test/fixtures/synth/` | committet | synthetisch, deckt alle Felder ab |
+
+Die Anonymisierung ersetzt Namen und randomisiert DSV-IDs, lässt aber
+**Struktur, Zeiten, Feldanzahl, Whitespace und Zeilenenden byte-genau
+unangetastet** – der Testwert steckt in den Formateigenheiten, nicht in den
+Klarnamen. Das Anonymisierungsskript liegt im Repo (`scripts/anonymize.ts`),
+damit die Ableitung nachvollziehbar und wiederholbar ist.
+
+`spec/` bleibt insgesamt gitignored: dort liegen sowohl die DSV-PDFs (Urheber-
+recht) als auch die Originaldateien (Personendaten).
+
+## Weiteres Testkonzept
+
+Die Spec-Beispiele taugen **nicht** als Fixture-Quelle – sie enthalten
+Tippfehler (Befund 9) und stehen in CI gar nicht zur Verfügung.
+
 - **Property-Tests (`fast-check`)**: Records zufällig aus dem Schema erzeugen →
   encode → decode → vergleichen. Das deckt Felder ab, die in keiner
   Beispieldatei vorkommen, und findet Schema-Fehler in einer 20×4-Matrix
   zuverlässiger als jeder Beispieltest.
+- **Round-Trip über alle Realdateien**: `parse → write` byte-identisch. Der
+  schärfste verfügbare Test, weil er Parser und Serializer gleichzeitig prüft.
 - **Typ-Tests** (`expectTypeOf`) plus `.d.ts`-Snapshot-Test.
 - **`publint` + `@arethetypeswrong/cli`** im `check`-Skript – bei ESM+CJS mit
   `dts: true` die häufigste Fehlerquelle, und sie trifft sonst erst die Nutzer.
@@ -355,7 +402,10 @@ jede interne Umbenennung zum Breaking Change.
   Diskussion empirisch.
 - **Meldegeldberechnung** – Fachlogik, kein Parsen.
 - **DSV6** – veraltet.
-- **High-Level-Schreibpfad** – siehe oben.
+- **High-Level-Schreibpfad.** Schreiben ist voll im Umfang, aber über die
+  Low-Level-Ebene. Ein zweites Mutationsmodell auf dem Objektgraph wäre die
+  eigentliche Verdopplung des Wartungsaufwands – der Nutzen gegenüber
+  „Records bauen und `writeDsv` aufrufen" ist gering, die Kosten sind es nicht.
 
 ## Reihenfolge der Umsetzung
 
@@ -372,16 +422,37 @@ jede interne Umbenennung zum Breaking Change.
    bevor die übrigen Schemata entstehen. Fehlt den Records etwas zur
    Projizierbarkeit, ist es hier billig zu ändern und später an vier Stellen teuer.
 5. Restliche Listenarten – Reihenfolge nach Verfügbarkeit echter Testdateien,
-   nicht nach Spec-Reihenfolge.
+   nicht nach Spec-Reihenfolge. Eine Listenart ohne Realdateien zu bauen heißt,
+   blind zu bauen.
 6. DSV7↔DSV8-Konvertierung. Wegen der rein additiven Änderungen fast geschenkt
    und praktisch relevant, weil DSV7 nur noch bis 31.12.2026 gültig ist.
 
-## Offene Punkte
+Alle vier Listenarten sind für 1.0 gesetzt (siehe Zielsetzung); Schritt 5 ist
+der Umfang, nicht ein optionaler Ausbau.
 
-- Dürfen Kommentare `(* … *)` **hinter** einem Element auf derselben Zeile
-  stehen? Die Spec sagt es nicht (dsv8.md:191–199) – die Bibliothek braucht eine
-  dokumentierte Entscheidung.
-- `SB10` fehlt in der Brust-Startklassenliste (dsv8.md:2320 ff.). Vermutlich
-  Spec-Lücke: strikt ablehnen oder tolerieren?
-- Das offizielle Änderungsverzeichnis nennt drei neue Attribute, der Diff findet
-  vier (zusätzlich `VEREIN.Lastschrift`). Beim Implementieren verifizieren.
+## Umgang mit Unklarheiten der Spec
+
+Leitlinie: **beim Lesen tolerant, beim Schreiben strikt** – und jede Toleranz
+erzeugt eine Diagnostic, damit sie sichtbar bleibt statt still zu wirken.
+
+Daraus abgeleitete Entscheidungen zu den bekannten Lücken:
+
+- **Kommentare hinter einem Element auf derselben Zeile**: Die Spec sagt dazu
+  nichts (dsv8.md:191–199). Ein `(*` innerhalb einer Elementzeile wird **nicht**
+  als Kommentar interpretiert, sondern als normaler ZK-Inhalt – der Datentyp
+  erlaubt beliebige Zeichen, und eine Sonderbehandlung würde gültige Daten
+  zerstören. Nur Zeilen, die (nach Whitespace) mit `(*` beginnen, sind
+  Kommentare.
+- **`SB10` fehlt in der Brust-Startklassenliste** (dsv8.md:2320 ff.): mit hoher
+  Wahrscheinlichkeit eine Spec-Lücke, da `SB1`–`SB9` und `SB11`–`SB14`
+  vorhanden sind. Wird beim Lesen akzeptiert, beim Schreiben ebenfalls erlaubt,
+  mit einer `info`-Diagnostic.
+- **Änderungsverzeichnis vs. Diff**: Das offizielle Verzeichnis nennt drei neue
+  Attribute, der Diff findet vier (zusätzlich `VEREIN.Lastschrift`). Beim
+  Implementieren der Vereinsmeldeliste an Realdateien verifizieren.
+- **Der Komma-statt-Semikolon-Fehler** in den Spec-Beispielen wird **nicht**
+  toleriert – er ist als Tippfehler identifiziert (Befund 9), nicht als
+  Formatvariante.
+
+Grundsatz für künftige Fälle: Wo die Spec schweigt und eine Interpretation
+gültige Daten zerstören könnte, gewinnt die konservative Lesart.
