@@ -1,3 +1,5 @@
+import { listSchema, occurrence } from './list-schema.js';
+import type { EnumValue } from './types.js';
 import { element, field } from './types.js';
 
 /** FORMAT — Kennzeichnung von Listenart und Formatversion (dsv8.md:361). */
@@ -165,4 +167,366 @@ export const MELDESCHLUSS = element('MELDESCHLUSS', [
     doc: 'Uhrzeit des Meldeschlusses.',
     specRef: 'dsv8.md:750',
   }),
+]);
+
+/** BANKVERBINDUNG — Konto für die Meldegelder (dsv8.md:778). */
+export const BANKVERBINDUNG = element('BANKVERBINDUNG', [
+  field('nameDerBank', 'ZK', { doc: 'Name der Bank.', specRef: 'dsv8.md:778' }),
+  field('iban', 'ZK', {
+    required: true,
+    doc: 'IBAN für die Überweisung der Meldegelder.',
+    specRef: 'dsv8.md:781',
+  }),
+  field('bic', 'ZK', { doc: 'BIC.', specRef: 'dsv8.md:783' }),
+  field('kontoinhaber', 'ZK', {
+    required: true,
+    since: 8,
+    doc: 'Name des Kontoinhabers.',
+    specRef: 'dsv8.md:791',
+  }),
+]);
+
+/** LASTSCHRIFT — erst ab DSV8; Veranstaltung zieht die Meldegelder ein (dsv8.md:813). */
+export const LASTSCHRIFT = element('LASTSCHRIFT', [
+  field('hinweis', 'Zeichen', {
+    doc: 'Veranstaltung arbeitet ausschliesslich mit Lastschriftverfahren.',
+    specRef: 'dsv8.md:813',
+    default: 'N',
+    values: [
+      { value: 'J', doc: 'ja' },
+      { value: 'N', doc: 'nein' },
+    ],
+  }),
+]);
+
+/** BESONDERES — freier Hinweistext zur Veranstaltung (dsv8.md:843). */
+export const BESONDERES = element('BESONDERES', [
+  field('anmerkungen', 'ZK', {
+    required: true,
+    doc: 'Besondere Anmerkungen zur Veranstaltung.',
+    specRef: 'dsv8.md:843',
+  }),
+]);
+
+/** NACHWEIS — Zeitraum und Bahnlänge für den Pflichtzeitennachweis (dsv8.md:861). */
+export const NACHWEIS = element('NACHWEIS', [
+  field('nachweisVon', 'Datum', {
+    required: true,
+    doc: 'Ab wann Zeiten für den Pflichtzeitennachweis gelten.',
+    specRef: 'dsv8.md:861',
+  }),
+  field('nachweisBis', 'Datum', {
+    doc: 'Bis wann Zeiten für den Pflichtzeitennachweis gelten.',
+    specRef: 'dsv8.md:863',
+  }),
+  // Eigener Wertevorrat — nicht der der VERANSTALTUNG (dsv8.md:427).
+  field('bahnlaenge', 'ZK', {
+    required: true,
+    doc: 'Auf welcher Bahnlänge Zeiten berücksichtigt werden.',
+    specRef: 'dsv8.md:865',
+    values: [
+      { value: '25', doc: 'nur 25-m-Bahn' },
+      { value: '50', doc: 'nur 50-m-Bahn' },
+      { value: 'FW', doc: 'Freiwasser' },
+      { value: 'AL', doc: 'alle Bahnlängen' },
+    ],
+  }),
+]);
+
+/** ABSCHNITT — zeitlicher Abschnitt der Veranstaltung (dsv8.md:904). */
+export const ABSCHNITT = element('ABSCHNITT', [
+  field('abschnittsnr', 'Zahl', {
+    required: true,
+    doc: 'Nummer des Abschnitts, maximal zweistellig.',
+    specRef: 'dsv8.md:904',
+  }),
+  field('abschnittsdatum', 'Datum', {
+    required: true,
+    doc: 'Datum, an dem der Abschnitt stattfindet.',
+    specRef: 'dsv8.md:918',
+  }),
+  field('einlass', 'Uhrzeit', { doc: 'Uhrzeit des Einlasses.', specRef: 'dsv8.md:922' }),
+  field('kampfrichtersitzung', 'Uhrzeit', {
+    doc: 'Uhrzeit der Kampfrichtersitzung.',
+    specRef: 'dsv8.md:926',
+  }),
+  field('anfangszeit', 'Uhrzeit', {
+    required: true,
+    doc: 'Uhrzeit, zu der der Abschnitt beginnt.',
+    specRef: 'dsv8.md:928',
+  }),
+  field('relativeAngabe', 'Zeichen', {
+    doc: 'J, wenn die Zeiten relativ zum Ende des Vorabschnitts zu verstehen sind.',
+    specRef: 'dsv8.md:932',
+    default: 'N',
+    values: [
+      { value: 'J', doc: 'relative Angabe' },
+      { value: 'N', doc: 'echte Uhrzeit' },
+    ],
+  }),
+]);
+
+/** Wertevorrat der Wettkampfart, in WETTKAMPF, WERTUNG und PFLICHTZEIT gleich. */
+const WETTKAMPFART_WERTE: readonly EnumValue[] = [
+  { value: 'V', doc: 'Vorlauf' },
+  { value: 'Z', doc: 'Zwischenlauf' },
+  { value: 'F', doc: 'Finale' },
+  { value: 'E', doc: 'Entscheidung' },
+];
+
+/** Wertevorrat der Wertungsklasse, in WERTUNG und PFLICHTZEIT gleich. */
+const WERTUNGSKLASSE_WERTE: readonly EnumValue[] = [
+  { value: 'JG', doc: 'Jahrgang' },
+  { value: 'AK', doc: 'Altersklasse' },
+];
+
+/** WETTKAMPF — ein einzelner Wettkampf der Veranstaltung (dsv8.md:979). */
+export const WETTKAMPF = element('WETTKAMPF', [
+  field('wettkampfnr', 'Zahl', {
+    required: true,
+    doc: 'Nummer des Wettkampfes, maximal dreistellig.',
+    specRef: 'dsv8.md:979',
+  }),
+  field('wettkampfart', 'Zeichen', {
+    required: true,
+    doc: 'Art des Wettkampfes.',
+    specRef: 'dsv8.md:981',
+    values: WETTKAMPFART_WERTE,
+  }),
+  field('abschnittsnr', 'Zahl', {
+    required: true,
+    doc: 'Nummer des Abschnitts, in dem der Wettkampf stattfindet.',
+    specRef: 'dsv8.md:997',
+  }),
+  field('anzahlStarter', 'Zahl', {
+    doc: 'Anzahl der Starter; bei Staffeln die Zahl der Teilnehmenden.',
+    specRef: 'dsv8.md:999',
+    default: '1',
+  }),
+  field('einzelstrecke', 'Zahl', {
+    required: true,
+    doc: 'Strecke in Metern, 1 bis 25000, oder 0 für sonstige.',
+    specRef: 'dsv8.md:1001',
+  }),
+  field('technik', 'Zeichen', {
+    required: true,
+    doc: 'Schwimmart.',
+    specRef: 'dsv8.md:1029',
+    values: [
+      { value: 'F', doc: 'Freistil' },
+      { value: 'R', doc: 'Rücken' },
+      { value: 'B', doc: 'Brust' },
+      { value: 'S', doc: 'Schmetterling' },
+      { value: 'L', doc: 'Lagen' },
+      { value: 'X', doc: 'beliebige Sonderform' },
+    ],
+  }),
+  field('ausuebung', 'ZK', {
+    required: true,
+    doc: 'Art der Ausübung.',
+    specRef: 'dsv8.md:1037',
+    values: [
+      { value: 'GL', doc: 'ganze Lage' },
+      { value: 'BE', doc: 'Beine' },
+      { value: 'AR', doc: 'Arme' },
+      { value: 'ST', doc: 'Start' },
+      { value: 'WE', doc: 'Wende' },
+      { value: 'GB', doc: 'Gleitübung' },
+      { value: 'KB', doc: 'Kicks Bauchlage, nur bei Technik S', since: 8 },
+      { value: 'KR', doc: 'Kicks Rückenlage, nur bei Technik S', since: 8 },
+      { value: 'X', doc: 'beliebige Sonderform' },
+    ],
+  }),
+  // Eigener Wertevorrat — WERTUNG und PFLICHTZEIT weichen ab (dsv8.md:1220, dsv8.md:1323).
+  field('geschlecht', 'Zeichen', {
+    required: true,
+    doc: 'Geschlecht der Teilnehmenden.',
+    specRef: 'dsv8.md:1062',
+    values: [
+      { value: 'M', doc: 'männlich' },
+      { value: 'W', doc: 'weiblich' },
+      { value: 'D', doc: 'divers', since: 8 },
+      { value: 'X', doc: 'gemischte Wettkämpfe' },
+    ],
+  }),
+  field('zuordnungBestenliste', 'ZK', {
+    required: true,
+    doc: 'Zuordnung für Bestenlistenauswertungen.',
+    specRef: 'dsv8.md:1075',
+    values: [
+      { value: 'SW', doc: 'Schwimmen für Jugend und offene Klasse' },
+      { value: 'EW', doc: 'vereinfachter Wettkampf' },
+      { value: 'PA', doc: 'Wettkämpfe für Para-Schwimmer' },
+      { value: 'MS', doc: 'Schwimmen der Masters' },
+      { value: 'KG', doc: 'reiner kindgerechter Wettkampf' },
+      { value: 'XX', doc: 'Andere' },
+    ],
+  }),
+  field('qualifikationswettkampfnr', 'Zahl', {
+    doc: 'Nummer des qualifizierenden Vor- oder Zwischenlaufs.',
+    specRef: 'dsv8.md:1081',
+  }),
+  field('qualifikationswettkampfart', 'Zeichen', {
+    doc: 'Art des qualifizierenden Wettkampfes.',
+    specRef: 'dsv8.md:1119',
+    values: WETTKAMPFART_WERTE,
+  }),
+]);
+
+/** WERTUNG — eine Wertungsgruppe innerhalb eines Wettkampfes (dsv8.md:1151). */
+export const WERTUNG = element('WERTUNG', [
+  field('wettkampfnr', 'Zahl', {
+    required: true,
+    doc: 'Nummer des Wettkampfes.',
+    specRef: 'dsv8.md:1151',
+  }),
+  field('wettkampfart', 'Zeichen', {
+    required: true,
+    doc: 'Art des Wettkampfes.',
+    specRef: 'dsv8.md:1153',
+    values: WETTKAMPFART_WERTE,
+  }),
+  field('wertungsId', 'Zahl', {
+    required: true,
+    doc: 'Veranstaltungsweit eindeutige Kennung der Wertung.',
+    specRef: 'dsv8.md:1161',
+  }),
+  field('wertungsklasseTyp', 'ZK', {
+    required: true,
+    doc: 'Art der Wertungsklasse.',
+    specRef: 'dsv8.md:1165',
+    values: WERTUNGSKLASSE_WERTE,
+  }),
+  field('mindestJgAk', 'JGAK', {
+    required: true,
+    doc: 'Kleinster Jahrgang oder grösste Altersklasse; 0 für die offene Klasse.',
+    specRef: 'dsv8.md:1171',
+  }),
+  field('maximalJgAk', 'JGAK', {
+    doc: 'Grösster Jahrgang oder kleinste Altersklasse; ohne Angabe gilt der Mindestwert.',
+    specRef: 'dsv8.md:1174',
+  }),
+  // Eigener Wertevorrat — andere Reihenfolge als bei WETTKAMPF (dsv8.md:1062).
+  field('geschlecht', 'Zeichen', {
+    doc: 'Geschlecht der Wertung; ohne Angabe gilt das Geschlecht des Wettkampfes.',
+    specRef: 'dsv8.md:1220',
+    values: [
+      { value: 'M', doc: 'männlich' },
+      { value: 'W', doc: 'weiblich' },
+      { value: 'X', doc: 'mixed' },
+      { value: 'D', doc: 'divers' },
+    ],
+  }),
+  field('wertungsname', 'ZK', {
+    required: true,
+    doc: 'Textliche Bezeichnung der Wertung.',
+    specRef: 'dsv8.md:1236',
+  }),
+]);
+
+/** PFLICHTZEIT — zu erfüllende Zeit je Wertungsklasse (dsv8.md:1258). */
+export const PFLICHTZEIT = element('PFLICHTZEIT', [
+  field('wettkampfnr', 'Zahl', {
+    required: true,
+    doc: 'Nummer des Wettkampfes.',
+    specRef: 'dsv8.md:1258',
+  }),
+  field('wettkampfart', 'Zeichen', {
+    required: true,
+    doc: 'Art des Wettkampfes.',
+    specRef: 'dsv8.md:1260',
+    values: WETTKAMPFART_WERTE,
+  }),
+  field('wertungsklasseTyp', 'ZK', {
+    required: true,
+    doc: 'Art der Wertungsklasse.',
+    specRef: 'dsv8.md:1281',
+    values: WERTUNGSKLASSE_WERTE,
+  }),
+  field('mindestJgAk', 'JGAK', {
+    required: true,
+    doc: 'Kleinster Jahrgang oder grösste Altersklasse; 0 für die offene Klasse.',
+    specRef: 'dsv8.md:1287',
+  }),
+  field('maximalJgAk', 'JGAK', {
+    doc: 'Grösster Jahrgang oder kleinste Altersklasse.',
+    specRef: 'dsv8.md:1290',
+  }),
+  field('pflichtzeit', 'Zeit', {
+    required: true,
+    doc: 'Zu erfüllende Pflichtzeit.',
+    specRef: 'dsv8.md:1321',
+  }),
+  // Eigener Wertevorrat — ohne X, da eine Pflichtzeit stets geschlechtsbezogen gilt.
+  field('geschlecht', 'Zeichen', {
+    doc: 'Geschlecht, für das die Pflichtzeit gilt.',
+    specRef: 'dsv8.md:1323',
+    values: [
+      { value: 'M', doc: 'männlich' },
+      { value: 'W', doc: 'weiblich' },
+      { value: 'D', doc: 'divers' },
+    ],
+  }),
+]);
+
+/** MELDEGELD — ein Meldegeldposten der Veranstaltung (dsv8.md:1360). */
+export const MELDEGELD = element('MELDEGELD', [
+  field('meldegeldTyp', 'ZK', {
+    required: true,
+    caseInsensitive: true,
+    doc: 'Art des Meldegeldes.',
+    specRef: 'dsv8.md:1360',
+    values: [
+      { value: 'Meldegeldpauschale', doc: 'pauschal je Verein' },
+      { value: 'Einzelmeldegeld', doc: 'je Einzelwettkampf' },
+      { value: 'Staffelmeldegeld', doc: 'je Staffelwettkampf' },
+      { value: 'Wkmeldegeld', doc: 'je einzelnem Wettkampf, hat Vorrang' },
+      { value: 'Mannschaftmeldegeld', doc: 'für Mannschaftswettkämpfe' },
+      {
+        value: 'Teilnehmermeldegeld',
+        doc: 'pauschal je Teilnehmer mit Einzelmeldung',
+        since: 8,
+      },
+      {
+        value: 'Abschnittspauschale',
+        doc: 'pauschal je Verein und gemeldetem Abschnitt',
+        since: 8,
+      },
+    ],
+  }),
+  field('betrag', 'Betrag', {
+    required: true,
+    doc: 'Betrag des Meldegeldes.',
+    specRef: 'dsv8.md:1382',
+  }),
+  field('wettkampfnr', 'Zahl', {
+    doc: 'Nummer des Wettkampfes; Pflicht bei Typ Wkmeldegeld.',
+    specRef: 'dsv8.md:1389',
+  }),
+]);
+
+/** DATEIENDE — schliesst die Datei ab, ohne Doppelpunkt und ohne Attribute. */
+export const DATEIENDE = element('DATEIENDE', [], { bare: true });
+
+/** Alle Elemente der Wettkampfdefinitionsliste mit ihren Kardinalitäten. */
+export const WETTKAMPFDEFINITIONSLISTE = listSchema('Wettkampfdefinitionsliste', [
+  occurrence(FORMAT, { min: 1, max: 1 }),
+  occurrence(ERZEUGER, { min: 1, max: 1 }),
+  occurrence(VERANSTALTUNG, { min: 1, max: 1 }),
+  occurrence(VERANSTALTUNGSORT, { min: 1, max: 1 }),
+  occurrence(AUSSCHREIBUNGIMNETZ, { min: 1, max: 1 }),
+  occurrence(VERANSTALTER, { min: 1, max: 1 }),
+  occurrence(AUSRICHTER, { min: 1, max: 1 }),
+  occurrence(MELDEADRESSE, { min: 1, max: 1 }),
+  occurrence(MELDESCHLUSS, { min: 1, max: 1 }),
+  occurrence(BANKVERBINDUNG, { min: 0, max: 1 }),
+  occurrence(LASTSCHRIFT, { min: 0, max: 1 }),
+  occurrence(BESONDERES, { min: 0, max: 1 }),
+  occurrence(NACHWEIS, { min: 0, max: 1 }),
+  occurrence(ABSCHNITT, { min: 1, max: null }),
+  occurrence(WETTKAMPF, { min: 1, max: null }),
+  occurrence(WERTUNG, { min: 1, max: null }),
+  occurrence(PFLICHTZEIT, { min: 0, max: null }),
+  occurrence(MELDEGELD, { min: 1, max: null }),
+  occurrence(DATEIENDE, { min: 1, max: 1 }),
 ]);

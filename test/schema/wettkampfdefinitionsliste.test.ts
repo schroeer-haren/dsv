@@ -1,15 +1,26 @@
 import { describe, expect, it } from 'vitest';
 import type { ElementDef } from '../../src/schema/types.js';
 import {
+  ABSCHNITT,
   AUSRICHTER,
   AUSSCHREIBUNGIMNETZ,
+  BANKVERBINDUNG,
+  BESONDERES,
+  DATEIENDE,
   ERZEUGER,
   FORMAT,
+  LASTSCHRIFT,
   MELDEADRESSE,
+  MELDEGELD,
   MELDESCHLUSS,
+  NACHWEIS,
+  PFLICHTZEIT,
   VERANSTALTER,
   VERANSTALTUNG,
   VERANSTALTUNGSORT,
+  WERTUNG,
+  WETTKAMPF,
+  WETTKAMPFDEFINITIONSLISTE,
 } from '../../src/schema/wettkampfdefinitionsliste.js';
 
 /** Namen der Felder in der Reihenfolge der Spezifikation. */
@@ -148,6 +159,261 @@ describe('Wettkampfdefinitionsliste — Kopf und Adressen', () => {
 
   it('belegt jedes Feld mit einer Fundstelle', () => {
     for (const def of kopfElemente) {
+      for (const f of def.fields) {
+        expect(f.specRef, `${def.name}.${f.name}`).toMatch(/^dsv8\.md:\d+$/);
+      }
+    }
+  });
+});
+
+/** Werte einer Werteliste samt Versionsmarkierung. */
+function enumEntries(def: ElementDef, fieldName: string): readonly [string, 8 | undefined][] {
+  const found = def.fields.find((f) => f.name === fieldName);
+  if (found === undefined) throw new Error(`Feld ${fieldName} fehlt in ${def.name}`);
+  return (found.values ?? []).map((v) => [v.value, v.since]);
+}
+
+const wettkampfartWerte = ['V', 'Z', 'F', 'E'];
+
+describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
+  it('benennt BANKVERBINDUNG und führt den Kontoinhaber erst ab DSV8', () => {
+    expect(names(BANKVERBINDUNG)).toEqual(['nameDerBank', 'iban', 'bic', 'kontoinhaber']);
+    expect(requiredNames(BANKVERBINDUNG)).toEqual(['iban', 'kontoinhaber']);
+    expect(BANKVERBINDUNG.fields.find((f) => f.name === 'kontoinhaber')?.since).toBe(8);
+    expect(BANKVERBINDUNG.fields.find((f) => f.name === 'iban')?.since).toBeUndefined();
+  });
+
+  it('benennt LASTSCHRIFT mit Unterlassungswert N', () => {
+    expect(names(LASTSCHRIFT)).toEqual(['hinweis']);
+    expect(requiredNames(LASTSCHRIFT)).toEqual([]);
+    expect(LASTSCHRIFT.fields[0]?.default).toBe('N');
+    expect(enumValues(LASTSCHRIFT, 'hinweis')).toEqual(['J', 'N']);
+  });
+
+  it('benennt BESONDERES', () => {
+    expect(names(BESONDERES)).toEqual(['anmerkungen']);
+    expect(requiredNames(BESONDERES)).toEqual(['anmerkungen']);
+  });
+
+  it('benennt NACHWEIS', () => {
+    expect(names(NACHWEIS)).toEqual(['nachweisVon', 'nachweisBis', 'bahnlaenge']);
+    expect(requiredNames(NACHWEIS)).toEqual(['nachweisVon', 'bahnlaenge']);
+    expect(enumValues(NACHWEIS, 'bahnlaenge')).toEqual(['25', '50', 'FW', 'AL']);
+  });
+
+  it('benennt ABSCHNITT', () => {
+    expect(names(ABSCHNITT)).toEqual([
+      'abschnittsnr',
+      'abschnittsdatum',
+      'einlass',
+      'kampfrichtersitzung',
+      'anfangszeit',
+      'relativeAngabe',
+    ]);
+    expect(requiredNames(ABSCHNITT)).toEqual(['abschnittsnr', 'abschnittsdatum', 'anfangszeit']);
+    expect(ABSCHNITT.fields.find((f) => f.name === 'relativeAngabe')?.default).toBe('N');
+  });
+
+  it('benennt WETTKAMPF', () => {
+    expect(names(WETTKAMPF)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'abschnittsnr',
+      'anzahlStarter',
+      'einzelstrecke',
+      'technik',
+      'ausuebung',
+      'geschlecht',
+      'zuordnungBestenliste',
+      'qualifikationswettkampfnr',
+      'qualifikationswettkampfart',
+    ]);
+    expect(requiredNames(WETTKAMPF)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'abschnittsnr',
+      'einzelstrecke',
+      'technik',
+      'ausuebung',
+      'geschlecht',
+      'zuordnungBestenliste',
+    ]);
+    expect(WETTKAMPF.fields.find((f) => f.name === 'anzahlStarter')?.default).toBe('1');
+  });
+
+  it('zählt die Ausübungen des WETTKAMPFs samt Versionsmarkierung auf', () => {
+    expect(enumEntries(WETTKAMPF, 'ausuebung')).toEqual([
+      ['GL', undefined],
+      ['BE', undefined],
+      ['AR', undefined],
+      ['ST', undefined],
+      ['WE', undefined],
+      ['GB', undefined],
+      ['KB', 8],
+      ['KR', 8],
+      ['X', undefined],
+    ]);
+  });
+
+  it('zählt die Geschlechter des WETTKAMPFs samt Versionsmarkierung auf', () => {
+    expect(enumEntries(WETTKAMPF, 'geschlecht')).toEqual([
+      ['M', undefined],
+      ['W', undefined],
+      ['D', 8],
+      ['X', undefined],
+    ]);
+  });
+
+  it('zählt Technik und Zuordnung zur Bestenliste auf', () => {
+    expect(enumValues(WETTKAMPF, 'technik')).toEqual(['F', 'R', 'B', 'S', 'L', 'X']);
+    expect(enumValues(WETTKAMPF, 'zuordnungBestenliste')).toEqual([
+      'SW',
+      'EW',
+      'PA',
+      'MS',
+      'KG',
+      'XX',
+    ]);
+    expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual(wettkampfartWerte);
+    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual(wettkampfartWerte);
+  });
+
+  it('benennt WERTUNG', () => {
+    expect(names(WERTUNG)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsId',
+      'wertungsklasseTyp',
+      'mindestJgAk',
+      'maximalJgAk',
+      'geschlecht',
+      'wertungsname',
+    ]);
+    expect(requiredNames(WERTUNG)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsId',
+      'wertungsklasseTyp',
+      'mindestJgAk',
+      'wertungsname',
+    ]);
+    expect(enumValues(WERTUNG, 'wertungsklasseTyp')).toEqual(['JG', 'AK']);
+  });
+
+  it('benennt PFLICHTZEIT', () => {
+    expect(names(PFLICHTZEIT)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsklasseTyp',
+      'mindestJgAk',
+      'maximalJgAk',
+      'pflichtzeit',
+      'geschlecht',
+    ]);
+    expect(requiredNames(PFLICHTZEIT)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'wertungsklasseTyp',
+      'mindestJgAk',
+      'pflichtzeit',
+    ]);
+  });
+
+  it('benennt MELDEGELD und prüft den Typ ohne Rücksicht auf Grossschreibung', () => {
+    expect(names(MELDEGELD)).toEqual(['meldegeldTyp', 'betrag', 'wettkampfnr']);
+    expect(requiredNames(MELDEGELD)).toEqual(['meldegeldTyp', 'betrag']);
+    expect(MELDEGELD.fields[0]?.caseInsensitive).toBe(true);
+    expect(enumEntries(MELDEGELD, 'meldegeldTyp')).toEqual([
+      ['Meldegeldpauschale', undefined],
+      ['Einzelmeldegeld', undefined],
+      ['Staffelmeldegeld', undefined],
+      ['Wkmeldegeld', undefined],
+      ['Mannschaftmeldegeld', undefined],
+      ['Teilnehmermeldegeld', 8],
+      ['Abschnittspauschale', 8],
+    ]);
+  });
+
+  it('führt DATEIENDE ohne Attribute', () => {
+    expect(DATEIENDE.name).toBe('DATEIENDE');
+    expect(DATEIENDE.fields).toEqual([]);
+    expect(DATEIENDE.bare).toBe(true);
+  });
+});
+
+describe('Wettkampfdefinitionsliste — unterschiedliche Wertelisten', () => {
+  it('hält die drei Geschlechts-Wertelisten auseinander', () => {
+    // WETTKAMPF kennt divers und gemischt, WERTUNG kennt beides ohne
+    // Versionsmarkierung, PFLICHTZEIT kennt bewusst kein X.
+    expect(enumValues(WETTKAMPF, 'geschlecht')).toEqual(['M', 'W', 'D', 'X']);
+    expect(enumValues(WERTUNG, 'geschlecht')).toEqual(['M', 'W', 'X', 'D']);
+    expect(enumValues(PFLICHTZEIT, 'geschlecht')).toEqual(['M', 'W', 'D']);
+
+    expect(enumValues(PFLICHTZEIT, 'geschlecht')).not.toContain('X');
+    expect(enumValues(WETTKAMPF, 'geschlecht')).not.toEqual(enumValues(WERTUNG, 'geschlecht'));
+    expect(enumValues(WERTUNG, 'geschlecht')).not.toEqual(enumValues(PFLICHTZEIT, 'geschlecht'));
+  });
+
+  it('hält die beiden Bahnlängen-Wertelisten auseinander', () => {
+    expect(enumValues(VERANSTALTUNG, 'bahnlaenge')).not.toEqual(enumValues(NACHWEIS, 'bahnlaenge'));
+    expect(enumValues(NACHWEIS, 'bahnlaenge')).toContain('AL');
+    expect(enumValues(VERANSTALTUNG, 'bahnlaenge')).not.toContain('AL');
+  });
+});
+
+describe('WETTKAMPFDEFINITIONSLISTE', () => {
+  it('kennt die Listart', () => {
+    expect(WETTKAMPFDEFINITIONSLISTE.listenart).toBe('Wettkampfdefinitionsliste');
+  });
+
+  it('führt 19 Elemente in der Reihenfolge der Spezifikation', () => {
+    expect(WETTKAMPFDEFINITIONSLISTE.elements.map((e) => e.def.name)).toEqual([
+      'FORMAT',
+      'ERZEUGER',
+      'VERANSTALTUNG',
+      'VERANSTALTUNGSORT',
+      'AUSSCHREIBUNGIMNETZ',
+      'VERANSTALTER',
+      'AUSRICHTER',
+      'MELDEADRESSE',
+      'MELDESCHLUSS',
+      'BANKVERBINDUNG',
+      'LASTSCHRIFT',
+      'BESONDERES',
+      'NACHWEIS',
+      'ABSCHNITT',
+      'WETTKAMPF',
+      'WERTUNG',
+      'PFLICHTZEIT',
+      'MELDEGELD',
+      'DATEIENDE',
+    ]);
+    expect(WETTKAMPFDEFINITIONSLISTE.elements).toHaveLength(19);
+  });
+
+  it('führt die Kardinalitäten je Element', () => {
+    const card = (name: string): string => {
+      const found = WETTKAMPFDEFINITIONSLISTE.find(name);
+      if (found === undefined) throw new Error(`Element ${name} fehlt`);
+      return `${found.min}..${found.max === null ? 'N' : found.max}`;
+    };
+
+    expect(card('FORMAT')).toBe('1..1');
+    expect(card('MELDESCHLUSS')).toBe('1..1');
+    expect(card('BANKVERBINDUNG')).toBe('0..1');
+    expect(card('LASTSCHRIFT')).toBe('0..1');
+    expect(card('BESONDERES')).toBe('0..1');
+    expect(card('NACHWEIS')).toBe('0..1');
+    expect(card('ABSCHNITT')).toBe('1..N');
+    expect(card('WETTKAMPF')).toBe('1..N');
+    expect(card('WERTUNG')).toBe('1..N');
+    expect(card('PFLICHTZEIT')).toBe('0..N');
+    expect(card('MELDEGELD')).toBe('1..N');
+    expect(card('DATEIENDE')).toBe('1..1');
+  });
+
+  it('belegt jedes Feld jedes Elements mit einer Fundstelle', () => {
+    for (const { def } of WETTKAMPFDEFINITIONSLISTE.elements) {
       for (const f of def.fields) {
         expect(f.specRef, `${def.name}.${f.name}`).toMatch(/^dsv8\.md:\d+$/);
       }
