@@ -273,10 +273,10 @@ describe('validateValues', () => {
 });
 
 describe('tolerierte Aufzählungswerte', () => {
-  // Die Spezifikation sieht A und N nur in den Ergebnislisten vor. Das
-  // DSV-Portal schreibt sie aber auch in Ausschreibungen — belegt in
+  // Die Spezifikation sieht A und N nur in den Ergebnislisten vor. In echten
+  // Ausschreibungen kommt N trotzdem vor — belegt in
   // dsvportal-13062024-Wk.dsv7. Als Fehler gemeldet wiese die Bibliothek
-  // Dateien zurück, die der Verband selbst ausliefert.
+  // Dateien zurück, die in der Praxis im Umlauf sind.
   const wettkampfMit = (art: string): DsvRecord => ({
     kind: 'element',
     element: 'WETTKAMPF',

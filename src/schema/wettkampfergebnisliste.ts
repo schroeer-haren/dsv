@@ -470,7 +470,8 @@ export const PNERGEBNIS = element('PNERGEBNIS', [
     doc:
       'Altersklasse. Die Spezifikation liefert für dieses Feld keine Beschreibung; ' +
       'Datentyp und Pflichtangabe sind aus der Spaltenreihenfolge rekonstruiert. ' +
-      'In allen 72 echten Dateien ist es leer.',
+      'In den 72 echten Ergebnislisten ist es in 9982 von 95756 Zeilen gesetzt ' +
+      '(51 der 72 Dateien).',
     specRef: 'dsv8.md:5124',
   }),
   field('verein', 'ZK', { required: true, doc: 'Name des Vereins.', specRef: 'dsv8.md:5126' }),
@@ -735,7 +736,7 @@ export const STZWISCHENZEIT = element('STZWISCHENZEIT', [
 /**
  * STABLOESE — Ablösezeit einer Staffelperson (dsv8.md:5751).
  *
- * Dieses Element kommt in keiner der 75 untersuchten echten Dateien vor. Die
+ * Dieses Element kommt in keiner der 72 untersuchten echten Ergebnislisten vor. Die
  * Definition stützt sich allein auf die Spezifikation; es gibt keine
  * empirische Bestätigung von Feldfolge und Wertevorrat.
  */
