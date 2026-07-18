@@ -281,8 +281,9 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   // Ausschreibungen — belegt in dsvportal-13062024-Wk.dsv7, wo Wettkämpfe
   // mit Art N als „Nachschwimmen" kommentiert sind. Toleriert beim Lesen,
   // beim Schreiben weiterhin unzulässig.
-  { value: 'A', doc: 'Ausschwimmen (laut Spec nur in Ergebnislisten)', tolerated: true },
-  { value: 'N', doc: 'Nachschwimmen (laut Spec nur in Ergebnislisten)', tolerated: true },
+  // Den Vorbehalt trägt `tolerated`; die generierten Typen schreiben ihn aus.
+  { value: 'A', doc: 'Ausschwimmen', tolerated: true },
+  { value: 'N', doc: 'Nachschwimmen', tolerated: true },
 ];
 
 /** Wertevorrat der Wertungsklasse, in WERTUNG und PFLICHTZEIT gleich. */
