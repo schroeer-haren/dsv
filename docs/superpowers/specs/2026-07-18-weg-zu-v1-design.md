@@ -144,7 +144,8 @@ Kein Nachrüsten, sondern der Durchgang, der DSV8 end-to-end verifiziert.
 ### M6 — Release-Kandidat (0.9.0)
 
 - **API-Freeze-Review**: jede öffentlich exportierte Funktion und jeder Typ
-  einmal bewusst bestätigt; alles Übrige wird interne Fläche.
+  einmal bewusst bestätigt, festgehalten als eingecheckte Liste der öffentlichen
+  API-Oberfläche; alles Übrige wird interne Fläche.
 - **`publint` + `@arethetypeswrong/cli`** im `check`-Skript — binär prüfbar.
 - **Robustheitsdurchgang**: je ein Test für abgeschnittene Zeile, falsche
   Feldanzahl, leere Datei, BOM, gemischte Zeilenenden, sehr lange Zeile.
@@ -155,6 +156,10 @@ Kein Nachrüsten, sondern der Durchgang, der DSV8 end-to-end verifiziert.
 - **Dokumentation**: README mit Beispielen je Listenart.
 
 ### M7 — Freigabe (1.0.0)
+
+Kein neuer Lieferumfang. Erfüllt, wenn die Kriterien 1, 3 und 4 aus „Je
+Meilenstein" auf dem Stand von M6 erneut grün sind und der Tag `v1.0.0` gesetzt
+ist.
 
 ## Testvorgehen
 
@@ -221,7 +226,7 @@ Falls gewünscht, wäre M6 der Zeitpunkt.
 
 ## Abnahmekriterien
 
-### Je Meilenstein (M1–M6)
+### Je Meilenstein (M1–M7)
 
 1. `npm run check` grün (Lint, Typecheck, Tests)
 2. Round-Trip-Kriterium des Meilensteins erfüllt (siehe unten)
@@ -264,17 +269,17 @@ zeilengenauer Abgleich jedes Delta-Felds gegen `dsv8.md`, dokumentiert als
 Zeilenangabe im Schema-Kommentar.
 
 Für M4 und M5 ersetzen diese Kriterien die zweite Hälfte des kritischen
-Schweregrads („Verhalten ungeprüft, das Realdaten-Fixtures auslösen"), die dort
+Schweregrads („Verhalten ist ungeprüft, das Realdaten-Fixtures auslösen"), die dort
 mangels Realdaten ins Leere liefe.
 
 ## Risiken
 
-| Risiko                                                                                                           | Gegenmittel                                                                                                                                   |
-| ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Zwei Listenarten ohne Realdaten** (M4). Kein echtes Gegenbeispiel kann widersprechen — die riskanteste Stelle. | Ersatzkriterium oben: Abdeckungsnachweis plus Cross-Check gegen den Ruby-Parser. Echte Meldedatei einspielen, falls beschaffbar.              |
-| **DSV8 ohne jede Realdatei** (M5).                                                                               | DSV8 ist rein additiv: keine Feldverschiebung, keine Entfernung, nichts umgedeutet außer `MELDEGELDPAUSCHALE`. Ab Herbst 2026 gegenprüfen.    |
-| **Codegen-Entscheidung falsch.**                                                                                 | M0 prüft sie an einer echten `.d.ts` mit objektivem Abbruchkriterium, bevor 80 Elementdefinitionen darauf aufbauen; Rückfallpfad ist benannt. |
-| **Byte-genauer Round-Trip nicht erreichbar.**                                                                    | Abnahmebedingung von M1. Steht es dort nicht, steht es später gar nicht — die Records müssen den Rohtext von Anfang an mitführen.             |
+| Risiko                                                                                                           | Gegenmittel                                                                                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Zwei Listenarten ohne Realdaten** (M4). Kein echtes Gegenbeispiel kann widersprechen — die riskanteste Stelle. | Ersatzkriterium oben: Abdeckungsnachweis plus Cross-Check gegen den Ruby-Parser. Echte Meldedatei einspielen, falls beschaffbar.                                                                             |
+| **DSV8 ohne jede Realdatei** (M5).                                                                               | DSV8 ist rein additiv: keine Feldverschiebung, keine Entfernung, nichts umgedeutet außer `MELDEGELDPAUSCHALE` und der Pflichtfeld-Eigenschaft von `Kontoinhaber` beim Schreiben. Ab Herbst 2026 gegenprüfen. |
+| **Codegen-Entscheidung falsch.**                                                                                 | M0 prüft sie an einer echten `.d.ts` mit objektivem Abbruchkriterium, bevor 80 Elementdefinitionen darauf aufbauen; Rückfallpfad ist benannt.                                                                |
+| **Byte-genauer Round-Trip nicht erreichbar.**                                                                    | Abnahmebedingung von M1. Steht es dort nicht, steht es später gar nicht — die Records müssen den Rohtext von Anfang an mitführen.                                                                            |
 
 Nicht eingeplant: **Performance**. Die größte Fixture hat rund 14.000 Zeilen,
 für einen zeilenweisen Parser unkritisch. Benchmark in M6, aber vorher wird

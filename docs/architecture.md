@@ -77,17 +77,19 @@ Punkt 5 ist der Kern: der Schlüssel für eine Elementdefinition ist
 ## Befunde aus 108 echten Dateien
 
 Gesammelter Bestand in `spec/samples/`: 75 Wettkampfergebnislisten, 33
-Wettkampfdefinitionslisten; 103× DSV7, 5× DSV6, **0× DSV8**. Erzeuger: 83×
-EasyWk, 9× SPLASH Meet Manager 11.
+Wettkampfdefinitionslisten; 103× DSV7, 5× DSV6, **0× DSV8**. Erzeuger: 91×
+EasyWk, 9× SPLASH Meet Manager 11, 8 ohne Erzeuger-Kommentar.
 
 Was die Realität anders macht als die Spec – jeder Punkt ist ein Parser-Bug in
 spe:
 
-1. **`FORMAT:` steht nie in Zeile 1.** Davor stehen ein bis mehrere
-   Erzeuger-Kommentare (`(* erzeugt mit EasyWk … *)`, `(* SPLASH Meet Manager
-11 … *)`), `FORMAT:` folgt erst in Zeile 3–9. Die Spec-Regel „FORMAT muss
-   erstes Element sein" meint das erste **Element** – Kommentarzeilen zählen
-   nicht mit. Eine Prüfung auf Zeile 1 scheitert an praktisch jeder echten Datei.
+1. **`FORMAT:` steht nur selten in Zeile 1.** In 106 von 108 Dateien stehen
+   davor ein bis mehrere Erzeuger-Kommentare (`(* erzeugt mit EasyWk … *)`,
+   `(* SPLASH Meet Manager 11 … *)`); `FORMAT:` folgt dann in Zeile 3 (9×),
+   6 (91×) oder 9 (6×). Nur zwei Dateien beginnen direkt damit. Die Spec-Regel
+   „FORMAT muss erstes Element sein" meint das erste **Element** –
+   Kommentarzeilen zählen nicht mit. Eine Prüfung auf Zeile 1 scheitert an
+   praktisch jeder echten Datei.
 2. **Leerzeichen nach dem Doppelpunkt sind die Mehrheit**, nicht die Ausnahme:
    `FORMAT: Wettkampfergebnisliste;7;` in 91 von 108 Dateien gegenüber 17 ohne.
    Gilt auch für Datenzeilen (`VERANSTALTUNG: Kreismeisterschaften…`).
