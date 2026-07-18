@@ -1,0 +1,132 @@
+import { createDiagnostic } from '../diagnostics/create.js';
+import type { Diagnostic, Position } from '../diagnostics/types.js';
+import type { DsvRecord } from '../document/types.js';
+import type { ElementDef, FieldDef, ScalarType } from '../schema/types.js';
+import { decodeDatum } from '../values/datum.js';
+import { decodeUhrzeit } from '../values/uhrzeit.js';
+import { decodeZeit } from '../values/zeit.js';
+import type { FormatVersion } from './validate-fields.js';
+import { fieldsForVersion, isBlank } from './validate-fields.js';
+
+const ZAHL = /^\d+$/;
+/** Betrag mit genau zwei Nachkommastellen, z. B. `10,00` (dsv8.md:283). */
+const BETRAG = /^\d+,\d{2}$/;
+/**
+ * Jahrgang (ein bis vier Ziffern), Altersklassenbuchstabe oder Masters-Staffel
+ * mit zwei bis drei Ziffern und Pluszeichen (dsv8.md:291).
+ */
+const JGAK = /^(?:\d{1,4}|[ABCDEJ]|\d{2,3}\+)$/;
+
+/** Prüft einen Wert gegen seinen skalaren Datentyp. */
+function matchesType(value: string, type: ScalarType): boolean {
+  switch (type) {
+    case 'ZK':
+      return true;
+    case 'Zeichen':
+      return [...value].length === 1;
+    case 'Zahl':
+      return ZAHL.test(value);
+    case 'Datum':
+      return decodeDatum(value) !== null;
+    case 'Uhrzeit':
+      return decodeUhrzeit(value) !== null;
+    case 'Zeit':
+      return decodeZeit(value) !== null;
+    case 'Betrag':
+      return BETRAG.test(value);
+    case 'JGAK':
+      return JGAK.test(value);
+  }
+}
+
+/** Prüft, ob der Wert in der in dieser Version gültigen Werteliste vorkommt. */
+function matchesEnum(value: string, def: FieldDef, version: FormatVersion): boolean {
+  const values = def.values;
+  if (values === undefined) return true;
+
+  return values.some((v) => {
+    if (v.since !== undefined && v.since > version) return false;
+    return def.caseInsensitive ? v.value.toLowerCase() === value.toLowerCase() : v.value === value;
+  });
+}
+
+function invalidValue(
+  code: 'invalid-value' | 'invalid-enum-value',
+  message: string,
+  def: FieldDef,
+  value: string,
+  at: { start: Position; end: Position },
+): Diagnostic {
+  return createDiagnostic(code, 'error', message, {
+    ...at,
+    data: { field: def.name, value },
+  });
+}
+
+/**
+ * Prüft Werttypen, Zahlenbereiche und Aufzählungswerte eines Records.
+ *
+ * Leere Werte werden übersprungen: Ob ein Pflichtfeld gesetzt sein muss, hat
+ * bereits `validateFields` entschieden.
+ */
+export function validateValues(
+  record: DsvRecord,
+  def: ElementDef,
+  version: FormatVersion,
+): Diagnostic[] {
+  const at = {
+    start: { line: record.line, column: 1 },
+    end: { line: record.line, column: 1 },
+  };
+
+  const diagnostics: Diagnostic[] = [];
+
+  for (const [index, fieldDef] of fieldsForVersion(def, version).entries()) {
+    const value = record.fields[index];
+    if (value === undefined || isBlank(value)) continue;
+
+    if (!matchesType(value, fieldDef.type)) {
+      diagnostics.push(
+        invalidValue(
+          'invalid-value',
+          `${def.name}.${fieldDef.name}: "${value}" is not a valid ${fieldDef.type}`,
+          fieldDef,
+          value,
+          at,
+        ),
+      );
+      continue;
+    }
+
+    const range = fieldDef.range;
+    if (range !== undefined) {
+      const numeric = Number(value);
+      if (numeric < range.min || numeric > range.max) {
+        diagnostics.push(
+          invalidValue(
+            'invalid-value',
+            `${def.name}.${fieldDef.name}: ${value} is outside ${String(range.min)}..${String(range.max)}`,
+            fieldDef,
+            value,
+            at,
+          ),
+        );
+        continue;
+      }
+    }
+
+    if (!matchesEnum(value, fieldDef, version)) {
+      diagnostics.push(
+        invalidValue(
+          'invalid-enum-value',
+          `${def.name}.${fieldDef.name}: "${value}" is not an allowed value in DSV${String(version)}`,
+          fieldDef,
+          value,
+          at,
+        ),
+      );
+    }
+  }
+
+  return diagnostics;
+}

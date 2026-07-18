@@ -311,6 +311,7 @@ export const WETTKAMPF = element('WETTKAMPF', [
     required: true,
     doc: 'Strecke in Metern, 1 bis 25000, oder 0 für sonstige.',
     specRef: 'dsv8.md:1001',
+    range: { min: 0, max: 25000 },
   }),
   field('technik', 'Zeichen', {
     required: true,

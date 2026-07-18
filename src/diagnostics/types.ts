@@ -19,6 +19,8 @@ export type DiagnosticCode =
   | 'unexpected-field-count'
   | 'unknown-element'
   | 'missing-required-field'
+  | 'invalid-value'
+  | 'invalid-enum-value'
   | 'empty-input';
 
 export interface Diagnostic {

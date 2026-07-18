@@ -11,6 +11,12 @@ export interface EnumValue {
   readonly since?: 8;
 }
 
+/** Zulässiger Zahlenbereich eines Feldes, Grenzen einschliesslich. */
+export interface NumberRange {
+  readonly min: number;
+  readonly max: number;
+}
+
 export interface FieldDef {
   readonly name: string;
   readonly type: ScalarType;
@@ -25,6 +31,11 @@ export interface FieldDef {
   readonly values?: readonly EnumValue[];
   /** Unterlassungswert, der gilt, wenn das Feld nicht angegeben ist. */
   readonly default?: string;
+  /**
+   * Zulässiger Zahlenbereich, jeweils einschliesslich. Eine Regel des Feldes,
+   * nicht des Typs `Zahl` — nur wenige Felder haben eine solche Schranke.
+   */
+  readonly range?: NumberRange;
   /** `true`, wenn die Werteliste ohne Rücksicht auf Gross-/Kleinschreibung geprüft wird. */
   readonly caseInsensitive: boolean;
 }
@@ -45,6 +56,7 @@ interface FieldOptions {
   readonly specRef: string;
   readonly values?: readonly EnumValue[];
   readonly default?: string;
+  readonly range?: NumberRange;
   readonly caseInsensitive?: boolean;
 }
 
@@ -58,6 +70,7 @@ export function field(name: string, type: ScalarType, options: FieldOptions): Fi
     specRef: options.specRef,
     ...(options.values === undefined ? {} : { values: options.values }),
     ...(options.default === undefined ? {} : { default: options.default }),
+    ...(options.range === undefined ? {} : { range: options.range }),
     caseInsensitive: options.caseInsensitive ?? false,
   };
 }
