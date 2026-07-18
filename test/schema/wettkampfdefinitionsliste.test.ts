@@ -173,7 +173,10 @@ function enumEntries(def: ElementDef, fieldName: string): readonly [string, 8 | 
   return (found.values ?? []).map((v) => [v.value, v.since]);
 }
 
+/** Von der Spezifikation für diese Listenart vorgesehen. */
 const wettkampfartWerte = ['V', 'Z', 'F', 'E'];
+/** Im Format bekannt, aber laut Spec nur in den Ergebnislisten. */
+const wettkampfartToleriert = ['A', 'N'];
 
 describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
   it('benennt BANKVERBINDUNG und führt den Kontoinhaber erst ab DSV8', () => {
@@ -274,8 +277,29 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
       'KG',
       'XX',
     ]);
-    expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual(wettkampfartWerte);
-    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual(wettkampfartWerte);
+    expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual([
+      ...wettkampfartWerte,
+      ...wettkampfartToleriert,
+    ]);
+    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual([
+      ...wettkampfartWerte,
+      ...wettkampfartToleriert,
+    ]);
+  });
+
+  it('trennt spezifikationskonforme von tolerierten Wettkampfarten', () => {
+    // A und N sieht die Spec nur in den Ergebnislisten vor, das DSV-Portal
+    // schreibt sie aber auch in Ausschreibungen. Sie sind deshalb enthalten,
+    // aber als toleriert markiert — beim Lesen Warnung, beim Schreiben
+    // unzulässig.
+    const werte = WETTKAMPF.fields.find((f) => f.name === 'wettkampfart')?.values ?? [];
+
+    expect(werte.filter((v) => v.tolerated !== true).map((v) => v.value)).toEqual(
+      wettkampfartWerte,
+    );
+    expect(werte.filter((v) => v.tolerated === true).map((v) => v.value)).toEqual(
+      wettkampfartToleriert,
+    );
   });
 
   it('benennt WERTUNG', () => {
