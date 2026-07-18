@@ -63,3 +63,25 @@ describe('lexLine — Elementzeilen', () => {
     expect(l.fields).toEqual([]);
   });
 });
+
+describe('lexLine — Kommentar am Zeilenende', () => {
+  it('trennt einen Kommentar hinter dem letzten Semikolon ab', () => {
+    const l = lexLine('PNERGEBNIS:1;E;1011; (* Jahrgang 2007 *)', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.fields).toEqual(['1', 'E', '1011']);
+    expect(l.comment).toBe(' (* Jahrgang 2007 *)');
+  });
+
+  it('lässt ein (* innerhalb eines Feldes unangetastet', () => {
+    const l = lexLine('VERANSTALTUNG:Cup (* kein Kommentar;Ort;', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.fields).toEqual(['Cup (* kein Kommentar', 'Ort']);
+    expect(l.comment).toBeNull();
+  });
+
+  it('setzt comment auf null, wenn keiner vorhanden ist', () => {
+    const l = lexLine('A:1;', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.comment).toBeNull();
+  });
+});

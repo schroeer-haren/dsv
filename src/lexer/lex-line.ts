@@ -25,6 +25,8 @@ export interface LexedElement {
   readonly fields: readonly string[];
   /** Die Feldwerte im Rohtext, damit byte-genau zurückgeschrieben werden kann. */
   readonly rawFields: readonly string[];
+  /** Ein Kommentar am Zeilenende hinter dem letzten Semikolon, sonst `null`. */
+  readonly comment: string | null;
   /** `true` bei einem Element ohne Doppelpunkt und ohne Attribute (`DATEIENDE`). */
   readonly bare: boolean;
   /** Die unveränderte Zeile ohne Zeilenende. */
@@ -34,6 +36,17 @@ export interface LexedElement {
 }
 
 export type LexedLine = LexedComment | LexedBlank | LexedElement;
+
+/**
+ * Trennt einen Kommentar am Zeilenende ab. Nur ein `(* … *)`, das dem letzten
+ * Semikolon folgt, gilt als Kommentar — innerhalb eines Feldes ist `(*`
+ * gewöhnlicher ZK-Inhalt (dsv8.md:251).
+ */
+function splitTrailingComment(rest: string): { body: string; comment: string | null } {
+  const match = /^(.*;)(\s*\(\*.*\*\)\s*)$/.exec(rest);
+  if (match === null) return { body: rest, comment: null };
+  return { body: match[1]!, comment: match[2]! };
+}
 
 /**
  * Zerlegt eine einzelne Zeile in ihre Bestandteile.
@@ -50,15 +63,24 @@ export function lexLine(raw: string, line: number): LexedLine {
   const colon = raw.indexOf(':');
 
   if (colon === -1) {
-    return { kind: 'element', element: trimmed, fields: [], rawFields: [], bare: true, raw, line };
+    return {
+      kind: 'element',
+      element: trimmed,
+      fields: [],
+      rawFields: [],
+      comment: null,
+      bare: true,
+      raw,
+      line,
+    };
   }
 
   const element = raw.slice(0, colon).trim();
-  const rest = raw.slice(colon + 1);
+  const { body, comment } = splitTrailingComment(raw.slice(colon + 1));
 
   // Attribute sind mit `;` terminiert, nicht getrennt: `split` liefert daher ein
   // leeres Schlusselement, das kein Feld ist und genau einmal verworfen wird.
-  const parts = rest.split(';');
+  const parts = body.split(';');
   if (parts.length > 1 && parts[parts.length - 1] === '') parts.pop();
 
   return {
@@ -66,6 +88,7 @@ export function lexLine(raw: string, line: number): LexedLine {
     element,
     fields: parts.map((part) => part.trim()),
     rawFields: parts,
+    comment,
     bare: false,
     raw,
     line,
