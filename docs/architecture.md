@@ -74,6 +74,69 @@ umso wichtiger wird: Breite entsteht am Ende, nicht am Anfang.
 Punkt 5 ist der Kern: der Schlüssel für eine Elementdefinition ist
 `(Listenart, Elementname)`, nicht der Elementname allein.
 
+## Befunde aus 100 echten Dateien
+
+Gesammelter Bestand in `spec/samples/`: 71 Wettkampfergebnislisten, 29
+Wettkampfdefinitionslisten; 95× DSV7, 5× DSV6, **0× DSV8**. Erzeuger: 83×
+EasyWk, 9× SPLASH Meet Manager 11.
+
+Was die Realität anders macht als die Spec – jeder Punkt ist ein Parser-Bug in
+spe:
+
+1. **`FORMAT:` steht nie in Zeile 1.** Davor stehen ein bis mehrere
+   Erzeuger-Kommentare (`(* erzeugt mit EasyWk … *)`, `(* SPLASH Meet Manager
+11 … *)`), `FORMAT:` folgt erst in Zeile 3–9. Die Spec-Regel „FORMAT muss
+   erstes Element sein" meint das erste **Element** – Kommentarzeilen zählen
+   nicht mit. Eine Prüfung auf Zeile 1 scheitert an praktisch jeder echten Datei.
+2. **Leerzeichen nach dem Doppelpunkt sind die Mehrheit**, nicht die Ausnahme:
+   `FORMAT: Wettkampfergebnisliste;7;` in 61 von 100 Dateien gegenüber 16 ohne.
+   Gilt auch für Datenzeilen (`VERANSTALTUNG: Kreismeisterschaften…`).
+3. **Groß-/Kleinschreibung der Listart variiert** (`FORMAT:WETTKAMPFERGEBNIS­LISTE`)
+   – Vergleich case-insensitiv, wie schon aus der Spec abgeleitet.
+4. **Zeilenenden gemischt**: 87× CRLF, 13× LF. Ein Parser, der `\r` nicht
+   abstreift, schleppt es ins letzte Feld.
+5. **Encoding durchgängig UTF-8** – kein einziges CP1252 im Bestand. Die
+   Warn-Diagnostic bei U+FFFD bleibt trotzdem sinnvoll, ist aber kein
+   Hauptfall.
+
+### Anführungszeichen sind Daten, kein Quoting
+
+20 Dateien enthalten `"` in Werten:
+
+```
+VERANSTALTUNG: Potsdamer Pokalmeeting "Alter Fritz 2026";Potsdam;50;AUTOMATISCH;
+VERANSTALTUNG:"Letzte Chance";Dresden;50;HANDZEIT;
+```
+
+Das sind **Eigennamen mit Anführungszeichen**, keine Quoting-Syntax. Der
+Wettkampf heißt „Letzte Chance". Ein Dequoting würde im ersten Fall nichts
+finden und im zweiten den Namen beschädigen.
+
+**Festlegung: es wird nie dequotet.** ZK erlaubt alle Zeichen außer `;` und
+CRLF (dsv8.md:251); `"` ist ein gewöhnliches Zeichen ohne Sonderbedeutung. Das
+ist ein Anwendungsfall der Regel „wo eine Interpretation gültige Daten zerstören
+könnte, gewinnt die konservative Lesart".
+
+### Fehlende Listenarten
+
+**Vereinsmeldeliste und Vereinsergebnisliste: 0 Fundstellen.** Das ist
+strukturell, nicht Suchpech – beide enthalten die Meldedaten eines einzelnen
+Vereins und gehen direkt an den Ausrichter, statt veröffentlicht zu werden. Für
+diese beiden Listenarten gibt es also **keine Realdaten**; sie müssen
+synthetisch aus der Spec erzeugt oder bei einem Verein erfragt werden. Das ist
+ein Risiko für Schritt 5 der Umsetzung und der Grund, warum der synthetische
+Fixture-Korpus kein Beiwerk ist.
+
+### DSV8 existiert in freier Wildbahn noch nicht
+
+GitHub-Codesuche nach `extension:dsv8` liefert null Treffer, Websuchen nach
+`Wk.dsv8`/`Pr.dsv8` nur Ankündigungstexte. Der Grund ist belegbar: Beim SHSV
+sind Ausschreibungen für Termine bis **Dezember 2026** – also lange nach dem
+Stichtag 01.08.2026 – weiterhin als `.dsv7` veröffentlicht, hochgeladen im Juli 2026. Die Landesverbände empfehlen ausdrücklich, die Übergangsfrist bis
+31.12.2026 auszuschöpfen. DSV8-Realdaten sind frühestens ab Herbst 2026 zu
+erwarten; bis dahin ist DSV8-Unterstützung ausschließlich gegen die Spec und
+synthetische Fixtures zu entwickeln.
+
 ## Leitentscheidung: schema-getrieben, Typen generiert
 
 Es gibt ~20 Elemente × 4 Listenarten × 2 Versionen. Diese Matrix von Hand als
@@ -329,7 +392,8 @@ bietet sonst niemand an.
 
 ## Validierungsregeln jenseits der Attributtypen
 
-- `FORMAT` muss erstes, `DATEIENDE` letztes Element sein (dsv8.md:331)
+- `FORMAT` muss erstes, `DATEIENDE` letztes **Element** sein (dsv8.md:331) –
+  Kommentarzeilen davor sind normal und zulässig, siehe Realdaten-Befund 1
 - referenzierende Elemente müssen **nach** den referenzierten stehen – beim
   Schreiben eine Sortier-Anforderung, beim Lesen eine `warning`
 - Kardinalitäten pro (Listenart, Element), siehe Befund 5
