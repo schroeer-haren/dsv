@@ -346,6 +346,27 @@ interface StaffelBuilder {
   readonly abloesen: Abloese[];
   readonly staffel: Staffel;
   readonly signatur: string;
+  /**
+   * Die bereits übernommenen Kindzeilen, je Element nach ihrer fachlichen
+   * Identität.
+   *
+   * Ist eine Staffel in mehreren Wertungen platziert, trägt die Datei je
+   * Wertung eine eigene STERGEBNIS-Zeile — und wiederholt dahinter den
+   * kompletten Block aus STAFFELPERSON, STZWISCHENZEIT und STABLOESE. Alle
+   * Wiederholungen beschreiben denselben Schwimmvorgang, nur unterschiedlich
+   * gewertet; ohne Deduplizierung bekäme eine Vierer-Staffel acht Mitglieder.
+   *
+   * Die Identität ist die Startnummer: dsv8.md:5670 beschreibt sie als
+   * "Startnummer des Schwimmers innerhalb der Staffel", sie benennt also die
+   * Position in der Staffel und ist damit je Staffel eindeutig. Zwischenzeiten
+   * unterscheiden sich zusätzlich nach Distanz, Ablösezeiten nach Art — eine
+   * Startnummer hat mehrere Zwischenzeiten, aber je Distanz nur eine.
+   */
+  readonly gesehen: {
+    readonly personen: Set<number>;
+    readonly zwischenzeiten: Set<string>;
+    readonly abloesen: Set<string>;
+  };
 }
 
 /**
@@ -800,6 +821,7 @@ export function projectWettkampfergebnisliste(
       abloesen,
       staffel,
       signatur,
+      gesehen: { personen: new Set(), zwischenzeiten: new Set(), abloesen: new Set() },
     });
     pruefeWertung(record, veranstaltungsId);
 
@@ -850,7 +872,11 @@ export function projectWettkampfergebnisliste(
       continue;
     }
 
+    const startnummer = number(record, 'startnummer');
+
     if (record.element === 'STAFFELPERSON') {
+      if (builder.gesehen.personen.has(startnummer)) continue;
+      builder.gesehen.personen.add(startnummer);
       builder.personen.push({
         name: value(record, 'name'),
         dsvId: value(record, 'dsvId'),
@@ -862,16 +888,24 @@ export function projectWettkampfergebnisliste(
         line: record.line,
       });
     } else if (record.element === 'STZWISCHENZEIT') {
+      const distanz = number(record, 'distanz');
+      const identitaet = `${String(startnummer)}:${String(distanz)}`;
+      if (builder.gesehen.zwischenzeiten.has(identitaet)) continue;
+      builder.gesehen.zwischenzeiten.add(identitaet);
       builder.zwischenzeiten.push({
-        startnummer: number(record, 'startnummer'),
-        distanz: number(record, 'distanz'),
+        startnummer,
+        distanz,
         zeit: decodeZeit(value(record, 'zwischenzeit')),
         line: record.line,
       });
     } else {
+      const art = value(record, 'art');
+      const identitaet = `${String(startnummer)}:${art}`;
+      if (builder.gesehen.abloesen.has(identitaet)) continue;
+      builder.gesehen.abloesen.add(identitaet);
       builder.abloesen.push({
-        startnummer: number(record, 'startnummer'),
-        art: value(record, 'art'),
+        startnummer,
+        art,
         zeit: decodeZeit(value(record, 'reaktionszeit')),
         line: record.line,
       });

@@ -71,6 +71,26 @@ function stergebnis(over: Partial<Record<string, string>> = {}): string {
   return line('STERGEBNIS', Object.values(v) as string[]);
 }
 
+/** Eine STAFFELPERSON der Testtaffel `900:2:E` mit der gegebenen Startnummer. */
+function staffelperson(startnummer: string, over: Partial<Record<string, string>> = {}): string {
+  const v = {
+    veranstaltungsIdStaffel: '900',
+    wettkampfnr: '2',
+    wettkampfart: 'E',
+    name: `Muster, Mia ${startnummer}`,
+    dsvId: `10000${startnummer}`,
+    startnummer,
+    geschlecht: 'W',
+    jahrgang: '2009',
+    altersklasse: '',
+    nationalitaet1: '',
+    nationalitaet2: '',
+    nationalitaet3: '',
+    ...over,
+  };
+  return line('STAFFELPERSON', Object.values(v) as string[]);
+}
+
 const STAFFEL_WETTKAMPF = line('WETTKAMPF', [
   '2',
   'E',
@@ -248,6 +268,55 @@ describe('projectWettkampfergebnisliste', () => {
       [6, 3],
     ]);
     expect(graph.staffelByKey.get('900:2:E')?.platzierungen).toHaveLength(2);
+  });
+
+  it('zählt die Mitglieder einer in mehreren Wertungen platzierten Staffel nur einmal', () => {
+    // Ist eine Staffel in zwei Wertungen platziert, wiederholen echte Dateien
+    // den kompletten STAFFELPERSON-Block je Wertung — siehe
+    // b-shsv-2025-02-22_FSK_Foerdemasters-Pr.dsv7, Zeilen 5375-5378 und
+    // 5473-5476 für die Staffel 212:7:E. Eine Vierer-Staffel hat vier
+    // Mitglieder, nicht acht.
+    const { graph, diagnostics } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      STAFFEL_WERTUNG,
+      STAFFEL_WERTUNG2,
+      VEREIN,
+      stergebnis({ wertungsId: '5', platz: '1' }),
+      ...['1', '2', '3', '4'].map((n) => staffelperson(n)),
+      line('STZWISCHENZEIT', ['900', '2', 'E', '1', '50', '00:00:30,00']),
+      line('STABLOESE', ['900', '2', 'E', '2', '+', '00:00:00,50']),
+      stergebnis({ wertungsId: '6', platz: '3' }),
+      ...['1', '2', '3', '4'].map((n) => staffelperson(n)),
+      line('STZWISCHENZEIT', ['900', '2', 'E', '1', '50', '00:00:30,00']),
+      line('STABLOESE', ['900', '2', 'E', '2', '+', '00:00:00,50']),
+    );
+
+    expect(diagnostics).toEqual([]);
+    const staffel = graph.staffelByKey.get('900:2:E');
+    expect(staffel?.personen.map((p) => p.startnummer)).toEqual([1, 2, 3, 4]);
+    expect(staffel?.zwischenzeiten).toHaveLength(1);
+    expect(staffel?.abloesen).toHaveLength(1);
+    expect(staffel?.platzierungen).toHaveLength(2);
+  });
+
+  it('behält verschiedene Mitglieder derselben Startnummer nicht doppelt, aber echte Zeiten', () => {
+    // Verschiedene Distanzen derselben Startnummer sind eigene Zwischenzeiten.
+    const { graph } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      STAFFEL_WERTUNG,
+      VEREIN,
+      stergebnis({ wertungsId: '5' }),
+      line('STZWISCHENZEIT', ['900', '2', 'E', '1', '25', '00:00:14,00']),
+      line('STZWISCHENZEIT', ['900', '2', 'E', '1', '50', '00:00:30,00']),
+      line('STABLOESE', ['900', '2', 'E', '2', '+', '00:00:00,50']),
+      line('STABLOESE', ['900', '2', 'E', '3', '+', '00:00:00,60']),
+    );
+
+    const staffel = graph.staffelByKey.get('900:2:E');
+    expect(staffel?.zwischenzeiten).toHaveLength(2);
+    expect(staffel?.abloesen).toHaveLength(2);
   });
 
   it('meldet einen Widerspruch, wenn zwei Zeilen derselben Staffel nicht übereinstimmen', () => {
