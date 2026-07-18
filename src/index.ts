@@ -1,44 +1,22 @@
 /**
  * @schroeer-haren/dsv
  *
- * TypeScript-Bibliothek zum Parsen und Erzeugen von DSV-Dateien
- * (Deutscher Schwimm-Verband, Formate DSV7 und DSV8).
+ * Liest und schreibt Dateien im DSV-Standard des Deutschen Schwimm-Verbands.
  *
- * Achtung: Diese Version ist ein Grundgerüst. Die eigentliche
- * Format-Implementierung folgt.
+ * In dieser Fassung arbeitet die Bibliothek schema-frei: Sie zerlegt jede Datei
+ * in Records und schreibt sie byte-identisch zurück, prüft aber weder Feldtypen
+ * noch Kardinalitäten. Typisierte Listenarten folgen ab 0.2.0.
  */
 
-/** Unterstützte DSV-Formatversionen. */
-export type DsvFormat = 'DSV7' | 'DSV8';
+export { parseDsv, parseDsvOrThrow, DsvParseError } from './parse/parse-dsv.js';
+export { writeDsv } from './write/write-dsv.js';
 
-/** Liste aller unterstützten Formatversionen. */
-export const DSV_FORMATS: readonly DsvFormat[] = ['DSV7', 'DSV8'];
-
-/** Trennzeichen zwischen den Feldern einer DSV-Zeile. */
-export const FIELD_SEPARATOR = ';';
-
-/**
- * Zerlegt eine einzelne DSV-Zeile in ihre Felder.
- *
- * Ein abschließendes Trennzeichen (in DSV üblich) wird ignoriert.
- */
-export function parseLine(line: string): string[] {
-  const trimmed = line.replace(/\r?\n$/, '');
-  const withoutTrailing = trimmed.endsWith(FIELD_SEPARATOR)
-    ? trimmed.slice(0, -FIELD_SEPARATOR.length)
-    : trimmed;
-
-  if (withoutTrailing === '') return [];
-  return withoutTrailing.split(FIELD_SEPARATOR);
-}
-
-/**
- * Setzt Felder zu einer DSV-Zeile zusammen, inklusive abschließendem
- * Trennzeichen.
- */
-export function formatLine(fields: readonly string[]): string {
-  return fields.join(FIELD_SEPARATOR) + FIELD_SEPARATOR;
-}
-
-// Spike (Task 4): nur zur Prüfung der erzeugten Deklaration, wird in Task 16 entfernt.
-export type { AbschnittWkdefV8 } from './schema/generated.js';
+export type {
+  DsvDocument,
+  DsvItem,
+  DsvRecord,
+  DsvComment,
+  DsvBlank,
+  ParseResult,
+} from './document/types.js';
+export type { Diagnostic, DiagnosticCode, Position, Severity } from './diagnostics/types.js';

@@ -8,8 +8,10 @@
 TypeScript-Bibliothek zum **Parsen und Erzeugen von DSV-Dateien** des Deutschen
 Schwimm-Verbands – Formate **DSV7** und **DSV8**.
 
-> ⚠️ **Status: frühe Entwicklung (0.0.x).** Aktuell existiert nur das Grundgerüst
-> mit ein paar Low-Level-Helfern. Die Format-Implementierung folgt.
+> ⚠️ **Status: 0.1.0.** Die Bibliothek liest und schreibt DSV-Dateien
+> schema-frei: Sie zerlegt jede Datei in Records und schreibt sie byte-identisch
+> zurück, prüft aber weder Feldtypen noch Kardinalitäten. Typisierte Listenarten
+> folgen ab 0.2.0.
 
 ## Installation
 
@@ -22,26 +24,65 @@ als ESM und CommonJS inklusive Type-Declarations ausgeliefert.
 
 ## Verwendung
 
+`parseDsv` liefert das Dokument zusammen mit Diagnostics. Ein unverändertes
+Dokument schreibt `writeDsv` byte-identisch zurück:
+
 ```typescript
-import { parseLine, formatLine, DSV_FORMATS } from '@schroeer-haren/dsv';
+import { parseDsv, writeDsv } from '@schroeer-haren/dsv';
 
-parseLine('FORMAT:Wettkampfdefinitionsliste;7;');
-// → ['FORMAT:Wettkampfdefinitionsliste', '7']
+const text = 'FORMAT:Wettkampfergebnisliste;7;\r\nDATEIENDE\r\n';
 
-formatLine(['FORMAT:Wettkampfdefinitionsliste', '7']);
-// → 'FORMAT:Wettkampfdefinitionsliste;7;'
+const { document, diagnostics, ok } = parseDsv(text);
 
-DSV_FORMATS;
-// → ['DSV7', 'DSV8']
+document.listenart; // → 'Wettkampfergebnisliste'
+document.version; // → 7
+document.items.length; // → 2
+ok; // → true (keine Diagnostic mit Severity 'error' oder 'fatal')
+diagnostics; // → []
+
+writeDsv(document) === text; // → true
+```
+
+Diagnostics melden Auffälligkeiten mit Position, ohne das Lesen abzubrechen –
+fehlt etwa das abschliessende `DATEIENDE`, wird das Dokument trotzdem geliefert:
+
+```typescript
+const { diagnostics } = parseDsv('FORMAT:Wettkampfergebnisliste;7;\r\n');
+
+diagnostics[0];
+// → {
+//     code: 'missing-dateiende-element',
+//     severity: 'warning',
+//     message: 'DATEIENDE element is missing',
+//     start: { line: 1, column: 1 },
+//     end: { line: 1, column: 1 },
+//   }
+```
+
+Wer bei fehlerhaften Dateien lieber eine Exception möchte, nutzt
+`parseDsvOrThrow`; es wirft einen `DsvParseError`, der die Diagnostics trägt:
+
+```typescript
+import { parseDsvOrThrow, DsvParseError } from '@schroeer-haren/dsv';
+
+try {
+  const document = parseDsvOrThrow(text);
+  writeDsv(document);
+} catch (error) {
+  if (error instanceof DsvParseError) console.error(error.diagnostics);
+}
 ```
 
 ## Roadmap
 
-- [ ] DSV7: Wettkampfdefinitionsliste lesen/schreiben
-- [ ] DSV7: Vereinsmeldeliste lesen/schreiben
-- [ ] DSV7: Wettkampfergebnisliste lesen/schreiben
+- [x] Schema-freies Lesen beliebiger DSV-Dateien in Records
+- [x] Byte-identisches Zurückschreiben unveränderter Dokumente
+- [x] Diagnostics mit Code, Severity und Position
+- [ ] DSV7: Wettkampfdefinitionsliste typisiert lesen/schreiben
+- [ ] DSV7: Vereinsmeldeliste typisiert lesen/schreiben
+- [ ] DSV7: Wettkampfergebnisliste typisiert lesen/schreiben
 - [ ] DSV8-Unterstützung
-- [ ] Validierung & aussagekräftige Fehlermeldungen
+- [ ] Validierung von Feldtypen und Kardinalitäten
 
 ## Entwicklung
 
