@@ -39,3 +39,6 @@ export function parseLine(line: string): string[] {
 export function formatLine(fields: readonly string[]): string {
   return fields.join(FIELD_SEPARATOR) + FIELD_SEPARATOR;
 }
+
+// Spike (Task 4): nur zur Prüfung der erzeugten Deklaration, wird in Task 16 entfernt.
+export type { AbschnittWkdefV8 } from './schema/generated.js';

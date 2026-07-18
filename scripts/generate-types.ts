@@ -31,14 +31,28 @@ export function renderElement(name: string, def: ElementDef, version: 7 | 8): st
   return `export interface ${name} {\n${body}\n}\n`;
 }
 
+/**
+ * Gibt beide Formatversionen aus. Unterscheiden sie sich nicht — weil das
+ * Element kein `since`-Feld hat —, wird die zweite ein Alias statt einer
+ * Kopie. Ohne das entstünden bei rund 80 Elementdefinitionen 160 Interfaces,
+ * überwiegend paarweise identisch.
+ */
+export function renderBothVersions(baseName: string, def: ElementDef): string {
+  const v7 = renderElement(`${baseName}V7`, def, 7);
+  const v8Body = renderElement(`${baseName}V8`, def, 8);
+
+  const identical = def.fields.every((f) => f.since === undefined);
+  const v8 = identical ? `export type ${baseName}V8 = ${baseName}V7;\n` : v8Body;
+
+  return `${v7}\n${v8}`;
+}
+
 function main(): void {
   const parts = [
     '// Generiert von scripts/generate-types.ts — nicht von Hand ändern.',
     '',
-    renderElement('AbschnittWkdefV7', ABSCHNITT_WKDEF, 7),
-    renderElement('AbschnittWkdefV8', ABSCHNITT_WKDEF, 8),
-    renderElement('AbschnittErgebnisV7', ABSCHNITT_ERGEBNIS, 7),
-    renderElement('AbschnittErgebnisV8', ABSCHNITT_ERGEBNIS, 8),
+    renderBothVersions('AbschnittWkdef', ABSCHNITT_WKDEF),
+    renderBothVersions('AbschnittErgebnis', ABSCHNITT_ERGEBNIS),
   ];
 
   writeFileSync('src/schema/generated.ts', parts.join('\n'));

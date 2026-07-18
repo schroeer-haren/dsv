@@ -1,13 +1,6 @@
 /** Skalare Datentypen des DSV-Standards (dsv8.md:249–300). */
 export type ScalarType =
-  | 'ZK'
-  | 'Zahl'
-  | 'Zeichen'
-  | 'Zeit'
-  | 'Datum'
-  | 'Uhrzeit'
-  | 'Betrag'
-  | 'JGAK';
+  'ZK' | 'Zahl' | 'Zeichen' | 'Zeit' | 'Datum' | 'Uhrzeit' | 'Betrag' | 'JGAK';
 
 export interface FieldDef {
   readonly name: string;

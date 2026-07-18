@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { renderElement } from '../../scripts/generate-types.js';
+import { renderBothVersions, renderElement } from '../../scripts/generate-types.js';
 import { ABSCHNITT_WKDEF } from '../../src/schema/spike-abschnitt.js';
 
 describe('renderElement', () => {
@@ -36,5 +36,34 @@ describe('renderElement', () => {
     };
     expect(renderElement('X', withSince, 7)).not.toContain('neu');
     expect(renderElement('X', withSince, 8)).toContain('neu?: string;');
+  });
+});
+
+describe('renderBothVersions', () => {
+  it('macht die DSV8-Fassung zum Alias, wenn kein Feld seit DSV8 hinzukam', () => {
+    const out = renderBothVersions('AbschnittWkdef', ABSCHNITT_WKDEF);
+    expect(out).toContain('export interface AbschnittWkdefV7 {');
+    expect(out).toContain('export type AbschnittWkdefV8 = AbschnittWkdefV7;');
+  });
+
+  it('gibt zwei eigene Interfaces aus, wenn sich die Fassungen unterscheiden', () => {
+    const withSince = {
+      ...ABSCHNITT_WKDEF,
+      fields: [
+        ...ABSCHNITT_WKDEF.fields,
+        {
+          name: 'neu',
+          type: 'ZK' as const,
+          required: false,
+          since: 8 as const,
+          doc: 'Neu',
+          specRef: 'dsv8.md:1',
+        },
+      ],
+    };
+    const out = renderBothVersions('X', withSince);
+    expect(out).toContain('export interface XV7 {');
+    expect(out).toContain('export interface XV8 {');
+    expect(out).not.toContain('export type XV8 =');
   });
 });

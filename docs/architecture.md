@@ -198,6 +198,22 @@ Key kann keinen Doc-Kommentar tragen. Genau das wäre hier am wertvollsten
 _Verworfen: Typen von Hand._ Drift, also genau das Problem, das der
 Schema-Ansatz löst.
 
+**Ergebnis des Spikes (18.07.2026): Codegen bestätigt.** Die erzeugte
+`dist/index.d.ts` enthält `AbschnittWkdefV7` als benanntes Interface mit JSDoc
+und Spec-Fundstelle an jedem Feld, und **kein** Schema-Literal — weder
+`specRef` noch `ScalarType` noch `Prettify`/`Pick`-Konstrukte. Der Rückfallpfad
+„Typen von Hand" entfällt.
+
+Eine Ergänzung aus dem Spike: Unterscheiden sich die Feldlisten zweier
+Formatversionen nicht — weil das Element kein `since`-Feld hat —, wird die
+DSV8-Fassung als **Alias** statt als Kopie ausgegeben. Ohne das entstünden bei
+rund 80 Elementdefinitionen 160 Interfaces, überwiegend paarweise identisch.
+
+Offen für M2: Die generierten Felder sind derzeit sämtlich `string`. Die
+`ScalarType`-Information (`Zahl`, `Datum`, `Uhrzeit`) geht dabei verloren. Das
+ist für die schema-freie Ebene richtig, muss aber beantwortet werden, sobald die
+Typen dekodierte Werte beschreiben sollen.
+
 Der eigentliche Komplexitätstreiber ist nicht die 20×4-Matrix, sondern das
 Versions-Flag: sobald der Record-Typ von der Version abhängt, müsste ein Generic
 `V extends 7 | 8` durch alle Schichten propagieren. Codegen umgeht das, indem es
