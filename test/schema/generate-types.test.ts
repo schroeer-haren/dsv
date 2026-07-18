@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { renderBothVersions, renderElement } from '../../scripts/generate-types.js';
+import { field } from '../../src/schema/types.js';
 import { ABSCHNITT_WKDEF } from '../../src/schema/spike-abschnitt.js';
 
 describe('renderElement', () => {
@@ -24,15 +25,9 @@ describe('renderElement', () => {
       ...ABSCHNITT_WKDEF,
       fields: [
         ...ABSCHNITT_WKDEF.fields,
-        {
-          name: 'neu',
-          type: 'ZK' as const,
-          required: false,
-          since: 8 as const,
-          doc: 'Neu',
-          specRef: 'dsv8.md:1',
-          caseInsensitive: false,
-        },
+        // Über field() gebaut statt als Objektliteral: So bleibt der Test
+        // immun gegen künftige Pflichtfelder in FieldDef.
+        field('neu', 'ZK', { since: 8, doc: 'Neu', specRef: 'dsv8.md:1' }),
       ],
     };
     expect(renderElement('X', withSince, 7)).not.toContain('neu');
@@ -52,15 +47,9 @@ describe('renderBothVersions', () => {
       ...ABSCHNITT_WKDEF,
       fields: [
         ...ABSCHNITT_WKDEF.fields,
-        {
-          name: 'neu',
-          type: 'ZK' as const,
-          required: false,
-          since: 8 as const,
-          doc: 'Neu',
-          specRef: 'dsv8.md:1',
-          caseInsensitive: false,
-        },
+        // Über field() gebaut statt als Objektliteral: So bleibt der Test
+        // immun gegen künftige Pflichtfelder in FieldDef.
+        field('neu', 'ZK', { since: 8, doc: 'Neu', specRef: 'dsv8.md:1' }),
       ],
     };
     const out = renderBothVersions('X', withSince);
