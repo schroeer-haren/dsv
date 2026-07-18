@@ -18,6 +18,7 @@ export {
   writeWettkampfdefinitionsliste,
   DsvWriteError,
 } from './write/write-wettkampfdefinitionsliste.js';
+export { writeWettkampfergebnisliste } from './write/write-wettkampfergebnisliste.js';
 
 export type { WriteOptions } from './write/write-wettkampfdefinitionsliste.js';
 

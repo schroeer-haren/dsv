@@ -13,6 +13,7 @@ describe('öffentliche API', () => {
       'projectWettkampfdefinitionsliste',
       'writeDsv',
       'writeWettkampfdefinitionsliste',
+      'writeWettkampfergebnisliste',
     ]);
   });
 
