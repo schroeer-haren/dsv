@@ -20,6 +20,19 @@ Die Spec beschreibt M0 als „`ABSCHNITT` … durch die volle Kette". Die Kette
 die **Typerzeugung**; dafür genügt Schema → Codegen → Build → `.d.ts`. M0 wird
 hier entsprechend zugeschnitten. Das Abbruchkriterium der Spec bleibt unberührt.
 
+## Arbeitsweise
+
+Die Umsetzung läuft auf einem Branch, nicht direkt auf `main`:
+
+```bash
+git switch -c feat/m0-m1-fundament
+```
+
+Alle Task-Commits gehen dorthin. Erst nach Task 17, Schritt 2 — also nach
+bestandenem Test-Review-Zyklus — wird nach `main` gebracht und getaggt. Damit
+bleibt `main` durchgehend releasefähig, und der Release-Workflow feuert nicht
+auf halbfertigen Zwischenständen.
+
 ## Domänenwissen für Umsetzende
 
 Wer diesen Plan ausführt, braucht diese Fakten über das Dateiformat. Alle sind
@@ -31,7 +44,7 @@ in `spec/dsv8.md` belegt und an den 108 Fixtures in `test/fixtures/real/`
   Schlusselement, das **kein** Feld ist.
 - **`DATEIENDE`** ist das einzige Element **ohne Doppelpunkt und ohne Attribute**.
 - **Kommentarzeilen** stehen in `(* … *)` und beginnen die Zeile. Zusätzlich
-  gibt es **Kommentare am Zeilenende**, hinter dem letzten `;` — in 89.545
+  gibt es **Kommentare am Zeilenende**, hinter dem letzten `;` — in 92.261
   Zeilen des Fixture-Bestands. Ein `(*` **innerhalb** eines Feldes ist dagegen
   gewöhnlicher Inhalt.
 - **Kein Quoting, kein Escaping.** Anführungszeichen sind normale Zeichen und
@@ -415,7 +428,19 @@ if (process.argv[1]?.endsWith('generate-types.ts')) main();
 Run: `npx vitest run test/schema/generate-types.test.ts`
 Expected: PASS, 4 Tests
 
-- [ ] **Step 5: Generate and wire up the script**
+- [ ] **Step 5: Node-Typen installieren**
+
+Ohne diese Typen scheitert `npm run typecheck` an jedem `node:fs`-Import — und
+damit auch der Release-Workflow, der `typecheck` ausführt.
+
+```bash
+npm install -D @types/node
+npx tsc --noEmit
+```
+
+Expected: keine Ausgabe
+
+- [ ] **Step 6: Generate and wire up the script**
 
 ```bash
 node scripts/generate-types.ts
@@ -428,10 +453,10 @@ In `package.json` unter `scripts` ergänzen:
 "generate:check": "npm run generate && git diff --exit-code src/schema/generated.ts"
 ```
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git add scripts/generate-types.ts test/schema/generate-types.test.ts src/schema/generated.ts package.json
+git add scripts/generate-types.ts test/schema/generate-types.test.ts src/schema/generated.ts package.json package-lock.json
 git commit -m "feat: generate named interfaces from schema definitions"
 ```
 
@@ -466,7 +491,7 @@ Codegen gilt als **bestätigt**, wenn beides zutrifft:
 
 1. `dist/index.d.ts` enthält `interface AbschnittWkdefV8` als benanntes
    Interface — nicht als `Prettify<Pick<…>>` o. Ä.
-2. `dist/index.d.ts` enthält **kein** Schema-Literal (`grep -c "specRef" dist/index.d.ts` → `0`)
+2. `dist/index.d.ts` enthält **kein** Schema-Literal (`grep -c "specRef" dist/index.d.ts || true` → `0`; `grep -c` beendet sich bei null Treffern mit Status 1)
 
 Trifft eines nicht zu, greift der in der Spec benannte Rückfallpfad.
 
@@ -934,7 +959,7 @@ git commit -m "feat: lex element lines into terminated fields"
 - Modify: `src/lexer/lex-line.ts`
 - Modify: `test/lexer/lex-line.test.ts`
 
-Betrifft 89.545 Zeilen im Fixture-Bestand. Ohne diesen Schritt entsteht dort
+Betrifft 92.261 Zeilen im Fixture-Bestand. Ohne diesen Schritt entsteht dort
 ein zusätzliches Scheinfeld.
 
 - [ ] **Step 1: Write the failing test**
@@ -1042,13 +1067,10 @@ describe('parseDsv', () => {
 
   it('behält alle Zeilen in Originalreihenfolge', () => {
     const { document } = parseDsv(FILE);
-    expect(document.items.map((i) => i.kind)).toEqual([
-      'comment',
-      'element',
-      'element',
-      'element',
-      'blank',
-    ]);
+    // Vier Zeilen, nicht fünf: Ein abschließendes \r\n beendet die vierte
+    // Zeile, es beginnt keine leere fünfte. Sonst entstünde beim Schreiben
+    // eine Phantomzeile und der Round-Trip wäre kaputt.
+    expect(document.items.map((i) => i.kind)).toEqual(['comment', 'element', 'element', 'element']);
   });
 
   it('meldet eine fehlende FORMAT-Zeile', () => {
@@ -1120,10 +1142,117 @@ export interface ParseResult<T> {
 }
 ```
 
-`src/parse/parse-dsv.ts`: `createSourceText` aufrufen, jede Zeile durch
-`lexLine` schicken, Items sammeln, das erste Element mit Namen `FORMAT`
-(case-insensitiv) auswerten, Diagnostics für fehlendes `FORMAT`, fehlendes
-`DATEIENDE` und leere Eingabe erzeugen.
+`src/parse/parse-dsv.ts`:
+
+```ts
+import { createDiagnostic } from '../diagnostics/create.js';
+import type { Diagnostic } from '../diagnostics/types.js';
+import type { DsvDocument, DsvItem, ParseResult } from '../document/types.js';
+import { lexLine } from '../lexer/lex-line.js';
+import type { SourceLine } from '../source/source-text.js';
+import { createSourceText } from '../source/source-text.js';
+
+/**
+ * Verarbeitet Zeilen zu Items. Nimmt bewusst ein `Iterable` statt eines Arrays
+ * entgegen: Damit lässt sich später eine streamende Quelle einsetzen, ohne
+ * diese Funktion zu ändern (siehe Spec, Streaming als M1-Designvorgabe).
+ */
+function collectItems(lines: Iterable<SourceLine>): DsvItem[] {
+  const items: DsvItem[] = [];
+
+  for (const line of lines) {
+    const lexed = lexLine(line.content, line.number);
+
+    if (lexed.kind === 'element') {
+      items.push({
+        kind: 'element',
+        element: lexed.element,
+        fields: lexed.fields,
+        rawFields: lexed.rawFields,
+        comment: lexed.comment,
+        bare: lexed.bare,
+        line: line.number,
+        raw: line.content,
+        eol: line.eol,
+      });
+      continue;
+    }
+
+    items.push({ kind: lexed.kind, raw: line.content, line: line.number, eol: line.eol });
+  }
+
+  return items;
+}
+
+const AT_START = { start: { line: 1, column: 1 }, end: { line: 1, column: 1 } };
+
+export function parseDsv(input: string): ParseResult<DsvDocument> {
+  const source = createSourceText(input);
+  const items = collectItems(source.lines);
+  const diagnostics: Diagnostic[] = [];
+
+  const elements = items.filter(
+    (i): i is Extract<DsvItem, { kind: 'element' }> => i.kind === 'element',
+  );
+  const format = elements.find((e) => e.element.toUpperCase() === 'FORMAT');
+
+  if (source.lines.length === 0) {
+    diagnostics.push(createDiagnostic('empty-input', 'fatal', 'Input is empty', AT_START));
+  } else if (format === undefined) {
+    diagnostics.push(
+      createDiagnostic('missing-format-element', 'error', 'FORMAT element is missing', AT_START),
+    );
+  } else if (elements[0] !== format) {
+    // Kommentarzeilen davor sind normal und zählen nicht mit — FORMAT muss nur
+    // das erste ELEMENT sein (dsv8.md:331).
+    diagnostics.push(
+      createDiagnostic(
+        'format-not-first-element',
+        'warning',
+        'FORMAT is not the first element in the file',
+        { start: { line: format.line, column: 1 }, end: { line: format.line, column: 1 } },
+      ),
+    );
+  }
+
+  if (source.lines.length > 0 && !elements.some((e) => e.element.toUpperCase() === 'DATEIENDE')) {
+    diagnostics.push(
+      createDiagnostic(
+        'missing-dateiende-element',
+        'warning',
+        'DATEIENDE element is missing',
+        AT_START,
+      ),
+    );
+  }
+
+  if (input.includes('�')) {
+    diagnostics.push(
+      createDiagnostic(
+        'unknown-encoding-replacement-character',
+        'warning',
+        'Input contains U+FFFD; it was probably decoded with the wrong encoding',
+        AT_START,
+      ),
+    );
+  }
+
+  const version = format?.fields[1];
+
+  const document: DsvDocument = {
+    listenart: format?.fields[0] ?? null,
+    version: version !== undefined && /^\d+$/.test(version) ? Number(version) : null,
+    items,
+    hasBom: source.hasBom,
+  };
+
+  return {
+    document,
+    diagnostics,
+    ok: !diagnostics.some((d) => d.severity === 'error' || d.severity === 'fatal'),
+  };
+}
+```
 
 - [ ] **Step 4: Run test to verify it passes**
 
@@ -1294,7 +1423,7 @@ import { parseDsv } from '../src/parse/parse-dsv.js';
 import { writeDsv } from '../src/write/write-dsv.js';
 
 const DIR = 'test/fixtures/real';
-const files = readdirSync(DIR).filter((f) => !f.endsWith('.md'));
+const files = readdirSync(DIR).filter((f) => /\.dsv[678]?$/i.test(f));
 
 describe('Round-Trip über echte Dateien', () => {
   it('findet den erwarteten Bestand', () => {
@@ -1316,18 +1445,75 @@ describe('Round-Trip über echte Dateien', () => {
 });
 ```
 
-- [ ] **Step 2: Run tests**
+- [ ] **Step 2: Zweiten Test schreiben, der die Zerlegung prüft**
+
+Der Round-Trip allein ist als Abnahmekriterium **zu schwach**: `writeDsv` gibt
+`item.raw` zurück, der Test bliebe also auch dann grün, wenn `fields`,
+`rawFields` und `comment` durchweg falsch wären. Dieser Test schließt die Lücke.
+
+```ts
+describe('Zerlegung echter Dateien', () => {
+  it.each(files)('%s: kein Feld enthält ein Trennzeichen', (name) => {
+    const text = readFileSync(join(DIR, name), 'utf8');
+    for (const item of parseDsv(text).document.items) {
+      if (item.kind !== 'element') continue;
+      for (const f of item.fields) {
+        expect(f).not.toContain(';');
+        expect(f).not.toContain('\n');
+      }
+    }
+  });
+
+  it.each(files)('%s: gleichnamige Elemente haben gleich viele Felder', (name) => {
+    const text = readFileSync(join(DIR, name), 'utf8');
+    const counts = new Map<string, Set<number>>();
+
+    for (const item of parseDsv(text).document.items) {
+      if (item.kind !== 'element' || item.bare) continue;
+      const seen = counts.get(item.element) ?? new Set<number>();
+      seen.add(item.fields.length);
+      counts.set(item.element, seen);
+    }
+
+    // Wettkampfdefinitions- und Ergebnislisten sind in sich einheitlich; eine
+    // schwankende Feldzahl wäre ein Zeichen für falsch abgetrennte Kommentare.
+    for (const [element, sizes] of counts) {
+      expect(sizes.size, `${element} hat unterschiedliche Feldzahlen`).toBe(1);
+    }
+  });
+
+  it('trennt Kommentare am Zeilenende in der erwarteten Größenordnung ab', () => {
+    let withComment = 0;
+    for (const name of files) {
+      const text = readFileSync(join(DIR, name), 'utf8');
+      for (const item of parseDsv(text).document.items) {
+        if (item.kind === 'element' && item.comment !== null) withComment++;
+      }
+    }
+    // Im Bestand gemessen; ein starker Abfall bedeutet, dass Kommentare als
+    // Felder durchgerutscht sind.
+    expect(withComment).toBeGreaterThan(80_000);
+  });
+});
+```
+
+- [ ] **Step 3: Run tests**
 
 Run: `npx vitest run test/round-trip.test.ts`
 
 Erwartet: alle grün. Schlägt eine Datei fehl, ist das ein echter Befund — die
 Ursache im Lexer beheben, **nicht** den Test aufweichen.
 
-- [ ] **Step 3: Commit**
+Sollte der Test „gleich viele Felder" an einer Datei scheitern, ist das ein
+Fund und keine Störung: Er bedeutet, dass eine Zeile anders zerlegt wurde als
+ihre Geschwister. Erst die Ursache verstehen, dann entscheiden, ob die Regel
+oder der Lexer falsch ist.
+
+- [ ] **Step 4: Commit**
 
 ```bash
 git add test/round-trip.test.ts
-git commit -m "test: verify byte-identical round trip over all real fixtures"
+git commit -m "test: verify round trip and field splitting over all real fixtures"
 ```
 
 ---
@@ -1392,7 +1578,141 @@ git commit -m "test: add property tests for the lexer"
 
 ---
 
-### Task 15: Öffentliche API und Entfernen der Attrappen
+### Task 15: Skalar-Codecs (`values`)
+
+**Files:**
+
+- Create: `src/values/zeit.ts`, `src/values/datum.ts`, `src/values/uhrzeit.ts`
+- Test: `test/values/zeit.test.ts`, `test/values/datum.test.ts`, `test/values/uhrzeit.test.ts`
+
+Diese Codecs werden in 0.1.0 noch von nichts benutzt — sie gehören laut Spec zu
+M1, weil M2 sie sofort braucht und sie als reine Funktionen ohne Domänenkontext
+prüfbar sind. Sie werden **nicht** öffentlich exportiert, solange sie unbenutzt
+sind.
+
+Zeit ist der heikelste Typ: `HH:MM:SS,hh`, intern Hundertstel als Integer.
+Gleitkomma scheidet aus, weil Zwischenzeiten addiert werden.
+
+- [ ] **Step 1: Write the failing test**
+
+```ts
+import { describe, expect, it } from 'vitest';
+import { decodeZeit, encodeZeit, isZeroZeit } from '../../src/values/zeit.js';
+
+describe('decodeZeit', () => {
+  it('liest HH:MM:SS,hh als Hundertstel', () => {
+    expect(decodeZeit('00:01:00,82')).toBe(6082);
+    expect(decodeZeit('00:00:29,03')).toBe(2903);
+    expect(decodeZeit('01:00:00,00')).toBe(360000);
+  });
+
+  it('erkennt die Nullzeit, den Unterlassungswert für „keine Zeit"', () => {
+    expect(decodeZeit('00:00:00,00')).toBe(0);
+    expect(isZeroZeit(0)).toBe(true);
+  });
+
+  it('weist fehlerhafte Werte mit null zurück, statt zu raten', () => {
+    expect(decodeZeit('1:01,44')).toBeNull();
+    expect(decodeZeit('')).toBeNull();
+    expect(decodeZeit('00:00:00.00')).toBeNull();
+  });
+});
+
+describe('encodeZeit', () => {
+  it('ist die Umkehrung von decodeZeit', () => {
+    for (const s of ['00:01:00,82', '00:00:29,03', '00:04:30,84', '00:00:00,00']) {
+      expect(encodeZeit(decodeZeit(s)!)).toBe(s);
+    }
+  });
+
+  it('schreibt führende Nullen', () => {
+    expect(encodeZeit(5)).toBe('00:00:00,05');
+  });
+});
+```
+
+- [ ] **Step 2: Run test to verify it fails**
+
+Run: `npx vitest run test/values/zeit.test.ts`
+Expected: FAIL — Modul nicht gefunden
+
+- [ ] **Step 3: Write minimal implementation**
+
+```ts
+/**
+ * Schwimmzeit im Format `HH:MM:SS,hh` (dsv8.md:264), intern als Hundertstel.
+ *
+ * `00:00:00,00` ist der spezifizierte Unterlassungswert für „keine Zeit" und
+ * wird bewusst nicht auf `null` abgebildet — sonst ginge beim Zurückschreiben
+ * die Unterscheidung zwischen „nicht angegeben" und „ausdrücklich Null"
+ * verloren.
+ */
+const PATTERN = /^(\d{2}):(\d{2}):(\d{2}),(\d{2})$/;
+
+export function decodeZeit(value: string): number | null {
+  const m = PATTERN.exec(value);
+  if (m === null) return null;
+
+  const [, hh, mm, ss, cs] = m as unknown as [string, string, string, string, string];
+  const minutes = Number(mm);
+  const seconds = Number(ss);
+  if (minutes > 59 || seconds > 59) return null;
+
+  return ((Number(hh) * 60 + minutes) * 60 + seconds) * 100 + Number(cs);
+}
+
+export function encodeZeit(hundredths: number): string {
+  const cs = hundredths % 100;
+  const totalSeconds = (hundredths - cs) / 100;
+  const ss = totalSeconds % 60;
+  const totalMinutes = (totalSeconds - ss) / 60;
+  const mm = totalMinutes % 60;
+  const hh = (totalMinutes - mm) / 60;
+
+  const pad = (n: number): string => String(n).padStart(2, '0');
+  return `${pad(hh)}:${pad(mm)}:${pad(ss)},${pad(cs)}`;
+}
+
+export function isZeroZeit(hundredths: number): boolean {
+  return hundredths === 0;
+}
+```
+
+- [ ] **Step 4: Run test to verify it passes**
+
+Run: `npx vitest run test/values/zeit.test.ts`
+Expected: PASS, 5 Tests
+
+- [ ] **Step 5: Property-Test für die Umkehrbarkeit**
+
+```ts
+import fc from 'fast-check';
+
+it('encode und decode sind zueinander invers', () => {
+  fc.assert(
+    fc.property(fc.integer({ min: 0, max: 99 * 360000 }), (cs) => {
+      expect(decodeZeit(encodeZeit(cs))).toBe(cs);
+    }),
+  );
+});
+```
+
+- [ ] **Step 6: Datum und Uhrzeit nach demselben Muster**
+
+`Datum` ist `TT.MM.JJJJ` (dsv8.md:266), `Uhrzeit` ist `HH:MM` im
+24-Stunden-Format (dsv8.md:268). Beide mit `decode`/`encode`, beide geben bei
+ungültiger Eingabe `null` zurück statt zu raten.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add src/values test/values
+git commit -m "feat: add codecs for the time and date scalar types"
+```
+
+---
+
+### Task 16: Öffentliche API und Entfernen der Attrappen
 
 **Files:**
 
@@ -1481,7 +1801,7 @@ git commit -m "feat!: replace placeholder exports with the parsing API"
 
 ---
 
-### Task 16: Test-Review-Zyklus und Release 0.1.0
+### Task 17: Test-Review-Zyklus und Release 0.1.0
 
 **Files:**
 
@@ -1520,7 +1840,13 @@ typisierte Listenarten.
 ```bash
 git add CHANGELOG.md
 git commit -m "docs: add changelog for 0.1.0"
+
+# Branch nach main bringen — erst jetzt, nach bestandenem Review-Zyklus
+git switch main
+git merge --no-ff feat/m0-m1-fundament
+npm run check && npm run build
 git push origin main
+
 gh release create v0.1.0 --title v0.1.0 --generate-notes
 ```
 
