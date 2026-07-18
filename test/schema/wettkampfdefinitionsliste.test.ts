@@ -215,6 +215,7 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
     ]);
     expect(requiredNames(ABSCHNITT)).toEqual(['abschnittsnr', 'abschnittsdatum', 'anfangszeit']);
     expect(ABSCHNITT.fields.find((f) => f.name === 'relativeAngabe')?.default).toBe('N');
+    expect(enumValues(ABSCHNITT, 'relativeAngabe')).toEqual(['J', 'N']);
   });
 
   it('benennt WETTKAMPF', () => {
@@ -434,6 +435,13 @@ describe('WETTKAMPFDEFINITIONSLISTE', () => {
     };
 
     expect(card('FORMAT')).toBe('1..1');
+    expect(card('ERZEUGER')).toBe('1..1');
+    expect(card('VERANSTALTUNG')).toBe('1..1');
+    expect(card('VERANSTALTUNGSORT')).toBe('1..1');
+    expect(card('AUSSCHREIBUNGIMNETZ')).toBe('1..1');
+    expect(card('VERANSTALTER')).toBe('1..1');
+    expect(card('AUSRICHTER')).toBe('1..1');
+    expect(card('MELDEADRESSE')).toBe('1..1');
     expect(card('MELDESCHLUSS')).toBe('1..1');
     expect(card('BANKVERBINDUNG')).toBe('0..1');
     expect(card('LASTSCHRIFT')).toBe('0..1');

@@ -127,8 +127,9 @@ describe('validateValues', () => {
   });
 
   describe('einzelstrecke', () => {
-    it('akzeptiert 0 und 25000', () => {
+    it('akzeptiert 0, die untere Grenze 1 und 25000', () => {
       expect(check(WETTKAMPF, 'einzelstrecke', '0')).toEqual([]);
+      expect(check(WETTKAMPF, 'einzelstrecke', '1')).toEqual([]);
       expect(check(WETTKAMPF, 'einzelstrecke', '25000')).toEqual([]);
     });
 
