@@ -31,6 +31,8 @@ export interface FieldDef {
 
 export interface ElementDef {
   readonly name: string;
+  /** Gesetzt, wenn es das Element erst ab dieser Formatversion gibt. */
+  readonly since?: 8;
   /** Element ohne Doppelpunkt und ohne Attribute — nur `DATEIENDE`. */
   readonly bare: boolean;
   readonly fields: readonly FieldDef[];
@@ -63,7 +65,12 @@ export function field(name: string, type: ScalarType, options: FieldOptions): Fi
 export function element(
   name: string,
   fields: readonly FieldDef[],
-  options: { bare?: boolean } = {},
+  options: { bare?: boolean; since?: 8 } = {},
 ): ElementDef {
-  return { name, bare: options.bare ?? false, fields };
+  return {
+    name,
+    ...(options.since === undefined ? {} : { since: options.since }),
+    bare: options.bare ?? false,
+    fields,
+  };
 }

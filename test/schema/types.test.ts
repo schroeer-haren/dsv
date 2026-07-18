@@ -97,3 +97,13 @@ describe('field mit Aufzählungswerten', () => {
     expect(f.caseInsensitive).toBe(false);
   });
 });
+
+describe('element mit Versionsmarkierung', () => {
+  it('markiert Elemente, die es erst ab DSV8 gibt', () => {
+    expect(element('LASTSCHRIFT', [], { since: 8 }).since).toBe(8);
+  });
+
+  it('lässt since bei Elementen beider Versionen weg', () => {
+    expect(element('ABSCHNITT', []).since).toBeUndefined();
+  });
+});

@@ -420,3 +420,16 @@ describe('WETTKAMPFDEFINITIONSLISTE', () => {
     }
   });
 });
+
+describe('Versionsmarkierung am Element', () => {
+  it('markiert LASTSCHRIFT als DSV8-Neuheit', () => {
+    // Das ganze Element gibt es erst ab DSV8; ohne Markierung am Element
+    // könnte die Validierung es in einer DSV7-Datei nicht beanstanden.
+    expect(LASTSCHRIFT.since).toBe(8);
+  });
+
+  it('lässt Elemente beider Formatversionen unmarkiert', () => {
+    expect(BANKVERBINDUNG.since).toBeUndefined();
+    expect(ABSCHNITT.since).toBeUndefined();
+  });
+});

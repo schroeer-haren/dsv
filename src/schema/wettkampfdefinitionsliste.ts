@@ -187,17 +187,21 @@ export const BANKVERBINDUNG = element('BANKVERBINDUNG', [
 ]);
 
 /** LASTSCHRIFT — erst ab DSV8; Veranstaltung zieht die Meldegelder ein (dsv8.md:813). */
-export const LASTSCHRIFT = element('LASTSCHRIFT', [
-  field('hinweis', 'Zeichen', {
-    doc: 'Veranstaltung arbeitet ausschliesslich mit Lastschriftverfahren.',
-    specRef: 'dsv8.md:813',
-    default: 'N',
-    values: [
-      { value: 'J', doc: 'ja' },
-      { value: 'N', doc: 'nein' },
-    ],
-  }),
-]);
+export const LASTSCHRIFT = element(
+  'LASTSCHRIFT',
+  [
+    field('hinweis', 'Zeichen', {
+      doc: 'Veranstaltung arbeitet ausschliesslich mit Lastschriftverfahren.',
+      specRef: 'dsv8.md:813',
+      default: 'N',
+      values: [
+        { value: 'J', doc: 'ja' },
+        { value: 'N', doc: 'nein' },
+      ],
+    }),
+  ],
+  { since: 8 },
+);
 
 /** BESONDERES — freier Hinweistext zur Veranstaltung (dsv8.md:843). */
 export const BESONDERES = element('BESONDERES', [
