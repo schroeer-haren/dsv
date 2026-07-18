@@ -18,9 +18,8 @@ Das hat eine Konsequenz, die den Rest des Dokuments prägt: Weil kein
 Anwendungsfall priorisiert wird, kann keiner die Architektur retten, wenn sie
 für einen anderen falsch ist. Der Schema-Ansatz ist deshalb keine
 Bequemlichkeit, sondern die Bedingung dafür, dass der volle Umfang überhaupt
-erreichbar ist – 20 Elemente × 4 Listenarten × 2 Versionen × (lesen + schreiben
-
-- validieren) von Hand sind rund 640 Codepfade.
+erreichbar ist – 20 Elemente × 4 Listenarten × 2 Versionen, jeweils lesen,
+schreiben und validieren, ergeben von Hand rund 640 Codepfade.
 
 Aus dem vollen Umfang folgt außerdem, dass die Reihenfolge der Umsetzung
 umso wichtiger wird: Breite entsteht am Ende, nicht am Anfang.
