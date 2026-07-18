@@ -344,11 +344,15 @@ export const WERTUNG = element('WERTUNG', [
   field('geschlecht', 'Zeichen', {
     doc: 'Geschlecht der Wertung; ohne Angabe gilt das Geschlecht des Wettkampfes.',
     specRef: 'dsv8.md:4901',
+    // Reihenfolge nach Kapitel 5.4 (dsv8.md:4940–4944), dem Kapitel, das diese
+    // Datei beschreibt. Kapitel 5.1 führt dasselbe Feld als M, W, X, D auf
+    // (dsv8.md:1228–1234); diese Reihenfolge steht in der
+    // Wettkampfdefinitionsliste. Der Wertevorrat ist in beiden derselbe.
     values: [
       { value: 'M', doc: 'männlich' },
       { value: 'W', doc: 'weiblich' },
-      { value: 'X', doc: 'mixed' },
       { value: 'D', doc: 'divers' },
+      { value: 'X', doc: 'mixed' },
     ],
   }),
   field('wertungsname', 'ZK', {

@@ -159,9 +159,10 @@ describe('Wettkampfergebnisliste — Kopf', () => {
     ]);
   });
 
-  it('toleriert SPR, aber nicht SP', () => {
+  it('führt SP regulär und SPR nur geduldet', () => {
     // Die Werteliste der Spezifikation kennt nur SP; das Beispiel der Spec
-    // selbst und eine echte Datei schreiben aber SPR.
+    // selbst und eine echte Datei schreiben aber SPR. Beide werden gelesen —
+    // SP als regulärer Wert, SPR mit Warnung und beim Schreiben unzulässig.
     const werte = KAMPFGERICHT.fields.find((f) => f.name === 'position')?.values ?? [];
 
     expect(werte.filter((v) => v.tolerated === true).map((v) => v.value)).toEqual(['SPR']);
@@ -223,6 +224,10 @@ describe('Wettkampfergebnisliste — Wettkampf, Wertung, Verein', () => {
       'X',
     ]);
     expect(enumValues(WETTKAMPF, 'geschlecht')).toEqual(['M', 'W', 'D', 'X']);
+    // Reihenfolge nach Kapitel 5.1 (dsv8.md:1097–1107). Kapitel 5.4 ordnet
+    // denselben Vorrat als SW, MS, KG, EW, PA, XX (dsv8.md:4804–4813); da
+    // beide Listenarten sich eine Werteliste teilen, kann sie nur einer
+    // Reihenfolge folgen. Die Reihenfolge trägt keine Bedeutung.
     expect(enumValues(WETTKAMPF, 'zuordnungBestenliste')).toEqual([
       'SW',
       'EW',
@@ -253,7 +258,11 @@ describe('Wettkampfergebnisliste — Wettkampf, Wertung, Verein', () => {
       'wertungsname',
     ]);
     expect(enumValues(WERTUNG, 'wertungsklasseTyp')).toEqual(['JG', 'AK']);
-    expect(enumValues(WERTUNG, 'geschlecht')).toEqual(['M', 'W', 'X', 'D']);
+    // Reihenfolge nach Kapitel 5.4 (dsv8.md:4940–4944), dem Kapitel dieser
+    // Listenart — und damit gleich der von WETTKAMPF oben. Kapitel 5.1 führt
+    // dasselbe Feld als M, W, X, D auf; das gilt für die
+    // Wettkampfdefinitionsliste.
+    expect(enumValues(WERTUNG, 'geschlecht')).toEqual(['M', 'W', 'D', 'X']);
   });
 
   it('kennt in der WERTUNG die Wettkampfarten A und N ohne Vorbehalt', () => {
