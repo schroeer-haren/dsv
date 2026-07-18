@@ -55,6 +55,13 @@ function validateCardinalities(
   return diagnostics;
 }
 
+/** Feldindizes im WETTKAMPF-Record, in DSV7 und DSV8 gleich. */
+const WETTKAMPF_TECHNIK = 5;
+const WETTKAMPF_AUSUEBUNG = 6;
+
+/** Ausübungswerte, die nur bei Technik `S` zulässig sind (dsv8.md:1070). */
+const KICK_AUSUEBUNGEN = new Set(['KB', 'KR']);
+
 /**
  * Querregeln zwischen Elementen: Meldegelder werden entweder überwiesen oder
  * eingezogen, nicht beides (dsv8.md:813).
@@ -75,6 +82,28 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>): Diagnostic[] {
         {
           ...(first === undefined ? AT_START : at(first.line)),
           data: { elements: ['LASTSCHRIFT', 'BANKVERBINDUNG'] },
+        },
+      ),
+    );
+  }
+
+  for (const record of byElement.get('WETTKAMPF') ?? []) {
+    // Kicks in Bauch- und Rückenlage gibt es nur als Schmetterling
+    // (dsv8.md:1070, dsv8.md:1072).
+    const ausuebung = (record.fields[WETTKAMPF_AUSUEBUNG] ?? '').trim();
+    if (!KICK_AUSUEBUNGEN.has(ausuebung)) continue;
+
+    const technik = (record.fields[WETTKAMPF_TECHNIK] ?? '').trim();
+    if (technik === 'S') continue;
+
+    diagnostics.push(
+      createDiagnostic(
+        'invalid-value',
+        'error',
+        `WETTKAMPF.ausuebung: "${ausuebung}" is only allowed with technik S, found "${technik}"`,
+        {
+          ...at(record.line),
+          data: { element: 'WETTKAMPF', field: 'ausuebung', value: ausuebung, technik },
         },
       ),
     );

@@ -190,6 +190,42 @@ describe('validateDocument', () => {
     });
   });
 
+  describe('Kicks nur bei Schmetterling', () => {
+    const wettkampf = (technik: string, ausuebung: string): string[] => [
+      '1',
+      'E',
+      '1',
+      '1',
+      '50',
+      technik,
+      ausuebung,
+      'M',
+      'SW',
+      '',
+      '',
+    ];
+
+    it.each(['KB', 'KR'])('akzeptiert %s bei Technik S', (ausuebung) => {
+      expect(validate(replace(minimal(8), 'WETTKAMPF', wettkampf('S', ausuebung)))).toEqual([]);
+    });
+
+    it.each(['KB', 'KR'])('meldet %s bei Technik F', (ausuebung) => {
+      const diagnostics = validate(replace(minimal(8), 'WETTKAMPF', wettkampf('F', ausuebung)));
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.severity).toBe('error');
+      expect(diagnostics[0]?.data).toMatchObject({
+        field: 'ausuebung',
+        value: ausuebung,
+        technik: 'F',
+      });
+    });
+
+    it.each(['F', 'R', 'B', 'S', 'L', 'X'])('akzeptiert GL bei Technik %s', (technik) => {
+      expect(validate(replace(minimal(8), 'WETTKAMPF', wettkampf(technik, 'GL')))).toEqual([]);
+    });
+  });
+
   describe('Feld- und Wertprüfungen je Record', () => {
     it('führt die Feldanzahlprüfung mit', () => {
       const lines = replace(minimal(), 'MELDESCHLUSS', ['01.05.2026']);
