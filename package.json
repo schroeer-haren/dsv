@@ -40,8 +40,11 @@
     "node": ">=18"
   },
   "publishConfig": {
-    "access": "public"
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "provenance": true
   },
+  "packageManager": "npm@11.12.1",
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
@@ -52,7 +55,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run lint && npm run typecheck && npm run test",
-    "prepublishOnly": "npm run check && npm run build"
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
