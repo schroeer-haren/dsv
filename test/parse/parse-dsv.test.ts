@@ -57,3 +57,31 @@ describe('parseDsvOrThrow', () => {
     expect(() => parseDsvOrThrow(FILE)).not.toThrow();
   });
 });
+
+describe('parseDsv — Reihenfolge und Vollständigkeit', () => {
+  it('meldet ein fehlendes DATEIENDE als Warnung, liefert das Dokument aber', () => {
+    // Ohne FORMAT ist keine Elementdeutung möglich, das ist ein Fehler.
+    // Ein fehlendes DATEIENDE lässt dagegen alle Daten intakt.
+    const { document, diagnostics, ok } = parseDsv('FORMAT:Wettkampfergebnisliste;7;\r\n');
+
+    expect(diagnostics.map((d) => d.code)).toContain('missing-dateiende-element');
+    expect(diagnostics.find((d) => d.code === 'missing-dateiende-element')?.severity).toBe(
+      'warning',
+    );
+    expect(ok).toBe(true);
+    expect(document.listenart).toBe('Wettkampfergebnisliste');
+  });
+
+  it('meldet FORMAT nach einem anderen Element als Warnung', () => {
+    const { diagnostics } = parseDsv('ERZEUGER:X;1;a@b.de;\r\nFORMAT:X;7;\r\nDATEIENDE\r\n');
+    const found = diagnostics.find((d) => d.code === 'format-not-first-element');
+
+    expect(found?.severity).toBe('warning');
+    expect(found?.start.line).toBe(2);
+  });
+
+  it('liest auch die ältere Formatversion 6', () => {
+    const { document } = parseDsv('FORMAT:Wettkampfergebnisliste;6;\r\nDATEIENDE\r\n');
+    expect(document.version).toBe(6);
+  });
+});

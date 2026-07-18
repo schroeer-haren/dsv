@@ -19,6 +19,7 @@ describe('decodeZeit', () => {
     expect(decodeZeit('')).toBeNull();
     expect(decodeZeit('00:00:00.00')).toBeNull();
     expect(decodeZeit('00:60:00,00')).toBeNull();
+    expect(decodeZeit('00:00:60,00')).toBeNull();
   });
 });
 

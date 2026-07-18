@@ -85,3 +85,42 @@ describe('lexLine — Kommentar am Zeilenende', () => {
     expect(l.comment).toBeNull();
   });
 });
+
+describe('lexLine — Leerzeichen um Werte', () => {
+  // Die Spec erlaubt führende und abschliessende Leerzeichen im Attribut
+  // (dsv8.md:233); echte Dateien nutzen das. Der getrimmte Wert und der
+  // Rohtext werden beide gebraucht.
+  it('trimmt abschliessende Leerzeichen und behält sie im Rohtext', () => {
+    const l = lexLine('A:wert ;', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.fields).toEqual(['wert']);
+    expect(l.rawFields).toEqual(['wert ']);
+  });
+
+  it('macht aus einem Feld nur aus Leerzeichen einen leeren Wert', () => {
+    // Kommt in echten Dateien vor; entscheidet, ob das Attribut als
+    // „nicht angegeben" gilt.
+    const l = lexLine('A: ;', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.fields).toEqual(['']);
+    expect(l.rawFields).toEqual([' ']);
+  });
+
+  it('lässt Leerzeichen innerhalb eines Wertes unangetastet', () => {
+    const l = lexLine('VERANSTALTUNG:Alter Fritz 2026;', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.fields).toEqual(['Alter Fritz 2026']);
+  });
+});
+
+describe('lexLine — Zeilen ohne Doppelpunkt', () => {
+  it('behandelt jede Zeile ohne Doppelpunkt als attributloses Element', () => {
+    // Bewusste Festlegung: Der Lexer kennt keine Elementnamen. Ob es sich
+    // tatsächlich um DATEIENDE handelt, entscheidet der Parser.
+    const l = lexLine('Irgendein Fliesstext', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.bare).toBe(true);
+    expect(l.element).toBe('Irgendein Fliesstext');
+    expect(l.fields).toEqual([]);
+  });
+});

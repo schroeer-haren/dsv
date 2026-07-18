@@ -7,6 +7,19 @@ import { writeDsv } from '../src/write/write-dsv.js';
 const DIR = 'test/fixtures/real';
 const files = readdirSync(DIR).filter((f) => /\.dsv[678]?$/i.test(f));
 
+const read = (name: string): string => readFileSync(join(DIR, name), 'utf8');
+
+/**
+ * Fünf Fixtures deklarieren die ältere Formatversion 6. Sie werden hier
+ * getrennt geführt: Auf der schema-freien Ebene sind sie unauffällig, weil die
+ * Zeilensyntax über alle Formatversionen identisch ist. Ab der Schema-Ebene
+ * sollen sie dagegen mit `fatal` abgelehnt werden — dann muss diese Trennung
+ * schon stehen, statt den Test zur Bremse gegen die eigene Entscheidung zu
+ * machen.
+ */
+const dsv6Files = files.filter((f) => parseDsv(read(f)).document.version === 6);
+const dsv7Files = files.filter((f) => parseDsv(read(f)).document.version === 7);
+
 describe('Round-Trip über echte Dateien', () => {
   it('findet den erwarteten Bestand', () => {
     expect(files).toHaveLength(108);
@@ -17,9 +30,21 @@ describe('Round-Trip über echte Dateien', () => {
     expect(writeDsv(parseDsv(text).document)).toBe(text);
   });
 
-  it.each(files)('%s wird ohne Fehler gelesen', (name) => {
-    const text = readFileSync(join(DIR, name), 'utf8');
-    const errors = parseDsv(text).diagnostics.filter(
+  it('teilt sich in 103 DSV7- und 5 DSV6-Dateien auf', () => {
+    expect(dsv7Files).toHaveLength(103);
+    expect(dsv6Files).toHaveLength(5);
+  });
+
+  it.each(dsv7Files)('%s wird ohne Fehler gelesen', (name) => {
+    const errors = parseDsv(read(name)).diagnostics.filter(
+      (d) => d.severity === 'error' || d.severity === 'fatal',
+    );
+    expect(errors).toEqual([]);
+  });
+
+  it.each(dsv6Files)('%s (DSV6) wird schema-frei ebenfalls fehlerfrei gelesen', (name) => {
+    // Gilt nur auf dieser Ebene. Ab der Schema-Ebene ist DSV6 abzulehnen.
+    const errors = parseDsv(read(name)).diagnostics.filter(
       (d) => d.severity === 'error' || d.severity === 'fatal',
     );
     expect(errors).toEqual([]);
@@ -67,6 +92,8 @@ describe('Zerlegung echter Dateien', () => {
         if (item.kind === 'element' && item.comment !== null) withComment++;
       }
     }
-    expect(withComment).toBeGreaterThan(80_000);
+    // Exakter Wert statt unterer Schranke: Eine Schranke bemerkt nicht, wenn
+    // zu gierig abgetrennt wird.
+    expect(withComment).toBe(92_261);
   });
 });
