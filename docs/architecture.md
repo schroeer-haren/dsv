@@ -127,6 +127,28 @@ synthetisch aus der Spec erzeugt oder bei einem Verein erfragt werden. Das ist
 ein Risiko für Schritt 5 der Umsetzung und der Grund, warum der synthetische
 Fixture-Korpus kein Beiwerk ist.
 
+### Unabhängige Implementierungen als Cross-Check
+
+Für die beiden Listenarten ohne Realdaten ist eine zweite, unabhängige Lesart
+der Spec der beste verfügbare Ersatz. Zwei Implementierungen eignen sich dafür:
+
+- **[bigcurl/dsv7-parser](https://github.com/bigcurl/dsv7-parser)** (Ruby, MIT) –
+  deckt als einzige alle vier Listenarten ab und ist bemerkenswert ähnlich
+  aufgebaut: Lexer, Typtabelle, Kardinalitätsprüfung und **ein Schema je
+  Listenart** (`wk_`, `vml_`, `vrl_`, `erg_schema.rb`).
+- **[konrad2002/dsvparser](https://github.com/konrad2002/dsvparser)** (Go,
+  Apache-2.0) – nur Wettkampfdefinitions- und Ergebnisliste.
+
+Abgleich des `vml_schema.rb` gegen unseren Element-Katalog: **vollständige
+Übereinstimmung**, inklusive der listenabhängigen Attributzahlen (`WETTKAMPF`
+10, `STAFFELPERSON` 4, `PNMELDUNG` 10, `HANDICAP` 7, `STMELDUNG` 6) und
+inklusive aller vier in DSV8 angehängten Attribute, die dort erwartungsgemäß
+fehlen (`VEREIN` 4, `KARIMELDUNG` 3, `TRAINER` 2).
+
+Das ist ausdrücklich **Verifikation, keine Vorlage** – es wird kein Code
+übernommen. Der Nutzen liegt darin, Lesefehler in der Spec aufzudecken, dort wo
+keine Realdatei widerspricht.
+
 ### DSV8 existiert in freier Wildbahn noch nicht
 
 GitHub-Codesuche nach `extension:dsv8` liefert null Treffer, Websuchen nach
