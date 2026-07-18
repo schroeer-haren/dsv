@@ -1,4 +1,11 @@
 import { listSchema, occurrence } from './list-schema.js';
+import {
+  BAHNLAENGE_WERTE,
+  TECHNIK_WERTE,
+  WERTUNGSKLASSE_WERTE,
+  ZEITMESSUNG_WERTE,
+  ZUORDNUNG_BESTENLISTE_WERTE,
+} from './shared-values.js';
 import type { EnumValue } from './types.js';
 import { element, field } from './types.js';
 
@@ -51,25 +58,13 @@ export const VERANSTALTUNG = element('VERANSTALTUNG', [
     required: true,
     doc: 'Bahnlänge des Wettkampfbeckens.',
     specRef: 'dsv8.md:427',
-    values: [
-      { value: '16', doc: '16⅔ m' },
-      { value: '20', doc: '20 m' },
-      { value: '25', doc: '25 m' },
-      { value: '33', doc: '33⅓ m' },
-      { value: '50', doc: '50 m' },
-      { value: 'FW', doc: 'Freiwasser' },
-      { value: 'X', doc: 'sonstige Bahnlänge' },
-    ],
+    values: BAHNLAENGE_WERTE,
   }),
   field('zeitmessung', 'ZK', {
     required: true,
     doc: 'Art der Zeitmessung.',
     specRef: 'dsv8.md:435',
-    values: [
-      { value: 'HANDZEIT', doc: 'Handzeit' },
-      { value: 'AUTOMATISCH', doc: 'automatische Zeitmessung' },
-      { value: 'HALBAUTOMATISCH', doc: 'halbautomatische Zeitmessung' },
-    ],
+    values: ZEITMESSUNG_WERTE,
   }),
 ]);
 
@@ -287,12 +282,6 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'N', doc: 'Nachschwimmen', tolerated: true },
 ];
 
-/** Wertevorrat der Wertungsklasse, in WERTUNG und PFLICHTZEIT gleich. */
-const WERTUNGSKLASSE_WERTE: readonly EnumValue[] = [
-  { value: 'JG', doc: 'Jahrgang' },
-  { value: 'AK', doc: 'Altersklasse' },
-];
-
 /** WETTKAMPF — ein einzelner Wettkampf der Veranstaltung (dsv8.md:979). */
 export const WETTKAMPF = element('WETTKAMPF', [
   field('wettkampfnr', 'Zahl', {
@@ -328,14 +317,7 @@ export const WETTKAMPF = element('WETTKAMPF', [
     required: true,
     doc: 'Schwimmart.',
     specRef: 'dsv8.md:1029',
-    values: [
-      { value: 'F', doc: 'Freistil' },
-      { value: 'R', doc: 'Rücken' },
-      { value: 'B', doc: 'Brust' },
-      { value: 'S', doc: 'Schmetterling' },
-      { value: 'L', doc: 'Lagen' },
-      { value: 'X', doc: 'beliebige Sonderform' },
-    ],
+    values: TECHNIK_WERTE,
   }),
   field('ausuebung', 'ZK', {
     required: true,
@@ -369,14 +351,7 @@ export const WETTKAMPF = element('WETTKAMPF', [
     required: true,
     doc: 'Zuordnung für Bestenlistenauswertungen.',
     specRef: 'dsv8.md:1075',
-    values: [
-      { value: 'SW', doc: 'Schwimmen für Jugend und offene Klasse' },
-      { value: 'EW', doc: 'vereinfachter Wettkampf' },
-      { value: 'PA', doc: 'Wettkämpfe für Para-Schwimmer' },
-      { value: 'MS', doc: 'Schwimmen der Masters' },
-      { value: 'KG', doc: 'reiner kindgerechter Wettkampf' },
-      { value: 'XX', doc: 'Andere' },
-    ],
+    values: ZUORDNUNG_BESTENLISTE_WERTE,
   }),
   field('qualifikationswettkampfnr', 'Zahl', {
     doc: 'Nummer des qualifizierenden Vor- oder Zwischenlaufs.',
