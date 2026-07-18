@@ -243,6 +243,7 @@ export const ABSCHNITT = element('ABSCHNITT', [
     required: true,
     doc: 'Nummer des Abschnitts, maximal zweistellig.',
     specRef: 'dsv8.md:904',
+    range: { min: 0, max: 99 },
   }),
   field('abschnittsdatum', 'Datum', {
     required: true,
@@ -298,6 +299,7 @@ export const WETTKAMPF = element('WETTKAMPF', [
     required: true,
     doc: 'Nummer des Wettkampfes, maximal dreistellig.',
     specRef: 'dsv8.md:979',
+    range: { min: 0, max: 999 },
   }),
   field('wettkampfart', 'Zeichen', {
     required: true,
@@ -307,8 +309,9 @@ export const WETTKAMPF = element('WETTKAMPF', [
   }),
   field('abschnittsnr', 'Zahl', {
     required: true,
-    doc: 'Nummer des Abschnitts, in dem der Wettkampf stattfindet.',
+    doc: 'Nummer des Abschnitts, in dem der Wettkampf stattfindet, maximal zweistellig.',
     specRef: 'dsv8.md:997',
+    range: { min: 0, max: 99 },
   }),
   field('anzahlStarter', 'Zahl', {
     doc: 'Anzahl der Starter; bei Staffeln die Zahl der Teilnehmenden.',
@@ -390,8 +393,9 @@ export const WETTKAMPF = element('WETTKAMPF', [
 export const WERTUNG = element('WERTUNG', [
   field('wettkampfnr', 'Zahl', {
     required: true,
-    doc: 'Nummer des Wettkampfes.',
+    doc: 'Nummer des Wettkampfes, maximal dreistellig.',
     specRef: 'dsv8.md:1151',
+    range: { min: 0, max: 999 },
   }),
   field('wettkampfart', 'Zeichen', {
     required: true,
@@ -444,8 +448,9 @@ export const WERTUNG = element('WERTUNG', [
 export const PFLICHTZEIT = element('PFLICHTZEIT', [
   field('wettkampfnr', 'Zahl', {
     required: true,
-    doc: 'Nummer des Wettkampfes.',
+    doc: 'Nummer des Wettkampfes, maximal dreistellig.',
     specRef: 'dsv8.md:1258',
+    range: { min: 0, max: 999 },
   }),
   field('wettkampfart', 'Zeichen', {
     required: true,
@@ -518,8 +523,9 @@ export const MELDEGELD = element('MELDEGELD', [
     specRef: 'dsv8.md:1382',
   }),
   field('wettkampfnr', 'Zahl', {
-    doc: 'Nummer des Wettkampfes; Pflicht bei Typ Wkmeldegeld.',
+    doc: 'Nummer des Wettkampfes, maximal dreistellig; Pflicht bei Typ Wkmeldegeld.',
     specRef: 'dsv8.md:1389',
+    range: { min: 0, max: 999 },
   }),
 ]);
 

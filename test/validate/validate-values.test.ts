@@ -3,6 +3,7 @@ import type { DsvRecord } from '../../src/document/types.js';
 import { element, field } from '../../src/schema/types.js';
 import type { ElementDef } from '../../src/schema/types.js';
 import {
+  ABSCHNITT,
   MELDEGELD,
   MELDESCHLUSS,
   PFLICHTZEIT,
@@ -94,6 +95,34 @@ describe('validateValues', () => {
           'invalid-value',
         ]);
       }
+    });
+  });
+
+  describe('Stellenbegrenzungen', () => {
+    // Abschnittsnr. maximal zweistellig (dsv8.md:910), Wettkampfnr. maximal
+    // dreistellig (dsv8.md:993).
+    it.each([
+      ['ABSCHNITT', ABSCHNITT],
+      ['WETTKAMPF', WETTKAMPF],
+    ] as const)('begrenzt %s.abschnittsnr auf zwei Stellen', (_name, def) => {
+      expect(check(def, 'abschnittsnr', '99')).toEqual([]);
+
+      const diagnostics = check(def, 'abschnittsnr', '100');
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.data).toMatchObject({ field: 'abschnittsnr', value: '100' });
+    });
+
+    it.each([
+      ['WETTKAMPF', WETTKAMPF],
+      ['WERTUNG', WERTUNG],
+      ['PFLICHTZEIT', PFLICHTZEIT],
+      ['MELDEGELD', MELDEGELD],
+    ] as const)('begrenzt %s.wettkampfnr auf drei Stellen', (_name, def) => {
+      expect(check(def, 'wettkampfnr', '999')).toEqual([]);
+
+      const diagnostics = check(def, 'wettkampfnr', '1000');
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.data).toMatchObject({ field: 'wettkampfnr', value: '1000' });
     });
   });
 

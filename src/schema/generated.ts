@@ -494,7 +494,7 @@ export interface WettkampfV7 {
   wettkampfart: 'V' | 'Z' | 'F' | 'E' | 'A' | 'N';
 
   /**
-   * Nummer des Abschnitts, in dem der Wettkampf stattfindet.
+   * Nummer des Abschnitts, in dem der Wettkampf stattfindet, maximal zweistellig.
    *
    * @see dsv8.md:997
    */
@@ -613,7 +613,7 @@ export interface WettkampfV8 {
   wettkampfart: 'V' | 'Z' | 'F' | 'E' | 'A' | 'N';
 
   /**
-   * Nummer des Abschnitts, in dem der Wettkampf stattfindet.
+   * Nummer des Abschnitts, in dem der Wettkampf stattfindet, maximal zweistellig.
    *
    * @see dsv8.md:997
    */
@@ -714,7 +714,7 @@ export interface WettkampfV8 {
 
 export interface WertungV7 {
   /**
-   * Nummer des Wettkampfes.
+   * Nummer des Wettkampfes, maximal dreistellig.
    *
    * @see dsv8.md:1151
    */
@@ -789,7 +789,7 @@ export type WertungV8 = WertungV7;
 
 export interface PflichtzeitV7 {
   /**
-   * Nummer des Wettkampfes.
+   * Nummer des Wettkampfes, maximal dreistellig.
    *
    * @see dsv8.md:1258
    */
@@ -881,7 +881,7 @@ export interface MeldegeldV7 {
   betrag: string;
 
   /**
-   * Nummer des Wettkampfes; Pflicht bei Typ Wkmeldegeld.
+   * Nummer des Wettkampfes, maximal dreistellig; Pflicht bei Typ Wkmeldegeld.
    *
    * @see dsv8.md:1389
    */
@@ -919,7 +919,7 @@ export interface MeldegeldV8 {
   betrag: string;
 
   /**
-   * Nummer des Wettkampfes; Pflicht bei Typ Wkmeldegeld.
+   * Nummer des Wettkampfes, maximal dreistellig; Pflicht bei Typ Wkmeldegeld.
    *
    * @see dsv8.md:1389
    */
