@@ -87,6 +87,25 @@ describe('writeWettkampfdefinitionsliste', () => {
     expect(text).not.toContain('  Kiel  ');
   });
 
+  it('gibt options.version den Vorrang vor dem FORMAT-Record', () => {
+    // Ohne Version im FORMAT-Record trägt allein die Option die Entscheidung;
+    // sie landet auch im Versionsfeld der Ausgabe, sonst wäre die Datei falsch
+    // ausgezeichnet und die abschliessende Prüfung läse sie als versionslos.
+    const records = withValue(minimalRecords(), 'FORMAT', 'version', '');
+    const text = writeWettkampfdefinitionsliste(records, { version: 8 });
+
+    expect(text.startsWith('FORMAT:Wettkampfdefinitionsliste;8;\r\n')).toBe(true);
+    expect(parseWettkampfdefinitionsliste(text).document.version).toBe(8);
+  });
+
+  it('schreibt eine abweichende FORMAT-Version auf die Option um', () => {
+    const records = withValue(minimalRecords(), 'FORMAT', 'version', '8');
+    const text = writeWettkampfdefinitionsliste(records, { version: 7 });
+
+    expect(text.startsWith('FORMAT:Wettkampfdefinitionsliste;7;\r\n')).toBe(true);
+    expect(parseWettkampfdefinitionsliste(text).document.version).toBe(7);
+  });
+
   it('wirft bei einem tolerierten Aufzählungswert', () => {
     // `N` ist im Format bekannt, für diese Listenart aber nicht vorgesehen.
     // Beim Lesen nur eine Warnung, beim Schreiben unzulässig.

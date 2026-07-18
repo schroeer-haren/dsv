@@ -23,7 +23,14 @@ function isSupportedVersion(version: number): version is FormatVersion {
   return version === 7 || version === 8;
 }
 
-/** Ermittelt die Formatversion aus den Optionen, sonst aus dem FORMAT-Record. */
+/**
+ * Ermittelt die Formatversion aus den Optionen, sonst aus dem FORMAT-Record.
+ *
+ * `options.version` hat Vorrang. Damit dieser Vorrang benutzbar ist, schreibt
+ * `serialize` die ermittelte Version auch in das Versionsfeld des FORMAT-Records
+ * — sonst trüge die Ausgabe eine andere Versionsangabe als die Feldauswahl, mit
+ * der sie erzeugt wurde, und die abschliessende Prüfung läse sie falsch zurück.
+ */
 function resolveVersion(
   records: readonly TypedRecord[],
   options: WriteOptions,
@@ -58,8 +65,16 @@ function serialize(
       continue;
     }
 
+    // Das FORMAT-Element trägt die Version, mit der geschrieben wird — nicht
+    // die, die zufällig im Record steht.
+    const isFormat = def.name.toUpperCase() === 'FORMAT';
+
     const fields = fieldsForVersion(def, version)
-      .map((f) => `${(record.values[f.name] ?? '').trim()};`)
+      .map((f) => {
+        const raw =
+          isFormat && f.name === 'version' ? String(version) : (record.values[f.name] ?? '');
+        return `${raw.trim()};`;
+      })
       .join('');
     lines.push(`${def.name}:${fields}`);
   }
@@ -80,6 +95,12 @@ function serialize(
  * Bibliothek nicht ausliefern. Diese Reihenfolge prüft beides in einem Durchgang
  * — den Inhalt der Records und die Serialisierung selbst — und kann nicht von
  * der Leseseite abweichen, weil sie dieselbe Prüfung benutzt.
+ *
+ * Die Formatversion kommt aus `options.version`, sonst aus dem FORMAT-Record.
+ * Sie bestimmt nicht nur die Feldauswahl, sondern wird auch in das Versionsfeld
+ * des FORMAT-Elements geschrieben: Die Ausgabe zeichnet sich damit stets als das
+ * aus, als was sie erzeugt wurde. Ohne das hinge an einer Option, die von der
+ * Angabe im Record abweicht, eine falsch ausgezeichnete Datei.
  *
  * Strenger als beim Lesen ist dabei nur eines: Tolerierte Aufzählungswerte
  * (`EnumValue` mit `tolerated: true`) ergeben beim Lesen eine Warnung, hier
