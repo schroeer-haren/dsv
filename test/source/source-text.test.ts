@@ -3,7 +3,7 @@ import { createSourceText } from '../../src/source/source-text.js';
 
 describe('createSourceText', () => {
   it('trennt ein BOM ab und merkt es sich', () => {
-    const src = createSourceText('﻿FORMAT:X;7;');
+    const src = createSourceText('\uFEFFFORMAT:X;7;');
     expect(src.hasBom).toBe(true);
     expect(src.lines[0]!.content).toBe('FORMAT:X;7;');
   });

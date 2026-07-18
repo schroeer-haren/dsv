@@ -16,7 +16,7 @@ export interface SourceText {
   readonly lines: readonly SourceLine[];
 }
 
-const BOM = '﻿';
+const BOM = '\uFEFF';
 
 export function createSourceText(input: string): SourceText {
   const hasBom = input.startsWith(BOM);
