@@ -235,3 +235,37 @@ describe('validateValues', () => {
     });
   });
 });
+
+describe('tolerierte Aufzählungswerte', () => {
+  // Die Spezifikation sieht A und N nur in den Ergebnislisten vor. Das
+  // DSV-Portal schreibt sie aber auch in Ausschreibungen — belegt in
+  // dsvportal-13062024-Wk.dsv7. Als Fehler gemeldet wiese die Bibliothek
+  // Dateien zurück, die der Verband selbst ausliefert.
+  const wettkampfMit = (art: string): DsvRecord => ({
+    kind: 'element',
+    element: 'WETTKAMPF',
+    fields: ['1', art, '1', '', '100', 'F', 'GL', 'W', 'SW', '', ''],
+    rawFields: ['1', art, '1', '', '100', 'F', 'GL', 'W', 'SW', '', ''],
+    comment: null,
+    bare: false,
+    line: 1,
+    raw: '',
+    eol: '\r\n',
+  });
+
+  it('meldet Nachschwimmen als Warnung, nicht als Fehler', () => {
+    const found = validateValues(wettkampfMit('N'), WETTKAMPF, 7);
+    expect(found).toHaveLength(1);
+    expect(found[0]?.severity).toBe('warning');
+    expect(found[0]?.data?.tolerated).toBe(true);
+  });
+
+  it('meldet einen spezifikationskonformen Wert gar nicht', () => {
+    expect(validateValues(wettkampfMit('V'), WETTKAMPF, 7)).toEqual([]);
+  });
+
+  it('meldet einen im Format unbekannten Wert weiterhin als Fehler', () => {
+    const found = validateValues(wettkampfMit('Q'), WETTKAMPF, 7);
+    expect(found[0]?.severity).toBe('error');
+  });
+});

@@ -9,6 +9,13 @@ export interface EnumValue {
   readonly doc: string;
   /** Gesetzt, wenn der Wert erst ab dieser Formatversion erlaubt ist. */
   readonly since?: 8;
+  /**
+   * Wert, den die Spezifikation für diese Listenart nicht vorsieht, der im
+   * Format aber existiert und real vorkommt. Wird beim Lesen als `warning`
+   * gemeldet statt als `error` — sonst wiese die Bibliothek Dateien zurück,
+   * die der DSV selbst ausliefert. Beim Schreiben bleibt er unzulässig.
+   */
+  readonly tolerated?: boolean;
 }
 
 /** Zulässiger Zahlenbereich eines Feldes, Grenzen einschliesslich. */

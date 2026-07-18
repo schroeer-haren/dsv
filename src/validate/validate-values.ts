@@ -1,7 +1,7 @@
 import { createDiagnostic } from '../diagnostics/create.js';
 import type { Diagnostic, Position } from '../diagnostics/types.js';
 import type { DsvRecord } from '../document/types.js';
-import type { ElementDef, FieldDef, ScalarType } from '../schema/types.js';
+import type { ElementDef, EnumValue, FieldDef, ScalarType } from '../schema/types.js';
 import { decodeDatum } from '../values/datum.js';
 import { decodeUhrzeit } from '../values/uhrzeit.js';
 import { decodeZeit } from '../values/zeit.js';
@@ -39,12 +39,16 @@ function matchesType(value: string, type: ScalarType): boolean {
   }
 }
 
-/** Prüft, ob der Wert in der in dieser Version gültigen Werteliste vorkommt. */
-function matchesEnum(value: string, def: FieldDef, version: FormatVersion): boolean {
-  const values = def.values;
-  if (values === undefined) return true;
-
-  return values.some((v) => {
+/**
+ * Sucht den passenden Aufzählungswert. Liefert `undefined`, wenn der Wert in
+ * dieser Formatversion nicht zulässig ist.
+ */
+function findEnumValue(
+  value: string,
+  def: FieldDef,
+  version: FormatVersion,
+): EnumValue | undefined {
+  return def.values?.find((v) => {
     if (v.since !== undefined && v.since > version) return false;
     return def.caseInsensitive ? v.value.toLowerCase() === value.toLowerCase() : v.value === value;
   });
@@ -115,16 +119,32 @@ export function validateValues(
       }
     }
 
-    if (!matchesEnum(value, fieldDef, version)) {
-      diagnostics.push(
-        invalidValue(
-          'invalid-enum-value',
-          `${def.name}.${fieldDef.name}: "${value}" is not an allowed value in DSV${String(version)}`,
-          fieldDef,
-          value,
-          at,
-        ),
-      );
+    if (fieldDef.values !== undefined) {
+      const match = findEnumValue(value, fieldDef, version);
+
+      if (match === undefined) {
+        diagnostics.push(
+          invalidValue(
+            'invalid-enum-value',
+            `${def.name}.${fieldDef.name}: "${value}" is not an allowed value in DSV${String(version)}`,
+            fieldDef,
+            value,
+            at,
+          ),
+        );
+      } else if (match.tolerated === true) {
+        // Im Format bekannt, für diese Listenart aber nicht vorgesehen. Als
+        // Fehler gemeldet wiese die Bibliothek Dateien zurück, die der DSV
+        // selbst ausliefert.
+        diagnostics.push(
+          createDiagnostic(
+            'invalid-enum-value',
+            'warning',
+            `${def.name}.${fieldDef.name}: "${value}" is not specified for this list type`,
+            { ...at, data: { field: fieldDef.name, value, tolerated: true } },
+          ),
+        );
+      }
     }
   }
 

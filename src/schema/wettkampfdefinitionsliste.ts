@@ -276,6 +276,13 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'Z', doc: 'Zwischenlauf' },
   { value: 'F', doc: 'Finale' },
   { value: 'E', doc: 'Entscheidung' },
+  // Die Spezifikation sieht A und N nur in den Ergebnislisten vor
+  // (dsv8.md:4726). Das DSV-Portal schreibt sie aber auch in
+  // Ausschreibungen — belegt in dsvportal-13062024-Wk.dsv7, wo Wettkämpfe
+  // mit Art N als „Nachschwimmen" kommentiert sind. Toleriert beim Lesen,
+  // beim Schreiben weiterhin unzulässig.
+  { value: 'A', doc: 'Ausschwimmen (laut Spec nur in Ergebnislisten)', tolerated: true },
+  { value: 'N', doc: 'Nachschwimmen (laut Spec nur in Ergebnislisten)', tolerated: true },
 ];
 
 /** Wertevorrat der Wertungsklasse, in WERTUNG und PFLICHTZEIT gleich. */
