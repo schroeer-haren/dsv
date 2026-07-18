@@ -16,9 +16,20 @@ describe('parseDsv', () => {
     expect(document.version).toBe(7);
   });
 
-  it('vergleicht die Listart case-insensitiv', () => {
+  it('erkennt Elementnamen unabhängig von der Schreibweise', () => {
+    // Der Parser vergleicht den ELEMENTNAMEN case-insensitiv. In allen echten
+    // Dateien stehen FORMAT und DATEIENDE gross — ein Erzeuger mit kleiner
+    // Schreibweise würde sonst stillschweigend als „FORMAT fehlt" durchfallen.
+    const { document, diagnostics } = parseDsv('Format:Vereinsmeldeliste;7;\r\nDateiende\r\n');
+
+    expect(document.listenart).toBe('Vereinsmeldeliste');
+    expect(diagnostics.map((d) => d.code)).not.toContain('missing-format-element');
+    expect(diagnostics.map((d) => d.code)).not.toContain('missing-dateiende-element');
+  });
+
+  it('gibt die Listart unverändert zurück, ohne Normalisierung', () => {
     const { document } = parseDsv('FORMAT:WETTKAMPFERGEBNISLISTE;7;\r\nDATEIENDE\r\n');
-    expect(document.listenart?.toLowerCase()).toBe('wettkampfergebnisliste');
+    expect(document.listenart).toBe('WETTKAMPFERGEBNISLISTE');
   });
 
   it('akzeptiert Kommentarzeilen vor FORMAT', () => {
@@ -83,5 +94,82 @@ describe('parseDsv — Reihenfolge und Vollständigkeit', () => {
   it('liest auch die ältere Formatversion 6', () => {
     const { document } = parseDsv('FORMAT:Wettkampfergebnisliste;6;\r\nDATEIENDE\r\n');
     expect(document.version).toBe(6);
+  });
+});
+
+describe('parseDsv — Diagnostics vollständig', () => {
+  const VALID = 'FORMAT:Wettkampfergebnisliste;7;\r\nDATEIENDE\r\n';
+
+  // Tabellengetrieben, damit jeder Diagnostic-Code mindestens einmal auf sein
+  // Auftreten, seine Severity und seine Wirkung auf `ok` geprüft ist.
+  const cases: ReadonlyArray<{
+    name: string;
+    input: string;
+    code: string;
+    severity: string;
+    ok: boolean;
+  }> = [
+    {
+      name: 'leere Eingabe',
+      input: '',
+      code: 'empty-input',
+      severity: 'fatal',
+      ok: false,
+    },
+    {
+      name: 'fehlendes FORMAT',
+      input: 'DATEIENDE\r\n',
+      code: 'missing-format-element',
+      severity: 'error',
+      ok: false,
+    },
+    {
+      name: 'fehlendes DATEIENDE',
+      input: 'FORMAT:X;7;\r\n',
+      code: 'missing-dateiende-element',
+      severity: 'warning',
+      ok: true,
+    },
+    {
+      name: 'FORMAT nicht als erstes Element',
+      input: 'ERZEUGER:X;1;a@b.de;\r\nFORMAT:X;7;\r\nDATEIENDE\r\n',
+      code: 'format-not-first-element',
+      severity: 'warning',
+      ok: true,
+    },
+    {
+      name: 'Ersatzzeichen aus falschem Encoding',
+      input: `FORMAT:X;7;\r\nVEREIN:M\uFFFDller;\r\nDATEIENDE\r\n`,
+      code: 'unknown-encoding-replacement-character',
+      severity: 'warning',
+      ok: true,
+    },
+  ];
+
+  it.each(cases)('$name meldet $code mit Severity $severity', ({ input, code, severity, ok }) => {
+    const result = parseDsv(input);
+    const found = result.diagnostics.find((d) => d.code === code);
+
+    expect(found, `Diagnostic ${code} fehlt`).toBeDefined();
+    expect(found?.severity).toBe(severity);
+    expect(result.ok).toBe(ok);
+  });
+
+  it('meldet für eine fehlerfreie Datei gar nichts', () => {
+    const result = parseDsv(VALID);
+    expect(result.diagnostics).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it('wirft auch bei Severity fatal, nicht nur bei error', () => {
+    expect(() => parseDsvOrThrow('')).toThrow(/empty-input/);
+  });
+});
+
+describe('parseDsv — Version', () => {
+  it('liefert null statt zu raten, wenn die Version fehlt oder unlesbar ist', () => {
+    expect(parseDsv('FORMAT:X;;\r\nDATEIENDE\r\n').document.version).toBeNull();
+    expect(parseDsv('FORMAT:X;abc;\r\nDATEIENDE\r\n').document.version).toBeNull();
+    expect(parseDsv('FORMAT:X;\r\nDATEIENDE\r\n').document.version).toBeNull();
   });
 });
