@@ -13,6 +13,7 @@ export { parseDsv, parseDsvOrThrow, DsvParseError } from './parse/parse-dsv.js';
 export { parseWettkampfdefinitionsliste } from './parse/parse-wettkampfdefinitionsliste.js';
 export { parseWettkampfergebnisliste } from './parse/parse-wettkampfergebnisliste.js';
 export { projectWettkampfdefinitionsliste } from './document/wettkampfdefinitionsliste.js';
+export { projectWettkampfergebnisliste } from './document/wettkampfergebnisliste.js';
 export { writeDsv } from './write/write-dsv.js';
 export {
   writeWettkampfdefinitionsliste,
@@ -36,6 +37,30 @@ export type {
   Wettkampf,
   Wettkampfdefinition,
 } from './document/wettkampfdefinitionsliste.js';
+/**
+ * Der Objektgraph der Ergebnisliste. Die Namen tragen das Präfix `Ergebnis`,
+ * wo die Definitionsliste denselben Begriff anders modelliert — ABSCHNITT etwa
+ * führt dort sechs Felder und hier vier.
+ */
+export type {
+  Abloese,
+  ErgebnisAbschnitt,
+  ErgebnisProjectionResult,
+  ErgebnisVeranstaltung,
+  ErgebnisWertung,
+  ErgebnisWettkampf,
+  Kampfrichter,
+  Platzierung,
+  Reaktion,
+  Schwimmer,
+  Staffel,
+  StaffelPerson,
+  StaffelZwischenzeit,
+  Start,
+  Verein,
+  Wettkampfergebnis,
+  Zwischenzeit,
+} from './document/wettkampfergebnisliste.js';
 export type { Datum } from './values/datum.js';
 
 export type {

@@ -1,0 +1,965 @@
+import { createDiagnostic } from '../diagnostics/create.js';
+import type { Diagnostic } from '../diagnostics/types.js';
+import type { TypedRecord } from '../parse/parse-typed-list.js';
+import type { Wettkampfergebnisliste } from '../parse/parse-wettkampfergebnisliste.js';
+import type { Datum } from '../values/datum.js';
+import { decodeDatum } from '../values/datum.js';
+import { decodeUhrzeit } from '../values/uhrzeit.js';
+import { decodeZeit } from '../values/zeit.js';
+
+/**
+ * Objektgraph einer Wettkampfergebnisliste.
+ *
+ * Das Zielmodell ist ein anderes als das der Wettkampfdefinitionsliste, nicht
+ * bloss ein zweiter Satz gleich benannter Typen. Der Unterschied steckt in
+ * PNERGEBNIS: Die Datei kennt keine Personen-Entität, sondern einen
+ * denormalisierten Flachsatz, der Name, DSV-ID, Verein, Jahrgang und Endzeit in
+ * jeder Zeile mitführt — und dieselbe Person einmal je Wertung wiederholt
+ * (dsv8.md:5019).
+ *
+ * Diese Wiederholung wird hier aufgelöst. Ein `Start` ist der Schwimmvorgang
+ * einer Person in einem Wettkampf; die Wertungen, in denen dieser Start
+ * platziert wurde, hängen als `Platzierung` daran. Gemessen an den 48
+ * fehlerfreien echten Dateien trägt das: In 6970 Fällen erscheint eine Person
+ * mehrfach im selben Wettkampf, und in keinem einzigen weichen Name, DSV-ID,
+ * Geschlecht, Jahrgang, Verein, Vereinskennzahl oder Endzeit voneinander ab.
+ * Die Zeilen unterscheiden sich ausschliesslich in Wertung und Platz. Weicht
+ * doch einmal etwas ab, gewinnt die erste Zeile und es entsteht ein
+ * `ambiguous-reference`.
+ *
+ * Bewusste Festlegungen, wie beim anderen Objektgraph:
+ *
+ * - Nur einfache Objekte, keine Klassen. Beim Dual-Publish für ESM und CJS gibt
+ *   es zwei Modulinstanzen; `instanceof` schlüge über diese Grenze fehl.
+ * - Alle Bezüge werden sofort aufgelöst, nicht über Getter.
+ * - Keine Rückverweise. Ein Zeiger vom Start auf seinen Wettkampf erzeugte
+ *   einen Zyklus, an dem `JSON.stringify` wirft. Stattdessen stehen Index-Maps
+ *   auf der obersten Ebene. Jeder `Start` hat genau einen Ort im Baum — unter
+ *   seinem Wettkampf; `Schwimmer.starts` und `startByKey` verweisen auf
+ *   dieselben Objekte, verdoppeln sie also nicht.
+ * - Werte bleiben Zeichenketten, ausser Datum, Uhrzeit und Zeit.
+ */
+export interface ErgebnisVeranstaltung {
+  readonly bezeichnung: string;
+  readonly ort: string;
+  readonly bahnlaenge: string;
+  readonly zeitmessung: string;
+}
+
+/** Ein an der Veranstaltung beteiligter Verein. */
+export interface Verein {
+  readonly bezeichnung: string;
+  /** Vierstellige Kennzahl; `0` bei nicht dem DSV angehörenden Vereinen. */
+  readonly kennzahl: number;
+  readonly landesschwimmverband: string;
+  readonly nationenkuerzel: string;
+  readonly line: number;
+}
+
+/** Eine Besetzung im Kampfgericht eines Abschnitts. */
+export interface Kampfrichter {
+  readonly position: string;
+  readonly name: string;
+  readonly verein: string;
+  readonly line: number;
+}
+
+/** Eine Wertungsgruppe innerhalb eines Wettkampfes. */
+export interface ErgebnisWertung {
+  /** Veranstaltungsweit eindeutige Kennung aus `wertungsId`. */
+  readonly id: number;
+  readonly wertungsklasseTyp: string;
+  readonly mindestJgAk: string;
+  readonly maximalJgAk: string;
+  readonly geschlecht: string;
+  readonly name: string;
+  readonly line: number;
+}
+
+/** Die Platzierung eines Starts in einer Wertung. */
+export interface Platzierung {
+  readonly wertungsId: number;
+  readonly platz: number;
+  /** `DS`, `NA`, `AB`, `AU` oder `ZU`; leer, wenn das Ergebnis zählt. */
+  readonly grundDerNichtwertung: string;
+  readonly disqualifikationsbemerkung: string;
+  readonly erhoehtesNachtraeglichesMeldegeld: string;
+  readonly line: number;
+}
+
+/** Eine Zwischenzeit auf einer Teilstrecke. */
+export interface Zwischenzeit {
+  readonly distanz: number;
+  /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
+  readonly zeit: number | null;
+  readonly line: number;
+}
+
+/** Eine Reaktionszeit beim Start. */
+export interface Reaktion {
+  /** `+` für Start nach, `-` für Start vor dem Signal. */
+  readonly art: string;
+  /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
+  readonly zeit: number | null;
+  readonly line: number;
+}
+
+/**
+ * Der Schwimmvorgang einer Person in einem Wettkampf.
+ *
+ * Fasst die PNERGEBNIS-Zeilen zusammen, die dieselbe Person im selben Wettkampf
+ * betreffen. Was den Schwimmvorgang beschreibt, steht hier einmal; was die
+ * Wertung betrifft, steht in `platzierungen`.
+ */
+export interface Start {
+  /** Veranstaltungsweit eindeutige Kennung der Person. */
+  readonly veranstaltungsId: number;
+  readonly wettkampfnr: number;
+  readonly wettkampfart: string;
+  readonly name: string;
+  readonly dsvId: string;
+  readonly geschlecht: string;
+  readonly jahrgang: string;
+  readonly altersklasse: string;
+  readonly verein: string;
+  readonly vereinskennzahl: number;
+  /** Die bis zu drei Staatsangehörigkeiten, leere Angaben weggelassen. */
+  readonly nationalitaeten: readonly string[];
+  /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
+  readonly endzeit: number | null;
+  readonly platzierungen: readonly Platzierung[];
+  readonly zwischenzeiten: readonly Zwischenzeit[];
+  readonly reaktionen: readonly Reaktion[];
+  /** Zeilennummer der ersten zugrunde liegenden PNERGEBNIS-Zeile. */
+  readonly line: number;
+}
+
+/** Eine Teilnehmerin oder ein Teilnehmer einer Staffel. */
+export interface StaffelPerson {
+  readonly name: string;
+  readonly dsvId: string;
+  readonly startnummer: number;
+  readonly geschlecht: string;
+  readonly jahrgang: string;
+  readonly altersklasse: string;
+  readonly nationalitaeten: readonly string[];
+  readonly line: number;
+}
+
+/** Eine Zwischenzeit innerhalb einer Staffel. */
+export interface StaffelZwischenzeit extends Zwischenzeit {
+  readonly startnummer: number;
+}
+
+/** Eine Ablösezeit innerhalb einer Staffel. */
+export interface Abloese extends Reaktion {
+  readonly startnummer: number;
+}
+
+/** Das Ergebnis einer Staffel, aufgebaut wie ein `Start`. */
+export interface Staffel {
+  /** Veranstaltungsweit eindeutige Kennung der Staffel. */
+  readonly veranstaltungsId: number;
+  readonly wettkampfnr: number;
+  readonly wettkampfart: string;
+  readonly nummerDerMannschaft: string;
+  readonly verein: string;
+  readonly vereinskennzahl: number;
+  /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
+  readonly endzeit: number | null;
+  readonly startnummerDisqualifiziert: string;
+  readonly platzierungen: readonly Platzierung[];
+  readonly personen: readonly StaffelPerson[];
+  readonly zwischenzeiten: readonly StaffelZwischenzeit[];
+  readonly abloesen: readonly Abloese[];
+  readonly line: number;
+}
+
+/**
+ * Ein einzelner Wettkampf.
+ *
+ * Identifiziert über das Paar aus `nummer` und `art`, nicht über die Nummer
+ * allein: Dieselbe Nummer kommt als Vorlauf und als Entscheidung vor.
+ */
+export interface ErgebnisWettkampf {
+  readonly nummer: number;
+  readonly art: string;
+  readonly abschnittsnr: number;
+  readonly anzahlStarter: string;
+  readonly einzelstrecke: number;
+  readonly technik: string;
+  readonly ausuebung: string;
+  readonly geschlecht: string;
+  readonly zuordnungBestenliste: string;
+  readonly wertungen: readonly ErgebnisWertung[];
+  readonly starts: readonly Start[];
+  readonly staffeln: readonly Staffel[];
+  /** Auflösung von qualifikationswettkampfnr/-art, `null` wenn nicht gesetzt. */
+  readonly qualifikationAus: { readonly nummer: number; readonly art: string } | null;
+  readonly line: number;
+}
+
+/** Ein Veranstaltungsabschnitt samt Kampfgericht und Wettkämpfen. */
+export interface ErgebnisAbschnitt {
+  readonly nummer: number;
+  readonly datum: Datum | null;
+  /** Minuten seit Mitternacht, `null` ohne oder bei ungültiger Angabe. */
+  readonly anfangszeit: number | null;
+  /** `J`, wenn die Zeit relativ zum Ende des Vorabschnitts gilt. */
+  readonly relativeAngabe: string;
+  readonly kampfgericht: readonly Kampfrichter[];
+  readonly wettkaempfe: readonly ErgebnisWettkampf[];
+  readonly line: number;
+}
+
+/**
+ * Eine Person mit allen ihren Starts.
+ *
+ * Diese Entität steht so in keiner Datei — sie ist aus den PNERGEBNIS-Zeilen
+ * zusammengesetzt. Angeboten wird sie, weil die Messung an den echten Daten sie
+ * trägt: über 17634 Personen in 75 Dateien, davon 17043 in mehr als einer
+ * Zeile, weicht keine einzige Angabe zu Name, DSV-ID, Geschlecht, Jahrgang,
+ * Verein oder Vereinskennzahl voneinander ab. Widersprüche sind also möglich,
+ * aber empirisch nicht belegt; tritt doch einer auf, gewinnt die erste Zeile und
+ * es entsteht ein `ambiguous-reference`.
+ */
+export interface Schwimmer {
+  readonly veranstaltungsId: number;
+  readonly name: string;
+  readonly dsvId: string;
+  readonly geschlecht: string;
+  readonly jahrgang: string;
+  readonly verein: string;
+  readonly vereinskennzahl: number;
+  /** Dieselben Objekte, die auch unter ihrem Wettkampf hängen. */
+  readonly starts: readonly Start[];
+}
+
+export interface Wettkampfergebnis {
+  readonly veranstaltung: ErgebnisVeranstaltung;
+  readonly abschnitte: readonly ErgebnisAbschnitt[];
+  readonly vereine: readonly Verein[];
+  /** Wettkämpfe, deren `abschnittsnr` auf keinen Abschnitt zeigt. */
+  readonly wettkaempfeOhneAbschnitt: readonly ErgebnisWettkampf[];
+  /** Schlüssel ist `${nummer}:${art}`. */
+  readonly wettkampfByKey: ReadonlyMap<string, ErgebnisWettkampf>;
+  readonly wertungById: ReadonlyMap<number, ErgebnisWertung>;
+  readonly abschnittByNummer: ReadonlyMap<number, ErgebnisAbschnitt>;
+  /** Ohne die Kennzahl 0: die kennzeichnet vereinslose Meldungen, sie ist kein Schlüssel. */
+  readonly vereinByKennzahl: ReadonlyMap<number, Verein>;
+  /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
+  readonly startByKey: ReadonlyMap<string, Start>;
+  /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
+  readonly staffelByKey: ReadonlyMap<string, Staffel>;
+  readonly schwimmerById: ReadonlyMap<number, Schwimmer>;
+}
+
+export interface ErgebnisProjectionResult {
+  readonly graph: Wettkampfergebnis;
+  readonly diagnostics: readonly Diagnostic[];
+}
+
+const EMPTY_VERANSTALTUNG: ErgebnisVeranstaltung = {
+  bezeichnung: '',
+  ort: '',
+  bahnlaenge: '',
+  zeitmessung: '',
+};
+
+/** Feldwert eines Records; fehlende Felder ergeben die leere Zeichenkette. */
+function value(record: TypedRecord, name: string): string {
+  return record.values[name]?.trim() ?? '';
+}
+
+/**
+ * Liest ein Zahlenfeld. Nicht lesbare Angaben ergeben `NaN` statt eines
+ * geratenen Wertes — `Number('')` wäre `0` und damit eine echte Nummer.
+ */
+function number(record: TypedRecord, name: string): number {
+  const raw = value(record, name);
+  if (raw === '' || !/^[+-]?\d+$/.test(raw)) return Number.NaN;
+  return Number(raw);
+}
+
+/** Schlüssel eines Wettkampfes aus Nummer und Art. */
+function wettkampfKey(nummer: number, art: string): string {
+  return `${String(nummer)}:${art}`;
+}
+
+/** Schlüssel eines Starts aus Person und Wettkampf. */
+function startKey(veranstaltungsId: number, nummer: number, art: string): string {
+  return `${String(veranstaltungsId)}:${String(nummer)}:${art}`;
+}
+
+/** Ein Diagnostic auf der Zeile eines Records; Spalten kennt diese Ebene nicht. */
+function at(line: number): {
+  start: { line: number; column: number };
+  end: { line: number; column: number };
+} {
+  return { start: { line, column: 1 }, end: { line, column: 1 } };
+}
+
+/** Die gesetzten Staatsangehörigkeiten eines Records, in ihrer Reihenfolge. */
+function nationalitaeten(record: TypedRecord): string[] {
+  return [
+    value(record, 'nationalitaet1'),
+    value(record, 'nationalitaet2'),
+    value(record, 'nationalitaet3'),
+  ].filter((n) => n !== '');
+}
+
+/** Die Platzierung, die eine PNERGEBNIS- oder STERGEBNIS-Zeile beschreibt. */
+function platzierung(record: TypedRecord): Platzierung {
+  return {
+    wertungsId: number(record, 'wertungsId'),
+    platz: number(record, 'platz'),
+    grundDerNichtwertung: value(record, 'grundDerNichtwertung'),
+    disqualifikationsbemerkung: value(record, 'disqualifikationsbemerkung'),
+    erhoehtesNachtraeglichesMeldegeld: value(record, 'erhoehtesNachtraeglichesMeldegeld'),
+    line: record.line,
+  };
+}
+
+/** Zwischenstand eines Wettkampfes, dessen Kinderlisten noch wachsen. */
+interface WettkampfBuilder {
+  readonly wertungen: ErgebnisWertung[];
+  readonly starts: Start[];
+  readonly staffeln: Staffel[];
+  readonly wettkampf: ErgebnisWettkampf;
+}
+
+/** Zwischenstand eines Starts, dessen Kinderlisten noch wachsen. */
+interface StartBuilder {
+  readonly platzierungen: Platzierung[];
+  readonly zwischenzeiten: Zwischenzeit[];
+  readonly reaktionen: Reaktion[];
+  readonly start: Start;
+  /** Die Felder, die den Schwimmvorgang beschreiben, zur Widerspruchsprüfung. */
+  readonly signatur: string;
+}
+
+/** Zwischenstand einer Staffel, deren Kinderlisten noch wachsen. */
+interface StaffelBuilder {
+  readonly platzierungen: Platzierung[];
+  readonly personen: StaffelPerson[];
+  readonly zwischenzeiten: StaffelZwischenzeit[];
+  readonly abloesen: Abloese[];
+  readonly staffel: Staffel;
+  readonly signatur: string;
+}
+
+/**
+ * Baut aus einer gelesenen Wettkampfergebnisliste einen Objektgraph mit
+ * aufgelösten Bezügen.
+ *
+ * Die Projektion bricht nie ab: Zeigt ein Bezug ins Leere oder widersprechen
+ * sich zwei Zeilen, entsteht eine Warnung, und der Graph wird — bei
+ * Widersprüchen gewinnt die erste Zeile — so vollständig wie möglich aufgebaut.
+ * Ein Wettkampf ohne auffindbaren Abschnitt landet in
+ * `wettkaempfeOhneAbschnitt` statt verloren zu gehen.
+ */
+export function projectWettkampfergebnisliste(
+  liste: Wettkampfergebnisliste,
+): ErgebnisProjectionResult {
+  const diagnostics: Diagnostic[] = [];
+  const records = liste.records;
+
+  const veranstaltung = projectVeranstaltung(records);
+
+  // --- Vereine -------------------------------------------------------------
+  const vereine: Verein[] = [];
+  const vereinByKennzahl = new Map<number, Verein>();
+
+  for (const record of records) {
+    if (record.element !== 'VEREIN') continue;
+
+    const kennzahl = number(record, 'vereinskennzahl');
+    const verein: Verein = {
+      bezeichnung: value(record, 'vereinsbezeichnung'),
+      kennzahl,
+      landesschwimmverband: value(record, 'landesschwimmverband'),
+      nationenkuerzel: value(record, 'nationenkuerzel'),
+      line: record.line,
+    };
+    vereine.push(verein);
+
+    // Die Kennzahl 0 ist kein Schlüssel, sondern das Kennzeichen für nicht dem
+    // DSV angehörende Vereine. Mehrere Vereine tragen sie zu Recht — sie zu
+    // indizieren erzeugte nur Warnungen ohne Aussage.
+    if (kennzahl === 0 || !Number.isFinite(kennzahl)) continue;
+
+    if (vereinByKennzahl.has(kennzahl)) {
+      diagnostics.push(
+        createDiagnostic(
+          'ambiguous-reference',
+          'warning',
+          `Duplicate VEREIN number ${String(kennzahl)}; the first one wins`,
+          { ...at(record.line), data: { element: 'VEREIN', vereinskennzahl: kennzahl } },
+        ),
+      );
+    } else {
+      vereinByKennzahl.set(kennzahl, verein);
+    }
+  }
+
+  // --- Abschnitte ----------------------------------------------------------
+  const abschnitte: ErgebnisAbschnitt[] = [];
+  const abschnittWettkaempfe = new Map<ErgebnisAbschnitt, ErgebnisWettkampf[]>();
+  const abschnittKampfgericht = new Map<number, Kampfrichter[]>();
+  const abschnittByNummer = new Map<number, ErgebnisAbschnitt>();
+
+  for (const record of records) {
+    if (record.element !== 'ABSCHNITT') continue;
+
+    const wettkaempfe: ErgebnisWettkampf[] = [];
+    const kampfgericht: Kampfrichter[] = [];
+    const nummer = number(record, 'abschnittsnr');
+    const abschnitt: ErgebnisAbschnitt = {
+      nummer,
+      datum: decodeDatum(value(record, 'abschnittsdatum')),
+      anfangszeit: decodeUhrzeit(value(record, 'anfangszeit')),
+      relativeAngabe: value(record, 'relativeAngabe'),
+      kampfgericht,
+      wettkaempfe,
+      line: record.line,
+    };
+
+    abschnitte.push(abschnitt);
+    abschnittWettkaempfe.set(abschnitt, wettkaempfe);
+
+    if (abschnittByNummer.has(nummer)) {
+      diagnostics.push(
+        createDiagnostic(
+          'ambiguous-reference',
+          'warning',
+          `Duplicate ABSCHNITT number ${String(nummer)}; the first one wins`,
+          { ...at(record.line), data: { element: 'ABSCHNITT', abschnittsnr: nummer } },
+        ),
+      );
+    } else if (Number.isFinite(nummer)) {
+      abschnittByNummer.set(nummer, abschnitt);
+      abschnittKampfgericht.set(nummer, kampfgericht);
+    }
+  }
+
+  for (const record of records) {
+    if (record.element !== 'KAMPFGERICHT') continue;
+
+    const abschnittsnr = number(record, 'abschnittsnr');
+    const kampfrichter: Kampfrichter = {
+      position: value(record, 'position'),
+      name: value(record, 'nameKampfrichter'),
+      verein: value(record, 'vereinDesKampfrichters'),
+      line: record.line,
+    };
+
+    const ziel = abschnittKampfgericht.get(abschnittsnr);
+    if (ziel === undefined) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `KAMPFGERICHT refers to unknown ABSCHNITT ${value(record, 'abschnittsnr')}`,
+          { ...at(record.line), data: { element: 'KAMPFGERICHT', abschnittsnr } },
+        ),
+      );
+      continue;
+    }
+    ziel.push(kampfrichter);
+  }
+
+  // --- Wettkämpfe ----------------------------------------------------------
+  const builders = new Map<string, WettkampfBuilder>();
+  const wettkaempfeOhneAbschnitt: ErgebnisWettkampf[] = [];
+
+  for (const record of records) {
+    if (record.element !== 'WETTKAMPF') continue;
+
+    const nummer = number(record, 'wettkampfnr');
+    const art = value(record, 'wettkampfart');
+    const abschnittsnr = number(record, 'abschnittsnr');
+
+    const qualNummer = number(record, 'qualifikationswettkampfnr');
+    const qualArt = value(record, 'qualifikationswettkampfart');
+    const qualifikationAus =
+      Number.isFinite(qualNummer) || qualArt !== '' ? { nummer: qualNummer, art: qualArt } : null;
+
+    const wertungen: ErgebnisWertung[] = [];
+    const starts: Start[] = [];
+    const staffeln: Staffel[] = [];
+    const wettkampf: ErgebnisWettkampf = {
+      nummer,
+      art,
+      abschnittsnr,
+      anzahlStarter: value(record, 'anzahlStarter'),
+      einzelstrecke: number(record, 'einzelstrecke'),
+      technik: value(record, 'technik'),
+      ausuebung: value(record, 'ausuebung'),
+      geschlecht: value(record, 'geschlecht'),
+      zuordnungBestenliste: value(record, 'zuordnungBestenliste'),
+      wertungen,
+      starts,
+      staffeln,
+      qualifikationAus,
+      line: record.line,
+    };
+
+    const key = wettkampfKey(nummer, art);
+    if (builders.has(key)) {
+      diagnostics.push(
+        createDiagnostic(
+          'ambiguous-reference',
+          'warning',
+          `Duplicate WETTKAMPF ${key}; the first one wins`,
+          { ...at(record.line), data: { element: 'WETTKAMPF', key } },
+        ),
+      );
+    } else {
+      builders.set(key, { wertungen, starts, staffeln, wettkampf });
+    }
+
+    const abschnitt = abschnittByNummer.get(abschnittsnr);
+    if (abschnitt === undefined) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `WETTKAMPF ${key} refers to unknown ABSCHNITT ${value(record, 'abschnittsnr')}`,
+          { ...at(record.line), data: { element: 'WETTKAMPF', key, abschnittsnr } },
+        ),
+      );
+      wettkaempfeOhneAbschnitt.push(wettkampf);
+    } else {
+      abschnittWettkaempfe.get(abschnitt)?.push(wettkampf);
+    }
+  }
+
+  // Qualifikationsbezüge erst prüfen, wenn alle Wettkämpfe bekannt sind — ein
+  // Vorlauf darf in der Datei hinter seiner Entscheidung stehen.
+  for (const record of records) {
+    if (record.element !== 'WETTKAMPF') continue;
+
+    const qualNummer = number(record, 'qualifikationswettkampfnr');
+    const qualArt = value(record, 'qualifikationswettkampfart');
+    if (!Number.isFinite(qualNummer) && qualArt === '') continue;
+
+    const qualKey = wettkampfKey(qualNummer, qualArt);
+    if (builders.has(qualKey)) continue;
+
+    diagnostics.push(
+      createDiagnostic(
+        'dangling-reference',
+        'warning',
+        `WETTKAMPF ${wettkampfKey(number(record, 'wettkampfnr'), value(record, 'wettkampfart'))} refers to unknown qualifying WETTKAMPF ${qualKey}`,
+        {
+          ...at(record.line),
+          data: { element: 'WETTKAMPF', reference: 'qualifikation', wettkampf: qualKey },
+        },
+      ),
+    );
+  }
+
+  // --- Wertungen -----------------------------------------------------------
+  const wertungById = new Map<number, ErgebnisWertung>();
+
+  for (const record of records) {
+    if (record.element !== 'WERTUNG') continue;
+
+    const id = number(record, 'wertungsId');
+    const wertung: ErgebnisWertung = {
+      id,
+      wertungsklasseTyp: value(record, 'wertungsklasseTyp'),
+      mindestJgAk: value(record, 'mindestJgAk'),
+      maximalJgAk: value(record, 'maximalJgAk'),
+      geschlecht: value(record, 'geschlecht'),
+      name: value(record, 'wertungsname'),
+      line: record.line,
+    };
+
+    if (wertungById.has(id)) {
+      diagnostics.push(
+        createDiagnostic(
+          'ambiguous-reference',
+          'warning',
+          `Duplicate WERTUNG id ${String(id)}; the first one wins`,
+          { ...at(record.line), data: { element: 'WERTUNG', wertungsId: id } },
+        ),
+      );
+    } else if (Number.isFinite(id)) {
+      wertungById.set(id, wertung);
+    }
+
+    const key = wettkampfKey(number(record, 'wettkampfnr'), value(record, 'wettkampfart'));
+    const builder = builders.get(key);
+    if (builder === undefined) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `WERTUNG ${String(id)} refers to unknown WETTKAMPF ${key}`,
+          { ...at(record.line), data: { element: 'WERTUNG', wertungsId: id, wettkampf: key } },
+        ),
+      );
+      continue;
+    }
+
+    builder.wertungen.push(wertung);
+  }
+
+  // --- Einzelergebnisse ----------------------------------------------------
+  const startBuilders = new Map<string, StartBuilder>();
+
+  for (const record of records) {
+    if (record.element !== 'PNERGEBNIS') continue;
+
+    const veranstaltungsId = number(record, 'veranstaltungsId');
+    const nummer = number(record, 'wettkampfnr');
+    const art = value(record, 'wettkampfart');
+    const key = startKey(veranstaltungsId, nummer, art);
+
+    // Die Felder, die den Schwimmvorgang beschreiben — sie müssen über alle
+    // Zeilen derselben Person im selben Wettkampf übereinstimmen.
+    const signatur = [
+      value(record, 'name'),
+      value(record, 'dsvId'),
+      value(record, 'geschlecht'),
+      value(record, 'jahrgang'),
+      value(record, 'verein'),
+      value(record, 'vereinskennzahl'),
+      value(record, 'endzeit'),
+    ].join('|');
+
+    const vorhanden = startBuilders.get(key);
+    if (vorhanden !== undefined) {
+      if (vorhanden.signatur !== signatur) {
+        diagnostics.push(
+          createDiagnostic(
+            'ambiguous-reference',
+            'warning',
+            `PNERGEBNIS for ${key} contradicts an earlier line; the first one wins`,
+            { ...at(record.line), data: { element: 'PNERGEBNIS', key } },
+          ),
+        );
+      }
+      vorhanden.platzierungen.push(platzierung(record));
+      pruefeWertung(record, veranstaltungsId);
+      continue;
+    }
+
+    const platzierungen: Platzierung[] = [platzierung(record)];
+    const zwischenzeiten: Zwischenzeit[] = [];
+    const reaktionen: Reaktion[] = [];
+    const start: Start = {
+      veranstaltungsId,
+      wettkampfnr: nummer,
+      wettkampfart: art,
+      name: value(record, 'name'),
+      dsvId: value(record, 'dsvId'),
+      geschlecht: value(record, 'geschlecht'),
+      jahrgang: value(record, 'jahrgang'),
+      altersklasse: value(record, 'altersklasse'),
+      verein: value(record, 'verein'),
+      vereinskennzahl: number(record, 'vereinskennzahl'),
+      nationalitaeten: nationalitaeten(record),
+      endzeit: decodeZeit(value(record, 'endzeit')),
+      platzierungen,
+      zwischenzeiten,
+      reaktionen,
+      line: record.line,
+    };
+
+    startBuilders.set(key, { platzierungen, zwischenzeiten, reaktionen, start, signatur });
+    pruefeWertung(record, veranstaltungsId);
+
+    const builder = builders.get(wettkampfKey(nummer, art));
+    if (builder === undefined) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `PNERGEBNIS for ${key} refers to unknown WETTKAMPF ${wettkampfKey(nummer, art)}`,
+          { ...at(record.line), data: { element: 'PNERGEBNIS', key } },
+        ),
+      );
+      continue;
+    }
+    builder.starts.push(start);
+  }
+
+  /** Meldet eine Platzierung, deren Wertung es nicht gibt. */
+  function pruefeWertung(record: TypedRecord, veranstaltungsId: number): void {
+    const wertungsId = number(record, 'wertungsId');
+    if (wertungById.has(wertungsId)) return;
+
+    diagnostics.push(
+      createDiagnostic(
+        'dangling-reference',
+        'warning',
+        `${record.element} for ${String(veranstaltungsId)} refers to unknown WERTUNG ${value(record, 'wertungsId')}`,
+        { ...at(record.line), data: { element: record.element, wertungsId } },
+      ),
+    );
+  }
+
+  for (const record of records) {
+    if (record.element !== 'PNZWISCHENZEIT' && record.element !== 'PNREAKTION') continue;
+
+    const key = startKey(
+      number(record, 'veranstaltungsId'),
+      number(record, 'wettkampfnr'),
+      value(record, 'wettkampfart'),
+    );
+    const builder = startBuilders.get(key);
+
+    if (builder === undefined) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `${record.element} refers to unknown PNERGEBNIS ${key}`,
+          { ...at(record.line), data: { element: record.element, key } },
+        ),
+      );
+      continue;
+    }
+
+    if (record.element === 'PNZWISCHENZEIT') {
+      builder.zwischenzeiten.push({
+        distanz: number(record, 'distanz'),
+        zeit: decodeZeit(value(record, 'zwischenzeit')),
+        line: record.line,
+      });
+    } else {
+      builder.reaktionen.push({
+        art: value(record, 'art'),
+        zeit: decodeZeit(value(record, 'reaktionszeit')),
+        line: record.line,
+      });
+    }
+  }
+
+  // --- Staffelergebnisse ---------------------------------------------------
+  const staffelBuilders = new Map<string, StaffelBuilder>();
+
+  for (const record of records) {
+    if (record.element !== 'STERGEBNIS') continue;
+
+    const veranstaltungsId = number(record, 'veranstaltungsId');
+    const nummer = number(record, 'wettkampfnr');
+    const art = value(record, 'wettkampfart');
+    const key = startKey(veranstaltungsId, nummer, art);
+
+    const signatur = [
+      value(record, 'nummerDerMannschaft'),
+      value(record, 'verein'),
+      value(record, 'vereinskennzahl'),
+      value(record, 'endzeit'),
+    ].join('|');
+
+    const vorhanden = staffelBuilders.get(key);
+    if (vorhanden !== undefined) {
+      if (vorhanden.signatur !== signatur) {
+        diagnostics.push(
+          createDiagnostic(
+            'ambiguous-reference',
+            'warning',
+            `STERGEBNIS for ${key} contradicts an earlier line; the first one wins`,
+            { ...at(record.line), data: { element: 'STERGEBNIS', key } },
+          ),
+        );
+      }
+      vorhanden.platzierungen.push(platzierung(record));
+      pruefeWertung(record, veranstaltungsId);
+      continue;
+    }
+
+    const platzierungen: Platzierung[] = [platzierung(record)];
+    const personen: StaffelPerson[] = [];
+    const zwischenzeiten: StaffelZwischenzeit[] = [];
+    const abloesen: Abloese[] = [];
+    const staffel: Staffel = {
+      veranstaltungsId,
+      wettkampfnr: nummer,
+      wettkampfart: art,
+      nummerDerMannschaft: value(record, 'nummerDerMannschaft'),
+      verein: value(record, 'verein'),
+      vereinskennzahl: number(record, 'vereinskennzahl'),
+      endzeit: decodeZeit(value(record, 'endzeit')),
+      startnummerDisqualifiziert: value(record, 'startnummerDisqualifiziert'),
+      platzierungen,
+      personen,
+      zwischenzeiten,
+      abloesen,
+      line: record.line,
+    };
+
+    staffelBuilders.set(key, {
+      platzierungen,
+      personen,
+      zwischenzeiten,
+      abloesen,
+      staffel,
+      signatur,
+    });
+    pruefeWertung(record, veranstaltungsId);
+
+    const builder = builders.get(wettkampfKey(nummer, art));
+    if (builder === undefined) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `STERGEBNIS for ${key} refers to unknown WETTKAMPF ${wettkampfKey(nummer, art)}`,
+          { ...at(record.line), data: { element: 'STERGEBNIS', key } },
+        ),
+      );
+      continue;
+    }
+    builder.staffeln.push(staffel);
+  }
+
+  for (const record of records) {
+    if (
+      record.element !== 'STAFFELPERSON' &&
+      record.element !== 'STZWISCHENZEIT' &&
+      record.element !== 'STABLOESE'
+    ) {
+      continue;
+    }
+
+    // Die Kennung der Staffel allein genügt nicht: Dieselbe Mannschaft startet
+    // in mehreren Wettkämpfen unter derselben Kennung. Erst zusammen mit
+    // Nummer und Art des Wettkampfes ist sie eindeutig — alle drei Elemente
+    // führen diese Felder deshalb mit.
+    const key = startKey(
+      number(record, 'veranstaltungsIdStaffel'),
+      number(record, 'wettkampfnr'),
+      value(record, 'wettkampfart'),
+    );
+    const builder = staffelBuilders.get(key);
+
+    if (builder === undefined) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `${record.element} refers to unknown STERGEBNIS ${key}`,
+          { ...at(record.line), data: { element: record.element, key } },
+        ),
+      );
+      continue;
+    }
+
+    if (record.element === 'STAFFELPERSON') {
+      builder.personen.push({
+        name: value(record, 'name'),
+        dsvId: value(record, 'dsvId'),
+        startnummer: number(record, 'startnummer'),
+        geschlecht: value(record, 'geschlecht'),
+        jahrgang: value(record, 'jahrgang'),
+        altersklasse: value(record, 'altersklasse'),
+        nationalitaeten: nationalitaeten(record),
+        line: record.line,
+      });
+    } else if (record.element === 'STZWISCHENZEIT') {
+      builder.zwischenzeiten.push({
+        startnummer: number(record, 'startnummer'),
+        distanz: number(record, 'distanz'),
+        zeit: decodeZeit(value(record, 'zwischenzeit')),
+        line: record.line,
+      });
+    } else {
+      builder.abloesen.push({
+        startnummer: number(record, 'startnummer'),
+        art: value(record, 'art'),
+        zeit: decodeZeit(value(record, 'reaktionszeit')),
+        line: record.line,
+      });
+    }
+  }
+
+  // --- Schwimmer -----------------------------------------------------------
+  const schwimmerById = new Map<number, Schwimmer>();
+  const schwimmerStarts = new Map<number, Start[]>();
+
+  for (const { start } of startBuilders.values()) {
+    const vorhanden = schwimmerById.get(start.veranstaltungsId);
+    if (vorhanden === undefined) {
+      const starts: Start[] = [start];
+      schwimmerStarts.set(start.veranstaltungsId, starts);
+      schwimmerById.set(start.veranstaltungsId, {
+        veranstaltungsId: start.veranstaltungsId,
+        name: start.name,
+        dsvId: start.dsvId,
+        geschlecht: start.geschlecht,
+        jahrgang: start.jahrgang,
+        verein: start.verein,
+        vereinskennzahl: start.vereinskennzahl,
+        starts,
+      });
+      continue;
+    }
+
+    if (
+      vorhanden.name !== start.name ||
+      vorhanden.dsvId !== start.dsvId ||
+      vorhanden.geschlecht !== start.geschlecht ||
+      vorhanden.jahrgang !== start.jahrgang ||
+      vorhanden.verein !== start.verein ||
+      vorhanden.vereinskennzahl !== start.vereinskennzahl
+    ) {
+      diagnostics.push(
+        createDiagnostic(
+          'ambiguous-reference',
+          'warning',
+          `PNERGEBNIS for person ${String(start.veranstaltungsId)} contradicts an earlier start; the first one wins`,
+          {
+            ...at(start.line),
+            data: { element: 'PNERGEBNIS', veranstaltungsId: start.veranstaltungsId },
+          },
+        ),
+      );
+    }
+
+    schwimmerStarts.get(start.veranstaltungsId)?.push(start);
+  }
+
+  const wettkampfByKey = new Map<string, ErgebnisWettkampf>();
+  for (const [key, builder] of builders) wettkampfByKey.set(key, builder.wettkampf);
+
+  const startByKey = new Map<string, Start>();
+  for (const [key, builder] of startBuilders) startByKey.set(key, builder.start);
+
+  const staffelByKey = new Map<string, Staffel>();
+  for (const [key, builder] of staffelBuilders) staffelByKey.set(key, builder.staffel);
+
+  return {
+    graph: {
+      veranstaltung,
+      abschnitte,
+      vereine,
+      wettkaempfeOhneAbschnitt,
+      wettkampfByKey,
+      wertungById,
+      abschnittByNummer,
+      vereinByKennzahl,
+      startByKey,
+      staffelByKey,
+      schwimmerById,
+    },
+    diagnostics,
+  };
+}
+
+/** Die Eckdaten der Veranstaltung; ohne VERANSTALTUNG-Record leere Werte. */
+function projectVeranstaltung(records: readonly TypedRecord[]): ErgebnisVeranstaltung {
+  const record = records.find((r) => r.element === 'VERANSTALTUNG');
+  if (record === undefined) return EMPTY_VERANSTALTUNG;
+
+  return {
+    bezeichnung: value(record, 'veranstaltungsbezeichnung'),
+    ort: value(record, 'veranstaltungsort'),
+    bahnlaenge: value(record, 'bahnlaenge'),
+    zeitmessung: value(record, 'zeitmessung'),
+  };
+}
