@@ -1,4 +1,6 @@
 node_modules/
+# DSV-Spezifikationen (lokal, siehe CLAUDE.md – nicht committen)
+spec/
 dist/
 coverage/
 *.log

@@ -7,6 +7,36 @@ DSV-Dateien (Deutscher Schwimm-Verband), Formate DSV7 und DSV8.
 
 Status: frühe Entwicklung. Es existiert bisher nur das Grundgerüst.
 
+## Spezifikationen
+
+Die offiziellen DSV-Standards liegen als PDF in `spec/`. Der Ordner ist
+**gitignored** (die PDFs gehören dem DSV und werden nicht mitverteilt) und muss
+nach dem Klonen einmalig befüllt werden:
+
+```bash
+mkdir -p spec
+curl -L -o spec/dsv7.pdf "https://www.dsv.de/download-file?file_code=b991de636e&file_id=1258"
+curl -L -o spec/dsv8.pdf "https://www.dsv.de/download-file?file_code=9fbdf74a1f&file_id=10922"
+```
+
+- **DSV7** – „DSV Standard", Stand 31.08.2022, gültig ab 01.01.2023, 50 Seiten
+- **DSV8** – „DSV Standard", Stand 14.03.2026, gültig ab 01.08.2026, 52 Seiten
+
+Übergangsfrist: DSV7 darf noch bis 31.12.2026 genutzt werden, ab 01.01.2027 gilt
+ausschließlich DSV8. Die Bibliothek muss daher beide Formate lesen und schreiben
+können.
+
+Beide PDFs sind auf der DSV-Seite unter
+[Service → Formulare → Schwimmen](https://www.dsv.de/de/service/formulare/schwimmen/)
+verlinkt (Abschnitt „DSV-Standard zur Datenübermittlung"). Falls die
+`file_id`-Links irgendwann brechen, dort die aktuellen Downloads suchen.
+
+Zum Nachschlagen im PDF eignet sich `pdftotext` (poppler):
+
+```bash
+pdftotext spec/dsv8.pdf - | grep -n -A20 "Wettkampfdefinitionsliste"
+```
+
 ## Stack
 
 - TypeScript (strict), ESM als Quellformat
