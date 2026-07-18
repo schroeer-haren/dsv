@@ -298,8 +298,8 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
   });
 
   it('trennt spezifikationskonforme von tolerierten Wettkampfarten', () => {
-    // A und N sieht die Spec nur in den Ergebnislisten vor, das DSV-Portal
-    // schreibt sie aber auch in Ausschreibungen. Sie sind deshalb enthalten,
+    // A und N sieht die Spec nur in den Ergebnislisten vor; eine echte
+    // Ausschreibung schreibt N trotzdem. Sie sind deshalb enthalten,
     // aber als toleriert markiert — beim Lesen Warnung, beim Schreiben
     // unzulässig.
     const werte = WETTKAMPF.fields.find((f) => f.name === 'wettkampfart')?.values ?? [];

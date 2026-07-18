@@ -46,16 +46,31 @@ warum auch fehlerfreie Dateien Warnungen erzeugen können:
 - 27 der 31 Dateien validieren ohne einen einzigen Fehler. Die übrigen vier
   haben ein leeres Pflichtfeld `BESONDERES.anmerkungen` — ein echter Mangel der
   Dateien, kein Formatdialekt, und deshalb ein Fehler.
-- Das DSV-Portal schreibt in Ausschreibungen die Wettkampfart `N` für
-  Nachschwimmen, obwohl die Spezifikation `A` und `N` nur in Ergebnislisten
-  vorsieht. Solche Werte sind im Schema ausdrücklich als toleriert markiert:
-  beim Lesen gibt es eine Warnung, beim Schreiben sind sie unzulässig.
+- Eine Ausschreibung schreibt die Wettkampfart `N` für Nachschwimmen, obwohl die
+  Spezifikation `A` und `N` nur in Ergebnislisten vorsieht. Solche Werte sind im
+  Schema ausdrücklich als toleriert markiert: beim Lesen gibt es eine Warnung,
+  beim Schreiben sind sie unzulässig. <sup>[1]</sup>
+
 - 22 von 67 Zwischenläufen und Finals nennen keine
   Qualifikationswettkampfnummer, obwohl die Spezifikation sie verlangt. Weil das
   in der Praxis verbreitet ist, gibt es eine Warnung statt eines Fehlers.
 - Zwei Dateien enthalten Verweise, bei denen die Wettkampfnummer stimmt, die
   Wettkampfart aber nicht — genau die Fehlerklasse, die eine Auflösung über die
   Nummer allein verschluckt hätte.
+
+#### Richtigstellung
+
+<sup>[1]</sup> Dieser Punkt schrieb ursprünglich die Wettkampfart `N` „dem
+DSV-Portal" zu. Das war falsch und wurde nachträglich korrigiert. Die Datei
+`dsvportal-13062024-Wk.dsv7` trägt das Präfix nur, weil sie von dort
+heruntergeladen wurde; ihr `ERZEUGER`-Element weist **EasyWk 5.25** als
+schreibende Software aus. Über welche Software das DSV-Portal Dateien ausgibt,
+lässt der Bestand nicht erkennen.
+
+Ausserdem war die Formulierung zu breit: Von den geprüften echten Dateien
+schreibt genau eine Ausschreibung ein `N` (dreimal), und `A` kommt gar nicht in
+einer Ausschreibung vor, sondern einmal in einer Ergebnisliste. Die Toleranz im
+Schema bleibt davon unberührt, nur die Begründung war es nicht.
 
 ### Geprüft
 
