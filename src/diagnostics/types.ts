@@ -17,6 +17,8 @@ export type DiagnosticCode =
   | 'unknown-encoding-replacement-character'
   | 'unterminated-field-list'
   | 'unexpected-field-count'
+  | 'unknown-element'
+  | 'missing-required-field'
   | 'empty-input';
 
 export interface Diagnostic {
