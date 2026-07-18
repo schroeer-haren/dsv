@@ -235,6 +235,29 @@ describe('projectWettkampfdefinitionsliste', () => {
     expect(graph.abschnitte[1]?.wettkaempfe).toEqual([]);
   });
 
+  it('hält unlesbare Abschnittsnummern aus der Indexmap heraus', () => {
+    // `NaN` stimmt als Map-Schlüssel mit sich selbst überein. Käme es in die
+    // Map, gälten zwei unlesbare Nummern als Duplikat, und ein Wettkampf mit
+    // unlesbarer `abschnittsnr` hinge an einem willkürlichen Abschnitt.
+    const lines = minimal()
+      .filter((l) => !l.startsWith('ABSCHNITT:') && !l.startsWith('WETTKAMPF:'))
+      .slice();
+    const { graph, diagnostics } = project(
+      withLine(
+        lines,
+        line('ABSCHNITT', ['X', '10.05.2026', '', '', '09:00', '']),
+        line('ABSCHNITT', ['Y', '11.05.2026', '', '', '10:00', '']),
+        line('WETTKAMPF', ['1', 'E', 'Z', '1', '50', 'F', 'GL', 'M', 'SW', '', '']),
+      ),
+    );
+
+    expect(graph.abschnitte).toHaveLength(2);
+    expect([...graph.abschnittByNummer.keys()].some((k) => Number.isNaN(k))).toBe(false);
+    expect(diagnostics.filter((d) => d.code === 'ambiguous-reference')).toEqual([]);
+    expect(graph.wettkaempfeOhneAbschnitt).toHaveLength(1);
+    expect(graph.wettkaempfeOhneAbschnitt[0]?.art).toBe('E');
+  });
+
   it('liefert einen zyklenfreien Graph', () => {
     const { graph } = project(
       withLine(minimal(), line('PFLICHTZEIT', ['1', 'E', 'JG', '2010', '', '00:01:05,43', 'M'])),

@@ -79,6 +79,14 @@ describe('writeWettkampfdefinitionsliste', () => {
     expect(parseWettkampfdefinitionsliste(text).ok).toBe(true);
   });
 
+  it('trimmt jeden Feldwert', () => {
+    const records = withValue(minimalRecords(), 'VERANSTALTUNG', 'veranstaltungsort', '  Kiel  ');
+    const text = writeWettkampfdefinitionsliste(records);
+
+    expect(text).toContain('VERANSTALTUNG:Testwettkampf;Kiel;25;HANDZEIT;\r\n');
+    expect(text).not.toContain('  Kiel  ');
+  });
+
   it('wirft bei einem tolerierten Aufzählungswert', () => {
     // `N` ist im Format bekannt, für diese Listenart aber nicht vorgesehen.
     // Beim Lesen nur eine Warnung, beim Schreiben unzulässig.

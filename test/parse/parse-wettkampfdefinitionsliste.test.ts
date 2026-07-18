@@ -114,6 +114,17 @@ describe('parseWettkampfdefinitionsliste', () => {
     );
   });
 
+  it('meldet ein unbekanntes Element und typisiert es nicht', () => {
+    // Ohne das Überspringen entstünde ein Record mit leerem `values`, der still
+    // durch Projektion und Writer liefe.
+    const lines = minimal(8);
+    lines.splice(lines.length - 1, 0, line('KAMPFRICHTER', ['1', 'X']));
+    const result = parseWettkampfdefinitionsliste(text(lines));
+
+    expect(result.diagnostics).toContainEqual(expect.objectContaining({ code: 'unknown-element' }));
+    expect(result.document.records.some((r) => r.element === 'KAMPFRICHTER')).toBe(false);
+  });
+
   it('führt die Diagnostics aus parseDsv mit denen der Validierung zusammen', () => {
     // Ohne DATEIENDE meldet parseDsv eine Warnung, die Validierung einen Fehler.
     const result = parseWettkampfdefinitionsliste(text(minimal(8).slice(0, -1)));

@@ -79,6 +79,12 @@ describe('validateValues', () => {
         'invalid-value',
       ]);
     });
+
+    it('zählt Codepoints, nicht UTF-16-Einheiten', () => {
+      // Ein astrales Zeichen belegt zwei UTF-16-Einheiten, ist aber ein Zeichen.
+      // In DSV-Feldern kommt das nicht vor; die Zählung soll trotzdem stimmen.
+      expect(validateValues(record('T', ['🏊']), def, 8)).toEqual([]);
+    });
   });
 
   describe('Zahl', () => {
