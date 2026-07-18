@@ -29,6 +29,7 @@ export type DiagnosticCode =
   | 'wrong-list-type'
   | 'dangling-reference'
   | 'ambiguous-reference'
+  | 'incomplete-relay'
   | 'empty-input';
 
 export interface Diagnostic {

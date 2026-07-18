@@ -216,27 +216,16 @@ describe('projectWettkampfergebnisliste', () => {
         '',
         '',
       ]),
-      line('STAFFELPERSON', [
-        '900',
-        '2',
-        'E',
-        'Muster, Mia',
-        '100002',
-        '1',
-        'W',
-        '2009',
-        '',
-        '',
-        '',
-        '',
-      ]),
+      // Der Wettkampf sieht vier Starter vor; eine Vierer-Staffel nennt vier
+      // Personen. Alles darunter wäre nach dsv8.md:5531 auffällig.
+      ...['1', '2', '3', '4'].map((n) => staffelperson(n)),
       line('STZWISCHENZEIT', ['900', '2', 'E', '1', '50', '00:00:30,00']),
       line('STABLOESE', ['900', '2', 'E', '1', '+', '00:00:00,50']),
     );
 
     expect(diagnostics).toEqual([]);
     const staffel = graph.staffelByKey.get('900:2:E');
-    expect(staffel?.personen).toHaveLength(1);
+    expect(staffel?.personen).toHaveLength(4);
     expect(staffel?.zwischenzeiten).toHaveLength(1);
     expect(staffel?.abloesen).toEqual([
       { startnummer: 1, art: '+', zeit: 50, line: expect.any(Number) },
@@ -335,6 +324,61 @@ describe('projectWettkampfergebnisliste', () => {
     const staffel = graph.staffelByKey.get('900:2:E');
     expect(staffel?.endzeit).toBe(24000);
     expect(staffel?.platzierungen).toHaveLength(2);
+  });
+
+  it('meldet eine Staffel, die einige, aber nicht alle Mitglieder nennt', () => {
+    // dsv8.md:5531 — "Falls nicht alle Staffelteilnehmer angegeben sind, ist
+    // die Ausgabe der Staffelpersonen zu unterdrücken." Der Wettkampf sieht
+    // vier Starter vor, die Datei nennt drei.
+    const { diagnostics } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      STAFFEL_WERTUNG,
+      VEREIN,
+      stergebnis(),
+      ...['1', '2', '3'].map((n) => staffelperson(n)),
+    );
+
+    expect(diagnostics.map((d) => d.code)).toEqual(['incomplete-relay']);
+    expect(diagnostics[0]?.severity).toBe('warning');
+    expect(diagnostics[0]?.data).toMatchObject({
+      key: '900:2:E',
+      genannt: 3,
+      erwartet: 4,
+    });
+  });
+
+  it('schweigt zu einer Staffel ganz ohne Staffelpersonen — die Regel ist befolgt', () => {
+    // Gar keine Personen zu nennen ist genau das, was dsv8.md:5531 verlangt,
+    // wenn nicht alle bekannt sind. 40 der 826 echten Staffeln tun das.
+    const { diagnostics } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      STAFFEL_WERTUNG,
+      VEREIN,
+      stergebnis(),
+    );
+
+    expect(diagnostics).toEqual([]);
+  });
+
+  it('zählt für die Vollständigkeit verschiedene Startnummern, nicht Zeilen', () => {
+    // Der je Wertung wiederholte Personenblock darf die Staffel weder
+    // vollständig erscheinen lassen noch die Prüfung falsch auslösen.
+    const { diagnostics } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      STAFFEL_WERTUNG,
+      STAFFEL_WERTUNG2,
+      VEREIN,
+      stergebnis({ wertungsId: '5' }),
+      ...['1', '2'].map((n) => staffelperson(n)),
+      stergebnis({ wertungsId: '6' }),
+      ...['1', '2'].map((n) => staffelperson(n)),
+    );
+
+    expect(diagnostics.map((d) => d.code)).toEqual(['incomplete-relay']);
+    expect(diagnostics[0]?.data).toMatchObject({ genannt: 2, erwartet: 4 });
   });
 
   it('meldet Staffel-Unterelemente, deren STERGEBNIS fehlt', () => {
@@ -537,6 +581,26 @@ describe('Projektion über echte Ergebnislisten', () => {
     ).toEqual([]);
 
     expect(alle.filter((d) => d.message.includes('5129'))).toHaveLength(1);
+  });
+
+  it('findet keine unvollständig besetzte Staffel', () => {
+    // dsv8.md:5531 verlangt, die Staffelpersonen ganz zu unterdrücken, wenn
+    // nicht alle Teilnehmer bekannt sind. Über alle 48 Dateien halten sich
+    // sämtliche 826 Staffeln daran: 786 sind vollständig besetzt, 40 nennen
+    // gar keine Person. Ein Verstoss — mehr als null, aber weniger als
+    // anzahlStarter — kommt kein einziges Mal vor.
+    //
+    // Die Null ist hier der Zweck: Sie ist ein Regressionswächter, keine
+    // Aufräumarbeit. Fiele die Deduplizierung der je Wertung wiederholten
+    // Personenblöcke aus, zählte diese Prüfung Zeilen statt Startnummern und
+    // schlüge sofort an.
+    const alle = errorFree.flatMap(({ result }) =>
+      projectWettkampfergebnisliste(result.document).diagnostics.filter(
+        (d) => d.code === 'incomplete-relay',
+      ),
+    );
+
+    expect(alle).toEqual([]);
   });
 
   it.each(errorFree.map((e) => e.name))(
