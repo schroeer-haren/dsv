@@ -7,6 +7,7 @@ describe('öffentliche API', () => {
       'DsvParseError',
       'parseDsv',
       'parseDsvOrThrow',
+      'parseWettkampfdefinitionsliste',
       'writeDsv',
     ]);
   });

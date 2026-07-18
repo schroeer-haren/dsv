@@ -25,6 +25,7 @@ export type DiagnosticCode =
   | 'mutually-exclusive-elements'
   | 'conditional-field-required'
   | 'unsupported-format-version'
+  | 'wrong-list-type'
   | 'empty-input';
 
 export interface Diagnostic {
