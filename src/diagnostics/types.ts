@@ -21,6 +21,10 @@ export type DiagnosticCode =
   | 'missing-required-field'
   | 'invalid-value'
   | 'invalid-enum-value'
+  | 'cardinality-violation'
+  | 'mutually-exclusive-elements'
+  | 'conditional-field-required'
+  | 'unsupported-format-version'
   | 'empty-input';
 
 export interface Diagnostic {
