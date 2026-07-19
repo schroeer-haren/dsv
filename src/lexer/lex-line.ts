@@ -43,9 +43,37 @@ export type LexedLine = LexedComment | LexedBlank | LexedElement;
  * gewöhnlicher ZK-Inhalt (dsv8.md:251).
  */
 function splitTrailingComment(rest: string): { body: string; comment: string | null } {
-  const match = /^(.*;)(\s*\(\*.*\*\)\s*)$/.exec(rest);
-  if (match === null) return { body: rest, comment: null };
-  return { body: match[1]!, comment: match[2]! };
+  // Bewusst ohne regulären Ausdruck. Die frühere Fassung
+  // `/^(.*;)(\s*\(\*.*\*\)\s*)$/` war quadratisch: Das gierige `.*;` probiert
+  // jede Semikolonposition durch, und an jeder, auf die ein `(*` folgt, sucht
+  // das innere `.*\*\)` den Zeilenrest vergeblich nach einem `*)` ab. Eine
+  // wohlgeformte Zeile aus vielen `;(*` ohne je ein `*)` brauchte so für
+  // 469 KB rund 38 Sekunden — ohne eine einzige Diagnose.
+  //
+  // Dieselbe Sprache, in einem Durchlauf: Der Kommentar endet mit `*)` am
+  // Zeilenende (nur Leerraum dahinter) und beginnt am letztmöglichen `(*`,
+  // vor dem nur Leerraum und davor ein `;` steht.
+  let ende = rest.length;
+  while (ende > 0 && /\s/.test(rest[ende - 1]!)) ende -= 1;
+  if (ende < 4 || !rest.startsWith('*)', ende - 2)) return { body: rest, comment: null };
+
+  // Von hinten nach vorn, damit das letzte passende `(*` gewinnt — das ist die
+  // längste Fassung des Rumpfes und damit dieselbe Wahl wie beim gierigen
+  // `.*;` von zuvor.
+  let auf = rest.lastIndexOf('(*', ende - 4);
+  while (auf !== -1) {
+    let vor = auf;
+    while (vor > 0 && /\s/.test(rest[vor - 1]!)) vor -= 1;
+    if (vor > 0 && rest[vor - 1] === ';') {
+      return { body: rest.slice(0, vor), comment: rest.slice(vor) };
+    }
+    // `lastIndexOf` deutet einen negativen Startwert als 0 und fände dieselbe
+    // Stelle erneut — bei `auf === 0` gibt es keine frühere mehr.
+    if (auf === 0) break;
+    auf = rest.lastIndexOf('(*', auf - 1);
+  }
+
+  return { body: rest, comment: null };
 }
 
 /**

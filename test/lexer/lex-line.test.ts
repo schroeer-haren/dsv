@@ -84,6 +84,56 @@ describe('lexLine — Kommentar am Zeilenende', () => {
     if (l.kind !== 'element') throw new Error('erwartet: element');
     expect(l.comment).toBeNull();
   });
+
+  it('nimmt bei mehreren Kommentaren den letzten, dem ein Semikolon vorausgeht', () => {
+    const l = lexLine('A:1;(* a *);(* b *)', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.fields).toEqual(['1', '(* a *)']);
+    expect(l.comment).toBe('(* b *)');
+  });
+
+  it('weicht auf ein früheres (* aus, wenn dem letzten kein Semikolon vorausgeht', () => {
+    const l = lexLine('A:1; (* a *) (* b *)', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.fields).toEqual(['1']);
+    expect(l.comment).toBe(' (* a *) (* b *)');
+  });
+
+  it('erkennt keinen Kommentar ohne abschliessendes *)', () => {
+    const l = lexLine('A:1; (* offen', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.comment).toBeNull();
+  });
+
+  it('erkennt keinen Kommentar, wenn hinter *) noch Text steht', () => {
+    const l = lexLine('A:1; (* x *) y', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.comment).toBeNull();
+  });
+
+  it('verlangt ein Semikolon unmittelbar vor dem Kommentar', () => {
+    const l = lexLine('A:1;wert (* x *)', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.comment).toBeNull();
+    expect(l.fields).toEqual(['1', 'wert (* x *)']);
+  });
+
+  // Die frühere Fassung `/^(.*;)(\s*\(\*.*\*\)\s*)$/` war quadratisch: Das
+  // gierige `.*;` probierte jede Semikolonposition durch und suchte an jeder
+  // den Zeilenrest vergeblich nach einem `*)`. Eine wohlgeformte Zeile aus
+  // lauter `;(*` brauchte für 469 KB rund 38 Sekunden — ohne eine einzige
+  // Diagnose. Die Schranke ist grosszügig; sie soll nur die Rückkehr der
+  // quadratischen Laufzeit fangen, nicht Millisekunden messen.
+  it('bleibt bei vielen unabgeschlossenen (* linear', () => {
+    const raw = `VERANSTALTUNG:${';(*'.repeat(60_000)}`;
+    const start = performance.now();
+    const l = lexLine(raw, 1);
+    const dauer = performance.now() - start;
+
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+    expect(l.comment).toBeNull();
+    expect(dauer).toBeLessThan(1000);
+  });
 });
 
 describe('lexLine — Leerzeichen um Werte', () => {
