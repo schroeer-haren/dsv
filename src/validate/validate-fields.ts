@@ -29,8 +29,7 @@ export function validateFields(
   version: FormatVersion,
 ): Diagnostic[] {
   const at = {
-    start: { line: record.line, column: 1 },
-    end: { line: record.line, column: 1 },
+    line: record.line,
   };
 
   const expectedFields = fieldsForVersion(def, version);

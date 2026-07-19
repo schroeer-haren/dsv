@@ -351,7 +351,7 @@ describe('Projektion über echte Dateien', () => {
    */
   it('erzeugt über alle echten Dateien genau 22 Warnungen', () => {
     const alle = realLists.flatMap((name) =>
-      projectFile(name).diagnostics.map((d) => ({ name, code: d.code, line: d.start.line })),
+      projectFile(name).diagnostics.map((d) => ({ name, code: d.code, line: d.line })),
     );
 
     expect(

@@ -76,8 +76,7 @@ describe('validateFields', () => {
   it('meldet die Zeile des Records', () => {
     const diagnostics = validateFields(record('MELDESCHLUSS', [], 42), MELDESCHLUSS, 8);
 
-    expect(diagnostics[0]?.start).toEqual({ line: 42, column: 1 });
-    expect(diagnostics[0]?.end).toEqual({ line: 42, column: 1 });
+    expect(diagnostics[0]?.line).toBe(42);
   });
 
   it('meldet bei bare-Elementen ohne Felder nichts', () => {

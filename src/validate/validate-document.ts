@@ -1,5 +1,5 @@
 import { createDiagnostic } from '../diagnostics/create.js';
-import type { Diagnostic, Position } from '../diagnostics/types.js';
+import type { Diagnostic } from '../diagnostics/types.js';
 import type { DsvDocument, DsvRecord } from '../document/types.js';
 import type { ListSchema } from '../schema/list-schema.js';
 import type { FormatVersion } from './format-version.js';
@@ -7,10 +7,10 @@ import { isSupportedVersion, unsupportedFormatVersion } from './format-version.j
 import { validateFields } from './validate-fields.js';
 import { validateValues } from './validate-values.js';
 
-const AT_START = { start: { line: 1, column: 1 }, end: { line: 1, column: 1 } };
+const AT_START = { line: 1 };
 
-function at(line: number): { start: Position; end: Position } {
-  return { start: { line, column: 1 }, end: { line, column: 1 } };
+function at(line: number): { line: number } {
+  return { line };
 }
 
 /**

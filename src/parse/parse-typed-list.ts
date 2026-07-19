@@ -40,7 +40,7 @@ export interface TypedList<TListenart extends string = string> {
   readonly __listenart?: TListenart;
 }
 
-const AT_START = { start: { line: 1, column: 1 }, end: { line: 1, column: 1 } };
+const AT_START = { line: 1 };
 
 /** Ergebnis ohne typisierte Records, wenn die Datei gar nicht auswertbar ist. */
 function rejected<TListenart extends string>(

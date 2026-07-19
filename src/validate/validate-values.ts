@@ -1,5 +1,5 @@
 import { createDiagnostic } from '../diagnostics/create.js';
-import type { Diagnostic, Position } from '../diagnostics/types.js';
+import type { Diagnostic } from '../diagnostics/types.js';
 import type { DsvRecord } from '../document/types.js';
 import type { ElementDef, EnumValue, FieldDef, ScalarType } from '../schema/types.js';
 import { decodeDatum } from '../values/datum.js';
@@ -59,7 +59,7 @@ function invalidValue(
   message: string,
   def: FieldDef,
   value: string,
-  at: { start: Position; end: Position },
+  at: { line: number },
 ): Diagnostic {
   return createDiagnostic(code, 'error', message, {
     ...at,
@@ -79,8 +79,7 @@ export function validateValues(
   version: FormatVersion,
 ): Diagnostic[] {
   const at = {
-    start: { line: record.line, column: 1 },
-    end: { line: record.line, column: 1 },
+    line: record.line,
   };
 
   const diagnostics: Diagnostic[] = [];

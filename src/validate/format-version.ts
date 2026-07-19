@@ -25,8 +25,7 @@ export function unsupportedFormatVersion(version: number | null): Diagnostic {
     'fatal',
     `Unsupported DSV format version: ${version === null ? 'missing' : String(version)}`,
     {
-      start: { line: 1, column: 1 },
-      end: { line: 1, column: 1 },
+      line: 1,
       data: { version },
     },
   );

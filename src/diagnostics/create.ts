@@ -1,8 +1,8 @@
-import type { Diagnostic, DiagnosticCode, Position, Severity } from './types.js';
+import type { Diagnostic, DiagnosticCode, Severity } from './types.js';
 
 interface DiagnosticLocation {
-  readonly start: Position;
-  readonly end: Position;
+  /** 1-basierte Quellzeile. */
+  readonly line: number;
   readonly data?: Readonly<Record<string, unknown>>;
 }
 
@@ -16,8 +16,7 @@ export function createDiagnostic(
     code,
     severity,
     message,
-    start: location.start,
-    end: location.end,
+    line: location.line,
     ...(location.data === undefined ? {} : { data: location.data }),
   };
 }

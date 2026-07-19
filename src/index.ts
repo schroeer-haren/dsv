@@ -145,7 +145,7 @@ export type {
   DsvBlank,
   ParseResult,
 } from './document/types.js';
-export type { Diagnostic, DiagnosticCode, Position, Severity } from './diagnostics/types.js';
+export type { Diagnostic, DiagnosticCode, Severity } from './diagnostics/types.js';
 
 /**
  * Die generierten Elementtypen, je Listenart und Formatversion einer pro

@@ -87,10 +87,9 @@ ein Präfix wäre eine Verdopplung.
 
 | Name             | Art  | Beschreibung                                                                           |
 | ---------------- | ---- | -------------------------------------------------------------------------------------- |
-| `Diagnostic`     | type | Ein einzelner Befund mit Code, Severity, Position und Meldung.                         |
+| `Diagnostic`     | type | Ein einzelner Befund mit Code, Severity, Quellzeile und Meldung.                         |
 | `DiagnosticCode` | type | Die feste Menge der Befundkennungen, etwa `wrong-list-type` oder `dangling-reference`. |
 | `Severity`       | type | Stufe eines Befunds: `fatal`, `error`, `warning` oder `info`.                          |
-| `Position`       | type | Fundstelle im Quelltext, 1-basiert nach Zeile und Spalte.                              |
 
 ## Werte
 

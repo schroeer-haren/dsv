@@ -299,7 +299,7 @@ describe('validateDocument', () => {
     it('meldet den Befund an der Zeile des Records', () => {
       const lines = replace(minimal(), 'MELDESCHLUSS', ['31.13.2026', '18:00']);
 
-      expect(validate(lines)[0]?.start.line).toBe(9);
+      expect(validate(lines)[0]?.line).toBe(9);
     });
   });
 });

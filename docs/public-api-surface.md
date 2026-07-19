@@ -17,7 +17,7 @@ sind aber über ein Feld erreichbar und damit trotzdem Teil der Oberfläche.
 Neu erzeugen mit `npm run api-surface`; `npm run api-surface:check` prüft, dass
 die Datei zum Quellstand passt.
 
-Stand: 227 Typen (davon 0 intern), 22 Werte.
+Stand: 226 Typen (davon 0 intern), 22 Werte.
 
 ## Werte
 
@@ -232,10 +232,9 @@ readonly zuordnungBestenliste: string
 ```ts
 readonly code: DiagnosticCode
 readonly data?: Readonly<Record<string, unknown>> | undefined
-readonly end: Position
+readonly line: number
 readonly message: string
 readonly severity: Severity
-readonly start: Position
 ```
 
 ### DiagnosticCode
@@ -1537,13 +1536,6 @@ pflichtzeit: string
 wertungsklasseTyp: 'JG' | 'AK'
 wettkampfart: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A'
 wettkampfnr: string
-```
-
-### Position
-
-```ts
-readonly column: number
-readonly line: number
 ```
 
 ### Severity

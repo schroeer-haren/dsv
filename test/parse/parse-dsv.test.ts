@@ -88,7 +88,7 @@ describe('parseDsv — Reihenfolge und Vollständigkeit', () => {
     const found = diagnostics.find((d) => d.code === 'format-not-first-element');
 
     expect(found?.severity).toBe('warning');
-    expect(found?.start.line).toBe(2);
+    expect(found?.line).toBe(2);
   });
 
   it('meldet FORMAT an vierter Stelle als Warnung', () => {
@@ -98,7 +98,7 @@ describe('parseDsv — Reihenfolge und Vollständigkeit', () => {
     const found = diagnostics.find((d) => d.code === 'format-not-first-element');
 
     expect(found?.severity).toBe('warning');
-    expect(found?.start.line).toBe(4);
+    expect(found?.line).toBe(4);
   });
 
   it('lässt Kommentare und Leerzeilen vor FORMAT zu', () => {
@@ -112,7 +112,7 @@ describe('parseDsv — Reihenfolge und Vollständigkeit', () => {
     const found = diagnostics.find((d) => d.code === 'element-order-violation');
 
     expect(found?.severity).toBe('warning');
-    expect(found?.start.line).toBe(2);
+    expect(found?.line).toBe(2);
     expect(found?.data).toMatchObject({ element: 'DATEIENDE' });
   });
 

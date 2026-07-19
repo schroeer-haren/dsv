@@ -283,8 +283,8 @@ diagnostics ← source ← lexer ← parse ← document ← validate
 
 - `diagnostics/` – Codes, Severities, Formatter. Blattmodul, wird schon vom
   Lexer gebraucht.
-- `source/` – BOM, Zeilenenden, Offset↔Zeile/Spalte. Bewusst **nicht** im Lexer,
-  damit Positionsrechnung isoliert testbar ist.
+- `source/` – BOM und Zeilenenden. Bewusst **nicht** im Lexer, damit die
+  Zerlegung in Zeilen isoliert testbar ist.
 - `values/` – Skalar-Codecs, je Typ ein symmetrisch getestetes decode/encode-Paar.
 - `schema/` – Elementdefinitionen je (Listenart, Version), inkl. Kardinalitäten.
 - `write/` hängt **nur** von `schema` + `values` ab, nicht von `parse` oder
@@ -363,8 +363,27 @@ Wortlaut von `message` gehört ausdrücklich **nicht** zur zugesicherten
 Oberfläche: Er richtet sich an Menschen und darf sich jederzeit ändern.
 Konsumenten werten `code` und `data` aus – deshalb prüfen auch die Tests diese
 beiden und nicht den Text.
-`line`/`column` sind **1-basiert**, `column` in UTF-16-Code-Units, und es wird
-eine Span (`start`/`end`) geführt, nicht nur ein Punkt.
+`Diagnostic.line` ist **1-basiert** und die einzige Ortsangabe. Eine Spalte oder
+eine Span (`start`/`end`) wird bewusst **nicht** geführt.
+
+Der Grund ist die Form des Formats, nicht Bequemlichkeit: DSV ist
+zeilenorientiert. Jedes Element belegt genau eine Zeile, und jeder Befund
+betrifft entweder ein Element, eine Beziehung zwischen Elementen (dann die Zeile
+des verweisenden Elements) oder die Datei als Ganzes (dann Zeile 1). Ein
+einzelnes Feld auszuzeichnen wäre für keinen der Befundcodes die richtige
+Granularität — `cardinality-violation` und `dangling-reference` haben gar kein
+Feld, an dem eine Spalte hinge.
+
+Bis 0.x trug die Struktur `start`/`end` mit einer `column`, die an **jeder**
+Erzeugerstelle konstant `1` war und einem `end`, das immer `start` gleichkam:
+eine öffentliche Zusage, die nie eingelöst wurde und die ein Konsument nicht als
+Platzhalter erkennen konnte. Vor dem Einfrieren mit 1.0 war zu wählen zwischen
+echter Spaltenrechnung — Feldoffsets durch Lexer, Parser, Validierung und
+Projektion zu fädeln, für eine Genauigkeit, die keine der Regeln braucht — und
+einer ehrlichen Struktur. Entschieden für die ehrliche Struktur: Wahrheit im
+Typsystem statt in einem Fliesstext, den niemand liest, bevor er `d.end.column`
+schreibt. Wer eine Editor-Markierung braucht, hebt die ganze Zeile hervor; eine
+Span später zu **ergänzen** ist additiv und bricht nichts.
 
 ## Round-Trip: byte-identisch nur auf Lexer-Ebene
 

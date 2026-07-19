@@ -330,10 +330,9 @@ function startKey(id: number, nummer: number, art: string): string {
 
 /** Ein Diagnostic auf der Zeile eines Records; Spalten kennt diese Ebene nicht. */
 function at(line: number): {
-  start: { line: number; column: number };
-  end: { line: number; column: number };
+  line: number;
 } {
-  return { start: { line, column: 1 }, end: { line, column: 1 } };
+  return { line };
 }
 
 /** Die gesetzten Staatsangehörigkeiten eines Records, in ihrer Reihenfolge. */

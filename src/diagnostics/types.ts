@@ -4,12 +4,6 @@
  */
 export type Severity = 'fatal' | 'error' | 'warning' | 'info';
 
-/** 1-basiert; `column` zählt UTF-16-Code-Units. */
-export interface Position {
-  readonly line: number;
-  readonly column: number;
-}
-
 export type DiagnosticCode =
   | 'missing-format-element'
   | 'missing-dateiende-element'
@@ -48,7 +42,17 @@ export interface Diagnostic {
    * ohne Vorwarnung.
    */
   readonly message: string;
-  readonly start: Position;
-  readonly end: Position;
+  /**
+   * Die 1-basierte Quellzeile, auf die sich der Befund bezieht.
+   *
+   * DSV ist zeilenorientiert: Jedes Element belegt genau eine Zeile, und jeder
+   * Befund betrifft ein Element, eine Beziehung zwischen Elementen oder die
+   * Datei als Ganzes (dann Zeile 1). Eine Spalte oder eine Span innerhalb der
+   * Zeile wird bewusst **nicht** geführt — der Lexer hält keine Feldoffsets,
+   * und ein Feld auszuzeichnen wäre für keinen der Befunde die richtige
+   * Granularität. Wer eine Editor-Markierung braucht, hebt die ganze Zeile
+   * hervor.
+   */
+  readonly line: number;
   readonly data?: Readonly<Record<string, unknown>>;
 }

@@ -38,7 +38,7 @@ function collectItems(lines: Iterable<SourceLine>): DsvItem[] {
   return items;
 }
 
-const AT_START = { start: { line: 1, column: 1 }, end: { line: 1, column: 1 } };
+const AT_START = { line: 1 };
 
 export function parseDsv(input: string): ParseResult<DsvDocument> {
   const source = createSourceText(input);
@@ -62,7 +62,7 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
         'format-not-first-element',
         'warning',
         'FORMAT is not the first element in the file',
-        { start: { line: format.line, column: 1 }, end: { line: format.line, column: 1 } },
+        { line: format.line },
       ),
     );
   }
@@ -88,8 +88,7 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
         'warning',
         'DATEIENDE is not the last element in the file',
         {
-          start: { line: dateiende.line, column: 1 },
-          end: { line: dateiende.line, column: 1 },
+          line: dateiende.line,
           data: { element: 'DATEIENDE' },
         },
       ),

@@ -125,8 +125,7 @@ export function writeTypedList(
         code: 'unsupported-format-version',
         severity: 'fatal',
         message: 'No supported DSV format version given; pass options.version or a FORMAT record',
-        start: { line: 1, column: 1 },
-        end: { line: 1, column: 1 },
+        line: 1,
       },
     ]);
   }
@@ -139,8 +138,7 @@ export function writeTypedList(
         code: 'unknown-element' as const,
         severity: 'error' as const,
         message: `${element} is not an element of ${schema.listenart} in DSV${String(version)}`,
-        start: { line: 1, column: 1 },
-        end: { line: 1, column: 1 },
+        line: 1,
         data: { element },
       })),
     );

@@ -498,7 +498,7 @@ decodeZeit('1:04,37'); // → null
 
 Alle `parse…`-Funktionen geben statt einer Exception ein `ParseResult` zurück:
 den Wert, eine Liste von `Diagnostic`s und ein `ok`-Kennzeichen. Jede Diagnostic
-trägt einen stabilen `code`, eine `severity`, eine Position und eine Meldung.
+trägt einen stabilen `code`, eine `severity`, eine Quellzeile und eine Meldung.
 
 Es gibt vier Severities:
 
@@ -617,7 +617,7 @@ diagnostics; // → []
 writeDsv(document) === text; // → true
 ```
 
-Diagnostics melden Auffälligkeiten mit Position, ohne das Lesen abzubrechen –
+Diagnostics melden Auffälligkeiten mit Quellzeile, ohne das Lesen abzubrechen –
 fehlt etwa das abschliessende `DATEIENDE`, wird das Dokument trotzdem geliefert:
 
 ```typescript

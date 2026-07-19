@@ -57,7 +57,7 @@ describe('validateValues', () => {
       8,
     );
 
-    expect(diagnostics[0]?.start).toEqual({ line: 7, column: 1 });
+    expect(diagnostics[0]?.line).toBe(7);
   });
 
   describe('ZK', () => {
