@@ -118,7 +118,19 @@ export type {
   MeldungWettkampf,
   Vereinsmeldung,
 } from './document/vereinsmeldeliste.js';
+/**
+ * Die Wert-Codecs. Der Objektgraph führt Datumsangaben als `Datum`, Zeiten als
+ * Hundertstelsekunden und Uhrzeiten als Minuten seit Mitternacht — nicht als
+ * Zeichenketten. Wer einen solchen Wert anzeigen oder zurückschreiben will,
+ * braucht dieselbe Formatierungsregel, die die Bibliothek intern benutzt:
+ * führende Nullen, Komma als Dezimaltrennzeichen, volle `HH:MM:SS,hh`-Form
+ * auch für Zeiten unter einer Stunde. Nachgebaut wird sie erfahrungsgemäss
+ * knapp daneben, deshalb sind die Codecs Teil der Oberfläche.
+ */
 export type { Datum } from './values/datum.js';
+export { decodeDatum, encodeDatum } from './values/datum.js';
+export { decodeZeit, encodeZeit, isZeroZeit } from './values/zeit.js';
+export { decodeUhrzeit, encodeUhrzeit } from './values/uhrzeit.js';
 
 export type {
   DsvDocument,

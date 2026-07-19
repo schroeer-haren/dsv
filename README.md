@@ -449,6 +449,49 @@ staffelStart.zwischenzeiten; // → [{ startnummer: 1, distanz: 100, zeit: 6361,
 staffelStart.abloesen; // → [{ startnummer: 2, art: '+', zeit: 32, line: 24 }]
 ```
 
+## Werte formatieren
+
+Der Objektgraph hält Zeiten als Hundertstelsekunden, Uhrzeiten als Minuten seit
+Mitternacht und Daten als Tripel. Zum Anzeigen oder Zurückschreiben braucht es
+die Formatierungsregel des Formats – führende Nullen, Komma als
+Dezimaltrennzeichen und die volle `HH:MM:SS,hh`-Form auch für Zeiten unter einer
+Stunde. Nachgebaut wird sie leicht knapp daneben, deshalb sind dieselben Codecs
+exportiert, die die Bibliothek intern benutzt:
+
+```typescript
+import { encodeZeit, encodeDatum, encodeUhrzeit, isZeroZeit } from '@schroeer-haren/dsv';
+
+const start = graph.wettkampfByKey.get('25:E')!.starts[0]!;
+const abschnitt = graph.abschnitte[0]!;
+
+start.endzeit; // → 2844
+encodeZeit(start.endzeit!); // → '00:00:28,44'
+
+abschnitt.datum; // → { day: 10, month: 10, year: 2026 }
+encodeDatum(abschnitt.datum!); // → '10.10.2026'
+
+abschnitt.anfangszeit; // → 540
+encodeUhrzeit(abschnitt.anfangszeit!); // → '09:00'
+```
+
+`00:00:00,00` ist der spezifizierte Unterlassungswert für „keine Zeit" und wird
+bewusst nicht auf `null` abgebildet – sonst ginge beim Zurückschreiben die
+Unterscheidung zwischen „nicht angegeben" und „ausdrücklich Null" verloren.
+`isZeroZeit` fragt ihn ab:
+
+```typescript
+isZeroZeit(start.endzeit!); // → false
+isZeroZeit(0); // → true
+```
+
+In der Gegenrichtung lesen `decodeZeit`, `decodeDatum` und `decodeUhrzeit` eine
+Zeichenkette ein und geben `null` zurück, wenn sie nicht dem Format entspricht:
+
+```typescript
+decodeZeit('00:01:04,37'); // → 6437
+decodeZeit('1:04,37'); // → null
+```
+
 ## Diagnostics
 
 Alle `parse…`-Funktionen geben statt einer Exception ein `ParseResult` zurück:

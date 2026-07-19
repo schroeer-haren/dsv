@@ -80,9 +80,21 @@ Die Benennung folgt einer Konvention: **englische Verben**
 
 ## Werte
 
-| Name    | Art  | Beschreibung                                                 |
-| ------- | ---- | ------------------------------------------------------------ |
-| `Datum` | type | Ein Datum als Tripel aus Tag, Monat und Jahr, ohne Zeitzone. |
+Der Objektgraph führt Datumsangaben als `Datum`, Zeiten als Hundertstelsekunden
+und Uhrzeiten als Minuten seit Mitternacht. Diese Codecs sind dieselben, die die
+Bibliothek intern benutzt — wer einen Wert anzeigen oder zurückschreiben will,
+trifft die Formatierungsregel damit exakt, statt sie nachzubauen.
+
+| Name            | Art      | Beschreibung                                                                       |
+| --------------- | -------- | ---------------------------------------------------------------------------------- |
+| `Datum`         | type     | Ein Datum als Tripel aus Tag, Monat und Jahr, ohne Zeitzone.                       |
+| `decodeDatum`   | function | Liest ein Datum aus `TT.MM.JJJJ`, oder `null` bei ungültiger Angabe.               |
+| `encodeDatum`   | function | Schreibt ein `Datum` als `TT.MM.JJJJ` mit führenden Nullen.                        |
+| `decodeZeit`    | function | Liest eine Schwimmzeit aus `HH:MM:SS,hh` als Hundertstel, oder `null`.             |
+| `encodeZeit`    | function | Schreibt Hundertstel als `HH:MM:SS,hh` mit führenden Nullen und Komma als Trenner. |
+| `isZeroZeit`    | function | `true` für den Unterlassungswert `00:00:00,00`, also „keine Zeit angegeben".       |
+| `decodeUhrzeit` | function | Liest eine Uhrzeit aus `HH:MM` als Minuten seit Mitternacht, oder `null`.          |
+| `encodeUhrzeit` | function | Schreibt Minuten seit Mitternacht als `HH:MM` im 24-Stunden-Format.                |
 
 ## Objektgraph der Wettkampfdefinitionsliste
 

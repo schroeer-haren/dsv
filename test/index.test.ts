@@ -6,6 +6,13 @@ describe('öffentliche API', () => {
     expect(Object.keys(api).sort()).toEqual([
       'DsvParseError',
       'DsvWriteError',
+      'decodeDatum',
+      'decodeUhrzeit',
+      'decodeZeit',
+      'encodeDatum',
+      'encodeUhrzeit',
+      'encodeZeit',
+      'isZeroZeit',
       'parseDsv',
       'parseDsvOrThrow',
       'parseVereinsergebnisliste',
@@ -22,6 +29,16 @@ describe('öffentliche API', () => {
       'writeWettkampfdefinitionsliste',
       'writeWettkampfergebnisliste',
     ]);
+  });
+
+  it('macht die Wert-Codecs für Anwender nutzbar', () => {
+    expect(api.encodeZeit(api.decodeZeit('00:01:04,37') ?? 0)).toBe('00:01:04,37');
+    expect(api.encodeDatum(api.decodeDatum('05.07.2025') ?? { day: 1, month: 1, year: 1970 })).toBe(
+      '05.07.2025',
+    );
+    expect(api.encodeUhrzeit(api.decodeUhrzeit('09:30') ?? 0)).toBe('09:30');
+    expect(api.isZeroZeit(0)).toBe(true);
+    expect(api.isZeroZeit(1)).toBe(false);
   });
 
   it('liest und schreibt eine Datei', () => {
