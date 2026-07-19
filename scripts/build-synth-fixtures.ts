@@ -12,6 +12,10 @@
  * echten Ergebnislisten vorkommt, die dritte Staatsangehörigkeit, die real nie
  * gesetzt ist, und die Aufzählungswerte ohne empirischen Beleg.
  *
+ * Für Vereinsmelde- und Vereinsergebnisliste: schlicht alles — zu beiden gibt
+ * es keine einzige echte Datei. Je zwei Fixtures, ein volles und ein knappes,
+ * setzen jedes Schemafeld einmal und lassen jedes optionale Feld einmal leer.
+ *
  *     npx tsx scripts/build-synth-fixtures.ts
  */
 
@@ -878,4 +882,218 @@ schreibe('vereinsmeldung.dsv8', [
   line('STAFFELPERSON', '9001', '4', '2', '2'),
   line('STAFFELPERSON', '9001', '4', '3', '3'),
   line('STAFFELPERSON', '9002', '4', '1', '1'),
+]);
+
+/**
+ * Knappe Gegenprobe zur vollen Meldung.
+ *
+ * `ANSPRECHPARTNER` und `VEREIN` stehen genau einmal je Datei; ihre optionalen
+ * Felder lassen sich in ein und derselben Datei deshalb nicht zugleich gesetzt
+ * und leer zeigen. Dieses Fixture setzt nur die Pflichtfelder und schliesst
+ * damit die Abdeckungslücke, die `vereinsmeldung.dsv8` offenlassen muss.
+ */
+schreibe('vereinsmeldung-knapp.dsv8', [
+  line('FORMAT', 'Vereinsmeldeliste', '8'),
+  line('ERZEUGER', 'dsv-testdaten', '1.0', 'test@example.org'),
+  line('VERANSTALTUNG', 'Knappe Meldung', 'Musterstadt', '20', 'HANDZEIT'),
+  line('ABSCHNITT', '1', '15.03.2026', '09:00', ''),
+  line('WETTKAMPF', '1', 'V', '1', '', '100', 'F', 'GL', 'W', '', ''),
+  line('VEREIN', 'SV Nachbarort', '4321', '11', 'GER', ''),
+  line('ANSPRECHPARTNER', 'Muster, Mia', '', '', '', '', '', '', 'meldung@example.org'),
+]);
+
+// ---------------------------------------------------------------------------
+// Vereinsergebnisliste
+// ---------------------------------------------------------------------------
+
+/** Die zwanzig Positionen des Kampfgerichts (dsv8.md:2943). */
+const POSITIONEN = [
+  'SCH',
+  'STA',
+  'ZRO',
+  'ZR',
+  'ZNO',
+  'ZN',
+  'RZN',
+  'SR',
+  'WRO',
+  'WR',
+  'AUS',
+  'SP',
+  'PKF',
+  'STO',
+  'WKH',
+  'ASCH',
+  'SIB',
+  'SAUF',
+  'VER',
+  'ZBV',
+];
+
+/**
+ * Auch für die Vereinsergebnisliste gibt es keine einzige echte Datei. Dieses
+ * Fixture führt jedes der 20 Elemente mindestens einmal und setzt jedes
+ * optionale Feld einmal gefüllt und einmal leer — es ist damit der einzige
+ * Beleg dafür, dass Schema, Leser und Schreiber zusammenpassen.
+ *
+ * Zwei Feinheiten der Listenart sind hier absichtlich sichtbar: `WERTUNG`
+ * kennt die Wettkampfarten `A` und `N` nicht, `WETTKAMPF` und alle
+ * Ergebniselemente dagegen schon; und das Staffelergebnis heisst hier
+ * `STAFFELERGEBNIS`, nicht `STERGEBNIS`.
+ */
+schreibe('vereinsergebnis.dsv8', [
+  line('FORMAT', 'Vereinsergebnisliste', '8'),
+  line('ERZEUGER', 'dsv-testdaten', '1.0', 'test@example.org'),
+  line('VERANSTALTUNG', 'Synthetischer Wettkampf', 'Musterstadt', '50', 'AUTOMATISCH'),
+  line('VERANSTALTER', 'Schwimmverband Musterland'),
+  line(
+    'AUSRICHTER',
+    'SV Musterstadt',
+    'Muster, Max',
+    'Musterweg 1',
+    '12345',
+    'Musterstadt',
+    'GER',
+    '0123 456789',
+    '0123 456780',
+    'ausrichter@example.org',
+  ),
+  line('ABSCHNITT', '1', '15.03.2026', '09:00', 'N'),
+  line('ABSCHNITT', '2', '15.03.2026', '01:30', 'J'),
+  line('ABSCHNITT', '3', '16.03.2026', '09:00', ''),
+  // Alle zwanzig Positionen, darunter die in der Vereinsmeldeliste fehlenden
+  // WKH und ZBV.
+  ...POSITIONEN.map((position, index) =>
+    line(
+      'KAMPFGERICHT',
+      String((index % 3) + 1),
+      position,
+      `Richter, R${String(index + 1)}`,
+      'SV Musterstadt',
+    ),
+  ),
+  // Alle sechs Wettkampfarten, alle Techniken, Ausübungen, Geschlechter und
+  // Zuordnungen zur Bestenliste. Kicks nur als Schmetterling (dsv8.md:1070).
+  line('WETTKAMPF', '1', 'V', '1', '', '100', 'F', 'GL', 'W', 'SW', '', ''),
+  line('WETTKAMPF', '2', 'Z', '1', '1', '50', 'R', 'BE', 'M', 'MS', '1', 'V'),
+  line('WETTKAMPF', '3', 'F', '2', '1', '50', 'B', 'AR', 'D', 'KG', '2', 'Z'),
+  line('WETTKAMPF', '4', 'E', '2', '4', '400', 'L', 'ST', 'X', 'EW', '3', 'F'),
+  line('WETTKAMPF', '5', 'A', '3', '1', '200', 'S', 'WE', 'W', 'PA', '4', 'E'),
+  line('WETTKAMPF', '6', 'N', '3', '1', '0', 'X', 'GB', 'M', 'XX', '', ''),
+  line('WETTKAMPF', '7', 'V', '1', '1', '25000', 'S', 'KB', 'W', 'SW', '', ''),
+  line('WETTKAMPF', '8', 'V', '1', '1', '100', 'S', 'KR', 'M', 'SW', '', ''),
+  // Beide Wertungsklassen, obere Grenze und Geschlecht je gesetzt und leer.
+  line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', '', 'Offene Wertung'),
+  line('WERTUNG', '2', 'Z', '2', 'JG', '2008', '', 'W', 'Jahrgang 2008'),
+  line('WERTUNG', '3', 'F', '3', 'AK', '100', '120', 'M', 'Masters 100 bis 120'),
+  line('WERTUNG', '4', 'E', '4', 'AK', '100', '', 'D', 'Masters 100'),
+  line('WERTUNG', '7', 'V', '5', 'JG', '0', '9999', 'X', 'Gemischte Wertung'),
+  line('VEREIN', 'SV Musterstadt', '1234', '10', 'GER'),
+  // Alle drei Geschlechter; Altersklasse und Nationalitäten gesetzt und leer.
+  line('PERSON', 'Muster, Mia', '100010', '1', 'W', '2008', '20', 'GER', 'POL', 'UKR'),
+  line('PERSON', 'Muster, Mo', '100011', '2', 'M', '2007', '', '', '', ''),
+  line('PERSON', 'Muster, Alex', '100012', '3', 'D', '2006', '25', 'AUT', '', ''),
+  // Alle sechs Wettkampfarten, alle fünf Gründe der Nichtwertung und alle drei
+  // Meldegeldkennzeichen. Ohne Wertung steht der Platz auf 0 (dsv8.md:3495).
+  line('PERSONENERGEBNIS', '1', '1', 'V', '1', '1', '00:01:02,11', '', '', ''),
+  line('PERSONENERGEBNIS', '1', '2', 'Z', '2', '0', '00:00:31,45', 'DS', 'Wende', 'E'),
+  line('PERSONENERGEBNIS', '2', '3', 'F', '3', '0', '00:00:00,00', 'NA', '', 'F'),
+  line('PERSONENERGEBNIS', '2', '4', 'E', '4', '0', '00:00:00,00', 'AB', '', 'N'),
+  line('PERSONENERGEBNIS', '3', '5', 'A', '5', '0', '00:00:00,00', 'AU', '', ''),
+  line('PERSONENERGEBNIS', '3', '6', 'N', '5', '0', '00:00:00,00', 'ZU', '', ''),
+  line('PNZWISCHENZEIT', '1', '1', 'V', '50', '00:00:29,03'),
+  line('PNZWISCHENZEIT', '2', '3', 'F', '25', '00:00:14,88'),
+  // Vorzeichen der Reaktionszeit gesetzt und leer.
+  line('PNREAKTION', '1', '1', 'V', '+', '00:00:00,72'),
+  line('PNREAKTION', '2', '3', 'F', '-', '00:00:00,04'),
+  line('PNREAKTION', '3', '5', 'A', '', '00:00:00,68'),
+  // Jahrgangs- und Altersklassenstaffel, obere Grenze gesetzt und leer.
+  line('STAFFEL', '1', '9001', 'JG', '2008', '2010'),
+  line('STAFFEL', '2', '9002', 'AK', '100', ''),
+  line(
+    'STAFFELPERSON',
+    '9001',
+    '4',
+    'E',
+    'Muster, Mia',
+    '100010',
+    '1',
+    'W',
+    '2008',
+    '20',
+    'GER',
+    'POL',
+    'UKR',
+  ),
+  line('STAFFELPERSON', '9001', '4', 'E', 'Muster, Mo', '100011', '2', 'M', '2007', '', '', '', ''),
+  line(
+    'STAFFELPERSON',
+    '9001',
+    '4',
+    'E',
+    'Muster, Alex',
+    '100012',
+    '3',
+    'D',
+    '2006',
+    '25',
+    'AUT',
+    '',
+    '',
+  ),
+  line(
+    'STAFFELPERSON',
+    '9002',
+    '6',
+    'N',
+    'Muster, Mo',
+    '100011',
+    '1',
+    'M',
+    '2007',
+    '',
+    'GER',
+    '',
+    '',
+  ),
+  // Startnummer der disqualifizierten Person gesetzt, 0 für den allgemeinen
+  // Grund, und leer.
+  line('STAFFELERGEBNIS', '9001', '4', 'E', '4', '2', '00:04:30,84', '', '', '', ''),
+  line('STAFFELERGEBNIS', '9001', '4', 'E', '4', '0', '00:00:00,00', 'DS', '3', 'Wechsel', 'E'),
+  line('STAFFELERGEBNIS', '9002', '6', 'N', '5', '0', '00:00:00,00', 'ZU', '0', '', ''),
+  line('STZWISCHENZEIT', '9001', '4', 'E', '1', '100', '00:01:03,61'),
+  line('STZWISCHENZEIT', '9001', '4', 'E', '2', '200', '00:02:10,02'),
+  // STABLOESE hat im Kapitel keine Beispielzeile; die Feldfolge stammt allein
+  // aus der Tabelle.
+  line('STABLOESE', '9001', '4', 'E', '2', '+', '00:00:00,32'),
+  line('STABLOESE', '9001', '4', 'E', '3', '-', '00:00:00,04'),
+  line('STABLOESE', '9001', '4', 'E', '4', '', '00:00:00,51'),
+]);
+
+/**
+ * Knappe Gegenprobe: `AUSRICHTER` steht genau einmal je Datei, seine sechs
+ * optionalen Adressfelder lassen sich in `vereinsergebnis.dsv8` deshalb nur
+ * gefüllt zeigen. Hier stehen sie leer.
+ */
+schreibe('vereinsergebnis-knapp.dsv8', [
+  line('FORMAT', 'Vereinsergebnisliste', '8'),
+  line('ERZEUGER', 'dsv-testdaten', '1.0', 'test@example.org'),
+  line('VERANSTALTUNG', 'Knappes Protokoll', 'Musterstadt', '16', 'HALBAUTOMATISCH'),
+  line('VERANSTALTER', 'Schwimmverband Musterland'),
+  line(
+    'AUSRICHTER',
+    'SV Nachbarort',
+    'Muster, Mia',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'ausrichter@example.org',
+  ),
+  line('ABSCHNITT', '1', '15.03.2026', '09:00', 'N'),
+  line('WETTKAMPF', '1', 'V', '1', '1', '100', 'F', 'GL', 'W', 'SW', '', ''),
+  line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', '', 'Offene Wertung'),
+  line('VEREIN', 'SV Nachbarort', '4321', '11', 'GER'),
 ]);

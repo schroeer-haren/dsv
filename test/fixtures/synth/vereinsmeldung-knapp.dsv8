@@ -1,0 +1,8 @@
+FORMAT:Vereinsmeldeliste;8;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Knappe Meldung;Musterstadt;20;HANDZEIT;
+ABSCHNITT:1;15.03.2026;09:00;;
+WETTKAMPF:1;V;1;;100;F;GL;W;;;
+VEREIN:SV Nachbarort;4321;11;GER;;
+ANSPRECHPARTNER:Muster, Mia;;;;;;;meldung@example.org;
+DATEIENDE

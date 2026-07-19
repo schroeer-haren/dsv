@@ -1,0 +1,10 @@
+FORMAT:Vereinsergebnisliste;8;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Knappes Protokoll;Musterstadt;16;HALBAUTOMATISCH;
+VERANSTALTER:Schwimmverband Musterland;
+AUSRICHTER:SV Nachbarort;Muster, Mia;;;;;;;ausrichter@example.org;
+ABSCHNITT:1;15.03.2026;09:00;N;
+WETTKAMPF:1;V;1;1;100;F;GL;W;SW;;;
+WERTUNG:1;V;1;JG;0;9999;;Offene Wertung;
+VEREIN:SV Nachbarort;4321;11;GER;
+DATEIENDE
