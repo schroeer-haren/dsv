@@ -418,6 +418,71 @@ describe('projectVereinsmeldeliste', () => {
 
       expect(codes(result)).toEqual(['dangling-reference']);
     });
+
+    it('trifft bei zwei Kampfrichtern den mit der genannten Nummer', () => {
+      // Mit nur einem möglichen Ziel belegt ein Treffer nichts: Auch "nimm das
+      // erste Element der Map" wäre dann richtig. Erst ein zweiter Kandidat
+      // zeigt, dass die Nummer wirklich ausgewertet wird.
+      const kari2 = line('KARIMELDUNG', ['2', 'Richter, Rolf', 'ZR', 'M']);
+      const { graph, diagnostics } = project(
+        ...RUMPF,
+        kari,
+        kari2,
+        line('KARIABSCHNITT', ['2', '1', 'ZR']),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.kampfrichterByNummer.get(1)?.einsaetze).toEqual([]);
+      expect(graph.kampfrichterByNummer.get(2)?.einsaetze).toMatchObject([
+        { abschnittsnummer: 1, einsatzwunsch: 'ZR' },
+      ]);
+    });
+  });
+
+  describe('Auflösung bei mehreren Kandidaten', () => {
+    // Alle diese Bezüge waren nur gegen genau ein mögliches Ziel getestet.
+    // Jeder Test stellt deshalb zwei Kandidaten bereit und prüft beides: dass
+    // das genannte Ziel getroffen wird und dass das andere leer bleibt.
+
+    it('ordnet die Personenmeldung dem genannten Trainer zu', () => {
+      const t1 = line('TRAINER', ['1', 'Trainer, Tina', 'W']);
+      const t2 = line('TRAINER', ['2', 'Trainer, Tom', 'M']);
+      const { graph, diagnostics } = project(...RUMPF, t1, t2, pnmeldung({ nummerTrainer: '2' }));
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.personById.get(1)?.trainer).toMatchObject({ name: 'Trainer, Tom' });
+    });
+
+    it('ordnet die Staffelperson der genannten Staffel zu', () => {
+      const { graph, diagnostics } = project(
+        ...RUMPF,
+        pnmeldung(),
+        stmeldung(),
+        stmeldung({ veranstaltungsIdStaffel: '9002', nummerDerMannschaft: '2' }),
+        line('STAFFELPERSON', ['9002', '1', '1', '3']),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.staffelById.get(9001)?.personen).toEqual([]);
+      expect(graph.staffelById.get(9002)?.personen).toMatchObject([
+        { veranstaltungsId: 1, startnummer: 3 },
+      ]);
+    });
+
+    it('ordnet den Staffelstart der genannten Staffelmeldung zu', () => {
+      const { graph, diagnostics } = project(
+        ...RUMPF,
+        stmeldung(),
+        stmeldung({ veranstaltungsIdStaffel: '9002', nummerDerMannschaft: '2' }),
+        line('STARTST', ['9002', '1', '00:04:12,34']),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.staffelById.get(9001)?.starts).toEqual([]);
+      expect(graph.staffelById.get(9002)?.starts).toMatchObject([
+        { wettkampfnr: 1, meldezeit: 25234 },
+      ]);
+    });
   });
 
   it('projiziert das vollständige Fixture ohne Befunde', () => {
