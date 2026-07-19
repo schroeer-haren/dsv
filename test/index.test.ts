@@ -13,6 +13,7 @@ describe('öffentliche API', () => {
       'parseWettkampfdefinitionsliste',
       'parseWettkampfergebnisliste',
       'projectVereinsergebnisliste',
+      'projectVereinsmeldeliste',
       'projectWettkampfdefinitionsliste',
       'projectWettkampfergebnisliste',
       'writeDsv',

@@ -18,6 +18,7 @@ export { parseVereinsergebnisliste } from './parse/parse-vereinsergebnisliste.js
 export { projectWettkampfdefinitionsliste } from './document/wettkampfdefinitionsliste.js';
 export { projectWettkampfergebnisliste } from './document/wettkampfergebnisliste.js';
 export { projectVereinsergebnisliste } from './document/vereinsergebnisliste.js';
+export { projectVereinsmeldeliste } from './document/vereinsmeldeliste.js';
 export { writeDsv } from './write/write-dsv.js';
 export {
   writeWettkampfdefinitionsliste,
@@ -96,6 +97,27 @@ export type {
   VereinsergebnisWettkampf,
   VereinsergebnisZwischenzeit,
 } from './document/vereinsergebnisliste.js';
+/**
+ * Der Objektgraph der Vereinsmeldeliste. Sie ist eine Meldung, kein Ergebnis —
+ * die Namen tragen deshalb das Präfix `Meldung`.
+ */
+export type {
+  MeldungAbschnitt,
+  MeldungAnsprechpartner,
+  MeldungHandicap,
+  MeldungKampfrichter,
+  MeldungKampfrichterEinsatz,
+  MeldungPerson,
+  MeldungProjectionResult,
+  MeldungStaffel,
+  MeldungStaffelPerson,
+  MeldungStart,
+  MeldungTrainer,
+  MeldungVeranstaltung,
+  MeldungVerein,
+  MeldungWettkampf,
+  Vereinsmeldung,
+} from './document/vereinsmeldeliste.js';
 export type { Datum } from './values/datum.js';
 
 export type {
