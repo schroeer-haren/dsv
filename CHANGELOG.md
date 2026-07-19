@@ -2,6 +2,33 @@
 
 ## Unveröffentlicht
 
+### Breaking: Der Writer verweigert jetzt spec-widrige Elementreihenfolgen
+
+`writeTypedList` und damit alle vier `write*`-Funktionen lieferten klaglos
+Dateien aus, deren Elementreihenfolge die Spezifikation verletzt. Übergab man
+die Records in umgekehrter Reihenfolge, entstand ohne Fehler eine Datei mit
+`DATEIENDE` in Zeile 1 und `FORMAT` in der letzten Zeile — jeder fremde Leser
+bricht dort ab. Spec: „Element muss immer das erste Element in der Datei sein,
+das DATEIENDE-Element muss immer das letzte Element in der Datei sein"
+(dsv8.md:336-337, dsv7.md:301-302).
+
+Die Ursache war strukturell. Die Abschlussprüfung filterte die Befunde der
+Rücklese auf `error`/`fatal`; die Milde der Leseseite ist aber durchweg als
+`warning` ausgedrückt, damit echte Dateien nicht zurückgewiesen werden. Jede
+Lese-Milde wurde damit automatisch zur Schreib-Erlaubnis. Neben der
+Elementreihenfolge rutschten so auch eine fehlende `DATEIENDE`-Zeile und
+Ersetzungszeichen (U+FFFD) in Werten durch.
+
+Die Zuordnung hängt jetzt am Diagnostic-Code statt an der Schwere und ist über
+`Record<DiagnosticCode, boolean>` vollständig: Ein neuer Code lässt sich nicht
+einführen, ohne zu entscheiden, ob er in eigener Ausgabe vorkommen darf.
+Vorbelegung ist unzulässig. Erlaubt bleiben allein die beiden Querregeln
+`invalid-value` und `conditional-field-required` auf Warnstufe — echte, vom DSV
+ausgelieferte Dateien verletzen sie, und ohne diese Ausnahme liesse sich eine
+eingelesene echte Datei nicht wieder ausschreiben. Die bisherige Sperre über
+das Datenfeld `tolerated` entfällt; sie wird von der Einstufung des Codes
+`invalid-enum-value` mit abgedeckt.
+
 ### Breaking: Staffelbesetzung hängt in der Vereinsergebnisliste an `STAFFEL`
 
 `STAFFELPERSON` und `STZWISCHENZEIT` wurden in der Vereinsergebnisliste über

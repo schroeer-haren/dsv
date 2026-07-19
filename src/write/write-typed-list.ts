@@ -1,4 +1,4 @@
-import type { Diagnostic } from '../diagnostics/types.js';
+import type { Diagnostic, DiagnosticCode } from '../diagnostics/types.js';
 import type { TypedRecord } from '../parse/parse-typed-list.js';
 import { parseTypedList } from '../parse/parse-typed-list.js';
 import type { ListSchema } from '../schema/list-schema.js';
@@ -18,6 +18,83 @@ export class DsvWriteError extends Error {
     super(first === undefined ? 'DSV write failed' : `${first.code}: ${first.message}`);
     this.name = 'DsvWriteError';
   }
+}
+
+/**
+ * Welche Warnungen in selbst erzeugtem Text vorkommen dürfen.
+ *
+ * Die Leseseite ist absichtlich milde: Echte Dateien haben Eigenheiten, die
+ * die Bibliothek nicht zurückweisen darf, und sie drückt diese Milde als
+ * `warning` aus. Der Writer hat früher schlicht auf `error`/`fatal` gefiltert
+ * und damit jede Lese-Milde geerbt — jede neue Warnung wurde automatisch zur
+ * Schreib-Erlaubnis. So konnte `writeTypedList` eine Datei mit `DATEIENDE` in
+ * Zeile 1 klaglos ausliefern. Zwei Einzelfälle nachzutragen würde den nächsten
+ * Fall wieder durchlassen; die Zuordnung gehört deshalb an den Code.
+ *
+ * Vorbelegung ist **unzulässig**: Aufgeführt wird nur, was ausdrücklich erlaubt
+ * ist. Über `Record<DiagnosticCode, …>` ist die Tabelle vollständig — ein neuer
+ * Code lässt sich nicht einführen, ohne hier zu entscheiden. Stillschweigend
+ * erlaubt wird nichts mehr.
+ *
+ * Die Trennlinie ist, wer den Mangel in der Hand hat:
+ *
+ * - **Der Writer selbst** — Aufbau der Datei (Elementreihenfolge, FORMAT
+ *   zuerst, DATEIENDE zuletzt, Terminierung, Feldzahl, Kodierung, Listenart,
+ *   Version). Diese Befunde kann er immer vermeiden, also darf er sie nie
+ *   erzeugen.
+ * - **Die Daten des Aufrufers** — die Querregeln über Felder, die die
+ *   Spezifikation als „should" formuliert. Sie sind hier erlaubt, weil echte,
+ *   vom DSV ausgelieferte Dateien sie verletzen: `zuordnungBestenliste` und
+ *   `qualifikationswettkampfnr` tun das in mehreren Fixtures. Verweigerte der
+ *   Writer sie, liesse sich eine eingelesene echte Datei nicht wieder
+ *   ausschreiben — die Bibliothek verlöre ihren Durchreicheweg. Der Befund
+ *   bleibt beim Lesen sichtbar; das ist die richtige Stelle dafür.
+ *
+ * `invalid-enum-value` steht bewusst **nicht** auf der Liste: Tolerierte Werte
+ * und abweichende Schreibweisen sind lesbar, aber nicht schreibbar — und keine
+ * echte Datei verlangt hier eine Ausnahme. Die `specGap`-Fassung desselben
+ * Codes hat Schwere `info` und wird davon nicht berührt.
+ *
+ * Die drei Graph-Codes sind hier ohnehin unerreichbar: Sie entstehen erst in
+ * den Projektionen unter `src/document`, nicht in `parseTypedList`. `false`
+ * ist für sie die sichere Vorbelegung.
+ */
+const WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT: Record<DiagnosticCode, boolean> = {
+  'missing-format-element': false,
+  'missing-dateiende-element': false,
+  'format-not-first-element': false,
+  'element-order-violation': false,
+  'unknown-encoding-replacement-character': false,
+  'unterminated-field-list': false,
+  'unexpected-field-count': false,
+  'unknown-element': false,
+  'missing-required-field': false,
+  'invalid-value': true,
+  'invalid-enum-value': false,
+  'cardinality-violation': false,
+  'mutually-exclusive-elements': false,
+  'conditional-field-required': true,
+  'unsupported-format-version': false,
+  'wrong-list-type': false,
+  'dangling-reference': false,
+  'ambiguous-reference': false,
+  'incomplete-relay': false,
+  'empty-input': false,
+};
+
+/**
+ * Ob ein Befund der Rücklese die Ausgabe verhindert.
+ *
+ * `fatal` und `error` sind es immer. `info` nie: Diese Stufe trägt keinen
+ * Mangel vor, sondern hält eine bewusste Entscheidung fest — einziger Fall ist
+ * heute `specGap`, ein Wert, den die Spezifikation in ihrer Werteliste
+ * vergessen hat, der aber belegt vorkommt und ausdrücklich gelesen **und**
+ * geschrieben werden soll. Für `warning` entscheidet die Tabelle.
+ */
+function istSchreibfehler(d: Diagnostic): boolean {
+  if (d.severity === 'fatal' || d.severity === 'error') return true;
+  if (d.severity === 'info') return false;
+  return !WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT[d.code];
 }
 
 /**
@@ -100,10 +177,13 @@ function serialize(
  * aus, als was sie erzeugt wurde. Ohne das hinge an einer Option, die von der
  * Angabe im Record abweicht, eine falsch ausgezeichnete Datei.
  *
- * Strenger als beim Lesen ist dabei nur eines: Tolerierte Aufzählungswerte
- * (`EnumValue` mit `tolerated: true`) ergeben beim Lesen eine Warnung, hier
- * einen Fehler. Was der DSV ausliefert, muss die Bibliothek lesen können; was
- * sie selbst erzeugt, soll der Spezifikation entsprechen.
+ * Strenger als beim Lesen ist dabei alles: Jeder Befund der Rücklese verhindert
+ * die Ausgabe, nicht nur `error` und `fatal`. Was der DSV ausliefert, muss die
+ * Bibliothek lesen können; was sie selbst erzeugt, soll der Spezifikation
+ * entsprechen — und die Milde der Leseseite ist durchweg als `warning`
+ * ausgedrückt. Betroffen sind damit tolerierte Aufzählungswerte, abweichende
+ * Schreibweisen und ebenso die Elementreihenfolge. Ausgenommen ist allein
+ * `info`; siehe `IN_EIGENER_AUSGABE_ERLAUBT`.
  *
  * Die Listenart steckt allein in `schema` — wie beim Lesen ist das Schreiben
  * für alle Listenarten dasselbe Verfahren und nicht bloss ähnlich aussehender
@@ -145,9 +225,7 @@ export function writeTypedList(
   }
 
   const check = parseTypedList(text, schema);
-  const problems = check.diagnostics.filter(
-    (d) => d.severity === 'error' || d.severity === 'fatal' || d.data?.['tolerated'] === true,
-  );
+  const problems = check.diagnostics.filter(istSchreibfehler);
 
   if (problems.length > 0) throw new DsvWriteError(problems);
 

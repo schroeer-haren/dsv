@@ -178,6 +178,61 @@ describe('Round-Trip über echte Dateien', () => {
     expect(shape(second.document.records)).toEqual(shape(first.document.records));
   });
 
+  // dsv8.md:336-337 / dsv7.md:301-302 — "Element muss immer das erste Element
+  // in der Datei sein, das DATEIENDE-Element muss immer das letzte Element in
+  // der Datei sein." Beide Verstösse sind beim Lesen Warnungen, damit echte
+  // Dateien nicht zurückgewiesen werden. Selbst erzeugen darf die Bibliothek
+  // sie nicht.
+  describe('Elementreihenfolge', () => {
+    it('verweigert Records in umgekehrter Reihenfolge', () => {
+      const records = [...minimalRecords()].reverse();
+
+      expect(() => writeWettkampfdefinitionsliste(records)).toThrow(DsvWriteError);
+    });
+
+    it('nennt beide Reihenfolgeverstösse beim Namen', () => {
+      const records = [...minimalRecords()].reverse();
+
+      try {
+        writeWettkampfdefinitionsliste(records);
+        expect.unreachable('erwartet: DsvWriteError');
+      } catch (error) {
+        expect(error).toBeInstanceOf(DsvWriteError);
+        const codes = (error as DsvWriteError).diagnostics.map((d) => d.code);
+        expect(codes).toContain('format-not-first-element');
+        expect(codes).toContain('element-order-violation');
+      }
+    });
+
+    // Die beiden folgenden Codes sind ebenfalls `warning` und rutschten aus
+    // demselben Grund durch: Der Writer filterte auf die Schwere und erbte so
+    // jede Milde der Leseseite.
+    it('verweigert eine Ausgabe ohne DATEIENDE', () => {
+      const records = minimalRecords().filter((r) => r.element !== 'DATEIENDE');
+
+      expect(() => writeWettkampfdefinitionsliste(records)).toThrow(DsvWriteError);
+    });
+
+    it('verweigert ein Ersetzungszeichen im Wert', () => {
+      const records = withValue(
+        minimalRecords(),
+        'VERANSTALTUNG',
+        'veranstaltungsbezeichnung',
+        'Cup �',
+      );
+
+      expect(() => writeWettkampfdefinitionsliste(records)).toThrow(DsvWriteError);
+    });
+
+    it('verweigert ein DATEIENDE, das nicht am Ende steht', () => {
+      const records = minimalRecords();
+      const dateiende = records.filter((r) => r.element === 'DATEIENDE');
+      const rest = records.filter((r) => r.element !== 'DATEIENDE');
+
+      expect(() => writeWettkampfdefinitionsliste([...dateiende, ...rest])).toThrow(DsvWriteError);
+    });
+  });
+
   it('ist NICHT byte-identisch, wo die Quelle nach dem Doppelpunkt ein Leerzeichen setzt', () => {
     // Festgehalten, damit es niemand für einen Fehler hält: Der schema-basierte
     // Writer gibt kanonisch aus und verwirft Abweichungen der Quelle —
