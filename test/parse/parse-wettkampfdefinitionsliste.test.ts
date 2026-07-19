@@ -220,6 +220,39 @@ describe('Wettkampfdefinitionslisten aus test/fixtures/real', () => {
       expect(warning.data).toMatchObject({ field: 'qualifikationswettkampfnr' });
     }
   });
+
+  /**
+   * Erwartete Abweichung: dsv8.md:3159 verlangt für gemischte Wettkämpfe die
+   * Zuordnung `SW`. Fünf echte Ausschreibungen halten sich nicht daran und
+   * tragen stattdessen `KG` (kindgerechte Wettkämpfe) oder `MS` (Masters) —
+   * beides fachlich sinnvoll. Deshalb ist die Regel eine Warnung.
+   *
+   * Über alle 103 echten Dateien betrifft das 74 von 244 gemischten
+   * Wettkämpfen; die übrigen 37 stehen in den Ergebnislisten und sind dort
+   * festgehalten. Steigt die Zahl, ist das ein Fund.
+   */
+  it('warnt genau 37-mal wegen gemischter Wettkämpfe ohne SW', () => {
+    const warnings = realLists.flatMap((name) =>
+      parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'))
+        .diagnostics.filter((d) => d.code === 'invalid-value' && d.severity === 'warning')
+        .map((d) => ({ name, data: d.data })),
+    );
+
+    expect(warnings).toHaveLength(37);
+    expect(new Set(warnings.map((w) => w.name))).toEqual(
+      new Set([
+        'b-potsdam-2024-11-23-Potsdam-Wk.dsv7',
+        'dachau-2025-02-23-Dachau-Wk.dsv7',
+        'dsvportal-13062024-Wk.dsv7',
+        'dsvportal-13392023-Wk.dsv7',
+        'dsvportal-1582026-Wk.dsv7',
+      ]),
+    );
+    for (const warning of warnings) {
+      expect(warning.data).toMatchObject({ field: 'zuordnungBestenliste', geschlecht: 'X' });
+      expect(['KG', 'MS']).toContain(warning.data?.['value']);
+    }
+  });
 });
 
 describe('Wettkampfdefinitionslisten aus test/fixtures/synth', () => {
