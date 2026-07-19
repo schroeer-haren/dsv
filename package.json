@@ -27,10 +27,16 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
@@ -56,16 +62,20 @@
     "format:check": "prettier --check .",
     "generate": "tsx scripts/generate-types.ts",
     "generate:check": "npm run generate && git diff --exit-code src/schema/generated.ts",
-    "check": "npm run lint && npm run typecheck && npm run test",
+    "publint": "publint --strict",
+    "attw": "attw --pack .",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build && npm run publint && npm run attw",
     "prepare": "npm run build"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.1.1",
     "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
     "fast-check": "^4.9.0",
     "prettier": "^3.9.5",
+    "publint": "^0.3.21",
     "tsup": "^8.3.5",
     "tsx": "^4.23.1",
     "typescript": "^5.7.2",

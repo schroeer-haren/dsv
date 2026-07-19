@@ -39,3 +39,9 @@ jobs:
 
       - name: Test (Vitest)
         run: npm test
+
+      - name: Lint package (publint)
+        run: npm run publint
+
+      - name: Check type resolution (attw)
+        run: npm run attw
