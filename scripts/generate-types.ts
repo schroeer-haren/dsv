@@ -9,8 +9,12 @@
 
 import { writeFileSync } from 'node:fs';
 import { format, resolveConfig } from 'prettier';
+import type { ListSchema } from '../src/schema/list-schema.js';
 import type { ElementDef, FieldDef } from '../src/schema/types.js';
+import { VEREINSERGEBNISLISTE } from '../src/schema/vereinsergebnisliste.js';
+import { VEREINSMELDELISTE } from '../src/schema/vereinsmeldeliste.js';
 import { WETTKAMPFDEFINITIONSLISTE } from '../src/schema/wettkampfdefinitionsliste.js';
+import { WETTKAMPFERGEBNISLISTE } from '../src/schema/wettkampfergebnisliste.js';
 
 /** Werte, die es in der angegebenen Formatversion schon gibt. */
 function valuesFor(field: FieldDef, version: 7 | 8) {
@@ -89,6 +93,59 @@ function baseNameOf(elementName: string): string {
 }
 
 /**
+ * Die vier Listenarten mit dem Präfix ihrer Typnamen.
+ *
+ * Ohne Präfix kollidierten die Namen: Dasselbe Element führt je Listenart
+ * unterschiedlich viele Felder — ABSCHNITT etwa sechs in der
+ * Wettkampfdefinitionsliste und vier in den übrigen dreien, STAFFELPERSON
+ * zwölf gegen vier. Ein gemeinsamer Typ wäre in mindestens einer Listenart
+ * falsch.
+ *
+ * Die Präfixe folgen der Benennung des Objektgraphen in `src/index.ts`. Die
+ * Wettkampfdefinitionsliste bleibt ohne Präfix — sie war zuerst da, und ihre
+ * Namen bleiben so, wie sie sind.
+ */
+export const LISTS: readonly { readonly schema: ListSchema; readonly prefix: string }[] = [
+  { schema: WETTKAMPFDEFINITIONSLISTE, prefix: '' },
+  { schema: WETTKAMPFERGEBNISLISTE, prefix: 'Ergebnis' },
+  { schema: VEREINSMELDELISTE, prefix: 'Meldung' },
+  { schema: VEREINSERGEBNISLISTE, prefix: 'Vereinsergebnis' },
+];
+
+/**
+ * Rendert alle Listenarten.
+ *
+ * Prüft dabei, dass kein Typname zweimal vergeben wird. Das ist keine
+ * Förmlichkeit: Ein Präfix, das zufällig den Namen einer anderen Listenart
+ * trifft, erzeugte sonst zwei Interfaces gleichen Namens — TypeScript meldete
+ * das erst später und an ganz anderer Stelle.
+ */
+export function renderAll(): string {
+  const parts: string[] = [];
+  const seen = new Map<string, string>();
+
+  for (const { schema, prefix } of LISTS) {
+    parts.push(`// ${schema.listenart}`, '');
+
+    for (const occurrence of schema.elements) {
+      const name = `${prefix}${baseNameOf(occurrence.def.name)}`;
+      const previous = seen.get(name);
+
+      if (previous !== undefined) {
+        throw new Error(
+          `Typname ${name} doppelt vergeben: ${previous} und ${schema.listenart}. Präfix anpassen.`,
+        );
+      }
+      seen.set(name, schema.listenart);
+
+      parts.push(renderBothVersions(name, occurrence.def));
+    }
+  }
+
+  return parts.join('\n');
+}
+
+/**
  * Läuft am Ende über Prettier, damit die Datei so aussieht, wie `npm run
  * format` sie hinterliesse. Ohne das bräche `npm run generate:check`, sobald
  * eine Union länger wird als die Zeilenbreite: Prettier bräche sie um, der
@@ -98,9 +155,7 @@ async function main(): Promise<void> {
   const parts = [
     '// Generiert von scripts/generate-types.ts — nicht von Hand ändern.',
     '',
-    ...WETTKAMPFDEFINITIONSLISTE.elements.map((occurrence) =>
-      renderBothVersions(baseNameOf(occurrence.def.name), occurrence.def),
-    ),
+    renderAll(),
   ];
 
   const target = 'src/schema/generated.ts';

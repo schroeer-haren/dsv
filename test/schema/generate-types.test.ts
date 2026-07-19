@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { renderBothVersions, renderElement } from '../../scripts/generate-types.js';
+import {
+  LISTS,
+  renderAll,
+  renderBothVersions,
+  renderElement,
+} from '../../scripts/generate-types.js';
 import { field } from '../../src/schema/types.js';
+import { ABSCHNITT as ERGEBNIS_ABSCHNITT } from '../../src/schema/wettkampfergebnisliste.js';
 import { ABSCHNITT, VERANSTALTUNG, WETTKAMPF } from '../../src/schema/wettkampfdefinitionsliste.js';
 
 describe('renderElement', () => {
@@ -114,5 +120,48 @@ describe('renderBothVersions', () => {
     expect(out).toContain('export interface YV7 {');
     expect(out).toContain('export interface YV8 {');
     expect(out).not.toContain('export type YV8 =');
+  });
+});
+
+describe('alle vier Listenarten', () => {
+  const output = renderAll();
+
+  /** Namen aller erzeugten Typen, in Reihenfolge des Auftretens. */
+  const declared = [...output.matchAll(/^export (?:interface|type) (\w+)/gm)].map((m) => m[1]!);
+
+  it('deckt jede der vier Listenarten ab', () => {
+    expect(LISTS.map((l) => l.schema.listenart)).toEqual([
+      'Wettkampfdefinitionsliste',
+      'Wettkampfergebnisliste',
+      'Vereinsmeldeliste',
+      'Vereinsergebnisliste',
+    ]);
+  });
+
+  it('erzeugt für jedes Element jeder Listenart beide Formatversionen', () => {
+    const erwartet = LISTS.reduce((n, l) => n + l.schema.elements.length, 0) * 2;
+
+    expect(declared).toHaveLength(erwartet);
+  });
+
+  it('vergibt jeden Typnamen genau einmal', () => {
+    // Der eigentliche Grund für die Präfixe: Dasselbe Element führt je
+    // Listenart unterschiedlich viele Felder, darf also nicht denselben Namen
+    // bekommen.
+    expect(new Set(declared).size).toBe(declared.length);
+  });
+
+  it('trennt ABSCHNITT nach Listenart — sechs Felder gegen vier', () => {
+    expect(declared).toContain('AbschnittV7');
+    expect(declared).toContain('ErgebnisAbschnittV7');
+
+    const definition = renderElement('X', ABSCHNITT, 7);
+    const ergebnis = renderElement('X', ERGEBNIS_ABSCHNITT, 7);
+
+    expect(definition).not.toBe(ergebnis);
+  });
+
+  it('trägt je Element die Fundstelle in der Spezifikation', () => {
+    expect(output).toContain('@see dsv8.md:');
   });
 });
