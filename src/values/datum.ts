@@ -1,3 +1,5 @@
+import { requireEncodable } from './require-encodable.js';
+
 /**
  * Datum im Format `TT.MM.JJJJ` (dsv8.md:271).
  *
@@ -60,8 +62,33 @@ export function decodeDatum(value: string): Datum | null {
   return { day, month, year };
 }
 
-/** Schreibt ein Datum als `TT.MM.JJJJ` mit führenden Nullen. */
+/**
+ * Schreibt ein Datum als `TT.MM.JJJJ` mit führenden Nullen.
+ *
+ * Geprüft wird derselbe echte Kalender wie beim Lesen: Der 31.02. ist auch
+ * beim Schreiben kein Datum. Das Jahr darf höchstens vierstellig sein — ein
+ * grösseres liesse sich nicht wieder einlesen, ein kleineres wird auf vier
+ * Stellen aufgefüllt und bleibt lesbar.
+ *
+ * @throws {DsvWriteError} wenn das Tripel keinen Tag des Kalenders bezeichnet.
+ */
 export function encodeDatum(datum: Datum): string {
+  const { day, month, year } = datum;
+  requireEncodable(
+    Number.isInteger(year) &&
+      year >= 0 &&
+      year <= 9999 &&
+      Number.isInteger(month) &&
+      month >= 1 &&
+      month <= 12 &&
+      Number.isInteger(day) &&
+      day >= 1 &&
+      day <= tageImMonat(month, year),
+    'Datum',
+    datum,
+    'an existing calendar day with a year between 0 and 9999',
+  );
+
   const dd = String(datum.day).padStart(2, '0');
   const mm = String(datum.month).padStart(2, '0');
   const yyyy = String(datum.year).padStart(4, '0');

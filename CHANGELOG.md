@@ -2,6 +2,32 @@
 
 ## Unveröffentlicht
 
+### Breaking: `encodeZeit`, `encodeUhrzeit` und `encodeDatum` prüfen ihre Eingabe
+
+Die drei Codecs sind seit 0.9.0 öffentlich, gerade damit niemand die
+Formatierungsregel selbst nachbaut. Keiner prüfte seine Eingabe: `encodeZeit(-1)`
+ergab `"00:00:00,-1"`, `encodeZeit(NaN)` ergab `"NaN:NaN:NaN,NaN"`,
+`encodeUhrzeit(1e5)` ergab `"1666:40"`, und `encodeDatum({day:31,month:2,…})`
+schrieb `"31.02.2025"` — obwohl `decodeDatum` den echten Kalender prüft und den
+31.02. ausdrücklich zurückweist. Alle diese Ausgaben liest der eigene Decoder
+als `null`. Damit umgingen die Roh-Encoder genau den Grundsatz, den
+`writeTypedList` durchsetzt.
+
+Sie werfen jetzt `DsvWriteError`, statt `null` zu liefern. Die Symmetrie zu den
+Decodern ist nur scheinbar: Ein Decoder liest **fremde** Eingabe, wo Ungültiges
+der Normalfall ist und zum Ergebnis gehört. Ein Encoder bekommt den **eigenen**
+Wert des Aufrufers; ist der ungültig, liegt ein Fehler im aufrufenden Programm
+vor. Ein `null`-Rückgabewert zwänge jede Aufrufstelle zu einer
+Fallunterscheidung für einen Fall, der nicht eintreten sollte — und die
+nächstliegende Reaktion darauf, `?? ''`, verlöre den Wert stillschweigend.
+
+Gültig sind: für `encodeZeit` ganze Zahlen von `0` bis `35999999` (`99:59:59,99`),
+für `encodeUhrzeit` ganze Zahlen von `0` bis `1439` (`23:59`), für `encodeDatum`
+ein wirklich existierender Kalendertag mit Jahr von `0` bis `9999`.
+
+`DsvWriteError` liegt jetzt in `src/write/write-error.ts` statt in
+`write-typed-list.ts`; der Export aus dem Paketeinstieg ist unverändert.
+
 ### Breaking: Unterlassungswerte werden in den Objektgraphen eingesetzt
 
 `FieldDef.default` beschrieb sich als „Unterlassungswert, der gilt, wenn das

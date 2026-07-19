@@ -1,4 +1,5 @@
 import type { Diagnostic, DiagnosticCode } from '../diagnostics/types.js';
+import { DsvWriteError } from './write-error.js';
 import type { TypedRecord } from '../parse/parse-typed-list.js';
 import { parseTypedList } from '../parse/parse-typed-list.js';
 import type { ListSchema } from '../schema/list-schema.js';
@@ -11,14 +12,7 @@ export interface WriteOptions {
   readonly version?: FormatVersion;
 }
 
-/** Fehler beim Schreiben; trägt die Diagnostics der strengen Prüfung. */
-export class DsvWriteError extends Error {
-  constructor(readonly diagnostics: readonly Diagnostic[]) {
-    const first = diagnostics[0];
-    super(first === undefined ? 'DSV write failed' : `${first.code}: ${first.message}`);
-    this.name = 'DsvWriteError';
-  }
-}
+export { DsvWriteError } from './write-error.js';
 
 /**
  * Welche Warnungen in selbst erzeugtem Text vorkommen dürfen.

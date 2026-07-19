@@ -1,6 +1,7 @@
 import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
 import { decodeUhrzeit, encodeUhrzeit } from '../../src/values/uhrzeit.js';
+import { DsvWriteError } from '../../src/write/write-error.js';
 
 describe('decodeUhrzeit', () => {
   it('liest HH:MM als Minuten seit Mitternacht', () => {
@@ -29,6 +30,33 @@ describe('encodeUhrzeit', () => {
     fc.assert(
       fc.property(fc.integer({ min: 0, max: 1439 }), (minutes) => {
         expect(decodeUhrzeit(encodeUhrzeit(minutes))).toBe(minutes);
+      }),
+    );
+  });
+});
+
+// Siehe die Begründung bei `encodeZeit`: Der Encoder darf nichts erzeugen, was
+// der eigene Decoder zurückweist.
+describe('encodeUhrzeit — Eingabeprüfung', () => {
+  it.each([-1, NaN, Infinity, 0.5, 1e5, 1440])('weist %p zurück', (wert) => {
+    expect(() => encodeUhrzeit(wert)).toThrow(DsvWriteError);
+  });
+
+  it('lässt die Randwerte des Tages durch', () => {
+    expect(encodeUhrzeit(0)).toBe('00:00');
+    expect(encodeUhrzeit(1439)).toBe('23:59');
+  });
+
+  it('erzeugt nur, was der eigene Decoder zurückliest', () => {
+    fc.assert(
+      fc.property(fc.integer({ min: -100, max: 1600 }), (m) => {
+        let text: string;
+        try {
+          text = encodeUhrzeit(m);
+        } catch {
+          return; // zurückgewiesen ist in Ordnung
+        }
+        expect(decodeUhrzeit(text)).toBe(m);
       }),
     );
   });

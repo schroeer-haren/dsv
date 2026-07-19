@@ -1,6 +1,7 @@
 import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
 import { decodeZeit, encodeZeit, isZeroZeit } from '../../src/values/zeit.js';
+import { DsvWriteError } from '../../src/write/write-error.js';
 
 /** Der Maximalwert 99:59:59,99 in Hundertsteln. */
 const MAX = 35_999_999;
@@ -64,6 +65,40 @@ describe('encodeZeit', () => {
     fc.assert(
       fc.property(fc.integer({ min: 0, max: MAX }), (cs) => {
         expect(decodeZeit(encodeZeit(cs))).toBe(cs);
+      }),
+    );
+  });
+});
+
+// Die Encoder sind seit 0.9.0 öffentlich, damit niemand die Formatierungsregel
+// selbst nachbaut. Sie prüften ihre Eingabe aber nicht und erzeugten klaglos
+// Zeichenketten, die der eigene Decoder zurückweist — `encodeZeit(-1)` ergab
+// "00:00:00,-1". Das verletzt denselben Grundsatz, den `writeTypedList`
+// umsetzt: Was unser eigener Leser nicht akzeptiert, dürfen wir nicht
+// ausliefern.
+describe('encodeZeit — Eingabeprüfung', () => {
+  it.each([-1, -0.5, NaN, Infinity, -Infinity, 0.5, 1e18, MAX + 1])(
+    'weist %p zurück',
+    (wert) => {
+      expect(() => encodeZeit(wert)).toThrow(DsvWriteError);
+    },
+  );
+
+  it('lässt die Randwerte des gültigen Bereichs durch', () => {
+    expect(encodeZeit(0)).toBe('00:00:00,00');
+    expect(encodeZeit(MAX)).toBe('99:59:59,99');
+  });
+
+  it('erzeugt nur, was der eigene Decoder zurückliest', () => {
+    fc.assert(
+      fc.property(fc.integer({ min: -1000, max: MAX + 1000 }), (cs) => {
+        let text: string;
+        try {
+          text = encodeZeit(cs);
+        } catch {
+          return; // zurückgewiesen ist in Ordnung
+        }
+        expect(decodeZeit(text)).toBe(cs);
       }),
     );
   });

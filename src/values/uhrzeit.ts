@@ -1,3 +1,5 @@
+import { requireEncodable } from './require-encodable.js';
+
 /**
  * Uhrzeit im Format `HH:MM` im 24-Stunden-Format (dsv8.md:275), intern als
  * Minuten seit Mitternacht.
@@ -17,8 +19,23 @@ export function decodeUhrzeit(value: string): number | null {
   return hours * 60 + minutes;
 }
 
-/** Schreibt Minuten seit Mitternacht als `HH:MM` mit führenden Nullen. */
+/** Letzte Minute des Tages: `23:59`. */
+const MAX_MINUTE = 1439;
+
+/**
+ * Schreibt Minuten seit Mitternacht als `HH:MM` mit führenden Nullen.
+ *
+ * @throws {DsvWriteError} wenn `minutesOfDay` keine ganze Zahl zwischen `0`
+ * und `1439` ist.
+ */
 export function encodeUhrzeit(minutesOfDay: number): string {
+  requireEncodable(
+    Number.isInteger(minutesOfDay) && minutesOfDay >= 0 && minutesOfDay <= MAX_MINUTE,
+    'Uhrzeit',
+    minutesOfDay,
+    `an integer between 0 and ${String(MAX_MINUTE)} (23:59)`,
+  );
+
   const mm = minutesOfDay % 60;
   const hh = (minutesOfDay - mm) / 60;
 

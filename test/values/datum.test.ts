@@ -1,6 +1,7 @@
 import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
 import { decodeDatum, encodeDatum } from '../../src/values/datum.js';
+import { DsvWriteError } from '../../src/write/write-error.js';
 
 /** Unabhängig vom Produktivcode gehaltene Referenz für den Property-Test. */
 function tageImMonat(month: number, year: number): number {
@@ -75,6 +76,46 @@ describe('encodeDatum', () => {
       fc.property(gueltigesDatum, (datum) => {
         expect(decodeDatum(encodeDatum(datum))).toEqual(datum);
       }),
+    );
+  });
+});
+
+// Besonders schief war es hier: `decodeDatum` prüft den echten Kalender und
+// weist den 31.02. bewusst zurück — der Encoder schrieb ihn trotzdem klaglos.
+describe('encodeDatum — Eingabeprüfung', () => {
+  it.each([
+    { day: 31, month: 2, year: 2025 },
+    { day: -1, month: 99, year: 99999 },
+    { day: 29, month: 2, year: 2025 },
+    { day: 0, month: 1, year: 2025 },
+    { day: 1, month: 1, year: 10000 },
+    { day: 1.5, month: 1, year: 2025 },
+    { day: NaN, month: 1, year: 2025 },
+  ])('weist $day.$month.$year zurück', (datum) => {
+    expect(() => encodeDatum(datum)).toThrow(DsvWriteError);
+  });
+
+  it('lässt gültige Daten durch, Schalttag eingeschlossen', () => {
+    expect(encodeDatum({ day: 29, month: 2, year: 2024 })).toBe('29.02.2024');
+    expect(encodeDatum({ day: 1, month: 1, year: 903 })).toBe('01.01.0903');
+  });
+
+  it('erzeugt nur, was der eigene Decoder zurückliest', () => {
+    fc.assert(
+      fc.property(
+        fc.integer({ min: -2, max: 34 }),
+        fc.integer({ min: -2, max: 14 }),
+        fc.integer({ min: 990, max: 2100 }),
+        (day, month, year) => {
+          let text: string;
+          try {
+            text = encodeDatum({ day, month, year });
+          } catch {
+            return; // zurückgewiesen ist in Ordnung
+          }
+          expect(decodeDatum(text)).toEqual({ day, month, year });
+        },
+      ),
     );
   });
 });
