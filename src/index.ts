@@ -17,6 +17,7 @@ export { parseVereinsmeldeliste } from './parse/parse-vereinsmeldeliste.js';
 export { parseVereinsergebnisliste } from './parse/parse-vereinsergebnisliste.js';
 export { projectWettkampfdefinitionsliste } from './document/wettkampfdefinitionsliste.js';
 export { projectWettkampfergebnisliste } from './document/wettkampfergebnisliste.js';
+export { projectVereinsergebnisliste } from './document/vereinsergebnisliste.js';
 export { writeDsv } from './write/write-dsv.js';
 export {
   writeWettkampfdefinitionsliste,
@@ -68,6 +69,33 @@ export type {
   Wettkampfergebnis,
   Zwischenzeit,
 } from './document/wettkampfergebnisliste.js';
+/**
+ * Der Objektgraph der Vereinsergebnisliste. Auch hier tragen die Namen ein
+ * Präfix: Dieselben Begriffe sind je Listenart anders modelliert — die
+ * Vereinsergebnisliste kennt PERSON als eigene Entität, die
+ * Wettkampfergebnisliste nicht.
+ */
+export type {
+  Vereinsergebnis,
+  VereinsergebnisAbloese,
+  VereinsergebnisAbschnitt,
+  VereinsergebnisKampfrichter,
+  VereinsergebnisPerson,
+  VereinsergebnisPlatzierung,
+  VereinsergebnisProjectionResult,
+  VereinsergebnisReaktion,
+  VereinsergebnisStaffel,
+  VereinsergebnisStaffelPerson,
+  VereinsergebnisStaffelPlatzierung,
+  VereinsergebnisStaffelStart,
+  VereinsergebnisStaffelZwischenzeit,
+  VereinsergebnisStart,
+  VereinsergebnisVeranstaltung,
+  VereinsergebnisVerein,
+  VereinsergebnisWertung,
+  VereinsergebnisWettkampf,
+  VereinsergebnisZwischenzeit,
+} from './document/vereinsergebnisliste.js';
 export type { Datum } from './values/datum.js';
 
 export type {
