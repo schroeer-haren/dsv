@@ -47,12 +47,17 @@ const GESCHLECHT_PERSON_WERTE: readonly EnumValue[] = [
 ];
 
 /** Startklassen einer Schwimmart, `AB` für ohne Startklasse. */
-function startklassen(praefix: string, nummern: readonly number[]): readonly EnumValue[] {
+function startklassen(
+  praefix: string,
+  nummern: readonly number[],
+  luecken: readonly number[] = [],
+): readonly EnumValue[] {
   return [
     { value: 'AB', doc: 'ohne Startklasse' },
     ...nummern.map((n) => ({
       value: `${praefix}${String(n)}`,
       doc: `Startklasse ${praefix}${String(n)}`,
+      ...(luecken.includes(n) ? { specGap: true } : {}),
     })),
   ];
 }
@@ -445,10 +450,11 @@ export const PNMELDUNG = element('PNMELDUNG', [
  * (dsv8.md:2285).
  *
  * Zwei Vorbehalte: Der Werteliste der Bruststartklasse fehlt `SB10`, während
- * `S10` und `SM10` bei den beiden anderen Feldern vorhanden sind — vermutlich
- * ein Fehler der Vorlage. Aufgenommen wird nur, was die Spezifikation nennt.
- * Ausserdem gibt es zu diesem Element keine Beispielzeile; die Zahl der
- * Attribute ist damit nicht gegenprüfbar.
+ * `S10` und `SM10` bei den beiden anderen Feldern vorhanden sind — mit hoher
+ * Wahrscheinlichkeit eine Lücke der Vorlage, kein Verbot. Der Wert ist deshalb
+ * als `specGap` aufgenommen: gelesen und geschrieben wird er, beim Lesen
+ * entsteht eine `info`-Diagnostic. Ausserdem gibt es zu diesem Element keine
+ * Beispielzeile; die Zahl der Attribute ist damit nicht gegenprüfbar.
  */
 export const HANDICAP = element('HANDICAP', [
   field('veranstaltungsId', 'Zahl', {
@@ -474,7 +480,10 @@ export const HANDICAP = element('HANDICAP', [
     required: true,
     doc: 'Startklasse für Brust.',
     specRef: 'dsv8.md:2302',
-    values: startklassen('SB', [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14]),
+    // SB10 fehlt in der Spezifikation, während S10 und SM10 bei den beiden
+    // anderen Startklassen stehen — eine Lücke der Vorlage, kein Verbot. Es
+    // wird gelesen und geschrieben, mit einer `info`-Diagnostic.
+    values: startklassen('SB', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], [10]),
   }),
   field('startklasseLagen', 'ZK', {
     required: true,

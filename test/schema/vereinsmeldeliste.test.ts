@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { parseVereinsmeldeliste } from '../../src/parse/parse-vereinsmeldeliste.js';
+import { writeVereinsmeldeliste } from '../../src/write/write-vereinsmeldeliste.js';
 import type { ElementDef } from '../../src/schema/types.js';
 import {
   ABSCHNITT,
@@ -271,7 +272,7 @@ describe('Vereinsmeldeliste — Meldungen', () => {
     expect(enumValues(PNMELDUNG, 'geschlecht')).toEqual(['M', 'W', 'D']);
   });
 
-  it('benennt HANDICAP mit sieben Feldern und ohne SB10', () => {
+  it('benennt HANDICAP mit sieben Feldern', () => {
     expect(names(HANDICAP)).toEqual([
       'veranstaltungsId',
       'dbsId',
@@ -293,13 +294,8 @@ describe('Vereinsmeldeliste — Meldungen', () => {
     ]);
     expect(enumValues(HANDICAP, 'startklasseBrust')).toEqual([
       'AB',
-      ...Array.from({ length: 9 }, (_, i) => `SB${String(i + 1)}`),
-      'SB11',
-      'SB12',
-      'SB13',
-      'SB14',
+      ...Array.from({ length: 14 }, (_, i) => `SB${String(i + 1)}`),
     ]);
-    expect(enumValues(HANDICAP, 'startklasseBrust')).not.toContain('SB10');
     expect(enumValues(HANDICAP, 'startklasseLagen')).toEqual([
       'AB',
       ...Array.from({ length: 14 }, (_, i) => `SM${String(i + 1)}`),
@@ -593,5 +589,64 @@ describe('Vereinsmeldeliste — Typprüfung greift beim Lesen', () => {
     expect(befunde.length).toBeGreaterThan(0);
     expect(befunde[0]?.severity).toBe('error');
     expect(befunde[0]?.data).toMatchObject({ field: 'abschnittsdatum', value: '32.13.2026' });
+  });
+});
+
+/**
+ * `SB10` fehlt in der Aufzählung der Brust-Startklassen (dsv8.md:2320 ff.),
+ * während `S10` und `SM10` bei den beiden anderen Startklassen stehen.
+ * `docs/architecture.md` wertet das als Lücke der Vorlage, nicht als Verbot:
+ * Der Wert wird gelesen und geschrieben, mit einer `info`-Diagnostic.
+ */
+describe('Vereinsmeldeliste — SB10 als Lücke der Spezifikation', () => {
+  /** Der Eintrag eines Wertes in der Werteliste eines Feldes. */
+  function eintrag(fieldName: string, wert: string) {
+    return HANDICAP.fields.find((f) => f.name === fieldName)?.values?.find((v) => v.value === wert);
+  }
+
+  it('führt SB10 als specGap', () => {
+    expect(eintrag('startklasseBrust', 'SB10')?.specGap).toBe(true);
+  });
+
+  it('markiert die spezifizierten Nachbarwerte nicht', () => {
+    expect(eintrag('startklasseBrust', 'SB9')?.specGap).toBeUndefined();
+    expect(eintrag('startklasseBrust', 'SB11')?.specGap).toBeUndefined();
+  });
+
+  it('markiert S10 und SM10 nicht, weil beide in der Spezifikation stehen', () => {
+    expect(eintrag('startklasse', 'S10')?.specGap).toBeUndefined();
+    expect(eintrag('startklasseLagen', 'SM10')?.specGap).toBeUndefined();
+  });
+
+  it('unterscheidet specGap von tolerated — SB10 bleibt schreibbar', () => {
+    expect(eintrag('startklasseBrust', 'SB10')?.tolerated).toBeUndefined();
+  });
+});
+
+/**
+ * Die Gegenprobe am ganzen Weg: `SB10` soll gelesen werden, dabei genau eine
+ * `info` erzeugen und keinen Fehler — und beim Schreiben erhalten bleiben.
+ * Darin unterscheidet es sich von `tolerated`, das den Schreibpfad sperrt.
+ */
+describe('Vereinsmeldeliste — SB10 wird gelesen und geschrieben', () => {
+  const MIT_SB10 = readFileSync('test/fixtures/synth/vereinsmeldung.dsv8', 'utf8').replace(
+    /(HANDICAP:[^;]*;[^;]*;[^;]*;[^;]*;)[^;]*/,
+    '$1SB10',
+  );
+
+  it('erzeugt genau eine info und keinen Fehler', () => {
+    const { diagnostics } = parseVereinsmeldeliste(MIT_SB10);
+
+    expect(MIT_SB10).toContain('SB10');
+    expect(diagnostics).toHaveLength(1);
+    expect(diagnostics[0]?.severity).toBe('info');
+    expect(diagnostics[0]?.data).toMatchObject({ field: 'startklasseBrust', value: 'SB10' });
+    expect(diagnostics.filter((d) => d.severity === 'error' || d.severity === 'fatal')).toEqual([]);
+  });
+
+  it('schreibt SB10 zurück, statt es zu verwerfen', () => {
+    const { document } = parseVereinsmeldeliste(MIT_SB10);
+
+    expect(writeVereinsmeldeliste(document.records)).toContain('SB10');
   });
 });

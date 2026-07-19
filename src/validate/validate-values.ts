@@ -132,6 +132,17 @@ export function validateValues(
             at,
           ),
         );
+      } else if (match.specGap === true) {
+        // Lücke der Spezifikation, kein Verbot: Der Wert wird gelesen und
+        // geschrieben, die Toleranz bleibt aber sichtbar.
+        diagnostics.push(
+          createDiagnostic(
+            'invalid-enum-value',
+            'info',
+            `${def.name}.${fieldDef.name}: "${value}" is missing from the specification's list, accepted as a gap`,
+            { ...at, data: { field: fieldDef.name, value, specGap: true } },
+          ),
+        );
       } else if (match.tolerated === true) {
         // Im Format bekannt, für diese Listenart aber nicht vorgesehen. Als
         // Fehler gemeldet wiese die Bibliothek Dateien zurück, die der DSV

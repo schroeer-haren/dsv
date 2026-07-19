@@ -16,6 +16,13 @@ export interface EnumValue {
    * die der DSV selbst ausliefert. Beim Schreiben bleibt er unzulässig.
    */
   readonly tolerated?: boolean;
+  /**
+   * Wert, den die Spezifikation an dieser Stelle offensichtlich auslässt, statt
+   * ihn auszuschliessen — eine Lücke der Vorlage, kein Verbot. Wird beim Lesen
+   * als `info` gemeldet und beim Schreiben zugelassen; darin unterscheidet er
+   * sich von `tolerated`, das eine `warning` ergibt und das Schreiben sperrt.
+   */
+  readonly specGap?: boolean;
 }
 
 /** Zulässiger Zahlenbereich eines Feldes, Grenzen einschliesslich. */

@@ -10,6 +10,7 @@ import {
   WERTUNG,
   WETTKAMPF,
 } from '../../src/schema/wettkampfdefinitionsliste.js';
+import { HANDICAP } from '../../src/schema/vereinsmeldeliste.js';
 import { validateValues } from '../../src/validate/validate-values.js';
 import type { FormatVersion } from '../../src/validate/validate-fields.js';
 
@@ -303,5 +304,46 @@ describe('tolerierte Aufzählungswerte', () => {
   it('meldet einen im Format unbekannten Wert weiterhin als Fehler', () => {
     const found = validateValues(wettkampfMit('Q'), WETTKAMPF, 7);
     expect(found[0]?.severity).toBe('error');
+  });
+});
+
+describe('SB10 — Lücke der Bruststartklassenliste', () => {
+  /**
+   * `SB1`–`SB9` und `SB11`–`SB14` stehen in der Spezifikation, `SB10` fehlt,
+   * während `S10` und `SM10` bei den beiden anderen Startklassen vorhanden
+   * sind (dsv8.md:2320 ff.). Nach der Festlegung in `docs/architecture.md`
+   * wird der Wert akzeptiert — mit einer `info`-Diagnostic, damit die Toleranz
+   * sichtbar bleibt statt still zu wirken.
+   */
+  function handicap(startklasseBrust: string) {
+    const record = {
+      element: 'HANDICAP',
+      line: 1,
+      fields: ['1', '', '', 'S10', startklasseBrust, 'SM10', ''],
+      raw: '',
+    };
+    return validateValues(record as never, HANDICAP, 8);
+  }
+
+  it('meldet SB10 als info und nicht als Fehler', () => {
+    const diagnostics = handicap('SB10');
+
+    expect(diagnostics).toHaveLength(1);
+    expect(diagnostics[0]?.severity).toBe('info');
+    expect(diagnostics[0]?.code).toBe('invalid-enum-value');
+    expect(diagnostics[0]?.data).toMatchObject({ field: 'startklasseBrust', value: 'SB10' });
+  });
+
+  it('meldet die spezifizierten Bruststartklassen gar nicht', () => {
+    expect(handicap('SB9')).toEqual([]);
+    expect(handicap('SB11')).toEqual([]);
+  });
+
+  it('meldet eine echte Falschangabe weiterhin als Fehler', () => {
+    const diagnostics = handicap('SB15');
+
+    expect(diagnostics).toHaveLength(1);
+    expect(diagnostics[0]?.severity).toBe('error');
+    expect(diagnostics[0]?.code).toBe('invalid-enum-value');
   });
 });
