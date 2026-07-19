@@ -174,3 +174,62 @@ describe('lexLine — Zeilen ohne Doppelpunkt', () => {
     expect(l.fields).toEqual([]);
   });
 });
+
+/**
+ * Die beiden Wachposten in `splitTrailingComment`. Beide waren bis hierher
+ * ungeprüft: Ersetzt man sie durch nichts beziehungsweise verschiebt man die
+ * Untergrenze, blieb die ganze Suite grün. Der erste Fall ist der teurere — er
+ * hängt die Bibliothek auf, statt bloss falsch zu antworten.
+ */
+describe('lexLine — die Wachposten der Kommentarsuche', () => {
+  /**
+   * `lastIndexOf` deutet einen negativen Startwert als `0` und fände dieselbe
+   * Stelle erneut. Ohne `if (auf === 0) break;` dreht die Schleife bei einem
+   * `(*` an Position 0 endlos — gemessen über fünf Millionen Runden, ohne je
+   * ein Ergebnis zu liefern.
+   */
+  it(
+    'bleibt bei einem Kommentar am Zeilenanfang des Rumpfes nicht hängen',
+    { timeout: 5000 },
+    () => {
+      const l = lexLine('A:(*a*)', 1);
+      if (l.kind !== 'element') throw new Error('erwartet: element');
+
+      // Kein Kommentar: Vor dem `(*` steht kein `;`, der Text ist also Rumpf.
+      expect(l.comment).toBeNull();
+      expect(l.fields).toEqual(['(*a*)']);
+    },
+  );
+
+  /**
+   * Die Untergrenze `ende - 4` verlangt, dass zwischen `(*` und `*)` überhaupt
+   * Platz ist. Bei `ende - 2` fände die Suche das `(*` von `(*)`, dessen
+   * Klammern sich mit dem `*)` überlappen — ein Kommentar aus drei Zeichen, den
+   * es nicht gibt. Der Mutant liefert hier ein Feld und den Kommentar `(*)`.
+   */
+  it('erkennt in einem überlappenden `(*)` keinen Kommentar', () => {
+    const l = lexLine('A:;(*)', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+
+    expect(l.comment).toBeNull();
+    expect(l.fields).toEqual(['', '(*)']);
+  });
+});
+
+describe('lexLine — Leerraum hinter dem letzten Semikolon', () => {
+  /**
+   * `terminated` und die Feldzerlegung sind sich hier uneins: Der Rohtext gilt
+   * als terminiert, die Zerlegung liefert trotzdem ein zusätzliches leeres
+   * Feld. Die Unstimmigkeit besteht seit der ersten Fassung und wird bewusst
+   * nicht angeglichen — das Muster tritt in keiner echten Zeile auf. Hier steht
+   * sie fest, damit sie nicht mehr stillschweigend gilt und ein späterer
+   * Angleich als bewusste Änderung sichtbar wird.
+   */
+  it('hält die bekannte Unstimmigkeit zwischen terminated und fields fest', () => {
+    const l = lexLine('A:1; ', 1);
+    if (l.kind !== 'element') throw new Error('erwartet: element');
+
+    expect(l.terminated).toBe(true);
+    expect(l.fields).toEqual(['1', '']);
+  });
+});

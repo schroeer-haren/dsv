@@ -64,20 +64,28 @@ export interface WriteResult {
  *   ausschreiben — die Bibliothek verlöre ihren Durchreicheweg. Der Befund
  *   bleibt beim Lesen sichtbar; das ist die richtige Stelle dafür.
  *
- * `invalid-enum-value` steht bewusst **nicht** auf der Liste: Tolerierte Werte
- * und abweichende Schreibweisen sind lesbar, aber nicht schreibbar. Die
+ * `invalid-enum-value` bleibt in eigener Ausgabe unzulässig: Tolerierte Werte
+ * und abweichende Schreibweisen sind lesbar, aber nicht frei schreibbar. Die
  * `specGap`-Fassung desselben Codes hat Schwere `info` und wird davon nicht
  * berührt.
  *
- * Vier echte Dateien verlangen hier gemessen eine Ausnahme und bekommen sie
- * nicht: `wettkampfart` mit `A`/`N` ausserhalb von WERTUNG,
- * `meldegeldTyp` in Grossschreibung, `position` mit `SPR`. Sie lassen sich
- * deshalb auch auf dem ausdrücklichen Weg nicht ausschreiben. Das ist eine
- * eigene, offene Frage — entweder gehören diese Werte in die Wertelisten
- * beziehungsweise als `specGap` markiert, oder der Writer müsste die
- * Schreibweise vereinheitlichen. Beides ist eine Entscheidung über die
- * Leseseite und gehört nicht in die Durchreiche-Stufe: Ein Wert ausserhalb der
- * Werteliste ist kein fehlender Wert.
+ * Ein früherer Stand dieses Kommentars begründete den Ausschluss damit, dass
+ * „keine echte Datei hier eine Ausnahme verlangt". Das war **falsch**, und zwar
+ * messbar: Vier echte Dateien scheitern ausschliesslich an diesem Code —
+ * `WETTKAMPF.wettkampfart` mit `A` beziehungsweise `N`, `MELDEGELD.meldegeldTyp`
+ * in Grossschreibung, `KAMPFGERICHT.position` mit `SPR`. Der Satz behauptete
+ * eine Messung, die nie gemacht worden war, und trug damit dasselbe Kriterium
+ * falsch aus, mit dem derselbe Absatz `invalid-value` und
+ * `conditional-field-required` erlaubt.
+ *
+ * Deshalb steht der Code heute auf `'preexisting-defect-when-tolerated'`. Die
+ * Einschränkung ist die eigentliche Aussage: Durchgereicht wird nur ein Wert,
+ * den die Bibliothek in ihrer Toleranzliste führt, den sie also wissentlich als
+ * real vorkommend liest (`data.tolerated === true`). Das ist genau ein Mangel,
+ * den die **Datei mitbringt**. Ein Wert, den der **Aufrufer neu erfindet** —
+ * `position: 'XYZ'` —, steht in keiner Toleranzliste, wird nicht durchgereicht
+ * und bleibt auf beiden Wegen verwehrt. Die Unterscheidung ist am Befund
+ * ablesbar und muss nicht geraten werden.
  *
  * Die drei Graph-Codes sind hier ohnehin unerreichbar: Sie entstehen erst in
  * den Projektionen unter `src/document`, nicht in `parseTypedList`. `'never'`
@@ -100,10 +108,14 @@ export interface WriteResult {
  *   der Mangel stammt messbar aus der erzeugenden Software — 53 Vorkommen in 28
  *   von 142 echten Dateien, allen voran `KAMPFGERICHT.vereinDesKampfrichters`
  *   mit 35. Er darf durchgereicht werden.
- * - **Alles andere nicht.** Ein unzulässiger Aufzählungswert
- *   (`invalid-enum-value`) ist kein fehlender Wert, sondern ein Wert, den ein
- *   fremder Leser anders oder gar nicht auflöst; eine falsche Feldzahl
- *   (`unexpected-field-count`), eine kaputte Elementreihenfolge
+ * - **Ein tolerierter Aufzählungswert** (`invalid-enum-value` mit
+ *   `data.tolerated`) ist ein Wert, den die Bibliothek wissentlich als real
+ *   vorkommend liest — der DSV liefert ihn selbst aus. Die Datei bleibt
+ *   zerlegbar und der Wert auflösbar. Er darf durchgereicht werden, aber nur
+ *   mit dieser Markierung; siehe `'preexisting-defect-when-tolerated'`.
+ * - **Alles andere nicht.** Ein Aufzählungswert ohne Toleranzeintrag ist keiner,
+ *   den die Datei mitbrachte, sondern einer, den der Aufrufer erfunden hat; eine
+ *   falsche Feldzahl (`unexpected-field-count`), eine kaputte Elementreihenfolge
  *   (`element-order-violation`) oder ein unbekanntes Element
  *   (`unknown-element`) zerstören die Zerlegbarkeit selbst. Dort erzeugte der
  *   Aufrufer eine Datei, die niemand mehr auswerten kann — das ist kein
@@ -118,7 +130,16 @@ type Schreiberlaubnis =
    * Nur auf ausdrücklichen Wunsch und nur gegen Bericht: ein Mangel, den die
    * Datei mitbringt und der sie lesbar lässt.
    */
-  | 'preexisting-defect';
+  | 'preexisting-defect'
+  /**
+   * Wie `'preexisting-defect'`, aber nur für Befunde mit `data.tolerated`.
+   *
+   * Diese Stufe trennt zwei Fälle, die derselbe Code zusammenfasst: einen Wert,
+   * den die Bibliothek in ihrer Toleranzliste führt und den eine eingelesene
+   * Datei mitgebracht hat, und einen Wert, den der Aufrufer frei erfunden hat.
+   * Nur der erste ist ein vorbestehender Mangel.
+   */
+  | 'preexisting-defect-when-tolerated';
 
 const WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT: Record<DiagnosticCode, Schreiberlaubnis> = {
   'missing-format-element': 'never',
@@ -132,7 +153,7 @@ const WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT: Record<DiagnosticCode, Schreiberlaubni
   'unknown-element': 'never',
   'missing-required-field': 'preexisting-defect',
   'invalid-value': 'always',
-  'invalid-enum-value': 'never',
+  'invalid-enum-value': 'preexisting-defect-when-tolerated',
   'cardinality-violation': 'never',
   'mutually-exclusive-elements': 'never',
   'conditional-field-required': 'always',
@@ -171,7 +192,12 @@ function istSchreibfehler(d: Diagnostic): boolean {
  */
 function istVorbestehenderMangel(d: Diagnostic): boolean {
   if (d.severity === 'fatal') return false;
-  return WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT[d.code] === 'preexisting-defect';
+
+  const erlaubnis = WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT[d.code];
+
+  if (erlaubnis === 'preexisting-defect') return true;
+  if (erlaubnis === 'preexisting-defect-when-tolerated') return d.data?.['tolerated'] === true;
+  return false;
 }
 
 /**

@@ -120,17 +120,39 @@ describe('Durchreichen vorbestehender Mängel', () => {
   });
 
   /**
-   * Ein leeres Pflichtfeld ist ein Mangel, den die Datei mitbringt — sie bleibt
-   * lesbar. Ein unzulässiger Aufzählungswert, eine falsche Feldzahl oder eine
-   * kaputte Elementreihenfolge sind etwas anderes: Dort erzeugte der Aufrufer
-   * eine Datei, die niemand mehr auswerten kann. Diese Codes bleiben verwehrt,
-   * auch auf dem ausdrücklichen Weg.
+   * `SPR` steht in der Toleranzliste der Bibliothek: ein Wert, den sie
+   * wissentlich als real vorkommend liest und den eine eingelesene Datei
+   * mitgebracht hat. Er ist damit ein vorbestehender Mangel wie ein leeres
+   * Pflichtfeld — und wird gemeldet.
    */
-  it('reicht einen unzulässigen Aufzählungswert auch dann nicht durch', () => {
+  it('reicht einen tolerierten Aufzählungswert durch und meldet ihn', () => {
     const records = withValue(minimalRecords(), 'KAMPFGERICHT', 'position', 'SPR');
+    const result = writeWettkampfergebnislistePreservingDefects(records);
 
+    expect(result.text).toContain('KAMPFGERICHT:1;SPR;');
+    expect(result.preservedDefects.map((d) => d.code)).toEqual(['invalid-enum-value']);
+  });
+
+  /**
+   * Der entscheidende Gegenprobe: Ein Aufzählungswert **ohne** Toleranzeintrag
+   * ist keiner, den die Datei mitbrachte, sondern einer, den der Aufrufer
+   * erfunden hat. Er bleibt auf beiden Wegen verwehrt — sonst wäre der
+   * Durchreicheweg ein Freibrief für beliebige Werte.
+   */
+  it('reicht einen frei erfundenen Aufzählungswert nicht durch', () => {
+    const records = withValue(minimalRecords(), 'KAMPFGERICHT', 'position', 'XYZ');
+
+    expect(() => writeWettkampfergebnisliste(records)).toThrow(DsvWriteError);
     expect(() => writeWettkampfergebnislistePreservingDefects(records)).toThrow(DsvWriteError);
   });
+
+  /**
+   * Ein leeres Pflichtfeld ist ein Mangel, den die Datei mitbringt — sie bleibt
+   * lesbar. Eine falsche Feldzahl oder eine kaputte Elementreihenfolge sind
+   * etwas anderes: Dort erzeugte der Aufrufer eine Datei, die niemand mehr
+   * auswerten kann. Diese Codes bleiben verwehrt, auch auf dem ausdrücklichen
+   * Weg.
+   */
 
   it('reicht eine verletzte Elementreihenfolge auch dann nicht durch', () => {
     const records = minimalRecords();
@@ -175,17 +197,6 @@ const schemas = [
  */
 const dsv7Files = files.filter((f) => parseDsv(read(f)).document.version === 7);
 
-/**
- * Die vier Dateien, die auch auf dem ausdrücklichen Weg abgewiesen bleiben:
- * Ihr Mangel ist ein tolerierter Aufzählungswert, kein fehlender Wert.
- */
-const EXPECTED_ENUM_FAILURES = [
-  '2026-06-28-Gera-SVHaren-Me.dsv7',
-  'dsvportal-13062024-Wk.dsv7',
-  'gh-dsvparser-definition.dsv7',
-  'gh-dsvparser-ergebnis.dsv7',
-];
-
 describe('Durchreichen über den echten Bestand', () => {
   it('führt 137 DSV7-Dateien und 5 DSV6-Dateien', () => {
     expect(files).toHaveLength(142);
@@ -198,7 +209,7 @@ describe('Durchreichen über den echten Bestand', () => {
    * wieder ausschreiben. Vor diesem Commit scheiterten 28 Dateien an einem
    * Pflichtfeld, das schon im Original leer war.
    */
-  it('schreibt jede DSV7-Datei über den ausdrücklichen Weg aus — bis auf die vier Enum-Fälle', () => {
+  it('schreibt jede der 137 DSV7-Dateien über den ausdrücklichen Weg aus', () => {
     const gescheitert: string[] = [];
     let mitMangel = 0;
 
@@ -220,13 +231,10 @@ describe('Durchreichen über den echten Bestand', () => {
       }
     }
 
-    // Vier Dateien tragen einen tolerierten Aufzählungswert (`wettkampfart`
-    // A/N, `meldegeldTyp` in Grossschreibung, `position` SPR). Sie bleiben
-    // abgewiesen: Ein Aufzählungswert ausserhalb der Werteliste ist kein
-    // fehlender Wert, sondern ein Wert, den ein fremder Leser anders oder gar
-    // nicht auflöst. Das ist eine eigene Entscheidung, keine dieses Commits.
-    expect(gescheitert).toEqual(EXPECTED_ENUM_FAILURES);
-    expect(mitMangel).toBe(28);
+    // Das Abnahmekriterium: alle 137, keine Ausnahme. 28 Dateien bringen ein
+    // leeres Pflichtfeld mit, 4 einen tolerierten Aufzählungswert.
+    expect(gescheitert).toEqual([]);
+    expect(mitMangel).toBe(32);
   });
 
   /**

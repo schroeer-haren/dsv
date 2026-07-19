@@ -125,6 +125,17 @@ export function lexLine(raw: string, line: number): LexedLine {
   // Leerzeichen hinter dem letzten `;` (`A:1; `) ist erlaubt und terminiert
   // trotzdem. Ein leerer Rumpf (`A:`) hat keine Attributliste, die man
   // abschliessen könnte.
+  //
+  // Die Feldzerlegung folgt dem **nicht**: Der Pop greift nur bei exakt `''`,
+  // `A:1; ` zerfällt deshalb in zwei Felder `['1', '']` und ergibt eine
+  // Diagnose `unexpected-field-count`. Das ist eine bekannte Unstimmigkeit
+  // zwischen `terminated` und `fields`, keine Absicht — sie besteht seit der
+  // ersten Fassung unverändert. Angeglichen wird sie hier bewusst nicht: Das
+  // Muster tritt in 0 von 259.024 echten Zeilen auf, und die Zerlegung ist über
+  // erschöpfende Vergleiche gegen die Vorfassung als identisch abgesichert. Ein
+  // Eingriff ohne Anlass würde diese Absicherung entwerten. Festgehalten ist
+  // das Verhalten in `test/lexer/lex-line.test.ts`, damit es nicht mehr
+  // stillschweigend gilt.
   const parts = body.split(';');
   const terminated = body.trim() === '' || body.trimEnd().endsWith(';');
   if (parts.length > 1 && parts[parts.length - 1] === '') parts.pop();
