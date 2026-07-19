@@ -635,14 +635,29 @@ try {
 codes; // → ['empty-input']
 ```
 
-`parseDsvOrThrow` wirft immer dann, wenn `ok` `false` ist – also **nicht nur
-bei `fatal`, sondern auch bei `error`**. Eine Datei ohne `FORMAT`-Element wirft
-damit ebenfalls. Für echte Wettkampfdateien ist das der falsche Weg: Knapp jede
-fünfte enthält einen `error` (siehe [Grenzen](#grenzen)). Nimm dort `parseDsv`
-und entscheide selbst, was du durchgehen lässt.
+`parseDsvOrThrow` wirft immer dann, wenn `ok` `false` ist – also **nicht nur bei
+`fatal`, sondern auch bei `error`**. Das ist Absicht: `ok` ist der eine
+Erfolgsbegriff der Bibliothek, und `…OrThrow` ist nichts anderes als „gib mir
+das Dokument oder wirf". Gäbe es einen Zustand mit `ok === false`, bei dem die
+Funktion trotzdem zurückkehrt, wäre das eine Falle.
 
-Für die typisierten `parse…`-Funktionen gibt es keine werfende Variante; dort
-ist die Diagnostics-Liste der einzige Weg.
+Praktisch ist der Unterschied klein, weil die schema-freie Ebene nur drei
+Diagnostics oberhalb von `warning` kennt: `empty-input` und
+`unsupported-format-version` (beide `fatal`) sowie `missing-format-element`
+(`error`). Eine Datei ohne `FORMAT`-Element hat weder Listenart noch Version –
+sie ist keine DSV-Datei, und ein Wurf ist dort richtig. Von den 142 gesammelten
+echten Dateien lässt `parseDsvOrThrow` genau 5 scheitern: die fünf
+DSV6-Dateien. Alle übrigen 137 kommen ohne `error` und ohne `fatal` durch.
+
+Nicht zu verwechseln ist das mit der typisierten Ebene: Dort prüfen die
+`parse…`-Funktionen zusätzlich gegen das Schema, und 28 der echten Dateien
+melden dabei ein leeres Pflichtfeld. Diese Befunde entstehen erst durch die
+Schemaprüfung – `parseDsv` und `parseDsvOrThrow` sehen sie gar nicht.
+
+Für die typisierten `parse…`-Funktionen gibt es bewusst keine werfende Variante.
+Auf dieser Ebene sind Befunde an echten Dateien der Normalfall, nicht die
+Ausnahme; eine werfende Variante wäre für den Hauptanwendungsfall unbrauchbar.
+Dort ist die Diagnostics-Liste der einzige Weg.
 
 ## Schema-frei arbeiten
 

@@ -192,6 +192,27 @@ export class DsvParseError extends Error {
   }
 }
 
+/**
+ * Wie `parseDsv`, gibt aber das Dokument direkt zurück und wirft einen
+ * `DsvParseError`, sobald `ok` `false` ist.
+ *
+ * Der Wurf hängt bewusst an `ok` und nicht an der Stufe `fatal`. `ok` ist der
+ * eine Erfolgsbegriff der Bibliothek; gäbe es einen Zustand mit `ok === false`,
+ * bei dem diese Funktion trotzdem zurückkehrt, müssten Aufrufer nach dem Aufruf
+ * erneut prüfen — und genau das soll `…OrThrow` ihnen abnehmen.
+ *
+ * Die Stufe `error` kennt diese Ebene nur in einem Fall:
+ * `missing-format-element`. Eine Datei ohne FORMAT hat weder Listenart noch
+ * Version und ist keine DSV-Datei; ein Wurf ist dort richtig. Über den echten
+ * Bestand gemessen wirft die Funktion an 5 von 142 Dateien, und zwar an genau
+ * den fünf DSV6-Dateien.
+ *
+ * Die Befunde der Schemaprüfung — etwa leere Pflichtfelder, die 28 echte
+ * Dateien mitbringen — entstehen erst auf der typisierten Ebene und erreichen
+ * diese Funktion nicht. Die typisierten `parse…`-Funktionen haben deshalb
+ * absichtlich keine werfende Variante: Dort sind Befunde an echten Dateien der
+ * Normalfall.
+ */
 export function parseDsvOrThrow(input: string): DsvDocument {
   const result = parseDsv(input);
   if (!result.ok) {

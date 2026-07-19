@@ -32,12 +32,12 @@ ein Präfix wäre eine Verdopplung.
 | Name                             | Art      | Beschreibung                                                                                                                                                                             |
 | -------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `parseDsv`                       | function | Liest beliebigen DSV-Text schema-frei in ein `DsvDocument` aus Records, Kommentaren und Leerzeilen; meldet eine nicht unterstützte Formatversion als `fatal`, zerlegt sie aber trotzdem. |
-| `parseDsvOrThrow`                | function | Wie `parseDsv`, wirft aber bei einer Diagnostic der Stufe `fatal` einen `DsvParseError`, statt sie zurückzugeben.                                                                        |
+| `parseDsvOrThrow`                | function | Wie `parseDsv`, wirft aber einen `DsvParseError`, sobald `ok` `false` ist – also bei `error` wie bei `fatal`.                                                                            |
 | `parseWettkampfdefinitionsliste` | function | Liest eine Wettkampfdefinitionsliste typisiert und prüft sie gegen das Schema.                                                                                                           |
 | `parseWettkampfergebnisliste`    | function | Liest eine Wettkampfergebnisliste typisiert und prüft sie gegen das Schema.                                                                                                              |
 | `parseVereinsmeldeliste`         | function | Liest eine Vereinsmeldeliste typisiert und prüft sie gegen das Schema.                                                                                                                   |
 | `parseVereinsergebnisliste`      | function | Liest eine Vereinsergebnisliste typisiert und prüft sie gegen das Schema.                                                                                                                |
-| `DsvParseError`                  | class    | Fehler, den `parseDsvOrThrow` bei einer `fatal`-Diagnostic wirft; trägt die Diagnostics mit.                                                                                             |
+| `DsvParseError`                  | class    | Fehler, den `parseDsvOrThrow` wirft; trägt die Diagnostics ab Stufe `error` mit.                                                                                                         |
 
 ## Projizieren
 
