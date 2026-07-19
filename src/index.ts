@@ -107,6 +107,7 @@ export type {
   VereinsergebnisProjectionResult,
   VereinsergebnisReaktion,
   VereinsergebnisStaffel,
+  VereinsergebnisStaffelBesetzung,
   VereinsergebnisStaffelPerson,
   VereinsergebnisStaffelPlatzierung,
   VereinsergebnisStaffelStart,

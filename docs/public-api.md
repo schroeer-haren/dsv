@@ -186,6 +186,7 @@ trifft die Formatierungsregel damit exakt, statt sie nachzubauen.
 | `VereinsergebnisPlatzierung`         | type | Die Platzierung eines Einzelstarts in einer Wertung.                               |
 | `VereinsergebnisStaffel`             | type | Eine Staffel des Vereins.                                                          |
 | `VereinsergebnisStaffelStart`        | type | Der Start einer Staffel mit seinem Ergebnis.                                       |
+| `VereinsergebnisStaffelBesetzung`    | type | Die Besetzung einer Staffel in einem Wettkampf.                                    |
 | `VereinsergebnisStaffelPerson`       | type | Ein Startabschnitt einer Staffel, besetzt mit einer Person.                        |
 | `VereinsergebnisStaffelZwischenzeit` | type | Eine Zwischenzeit innerhalb eines Staffelabschnitts.                               |
 | `VereinsergebnisStaffelPlatzierung`  | type | Die Platzierung einer Staffel in einer Wertung.                                    |

@@ -299,11 +299,9 @@ Beziehung, die die Spezifikation nirgends definiert. Erreichbar war sie danach
 
 Neu trägt `VereinsergebnisStaffel` ein Feld `besetzungen` mit je einem Eintrag
 pro Wettkampf (`wettkampfnr`, `wettkampfart`, `personen`, `zwischenzeiten`).
-Der Elementtyp `VereinsergebnisStaffelBesetzung` wird derzeit **nicht** unter
-seinem Namen exportiert; wer ihn benennen muss, greift ihn bis auf Weiteres
-über `VereinsergebnisStaffel['besetzungen'][number]` ab.
-`VereinsergebnisStaffelStart`
-behält `personen` und `zwischenzeiten`; beide Wege zeigen auf dieselben
+Der Elementtyp `VereinsergebnisStaffelBesetzung` ist unter seinem Namen
+exportiert und lässt sich damit direkt importieren.
+`VereinsergebnisStaffelStart` behält `personen` und `zwischenzeiten`; beide Wege zeigen auf dieselben
 Objekte. Die `dangling-reference` beider Elemente nennt jetzt `STAFFEL` und
 führt `veranstaltungsIdStaffel` statt eines Startschlüssels. Der Befund
 `incomplete-relay` greift auch ohne `STAFFELERGEBNIS` und nennt dann

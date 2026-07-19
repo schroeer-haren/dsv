@@ -17,7 +17,7 @@ sind aber über ein Feld erreichbar und damit trotzdem Teil der Oberfläche.
 Neu erzeugen mit `npm run api-surface`; `npm run api-surface:check` prüft, dass
 die Datei zum Quellstand passt.
 
-Stand: 228 Typen (davon 1 intern), 26 Werte.
+Stand: 228 Typen (davon 0 intern), 26 Werte.
 
 ## Werte
 
@@ -1956,7 +1956,7 @@ readonly veranstaltungsId: number
 readonly wertungsklasseTyp: string
 ```
 
-### VereinsergebnisStaffelBesetzung (intern)
+### VereinsergebnisStaffelBesetzung
 
 ```ts
 readonly personen: ReadonlyArray<VereinsergebnisStaffelPerson>

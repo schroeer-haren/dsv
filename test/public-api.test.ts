@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
-import { renderSurface } from '../scripts/api-surface.js';
+import { collectSurface, renderSurface } from '../scripts/api-surface.js';
 
 /**
  * Friert die öffentliche Oberfläche ein. `docs/public-api.md` ist die
@@ -119,5 +119,50 @@ describe('Member der öffentlichen Typen', () => {
       actual.split('\n'),
       'Oberfläche und Snapshot weichen ab — mit `npm run api-surface` neu erzeugen und den Diff prüfen.',
     ).toEqual(expected.split('\n'));
+  });
+});
+
+/**
+ * Typen, die von der Oberfläche aus über ein Feld erreichbar sind, aber
+ * bewusst **nicht** exportiert werden. Die Liste ist absichtlich leer: Wer
+ * einen Eintrag hinzufügt, muss danebenschreiben, warum ein Anwender diesen
+ * Typ nicht benennen können soll, obwohl er ihn in Händen hält.
+ *
+ * Ohne Begründung an Ort und Stelle liest sich eine solche Ausnahme später als
+ * Versehen — genau so ist `VereinsergebnisStaffelBesetzung` bis kurz vor 1.0
+ * unexportiert geblieben.
+ */
+const ERLAUBT_INTERN: readonly string[] = [];
+
+/**
+ * Schliesst die Lücke zwischen den beiden Freezes oben: Der Namensvergleich
+ * sieht nur, was exportiert _ist_, und der Snapshot notiert einen internen Typ
+ * nur als Markierung `(intern)` — beide werden grün, während ein Anwender einen
+ * Typ vor sich hat, den er nicht importieren kann. Er erreicht ihn dann nur
+ * strukturell über `Elterntyp['feld'][number]`.
+ */
+describe('erreichbare Typen', () => {
+  it('sind alle exportiert', () => {
+    const internal = collectSurface()
+      .types.filter((type) => type.internal)
+      .map((type) => type.name)
+      .filter((name) => !ERLAUBT_INTERN.includes(name));
+
+    expect(
+      internal,
+      'Diese Typen sind über ein Feld der Oberfläche erreichbar, aber nicht aus src/index.ts exportiert — ' +
+        'entweder exportieren oder mit Begründung in ERLAUBT_INTERN aufnehmen.',
+    ).toEqual([]);
+  });
+
+  it('führt in ERLAUBT_INTERN keinen Namen, der gar nicht mehr intern ist', () => {
+    const internal = new Set(
+      collectSurface()
+        .types.filter((type) => type.internal)
+        .map((type) => type.name),
+    );
+    for (const name of ERLAUBT_INTERN) {
+      expect(internal.has(name), `${name} ist nicht (mehr) intern — Eintrag entfernen`).toBe(true);
+    }
   });
 });

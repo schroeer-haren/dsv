@@ -2,7 +2,7 @@
  * Ermittelt die öffentliche Oberfläche einschliesslich der Member der
  * exportierten Typen.
  *
- * `docs/public-api.md` friert die 242 Top-Level-Exportnamen ein. Das genügt
+ * `docs/public-api.md` friert die Top-Level-Exportnamen ein. Das genügt
  * nicht: Eine Umbenennung wie `meldungen` → `personen` ändert keinen einzigen
  * Exportnamen und ist trotzdem ein Breaking Change. Dieses Modul erzeugt
  * deshalb zusätzlich `docs/public-api-surface.md` — die Feldnamen und
