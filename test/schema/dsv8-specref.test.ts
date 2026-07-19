@@ -178,6 +178,38 @@ describe('Vollständigkeit der Fundstellentabelle', () => {
     // und mit seinem Attribut `hinweis` in der Tabelle.
     expect(FELDER).toHaveLength(markierte.length + 1);
   });
+
+  /**
+   * Der Abgleich der Tabelle mit dem Schema.
+   *
+   * Ohne ihn prüft `FELDER` nur sich selbst gegen `spec/dsv8.md`: Die Tabelle
+   * kann zeilengenau stimmen, während `feld.specRef` im Schema auf etwas ganz
+   * anderes zeigt — beides bliebe grün, obwohl die beiden Angaben dieselbe
+   * Stelle bezeichnen sollen. Erst dieser Test verklammert sie.
+   *
+   * Anders als der zeilengenaue Abgleich braucht er die Spezifikation nicht und
+   * läuft deshalb auch in der CI.
+   */
+  it('deckt sich mit den Fundstellen im Schema', () => {
+    const imSchema = new Map<string, string>(
+      DSV8_DELTA.flatMap(([, schema]) =>
+        schema.elements.flatMap(({ def }) =>
+          def.fields
+            .filter((f) => f.since === 8)
+            .map((f) => [`${def.name}.${f.name}`, f.specRef] as const),
+        ),
+      ),
+    );
+
+    // Das Element `LASTSCHRIFT` selbst trägt keine Fundstelle an einem Feld
+    // und bleibt dem zeilengenauen Abgleich überlassen.
+    const abweichend = FELDER.filter(([name]) => imSchema.has(name))
+      .filter(([name, nr]) => imSchema.get(name) !== `dsv8.md:${nr}`)
+      .map(([name, nr]) => `${name}: Tabelle dsv8.md:${nr}, Schema ${imSchema.get(name)}`);
+
+    expect(abweichend).toEqual([]);
+    expect(FELDER.filter(([name]) => imSchema.has(name))).toHaveLength(imSchema.size);
+  });
 });
 
 describe.skipIf(!specVorhanden)('Zeilengenauer Abgleich der DSV8-Stellen', () => {

@@ -84,6 +84,35 @@ describe('qualifikationswettkampfart über alle Listenarten', () => {
   });
 });
 
+describe('Bereiche am WETTKAMPF über alle Listenarten', () => {
+  /**
+   * Die Zahlenbereiche des WETTKAMPF, festgehalten für alle vier Listenarten
+   * zugleich. Sie stehen in jeder Listenart gleich in der Spezifikation, und
+   * genau das prüft hier niemand sonst: Die je Listenart getrennten Tests
+   * führten sie nur für Vereinsmelde- und Vereinsergebnisliste, sodass sich
+   * `range` in den beiden anderen ersatzlos streichen liess, ohne dass ein
+   * Test rot wurde. Die Werteprüfung fängt das nicht — sie ist über die
+   * Wettkampfdefinitionsliste eingespannt und sieht die anderen Schemata nie.
+   */
+  const ERWARTET: readonly (readonly [string, { min: number; max: number }])[] = [
+    ['wettkampfnr', { min: 0, max: 999 }],
+    ['abschnittsnr', { min: 0, max: 99 }],
+    ['einzelstrecke', { min: 0, max: 25000 }],
+    ['qualifikationswettkampfnr', { min: 0, max: 999 }],
+  ];
+
+  it.each(DSV8_DELTA.map(([name]) => name))('%s', (listenart) => {
+    const schema = DSV8_DELTA.find(([name]) => name === listenart)?.[1];
+    const wettkampf = schema?.elements.find(({ def }) => def.name === 'WETTKAMPF')?.def;
+
+    const gefunden = (wettkampf?.fields ?? [])
+      .filter((f) => f.range !== undefined)
+      .map((f) => [f.name, f.range] as const);
+
+    expect(gefunden).toEqual(ERWARTET);
+  });
+});
+
 /**
  * Der Zeilenbereich, in dem das Kapitel einer Listenart in `spec/dsv8.md`
  * steht. Untergrenze ist die Zeile mit dem `FORMAT:`-Element der Tabelle,
