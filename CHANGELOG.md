@@ -2,6 +2,22 @@
 
 ## Unveröffentlicht
 
+### Breaking: Der Typ `Zahl` prüft die 32-Bit-Schranke
+
+„Numerischer Wert ohne Vorzeichen und Dezimalzeichen (positiver Integer,
+32 Bit)" (dsv8.md:265 = dsv7.md:231) — geprüft wurde davon nur die Ziffernform.
+Eine zwanzigstellige Zahl kam durch; eine Schranke gab es allein, wo ein Feld
+ein ausdrückliches `range` trägt, was in der Vereinsmeldeliste auf keines der
+20 `Zahl`-Felder zutrifft. Ein Empfänger, der in `int32` liest, lief über.
+
+Die Grenze ist 2³²−1 = `4294967295`: „ohne Vorzeichen" wörtlich genommen. Die
+Spezifikation lässt offen, ob sie die vorzeichenlose oder die vorzeichenbehaftete
+Schranke meint; die engere zu wählen hiesse, eine Beschränkung zu erfinden, die
+dort nicht steht. Praktisch macht es keinen Unterschied — der grösste
+Zahlenwert in den 142 gesammelten echten Dateien ist 44.150.000, keine
+überschreitet auch nur die engere Grenze. Führende Nullen bleiben zulässig;
+5738 Felder echter Dateien haben sie.
+
 ### Breaking: `encodeZeit`, `encodeUhrzeit` und `encodeDatum` prüfen ihre Eingabe
 
 Die drei Codecs sind seit 0.9.0 öffentlich, gerade damit niemand die

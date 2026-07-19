@@ -104,6 +104,27 @@ describe('validateValues', () => {
         ]);
       }
     });
+
+    // dsv8.md:265 = dsv7.md:231 — "Numerischer Wert ohne Vorzeichen und
+    // Dezimalzeichen (positiver Integer, 32 Bit)". Die Schranke fehlte ganz;
+    // eine zwanzigstellige Zahl kam durch. Real überschreitet sie keine der 142
+    // Dateien — der grösste vorkommende Zahlenwert ist 44.150.000.
+    it('begrenzt den Wert auf 32 Bit', () => {
+      expect(validateValues(record('T', ['4294967295']), def, 8)).toEqual([]);
+
+      for (const bad of ['4294967296', '99999999999999999999']) {
+        expect(validateValues(record('T', [bad]), def, 8).map((d) => d.code)).toEqual([
+          'invalid-value',
+        ]);
+      }
+    });
+
+    it('lässt führende Nullen unangetastet', () => {
+      // 5738 Felder in echten Dateien haben sie (`01067`, `0000`, `09`); eine
+      // Verengung hier würde echte Dateien beschädigen.
+      expect(validateValues(record('T', ['000123']), def, 8)).toEqual([]);
+      expect(validateValues(record('T', ['0000004294967295']), def, 8)).toEqual([]);
+    });
   });
 
   describe('Stellenbegrenzungen', () => {
@@ -207,6 +228,14 @@ describe('validateValues', () => {
       for (const bad of ['19900', 'Z', '1+', 'AB', '+100', '19.90']) {
         expect(check(WERTUNG, 'mindestJgAk', bad).map((d) => d.code)).toEqual(['invalid-value']);
       }
+    });
+
+    // Festgehalten, damit die Regel nicht versehentlich auf den Wortlaut der
+    // Spezifikation verengt wird: `0` steht 2084-mal in den 142 echten Dateien
+    // und bezeichnet die fehlende untere Schranke einer offenen Wertung. Eine
+    // Verengung auf zwei bis vier Stellen würde diese Dateien beschädigen.
+    it('nimmt die einstellige 0 an — sie kommt real vor', () => {
+      expect(check(WERTUNG, 'mindestJgAk', '0')).toEqual([]);
     });
   });
 

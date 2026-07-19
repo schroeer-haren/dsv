@@ -9,11 +9,44 @@ import type { FormatVersion } from './format-version.js';
 import { fieldsForVersion, isBlank } from './validate-fields.js';
 
 const ZAHL = /^\d+$/;
+
+/**
+ * Obergrenze des Typs `Zahl`: „Numerischer Wert ohne Vorzeichen und
+ * Dezimalzeichen (positiver Integer, 32 Bit)" (dsv8.md:265 = dsv7.md:231).
+ *
+ * „Ohne Vorzeichen" ist wörtlich genommen, die Grenze also 2³²−1 und nicht
+ * 2³¹−1. Die Spezifikation lässt offen, welche der beiden sie meint; die
+ * engere zu wählen hiesse, eine Beschränkung zu erfinden, die dort nicht
+ * steht. Praktisch macht es keinen Unterschied: Der grösste Zahlenwert in den
+ * 142 gesammelten echten Dateien ist 44.150.000, keine überschreitet auch nur
+ * die engere Grenze.
+ *
+ * Führende Nullen bleiben zulässig — 5738 Felder echter Dateien haben sie
+ * (`01067`, `0000`, `09`). Geprüft wird der Zahlenwert, nicht die Schreibweise.
+ */
+const ZAHL_MAX = 4_294_967_295;
 /** Betrag mit genau zwei Nachkommastellen, z. B. `10,00` (dsv8.md:283). */
 const BETRAG = /^\d+,\d{2}$/;
 /**
- * Jahrgang (ein bis vier Ziffern), Altersklassenbuchstabe oder Masters-Staffel
- * mit zwei bis drei Ziffern und Pluszeichen (dsv8.md:291).
+ * Jahrgang, Altersklassenbuchstabe oder Masters-Angabe mit Pluszeichen
+ * (dsv8.md:287-296).
+ *
+ * Die Spezifikation nennt „vierstellige Zahl, wenn Jahrgang", die Buchstaben
+ * `A,B,C,D,E,J`, für Masters-Einzelwettkämpfe „20,25,30,40 usw." und für
+ * Masters-Staffeln „80+,100+,120+ usw.". `\d{1,4}` ist damit weiter als der
+ * Wortlaut. Das ist geprüft und Absicht:
+ *
+ * - **Einstellig** kommt real vor: 2084 Felder der 142 gesammelten Dateien,
+ *   ausnahmslos `0`. Es bezeichnet die fehlende untere Schranke einer offenen
+ *   Wertung (`WERTUNG:…;JG;0;9999;`). Eine Verengung auf zwei Stellen würde
+ *   diese Dateien beschädigen — die Toleranz ist gegen die Realität richtig.
+ * - **Dreistellig** kommt real nicht vor, bleibt aber zulässig: Die
+ *   Masters-Einzelklassen sind mit „usw." offen aufgezählt, und
+ *   Masters-Schwimmen kennt Altersklassen jenseits von 99. Das auszuschliessen
+ *   hiesse eine Grenze zu erfinden, die die Spezifikation nicht zieht.
+ *
+ * Zurückgewiesen wird weiterhin, was unter keiner Lesart passt: `X`, `12345`,
+ * einstelliges Plus (`8+`) und fünfstelliges Plus.
  */
 const JGAK = /^(?:\d{1,4}|[ABCDEJ]|\d{2,3}\+)$/;
 
@@ -25,7 +58,7 @@ function matchesType(value: string, type: ScalarType): boolean {
     case 'Zeichen':
       return [...value].length === 1;
     case 'Zahl':
-      return ZAHL.test(value);
+      return ZAHL.test(value) && Number(value) <= ZAHL_MAX;
     case 'Datum':
       return decodeDatum(value) !== null;
     case 'Uhrzeit':
