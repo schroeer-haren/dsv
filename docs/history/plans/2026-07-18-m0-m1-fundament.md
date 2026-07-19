@@ -1,5 +1,13 @@
 # M0 + M1: Typ-Spike und Fundament — Implementation Plan
 
+> **Historisches Dokument — kein gültiger Stand.**
+> Dieser Text beschreibt einen Planungsstand während der Entwicklung vor 1.0.
+> Er wird nicht gepflegt, und einige der hier getroffenen Entscheidungen wurden
+> später revidiert. Verbindlich ist allein die Dokumentation eine Ebene höher —
+> [`docs/architecture.md`](../../architecture.md) für den Aufbau,
+> [`docs/public-api.md`](../../public-api.md) für die Oberfläche.
+> Warum die Datei trotzdem hier liegt: [`docs/history/README.md`](../README.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Die Codegen-Entscheidung an einer echten `.d.ts` absichern (M0) und danach das domänenfreie Fundament bauen, das jede DSV-Datei zeilenweise in Records zerlegt und byte-identisch zurückschreibt (M1, Release 0.1.0).
@@ -8,7 +16,7 @@
 
 **Tech Stack:** TypeScript (strict), Vitest, fast-check, tsup, ESLint + Prettier. Node ≥ 18.
 
-**Spec:** [`docs/superpowers/specs/2026-07-18-weg-zu-v1-design.md`](../specs/2026-07-18-weg-zu-v1-design.md)
+**Spec:** [`docs/history/specs/2026-07-18-weg-zu-v1-design.md`](../specs/2026-07-18-weg-zu-v1-design.md)
 **Architektur:** [`docs/architecture.md`](../../architecture.md)
 
 ---

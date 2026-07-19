@@ -1,567 +1,615 @@
 # Architektur
 
-Entwurf für den Aufbau von `@schroeer-haren/dsv`. Grundlage sind die
-Spezifikationen DSV7 und DSV8 (siehe CLAUDE.md, Abschnitt „Spezifikationen").
-Zeilenangaben `dsv8.md:NNN` beziehen sich auf die Markdown-Fassung in `spec/`.
+Wie `@schroeer-haren/dsv` aufgebaut ist — **Ist-Stand zu 1.0**, nicht Entwurf.
 
-Fassung 3, nach fachlichem Review gegen die Spec, Design-Review und
-Festlegung der Zielsetzung.
+Jede Aussage in diesem Dokument ist gegen `src/` geprüft. Wo der Code etwas
+nicht tut, steht es hier nicht, auch wenn es einmal geplant war; was einmal
+geplant war und verworfen wurde, steht in
+[`history/`](history/README.md). Diese Trennung ist kein Formalismus: In
+diesem Projekt hat ein Architekturdokument, das eine Datenstruktur versprach,
+die der Code nur als Platzhalter auslieferte, genau dazu geführt, dass die
+Platzhalter niemandem auffielen — siehe „Diagnostics" weiter unten.
+
+Zeilenangaben `dsv8.md:NNN` beziehen sich auf die Markdown-Fassung der
+Spezifikation in `spec/` (gitignored, siehe CLAUDE.md).
 
 ## Zielsetzung
 
-**Vollständige Formatabdeckung: alle vier Listenarten, lesen und schreiben,
-DSV7 und DSV8.** Es gibt keinen einzelnen Treiber-Anwendungsfall, dem die
-Bibliothek untergeordnet wird – Anzeigen, Melden und Konvertieren sind
-gleichrangig.
+Vollständige Formatabdeckung: **alle vier Listenarten, lesen und schreiben,
+DSV7 und DSV8.** Es gibt keinen priorisierten Treiber-Anwendungsfall —
+Anzeigen, Melden und Konvertieren sind gleichrangig.
 
-Das hat eine Konsequenz, die den Rest des Dokuments prägt: Weil kein
-Anwendungsfall priorisiert wird, kann keiner die Architektur retten, wenn sie
-für einen anderen falsch ist. Der Schema-Ansatz ist deshalb keine
-Bequemlichkeit, sondern die Bedingung dafür, dass der volle Umfang überhaupt
-erreichbar ist – 20 Elemente × 4 Listenarten × 2 Versionen, jeweils lesen,
-schreiben und validieren, ergeben von Hand rund 640 Codepfade.
+Das prägt den Rest: Weil kein Anwendungsfall priorisiert ist, kann keiner die
+Architektur retten, wenn sie für einen anderen falsch ist. Rund 20 Elemente ×
+4 Listenarten × 2 Versionen, jeweils lesen, schreiben und validieren, ergeben
+von Hand einige hundert Codepfade. Der Schema-Ansatz ist deshalb die Bedingung
+dafür, dass der volle Umfang überhaupt erreichbar ist.
 
-Aus dem vollen Umfang folgt außerdem, dass die Reihenfolge der Umsetzung
-umso wichtiger wird: Breite entsteht am Ende, nicht am Anfang.
+## Ausgangslage aus der Spezifikation
 
-## Ausgangslage aus der Spec
-
-1. **Zeilenorientiert, kein Escaping.** Ein Element pro Zeile, Attribute mit `;`
-   terminiert (auch das letzte). Der Datentyp ZK verbietet Semikolon und
-   Zeilenumbruch im Wert – es gibt nichts zu escapen und nichts zu quoten.
-2. **Zwei Zeilenformen, nicht eine.** `ELEMENT:attr1;attr2;…;` **und**
-   attributlose Elemente ohne Doppelpunkt. Betroffen ist genau `DATEIENDE`
-   (dsv8.md:1427–1435, Beispiele 1512, 2662, 4318, 6009). Ein Lexer, der stumpf
-   am ersten `:` trennt, zerbricht daran; ein Serializer ohne `bare`-Flag
-   schreibt `DATEIENDE:` und bricht den Round-Trip.
+1. **Zeilenorientiert, kein Escaping.** Ein Element pro Zeile, Attribute mit
+   `;` terminiert (auch das letzte). Der Datentyp ZK verbietet Semikolon und
+   Zeilenumbruch im Wert — es gibt nichts zu escapen und nichts zu quoten.
+2. **Zwei Zeilenformen.** `ELEMENT:attr1;attr2;…;` **und** attributlose
+   Elemente ohne Doppelpunkt. Betroffen ist genau `DATEIENDE`
+   (dsv8.md:1427–1435). Ein Lexer, der stumpf am ersten `:` trennt, zerbricht
+   daran; ein Serializer ohne `bare`-Kennzeichen schreibt `DATEIENDE:` und
+   bricht den Round-Trip. `ElementDef.bare` und `DsvRecord.bare` bilden das ab.
 3. **Kein impliziter Kontext-Zustand.** Es gibt kein „gilt bis zum nächsten
    Element"-Konstrukt; alle Bezüge laufen über explizite ID-Attribute in jeder
    Zeile. Ein zustandsloser Zeilen-Parser genügt.
-4. **Aber: Referenzschlüssel sind je (Listenart, Element) verschieden und nicht
+4. **Referenzschlüssel sind je (Listenart, Element) verschieden und nicht
    durchweg eindeutig.** In der Vereinsmeldeliste referenzieren `STARTPN`,
-   `STARTST` und `STAFFELPERSON` den Wettkampf **nur über die Wettkampfnummer,
-   ohne Wettkampfart** (dsv8.md:2366, 2484, 2518), während `WETTKAMPF` über
+   `STARTST` und `STAFFELPERSON` den Wettkampf nur über die Wettkampfnummer,
+   ohne Wettkampfart (dsv8.md:2366, 2484, 2518), während `WETTKAMPF` über
    (Nr, Art) identifiziert ist. In den Ergebnislisten führt `PNZWISCHENZEIT`
-   keine `WertungsID`, `PNERGEBNIS` gibt aber **pro Wertung eine eigene Zeile**
-   aus (dsv8.md:5019) – die Beziehung ist 1:n, nicht 1:1.
-5. **Element-Identität ist listenabhängig.** `ABSCHNITT` 6 Attribute in der
-   Wettkampfdefinitionsliste vs. 4 sonst; `WETTKAMPF` 11 vs. 10 in der
-   Vereinsmeldeliste (dort fehlt „Zuordnung Bestenliste", verifiziert an
-   dsv8.md:1476 vs. 2600); `VEREIN` 5 vs. 4; `STAFFELPERSON` 4 in der
-   Vereinsmeldeliste vs. 12 in den Ergebnislisten. Auch **Kardinalitäten**
-   variieren: `VEREIN` ist `Vorkommen 1` in der Vereinsergebnisliste
-   (dsv8.md:3303), aber `1 bis N` in der Wettkampfergebnisliste (dsv8.md:4954).
-   Und `Wettkampfart` ist zwei verschiedene Enums (Melde-Kontext `V/Z/F/E`,
-   Ergebnis-Kontext zusätzlich `A/N`).
+   keine `WertungsID`, `PNERGEBNIS` gibt aber pro Wertung eine eigene Zeile aus
+   (dsv8.md:5019) — die Beziehung ist 1:n.
+5. **Element-Identität ist listenabhängig.** `ABSCHNITT` hat 6 Attribute in der
+   Wettkampfdefinitionsliste und 4 sonst; `WETTKAMPF` 11 gegenüber 10 in der
+   Vereinsmeldeliste (dsv8.md:1476 vs. 2600); `VEREIN` 5 gegenüber 4;
+   `STAFFELPERSON` 4 in der Vereinsmeldeliste gegenüber 12 in den
+   Ergebnislisten. Auch Kardinalitäten variieren: `VEREIN` ist Vorkommen 1 in
+   der Vereinsergebnisliste (dsv8.md:3303), aber 1..N in der
+   Wettkampfergebnisliste (dsv8.md:4954).
 6. **Die beiden Ergebnislisten sind strukturell verschieden.** Die
    Vereinsergebnisliste ist normalisiert (`VEREIN` → `PERSON` →
-   `PERSONENERGEBNIS`, dsv8.md:3301/3366/3465) bei genau einem Verein. Die
-   Wettkampfergebnisliste hat **kein `PERSON`-Element**; `PNERGEBNIS` ist ein
-   denormalisierter Flachsatz mit Name, DSV-ID, Verein und Endzeit in derselben
-   Zeile (dsv8.md:5890).
+   `PERSONENERGEBNIS`) bei genau einem Verein. Die Wettkampfergebnisliste hat
+   **kein `PERSON`-Element**; `PNERGEBNIS` ist ein denormalisierter Flachsatz
+   mit Name, DSV-ID, Verein und Endzeit in derselben Zeile (dsv8.md:5890).
 7. **DSV7 → DSV8 ist rein additiv.** Keine Entfernung, keine Feldverschiebung.
-   Nur zwei Stellen erzwingen echte Verzweigung: die geänderte Semantik von
-   `MELDEGELDPAUSCHALE` (DSV7 „pro Meldung" → DSV8 „pro Verein") und die
-   Pflichtfeld-Eigenschaft von `BANKVERBINDUNG.Kontoinhaber` beim Schreiben.
-8. **Führende/abschließende Leerzeichen in Attributen sind zulässig**
-   (dsv8.md:233) und werden in den Spec-Beispielen aktiv genutzt
-   (`…;;; GER;;;`, dsv8.md:5892). Sie sind **kein** Fehler und dürfen nicht
-   „repariert" werden.
-9. **Die Spec-Beispiele enthalten echte Tippfehler** (`WERTUNG:1;V,2;…`,
-   `STZWISCHENZEIT:2012;4;E,1;…`, `KARIABSCHNITT:2;1;:`). Sie dürfen nicht als
-   Formatdefinition gelesen werden – im Unterschied zu Punkt 8.
+   Deshalb trägt die Versionsabhängigkeit im Schema als schlichtes
+   `since: 8` an Elementen, Feldern und einzelnen Aufzählungswerten.
+8. **Führende und abschließende Leerzeichen in Attributen sind zulässig**
+   (dsv8.md:233) und werden in den Spec-Beispielen aktiv genutzt. Sie sind
+   **kein** Fehler und werden nicht „repariert".
+9. **Die Spec-Beispiele enthalten Tippfehler** (`WERTUNG:1;V,2;…`,
+   `KARIABSCHNITT:2;1;:`). Sie sind keine Formatdefinition — im Unterschied zu
+   Punkt 8, wo die Spec die Abweichung ausdrücklich erlaubt.
 
-Punkt 5 ist der Kern: der Schlüssel für eine Elementdefinition ist
+Punkt 5 ist der Kern: Der Schlüssel einer Elementdefinition ist
 `(Listenart, Elementname)`, nicht der Elementname allein.
 
-## Befunde aus 142 echten Dateien
+## Was echte Dateien anders machen
 
-Gesammelter Bestand in `spec/samples/`: 75 Wettkampfergebnislisten, 33
-Wettkampfdefinitionslisten, 34 Vereinsmeldelisten; 137× DSV7, 5× DSV6,
-**0× DSV8**. Erzeuger: 91× EasyWk, 34× WebClub 1.76, 9× SPLASH Meet Manager 11,
-6× cps-schwimm, 2× Schwimmsoftware.
+Der committete, anonymisierte Bestand in `test/fixtures/real/` umfasst **142
+Dateien**: 75 Wettkampfergebnislisten, 34 Vereinsmeldelisten, 33
+Wettkampfdefinitionslisten; 137× DSV7, 5× DSV6, **0× DSV8**. Erzeuger sind
+EasyWk, WebClub, SPLASH Meet Manager, cps-schwimm und Schwimmsoftware.
 
-Was die Realität anders macht als die Spec – jeder Punkt ist ein Parser-Bug in
-spe:
+Jeder der folgenden Punkte ist ein Parser-Fehler in spe:
 
-1. **`FORMAT:` steht nur selten in Zeile 1.** In 140 von 142 Dateien stehen
-   davor ein bis mehrere Erzeuger-Kommentare (`(* erzeugt mit EasyWk … *)`,
-   `(* SPLASH Meet Manager 11 … *)`, `(* Vereinsmeldedatei, erzeugt mit
-WebClub … *)`); `FORMAT:` folgt dann in Zeile 3 (9×), 4 (34×), 6 (91×) oder
-   9 (6×). Nur zwei Dateien beginnen direkt damit. Die Spec-Regel „FORMAT muss
-   erstes Element sein" meint das erste **Element** – Kommentarzeilen zählen
-   nicht mit. Eine Prüfung auf Zeile 1 scheitert an praktisch jeder echten
+1. **`FORMAT:` steht selten in Zeile 1.** Davor stehen ein oder mehrere
+   Erzeuger-Kommentare (`(* erzeugt mit EasyWk … *)`). Die Spec-Regel „FORMAT
+   muss erstes Element sein" meint das erste **Element** — Kommentarzeilen
+   zählen nicht mit. Eine Prüfung auf Zeile 1 scheitert an fast jeder echten
    Datei.
-2. **Leerzeichen nach dem Doppelpunkt sind die Mehrheit**, nicht die Ausnahme:
-   `FORMAT: Wettkampfergebnisliste;7;` in 125 von 142 Dateien gegenüber 17 ohne.
-   Gilt auch für Datenzeilen (`VERANSTALTUNG: Kreismeisterschaften…`). EasyWk
-   und WebClub setzen es ausnahmslos, SPLASH, cps-schwimm und Schwimmsoftware
-   ausnahmslos nicht – es ist eine Eigenschaft des Erzeugers, keine der Datei.
-3. **Groß-/Kleinschreibung der Listart variiert** (`FORMAT:WETTKAMPFERGEBNIS­LISTE`)
-   – Vergleich case-insensitiv, wie schon aus der Spec abgeleitet.
-4. **Zeilenenden gemischt**: 129× CRLF, 13× LF. Ein Parser, der `\r` nicht
-   abstreift, schleppt es ins letzte Feld. Die 13 LF-Dateien stammen sämtlich
-   von EasyWk, cps-schwimm und Schwimmsoftware; WebClub schreibt ausnahmslos
-   CRLF.
-5. **Encoding durchgängig UTF-8** – kein einziges CP1252 im Bestand. Die
-   Warn-Diagnostic bei U+FFFD bleibt trotzdem sinnvoll, ist aber kein
-   Hauptfall.
-
-### Der Dialekt von WebClub 1.76
-
-Die 34 Vereinsmeldelisten sind der erste Bestand eines dritten Erzeugers in
-nennenswerter Zahl. Er verhält sich in jedem geprüften Punkt sauber und
-einheitlich – und unterscheidet sich in zweien von EasyWk:
-
-- **Kommentare nur in eigenen Zeilen.** Genau drei Kopfzeilen je Datei
-  (`(* Vereinsmeldedatei, erzeugt mit WebClub … *)`, Erzeugungszeitpunkt,
-  registrierter Verein), zusammen 102 – und **kein einziger Kommentar am
-  Zeilenende**. Über den gesamten Bestand ist EasyWk der einzige Erzeuger, der
-  Zeilenendkommentare setzt (alle 92 261). Die Zahl in `test/round-trip.test.ts`
-  ist mit den neuen Dateien deshalb unverändert geblieben.
-- **Trennzeichen immer vollständig.** Alle 3 704 Datenzeilen enden auf `;`, und
-  optionale Felder am Zeilenende stehen als leere Felder da statt zu fehlen
-  (`WETTKAMPF: 1;E;1;4;100;L;GL;M;;;`). EasyWk lässt das Schlusstrennzeichen in
-  rund 40 % der Zeilen weg. Für den Parser ist beides zulässig; für die
-  Feldzahlprüfung ist WebClub der strengere und damit aussagekräftigere Fall.
-
-Gemeinsam mit EasyWk hat WebClub das Leerzeichen nach dem Doppelpunkt und – im
-Gegensatz zu EasyWk – ausnahmslos CRLF. Kein BOM, durchgängig UTF-8.
+2. **Leerzeichen nach dem Doppelpunkt sind die Mehrheit**
+   (`FORMAT: Wettkampfergebnisliste;7;`). EasyWk und WebClub setzen es
+   ausnahmslos, SPLASH, cps-schwimm und Schwimmsoftware ausnahmslos nicht — es
+   ist eine Eigenschaft des Erzeugers, nicht der Datei.
+3. **Groß-/Kleinschreibung der Listenart variiert**
+   (`FORMAT:WETTKAMPFERGEBNISLISTE`). Der Vergleich ist deshalb durchweg
+   case-insensitiv; `DsvDocument.listenart` führt bewusst den **Rohwert**.
+4. **Zeilenenden gemischt**, überwiegend CRLF, vereinzelt LF. Beides muss
+   gehen, und beides muss beim Zurückschreiben erhalten bleiben — deshalb führt
+   jedes Item sein `eol` einzeln mit, nicht das Dokument global.
+5. **Encoding durchgängig UTF-8** — kein einziges CP1252 im Bestand. Die
+   Warnung bei U+FFFD bleibt trotzdem sinnvoll, ist aber kein Hauptfall.
+6. **Das Schluss-Semikolon fehlt regelmäßig.** EasyWk lässt es in rund 40 %
+   der Zeilen weg, WebClub nie. `DsvRecord.terminated` hält den Unterschied
+   fest; gemeldet wird er als Warnung (73 Zeilen in 3 Dateien).
 
 ### Anführungszeichen sind Daten, kein Quoting
 
-20 Dateien enthalten `"` in Werten:
+Mehrere Dateien enthalten `"` in Werten:
 
 ```
 VERANSTALTUNG: Potsdamer Pokalmeeting "Alter Fritz 2026";Potsdam;50;AUTOMATISCH;
 VERANSTALTUNG:"Letzte Chance";Dresden;50;HANDZEIT;
 ```
 
-Das sind **Eigennamen mit Anführungszeichen**, keine Quoting-Syntax. Der
-Wettkampf heißt „Letzte Chance". Ein Dequoting würde im ersten Fall nichts
-finden und im zweiten den Namen beschädigen.
+Das sind Eigennamen mit Anführungszeichen, keine Quoting-Syntax. Der Wettkampf
+heißt „Letzte Chance". **Es wird nie dequotet.** ZK erlaubt alle Zeichen außer
+`;` und CRLF (dsv8.md:251); `"` ist ein gewöhnliches Zeichen. Ein Dequoting
+würde im ersten Fall nichts finden und im zweiten den Namen beschädigen.
 
-**Festlegung: es wird nie dequotet.** ZK erlaubt alle Zeichen außer `;` und
-CRLF (dsv8.md:251); `"` ist ein gewöhnliches Zeichen ohne Sonderbedeutung. Das
-ist ein Anwendungsfall der Regel „wo eine Interpretation gültige Daten zerstören
-könnte, gewinnt die konservative Lesart".
+### Zwei Lücken im Testbestand, die benannt gehören
 
-### Fehlende Listenarten
+**Für die Vereinsergebnisliste gibt es keine einzige echte Datei.** Sie geht
+direkt an den Ausrichter und wird nie veröffentlicht; das ist strukturell, nicht
+Suchpech. Diese Listenart ruht damit **allein auf der Spezifikation** und auf
+synthetischen Fixtures. Sie ist genauso vollständig implementiert wie die
+anderen drei, aber sie ist die einzige, bei der kein echter Erzeuger je
+widersprochen hat. Wer sie produktiv einsetzt, sollte das wissen.
 
-Beide Vereinslisten enthalten die Meldedaten eines einzelnen Vereins und gehen
-direkt an den Ausrichter, statt veröffentlicht zu werden. Öffentlich zu finden
-sind sie deshalb nicht – das war strukturell, nicht Suchpech.
+**DSV8 existiert in freier Wildbahn noch nicht.** Der gesamte echte Bestand ist
+DSV7 oder DSV6. Die DSV8-Unterstützung ist deshalb gegen das zeilenweise
+erhobene Delta beider Spezifikationen und gegen synthetische Fixtures
+abgesichert, nicht gegen Realdaten.
 
-**Vereinsmeldeliste: inzwischen 34 Realdateien.** Sie stammen nicht aus einer
-Websuche, sondern direkt von einem Verein (SV Haren), erzeugt mit **WebClub
-1.76**, alle in DSV7. Damit ist diese Listenart nicht mehr allein gegen die Spec
-gebaut. Der Befund der ersten Konfrontation steht in
-`test/parse/parse-vereinsmeldeliste.test.ts`: kein `fatal`, kein `error`, 171
-Warnungen – davon 170 an einer einzigen Regel, siehe Realdaten-Befund weiter
-unten.
-
-**Vereinsergebnisliste: weiterhin 0 Fundstellen.** Für sie gilt das oben
-Gesagte unverändert; sie muss synthetisch aus der Spec erzeugt oder bei einem
-Verein erfragt werden. Der synthetische Fixture-Korpus bleibt dafür kein
-Beiwerk.
-
-### Unabhängige Implementierungen als Cross-Check
-
-Für die Vereinsergebnisliste – und bis zum Zugang der 34 Meldelisten auch für
-die Vereinsmeldeliste – ist eine zweite, unabhängige Lesart der Spec der beste
-verfügbare Ersatz. Zwei Implementierungen eignen sich dafür:
-
-- **[bigcurl/dsv7-parser](https://github.com/bigcurl/dsv7-parser)** (Ruby, MIT) –
-  deckt als einzige alle vier Listenarten ab und ist bemerkenswert ähnlich
-  aufgebaut: Lexer, Typtabelle, Kardinalitätsprüfung und **ein Schema je
-  Listenart** (`wk_`, `vml_`, `vrl_`, `erg_schema.rb`).
-- **[konrad2002/dsvparser](https://github.com/konrad2002/dsvparser)** (Go,
-  Apache-2.0) – nur Wettkampfdefinitions- und Ergebnisliste.
-
-Abgleich des `vml_schema.rb` gegen unseren Element-Katalog: **vollständige
-Übereinstimmung**, inklusive der listenabhängigen Attributzahlen (`WETTKAMPF`
-10, `STAFFELPERSON` 4, `PNMELDUNG` 10, `HANDICAP` 7, `STMELDUNG` 6) und
-inklusive aller vier in DSV8 angehängten Attribute, die dort erwartungsgemäß
-fehlen (`VEREIN` 4, `KARIMELDUNG` 3, `TRAINER` 2).
-
-Die 34 echten Vereinsmeldelisten bestätigen genau diese Zahlen ein zweites Mal,
-diesmal an Daten statt an fremdem Code: Über alle Dateien hinweg ist die
-Feldanzahl je Element konstant und deckt sich mit dem Schema, sobald man die
-`since: 8`-Felder abzieht – `VEREIN` 4 statt 5, `KARIMELDUNG` 3 statt 4,
-`TRAINER` 2 statt 3. Die Versionsmarkierungen der Tabelle waren also richtig
-geraten.
-
-Das ist ausdrücklich **Verifikation, keine Vorlage** – es wird kein Code
-übernommen. Der Nutzen liegt darin, Lesefehler in der Spec aufzudecken, dort wo
-keine Realdatei widerspricht.
-
-### DSV8 existiert in freier Wildbahn noch nicht
-
-GitHub-Codesuche nach `extension:dsv8` liefert null Treffer, Websuchen nach
-`Wk.dsv8`/`Pr.dsv8` nur Ankündigungstexte. Der Grund ist belegbar: Beim SHSV
-sind Ausschreibungen für Termine bis **Dezember 2026** – also lange nach dem
-Stichtag 01.08.2026 – weiterhin als `.dsv7` veröffentlicht, hochgeladen im Juli 2026. Die Landesverbände empfehlen ausdrücklich, die Übergangsfrist bis
-31.12.2026 auszuschöpfen. DSV8-Realdaten sind frühestens ab Herbst 2026 zu
-erwarten; bis dahin ist DSV8-Unterstützung ausschließlich gegen die Spec und
-synthetische Fixtures zu entwickeln.
+> **Zum Vergleich mit fremden Implementierungen.** Für die Vereinsergebnisliste
+> wurde der Element-Katalog gegen
+> [bigcurl/dsv7-parser](https://github.com/bigcurl/dsv7-parser) (Ruby)
+> abgeglichen. Dieser Abgleich ist **kein Beleg für Richtigkeit** und wurde
+> früher fälschlich als „unabhängige zweite Lesart der Spezifikation"
+> geführt. Jenes Projekt transkribiert dieselbe Spec, aus der auch dieses
+> Schema stammt; Übereinstimmung zeigt allenfalls, dass beide dieselbe Tabelle
+> gleich abgeschrieben haben. Einen gemeinsamen Lesefehler deckt sie
+> grundsätzlich nicht auf. Die Aussagekraft haben allein Realdaten — und für
+> die Vereinsergebnisliste gibt es keine.
 
 ## Leitentscheidung: schema-getrieben, Typen generiert
 
-Es gibt ~20 Elemente × 4 Listenarten × 2 Versionen. Diese Matrix von Hand als
-Parser-, Serializer- und Validierungscode auszuschreiben, ist die Stelle, an der
-Implementierungen dieses Formats erfahrungsgemäß stecken bleiben – die
-Go-Referenzimplementierung `konrad2002/dsvparser` hat nach zwei Jahren zwei der
-vier Listenarten immer noch nicht.
-
-Deshalb: **eine deklarative Schema-Tabelle als einzige Quelle der Wahrheit.**
+Eine **deklarative Schema-Tabelle als einzige Quelle der Wahrheit.** Parser,
+Validierung und Writer lesen sie zur Laufzeit; die öffentlichen TypeScript-Typen
+entstehen daraus per Skript als eingecheckte `src/schema/generated.ts`, mit
+`npm run generate:check` (`git diff --exit-code`) in CI als Drift-Wächter.
 
 ```ts
 const ABSCHNITT_WKDEF = element('ABSCHNITT', [
-  field('abschnittsnr', 'Zahl', { required: true }),
-  field('abschnittsdatum', 'Datum', { required: true }),
-  field('einlass', 'Uhrzeit'),
-  field('kampfrichtersitzung', 'Uhrzeit'),
-  field('anfangszeit', 'Uhrzeit', { required: true }),
-  field('relativeAngabe', 'JN', { default: 'N' }),
+  field('abschnittsnr', 'Zahl', { required: true, doc: '…', specRef: 'dsv8.md:…' }),
+  field('relativeAngabe', 'JN', { default: 'N', doc: '…', specRef: 'dsv8.md:…' }),
 ]);
 ```
 
-**Die Typen werden daraus generiert, nicht inferiert.** Parser, Serializer und
-Validierung lesen das Schema zur Laufzeit – das ist der eigentliche Gewinn. Die
-öffentlichen TypeScript-Typen entstehen dagegen per Skript als eingecheckte
-`src/schema/generated.ts`, mit `git diff --exit-code` in CI als Drift-Wächter.
+Die Bausteine stehen in `src/schema/types.ts`: `ElementDef`, `FieldDef`,
+`EnumValue`, `NumberRange`. Bemerkenswert an `FieldDef` sind vier Felder, die
+über „Feld → Typ" hinausgehen:
 
-_Verworfen: reine Typinferenz über `as const` + Mapped Types._ Technisch machbar
-(~60 Zeilen, Compile-Zeit unkritisch), scheitert aber an drei praktischen
-Punkten: mit `dts: true` landet das komplette Schema-Literal in der `.d.ts`;
-Hover zeigt `Prettify<Pick<…>>` statt `Abschnitt`; und **JSDoc pro Feld ist mit
-Mapped Types strukturell unmöglich** – ein aus einem Mapped Type entstandener
-Key kann keinen Doc-Kommentar tragen. Genau das wäre hier am wertvollsten
-(„`wettkampfart` – Melde-Kontext: V/Z/F/E, siehe DSV8 §5.2").
+- **`since: 8`** — auch an `ElementDef` und an einzelnen `EnumValue`s. Die
+  Versionsabhängigkeit ist damit Daten, kein Code, und kein Generic `V extends
+7 | 8` muss durch die Schichten propagieren.
+- **`default`** — der Unterlassungswert der Spezifikation. Er wird **allein in
+  den Objektgraphen** unter `src/document/` eingesetzt, nicht in
+  `TypedRecord.values`: Die Records sind die Grundlage des Schreibens, und ein
+  dort eingesetzter Wert stünde anschließend ausgeschrieben in der Datei.
+- **`tolerated`** an `EnumValue` — ein Wert, den die Spec für diese Listenart
+  nicht vorsieht, der real aber vorkommt. Beim Lesen `warning`, beim Schreiben
+  gesperrt.
+- **`specGap`** an `EnumValue` — ein Wert, den die Spec offensichtlich
+  auslässt, statt ihn auszuschließen. Beim Lesen `info`, beim Schreiben
+  **erlaubt**. Genau darin unterscheidet er sich von `tolerated`.
 
-_Verworfen: Typen von Hand._ Drift, also genau das Problem, das der
-Schema-Ansatz löst.
+_Verworfen: reine Typinferenz über `as const` + Mapped Types._ Technisch
+machbar, scheitert aber daran, dass **JSDoc pro Feld mit Mapped Types
+strukturell unmöglich** ist — ein aus einem Mapped Type entstandener Key kann
+keinen Doc-Kommentar tragen. Genau das ist hier der Hauptertrag: Jedes
+generierte Feld trägt seine Bedeutung und seine Fundstelle
+(`@see dsv8.md:361`) beim Tippen sichtbar.
 
-**Ergebnis des Spikes (18.07.2026): Codegen bestätigt.** Die erzeugte
-`dist/index.d.ts` enthält `AbschnittWkdefV7` als benanntes Interface mit JSDoc
-und Spec-Fundstelle an jedem Feld, und **kein** Schema-Literal — weder
-`specRef` noch `ScalarType` noch `Prettify`/`Pick`-Konstrukte. Der Rückfallpfad
-„Typen von Hand" entfällt.
-
-Eine Ergänzung aus dem Spike: Unterscheiden sich die Feldlisten zweier
-Formatversionen nicht — weil das Element kein `since`-Feld hat —, wird die
-DSV8-Fassung als **Alias** statt als Kopie ausgegeben. Ohne das entstünden bei
-rund 80 Elementdefinitionen 160 Interfaces, überwiegend paarweise identisch.
-
-Offen für M2: Die generierten Felder sind derzeit sämtlich `string`. Die
-`ScalarType`-Information (`Zahl`, `Datum`, `Uhrzeit`) geht dabei verloren. Das
-ist für die schema-freie Ebene richtig, muss aber beantwortet werden, sobald die
-Typen dekodierte Werte beschreiben sollen.
-
-Der eigentliche Komplexitätstreiber ist nicht die 20×4-Matrix, sondern das
-Versions-Flag: sobald der Record-Typ von der Version abhängt, müsste ein Generic
-`V extends 7 | 8` durch alle Schichten propagieren. Codegen umgeht das, indem es
-DSV7 und DSV8 als zwei explizit benannte Interfaces emittiert.
+Was die generierten Typen **sind**: Sie beschreiben die **Rohfelder** einer
+Zeile. Felder mit fester Werteliste sind String-Literal-Unions
+(`qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E'`), alle übrigen sind
+`string`. Sie beschreiben ausdrücklich **keine** dekodierten Werte; dafür gibt
+es den Objektgraphen. Unterscheiden sich die Feldlisten zweier Formatversionen
+nicht, wird die DSV8-Fassung als Alias statt als Kopie ausgegeben — sonst
+entstünden bei rund 80 Elementdefinitionen 160 überwiegend identische
+Interfaces.
 
 ## Schichten
 
-Zwei getrennte Achsen, die nicht verwechselt werden dürfen.
+Zwei Achsen, die nicht verwechselt werden dürfen.
 
 **Datenfluss beim Lesen:**
 
 ```
-Text → source → lexer → parse (+schema, values) → document → validate
+Text → source → lexer → parse (+ schema, values, validate) → document
 ```
 
-**Modul-Abhängigkeiten (DAG, Pfeil = „hängt ab von"):**
+**Tatsächliche Modul-Abhängigkeiten** (Pfeil = „importiert aus"), ausgemessen
+über die relativen Imports in `src/`:
 
 ```
-diagnostics ← source ← lexer ← parse ← document ← validate
-     ↑                            ↑
-   values ←──── schema ───────────┴──── write
+diagnostics   → (nichts)
+source        → (nichts)
+lexer         → (nichts)
+schema        → (nichts)
+values        → diagnostics, write
+validate      → diagnostics, values, schema, document
+parse         → diagnostics, lexer, source, schema, validate, document
+document      → diagnostics, schema, values, source, parse
+write         → diagnostics, schema, parse, validate, document
 ```
 
-- `diagnostics/` – Codes, Severities, Formatter. Blattmodul, wird schon vom
-  Lexer gebraucht.
-- `source/` – BOM und Zeilenenden. Bewusst **nicht** im Lexer, damit die
-  Zerlegung in Zeilen isoliert testbar ist.
-- `values/` – Skalar-Codecs, je Typ ein symmetrisch getestetes decode/encode-Paar.
-- `schema/` – Elementdefinitionen je (Listenart, Version), inkl. Kardinalitäten.
-- `write/` hängt **nur** von `schema` + `values` ab, nicht von `parse` oder
-  `validate` – es spiegelt `parse`, es folgt ihm nicht.
+Drei Dinge daran sind erklärungsbedürftig und wurden früher falsch
+beschrieben:
 
-Die DAG-Kanten werden über ESLint `no-restricted-imports` erzwungen, sonst
-entsteht schleichend der Zyklus `document → validate → document`.
+- **`write` hängt an `parse` und `validate`, nicht nur an `schema`.** Das ist
+  Absicht, kein Versehen: `writeTypedList` liest seine eigene Ausgabe mit
+  `parseTypedList` zurück und weist sie zurück, wenn dabei ein unzulässiger
+  Befund entsteht. Der Writer prüft sich selbst gegen den Parser — deshalb kann
+  er ihn nicht meiden.
+- **`values` hängt an `write`.** Der einzige Grund ist `DsvWriteError` aus
+  `src/write/write-error.ts`, den `requireEncodable` wirft. Die Fehlerklasse
+  liegt bei `write`, weil sie dorthin gehört; die Kante ist der Preis dafür.
+- **`lexer` hängt nicht an `source`.** Beide sind Blattmodule. `source`
+  zerlegt Text in Zeilen (BOM, Zeilenenden), `lexer` zerlegt **eine** Zeile in
+  Element, Felder und Kommentar. `parse` fügt sie zusammen. Damit ist jede der
+  beiden Zerlegungen für sich testbar.
 
-`document/` liefert `{ graph, diagnostics }` und meldet Auflösungsfehler selbst;
-`validate/` bleibt reine Regelauswertung über Records + Indizes und ist
-unabhängig aufrufbar. Wer nur validieren will, soll keinen Objektgraph bauen
-müssen.
+Ein Zyklus auf Ordnerebene besteht (`parse ↔ document`, `validate → document →
+parse → validate`), aber **alle Kanten in Gegenrichtung sind reine
+`import type`** und verschwinden beim Übersetzen. `document/types.ts` hält die
+schema-freien Datentypen, die alle drei brauchen; die Werte fließen nur in eine
+Richtung.
+
+Diese Kanten sind **nicht durch ESLint erzwungen.** Eine frühere Fassung dieses
+Dokuments behauptete eine `no-restricted-imports`-Regel; `eslint.config.js`
+enthält keine. Wer die Schichtung ändert, muss sie selbst nachhalten.
 
 ## Referenzauflösung
 
-Weil die Schlüssel je (Listenart, Element) verschieden und teils mehrdeutig sind
-(Befund 4), gehört die Zuordnung Referenz → Zielschlüssel **als Tabelle ins
-Schema**, nicht in handgeschriebenen Auflösungscode. Mehrdeutige Treffer sind
-kein Absturz, sondern eine Diagnostic (`ambiguous-reference`), und die
-Auflösung liefert dann alle Kandidaten.
+Die Auflösung Referenz → Ziel steht **nicht** als Tabelle im Schema, sondern
+ausgeschrieben je Listenart in `src/document/<listenart>.ts`. Eine frühere
+Fassung dieses Dokuments kündigte die Tabelle an; gebaut wurde sie nie.
+
+Das ist vertretbar, weil die Schlüssel je (Listenart, Element) so verschieden
+sind (Befund 4), dass eine Tabelle die Fallunterscheidungen nur verschoben
+hätte: Die Vereinsmeldeliste sucht Wettkämpfe über die Nummer allein, die
+Ergebnislisten über (Nr, Art), die Staffeln über ein Tripel. Es bleibt aber
+handgeschriebener Code, der pro Listenart wiederholt wird — die offensichtliche
+Stelle für Abweichungen zwischen den vier Projektionen, und der Grund, warum
+die Projektionstests je Listenart eigenständig sind.
+
+Einheitlich ist dagegen das **Verhalten**: Ein Verweis ins Leere ergibt
+`dangling-reference`, ein mehrdeutiger Treffer `ambiguous-reference`; beide sind
+Warnungen, und im mehrdeutigen Fall gewinnt der erste Treffer. Ein Absturz ist
+keine Option — die Daten sollen auch dann ansehbar bleiben.
 
 ## Zwei API-Ebenen
 
-**Low level – verlustfrei.** Records wie in der Datei, inklusive Kommentaren,
-unbekannten Elementen, Originalreihenfolge und **Rohtext pro Feld**.
+**Schema-frei — verlustfrei.** Records wie in der Datei, inklusive Kommentaren,
+Leerzeilen, unbekannten Elementen, Originalreihenfolge und Rohtext pro Zeile.
 
 ```ts
-const result = parseDsv(text); // ParseResult<DsvDocument>
-const text2 = writeDsv(result.document);
+const { document } = parseDsv(text);
+writeDsv(document) === text; // byte-identisch
 ```
 
-**High level – bequem, in v1 read-only.** Ein eigenes Zielmodell **pro
-Listenart** – wegen Befund 6 gibt es keine gemeinsame Projektion mit vier
-Einstiegspunkten. Die Wettkampfergebnisliste hat keine Schwimmer-Ebene; ein
-`Schwimmer` müsste dort synthetisch aus n `PNERGEBNIS`-Zeilen aggregiert werden
-(mit dem Risiko widersprüchlicher Duplikate) – ob das angeboten wird, ist eine
-bewusste Entscheidung, keine Selbstverständlichkeit.
+**Typisiert — benannte Felder, Validierung, Objektgraph.** Ein eigenes
+Zielmodell **pro Listenart**: Wegen Befund 6 gibt es keine gemeinsame Projektion
+mit vier Einstiegspunkten. Deshalb trägt jeder Typ des Objektgraphen das Präfix
+seiner Listenart (`Definition…`, `Ergebnis…`, `Meldung…`, `Vereinsergebnis…`).
+Das ist keine Kollisionsvermeidung, sondern eine Aussage: `ABSCHNITT` führt in
+der Definitionsliste sechs Felder und in den Ergebnislisten vier.
 
-Dass High Level **keinen eigenen Schreibpfad** hat, ist der Grund, warum zwei
-Ebenen wenig kosten. Zwei Mutationsmodelle wären die eigentliche Verdopplung.
+Die Wettkampfergebnisliste hat kein `PERSON`-Element; `ErgebnisPerson` wird
+dort aus den Ergebniszeilen **aggregiert** und sammelt alle Starts einer Person.
+Diese Entität steht so in keiner Datei — sie ist eine Ableitung, und das ist
+dokumentiert, statt sie als Dateiinhalt auszugeben.
+
+**Der Objektgraph ist read-only.** Es gibt keinen High-Level-Schreibpfad; die
+`write…`-Funktionen nehmen typisierte Records. Ein zweites Mutationsmodell auf
+dem Graphen wäre die eigentliche Verdopplung des Wartungsaufwands, und der
+Nutzen gegenüber „Records bauen und `write…` aufrufen" ist gering.
 
 Umsetzung: **Plain Objects, eager aufgelöst, keine Klassen.** Klassen scheiden
 aus, weil bei ESM+CJS-Dual-Publish zwei Modulinstanzen existieren und
 `instanceof` über die Grenze fehlschlägt; außerdem sind Prototyp-Methoden nicht
 tree-shakebar. Lazy Getter scheiden aus, weil sie Fehler zeitlich
-unvorhersehbar machen. Rückverweise (`schwimmer.verein`) werden weggelassen und
-durch Index-Maps ersetzt – sonst wirft `JSON.stringify` auf Zyklen.
+unvorhersehbar machen. **Rückverweise werden weggelassen** und durch Index-Maps
+ersetzt — sonst wirft `JSON.stringify` auf Zyklen. Immutability über `readonly`
+auf Typebene, **kein** `Object.freeze` (kostet Laufzeit, erschwert Debugging und
+blockiert „parsen, korrigieren, schreiben"); `Object.freeze` kommt in `src/`
+nirgends vor.
 
-## Fehlerbehandlung: Diagnostics, zwei Funktionen
+## Fehlerbehandlung: Diagnostics
 
 Echte DSV-Dateien kommen aus einem Dutzend Programmen und sind regelmäßig leicht
-defekt. Wer beim ersten Fehler wirft, ist für den Hauptanwendungsfall unbrauchbar.
+defekt: **28 der 142 echten Dateien (19,7 %) enthalten einen `error`**, ganz
+überwiegend ein fehlendes `KAMPFGERICHT.vereinDesKampfrichters`. Wer beim ersten
+Fehler wirft, ist für den Hauptanwendungsfall unbrauchbar.
 
 ```ts
-type ParseResult<T> = {
-  document: T; // immer vorhanden, ggf. partiell
-  diagnostics: readonly Diagnostic[];
-  ok: boolean; // keine Diagnostic mit severity 'error'
-};
+interface ParseResult<T> {
+  readonly document: T; // immer vorhanden, ggf. partiell
+  readonly diagnostics: readonly Diagnostic[];
+  readonly ok: boolean; // keine Diagnostic mit severity 'error' ODER 'fatal'
+}
 ```
 
-_Verworfen: `Result<T, E>` / discriminated union._ Der Kern-Use-Case ist
-„defekte Datei, trotzdem Ergebnis" – der `Err`-Zweig müsste ein Dokument
-mittragen, was die Union wertlos macht. TypeScript selbst, ESLint, PostCSS und
-Babel liefern alle „Ergebnis + Diagnostics"; das ist hier idiomatisch.
+_Verworfen: `Result<T, E>` / discriminated union._ Der Kern-Anwendungsfall ist
+„defekte Datei, trotzdem Ergebnis" — der `Err`-Zweig müsste ein Dokument
+mittragen, was die Union wertlos macht. TypeScript, ESLint, PostCSS und Babel
+liefern alle „Ergebnis + Diagnostics".
 
 _Verworfen: `strict: true` als Option._ Ein Boolean, der zwischen „liefert" und
-„wirft" umschaltet, ist eine Boolean-Trap – der Rückgabetyp wäre eine Lüge.
-Stattdessen **zwei Funktionen**: `parseDsv()` und `parseDsvOrThrow()`. Letztere
-wird im README zuerst gezeigt, damit der bequeme Weg der werfende ist und nicht
-der still ignorierende. Severity `fatal` (Input ist kein DSV) wirft immer.
+„wirft" umschaltet, ist eine Boolean-Trap — der Rückgabetyp wäre eine Lüge.
+Stattdessen zwei Funktionen: `parseDsv()` und `parseDsvOrThrow()`.
 
-`Diagnostic.code` ist eine String-Literal-Union (greppbar, dokumentierbar,
-lokalisierbar) mit strukturiertem `data`-Feld; `message` ist englisch. Der
-Wortlaut von `message` gehört ausdrücklich **nicht** zur zugesicherten
-Oberfläche: Er richtet sich an Menschen und darf sich jederzeit ändern.
-Konsumenten werten `code` und `data` aus – deshalb prüfen auch die Tests diese
-beiden und nicht den Text.
-`Diagnostic.line` ist **1-basiert** und die einzige Ortsangabe. Eine Spalte oder
-eine Span (`start`/`end`) wird bewusst **nicht** geführt.
+Die vier Schweregrade und was sie steuern:
 
-Der Grund ist die Form des Formats, nicht Bequemlichkeit: DSV ist
-zeilenorientiert. Jedes Element belegt genau eine Zeile, und jeder Befund
-betrifft entweder ein Element, eine Beziehung zwischen Elementen (dann die Zeile
-des verweisenden Elements) oder die Datei als Ganzes (dann Zeile 1). Ein
-einzelnes Feld auszuzeichnen wäre für keinen der Befundcodes die richtige
-Granularität — `cardinality-violation` und `dangling-reference` haben gar kein
-Feld, an dem eine Spalte hinge.
+| Severity  | Bedeutung                                     | `ok`    |
+| --------- | --------------------------------------------- | ------- |
+| `fatal`   | Die Eingabe ist keine verwertbare DSV-Datei.  | `false` |
+| `error`   | Die Datei verletzt das Schema.                | `false` |
+| `warning` | Auffällig, in echten Dateien aber verbreitet. | `true`  |
+| `info`    | Hinweis, meist eine Lücke der Spezifikation.  | `true`  |
 
-Bis 0.x trug die Struktur `start`/`end` mit einer `column`, die an **jeder**
-Erzeugerstelle konstant `1` war und einem `end`, das immer `start` gleichkam:
-eine öffentliche Zusage, die nie eingelöst wurde und die ein Konsument nicht als
-Platzhalter erkennen konnte. Vor dem Einfrieren mit 1.0 war zu wählen zwischen
-echter Spaltenrechnung — Feldoffsets durch Lexer, Parser, Validierung und
-Projektion zu fädeln, für eine Genauigkeit, die keine der Regeln braucht — und
-einer ehrlichen Struktur. Entschieden für die ehrliche Struktur: Wahrheit im
-Typsystem statt in einem Fliesstext, den niemand liest, bevor er `d.end.column`
-schreibt. Wer eine Editor-Markierung braucht, hebt die ganze Zeile hervor; eine
-Span später zu **ergänzen** ist additiv und bricht nichts.
+Gemessen über die 137 echten DSV7-Dateien: 53 `error`
+(`missing-required-field`) und 217 `warning` (`invalid-value` 74,
+`unterminated-field-list` 73, `conditional-field-required` 58,
+`invalid-enum-value` 12). Kein `fatal` außer bei den fünf DSV6-Dateien.
 
-## Round-Trip: byte-identisch nur auf Lexer-Ebene
+`Diagnostic.code` ist eine String-Literal-Union — greppbar, dokumentierbar,
+lokalisierbar — mit strukturiertem `data`-Feld. Der Wortlaut von `message`
+gehört ausdrücklich **nicht** zur zugesicherten Oberfläche; Konsumenten werten
+`code` und `data` aus, und die Tests prüfen ebenfalls diese beiden.
 
-Byte-Identität nach Dekodierung ist **nicht** erreichbar: erlaubte Leerzeichen
-(dsv8.md:233), weglassbare Unterlassungswerte (`Anzahl Starter` → 1,
-`Art` → `+`, `Meldezeit` → `00:00:00,00`) und uneinheitliche Groß-/Kleinschreibung
-von Enums und Listart (`FORMAT:Wettkampfdefinitionsliste` vs.
-`FORMAT:VEREINSERGEBNISLISTE`) gehen beim Dekodieren verloren.
+### Warum `Diagnostic` nur eine Zeile führt
 
-Festlegung:
+`Diagnostic.line` ist 1-basiert und die **einzige** Ortsangabe. Eine Spalte oder
+eine Span wird bewusst nicht geführt.
 
-- **Low-Level-Records führen pro Feld den Rohtext mit.** `writeDsv` auf ein
-  unverändert geparstes Dokument ist damit byte-identisch, inklusive
-  Zeilenenden, BOM-Zustand und Leerzeichen.
+Das ist die Lehre aus einem konkreten Fehler. Bis 0.9.0 trug die Struktur
+`start`/`end` vom Typ `Position` — mit einer `column`, die an **jeder** der 15
+Erzeugerstellen konstant `1` war, und einem `end`, das immer `start` glich. Eine
+öffentliche Zusage, die nie eingelöst wurde und die ein Konsument nicht als
+Platzhalter erkennen konnte: `d.end.column` kompilierte und lieferte Unsinn.
+Dieses Architekturdokument hat die Struktur beschrieben, als wäre sie echt, und
+damit ihre Entdeckung um Monate verzögert.
+
+Vor dem Einfrieren mit 1.0 war zu wählen zwischen echter Spaltenrechnung —
+Feldoffsets durch Lexer, Parser, Validierung und Projektion fädeln, für eine
+Genauigkeit, die keine Regel braucht — und einer ehrlichen Struktur. Entschieden
+für die ehrliche Struktur, aus zwei Gründen: DSV ist zeilenorientiert, jedes
+Element belegt genau eine Zeile, und Befunde wie `cardinality-violation` oder
+`dangling-reference` haben gar kein Feld, an dem eine Spalte hinge. Eine Span
+später zu **ergänzen** ist additiv und bricht nichts.
+
+Ein Modul zur Offset-Rechnung gab es nie. Frühere Fassungen dieses Dokuments
+erwähnten eines; `src/` enthält keines, und `src/source/source-text.ts` führt
+ausschließlich Zeilennummern.
+
+## Round-Trip: byte-identisch über die schema-freie Ebene
+
+Byte-Identität nach Dekodierung ist **nicht** erreichbar: erlaubte Leerzeichen,
+weglassbare Unterlassungswerte und uneinheitliche Groß-/Kleinschreibung gehen
+beim Dekodieren verloren. Deshalb:
+
+- **Jedes Item führt seine Originalzeile** (`raw`) und sein `eol` mit.
+  `writeDsv` auf ein unverändert geparstes Dokument ist damit byte-identisch,
+  inklusive Zeilenenden, BOM-Zustand, Leerzeichen und Kommentaren.
 - **Für geänderte oder neu erzeugte Felder gilt semantische Äquivalenz**:
   `parse(write(parse(x)))` ≡ `parse(x)`. Beim Schreiben wird kanonisch
   formatiert.
 
-Das ist eine Architekturentscheidung, keine Testdetail-Frage: der Rohtext muss
-von Anfang an im Record-Modell stehen.
+Ein Unterschied, der leicht übersehen wird: Die typisierten
+`write…`-Funktionen nehmen **Records**, nicht ein Dokument. Kommentarzeilen und
+Leerzeilen leben in `DsvDocument.items` und haben in `TypedList.records` kein
+Gegenstück — sie fallen also weg. Eine echte Datei mit Erzeuger-Kommentar
+kommt über `write…(liste.records)` **nicht** byte-identisch heraus, über
+`writeDsv(liste.document)` schon. Das ist kein Fehler, sondern die Folge davon,
+dass die typisierte Ebene über Elemente spricht und nicht über Zeilen.
 
 ## Trailing-Semikolon und Attributzahl
 
 Da jedes Attribut terminiert wird, liefert `split(';')` bei korrekter
-Terminierung N+1 Teile mit leerem letzten. Regel: der Lexer verwirft **genau
-ein** abschließendes Leerfeld. Abweichungen von der Soll-Attributzahl sind
-`warning`, kein Abbruch – zu wenige Felder werden mit Defaults aufgefüllt, zu
-viele als Extra behalten (Round-Trip).
+Terminierung N+1 Teile mit leerem letztem. Der Lexer verwirft **genau ein**
+abschließendes Leerfeld und hält in `terminated` fest, ob es da war.
+Abweichungen von der Soll-Attributzahl sind `warning`, kein Abbruch — zu wenige
+Felder werden mit Defaults aufgefüllt, zu viele für den Round-Trip behalten.
 
 ## Werttypen
 
-**Zeit** `HH:MM:SS,hh`, intern als **Hundertstel-Integer** – Gleitkomma scheidet
-aus (Zwischenzeiten-Addition), Strings verhindern Rechnen. Maximalwert
-`99:59:59,99` ≈ 36 Mio., passt in 32 Bit. `00:00:00,00` ist der spezifizierte
+Der Skalartyp-Vorrat steht in `src/schema/types.ts`:
+`ZK | Zahl | Zeichen | Zeit | Datum | Uhrzeit | Betrag | JGAK`. Drei davon haben
+einen eigenen Codec unter `src/values/`, exportiert als Teil der öffentlichen
+Oberfläche:
+
+| Typ       | Repräsentation im Objektgraphen       | Codec                             |
+| --------- | ------------------------------------- | --------------------------------- |
+| `Zeit`    | Hundertstelsekunden als `number`      | `decodeZeit` / `encodeZeit`       |
+| `Uhrzeit` | Minuten seit Mitternacht als `number` | `decodeUhrzeit` / `encodeUhrzeit` |
+| `Datum`   | `{ day, month, year }`                | `decodeDatum` / `encodeDatum`     |
+
+Sie sind öffentlich, weil die Formatierungsregel erfahrungsgemäß knapp daneben
+nachgebaut wird — führende Nullen, Komma als Dezimaltrennzeichen, volle
+`HH:MM:SS,hh`-Form auch unter einer Stunde.
+
+**Zeit** als Hundertstel-Integer: Gleitkomma scheidet wegen der
+Zwischenzeiten-Addition aus, Strings verhindern Rechnen. Der Höchstwert
+`99:59:59,99` ist `35999999`. `00:00:00,00` ist der spezifizierte
 Unterlassungswert für „keine Zeit" und wird beim Round-Trip beibehalten;
-`isZero()` statt stiller `null`-Abbildung.
+`isZeroZeit(hundredths)` fragt ihn ab, statt still auf `null` abzubilden.
 
 **Vorzeichen gehört nicht in die Zeit.** `PNREAKTION` und `STABLOESE` haben ein
-eigenes Attribut `Art` (`+`/`-`, Default `+`, dsv8.md:3698, 4201); der Datentyp
-`Zeit` ist vorzeichenlos. Würde man das Vorzeichen ins Zeit-Objekt ziehen, ginge
-der Unterschied zwischen „`+` explizit geschrieben" und „`+` weggelassen"
-verloren. Ein signierter Wert wird höchstens high level als abgeleitete
-Property angeboten.
+eigenes Attribut `Art` (`+`/`-`, Unterlassungswert `+`); der Typ `Zeit` ist
+vorzeichenlos. Zöge man das Vorzeichen ins Zeit-Objekt, ginge der Unterschied
+zwischen „`+` explizit geschrieben" und „`+` weggelassen" verloren.
 
-**`JGAK` ist kein Skalar, sondern eine getaggte Union** (dsv8.md:285–295):
+**Die Encoder prüfen ihre Eingabe und werfen `DsvWriteError`** statt unlesbare
+Werte zu liefern. Gültig sind `0`–`35999999` für `encodeZeit`, `0`–`1439` für
+`encodeUhrzeit` und ein wirklich existierender Kalendertag für `encodeDatum`.
+Die Asymmetrie zu den Decodern ist gewollt: Ein Decoder liest **fremde**
+Eingabe, wo Ungültiges zum Ergebnis gehört; ein Encoder bekommt den **eigenen**
+Wert des Aufrufers, und ist der ungültig, liegt ein Programmfehler vor.
 
-```ts
-| { kind: 'jahrgang';       jahr: number }        // 1990
-| { kind: 'altersklasse';   code: 'A'|…|'J' }
-| { kind: 'mastersEinzel';  alter: number }       // 20, 25, 30…
-| { kind: 'mastersStaffel'; mindestGesamtalter: number }  // 80+, 100+
-| { kind: 'offen' }                               // 0 / 9999
-```
+**`Zahl`** ist „positiver Integer, 32 Bit" (dsv8.md:265) und wird gegen
+`4294967295` geprüft — die vorzeichenlose Schranke, weil „ohne Vorzeichen" in
+der Spec steht. Führende Nullen bleiben zulässig; 5738 Felder echter Dateien
+haben sie.
 
-Die Interpretation ist **kontextabhängig**: dieselbe Zeichenkette `20` heißt bei
-Einzelwettkämpfen Masters-AK, und das `Typ`-Feld (`JG`/`AK`) des umgebenden
-Elements entscheidet mit (dsv8.md:2446). Ein feld-lokaler Codec kann das nicht –
-der Schema-Mechanismus braucht einen Haken für kontextabhängige Validierung.
-Das ist die einzige Stelle, an der die Schema-Tabelle über „Feld → Typ"
-hinausgehen muss.
+**`JGAK`** ist **kein** eigener Codec und **keine getaggte Union.** Frühere
+Fassungen dieses Dokuments beschrieben eine fünfvariantige Union
+(`jahrgang`/`altersklasse`/`mastersEinzel`/`mastersStaffel`/`offen`); gebaut
+wurde sie nie. Tatsächlich wird `JGAK` in `src/validate/validate-values.ts`
+gegen ein einziges Muster geprüft — `/^(?:\d{1,4}|[ABCDEJ]|\d{2,3}\+)$/` — und
+im Objektgraphen als **Zeichenkette** geführt (`person.jahrgang === '2008'`).
+Der Grund, warum die Union nicht entstand, ist derselbe, aus dem sie
+attraktiv wirkte: Ihre Deutung ist kontextabhängig — dieselbe Zeichenkette `20`
+heißt bei Einzelwettkämpfen Masters-Altersklasse, und das `Typ`-Feld (`JG`/`AK`)
+des umgebenden Elements entscheidet mit (dsv8.md:2446). Ein feld-lokaler Codec
+kann das nicht, und einen kontextabhängigen Haken hat der Schema-Mechanismus
+nicht. Die Deutung bleibt damit beim Aufrufer, der das `Typ`-Feld ohnehin
+danebenliegen hat. Eine Union später zu ergänzen wäre ein Breaking Change am
+Objektgraphen — deshalb steht sie hier als bewusst offene Frage und nicht als
+Zusage.
 
 ## Encoding, BOM, Zeilenenden
 
-Spec verlangt UTF-8 ohne BOM (dsv8.md:140). Real kursieren trotzdem
-CP1252/ISO-8859-1-Dateien. Festlegungen:
+Die Spec verlangt UTF-8 ohne BOM (dsv8.md:140).
 
-- Der Kern nimmt und liefert `string`, kein `Buffer`. Ein vorhandenes BOM wird
-  im `source`-Layer entfernt und als `hasBom` am Dokument vermerkt; geschrieben
-  wird nie eines von selbst.
-- **Zeilenenden werden am Dokument mitgeführt** (CRLF/LF, letzte Zeile mit oder
-  ohne Newline). Ohne das ist der Round-Trip-Test auf realen Dateien sofort rot –
-  die häufigste Ursache für falsch-positive Fehler.
-- Bei U+FFFD im Input wird eine Warn-Diagnostic emittiert („Datei wurde
-  vermutlich mit falschem Encoding gelesen") – sonst parst die Bibliothek
-  stillschweigend Müll.
+- Der Kern nimmt und liefert `string`, kein `Buffer`. Wer eine Datei einliest,
+  dekodiert sie selbst.
+- Ein vorhandenes BOM wird im `source`-Layer entfernt, als
+  `DsvDocument.hasBom` vermerkt und als `unexpected-bom` **gemeldet**. Es wird
+  beim Schreiben nur dann wieder ausgegeben, wenn `hasBom` gesetzt war. Eine
+  Option, eines zu erzeugen, gibt es bewusst nicht — die Bibliothek soll nicht
+  anbieten, was die Spec untersagt.
+- Zeilenenden werden **pro Item** mitgeführt. Ohne das ist der Round-Trip auf
+  realen Dateien sofort rot.
+- Bei U+FFFD im Input wird `unknown-encoding-replacement-character` gemeldet —
+  sonst parst die Bibliothek stillschweigend Müll.
 
-## Plattform und Immutability
+## Beim Lesen tolerant, beim Schreiben strikt
 
-Der Kern bleibt strikt Node-frei (kein `Buffer`, kein `node:*`) und läuft damit
-in Browser, Deno, Workers und Edge. Alles mit Dateisystem oder ZIP kommt hinter
-einen Subpath `@schroeer-haren/dsv/node`.
+Jede Toleranz erzeugt eine Diagnostic, damit sie sichtbar bleibt statt still zu
+wirken. Beim Schreiben gilt das Gegenteil: `writeTypedList` liest seine eigene
+Ausgabe zurück und wirft `DsvWriteError`, wenn dabei ein unzulässiger Befund
+entsteht.
 
-Immutability über `readonly` auf Typebene, **kein** `Object.freeze` – das kostet
-Laufzeit, erschwert Debugging und blockiert das legitime Szenario „parsen,
-korrigieren, schreiben".
+Welche Befunde in eigener Ausgabe vorkommen dürfen, hängt am **Diagnostic-Code**,
+nicht an der Schwere. Das ist der Kern einer behobenen Fehlerklasse: Die
+Abschlussprüfung filterte früher auf `error`/`fatal`, die Lese-Milde ist aber
+durchweg als `warning` ausgedrückt — **jede Lese-Milde wurde damit automatisch
+zur Schreib-Erlaubnis.** Ein Writer, dem man die Records verkehrt herum gab,
+lieferte klaglos eine Datei mit `DATEIENDE` in Zeile 1 aus.
 
-**Tree-Shaking:** `sideEffects: false` allein hilft nicht. Würde `parseDsv` über
-eine Registry aller vier Listenarten dispatchen, zöge jeder Import alle Schemata
-in den Bundle. Deshalb eine injizierbare Registry
-(`createDsvParser([wettkampfdefinitionsliste])`) als tree-shakebare Basis und
-`parseDsv` als Bequemlichkeit obendrauf, plus Subpath-Exports. Die `exports`-Map
-jetzt anzulegen ist billig; später ist es ein Breaking Change.
-
-## Benennung
-
-- Elementnamen und Listenarten in **DSV-Originalschreibweise**
-- Attributschlüssel als **lowerCamelCase des DSV-Attributnamens**
-  (`abschnittsnr`, `relativeAngabe`)
-- Skalartypnamen sind Spec-Termini und bleiben (`Zahl`, `Uhrzeit`, `JGAK`, `JN`)
-- alle Funktionen, Optionen und Typnamen **englisch**
-- **ein** Verb für dasselbe: `parseWettkampfergebnisliste`, nicht `read…` – die
-  Bibliothek macht kein I/O
-- `listenart`, nicht `listart`
-
-## Fehlendes Feature mit Alleinstellungswert: Dateinamen
-
-Die Spec definiert `JJJJ-MM-TT-Ort-Zusatz.DSV8` samt Kürzung auf 8 bzw. 16
-Zeichen, Umlaut-Transliteration (`ae/oe/ue/ss`), Zusatz `-Wk`/`-Me`/`-Pr` je
-Listenart und Durchnummerierung bei Kollision (dsv8.md:140–189). Das ist eine
-ableitbare, testbare Funktion (`buildFilename(doc)` / `parseFilename()`) plus
-ein Konsistenz-Check gegen `FORMAT.Listart` und das `ABSCHNITT`-Datum – und
-bietet sonst niemand an.
+Die Zuordnung ist als `Record<DiagnosticCode, boolean>` **vollständig**: Ein
+neuer Code lässt sich nicht einführen, ohne zu entscheiden, ob er in eigener
+Ausgabe vorkommen darf; eine Vorbelegung gibt es nicht. Erlaubt sind genau zwei
+Codes auf Warnstufe — `invalid-value` und `conditional-field-required` —, weil
+echte, vom DSV ausgelieferte Dateien sie verletzen und sich sonst eine
+eingelesene echte Datei nicht wieder ausschreiben ließe.
 
 ## Validierungsregeln jenseits der Attributtypen
 
-- `FORMAT` muss erstes, `DATEIENDE` letztes **Element** sein (dsv8.md:331) –
-  Kommentarzeilen davor sind normal und zulässig, siehe Realdaten-Befund 1
-- referenzierende Elemente müssen **nach** den referenzierten stehen – beim
-  Schreiben eine Sortier-Anforderung, beim Lesen eine `warning`
-- Kardinalitäten pro (Listenart, Element), siehe Befund 5
+Umgesetzt in `src/validate/`:
+
+- `FORMAT` muss erstes, `DATEIENDE` letztes **Element** sein (dsv8.md:331) —
+  Kommentarzeilen davor sind zulässig
+- referenzierende Elemente müssen nach den referenzierten stehen
+- Kardinalitäten pro (Listenart, Element), als `min`/`max` an der
+  Listen-Schema-Tabelle
 - `BANKVERBINDUNG` und `LASTSCHRIFT` schließen einander aus (dsv8.md:828)
 - bei gesetztem „Grund der Nichtwertung" muss `Platz` = 0 sein
-- Vergleiche von Listart und Enum-Werten **case-insensitiv**
+- Vergleiche von Listenart und Enum-Werten case-insensitiv
 
-### Entschieden: Qualifikationswettkampfnr gilt in der Vereinsmeldeliste nicht
+### Die Qualifikationsregel gilt in der Vereinsmeldeliste nicht
 
 Die Spec verlangt bei Zwischenläufen und Finals die Nummer des qualifizierenden
 Wettkampfes (dsv8.md:1793). In den 34 echten Vereinsmeldelisten schlug diese
-Regel bei **allen 170 Wettkämpfen mit Art `F` an, ausnahmslos**. Die Gegenprobe
-ist ebenso eindeutig: In keiner der 34 Dateien gibt es unter der Nummer eines
-Finales einen Vorlauf oder Zwischenlauf, auf den überhaupt verwiesen werden
-könnte, und von 1338 Starts geht kein einziger auf einen `F`-Wettkampf.
+Regel bei **allen 170 Wettkämpfen mit Art `F` an, ausnahmslos** — und in keiner
+Datei gibt es unter der Nummer eines Finales einen Vor- oder Zwischenlauf, auf
+den überhaupt verwiesen werden könnte.
 
 Eine Quote von 100 % über 34 unabhängig erzeugte Dateien spricht gegen einen
 Mangel der Dateien und für eine zu weit gefasste Regel: Eine Vereinsmeldung
-entsteht **vor** der Veranstaltung, also bevor sich überhaupt jemand
-qualifizieren konnte. `F` bezeichnet in einer Meldedatei einen direkt
-ausgeschriebenen Endlauf, keinen Finallauf mit vorgeschaltetem Vorlauf. Die
-Spec-Regel beschreibt damit den **Ergebnisfall, nicht den Meldefall**.
+entsteht **vor** der Veranstaltung, also bevor sich jemand qualifizieren konnte.
+`F` bezeichnet in einer Meldedatei einen direkt ausgeschriebenen Endlauf. Die
+Spec-Regel beschreibt den Ergebnisfall, nicht den Meldefall.
 
-**Entscheidung:** Die Regel gilt für die Vereinsmeldeliste nicht. Umgesetzt ist
-das nicht als Ausnahme im Regelrumpf, sondern durch Bindung an die Listenarten,
-für die sie gilt (`LISTENARTEN_MIT_QUALIFIKATION` in
-`src/validate/validate-document.ts`): Wettkampfdefinitions-,
-Wettkampfergebnis- und Vereinsergebnisliste. Über den Parameter `onlyIn` von
-`targetsWithFields` bleibt die Regel selbst frei von Sonderfällen.
+Umgesetzt nicht als Ausnahme im Regelrumpf, sondern durch Bindung an die
+Listenarten, für die sie gilt (`LISTENARTEN_MIT_QUALIFIKATION` in
+`src/validate/validate-document.ts`), über den Parameter `onlyIn` von
+`targetsWithFields`. Die Regel selbst bleibt frei von Sonderfällen.
 
-Messung vorher/nachher über alle 142 echten Dateien: 368 → 198 Diagnostics. Die
-170 Warnungen der Vereinsmeldeliste entfallen restlos, die Zahlen aller anderen
-Listenarten bleiben unverändert (u. a. 22 bzw. 36 `conditional-field-required`
-in Wettkampfdefinitions- und Wettkampfergebnisliste). Beide Zahlen sind in
-`test/parse/parse-vereinsmeldeliste.test.ts` festgenagelt.
+Die Gegenprobe: In der Vereinsmeldeliste sind alle weiteren Regeln des
+Ergebnisfalls bereits **strukturell** folgenlos, weil das Schema die nötigen
+Felder gar nicht führt. Die Qualifikationsregel war die einzige, die
+durchschlug — weil `qualifikationswettkampfnr` das einzige Feld des
+Ergebnisfalls ist, das die Meldeliste mitführt.
 
-**Gegenprobe über die übrigen Querregeln:** Geprüft wurde, welche Regel in
-welcher Listenart überhaupt greifen kann. In der Vereinsmeldeliste sind alle
-weiteren Regeln des Ergebnisfalls bereits **strukturell** folgenlos, weil das
-Schema die nötigen Felder gar nicht führt – `zuordnungBestenliste` fehlt (Regel
-„gemischt → SW"), `platz`/`grundDerNichtwertung` fehlen (Regel „Platz 0 bei
-Nichtwertung"), ebenso die Elemente `LASTSCHRIFT`/`BANKVERBINDUNG`/`MELDEGELD`.
-Es greift dort nur noch die Kick-Regel (`technik`/`ausuebung`), und die ist eine
-reine Wertkonsistenz, die zum Meldezeitpunkt genauso gilt. Die
-Qualifikationsregel war also die einzige Regel des Ergebnisfalls, die in die
-Meldeliste durchschlug – weil `qualifikationswettkampfnr` das einzige Feld des
-Ergebnisfalls ist, das die Meldeliste-Vorlage mitführt.
+### `WERTUNG` der Vereinsergebnisliste nimmt `A` und `N` auf
 
-## Testdaten und Datenschutz
+Die Spec führt für dieses eine Feld nur vier Wettkampfarten (dsv8.md:3197),
+obwohl `WETTKAMPF` und `PERSONENERGEBNIS` derselben Listenart alle sechs führen
+und `wertungsId` in jedem Ergebnis Pflichtfeld ist. Ergebnisse eines Aus- oder
+Nachschwimmens könnten damit keine gültige Wertung haben.
 
-Echte DSV-Dateien sind unverzichtbar, weil die Spec nicht beschreibt, was
-erzeugende Programme tatsächlich schreiben – trailing Semikola, Leerzeichen,
-Zeilenenden, Groß-/Kleinschreibung der Listart. Genau diese Abweichungen sind
-das, wogegen die Bibliothek robust sein muss.
+Entschieden: Die Wertungs-ID muss zum eigenen Wettkampf gehören, und die enge
+Wertetabelle ist unvollständig. Drei nachgeprüfte Gründe: Jede `WERTUNG` nennt
+selbst einen Wettkampf — wäre der Bezug beliebig, wäre das Feld bedeutungslos.
+Die Spec verlangt bei `PERSONENERGEBNIS` „für jede definierte Wertung" die
+Platzierung (dsv8.md:3459), was nur wettkampfbezogen sinnvoll ist. Und **alle
+97 330 Ergebnisse der 72 echten Wettkampfergebnislisten** zeigen auf eine
+Wertung ihres eigenen Wettkampfs, ohne einen einzigen Verstoß.
 
-Echte Dateien enthalten aber **personenbezogene Daten**: Klarname, Jahrgang,
+Umgesetzt als `specGap`-Wert: beim Lesen `info`, beim Schreiben erlaubt.
+
+## Plattform und Paketierung
+
+Der Kern ist strikt Node-frei (kein `Buffer`, kein `node:*`) und läuft in
+Browser, Deno, Workers und Edge. Ausgeliefert wird über `tsup` als ESM + CJS +
+`.d.ts`, geprüft mit `publint` und `@arethetypeswrong/cli` im `check`-Skript.
+
+**Es gibt genau einen Einstiegspunkt.** `package.json` exportiert `"."` und
+`"./package.json"`, sonst nichts. Frühere Fassungen dieses Dokuments kündigten
+eine injizierbare Registry (`createDsvParser([…])`) und Subpath-Exports
+(`@schroeer-haren/dsv/node`) als Tree-Shaking-Maßnahme an; beides existiert
+nicht. `parseDsv` dispatcht auch nicht über eine Registry — es liest `FORMAT`
+und arbeitet schema-frei weiter; die typisierten `parse…`-Funktionen sind
+einzeln importierbar, und `sideEffects: false` ist gesetzt. Wer eine einzelne
+Listenart importiert, zieht über die generierten Typen dennoch die
+`.d.ts` aller vier mit — Typen kosten zur Laufzeit nichts, aber die
+Bundle-Wirkung ist damit geringer als angekündigt.
+
+## Nicht enthalten
+
+Bewusste Auslassungen, jede mit ihrem Grund:
+
+- **`.DSV8z` (ZIP)** — bräuchte eine Dependency. Die Bibliothek verarbeitet
+  Text, keine Archive.
+- **Streaming.** Selbst große Ergebnislisten sind einstellige MB. Der Weg
+  dorthin bleibt offen: `collectItems` nimmt bereits ein
+  `Iterable<SourceLine>` entgegen, und die Records sind azyklisch. Der
+  Speicherbedarf liegt beim rund 10- bis 14-fachen der Eingabe, siehe
+  [`benchmark.md`](benchmark.md).
+- **Meldegeldberechnung** — Fachlogik, kein Parsen. `MELDEGELD` wird gelesen,
+  geschrieben und validiert, aber nicht summiert.
+- **DSV6** — veraltet, wird mit `unsupported-format-version` (`fatal`)
+  abgelehnt. `parseDsv` zerlegt die Datei trotzdem in Zeilen, damit man
+  hineinsehen kann.
+- **DSV7↔DSV8-Konvertierung** — gewollt und wegen der rein additiven Änderungen
+  günstig zu bauen, aber nach 1.0: Sie vergrößert die einzufrierende
+  Oberfläche, ohne den Weg zu 1.0 zu verkürzen.
+- **Dateinamen-Helfer.** Die Spec definiert `JJJJ-MM-TT-Ort-Zusatz.DSV8` samt
+  Kürzung, Umlaut-Transliteration und Kollisionsnummerierung
+  (dsv8.md:140–189) — eine ableitbare, testbare Funktion, die sonst niemand
+  anbietet. Sie ist **nicht implementiert**; frühere Fassungen dieses Dokuments
+  führten sie widersprüchlich zugleich als Alleinstellungsmerkmal und als
+  Auslassung. Für 1.0 gilt: nicht enthalten.
+- **High-Level-Schreibpfad** — siehe „Zwei API-Ebenen".
+
+## Testkonzept
+
+Die Spec-Beispiele taugen **nicht** als Fixture-Quelle: Sie enthalten
+Tippfehler (Befund 9) und stehen in CI nicht zur Verfügung.
+
+- **Round-Trip über alle 142 Realdateien**: `parseDsv → writeDsv`
+  byte-identisch. Der schärfste verfügbare Test, weil er Lexer und Serializer
+  gleichzeitig prüft.
+- **Property-Tests (`fast-check`)**: Records zufällig aus dem Schema erzeugen,
+  encode → decode → vergleichen. Deckt Felder ab, die in keiner Beispieldatei
+  vorkommen.
+- **Synthetische Fixtures** (`test/fixtures/synth/`, 30 Dateien) decken alle
+  Schemafelder ab, inklusive der DSV8-Zusätze, für die es keine Realdaten gibt.
+- **Oberflächen-Snapshot**: `docs/public-api-surface.md` wird generiert und mit
+  `npm run api-surface:check` in CI gegen den Quellstand geprüft — ein
+  umbenanntes Feld eines exportierten Typs fällt damit auf, auch wenn kein
+  Exportname sich ändert.
+- **`publint` + `@arethetypeswrong/cli`** im `check`-Skript: bei ESM+CJS mit
+  `dts: true` die häufigste Fehlerquelle, und sie trifft sonst erst die Nutzer.
+
+### Testdaten und Datenschutz
+
+Echte Dateien enthalten personenbezogene Daten — Klarname, Jahrgang,
 Geschlecht, DSV-ID und Verein, bei Nachwuchswettkämpfen also Daten von Kindern.
-In einem öffentlichen Repository wären sie dauerhaft abrufbar, suchmaschinen-
-indexiert und über die Git-History auch nach einem Löschen noch vorhanden.
-
-Deshalb zwei getrennte Korpora:
+In einem öffentlichen Repository wären sie dauerhaft abrufbar und über die
+Git-History auch nach einem Löschen noch vorhanden. Deshalb drei getrennte
+Bestände:
 
 | Zweck                      | Ort                    | Git       | Inhalt                            |
 | -------------------------- | ---------------------- | --------- | --------------------------------- |
@@ -569,133 +617,14 @@ Deshalb zwei getrennte Korpora:
 | CI und Repository          | `test/fixtures/real/`  | committet | dieselben Dateien, anonymisiert   |
 | Schema-Abdeckung           | `test/fixtures/synth/` | committet | synthetisch, deckt alle Felder ab |
 
-Die Anonymisierung ersetzt Namen und randomisiert DSV-IDs, lässt aber
-**Struktur, Zeiten, Feldanzahl, Whitespace und Zeilenenden byte-genau
-unangetastet** – der Testwert steckt in den Formateigenheiten, nicht in den
-Klarnamen. Das Anonymisierungsskript liegt im Repo (`scripts/anonymize.ts`),
-damit die Ableitung nachvollziehbar und wiederholbar ist.
-
-`spec/` bleibt insgesamt gitignored: dort liegen sowohl die DSV-PDFs (Urheber-
-recht) als auch die Originaldateien (Personendaten).
-
-## Weiteres Testkonzept
-
-Die Spec-Beispiele taugen **nicht** als Fixture-Quelle – sie enthalten
-Tippfehler (Befund 9) und stehen in CI gar nicht zur Verfügung.
-
-- **Property-Tests (`fast-check`)**: Records zufällig aus dem Schema erzeugen →
-  encode → decode → vergleichen. Das deckt Felder ab, die in keiner
-  Beispieldatei vorkommen, und findet Schema-Fehler in einer 20×4-Matrix
-  zuverlässiger als jeder Beispieltest.
-- **Round-Trip über alle Realdateien**: `parse → write` byte-identisch. Der
-  schärfste verfügbare Test, weil er Parser und Serializer gleichzeitig prüft.
-- **Typ-Tests** (`expectTypeOf`) plus `.d.ts`-Snapshot-Test.
-- **`publint` + `@arethetypeswrong/cli`** im `check`-Skript – bei ESM+CJS mit
-  `dts: true` die häufigste Fehlerquelle, und sie trifft sonst erst die Nutzer.
-- Robustheits-Durchgang: abgeschnittene Zeilen, falsche Feldanzahl, leere Datei,
-  BOM, gemischte Zeilenenden, sehr lange Zeilen.
+Die Anonymisierung (`scripts/anonymize.ts`) ersetzt Namen und randomisiert
+DSV-IDs, lässt aber **Struktur, Zeiten, Feldanzahl, Whitespace und Zeilenenden
+byte-genau unangetastet** — der Testwert steckt in den Formateigenheiten, nicht
+in den Klarnamen.
 
 ## API-Stabilität
 
-Solange `0.x`: Breaking Changes erhöhen die Minor-Version. **Kein öffentlicher
-Vertrag** sind die Schema-Interna, die `values`-Codecs und alles, was nicht über
-den Paket-Root oder einen dokumentierten Subpath exportiert wird – sonst wird
-jede interne Umbenennung zum Breaking Change.
-
-## Bewusst nicht in v1
-
-- **`.DSV8z` (ZIP)** – bräuchte eine Dependency; später unter
-  `@schroeer-haren/dsv/node`.
-- **Streaming.** Selbst große Ergebnislisten sind einstellige MB. Aber: Records
-  bleiben azyklisch und der Lexer arbeitet auf einer Zeilen-Iterator-Schnittstelle,
-  damit `parseDsvStream(AsyncIterable<string>)` später additiv ist statt ein
-  Rewrite. Ein Benchmark mit einer synthetischen 50-MB-Datei vor 1.0 beendet die
-  Diskussion empirisch.
-- **Meldegeldberechnung** – Fachlogik, kein Parsen.
-- **DSV6** – veraltet. Ab der Schema-Ebene mit `fatal`-Diagnostic ablehnen.
-- **DSV7↔DSV8-Konvertierung** und **Dateinamen-Helfer** – beide gewollt und
-  günstig zu bauen (siehe oben), setzen aber vollständige Schemata beider
-  Formatversionen voraus. Nach 1.0, weil sie den Weg dorthin nicht verkürzen
-  und die mit 1.0 einzufrierende API-Oberfläche vergrößern.
-- **High-Level-Schreibpfad.** Schreiben ist voll im Umfang, aber über die
-  Low-Level-Ebene. Ein zweites Mutationsmodell auf dem Objektgraph wäre die
-  eigentliche Verdopplung des Wartungsaufwands – der Nutzen gegenüber
-  „Records bauen und `writeDsv` aufrufen" ist gering, die Kosten sind es nicht.
-
-## Reihenfolge der Umsetzung
-
-0. **Typ-Spike:** ein Element (`ABSCHNITT`, beide Varianten, mit `since: 8`)
-   durch die volle Kette, `dist/` bauen, erzeugte `.d.ts` und Hover-Typ
-   tatsächlich ansehen. Halber Tag, sichert die teuerste Entscheidung ab.
-1. `diagnostics/`, `source/`, `lexer/`, `values/` – Basis, ohne Domänenwissen
-   testbar.
-2. Schema-Infrastruktur + Wettkampfdefinitionsliste. Nicht wegen der Größe
-   (sie hat 19 Elemente, die Vereinsmeldeliste nur 18), sondern weil sie keine
-   Ergebnis- und Referenzketten hat.
-3. `write` + Round-Trip nach obiger Festlegung.
-4. **Vertikaler Durchstich:** High-Level-Projektion für diese eine Listenart,
-   bevor die übrigen Schemata entstehen. Fehlt den Records etwas zur
-   Projizierbarkeit, ist es hier billig zu ändern und später an vier Stellen teuer.
-5. Restliche Listenarten – Reihenfolge nach Verfügbarkeit echter Testdateien,
-   nicht nach Spec-Reihenfolge. Eine Listenart ohne Realdateien zu bauen heißt,
-   blind zu bauen.
-6. DSV7↔DSV8-Konvertierung. Wegen der rein additiven Änderungen fast geschenkt
-   und praktisch relevant, weil DSV7 nur noch bis 31.12.2026 gültig ist.
-
-Alle vier Listenarten sind für 1.0 gesetzt (siehe Zielsetzung); Schritt 5 ist
-der Umfang, nicht ein optionaler Ausbau.
-
-## Umgang mit Unklarheiten der Spec
-
-Leitlinie: **beim Lesen tolerant, beim Schreiben strikt** – und jede Toleranz
-erzeugt eine Diagnostic, damit sie sichtbar bleibt statt still zu wirken.
-
-Daraus abgeleitete Entscheidungen zu den bekannten Lücken:
-
-- **Kommentare hinter einem Element auf derselben Zeile**: Die Spec sagt dazu
-  nichts (dsv8.md:191–199), die Realdaten dafür umso deutlicher – siehe den
-  Befund unten. Ein `(* … *)` **am Zeilenende, nach dem letzten `;`**, ist ein
-  Kommentar und wird abgetrennt (für den Round-Trip aber mitgeführt). Ein `(*`
-  **innerhalb** eines Feldes bleibt ZK-Inhalt.
-- **`SB10` fehlt in der Brust-Startklassenliste** (dsv8.md:2320 ff.): mit hoher
-  Wahrscheinlichkeit eine Spec-Lücke, da `SB1`–`SB9` und `SB11`–`SB14`
-  vorhanden sind. Wird beim Lesen akzeptiert, beim Schreiben ebenfalls erlaubt,
-  mit einer `info`-Diagnostic.
-- **Änderungsverzeichnis vs. Diff**: Das offizielle Verzeichnis nennt drei neue
-  Attribute, der Diff findet vier (zusätzlich `VEREIN.Lastschrift`). Beim
-  Implementieren der Vereinsmeldeliste an Realdateien verifizieren.
-- **Der Komma-statt-Semikolon-Fehler** in den Spec-Beispielen wird **nicht**
-  toleriert – er ist als Tippfehler identifiziert (Befund 9), nicht als
-  Formatvariante.
-- **`WERTUNG` der Vereinsergebnisliste kennt `A` und `N` nicht** (dsv8.md:3197),
-  obwohl `WETTKAMPF` (dsv8.md:3057) und `PERSONENERGEBNIS` (dsv8.md:3465)
-  derselben Listenart alle sechs Wettkampfarten führen und `wertungsId` in
-  jedem Ergebnis Pflichtfeld ist. Ergebnisse eines Aus- oder Nachschwimmens
-  könnten damit keine gültige Wertung haben – die Listenart wäre für genau
-  diesen Fall nicht schreibbar.
-
-  Zwei Lesarten waren möglich: (a) die Wertungs-ID ist veranstaltungsweit
-  eindeutig (dsv8.md:3253) und darf auf die Wertung eines _anderen_ Wettkampfs
-  zeigen, oder (b) sie muss zum eigenen Wettkampf gehören, und die enge
-  Wertetabelle ist unvollständig.
-
-  **Entschieden für (b).** Drei Gründe, alle nachgeprüft statt angenommen:
-  Erstens nennt jede `WERTUNG` selbst einen Wettkampf – wäre der Bezug
-  beliebig, wäre dieses Feld ohne Bedeutung. Zweitens verlangt die Spec bei
-  `PERSONENERGEBNIS` ausdrücklich, „für jede definierte Wertung" die
-  Platzierung auszugeben (dsv8.md:3459), was nur wettkampfbezogen sinnvoll ist.
-  Drittens die Messung an den Realdaten: **alle 97 330 Ergebnisse** der 72
-  echten Wettkampfergebnislisten zeigen auf eine Wertung ihres eigenen
-  Wettkampfs, kein einziger Verstoss. Dort gibt es auch Wertungen der Arten
-  `A` (1×) und `N` (3×) – die beiden Ergebnisse eines Ausschwimmens verweisen
-  auf die `A`-Wertung ihres eigenen Wettkampfs. Die Wettkampfergebnisliste
-  führt `A` und `N` bei `WERTUNG` zudem ausdrücklich auf (dsv8.md:4913); nur
-  die Tabelle der Vereinsergebnisliste lässt sie weg.
-
-  Umgesetzt als `dangling-reference`-Warnung in beiden Ergebnis-Projektionen,
-  und `WERTUNG` der Vereinsergebnisliste nimmt `A` und `N` auf. Das
-  synthetische Fixture umging den Widerspruch zuvor stillschweigend, indem ein
-  `A`-Ergebnis auf die Wertung eines fremden Wettkampfs zeigte.
-
-Grundsatz für künftige Fälle: Wo die Spec schweigt und eine Interpretation
-gültige Daten zerstören könnte, gewinnt die konservative Lesart.
+Mit 1.0 ist die in [`public-api.md`](public-api.md) geführte Oberfläche
+eingefroren. **Kein öffentlicher Vertrag** sind die Schema-Interna, alles unter
+`src/` was nicht über den Paket-Root exportiert wird, und der Wortlaut von
+`Diagnostic.message`.

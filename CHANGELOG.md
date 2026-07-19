@@ -1,6 +1,108 @@
 # Changelog
 
-## Unveröffentlicht
+## 1.0.0
+
+Die erste stabile Fassung. Alle vier Listenarten werden in DSV7 und DSV8
+gelesen, validiert, projiziert und geschrieben; die in
+[`docs/public-api.md`](docs/public-api.md) geführte Oberfläche ist ab jetzt
+eingefroren.
+
+Dieser Zyklus stand nicht im Zeichen neuer Funktionen, sondern der Prüfung, ob
+die vorhandenen halten, was sie zusagen. Er hat drei kritische Fehler und eine
+Reihe von Zusagen zutage gefördert, die der Code nie eingelöst hat. Beides ist
+unten vollständig aufgeführt.
+
+### Umstieg von 0.9.0
+
+`0.9.0` liegt auf npm. Wer von dort kommt, muss die folgenden Punkte anfassen.
+Die Kurzfassung als Tabelle, die Begründungen darunter.
+
+| Alt                                                                    | Neu                                                                               |
+| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `Diagnostic.start` / `Diagnostic.end` (Typ `Position`)                 | `Diagnostic.line: number`, 1-basiert                                              |
+| `Position` (exportierter Typ)                                          | entfällt ersatzlos                                                                |
+| `ErgebnisPlatzierung.startnummerDisqualifiziert: string`               | `: number` (leer/unlesbar ergibt `NaN`)                                           |
+| `VereinsergebnisStaffelPlatzierung.startnummerDisqualifiziert: string` | `: number`                                                                        |
+| `qualifikationswettkampfart: 'V'\|'Z'\|'F'\|'E'\|'A'\|'N'`             | `'V'\|'Z'\|'F'\|'E'` (Vereinsmelde- und Wettkampfdefinitionsliste)                |
+| `encodeZeit` / `encodeUhrzeit` / `encodeDatum` → `null`                | werfen `DsvWriteError`                                                            |
+| weggelassenes Feld im Objektgraphen → `''`                             | Unterlassungswert der Spezifikation (`'N'`, `'+'`, `'00:00:00,00'`)               |
+| —                                                                      | `DsvRecord.terminated: boolean` (neues Pflichtfeld)                               |
+| —                                                                      | `DiagnosticCode` um `'unexpected-bom'` erweitert                                  |
+| —                                                                      | `VereinsergebnisStaffel.besetzungen` (neu), Typ `VereinsergebnisStaffelBesetzung` |
+
+**Wer von 0.8 oder früher kommt**, findet die grosse Umbenennung des
+Objektgraphen — Präfixe je Listenart (`Verein` → `ErgebnisVerein`),
+`Schwimmer` → `ErgebnisPerson`, vereinheitlichte Index-Maps
+(`meldungById` → `personById`, `staffelmeldungById` → `staffelById`,
+`schwimmerById` → `personById`) und Sammlungsfelder
+(`meldungen` → `personen`, `staffelmeldungen` → `staffeln`,
+`kampfgericht` → `kampfrichter`) — vollständig im Abschnitt
+[0.9.0](#090) aufgeführt. Sie ist in 1.0.0 nicht erneut enthalten.
+
+### Behoben: drei kritische Fehler
+
+#### Quadratische Laufzeit im Lexer
+
+Die Erkennung von Zeilenendkommentaren benutzte die Regex
+`/^(.*;)(\s*\(\*.*\*\)\s*)$/`. Sie ist quadratisch: Das gierige `.*;` probiert
+jede Semikolonposition durch, und an jeder mit folgendem `(*` durchsucht
+`.*\*\)` den restlichen Zeilentext vergeblich. Eine wohlgeformte Datei aus
+vielen `;(*` ohne je ein `*)` brauchte **für 457 KB rund 37,9 Sekunden — ohne
+eine einzige Diagnose**. Das ist aus der Ferne auslösbar, wenn eine Anwendung
+hochgeladene Dateien parst.
+
+Ersetzt durch einen Einzeldurchlauf ohne Regex: Kommentarende `*)` am
+Zeilenende (nur Leerraum dahinter), Beginn am letztmöglichen `(*`, vor dem nur
+Leerraum und davor ein `;` steht — rückwärts über `lastIndexOf`, damit dieselbe
+gierige Wahl herauskommt wie zuvor. Dieselbe Datei: **4,6 Millisekunden.**
+
+#### Die Staffelbesetzung hing am falschen Element
+
+In der Vereinsergebnisliste wurden `STAFFELPERSON` und `STZWISCHENZEIT` über
+`STAFFELERGEBNIS` aufgelöst. Die Spezifikation verankert beide an `STAFFEL`
+(dsv8.md:3814-3815 und :4117-4118), und `STAFFELERGEBNIS` hat „Vorkommen 0 - N"
+(dsv8.md:3936) — es darf fehlen. Ohne Ergebniszeile verlor die Projektion
+deshalb die **gesamte Besetzung** und meldete je Schwimmer eine
+`dangling-reference` auf eine Beziehung, die die Spezifikation nirgends
+definiert. Die Daten waren danach über keinen Weg mehr erreichbar.
+
+#### Der Writer prüfte die Elementreihenfolge nicht
+
+`writeTypedList` und damit alle vier `write…`-Funktionen lieferten klaglos
+Dateien aus, deren Elementreihenfolge die Spezifikation verletzt. Übergab man
+die Records in umgekehrter Reihenfolge, entstand ohne Fehler eine Datei mit
+`DATEIENDE` in Zeile 1 und `FORMAT` in der letzten — jeder fremde Leser bricht
+dort ab.
+
+Die Ursache war strukturell: Die Abschlussprüfung filterte die Befunde der
+Rücklese auf `error`/`fatal`, die Milde der Leseseite ist aber durchweg als
+`warning` ausgedrückt, damit echte Dateien nicht zurückgewiesen werden. **Jede
+Lese-Milde wurde damit automatisch zur Schreib-Erlaubnis.** Mit durchgerutscht
+sind auch eine fehlende `DATEIENDE`-Zeile und Ersetzungszeichen (U+FFFD) in
+Werten.
+
+### Breaking: `Diagnostic` führt eine Zeile statt einer Span
+
+`Diagnostic.start` und `Diagnostic.end` vom Typ `Position` entfallen und werden
+durch `Diagnostic.line: number` ersetzt, 1-basiert. `Position` wird nicht mehr
+exportiert.
+
+Die Struktur war eine Zusage, die nie eingelöst wurde: `column` war an **jeder**
+der 15 Erzeugerstellen konstant `1`, und `end` glich immer `start`. Ein
+Konsument konnte das nicht als Platzhalter erkennen — `d.end.column`
+kompilierte und lieferte Unsinn. Vor dem Einfrieren mit 1.0 war zu wählen
+zwischen echter Spaltenrechnung, also Feldoffsets durch Lexer, Parser,
+Validierung und Projektion zu fädeln für eine Genauigkeit, die keine der Regeln
+braucht, und einer ehrlichen Struktur.
+
+Entschieden für die ehrliche Struktur. DSV ist zeilenorientiert; jedes Element
+belegt genau eine Zeile, und Befunde wie `cardinality-violation` oder
+`dangling-reference` haben gar kein Feld, an dem eine Spalte hinge. Wer eine
+Editor-Markierung braucht, hebt die ganze Zeile hervor. Eine Span später zu
+**ergänzen** ist additiv und bricht nichts.
+
+Umstellung: `d.start.line` → `d.line`. `d.start.column` und `d.end` hatten nie
+einen Informationswert und entfallen ersatzlos.
 
 ### Breaking: `startnummerDisqualifiziert` ist eine Zahl
 
@@ -194,6 +296,34 @@ Der generierte Typ der betroffenen Felder verengt sich damit von
 `'V' | 'Z' | 'F' | 'E' | 'A' | 'N'` auf `'V' | 'Z' | 'F' | 'E'`. Dateien, die
 dort `A` oder `N` führen, werden beim Lesen nicht mehr stillschweigend
 angenommen.
+
+### Dokumentation
+
+`docs/` ist für 1.0 neu geordnet:
+
+- **[`docs/README.md`](docs/README.md)** ist neu und weist aus, welches Dokument
+  welche Frage beantwortet und welches generiert ist.
+- **[`docs/beispiele.md`](docs/beispiele.md)** ist neu: lauffähiger Code je
+  Listenart und Anwendungsfall. Jede dort gezeigte Ausgabe wurde gegen den
+  gebauten Stand ausgeführt und eingetragen, statt sie zu formulieren.
+- **[`docs/architecture.md`](docs/architecture.md)** ist gegen `src/` neu
+  geschrieben. Mehrere Zusagen sind gestrichen, weil der Code sie nicht
+  einlöst: eine `JGAK`-Union, eine Referenztabelle im Schema, eine
+  injizierbare Parser-Registry samt Subpath-Exports, ESLint-erzwungene
+  Schichtgrenzen und ein Modul zur Offset-Rechnung. Der Abgleich gegen einen
+  fremden Ruby-Parser wird nicht mehr als unabhängige zweite Lesart der
+  Spezifikation geführt — jenes Projekt transkribiert dieselbe Vorlage, ein
+  gemeinsamer Lesefehler bliebe also unentdeckt.
+- **`docs/superpowers/`** ist nach **[`docs/history/`](docs/history/README.md)**
+  gezogen. Der Inhalt bleibt erhalten — er hält fest, was verworfen wurde und
+  warum —, ist aber als Baugeschichte gekennzeichnet und kein gültiger
+  Ist-Stand.
+
+Im README berichtigt: `Diagnostic.start` in einem Beispiel (das Feld gibt es
+nicht mehr), eine `MELDEGELD`-Zeile, die der Writer zu Recht zurückweist, die
+Zusage, `parseDsvOrThrow` werfe nur bei `fatal` (es wirft auch bei `error`), und
+die Behauptung, echte DSV-Dateien seien meist ISO-8859-1 — keine einzige der
+142 gesammelten ist es.
 
 ## 0.9.0
 

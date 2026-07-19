@@ -8,9 +8,9 @@
 TypeScript-Bibliothek zum **Lesen und Schreiben von DSV-Dateien** des Deutschen
 Schwimm-Verbands – Formate **DSV7** und **DSV8**, alle vier Listenarten.
 
-> **Status: 0.9.0 – Release-Kandidat für 1.0.** Der Funktionsumfang steht, die
-> öffentliche Oberfläche ist in [`docs/public-api.md`](docs/public-api.md)
-> festgehalten und wird mit 1.0 eingefroren.
+> **Status: 1.0 – stabil.** Der Funktionsumfang steht, und die öffentliche
+> Oberfläche ist eingefroren: Was in [`docs/public-api.md`](docs/public-api.md)
+> steht, bleibt bis zur nächsten Hauptversion.
 
 ## Installation
 
@@ -124,7 +124,7 @@ const definition =
     'ABSCHNITT:1;10.10.2026;08:00;08:30;09:00;;',
     'WETTKAMPF:1;E;1;1;50;B;GL;M;SW;;;',
     'WERTUNG:1;E;1;AK;0;0;M;offen;',
-    'MELDEGELD:EINZELMELDEGELD;3,00;;',
+    'MELDEGELD:Einzelmeldegeld;3,00;;',
     'DATEIENDE',
   ].join('\r\n') + '\r\n';
 
@@ -535,7 +535,7 @@ const kaputt =
     'ABSCHNITT:1;10.10.2026;08:00;08:30;09:00;;',
     'WETTKAMPF:1;E;1;1;50;B;GL;M;SW;;;',
     'WERTUNG:1;E;1;AK;0;0;M;offen;',
-    'MELDEGELD:EINZELMELDEGELD;3,00;;',
+    'MELDEGELD:Einzelmeldegeld;3,00;;',
     'DATEIENDE',
   ].join('\r\n') + '\r\n';
 
@@ -550,7 +550,8 @@ trotzdem.records.length; // → 14
 befunde[0].code; // → 'invalid-enum-value'
 befunde[0].severity; // → 'error'
 befunde[0].message; // → 'VERANSTALTUNG.bahnlaenge: "99" is not an allowed value in DSV7'
-befunde[0].start; // → { line: 3, column: 1 }
+befunde[0].line; // → 3
+befunde[0].data; // → { field: 'bahnlaenge', value: '99' }
 ```
 
 Beim **Schreiben** ist die Bibliothek dagegen streng: Was beim Lesen nur
@@ -568,6 +569,42 @@ try {
 }
 
 meldungText; // → 'invalid-enum-value: VERANSTALTUNG.bahnlaenge: "99" is not an allowed value in DSV7'
+```
+
+### Echte Dateien sind oft nicht spec-konform
+
+Darauf solltest du vorbereitet sein, bevor es dich überrascht: **28 der 142
+echten Wettkampfdateien im Testbestand – knapp ein Fünftel – enthalten
+mindestens einen `error`.** Ganz überwiegend ist es dasselbe fehlende
+Pflichtfeld, `KAMPFGERICHT.vereinDesKampfrichters`, das verbreitete
+Wettkampfsoftware schlicht leer lässt.
+
+Das ist kein Fehler der Bibliothek: Die Dateien verletzen die Spezifikation
+wirklich, und ein `error` ist die richtige Meldung. Es heißt aber, dass
+`ok === true` **kein brauchbares Eingangstor** für echte Dateien ist – damit
+weist du jede fünfte zurück, obwohl ihre Daten einwandfrei sind. Über alle 137
+echten DSV7-Dateien hinweg:
+
+| Code                         | Schwere   | Anzahl |
+| ---------------------------- | --------- | -----: |
+| `missing-required-field`     | `error`   |     53 |
+| `invalid-value`              | `warning` |     74 |
+| `unterminated-field-list`    | `warning` |     73 |
+| `conditional-field-required` | `warning` |     58 |
+| `invalid-enum-value`         | `warning` |     12 |
+
+Die tragfähige Haltung ist, `fatal` als Abbruchgrund zu nehmen und alles andere
+zu protokollieren:
+
+```typescript
+const { document, diagnostics } = parseWettkampfergebnisliste(text);
+
+if (diagnostics.some((d) => d.severity === 'fatal')) {
+  throw new Error('keine verwertbare DSV-Datei');
+}
+
+for (const d of diagnostics) console.warn(`${d.line}: [${d.severity}] ${d.code}`);
+// … mit document weiterarbeiten
 ```
 
 ### Wann `parseDsvOrThrow`?
@@ -591,10 +628,14 @@ try {
 codes; // → ['empty-input']
 ```
 
-Nur `fatal` wirft. Eine Datei mit `error`-Diagnostics kommt auch durch
-`parseDsvOrThrow` durch – wer das ausschliessen will, prüft `ok` selbst. Für die
-typisierten `parse…`-Funktionen gibt es keine werfende Variante; dort ist die
-Diagnostics-Liste der übliche Weg.
+`parseDsvOrThrow` wirft immer dann, wenn `ok` `false` ist – also **nicht nur
+bei `fatal`, sondern auch bei `error`**. Eine Datei ohne `FORMAT`-Element wirft
+damit ebenfalls. Für echte Wettkampfdateien ist das der falsche Weg: Knapp jede
+fünfte enthält einen `error` (siehe [Grenzen](#grenzen)). Nimm dort `parseDsv`
+und entscheide selbst, was du durchgehen lässt.
+
+Für die typisierten `parse…`-Funktionen gibt es keine werfende Variante; dort
+ist die Diagnostics-Liste der einzige Weg.
 
 ## Schema-frei arbeiten
 
@@ -687,8 +728,21 @@ Was die Bibliothek **nicht** tut:
 - **Dateinamen** nach der Namenskonvention der Spezifikation werden nicht
   abgeleitet.
 - **Zeichenkodierung** ist nicht Aufgabe der Bibliothek: Sie arbeitet auf
-  Strings. Echte DSV-Dateien sind meist ISO-8859-1 – dekodiere sie beim Einlesen
+  Strings. Der Standard schreibt UTF-8 ohne BOM vor, und alle 142 gesammelten
+  echten Dateien halten sich daran – dekodiere sie beim Einlesen trotzdem
   selbst.
+
+## Weiterlesen
+
+| Dokument                                       | Beantwortet                                                           |
+| ---------------------------------------------- | --------------------------------------------------------------------- |
+| [`docs/beispiele.md`](docs/beispiele.md)       | Lauffähiger Code je Listenart und Anwendungsfall, mit echter Ausgabe. |
+| [`docs/public-api.md`](docs/public-api.md)     | Jeder Export mit einer Zeile, was er tut.                             |
+| [`docs/architecture.md`](docs/architecture.md) | Warum die Bibliothek so gebaut ist, wie sie gebaut ist.               |
+| [`docs/benchmark.md`](docs/benchmark.md)       | Laufzeit und Speicherbedarf, gemessen.                                |
+| [`CHANGELOG.md`](CHANGELOG.md)                 | Was sich wann geändert hat, inklusive aller Breaking Changes.         |
+
+Ein vollständiger Wegweiser steht in [`docs/README.md`](docs/README.md).
 
 ## Öffentliche API
 
@@ -715,8 +769,12 @@ Manager, cps-schwimm, Schwimmsoftware und WebClub. Die Dialekte unterscheiden
 sich real: WebClub schreibt Kommentare nur in eigenen Zeilen und setzt die
 Trennzeichen immer vollständig, EasyWk lässt sie in etwa 40 % der Zeilen weg.
 
-Für die **Vereinsergebnisliste** gibt es bislang keine echte Datei; ihr Schema
-ist ausschliesslich gegen die Spezifikation gebaut. 137 Dateien sind DSV7, 5 sind
+Für die **Vereinsergebnisliste** gibt es keine einzige echte Datei – und das
+wird sich kaum ändern: Sie geht direkt an den Ausrichter und wird nie
+veröffentlicht. Diese Listenart ruht damit als einzige der vier **allein auf der
+Spezifikation** und auf synthetischen Fixtures. Sie ist genauso vollständig
+implementiert wie die anderen, aber kein echter Erzeuger hat ihr je
+widersprochen. Wer sie produktiv einsetzt, sollte das wissen. 137 Dateien sind DSV7, 5 sind
 DSV6 – **DSV8 ist in freier Wildbahn noch nicht anzutreffen**. Die
 DSV8-Unterstützung ist deshalb gegen das vollständige, zeilenweise erhobene
 Delta zwischen beiden Spezifikationen abgesichert statt gegen Realdaten.
@@ -750,7 +808,7 @@ baut, prüft und via **npm Trusted Publishing (OIDC)** mit Provenance nach npm
 veröffentlicht. Es wird kein npm-Token im Repository benötigt.
 
 ```
-gh release create v0.9.0 --title v0.9.0 --generate-notes
+gh release create v1.0.0 --title v1.0.0 --generate-notes
 ```
 
 ## Built With

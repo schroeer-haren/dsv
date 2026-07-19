@@ -1,5 +1,13 @@
 # Weg zu v1.0 — Design
 
+> **Historisches Dokument — kein gültiger Stand.**
+> Dieser Text beschreibt einen Planungsstand während der Entwicklung vor 1.0.
+> Er wird nicht gepflegt, und einige der hier getroffenen Entscheidungen wurden
+> später revidiert. Verbindlich ist allein die Dokumentation eine Ebene höher —
+> [`docs/architecture.md`](../../architecture.md) für den Aufbau,
+> [`docs/public-api.md`](../../public-api.md) für die Oberfläche.
+> Warum die Datei trotzdem hier liegt: [`docs/history/README.md`](../README.md).
+
 Umsetzungsplan für `@schroeer-haren/dsv` von der jetzigen Attrappe bis zur
 stabilen 1.0.
 
