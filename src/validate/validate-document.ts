@@ -4,7 +4,7 @@ import type { DsvDocument, DsvRecord } from '../document/types.js';
 import type { ListSchema } from '../schema/list-schema.js';
 import type { FormatVersion } from './format-version.js';
 import { isSupportedVersion, unsupportedFormatVersion } from './format-version.js';
-import { validateFields } from './validate-fields.js';
+import { fieldsForVersion, validateFields } from './validate-fields.js';
 import { validateValues } from './validate-values.js';
 
 const AT_START = { line: 1 };
@@ -119,6 +119,7 @@ interface FieldRuleTarget {
  */
 function targetsWithFields(
   schema: ListSchema,
+  version: FormatVersion,
   fields: readonly string[],
   onlyIn?: readonly string[],
 ): FieldRuleTarget[] {
@@ -127,7 +128,13 @@ function targetsWithFields(
   const targets: FieldRuleTarget[] = [];
 
   for (const occurrence of schema.elements) {
-    const names = occurrence.def.fields.map((f) => f.name);
+    // Über `fieldsForVersion`, nicht über `def.fields`: In einer DSV7-Datei
+    // fehlen die Felder mit `since: 8` samt ihrem Trennzeichen, `record.fields`
+    // ist also versionsgefiltert (siehe `validate-fields.ts`). Indizes über
+    // alle Felder zu bilden ginge nur so lange gut, wie jedes `since: 8`-Feld
+    // an letzter Stelle steht — heute trifft das zu, ist aber nichts, worauf
+    // sich eine Regel stützen sollte.
+    const names = fieldsForVersion(occurrence.def, version).map((f) => f.name);
     const indices = fields.map((name) => names.indexOf(name));
     if (indices.some((index) => index < 0)) continue;
 
@@ -159,7 +166,11 @@ function fieldAt(record: DsvRecord, index: number | undefined): string {
  *   es nur in der Wettkampfdefinitionsliste. In Listenarten ohne diese Elemente
  *   bleibt die Regel folgenlos.
  */
-function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSchema): Diagnostic[] {
+function validateCrossRules(
+  byElement: Map<string, DsvRecord[]>,
+  schema: ListSchema,
+  version: FormatVersion,
+): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
 
   const lastschrift = byElement.get('LASTSCHRIFT');
@@ -182,7 +193,7 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSch
 
   // Kicks in Bauch- und Rückenlage gibt es nur als Schmetterling
   // (dsv8.md:1070, dsv8.md:1072).
-  for (const target of targetsWithFields(schema, ['technik', 'ausuebung'])) {
+  for (const target of targetsWithFields(schema, version, ['technik', 'ausuebung'])) {
     const [technikIndex, ausuebungIndex] = target.indices;
 
     for (const record of byElement.get(target.element.toUpperCase()) ?? []) {
@@ -210,6 +221,7 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSch
   // LISTENARTEN_MIT_QUALIFIKATION.
   for (const target of targetsWithFields(
     schema,
+    version,
     ['wettkampfart', 'qualifikationswettkampfnr'],
     LISTENARTEN_MIT_QUALIFIKATION,
   )) {
@@ -247,7 +259,7 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSch
   // Masters) — beides fachlich sinnvolle Zuordnungen, die die Spec-Regel so
   // nicht vorsieht. Als Fehler gemeldet wiese die Bibliothek Protokolle
   // zurück, die real im Umlauf sind.
-  for (const target of targetsWithFields(schema, ['geschlecht', 'zuordnungBestenliste'])) {
+  for (const target of targetsWithFields(schema, version, ['geschlecht', 'zuordnungBestenliste'])) {
     const [geschlechtIndex, zuordnungIndex] = target.indices;
 
     for (const record of byElement.get(target.element.toUpperCase()) ?? []) {
@@ -276,7 +288,7 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSch
   }
 
   // Wer nicht gewertet wird, belegt keinen Platz (dsv8.md:5093, dsv8.md:5476).
-  for (const target of targetsWithFields(schema, ['platz', 'grundDerNichtwertung'])) {
+  for (const target of targetsWithFields(schema, version, ['platz', 'grundDerNichtwertung'])) {
     const [platzIndex, grundIndex] = target.indices;
 
     for (const record of byElement.get(target.element.toUpperCase()) ?? []) {
@@ -377,7 +389,7 @@ export function validateDocument(document: DsvDocument, schema: ListSchema): Dia
   }
 
   diagnostics.push(...validateCardinalities(byElement, schema, version));
-  diagnostics.push(...validateCrossRules(byElement, schema));
+  diagnostics.push(...validateCrossRules(byElement, schema, version));
 
   return diagnostics;
 }

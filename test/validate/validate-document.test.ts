@@ -6,6 +6,16 @@ import { VEREINSERGEBNISLISTE } from '../../src/schema/vereinsergebnisliste.js';
 import { VEREINSMELDELISTE } from '../../src/schema/vereinsmeldeliste.js';
 import { WETTKAMPFERGEBNISLISTE } from '../../src/schema/wettkampfergebnisliste.js';
 import { validateDocument } from '../../src/validate/validate-document.js';
+import { element, field } from '../../src/schema/types.js';
+import { listSchema, occurrence } from '../../src/schema/list-schema.js';
+
+/** Minimalfassung von FORMAT für eigens gebaute Schemata. */
+const FORMAT_MINIMAL = element('FORMAT', [
+  field('listenart', 'ZK', { required: true, doc: 'x', specRef: 'dsv8.md:1' }),
+  field('version', 'Zahl', { required: true, doc: 'x', specRef: 'dsv8.md:2' }),
+]);
+
+const DATEIENDE_MINIMAL = element('DATEIENDE', [], { bare: true });
 
 /** Baut eine Elementzeile; jedes Attribut wird mit `;` terminiert. */
 function line(element: string, fields: readonly string[]): string {
@@ -813,5 +823,52 @@ describe('Gemischte Wettkämpfe gehören in die Standard-Bestenliste', () => {
 
   it('greift in der Vereinsmeldeliste nicht, weil dort die Zuordnung fehlt', () => {
     expect(validateWith(VEREINSMELDELISTE, minimalVereinsmeldung())).toEqual([]);
+  });
+});
+
+// Latenter Fehler, mit einem eigens gebauten Schema abgesichert: Die
+// Feldindizes der Querregeln entstehen über `fieldsForVersion`, nicht über
+// `def.fields`. In einer DSV7-Datei fehlen die Felder mit `since: 8` samt ihrem
+// Trennzeichen — `record.fields` ist also versionsgefiltert.
+//
+// Im Produktivschema steht heute jedes `since: 8`-Feld an letzter Stelle, wo
+// die Verwechslung folgenlos bleibt. Dieser Test stellt genau den Fall her, in
+// dem sie es nicht ist: ein DSV8-Feld *vor* den beiden Feldern der Regel.
+describe('Querregeln bei versionsgefilterten Feldern', () => {
+  const PNERGEBNIS_MIT_LUECKE = element('PNERGEBNIS', [
+    field('veranstaltungsId', 'Zahl', { required: true, doc: 'x', specRef: 'dsv8.md:1' }),
+    field('nurDsv8', 'ZK', { since: 8, doc: 'x', specRef: 'dsv8.md:2' }),
+    field('platz', 'Zahl', { required: true, doc: 'x', specRef: 'dsv8.md:3' }),
+    field('grundDerNichtwertung', 'ZK', { doc: 'x', specRef: 'dsv8.md:4' }),
+  ]);
+
+  const SCHEMA: ListSchema = listSchema('Wettkampfergebnisliste', [
+    occurrence(FORMAT_MINIMAL, { min: 1, max: 1 }),
+    occurrence(PNERGEBNIS_MIT_LUECKE, { min: 0, max: null }),
+    occurrence(DATEIENDE_MINIMAL, { min: 1, max: 1 }),
+  ]);
+
+  /** Die Regel: Ist ein Grund der Nichtwertung gesetzt, muss der Platz 0 sein. */
+  function pruefe(version: 7 | 8, felder: readonly string[]): string[] {
+    const text = `${[
+      line('FORMAT', ['Wettkampfergebnisliste', String(version)]),
+      line('PNERGEBNIS', felder),
+      'DATEIENDE',
+    ].join('\r\n')}\r\n`;
+
+    return validateDocument(parseDsv(text).document, SCHEMA).map((d) => d.code);
+  }
+
+  it('trifft das richtige Feld in DSV8', () => {
+    expect(pruefe(8, ['1', 'zusatz', '3', 'DS'])).toContain('invalid-value');
+    expect(pruefe(8, ['1', 'zusatz', '0', 'DS'])).not.toContain('invalid-value');
+  });
+
+  it('trifft das richtige Feld in DSV7, wo das DSV8-Feld fehlt', () => {
+    // Ohne die Versionsfilterung stünden die Indizes um eins zu weit rechts:
+    // Die Regel läse `grundDerNichtwertung` an einer Stelle, die es in der
+    // DSV7-Zeile gar nicht gibt, hielte den Grund für leer und schwiege.
+    expect(pruefe(7, ['1', '3', 'DS'])).toContain('invalid-value');
+    expect(pruefe(7, ['1', '0', 'DS'])).not.toContain('invalid-value');
   });
 });
