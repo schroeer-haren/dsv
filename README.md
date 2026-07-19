@@ -8,11 +8,11 @@
 TypeScript-Bibliothek zum **Parsen und Erzeugen von DSV-Dateien** des Deutschen
 Schwimm-Verbands – Formate **DSV7** und **DSV8**.
 
-> ⚠️ **Status: 0.2.0.** Die schema-freie Ebene liest und schreibt Dateien aller
+> ⚠️ **Status: 0.3.0.** Die schema-freie Ebene liest und schreibt Dateien aller
 > vier Listenarten byte-identisch zurück. Darauf setzt die typisierte Ebene auf,
-> bislang für die **Wettkampfdefinitionsliste**: benannte Felder, Validierung
-> gegen das Schema und ein Objektgraph mit aufgelösten Bezügen. Die übrigen
-> Listenarten folgen.
+> inzwischen für die **Wettkampfdefinitionsliste** und die
+> **Wettkampfergebnisliste**: benannte Felder, Validierung gegen das Schema und
+> ein Objektgraph mit aufgelösten Bezügen. Die beiden Vereinslisten folgen.
 
 ## Installation
 
@@ -28,7 +28,7 @@ als ESM und CommonJS inklusive Type-Declarations ausgeliefert.
 Die Bibliothek hat zwei Ebenen. Die **schema-freie Ebene** (`parseDsv`,
 `writeDsv`) funktioniert für alle vier Listenarten und interessiert sich nicht
 für Feldbedeutungen. Die **typisierte Ebene** kennt das Schema und gibt es für
-die Wettkampfdefinitionsliste.
+die Wettkampfdefinitionsliste und die Wettkampfergebnisliste.
 
 ### Schema-frei: alle Listenarten
 
@@ -167,6 +167,109 @@ import { writeWettkampfdefinitionsliste } from '@schroeer-haren/dsv';
 writeWettkampfdefinitionsliste(liste.records) === definition; // → true
 ```
 
+### Typisiert: Wettkampfergebnisliste
+
+Die Ergebnisliste funktioniert genauso – `parseWettkampfergebnisliste`,
+`projectWettkampfergebnisliste` und `writeWettkampfergebnisliste`:
+
+```typescript
+import { parseWettkampfergebnisliste, projectWettkampfergebnisliste } from '@schroeer-haren/dsv';
+
+// Eine minimale Ergebnisliste: ein Einzelwettkampf und eine Staffel
+const ergebnis =
+  [
+    'FORMAT:Wettkampfergebnisliste;7;',
+    'ERZEUGER:Beispiel;1.0;info@example.org;',
+    'VERANSTALTUNG:Herbstpokal 2026;Musterstadt;25;HANDZEIT;',
+    'VERANSTALTER:SV Musterstadt;',
+    'AUSRICHTER:SV Musterstadt;Meier, Anna;Beispielweg 1;12345;Musterstadt;GER;;;anna@example.org;',
+    'ABSCHNITT:1;10.10.2026;09:00;N;',
+    'KAMPFGERICHT:1;SR;Meier, Anna;SV Musterstadt;',
+    'WETTKAMPF:25;E;1;2;50;F;GL;W;SW;;;',
+    'WETTKAMPF:40;E;1;1;100;L;GL;X;SW;;;',
+    'WERTUNG:25;E;1;JG;2010;2011;W;Jugend weiblich;',
+    'WERTUNG:40;E;2;AK;100;;X;Staffel offen;',
+    'VEREIN:SV Musterstadt;1234;10;GER;',
+    'PNERGEBNIS:25;E;1;1;;Schmidt, Lea;100001;501;W;2010;;SV Musterstadt;1234;00:00:28,44;;;GER;;;',
+    'PNZWISCHENZEIT:501;25;E;25;00:00:13,72;',
+    'PNREAKTION:501;25;E;+;00:00:00,71;',
+    'PNERGEBNIS:25;E;1;0;DS;Bauer, Mia;100002;502;W;2011;;SV Musterstadt;1234;00:00:00,00;Fehlstart;;GER;;;',
+    'STERGEBNIS:40;E;2;1;;1;901;SV Musterstadt;1234;00:04:12,34;;;;',
+    'STAFFELPERSON:901;40;E;Schmidt, Lea;100001;1;W;2010;;GER;;;',
+    'STAFFELPERSON:901;40;E;Bauer, Mia;100002;2;W;2011;;GER;;;',
+    'STZWISCHENZEIT:901;40;E;1;50;00:00:31,00;',
+    'STABLOESE:901;40;E;2;+;00:00:00,68;',
+    'DATEIENDE',
+  ].join('\r\n') + '\r\n';
+
+const { document: liste, ok } = parseWettkampfergebnisliste(ergebnis);
+
+ok; // → true
+
+const { graph } = projectWettkampfergebnisliste(liste);
+
+graph.veranstaltung.bezeichnung; // → 'Herbstpokal 2026'
+graph.abschnitte[0].kampfgericht[0].position; // → 'SR'
+```
+
+Ein `Start` ist der Schwimmvorgang einer Person in einem Wettkampf. Zeiten sind
+in Hundertstelsekunden dekodiert:
+
+```typescript
+const wettkampf = graph.wettkampfByKey.get('25:E')!;
+
+wettkampf.starts.length; // → 2
+
+const start = wettkampf.starts[0];
+
+start.name; // → 'Schmidt, Lea'
+start.endzeit; // → 2844 (Hundertstelsekunden)
+start.zwischenzeiten; // → [{ distanz: 25, zeit: 1372, line: 14 }]
+start.reaktionen; // → [{ art: '+', zeit: 71, line: 15 }]
+```
+
+Die Datei kennt keine Personen-Entität, sondern wiederholt dieselbe Person je
+Wertung. Der Objektgraph fasst diese Zeilen zu einem Start zusammen; die
+Wertungen hängen als `Platzierung` daran:
+
+```typescript
+start.platzierungen[0].wertungsId; // → 1
+start.platzierungen[0].platz; // → 1
+
+// Bei Nichtwertung ist der Platz 0 – das erzwingt die Validierung
+wettkampf.starts[1].platzierungen[0].platz; // → 0
+wettkampf.starts[1].platzierungen[0].grundDerNichtwertung; // → 'DS'
+wettkampf.starts[1].platzierungen[0].disqualifikationsbemerkung; // → 'Fehlstart'
+```
+
+Staffeln sind ebenso aufgebaut, tragen aber ihre Besetzung und die Ablösezeiten.
+Adressiert werden sie über das Tripel aus Veranstaltungs-ID, Wettkampfnummer und
+Wettkampfart – dieselbe Mannschaft startet unter derselben ID in mehreren
+Wettkämpfen:
+
+```typescript
+const staffel = graph.staffelByKey.get('901:40:E')!;
+
+staffel.verein; // → 'SV Musterstadt'
+staffel.endzeit; // → 25234
+staffel.personen.map((p) => p.name); // → ['Schmidt, Lea', 'Bauer, Mia']
+staffel.zwischenzeiten; // → [{ startnummer: 1, distanz: 50, zeit: 3100, line: 20 }]
+staffel.abloesen; // → [{ startnummer: 2, art: '+', zeit: 68, line: 21 }]
+```
+
+Dazu gibt es Index-Maps über Wettkampf, Wertung, Abschnitt, Verein, Start,
+Staffel und Schwimmer. `Schwimmer` steht so in keiner Datei – die Entität wird
+aus den Ergebniszeilen zusammengesetzt und sammelt alle Starts einer Person:
+
+```typescript
+graph.schwimmerById.get(501)!.name; // → 'Schmidt, Lea'
+graph.schwimmerById.get(501)!.starts.length; // → 1
+
+// Die Kennzahl 0 steht für Vereine ausserhalb des DSV und ist kein
+// Schlüssel – sie bleibt aus der Map heraus.
+graph.vereinByKennzahl.get(1234)!.bezeichnung; // → 'SV Musterstadt'
+```
+
 ## Roadmap
 
 - [x] Schema-freies Lesen beliebiger DSV-Dateien in Records
@@ -175,8 +278,9 @@ writeWettkampfdefinitionsliste(liste.records) === definition; // → true
 - [x] Wettkampfdefinitionsliste typisiert lesen/schreiben (DSV7 und DSV8)
 - [x] Validierung von Feldtypen, Aufzählungswerten und Kardinalitäten
 - [x] Objektgraph mit aufgelösten Bezügen für die Wettkampfdefinitionsliste
+- [x] Wettkampfergebnisliste typisiert lesen/schreiben (DSV7 und DSV8)
+- [x] Objektgraph mit aufgelösten Bezügen für die Wettkampfergebnisliste
 - [ ] Vereinsmeldeliste typisiert lesen/schreiben
-- [ ] Wettkampfergebnisliste typisiert lesen/schreiben
 - [ ] Vereinsergebnisliste typisiert lesen/schreiben
 
 ## Entwicklung
@@ -207,7 +311,7 @@ baut, prüft und via **npm Trusted Publishing (OIDC)** mit Provenance nach npm
 veröffentlicht. Es wird kein npm-Token im Repository benötigt.
 
 ```
-gh release create v0.2.0 --title v0.2.0 --generate-notes
+gh release create v0.3.0 --title v0.3.0 --generate-notes
 ```
 
 ## Built With

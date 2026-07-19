@@ -1,5 +1,104 @@
 # Changelog
 
+## 0.3.0
+
+Die Wettkampfergebnisliste ist jetzt vollständig typisiert. Damit ist die
+interessanteste Listenart erschlossen: Wer bisher Ergebnisse aus nummerierten
+Feldern zusammensuchen musste, bekommt nun benannte Felder, geprüfte Werte und
+einen Objektgraph, in dem Starts, Platzierungen, Zwischenzeiten und Staffeln
+bereits zusammenhängen. Die schema-freie Ebene aus 0.1.0 und die
+Wettkampfdefinitionsliste aus 0.2.0 bleiben unverändert gültig.
+
+### Enthalten
+
+- `parseWettkampfergebnisliste(text)` liefert typisierte Records: Feldwerte
+  stehen unter ihrem Schema-Namen statt unter einem Index
+- `writeWettkampfergebnisliste(records, options)` schreibt aus typisierten
+  Records kanonisch zurück und validiert dabei streng — wie bei der
+  Definitionsliste verhindert hier, was beim Lesen nur eine Warnung war, das
+  Schreiben
+- `projectWettkampfergebnisliste(liste)` baut einen Objektgraph: Abschnitte mit
+  Kampfgericht und Wettkämpfen, Wettkämpfe mit ihren Wertungen, Starts und
+  Staffeln, Starts mit ihren Platzierungen, Zwischenzeiten und Reaktionszeiten.
+  Dazu Index-Maps über Wettkampf, Wertung, Abschnitt, Verein, Start, Staffel und
+  Schwimmer
+- Alle 18 Elemente der Wettkampfergebnisliste sind mit Feldnamen, Datentypen,
+  Pflichtangaben, Aufzählungswerten und Kardinalitäten beschrieben
+- Die Entität `Schwimmer` steht so in keiner Datei: Die Ergebnisliste kennt nur
+  einen denormalisierten Flachsatz, der dieselbe Person je Wertung wiederholt.
+  Der Objektgraph fasst diese Zeilen zu einem `Start` je Person und Wettkampf
+  zusammen; die Wertungen hängen als `Platzierung` daran
+- Neue Querregel: Ist ein Grund der Nichtwertung gesetzt, muss der Platz 0 sein
+- Neue Warnung `incomplete-relay` für Staffeln, die einige, aber nicht alle
+  Teilnehmenden nennen
+- Parser und Writer arbeiten intern listenartunabhängig (`parseTypedList`,
+  `writeTypedList`); beide Listenarten sind nur noch dünne Wrapper darüber. Neu
+  öffentlich ist der Typ `TypedList`
+
+### Behoben
+
+- Der Objektgraph verdoppelte die Mitglieder einer Staffel, wenn diese in
+  mehreren Wertungen platziert war: Eine Viererstaffel erschien mit acht
+  Personen, Zwischenzeiten entsprechend doppelt. In den echten Dateien betraf
+  das 72 Staffeln und 57 mit doppelten Zwischenzeiten; nach dem Fix bleibt keine
+  einzige übrig
+
+### Was echte Dateien auslösen
+
+Diese Befunde stammen aus 72 echten Wettkampfergebnislisten und erklären, warum
+auch weitgehend fehlerfreie Dateien Befunde erzeugen:
+
+- Alle 72 Dateien werden ohne einen einzigen `fatal`-Befund gelesen. 48 von
+  ihnen validieren ganz ohne Fehler; die übrigen 24 haben ausschliesslich leere
+  Pflichtfelder (`missing-required-field`, 49 Fälle) — ein echter Mangel der
+  Dateien, kein Formatdialekt. Mit Abstand am häufigsten fehlt der Verein des
+  Kampfrichters: 35 der 49 Fälle, verteilt auf 15 Dateien. Der Rest verteilt
+  sich auf das Nationenkürzel des Vereins (7 Fälle in 6 Dateien) und einzelne
+  Angaben zu Ausrichter und Veranstalter.
+- Die Regel „bei Nichtwertung Platz 0" halten die echten Dateien ausnahmslos
+  ein: 10.865 Zeilen tragen einen Grund der Nichtwertung, keine einzige weicht
+  ab. Deshalb ist der Verstoss ein Fehler und keine Warnung.
+- 46 Prozent aller Wertungen tragen keinen einzigen Ergebnissatz — 7860 von
+  16.989 in den 48 fehlerfreien Dateien. Die Spezifikation verlangt für jede
+  definierte Wertung eine Platzierung, doch das ist die Arbeitsweise der
+  Ausschreibung: Sie erzeugt das volle Kreuzprodukt aus Jahrgang und
+  Geschlecht, und die meisten dieser Klassen bekommen nie eine Meldung. Die
+  leere Wertung ist der Normalfall. Eine Warnung, die 7860 mal feuert und die
+  niemand abstellen kann, wäre Lärm — deshalb wird die Regel **bewusst nicht**
+  geprüft.
+- Die Identität einer Staffel ist das Tripel aus Veranstaltungs-ID,
+  Wettkampfnummer und Wettkampfart, nicht die ID allein: In den 48 fehlerfreien
+  Dateien starten 152 Staffelkennungen in mehr als einem Wettkampf. Eine
+  Auflösung über die ID allein hätte diese Mannschaften miteinander vermengt.
+- Die Vereinskennzahl `0` kennzeichnet Vereine ausserhalb des DSV. Sie ist kein
+  Schlüssel und bleibt deshalb aus `vereinByKennzahl` heraus.
+
+### Geprüft
+
+1153 Tests. Die Befunde oben sind an den 72 echten Wettkampfergebnislisten
+nachgerechnet; der byte-identische Round-Trip aus 0.1.0 gilt unverändert über
+alle 108 echten Wettkampfdateien.
+
+### Breaking
+
+Keine. Alle Exporte aus 0.2.0 bestehen unverändert fort; `src/index.ts` ist
+gegenüber `v0.2.0` reiner Zuwachs. Drei Punkte, die bei sehr strenger Auslegung
+auffallen können:
+
+- `Wettkampfdefinitionsliste` war ein eigenes `interface` und ist jetzt ein
+  Alias auf den gemeinsamen Typ `TypedList`. Die Gestalt ist Feld für Feld
+  dieselbe (`listenart`, `version`, `records`, `document`), Zuweisungen und
+  `extends` funktionieren unverändert. Sichtbar wird der Unterschied nur an zwei
+  Stellen: Ein `declare module`-Merge auf das frühere Interface geht nicht mehr,
+  und Definitions- und Ergebnisliste sind nun wechselseitig zuweisbar — ein
+  Versehen wie `projectWettkampfdefinitionsliste(ergebnisliste)` fängt der
+  Compiler nicht mehr ab, sondern erst die Auswertung zur Laufzeit.
+- `TypedRecord` wird jetzt aus `parse-typed-list.js` exportiert. Über den
+  Paket-Einstiegspunkt ändert sich nichts, und der frühere Pfad re-exportiert
+  den Typ weiterhin.
+- `DiagnosticCode` hat die Variante `incomplete-relay` bekommen. Wer über den
+  Typ erschöpfend `switch`t, muss den neuen Fall abdecken.
+
 ## 0.2.0
 
 Die Wettkampfdefinitionsliste ist jetzt vollständig typisiert. Wer bisher nur
