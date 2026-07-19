@@ -344,6 +344,49 @@ function nationalitaeten(record: TypedRecord): string[] {
   ].filter((n) => n !== '');
 }
 
+/**
+ * Sammelt die Platzierungen eines Starts und meldet eine zweite Platzierung
+ * derselben Wertung.
+ *
+ * dsv8.md:3471 — "Für jede definierte Wertung muss hier jeweils die erreichte
+ * Platzierung ausgegeben werden": je Wertung genau eine. Eine Wertung gehört zu
+ * genau einem Wettkampf, und ein Start nimmt an ihr genau einmal teil — zwei
+ * Ergebnisse desselben Starts mit derselben Wertung widersprechen einander,
+ * ohne dass die Datei sagt, welches gilt.
+ *
+ * Nachgemessen am gesammelten Bestand: In allen 194 660 Ergebniszeilen der
+ * echten Ergebnislisten kommt der Fall kein einziges Mal vor. Die Regel schlägt
+ * also auf keiner gültigen Datei an.
+ *
+ * Die erste Platzierung gewinnt — wie überall sonst in der Projektion, wo die
+ * Datei sich widerspricht.
+ */
+function sammlePlatzierungen<T extends { readonly wertungsId: number; readonly line: number }>(
+  zeilen: readonly TypedRecord[],
+  bauen: (record: TypedRecord) => T,
+  element: string,
+  key: string,
+  diagnostics: Diagnostic[],
+): T[] {
+  const platzierungen: T[] = [];
+  for (const zeile of zeilen) {
+    const neu = bauen(zeile);
+    if (platzierungen.some((p) => p.wertungsId === neu.wertungsId)) {
+      diagnostics.push(
+        createDiagnostic(
+          'ambiguous-reference',
+          'warning',
+          `${element} for ${key} repeats Wertung ${String(neu.wertungsId)}; the first placement wins`,
+          { ...at(neu.line), data: { element, key, wertungsId: neu.wertungsId } },
+        ),
+      );
+      continue;
+    }
+    platzierungen.push(neu);
+  }
+  return platzierungen;
+}
+
 /** Die Platzierung, die eine Ergebniszeile beschreibt. */
 function platzierung(record: TypedRecord): VereinsergebnisPlatzierung {
   return {
@@ -768,7 +811,13 @@ export function projectVereinsergebnisliste(
     const nummer = number(erste, 'wettkampfnr');
     const art = value(erste, 'wettkampfart');
 
-    const platzierungen = zeilen.map(platzierung);
+    const platzierungen = sammlePlatzierungen(
+      zeilen,
+      platzierung,
+      'PERSONENERGEBNIS',
+      key,
+      diagnostics,
+    );
     const zwischenzeiten: VereinsergebnisZwischenzeit[] = [];
     const reaktionen: VereinsergebnisReaktion[] = [];
     const start: VereinsergebnisStart = {
@@ -916,7 +965,13 @@ export function projectVereinsergebnisliste(
     const nummer = number(erste, 'wettkampfnr');
     const art = value(erste, 'wettkampfart');
 
-    const platzierungen = zeilen.map(staffelPlatzierung);
+    const platzierungen = sammlePlatzierungen(
+      zeilen,
+      staffelPlatzierung,
+      'STAFFELERGEBNIS',
+      key,
+      diagnostics,
+    );
     const personenDerStaffel: VereinsergebnisStaffelPerson[] = [];
     const zwischenzeiten: VereinsergebnisStaffelZwischenzeit[] = [];
     const abloesen: VereinsergebnisAbloese[] = [];

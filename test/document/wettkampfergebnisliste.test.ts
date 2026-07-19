@@ -530,6 +530,60 @@ describe('projectWettkampfergebnisliste', () => {
     expect(person?.starts).toHaveLength(2);
     expect(person?.starts.map((s) => s.wettkampfnr)).toEqual([1, 2]);
   });
+
+  describe('doppelte Wertung innerhalb eines Starts', () => {
+    // dsv8.md:5019 — "Für jede definierte Wertung muss hier jeweils die
+    // erreichte Platzierung ausgegeben werden": je Wertung genau eine. In allen
+    // 194 660 Ergebniszeilen des echten Bestandes kommt der Fall nie vor.
+
+    it('meldet zwei PNERGEBNIS desselben Starts mit derselben Wertung', () => {
+      const { graph, diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        pnergebnis({ wertungsId: '1', platz: '1' }),
+        pnergebnis({ wertungsId: '1', platz: '2' }),
+      );
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['ambiguous-reference']);
+      expect(diagnostics[0]?.data).toMatchObject({ element: 'PNERGEBNIS', wertungsId: 1 });
+      // Die erste Platzierung gewinnt, die zweite wird nicht aufgenommen.
+      const start = graph.startByKey.get('1:1:E');
+      expect(start?.platzierungen).toHaveLength(1);
+      expect(start?.platzierungen[0]?.platz).toBe(1);
+    });
+
+    it('meldet zwei STERGEBNIS derselben Staffel mit derselben Wertung', () => {
+      const { graph, diagnostics } = project(
+        ABSCHNITT,
+        STAFFEL_WETTKAMPF,
+        STAFFEL_WERTUNG,
+        VEREIN,
+        stergebnis({ wertungsId: '5', platz: '1' }),
+        stergebnis({ wertungsId: '5', platz: '2' }),
+      );
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['ambiguous-reference']);
+      expect(diagnostics[0]?.data).toMatchObject({ element: 'STERGEBNIS', wertungsId: 5 });
+      expect(graph.staffelByKey.get('900:2:E')?.platzierungen).toHaveLength(1);
+    });
+
+    it('lässt zwei verschiedene Wertungen desselben Starts zu', () => {
+      const { graph, diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        WERTUNG2,
+        VEREIN,
+        pnergebnis({ wertungsId: '1', platz: '1' }),
+        pnergebnis({ wertungsId: '2', platz: '3' }),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.startByKey.get('1:1:E')?.platzierungen.map((p) => p.wertungsId)).toEqual([1, 2]);
+    });
+  });
 });
 
 const REAL = 'test/fixtures/real';

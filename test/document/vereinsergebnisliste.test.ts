@@ -644,6 +644,73 @@ describe('Wertungen gehören zum Wettkampf des Ergebnisses', () => {
     expect(codes(result)).toContain('dangling-reference');
   });
 
+  describe('doppelte Wertung innerhalb eines Starts', () => {
+    // dsv8.md:3471 — "Für jede definierte Wertung muss hier jeweils die
+    // erreichte Platzierung ausgegeben werden": je Wertung genau eine. In allen
+    // 194 660 Ergebniszeilen des echten Bestandes kommt der Fall nie vor.
+
+    it('meldet zwei PERSONENERGEBNIS desselben Starts mit derselben Wertung', () => {
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        person(),
+        personenergebnis({ wertungsId: '1', platz: '1' }),
+        personenergebnis({ wertungsId: '1', platz: '2' }),
+      );
+
+      expect(codes(result)).toEqual(['ambiguous-reference']);
+      expect(result.diagnostics[0]?.data).toMatchObject({
+        element: 'PERSONENERGEBNIS',
+        wertungsId: 1,
+      });
+      // Die erste Platzierung gewinnt, die zweite wird nicht aufgenommen.
+      const start = result.graph.startByKey.get('1:1:E');
+      expect(start?.platzierungen).toHaveLength(1);
+      expect(start?.platzierungen[0]?.platz).toBe(1);
+    });
+
+    it('meldet zwei STAFFELERGEBNIS derselben Staffel mit derselben Wertung', () => {
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        staffel(),
+        staffelergebnis({ wertungsId: '1', platz: '1' }),
+        staffelergebnis({ wertungsId: '1', platz: '2' }),
+        ...['1', '2', '3', '4'].map((n) => staffelperson({ startnummer: n })),
+      );
+
+      expect(codes(result)).toEqual(['ambiguous-reference']);
+      expect(result.diagnostics[0]?.data).toMatchObject({
+        element: 'STAFFELERGEBNIS',
+        wertungsId: 1,
+      });
+      expect(result.graph.staffelStartByKey.get('9001:1:E')?.platzierungen).toHaveLength(1);
+    });
+
+    it('lässt zwei verschiedene Wertungen desselben Starts zu', () => {
+      const zweiteWertung = line('WERTUNG', ['1', 'E', '2', 'JG', '2008', '', 'W', 'Jahrgang']);
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        person(),
+        personenergebnis({ wertungsId: '1', platz: '1' }),
+        personenergebnis({ wertungsId: '2', platz: '3' }),
+      );
+
+      expect(codes(result)).toEqual([]);
+      expect(result.graph.startByKey.get('1:1:E')?.platzierungen.map((p) => p.wertungsId)).toEqual([
+        1, 2,
+      ]);
+    });
+  });
+
   describe('unvollständige Staffeln', () => {
     // dsv8.md:3805 — "Falls nicht alle Staffelteilnehmer angegeben sind, ist
     // die Ausgabe der Staffelpersonen zu unterdrücken." Die Regel steht im

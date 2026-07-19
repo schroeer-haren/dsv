@@ -347,6 +347,45 @@ function platzierung(record: TypedRecord): ErgebnisPlatzierung {
   };
 }
 
+/**
+ * Nimmt eine Platzierung in einen Start auf und meldet eine zweite Platzierung
+ * derselben Wertung.
+ *
+ * dsv8.md:5019 — "Für jede definierte Wertung muss hier jeweils die erreichte
+ * Platzierung ausgegeben werden": je Wertung genau eine. Eine Wertung gehört zu
+ * genau einem Wettkampf, und ein Start nimmt an ihr genau einmal teil — zwei
+ * Ergebnisse desselben Starts mit derselben Wertung widersprechen einander,
+ * ohne dass die Datei sagt, welches gilt.
+ *
+ * Nachgemessen am gesammelten Bestand: In allen 194 660 Ergebniszeilen der
+ * echten Ergebnislisten kommt der Fall kein einziges Mal vor. Die Regel schlägt
+ * also auf keiner gültigen Datei an.
+ *
+ * Die erste Platzierung gewinnt — wie überall sonst in der Projektion, wo die
+ * Datei sich widerspricht.
+ */
+function nimmPlatzierung<T extends { readonly wertungsId: number }>(
+  ziel: T[],
+  neu: T,
+  element: string,
+  key: string,
+  line: number,
+  diagnostics: Diagnostic[],
+): void {
+  if (ziel.some((p) => p.wertungsId === neu.wertungsId)) {
+    diagnostics.push(
+      createDiagnostic(
+        'ambiguous-reference',
+        'warning',
+        `${element} for ${key} repeats Wertung ${String(neu.wertungsId)}; the first placement wins`,
+        { ...at(line), data: { element, key, wertungsId: neu.wertungsId } },
+      ),
+    );
+    return;
+  }
+  ziel.push(neu);
+}
+
 /** Zwischenstand eines Wettkampfes, dessen Kinderlisten noch wachsen. */
 interface WettkampfBuilder {
   readonly wertungen: ErgebnisWertung[];
@@ -692,7 +731,14 @@ export function projectWettkampfergebnisliste(
           ),
         );
       }
-      vorhanden.platzierungen.push(platzierung(record));
+      nimmPlatzierung(
+        vorhanden.platzierungen,
+        platzierung(record),
+        'PNERGEBNIS',
+        key,
+        record.line,
+        diagnostics,
+      );
       pruefeWertung(record, veranstaltungsId);
       continue;
     }
@@ -851,7 +897,14 @@ export function projectWettkampfergebnisliste(
           ),
         );
       }
-      vorhanden.platzierungen.push(platzierung(record));
+      nimmPlatzierung(
+        vorhanden.platzierungen,
+        platzierung(record),
+        'STERGEBNIS',
+        key,
+        record.line,
+        diagnostics,
+      );
       pruefeWertung(record, veranstaltungsId);
       continue;
     }
