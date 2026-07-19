@@ -183,6 +183,13 @@ describe('parseDsv — Diagnostics vollständig', () => {
       ok: true,
     },
     {
+      name: 'BOM am Dateianfang',
+      input: '﻿FORMAT:X;7;\r\nDATEIENDE\r\n',
+      code: 'unexpected-bom',
+      severity: 'warning',
+      ok: true,
+    },
+    {
       name: 'fehlendes Schluss-Semikolon',
       input: 'FORMAT:X;7;\r\nSTZWISCHENZEIT:1;50;00:00:30,10\r\nDATEIENDE\r\n',
       code: 'unterminated-field-list',

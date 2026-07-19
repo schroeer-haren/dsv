@@ -58,7 +58,7 @@ ein Präfix wäre eine Verdopplung.
 | `writeVereinsmeldeliste`         | function | Schreibt eine typisierte Vereinsmeldeliste als DSV-Text.                                    |
 | `writeVereinsergebnisliste`      | function | Schreibt eine typisierte Vereinsergebnisliste als DSV-Text.                                 |
 | `DsvWriteError`                  | class    | Fehler beim Schreiben, wenn die Daten das Schema verletzen und keine gültige Datei ergäben. |
-| `WriteOptions`                   | type     | Einstellungen des Schreibens, etwa Zeilenende und BOM.                                      |
+| `WriteOptions`                   | type     | Einstellungen des Schreibens: Zeilenende (`eol`) und Formatversion (`version`).             |
 
 ## Schema-freie Ebene
 

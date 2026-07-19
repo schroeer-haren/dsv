@@ -240,7 +240,7 @@ readonly severity: Severity
 ### DiagnosticCode
 
 ```ts
-= 'missing-format-element' | 'missing-dateiende-element' | 'format-not-first-element' | 'element-order-violation' | 'unknown-encoding-replacement-character' | 'unterminated-field-list' | 'unexpected-field-count' | 'unknown-element' | 'missing-required-field' | 'invalid-value' | 'invalid-enum-value' | 'cardinality-violation' | 'mutually-exclusive-elements' | 'conditional-field-required' | 'unsupported-format-version' | 'wrong-list-type' | 'dangling-reference' | 'ambiguous-reference' | 'incomplete-relay' | 'empty-input'
+= 'missing-format-element' | 'missing-dateiende-element' | 'format-not-first-element' | 'element-order-violation' | 'unknown-encoding-replacement-character' | 'unexpected-bom' | 'unterminated-field-list' | 'unexpected-field-count' | 'unknown-element' | 'missing-required-field' | 'invalid-value' | 'invalid-enum-value' | 'cardinality-violation' | 'mutually-exclusive-elements' | 'conditional-field-required' | 'unsupported-format-version' | 'wrong-list-type' | 'dangling-reference' | 'ambiguous-reference' | 'incomplete-relay' | 'empty-input'
 ```
 
 ### DsvBlank
@@ -595,7 +595,7 @@ readonly line: number
 readonly nummerDerMannschaft: string
 readonly personen: ReadonlyArray<ErgebnisStaffelPerson>
 readonly platzierungen: ReadonlyArray<ErgebnisPlatzierung>
-readonly startnummerDisqualifiziert: string
+readonly startnummerDisqualifiziert: number
 readonly veranstaltungsId: number
 readonly verein: string
 readonly vereinskennzahl: number
@@ -2046,7 +2046,7 @@ readonly erhoehtesNachtraeglichesMeldegeld: string
 readonly grundDerNichtwertung: string
 readonly line: number
 readonly platz: number
-readonly startnummerDisqualifiziert: string
+readonly startnummerDisqualifiziert: number
 readonly wertungsId: number
 ```
 

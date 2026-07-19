@@ -126,7 +126,14 @@ export interface VereinsergebnisPlatzierung {
  * die je Wertung verschieden ausfallen kann.
  */
 export interface VereinsergebnisStaffelPlatzierung extends VereinsergebnisPlatzierung {
-  readonly startnummerDisqualifiziert: string;
+  /**
+   * Startnummer der oder des Disqualifizierten; `0` bei allgemeinem Grund.
+   *
+   * `NaN`, wenn das Feld leer oder unlesbar ist — wie bei jedem Zahlenfeld
+   * dieser Projektionen. `0` ist ein echter Wert und darf davon nicht
+   * ununterscheidbar sein.
+   */
+  readonly startnummerDisqualifiziert: number;
 }
 
 /** Eine Zwischenzeit auf einer Teilstrecke. */
@@ -432,7 +439,7 @@ function platzierung(record: TypedRecord): VereinsergebnisPlatzierung {
 function staffelPlatzierung(record: TypedRecord): VereinsergebnisStaffelPlatzierung {
   return {
     ...platzierung(record),
-    startnummerDisqualifiziert: value(record, 'startnummerDisqualifiziert'),
+    startnummerDisqualifiziert: number(record, 'startnummerDisqualifiziert'),
   };
 }
 

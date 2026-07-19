@@ -59,6 +59,7 @@ const WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT: Record<DiagnosticCode, boolean> = {
   'format-not-first-element': false,
   'element-order-violation': false,
   'unknown-encoding-replacement-character': false,
+  'unexpected-bom': false,
   'unterminated-field-list': false,
   'unexpected-field-count': false,
   'unknown-element': false,

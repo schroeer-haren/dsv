@@ -2,6 +2,32 @@
 
 ## Unveröffentlicht
 
+### Breaking: `startnummerDisqualifiziert` ist eine Zahl
+
+Das Feld wurde als `string` projiziert, während dasselbe Konzept `startnummer`
+als `number` erscheint — beide sind in der Spezifikation `Zahl`. Wer den
+disqualifizierten Schwimmer gegen die Besetzung joinen wollte, verglich
+`string` gegen `number`. Betrifft `VereinsergebnisStaffelPlatzierung` und
+`ErgebnisPlatzierung`.
+
+Wie bei jedem Zahlenfeld dieser Projektionen ist der Wert `NaN`, wenn das Feld
+leer oder unlesbar ist. Der naheliegende Grund für `string` — „leer von 0
+unterscheiden" — trägt damit nicht: `0` ist hier ein echter Wert (allgemeiner
+Disqualifikationsgrund) und bleibt von `NaN` unterscheidbar. Real füllen 41 von
+1574 `STERGEBNIS`-Zeilen das Feld.
+
+### Neuer Befund `unexpected-bom`
+
+„Die Datei wird als Textdatei ausschliesslich im UTF-8-Zeichensatz (ohne BOM)
+angelegt" (dsv8.md:140). Ein BOM am Dateianfang wurde bisher stillschweigend
+entfernt. Es wird weiterhin entfernt, jetzt aber als Warnung gemeldet; keine
+der 142 gesammelten echten Dateien führt eines. `DiagnosticCode` bekommt dafür
+einen neuen Wert — wer die Codes erschöpfend abdeckt, muss ihn ergänzen.
+
+Eine BOM-Option beim Schreiben gibt es bewusst nicht; `docs/public-api.md`
+behauptete sie fälschlich und ist berichtigt. Die Bibliothek soll nicht
+anbieten, genau das zu erzeugen, was die Spezifikation untersagt.
+
 ### Breaking: Der Typ `Zahl` prüft die 32-Bit-Schranke
 
 „Numerischer Wert ohne Vorzeichen und Dezimalzeichen (positiver Integer,

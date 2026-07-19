@@ -122,6 +122,24 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
     );
   }
 
+  // dsv8.md:140 — "Die Datei wird als Textdatei ausschliesslich im
+  // UTF-8-Zeichensatz (ohne BOM) angelegt."
+  //
+  // Nur eine Warnung: Die Datei ist einwandfrei lesbar, das BOM wird beim
+  // Zerlegen entfernt. Keine der 142 gesammelten echten Dateien führt eines —
+  // die Regel kostet also nichts und macht sichtbar, was die Spezifikation
+  // ausdrücklich untersagt.
+  if (source.hasBom) {
+    diagnostics.push(
+      createDiagnostic(
+        'unexpected-bom',
+        'warning',
+        'Input starts with a UTF-8 BOM; the format requires UTF-8 without BOM',
+        AT_START,
+      ),
+    );
+  }
+
   if (input.includes('�')) {
     diagnostics.push(
       createDiagnostic(

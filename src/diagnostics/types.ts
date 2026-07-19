@@ -10,6 +10,7 @@ export type DiagnosticCode =
   | 'format-not-first-element'
   | 'element-order-violation'
   | 'unknown-encoding-replacement-character'
+  | 'unexpected-bom'
   | 'unterminated-field-list'
   | 'unexpected-field-count'
   | 'unknown-element'

@@ -184,7 +184,14 @@ export interface ErgebnisStaffel {
   readonly vereinskennzahl: number;
   /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
   readonly endzeit: number | null;
-  readonly startnummerDisqualifiziert: string;
+  /**
+   * Startnummer der oder des Disqualifizierten; `0` bei allgemeinem Grund.
+   *
+   * `NaN`, wenn das Feld leer oder unlesbar ist — wie bei jedem Zahlenfeld
+   * dieser Projektionen. `0` ist ein echter Wert und darf davon nicht
+   * ununterscheidbar sein.
+   */
+  readonly startnummerDisqualifiziert: number;
   readonly platzierungen: readonly ErgebnisPlatzierung[];
   readonly personen: readonly ErgebnisStaffelPerson[];
   readonly zwischenzeiten: readonly ErgebnisStaffelZwischenzeit[];
@@ -429,8 +436,8 @@ interface StaffelBuilder {
    * Wiederholungen beschreiben denselben Schwimmvorgang, nur unterschiedlich
    * gewertet; ohne Deduplizierung bekäme eine Vierer-Staffel acht Mitglieder.
    *
-   * Die Identität ist die Startnummer: dsv8.md:5670 beschreibt sie als
-   * "Startnummer des Schwimmers innerhalb der Staffel", sie benennt also die
+   * Die Identität ist die Startnummer: dsv8.md:5574 beschreibt sie als
+   * "Startnummer des/der Schwimmer*in innerhalb der Staffel", sie benennt also die
    * Position in der Staffel und ist damit je Staffel eindeutig. Zwischenzeiten
    * unterscheiden sich zusätzlich nach Distanz, Ablösezeiten nach Art — eine
    * Startnummer hat mehrere Zwischenzeiten, aber je Distanz nur eine.
@@ -928,7 +935,7 @@ export function projectWettkampfergebnisliste(
       verein: value(record, 'verein'),
       vereinskennzahl: number(record, 'vereinskennzahl'),
       endzeit: decodeZeit(value(record, 'endzeit')),
-      startnummerDisqualifiziert: value(record, 'startnummerDisqualifiziert'),
+      startnummerDisqualifiziert: number(record, 'startnummerDisqualifiziert'),
       platzierungen,
       personen,
       zwischenzeiten,
