@@ -1,0 +1,414 @@
+import { describe, expect, it } from 'vitest';
+import type { ElementDef } from '../../src/schema/types.js';
+import {
+  ABSCHNITT,
+  ANSPRECHPARTNER,
+  DATEIENDE,
+  ERZEUGER,
+  FORMAT,
+  HANDICAP,
+  KARIABSCHNITT,
+  KARIMELDUNG,
+  PNMELDUNG,
+  STAFFELPERSON,
+  STARTPN,
+  STARTST,
+  STMELDUNG,
+  TRAINER,
+  VERANSTALTUNG,
+  VEREIN,
+  VEREINSMELDELISTE,
+  WETTKAMPF,
+} from '../../src/schema/vereinsmeldeliste.js';
+
+/** Namen der Felder in der Reihenfolge der Spezifikation. */
+function names(def: ElementDef): readonly string[] {
+  return def.fields.map((f) => f.name);
+}
+
+/** Namen der Pflichtfelder in der Reihenfolge der Spezifikation. */
+function requiredNames(def: ElementDef): readonly string[] {
+  return def.fields.filter((f) => f.required).map((f) => f.name);
+}
+
+/** Werte einer Werteliste in der Reihenfolge der Spezifikation. */
+function enumValues(def: ElementDef, fieldName: string): readonly string[] {
+  const found = def.fields.find((f) => f.name === fieldName);
+  if (found === undefined) throw new Error(`Feld ${fieldName} fehlt in ${def.name}`);
+  return (found.values ?? []).map((v) => v.value);
+}
+
+describe('Vereinsmeldeliste — Kopf', () => {
+  it('benennt FORMAT', () => {
+    expect(FORMAT.name).toBe('FORMAT');
+    expect(names(FORMAT)).toEqual(['listart', 'version']);
+    expect(requiredNames(FORMAT)).toEqual(['listart', 'version']);
+    expect(FORMAT.fields[0]?.doc).toContain('Vereinsmeldeliste');
+  });
+
+  it('benennt ERZEUGER', () => {
+    expect(names(ERZEUGER)).toEqual(['software', 'version', 'kontakt']);
+    expect(requiredNames(ERZEUGER)).toEqual(['software', 'version', 'kontakt']);
+  });
+
+  it('benennt VERANSTALTUNG', () => {
+    expect(names(VERANSTALTUNG)).toEqual([
+      'veranstaltungsbezeichnung',
+      'veranstaltungsort',
+      'bahnlaenge',
+      'zeitmessung',
+    ]);
+    expect(requiredNames(VERANSTALTUNG)).toEqual(names(VERANSTALTUNG));
+    expect(enumValues(VERANSTALTUNG, 'bahnlaenge')).toEqual([
+      '16',
+      '20',
+      '25',
+      '33',
+      '50',
+      'FW',
+      'X',
+    ]);
+    expect(enumValues(VERANSTALTUNG, 'zeitmessung')).toEqual([
+      'HANDZEIT',
+      'AUTOMATISCH',
+      'HALBAUTOMATISCH',
+    ]);
+  });
+
+  it('benennt ABSCHNITT mit vier Feldern', () => {
+    expect(names(ABSCHNITT)).toEqual([
+      'abschnittsnr',
+      'abschnittsdatum',
+      'anfangszeit',
+      'relativeAngabe',
+    ]);
+    expect(requiredNames(ABSCHNITT)).toEqual(['abschnittsnr', 'abschnittsdatum', 'anfangszeit']);
+    expect(ABSCHNITT.fields[0]?.range).toEqual({ min: 0, max: 99 });
+    expect(ABSCHNITT.fields[3]?.default).toBe('N');
+    expect(enumValues(ABSCHNITT, 'relativeAngabe')).toEqual(['J', 'N']);
+  });
+});
+
+describe('Vereinsmeldeliste — WETTKAMPF', () => {
+  it('führt zehn Felder und keine Zuordnung zur Bestenliste', () => {
+    expect(names(WETTKAMPF)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'abschnittsnr',
+      'anzahlStarter',
+      'einzelstrecke',
+      'technik',
+      'ausuebung',
+      'geschlecht',
+      'qualifikationswettkampfnr',
+      'qualifikationswettkampfart',
+    ]);
+    expect(names(WETTKAMPF)).not.toContain('zuordnungBestenliste');
+    expect(requiredNames(WETTKAMPF)).toEqual([
+      'wettkampfnr',
+      'wettkampfart',
+      'abschnittsnr',
+      'einzelstrecke',
+      'technik',
+      'ausuebung',
+      'geschlecht',
+    ]);
+  });
+
+  it('nimmt alle vier Wettkampfarten auf, obwohl die Wertetabelle nur zwei nennt', () => {
+    expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual(['V', 'Z', 'F', 'E']);
+    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual(['V', 'Z', 'F', 'E']);
+  });
+
+  it('führt die geteilten und die eigenen Wertelisten', () => {
+    expect(enumValues(WETTKAMPF, 'technik')).toEqual(['F', 'R', 'B', 'S', 'L', 'X']);
+    expect(enumValues(WETTKAMPF, 'ausuebung')).toEqual([
+      'GL',
+      'BE',
+      'AR',
+      'ST',
+      'WE',
+      'GB',
+      'KB',
+      'KR',
+      'X',
+    ]);
+    expect(enumValues(WETTKAMPF, 'geschlecht')).toEqual(['M', 'W', 'D', 'X']);
+  });
+
+  it('kennt KB, KR und D erst ab DSV8', () => {
+    const seit8 = (feld: string): readonly string[] =>
+      (WETTKAMPF.fields.find((f) => f.name === feld)?.values ?? [])
+        .filter((v) => v.since === 8)
+        .map((v) => v.value);
+    expect(seit8('ausuebung')).toEqual(['KB', 'KR']);
+    expect(seit8('geschlecht')).toEqual(['D']);
+  });
+
+  it('begrenzt Nummern und Strecke', () => {
+    const range = (feld: string) => WETTKAMPF.fields.find((f) => f.name === feld)?.range;
+    expect(range('wettkampfnr')).toEqual({ min: 0, max: 999 });
+    expect(range('abschnittsnr')).toEqual({ min: 0, max: 99 });
+    expect(range('einzelstrecke')).toEqual({ min: 0, max: 25000 });
+    expect(range('qualifikationswettkampfnr')).toEqual({ min: 0, max: 999 });
+    expect(WETTKAMPF.fields.find((f) => f.name === 'anzahlStarter')?.default).toBe('1');
+  });
+});
+
+describe('Vereinsmeldeliste — Verein und Personen', () => {
+  it('benennt VEREIN mit fünf Feldern', () => {
+    expect(names(VEREIN)).toEqual([
+      'vereinsbezeichnung',
+      'vereinskennzahl',
+      'landesschwimmverband',
+      'nationenkuerzel',
+      'lastschrift',
+    ]);
+    expect(requiredNames(VEREIN)).toEqual([
+      'vereinsbezeichnung',
+      'vereinskennzahl',
+      'landesschwimmverband',
+      'nationenkuerzel',
+    ]);
+    const lastschrift = VEREIN.fields[4];
+    expect(lastschrift?.since).toBe(8);
+    expect(lastschrift?.default).toBe('N');
+    expect(enumValues(VEREIN, 'lastschrift')).toEqual(['J', 'N']);
+  });
+
+  it('benennt ANSPRECHPARTNER', () => {
+    expect(names(ANSPRECHPARTNER)).toEqual([
+      'name',
+      'strasse',
+      'plz',
+      'ort',
+      'land',
+      'telefon',
+      'fax',
+      'email',
+    ]);
+    expect(requiredNames(ANSPRECHPARTNER)).toEqual(['name', 'email']);
+  });
+
+  it('benennt KARIMELDUNG', () => {
+    expect(names(KARIMELDUNG)).toEqual([
+      'nummerKampfrichter',
+      'name',
+      'kampfrichtergruppe',
+      'geschlecht',
+    ]);
+    expect(requiredNames(KARIMELDUNG)).toEqual([
+      'nummerKampfrichter',
+      'name',
+      'kampfrichtergruppe',
+    ]);
+    expect(enumValues(KARIMELDUNG, 'kampfrichtergruppe')).toEqual(['WKR', 'AUS', 'SCH', 'SPR']);
+    expect(enumValues(KARIMELDUNG, 'geschlecht')).toEqual(['M', 'W', 'D']);
+    expect(KARIMELDUNG.fields[3]?.since).toBe(8);
+  });
+
+  it('benennt KARIABSCHNITT ohne WKH und ZBV', () => {
+    expect(names(KARIABSCHNITT)).toEqual([
+      'nummerKampfrichter',
+      'abschnittsnummer',
+      'einsatzwunsch',
+    ]);
+    expect(requiredNames(KARIABSCHNITT)).toEqual(['nummerKampfrichter', 'abschnittsnummer']);
+    expect(enumValues(KARIABSCHNITT, 'einsatzwunsch')).toEqual([
+      'SCH',
+      'STA',
+      'ZRO',
+      'ZR',
+      'ZNO',
+      'ZN',
+      'RZN',
+      'SR',
+      'WRO',
+      'WR',
+      'AUS',
+      'SP',
+      'PKF',
+      'STO',
+      'ASCH',
+      'SIB',
+      'SAUF',
+      'VER',
+    ]);
+    expect(enumValues(KARIABSCHNITT, 'einsatzwunsch')).not.toContain('WKH');
+    expect(enumValues(KARIABSCHNITT, 'einsatzwunsch')).not.toContain('ZBV');
+  });
+
+  it('benennt TRAINER', () => {
+    expect(names(TRAINER)).toEqual(['nummerTrainer', 'name', 'geschlecht']);
+    expect(requiredNames(TRAINER)).toEqual(['nummerTrainer', 'name']);
+    expect(TRAINER.fields[2]?.since).toBe(8);
+  });
+});
+
+describe('Vereinsmeldeliste — Meldungen', () => {
+  it('benennt PNMELDUNG mit zehn Feldern', () => {
+    expect(names(PNMELDUNG)).toEqual([
+      'name',
+      'dsvId',
+      'veranstaltungsId',
+      'geschlecht',
+      'jahrgang',
+      'altersklasse',
+      'nummerTrainer',
+      'nationalitaet1',
+      'nationalitaet2',
+      'nationalitaet3',
+    ]);
+    expect(requiredNames(PNMELDUNG)).toEqual([
+      'name',
+      'dsvId',
+      'veranstaltungsId',
+      'geschlecht',
+      'jahrgang',
+    ]);
+    expect(enumValues(PNMELDUNG, 'geschlecht')).toEqual(['M', 'W', 'D']);
+  });
+
+  it('benennt HANDICAP mit sieben Feldern und ohne SB10', () => {
+    expect(names(HANDICAP)).toEqual([
+      'veranstaltungsId',
+      'dbsId',
+      'ipcId',
+      'startklasse',
+      'startklasseBrust',
+      'startklasseLagen',
+      'exceptions',
+    ]);
+    expect(requiredNames(HANDICAP)).toEqual([
+      'veranstaltungsId',
+      'startklasse',
+      'startklasseBrust',
+      'startklasseLagen',
+    ]);
+    expect(enumValues(HANDICAP, 'startklasse')).toEqual([
+      'AB',
+      ...Array.from({ length: 14 }, (_, i) => `S${String(i + 1)}`),
+    ]);
+    expect(enumValues(HANDICAP, 'startklasseBrust')).toEqual([
+      'AB',
+      ...Array.from({ length: 9 }, (_, i) => `SB${String(i + 1)}`),
+      'SB11',
+      'SB12',
+      'SB13',
+      'SB14',
+    ]);
+    expect(enumValues(HANDICAP, 'startklasseBrust')).not.toContain('SB10');
+    expect(enumValues(HANDICAP, 'startklasseLagen')).toEqual([
+      'AB',
+      ...Array.from({ length: 14 }, (_, i) => `SM${String(i + 1)}`),
+    ]);
+  });
+
+  it('benennt STARTPN und STARTST gleich', () => {
+    expect(names(STARTPN)).toEqual(['veranstaltungsId', 'wettkampfnummer', 'meldezeit']);
+    expect(requiredNames(STARTPN)).toEqual(['veranstaltungsId', 'wettkampfnummer']);
+    expect(names(STARTST)).toEqual(['veranstaltungsIdStaffel', 'wettkampfnummer', 'meldezeit']);
+    expect(STARTPN.fields[2]?.default).toBe('00:00:00,00');
+    expect(STARTST.fields[2]?.default).toBe('00:00:00,00');
+  });
+
+  it('benennt STMELDUNG', () => {
+    expect(names(STMELDUNG)).toEqual([
+      'nummerDerMannschaft',
+      'veranstaltungsIdStaffel',
+      'wertungsklasseTyp',
+      'mindestJgAk',
+      'maximalJgAk',
+      'nameDerStaffel',
+    ]);
+    expect(requiredNames(STMELDUNG)).toEqual([
+      'nummerDerMannschaft',
+      'veranstaltungsIdStaffel',
+      'wertungsklasseTyp',
+      'mindestJgAk',
+    ]);
+    expect(enumValues(STMELDUNG, 'wertungsklasseTyp')).toEqual(['JG', 'AK']);
+  });
+
+  it('führt STAFFELPERSON hier mit genau vier Feldern', () => {
+    expect(STAFFELPERSON.fields).toHaveLength(4);
+    expect(names(STAFFELPERSON)).toEqual([
+      'veranstaltungsIdStaffel',
+      'wettkampfnummer',
+      'veranstaltungsId',
+      'startnummer',
+    ]);
+    expect(requiredNames(STAFFELPERSON)).toEqual(names(STAFFELPERSON));
+  });
+
+  it('führt DATEIENDE ohne Felder', () => {
+    expect(DATEIENDE.bare).toBe(true);
+    expect(DATEIENDE.fields).toEqual([]);
+  });
+});
+
+describe('Vereinsmeldeliste — Schema', () => {
+  it('führt siebzehn Elemente in der Reihenfolge der Spezifikation', () => {
+    expect(VEREINSMELDELISTE.listenart).toBe('Vereinsmeldeliste');
+    expect(VEREINSMELDELISTE.elements.map((e) => e.def.name)).toEqual([
+      'FORMAT',
+      'ERZEUGER',
+      'VERANSTALTUNG',
+      'ABSCHNITT',
+      'WETTKAMPF',
+      'VEREIN',
+      'ANSPRECHPARTNER',
+      'KARIMELDUNG',
+      'KARIABSCHNITT',
+      'TRAINER',
+      'PNMELDUNG',
+      'HANDICAP',
+      'STARTPN',
+      'STMELDUNG',
+      'STARTST',
+      'STAFFELPERSON',
+      'DATEIENDE',
+    ]);
+  });
+
+  it('vergibt die vorgesehenen Kardinalitäten', () => {
+    const card = (name: string): string => {
+      const found = VEREINSMELDELISTE.find(name);
+      if (found === undefined) throw new Error(`${name} fehlt`);
+      return `${String(found.min)}..${found.max === null ? 'n' : String(found.max)}`;
+    };
+    for (const name of [
+      'FORMAT',
+      'ERZEUGER',
+      'VERANSTALTUNG',
+      'VEREIN',
+      'ANSPRECHPARTNER',
+      'DATEIENDE',
+    ]) {
+      expect(card(name)).toBe('1..1');
+    }
+    expect(card('ABSCHNITT')).toBe('1..n');
+    expect(card('WETTKAMPF')).toBe('1..n');
+    for (const name of [
+      'KARIMELDUNG',
+      'KARIABSCHNITT',
+      'TRAINER',
+      'PNMELDUNG',
+      'HANDICAP',
+      'STARTPN',
+      'STMELDUNG',
+      'STARTST',
+      'STAFFELPERSON',
+    ]) {
+      expect(card(name)).toBe('0..n');
+    }
+  });
+
+  it('belegt jedes Feld mit einer Fundstelle in der Spezifikation', () => {
+    for (const { def } of VEREINSMELDELISTE.elements) {
+      for (const f of def.fields) {
+        expect(f.specRef).toMatch(/^dsv8\.md:\d+$/);
+      }
+    }
+  });
+});
