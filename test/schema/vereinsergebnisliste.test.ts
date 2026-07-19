@@ -789,8 +789,34 @@ describe('Vereinsergebnisliste — Typprüfung greift beim Lesen', () => {
     return parseVereinsergebnisliste(FIXTURE.replace(suchen, ersetzen));
   }
 
-  it('liest das unveränderte Fixture ohne Befund', () => {
-    expect(parseVereinsergebnisliste(FIXTURE).diagnostics).toEqual([]);
+  it('liest das unveränderte Fixture ohne Beanstandung', () => {
+    const diagnostics = parseVereinsergebnisliste(FIXTURE).diagnostics;
+
+    // `info` bleibt zulässig; siehe die WERTUNG-Lücke unten.
+    expect(diagnostics.filter((d) => d.severity !== 'info')).toEqual([]);
+  });
+
+  // dsv8.md:3229-3234 — die Wertetabelle der WERTUNG dieser Listenart führt nur
+  // "V = Vorlauf / Z = Zwischenlauf / F = Finale / E = Entscheidung". `A` und
+  // `N` kommen real vor (1x bzw. 3x in test/fixtures/real) und müssen lesbar
+  // bleiben, die Abweichung aber sichtbar sein.
+  describe('WERTUNG.wettkampfart — Lücke der Wertetabelle', () => {
+    it('nimmt A und N an und markiert sie als specGap', () => {
+      const befunde = parseVereinsergebnisliste(FIXTURE).diagnostics.filter(
+        (d) => d.data?.['field'] === 'wettkampfart' && d.data['specGap'] === true,
+      );
+
+      expect(befunde.map((d) => d.data?.['value'])).toEqual(['A', 'N']);
+      expect(befunde.every((d) => d.severity === 'info')).toBe(true);
+    });
+
+    it('lässt die vier spezifizierten Arten unbeanstandet', () => {
+      const befunde = parseVereinsergebnisliste(FIXTURE).diagnostics.filter(
+        (d) => d.data?.['field'] === 'wettkampfart' && ['V', 'Z', 'F', 'E'].includes(String(d.data['value'])),
+      );
+
+      expect(befunde).toEqual([]);
+    });
   });
 
   it('meldet eine fehlerhafte Angabe in PERSONENERGEBNIS.endzeit', () => {

@@ -64,6 +64,30 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
 ];
 
 /**
+ * Wettkampfart der WERTUNG dieser Listenart.
+ *
+ * Eigener Wertevorrat, weil allein hier `A` und `N` fehlen: Die Wertetabelle
+ * der WERTUNG führt nur vier Arten (dsv8.md:3229-3234) — „V = Vorlauf /
+ * Z = Zwischenlauf / F = Finale / E = Entscheidung". Die Begründung, sie
+ * trotzdem anzunehmen, steht bei `WETTKAMPFART_WERTE` und trägt; sie war nur
+ * nirgends markiert, sodass `WERTUNG:5;A;…` gar keinen Befund ergab.
+ *
+ * `specGap` ist genau dafür da: eine Lücke der Vorlage, kein Verbot. Der Wert
+ * wird gelesen und geschrieben, die Abweichung bleibt als `info` sichtbar.
+ * Das gemeinsame `WETTKAMPFART_WERTE` bekommt die Markierung **nicht** — an
+ * WETTKAMPF (dsv8.md:3057) und den Ergebniselementen (dsv8.md:3465) sind `A`
+ * und `N` regulär spec-belegt und keine Lücke.
+ */
+const WERTUNG_WETTKAMPFART_WERTE: readonly EnumValue[] = [
+  { value: 'V', doc: 'Vorlauf' },
+  { value: 'Z', doc: 'Zwischenlauf' },
+  { value: 'F', doc: 'Finale' },
+  { value: 'E', doc: 'Entscheidung' },
+  { value: 'A', doc: 'Ausschwimmen', specGap: true },
+  { value: 'N', doc: 'Nachschwimmen', specGap: true },
+];
+
+/**
  * Wettkampfart des qualifizierenden Laufs. Aus einem Aus- oder Nachschwimmen
  * qualifiziert man sich nicht weiter (dsv8.md:3177).
  */
@@ -395,10 +419,11 @@ export const WETTKAMPF = element('WETTKAMPF', [
 /**
  * WERTUNG — die Wertungsklassen eines Wettkampfes (dsv8.md:3205).
  *
- * Zur Wettkampfart siehe `WETTKAMPFART_WERTE`: Die Wertetabelle dieser
+ * Zur Wettkampfart siehe `WERTUNG_WETTKAMPFART_WERTE`: Die Wertetabelle dieser
  * Listenart nennt `A` und `N` nicht, ist damit aber nachweislich unvollständig
  * — sonst könnten Ergebnisse eines Aus- oder Nachschwimmens keine Wertung
- * haben, obwohl `wertungsId` dort Pflicht ist.
+ * haben, obwohl `wertungsId` dort Pflicht ist. Beide sind als `specGap`
+ * markiert und ergeben beim Lesen einen `info`-Befund.
  */
 export const WERTUNG = element('WERTUNG', [
   field('wettkampfnr', 'Zahl', {
@@ -411,7 +436,7 @@ export const WERTUNG = element('WERTUNG', [
     required: true,
     doc: 'Art des Wettkampfes.',
     specRef: 'dsv8.md:3207',
-    values: WETTKAMPFART_WERTE,
+    values: WERTUNG_WETTKAMPFART_WERTE,
   }),
   field('wertungsId', 'Zahl', {
     required: true,

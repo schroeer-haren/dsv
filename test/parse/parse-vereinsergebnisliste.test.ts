@@ -13,9 +13,13 @@ const [VOLL, KNAPP] = FIXTURES as [string, string];
 const text = readFileSync(VOLL, 'utf8');
 
 describe('parseVereinsergebnisliste', () => {
-  it.each(FIXTURES)('%s wird ohne eine einzige Diagnostic gelesen', (path) => {
+  it.each(FIXTURES)('%s wird ohne Beanstandung gelesen', (path) => {
     const result = parseVereinsergebnisliste(readFileSync(path, 'utf8'));
-    expect(result.diagnostics).toEqual([]);
+    // `info` bleibt zulässig: Das Fixture führt WERTUNG-Zeilen der Art A und N,
+    // die die Wertetabelle der Spezifikation auslässt (dsv8.md:3229-3234). Sie
+    // sind als `specGap` markiert und deshalb sichtbar, aber kein Mangel.
+    expect(result.diagnostics.filter((d) => d.severity !== 'info')).toEqual([]);
+    expect(result.diagnostics.map((d) => d.severity)).not.toContain('warning');
     expect(result.ok).toBe(true);
     expect(result.document.listenart).toBe('Vereinsergebnisliste');
     expect(result.document.version).toBe(8);
@@ -112,7 +116,7 @@ describe('Vereinsergebnisliste — Grossschreibung der Listart', () => {
 
     const result = parseVereinsergebnisliste(gross);
 
-    expect(result.diagnostics).toEqual([]);
+    expect(result.diagnostics.filter((d) => d.severity !== 'info')).toEqual([]);
     expect(result.ok).toBe(true);
   });
 
@@ -121,7 +125,7 @@ describe('Vereinsergebnisliste — Grossschreibung der Listart', () => {
       ORIGINAL.replace('Vereinsergebnisliste', 'vereinsergebnisliste'),
     );
 
-    expect(result.diagnostics).toEqual([]);
+    expect(result.diagnostics.filter((d) => d.severity !== 'info')).toEqual([]);
     expect(result.ok).toBe(true);
   });
 
