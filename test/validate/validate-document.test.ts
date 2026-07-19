@@ -186,7 +186,12 @@ describe('validateDocument', () => {
       const lines = without('MELDEGELD');
       lines.splice(12, 0, line('MELDEGELD', ['WKMELDEGELD', '5,00', '']));
 
-      expect(validate(lines).map((d) => d.code)).toEqual(['conditional-field-required']);
+      // Die Querregel greift trotz fremder Schreibweise; die Schreibweise
+      // selbst wird zusaetzlich als Abweichung gemeldet.
+      expect(validate(lines).map((d) => d.code)).toEqual([
+        'invalid-enum-value',
+        'conditional-field-required',
+      ]);
     });
 
     it('verlangt bei anderen Meldegeldtypen keine Wettkampfnummer', () => {

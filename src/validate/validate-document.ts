@@ -144,7 +144,7 @@ function fieldAt(record: DsvRecord, index: number | undefined): string {
 
 /**
  * Querregeln zwischen Elementen und zwischen Feldern eines Elements, etwa: Meldegelder
- * werden entweder überwiesen oder eingezogen, nicht beides (dsv8.md:813).
+ * werden entweder überwiesen oder eingezogen, nicht beides (dsv8.md:830-831).
  *
  * Die Regeln gelten listenartübergreifend, aber auf zweierlei Weise:
  *
@@ -306,7 +306,14 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSch
   }
 
   for (const record of byElement.get('MELDEGELD') ?? []) {
-    // Der Typ wird case-insensitiv verglichen (dsv8.md:1360).
+    // Die Regel selbst steht in dsv8.md:1384-1385: „Nummer des Wettkampfes,
+    // Pflichtfeld bei Meldegeld Typ Wkmeldegeld." Die Werteliste, aus der
+    // `Wkmeldegeld` stammt, steht in dsv8.md:1368-1380.
+    //
+    // Verglichen wird ohne Rücksicht auf die Schreibweise, damit die Regel auch
+    // bei den vier grossgeschriebenen Sätzen des echten Bestandes greift — die
+    // Schreibweise selbst meldet validate-values.ts gesondert. Die Spec sagt zur
+    // Schreibweise nichts; das ist eine Duldung dieser Bibliothek, keine Regel.
     if (record.fields[0]?.toLowerCase() !== 'wkmeldegeld') continue;
     if ((record.fields[2] ?? '').trim() !== '') continue;
 

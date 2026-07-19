@@ -176,7 +176,10 @@ describe('Vereinsmeldeliste — WETTKAMPF', () => {
     expect(range('abschnittsnr')).toEqual({ min: 0, max: 99 });
     expect(range('einzelstrecke')).toEqual({ min: 0, max: 25000 });
     expect(range('qualifikationswettkampfnr')).toEqual({ min: 0, max: 999 });
-    expect(WETTKAMPF.fields.find((f) => f.name === 'anzahlStarter')?.default).toBe('1');
+    // Kein statischer Unterlassungswert: dsv8.md:4744-4745 macht ihn vom
+    // Wettkampf abhängig — 1 für Einzeldisziplinen, sonst die Zahl der
+    // Staffelteilnehmer.
+    expect(WETTKAMPF.fields.find((f) => f.name === 'anzahlStarter')?.default).toBeUndefined();
   });
 });
 

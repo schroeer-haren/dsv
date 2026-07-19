@@ -253,7 +253,10 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
       'geschlecht',
       'zuordnungBestenliste',
     ]);
-    expect(WETTKAMPF.fields.find((f) => f.name === 'anzahlStarter')?.default).toBe('1');
+    // Kein statischer Unterlassungswert: dsv8.md:4744-4745 macht ihn vom
+    // Wettkampf abhängig — 1 für Einzeldisziplinen, sonst die Zahl der
+    // Staffelteilnehmer.
+    expect(WETTKAMPF.fields.find((f) => f.name === 'anzahlStarter')?.default).toBeUndefined();
   });
 
   it('begrenzt die qualifizierende Wettkampfnummer wie die Wettkampfnummer selbst', () => {

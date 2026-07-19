@@ -175,7 +175,7 @@ const SYNTH = 'test/fixtures/synth';
 const EXPECTED_DIAGNOSTICS: Record<string, number> = {
   'error:missing-required-field': 4,
   'warning:conditional-field-required': 22,
-  'warning:invalid-enum-value': 6,
+  'warning:invalid-enum-value': 10,
   'warning:invalid-value': 37,
 };
 
@@ -219,23 +219,48 @@ describe('Wettkampfdefinitionslisten aus test/fixtures/real', () => {
   });
 
   /**
-   * Erwartete Abweichung: Sechs Wettkämpfe einer einzigen Ausschreibung tragen
-   * die Wettkampfart `N`, die keine der Spec-Fassungen kennt. Der Parser
-   * toleriert den Wert (`tolerated: true`) und meldet ihn als Warnung, statt
-   * die Datei unbrauchbar zu machen.
+   * Erwartete Abweichungen, beide als `tolerated: true` gemeldet — geduldet
+   * beim Lesen, unzulässig beim Schreiben:
+   *
+   * - Sechs Wettkämpfe einer einzigen Ausschreibung tragen die Wettkampfart
+   *   `N`, die keine der Spec-Fassungen kennt.
+   * - Vier MELDEGELD-Sätze einer einzigen Datei schreiben den Typ in
+   *   Grossbuchstaben. Bei 1204 MELDEGELD-Sätzen im Bestand ist das die
+   *   Ausnahme; das Feld wird deshalb ohne Rücksicht auf die Schreibweise
+   *   gelesen, die Abweichung aber gemeldet.
    */
-  it('warnt genau sechsmal wegen der unbekannten Wettkampfart N', () => {
+  it('warnt genau zehnmal, je Abweichung namentlich', () => {
     const warnings = realLists.flatMap((name) =>
       parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'))
         .diagnostics.filter((d) => d.code === 'invalid-enum-value' && d.severity === 'warning')
         .map((d) => ({ name, data: d.data })),
     );
 
-    expect(warnings).toHaveLength(6);
-    expect(new Set(warnings.map((w) => w.name))).toEqual(new Set(['dsvportal-13062024-Wk.dsv7']));
+    expect(warnings).toHaveLength(10);
     for (const warning of warnings) {
-      expect(warning.data).toMatchObject({ field: 'wettkampfart', value: 'N', tolerated: true });
+      expect(warning.data).toMatchObject({ tolerated: true });
     }
+
+    const wettkampfart = warnings.filter((w) => w.data?.['field'] === 'wettkampfart');
+    expect(wettkampfart).toHaveLength(6);
+    expect(new Set(wettkampfart.map((w) => w.name))).toEqual(
+      new Set(['dsvportal-13062024-Wk.dsv7']),
+    );
+    for (const warning of wettkampfart) {
+      expect(warning.data).toMatchObject({ value: 'N' });
+    }
+
+    const schreibweise = warnings.filter((w) => w.data?.['field'] === 'meldegeldTyp');
+    expect(schreibweise).toHaveLength(4);
+    expect(new Set(schreibweise.map((w) => w.name))).toEqual(
+      new Set(['gh-dsvparser-definition.dsv7']),
+    );
+    expect(schreibweise.map((w) => w.data?.['value']).sort()).toEqual([
+      'EINZELMELDEGELD',
+      'MELDEGELDPAUSCHALE',
+      'STAFFELMELDEGELD',
+      'WKMELDEGELD',
+    ]);
   });
 
   /**

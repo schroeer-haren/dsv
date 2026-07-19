@@ -330,7 +330,10 @@ export const WETTKAMPF = element('WETTKAMPF', [
   field('anzahlStarter', 'Zahl', {
     doc: 'Anzahl der Staffelteilnehmer; für Einzeldisziplinen 1.',
     specRef: 'dsv8.md:3071',
-    default: '1',
+    // Kein `default`: Der Unterlassungswert ist laut dsv8.md:4744-4745 „1 für
+    // Einzeldisziplin, ansonsten Anzahl der Staffelteilnehmer" — er hängt also
+    // vom Wettkampf ab und lässt sich nicht statisch hinschreiben. Dieselbe
+    // Begründung trägt weiter unten `maximalJgAk`.
   }),
   field('einzelstrecke', 'Zahl', {
     required: true,

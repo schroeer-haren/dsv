@@ -56,7 +56,7 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
     );
   } else if (elements[0] !== format) {
     // Kommentarzeilen davor sind normal und zählen nicht mit — FORMAT muss nur
-    // das erste ELEMENT sein (dsv8.md:331).
+    // das erste ELEMENT sein (dsv8.md:336-337).
     diagnostics.push(
       createDiagnostic(
         'format-not-first-element',

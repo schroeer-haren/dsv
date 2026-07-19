@@ -226,9 +226,21 @@ describe('validateValues', () => {
       expect(check(WETTKAMPF, 'technik', 'f').map((d) => d.code)).toEqual(['invalid-enum-value']);
     });
 
-    it('vergleicht ohne Rücksicht auf Gross-/Kleinschreibung bei caseInsensitive', () => {
-      expect(check(MELDEGELD, 'meldegeldTyp', 'MELDEGELDPAUSCHALE')).toEqual([]);
+    it('erkennt bei caseInsensitive auch die fremde Schreibweise, meldet sie aber', () => {
+      // Die spec-treue Schreibweise ist befundfrei.
       expect(check(MELDEGELD, 'meldegeldTyp', 'Meldegeldpauschale')).toEqual([]);
+
+      // Die abweichende wird gelesen, aber nicht stillschweigend legalisiert:
+      // Warnung beim Lesen, `tolerated` sperrt sie beim Schreiben. Ohne diesen
+      // Befund duerfte der Writer die fremde Schreibweise selbst erzeugen.
+      const abweichend = check(MELDEGELD, 'meldegeldTyp', 'MELDEGELDPAUSCHALE');
+      expect(abweichend.map((d) => d.code)).toEqual(['invalid-enum-value']);
+      expect(abweichend[0]?.severity).toBe('warning');
+      expect(abweichend[0]?.data).toMatchObject({
+        value: 'MELDEGELDPAUSCHALE',
+        expected: 'Meldegeldpauschale',
+        tolerated: true,
+      });
     });
 
     it('nutzt den Wertevorrat des jeweiligen Feldes, nicht den eines gleichnamigen', () => {

@@ -142,6 +142,23 @@ export function validateValues(
             { ...at, data: { field: fieldDef.name, value, specGap: true } },
           ),
         );
+      } else if (fieldDef.caseInsensitive && match.value !== value) {
+        // Der Wert steht in der Werteliste, nur anders geschrieben.
+        //
+        // `caseInsensitive` allein wuerde die Abweichung stillschweigend
+        // legalisieren: kein Befund beim Lesen, und weil der Writer nur bei
+        // `tolerated` sperrt, duerfte er die fremde Schreibweise auch selbst
+        // erzeugen. Das Haus verfaehrt sonst anders — was real vorkommt, wird
+        // beim Lesen geduldet und beim Schreiben verweigert. Genau das gilt
+        // hier: gemeldet als Warnung, beim Schreiben unzulaessig.
+        diagnostics.push(
+          createDiagnostic(
+            'invalid-enum-value',
+            'warning',
+            `${def.name}.${fieldDef.name}: "${value}" differs from the specified spelling "${match.value}"`,
+            { ...at, data: { field: fieldDef.name, value, expected: match.value, tolerated: true } },
+          ),
+        );
       } else if (match.tolerated === true) {
         // Im Format bekannt, für diese Listenart aber nicht vorgesehen. Als
         // Fehler gemeldet wiese die Bibliothek Dateien zurück, die der DSV

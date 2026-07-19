@@ -323,7 +323,10 @@ export const WETTKAMPF = element('WETTKAMPF', [
   field('anzahlStarter', 'Zahl', {
     doc: 'Anzahl der Starter; bei Staffeln die Zahl der Teilnehmenden.',
     specRef: 'dsv8.md:999',
-    default: '1',
+    // Kein `default`: Der Unterlassungswert ist laut dsv8.md:4744-4745 „1 für
+    // Einzeldisziplin, ansonsten Anzahl der Staffelteilnehmer" — er hängt also
+    // vom Wettkampf ab und lässt sich nicht statisch hinschreiben. Dieselbe
+    // Begründung trägt weiter unten `maximalJgAk`.
   }),
   field('einzelstrecke', 'Zahl', {
     required: true,
@@ -490,6 +493,17 @@ export const PFLICHTZEIT = element('PFLICHTZEIT', [
 export const MELDEGELD = element('MELDEGELD', [
   field('meldegeldTyp', 'ZK', {
     required: true,
+    // Einzige Abweichung dieser Art im ganzen Schema, deshalb begründet:
+    // 4 der 1204 MELDEGELD-Sätze des echten Bestandes schreiben den Typ in
+    // Grossbuchstaben, alle vier in einer Datei (gh-dsvparser-definition.dsv7).
+    // Die Datei deswegen zurückzuweisen wäre unverhältnismässig — der gemeinte
+    // Wert ist eindeutig.
+    //
+    // Geduldet heisst hier aber nicht erlaubt: Eine Schreibweise, die von der
+    // Werteliste abweicht, ergibt beim Lesen eine Warnung mit `tolerated: true`
+    // und ist beim Schreiben unzulässig (validate-values.ts). Damit verhält
+    // sich das Feld wie die tolerierte Wettkampfart `N` weiter unten und
+    // legalisiert die Abweichung nicht still.
     caseInsensitive: true,
     doc: 'Art des Meldegeldes.',
     specRef: 'dsv8.md:1360',
