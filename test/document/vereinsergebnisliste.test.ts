@@ -500,6 +500,102 @@ describe('projectVereinsergebnisliste', () => {
       expect(start?.abloesen).toHaveLength(1);
     });
 
+    // dsv8.md:3814-3815 und :4117-4118 — STAFFELPERSON und STZWISCHENZEIT
+    // führen die "Kennung für die Staffel [...] definiert in STAFFEL".
+    // STAFFELERGEBNIS hat "Vorkommen 0 - N" (dsv8.md:3936) und darf fehlen;
+    // die Besetzung muss auch dann erreichbar bleiben.
+    describe('Besetzung hängt an STAFFEL, nicht an STAFFELERGEBNIS', () => {
+      it('führt Personen und Zwischenzeiten ohne jedes STAFFELERGEBNIS', () => {
+        const zz = line('STZWISCHENZEIT', ['9001', '1', 'E', '1', '100', '00:01:03,61']);
+        const result = project(
+          ABSCHNITT,
+          WETTKAMPF,
+          WERTUNG,
+          VEREIN,
+          staffel(),
+          ...['1', '2', '3', '4'].map((n) => staffelperson({ startnummer: n })),
+          zz,
+        );
+
+        expect(codes(result)).toEqual([]);
+        const besetzungen = result.graph.staffelById.get(9001)?.besetzungen;
+        expect(besetzungen).toHaveLength(1);
+        expect(besetzungen?.[0]).toMatchObject({ wettkampfnr: 1, wettkampfart: 'E' });
+        expect(besetzungen?.[0]?.personen.map((p) => p.startnummer)).toEqual([1, 2, 3, 4]);
+        expect(besetzungen?.[0]?.zwischenzeiten.map((z) => z.distanz)).toEqual([100]);
+        expect(result.graph.staffelStartByKey.size).toBe(0);
+      });
+
+      it('teilt die Listen mit dem Start, wenn ein STAFFELERGEBNIS vorliegt', () => {
+        const { graph } = project(
+          ABSCHNITT,
+          WETTKAMPF,
+          WERTUNG,
+          VEREIN,
+          staffel(),
+          staffelergebnis(),
+          ...['1', '2', '3', '4'].map((n) => staffelperson({ startnummer: n })),
+        );
+
+        const start = graph.staffelStartByKey.get('9001:1:E');
+        const besetzung = graph.staffelById.get(9001)?.besetzungen[0];
+        expect(besetzung?.personen).toBe(start?.personen);
+      });
+
+      it('meldet eine STAFFELPERSON auf unbekannte STAFFEL gegen STAFFEL', () => {
+        const result = project(
+          ABSCHNITT,
+          WETTKAMPF,
+          WERTUNG,
+          VEREIN,
+          staffel(),
+          staffelperson({ veranstaltungsIdStaffel: '9999' }),
+        );
+
+        expect(codes(result)).toEqual(['dangling-reference']);
+        expect(result.diagnostics[0]?.message).toBe(
+          'STAFFELPERSON refers to unknown STAFFEL 9999',
+        );
+        expect(result.diagnostics[0]?.data).toMatchObject({
+          element: 'STAFFELPERSON',
+          veranstaltungsIdStaffel: 9999,
+        });
+      });
+
+      it('meldet unvollständige Besetzung auch ohne STAFFELERGEBNIS', () => {
+        const result = project(
+          ABSCHNITT,
+          WETTKAMPF,
+          WERTUNG,
+          VEREIN,
+          staffel(),
+          ...['1', '2', '3'].map((n) => staffelperson({ startnummer: n })),
+        );
+
+        expect(codes(result)).toEqual(['incomplete-relay']);
+        expect(result.diagnostics[0]?.data).toMatchObject({
+          element: 'STAFFELPERSON',
+          key: '9001:1:E',
+          genannt: 3,
+          erwartet: 4,
+        });
+      });
+
+      // Ausdrücklich unverändert: STABLOESE nennt in Kapitel 5.3 als Anker
+      // "STERGEBNIS" (dsv8.md:4174-4175) — ein Element, das es in dieser
+      // Listenart gar nicht gibt. Solange die Absicht der Spec unklar ist,
+      // bleibt es beim STAFFELERGEBNIS als Anker.
+      it('lässt STABLOESE weiter am STAFFELERGEBNIS hängen', () => {
+        const ab = line('STABLOESE', ['9001', '1', 'E', '2', '+', '00:00:00,32']);
+        const result = project(ABSCHNITT, WETTKAMPF, WERTUNG, VEREIN, staffel(), ab);
+
+        expect(codes(result)).toEqual(['dangling-reference']);
+        expect(result.diagnostics[0]?.message).toBe(
+          'STABLOESE refers to unknown STAFFELERGEBNIS 9001:1:E',
+        );
+      });
+    });
+
     // Dieselbe Regel wie bei den Personen: Die gewertete Zeile trägt die Zeit.
     it('nimmt die Endzeit der gewerteten Zeile, auch wenn sie nicht die erste ist', () => {
       const zweiteWertung = line('WERTUNG', [
@@ -573,10 +669,15 @@ describe('projectVereinsergebnisliste', () => {
       expect(codes(result)).toContain('dangling-reference');
     });
 
-    it('meldet eine Staffelperson ohne Staffelergebnis', () => {
+    it('nimmt eine Staffelperson ohne Staffelergebnis an', () => {
+      // Früher ein dangling-reference auf STAFFELERGEBNIS — eine Beziehung,
+      // die die Spec nirgends definiert. Der Anker ist STAFFEL
+      // (dsv8.md:3814-3815), die hier vorliegt. Was bleibt, ist der Befund zur
+      // unvollständigen Besetzung: eine von vier genannt.
       const result = project(ABSCHNITT, WETTKAMPF, WERTUNG, VEREIN, staffel(), staffelperson());
 
-      expect(codes(result)).toEqual(['dangling-reference']);
+      expect(codes(result)).toEqual(['incomplete-relay']);
+      expect(result.graph.staffelById.get(9001)?.besetzungen[0]?.personen).toHaveLength(1);
     });
 
     it('meldet eine doppelte Staffelkennung', () => {

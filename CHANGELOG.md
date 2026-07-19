@@ -2,6 +2,37 @@
 
 ## Unveröffentlicht
 
+### Breaking: Staffelbesetzung hängt in der Vereinsergebnisliste an `STAFFEL`
+
+`STAFFELPERSON` und `STZWISCHENZEIT` wurden in der Vereinsergebnisliste über
+das `STAFFELERGEBNIS` aufgelöst. Die Spezifikation verankert beide aber an
+`STAFFEL`: „Eindeutige numerische Kennung für die Staffel innerhalb dieser
+Veranstaltung definiert in STAFFEL" (dsv8.md:3814-3815 und :4117-4118).
+
+Das war folgenreich, weil `STAFFELERGEBNIS` „Vorkommen 0 - N" hat
+(dsv8.md:3936) und fehlen darf. Ohne Ergebniszeile verlor die Projektion die
+gesamte Besetzung und meldete je Schwimmer eine `dangling-reference` auf eine
+Beziehung, die die Spezifikation nirgends definiert. Erreichbar war sie danach
+über keinen Weg mehr.
+
+Neu trägt `VereinsergebnisStaffel` ein Feld `besetzungen` mit je einem
+`VereinsergebnisStaffelBesetzung`-Eintrag pro Wettkampf (`wettkampfnr`,
+`wettkampfart`, `personen`, `zwischenzeiten`). `VereinsergebnisStaffelStart`
+behält `personen` und `zwischenzeiten`; beide Wege zeigen auf dieselben
+Objekte. Die `dangling-reference` beider Elemente nennt jetzt `STAFFEL` und
+führt `veranstaltungsIdStaffel` statt eines Startschlüssels. Der Befund
+`incomplete-relay` greift auch ohne `STAFFELERGEBNIS` und nennt dann
+`STAFFELPERSON` als Element.
+
+Die Wettkampfergebnisliste bleibt unverändert: Ihr Kapitel kennt kein
+`STAFFEL`-Element, dort ist `STERGEBNIS` der korrekte Anker (dsv8.md:5553).
+
+`STABLOESE` bleibt ebenfalls am `STAFFELERGEBNIS`. Die Spezifikation nennt für
+dieses eine Element in Kapitel 5.3 als Anker „STERGEBNIS"
+(dsv8.md:4174-4175) — ein Element, das es in der Vereinsergebnisliste gar nicht
+gibt. Welches Element gemeint ist, lässt sich daraus nicht ableiten; solange
+die Absicht unklar ist, wird das bisherige Verhalten beibehalten.
+
 ### Breaking: `qualifikationswettkampfart` toleriert kein `A`/`N` mehr
 
 Das Feld `qualifikationswettkampfart` widersprach sich zwischen den

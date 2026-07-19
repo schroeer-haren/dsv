@@ -202,6 +202,23 @@ export interface VereinsergebnisAbloese extends VereinsergebnisReaktion {
   readonly startnummer: number;
 }
 
+/**
+ * Die Besetzung einer Staffel in einem Wettkampf.
+ *
+ * STAFFELPERSON und STZWISCHENZEIT führen laut dsv8.md:3814-3815 und
+ * :4117-4118 die „Kennung für die Staffel [...] definiert in STAFFEL" — sie
+ * hängen also an der Staffel, nicht am Ergebnis. Da STAFFELERGEBNIS
+ * „Vorkommen 0 - N" hat (dsv8.md:3936) und fehlen darf, wäre die Besetzung
+ * sonst unerreichbar. Nummer und Art des Wettkampfes gehören dazu, weil
+ * dieselbe Mannschaft in mehreren Wettkämpfen unter derselben Kennung startet.
+ */
+export interface VereinsergebnisStaffelBesetzung {
+  readonly wettkampfnr: number;
+  readonly wettkampfart: string;
+  readonly personen: readonly VereinsergebnisStaffelPerson[];
+  readonly zwischenzeiten: readonly VereinsergebnisStaffelZwischenzeit[];
+}
+
 /** Der Schwimmvorgang einer Staffel in einem Wettkampf. */
 export interface VereinsergebnisStaffelStart {
   /** Veranstaltungsweit eindeutige Kennung der Staffel. */
@@ -228,6 +245,11 @@ export interface VereinsergebnisStaffel {
   readonly maximalJgAk: string;
   /** Dieselben Objekte, die auch unter ihrem Wettkampf hängen. */
   readonly starts: readonly VereinsergebnisStaffelStart[];
+  /**
+   * Die Besetzung je Wettkampf — auch dann gefüllt, wenn die Datei zu diesem
+   * Wettkampf gar kein STAFFELERGEBNIS führt.
+   */
+  readonly besetzungen: readonly VereinsergebnisStaffelBesetzung[];
   readonly line: number;
 }
 
@@ -439,8 +461,6 @@ interface StartBuilder {
 /** Zwischenstand eines Staffelstarts, dessen Kinderlisten noch wachsen. */
 interface StaffelStartBuilder {
   readonly platzierungen: VereinsergebnisStaffelPlatzierung[];
-  readonly personen: VereinsergebnisStaffelPerson[];
-  readonly zwischenzeiten: VereinsergebnisStaffelZwischenzeit[];
   readonly abloesen: VereinsergebnisAbloese[];
   readonly start: VereinsergebnisStaffelStart;
   /**
@@ -448,9 +468,20 @@ interface StaffelStartBuilder {
    * Identität — siehe die Anmerkung zur Wiederholung je Wertung oben.
    */
   readonly gesehen: {
+    readonly abloesen: Set<string>;
+  };
+}
+
+/** Zwischenstand einer Staffelbesetzung, deren Kinderlisten noch wachsen. */
+interface BesetzungBuilder {
+  readonly personen: VereinsergebnisStaffelPerson[];
+  readonly zwischenzeiten: VereinsergebnisStaffelZwischenzeit[];
+  readonly besetzung: VereinsergebnisStaffelBesetzung;
+  /** Zeile der ersten Kindzeile — der Anker für Befunde ohne STAFFELERGEBNIS. */
+  readonly line: number;
+  readonly gesehen: {
     readonly personen: Set<number>;
     readonly zwischenzeiten: Set<string>;
-    readonly abloesen: Set<string>;
   };
 }
 
@@ -904,12 +935,14 @@ export function projectVereinsergebnisliste(
   const staffeln: VereinsergebnisStaffel[] = [];
   const staffelById = new Map<number, VereinsergebnisStaffel>();
   const staffelStarts = new Map<number, VereinsergebnisStaffelStart[]>();
+  const staffelBesetzungen = new Map<number, VereinsergebnisStaffelBesetzung[]>();
 
   for (const record of records) {
     if (record.element !== 'STAFFEL') continue;
 
     const veranstaltungsId = number(record, 'veranstaltungsIdStaffel');
     const starts: VereinsergebnisStaffelStart[] = [];
+    const besetzungen: VereinsergebnisStaffelBesetzung[] = [];
     const staffel: VereinsergebnisStaffel = {
       veranstaltungsId,
       nummerDerMannschaft: value(record, 'nummerDerMannschaft'),
@@ -917,6 +950,7 @@ export function projectVereinsergebnisliste(
       mindestJgAk: value(record, 'mindestJgAk'),
       maximalJgAk: value(record, 'maximalJgAk'),
       starts,
+      besetzungen,
       line: record.line,
     };
     staffeln.push(staffel);
@@ -936,6 +970,97 @@ export function projectVereinsergebnisliste(
     } else if (Number.isFinite(veranstaltungsId)) {
       staffelById.set(veranstaltungsId, staffel);
       staffelStarts.set(veranstaltungsId, starts);
+      staffelBesetzungen.set(veranstaltungsId, besetzungen);
+    }
+  }
+
+  // --- Besetzungen ---------------------------------------------------------
+  // STAFFELPERSON und STZWISCHENZEIT verweisen laut dsv8.md:3814-3815 und
+  // :4117-4118 auf die in STAFFEL definierte Kennung, nicht auf das Ergebnis.
+  // Die Besetzung wird deshalb an der Staffel geführt und liegt vor, bevor die
+  // Ergebniszeilen sie sich borgen — STAFFELERGEBNIS darf ganz fehlen
+  // (dsv8.md:3936, "Vorkommen 0 - N").
+  const besetzungBuilders = new Map<string, BesetzungBuilder>();
+
+  /** Liefert die Besetzung zum Schlüssel und legt sie beim ersten Mal an. */
+  function besetzungFor(
+    key: string,
+    veranstaltungsId: number,
+    wettkampfnr: number,
+    wettkampfart: string,
+    line: number,
+  ): BesetzungBuilder {
+    const vorhanden = besetzungBuilders.get(key);
+    if (vorhanden !== undefined) return vorhanden;
+
+    const personen: VereinsergebnisStaffelPerson[] = [];
+    const zwischenzeiten: VereinsergebnisStaffelZwischenzeit[] = [];
+    const builder: BesetzungBuilder = {
+      personen,
+      zwischenzeiten,
+      besetzung: { wettkampfnr, wettkampfart, personen, zwischenzeiten },
+      line,
+      gesehen: { personen: new Set(), zwischenzeiten: new Set() },
+    };
+    besetzungBuilders.set(key, builder);
+    staffelBesetzungen.get(veranstaltungsId)?.push(builder.besetzung);
+    return builder;
+  }
+
+  for (const record of records) {
+    if (record.element !== 'STAFFELPERSON' && record.element !== 'STZWISCHENZEIT') continue;
+
+    const veranstaltungsId = number(record, 'veranstaltungsIdStaffel');
+    const wettkampfnr = number(record, 'wettkampfnr');
+    const wettkampfart = value(record, 'wettkampfart');
+
+    if (!staffelById.has(veranstaltungsId)) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `${record.element} refers to unknown STAFFEL ${value(record, 'veranstaltungsIdStaffel')}`,
+          {
+            ...at(record.line),
+            data: { element: record.element, veranstaltungsIdStaffel: veranstaltungsId },
+          },
+        ),
+      );
+      continue;
+    }
+
+    // Die Kennung der Staffel allein genügt nicht: Dieselbe Mannschaft startet
+    // in mehreren Wettkämpfen unter derselben Kennung. Erst zusammen mit
+    // Nummer und Art des Wettkampfes ist sie eindeutig — alle drei Elemente
+    // führen diese Felder deshalb mit.
+    const key = startKey(veranstaltungsId, wettkampfnr, wettkampfart);
+    const builder = besetzungFor(key, veranstaltungsId, wettkampfnr, wettkampfart, record.line);
+    const startnummer = number(record, 'startnummer');
+
+    if (record.element === 'STAFFELPERSON') {
+      if (builder.gesehen.personen.has(startnummer)) continue;
+      builder.gesehen.personen.add(startnummer);
+      builder.personen.push({
+        name: value(record, 'name'),
+        dsvId: value(record, 'dsvId'),
+        startnummer,
+        geschlecht: value(record, 'geschlecht'),
+        jahrgang: value(record, 'jahrgang'),
+        altersklasse: value(record, 'altersklasse'),
+        nationalitaeten: nationalitaeten(record),
+        line: record.line,
+      });
+    } else {
+      const distanz = number(record, 'distanz');
+      const identitaet = `${String(startnummer)}:${String(distanz)}`;
+      if (builder.gesehen.zwischenzeiten.has(identitaet)) continue;
+      builder.gesehen.zwischenzeiten.add(identitaet);
+      builder.zwischenzeiten.push({
+        startnummer,
+        distanz,
+        zeit: decodeZeit(value(record, 'zwischenzeit')),
+        line: record.line,
+      });
     }
   }
 
@@ -972,8 +1097,11 @@ export function projectVereinsergebnisliste(
       key,
       diagnostics,
     );
-    const personenDerStaffel: VereinsergebnisStaffelPerson[] = [];
-    const zwischenzeiten: VereinsergebnisStaffelZwischenzeit[] = [];
+    // Der Start borgt sich die Listen der Besetzung — dieselben Objekte, nicht
+    // Kopien, damit beide Wege denselben Stand zeigen.
+    const besetzung = besetzungFor(key, veranstaltungsId, nummer, art, erste.line);
+    const personenDerStaffel = besetzung.personen;
+    const zwischenzeiten = besetzung.zwischenzeiten;
     const abloesen: VereinsergebnisAbloese[] = [];
     const start: VereinsergebnisStaffelStart = {
       veranstaltungsId,
@@ -989,11 +1117,9 @@ export function projectVereinsergebnisliste(
 
     staffelStartBuilders.set(key, {
       platzierungen,
-      personen: personenDerStaffel,
-      zwischenzeiten,
       abloesen,
       start,
-      gesehen: { personen: new Set(), zwischenzeiten: new Set(), abloesen: new Set() },
+      gesehen: { abloesen: new Set() },
     });
     for (const zeile of zeilen) pruefeWertung(zeile, veranstaltungsId);
 
@@ -1029,19 +1155,14 @@ export function projectVereinsergebnisliste(
     builder.staffelStarts.push(start);
   }
 
+  // STABLOESE bleibt bewusst am STAFFELERGEBNIS verankert. Die Spec nennt für
+  // dieses eine Element in Kapitel 5.3 als Anker "STERGEBNIS"
+  // (dsv8.md:4174-4175) — ein Element, das es in der Vereinsergebnisliste gar
+  // nicht gibt. Welches Element gemeint ist, lässt sich daraus nicht ableiten;
+  // solange die Absicht unklar ist, wird nicht geraten.
   for (const record of records) {
-    if (
-      record.element !== 'STAFFELPERSON' &&
-      record.element !== 'STZWISCHENZEIT' &&
-      record.element !== 'STABLOESE'
-    ) {
-      continue;
-    }
+    if (record.element !== 'STABLOESE') continue;
 
-    // Die Kennung der Staffel allein genügt nicht: Dieselbe Mannschaft startet
-    // in mehreren Wettkämpfen unter derselben Kennung. Erst zusammen mit
-    // Nummer und Art des Wettkampfes ist sie eindeutig — alle drei Elemente
-    // führen diese Felder deshalb mit.
     const key = startKey(
       number(record, 'veranstaltungsIdStaffel'),
       number(record, 'wettkampfnr'),
@@ -1063,31 +1184,7 @@ export function projectVereinsergebnisliste(
 
     const startnummer = number(record, 'startnummer');
 
-    if (record.element === 'STAFFELPERSON') {
-      if (builder.gesehen.personen.has(startnummer)) continue;
-      builder.gesehen.personen.add(startnummer);
-      builder.personen.push({
-        name: value(record, 'name'),
-        dsvId: value(record, 'dsvId'),
-        startnummer,
-        geschlecht: value(record, 'geschlecht'),
-        jahrgang: value(record, 'jahrgang'),
-        altersklasse: value(record, 'altersklasse'),
-        nationalitaeten: nationalitaeten(record),
-        line: record.line,
-      });
-    } else if (record.element === 'STZWISCHENZEIT') {
-      const distanz = number(record, 'distanz');
-      const identitaet = `${String(startnummer)}:${String(distanz)}`;
-      if (builder.gesehen.zwischenzeiten.has(identitaet)) continue;
-      builder.gesehen.zwischenzeiten.add(identitaet);
-      builder.zwischenzeiten.push({
-        startnummer,
-        distanz,
-        zeit: decodeZeit(value(record, 'zwischenzeit')),
-        line: record.line,
-      });
-    } else {
+    {
       const art = value(record, 'art');
       const identitaet = `${String(startnummer)}:${art}`;
       if (builder.gesehen.abloesen.has(identitaet)) continue;
@@ -1111,27 +1208,31 @@ export function projectVereinsergebnisliste(
   // Gezählt werden verschiedene Startnummern, nicht Zeilen: Sonst schlüge die
   // Prüfung durch die je Wertung wiederholten Personenblöcke in die falsche
   // Richtung aus und hielte eine halbe Staffel für vollständig.
-  for (const [key, builder] of staffelStartBuilders) {
+  for (const [key, builder] of besetzungBuilders) {
     const genannt = builder.gesehen.personen.size;
     if (genannt === 0) continue;
 
-    const start = builder.start;
-    const wettkampf = builders.get(wettkampfKey(start.wettkampfnr, start.wettkampfart));
+    const besetzung = builder.besetzung;
+    const wettkampf = builders.get(wettkampfKey(besetzung.wettkampfnr, besetzung.wettkampfart));
     const erwartet = Number(wettkampf?.wettkampf.anzahlStarter);
     if (!Number.isFinite(erwartet) || erwartet <= 0 || genannt >= erwartet) continue;
+
+    // `element` benennt überall in dieser Projektion das Element, auf das
+    // `line` zeigt. Liegt ein STAFFELERGEBNIS vor, ist das dessen Zeile — der
+    // Befund gilt der Staffel als Ganzes, eine einzelne Personenzeile ist
+    // nicht die schuldige. Fehlt es (dsv8.md:3936, "Vorkommen 0 - N"), bleibt
+    // nur die erste Kindzeile als Anker.
+    const start = staffelStartBuilders.get(key)?.start;
+    const element = start === undefined ? 'STAFFELPERSON' : 'STAFFELERGEBNIS';
 
     diagnostics.push(
       createDiagnostic(
         'incomplete-relay',
         'warning',
-        `STAFFELERGEBNIS ${key} names ${String(genannt)} of ${String(erwartet)} relay members; either all or none are expected`,
+        `${element} ${key} names ${String(genannt)} of ${String(erwartet)} relay members; either all or none are expected`,
         {
-          ...at(start.line),
-          // `element` benennt überall in dieser Projektion das Element, auf das
-          // `line` zeigt — hier also STAFFELERGEBNIS, nicht die STAFFELPERSON,
-          // aus deren Kapitel die Regel stammt. Der Befund gilt der Staffel als
-          // Ganzes; eine einzelne Personenzeile ist nicht die schuldige.
-          data: { element: 'STAFFELERGEBNIS', key, genannt, erwartet },
+          ...at(start?.line ?? builder.line),
+          data: { element, key, genannt, erwartet },
         },
       ),
     );
