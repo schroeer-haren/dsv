@@ -476,8 +476,19 @@ export const MELDEGELD = element('MELDEGELD', [
     caseInsensitive: true,
     doc: 'Art des Meldegeldes.',
     specRef: 'dsv8.md:1360',
+    // `Meldegeldpauschale` bedeutet in beiden Fassungen nicht dasselbe: DSV7
+    // erhebt den Betrag „pro Meldung“ (dsv7.md:1317), DSV8 „pro Verein“
+    // (dsv8.md:1403). Der Wert selbst, sein Datentyp und seine Stellung im
+    // Element bleiben gleich — die Änderung betrifft allein, wie der Betrag
+    // zu verrechnen ist. Eine Bibliothek, die Dateien liest und schreibt,
+    // rechnet nicht ab; sie kann den Unterschied deshalb nur festhalten, nicht
+    // prüfen. Wer Meldegelder summiert, muss die Formatversion der Datei
+    // heranziehen.
     values: [
-      { value: 'Meldegeldpauschale', doc: 'pauschal je Verein' },
+      {
+        value: 'Meldegeldpauschale',
+        doc: 'pauschaler Betrag; in DSV7 je Meldung, ab DSV8 je Verein',
+      },
       { value: 'Einzelmeldegeld', doc: 'je Einzelwettkampf' },
       { value: 'Staffelmeldegeld', doc: 'je Staffelwettkampf' },
       { value: 'Wkmeldegeld', doc: 'je einzelnem Wettkampf, hat Vorrang' },

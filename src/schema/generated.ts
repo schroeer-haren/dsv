@@ -858,7 +858,7 @@ export interface MeldegeldV7 {
   /**
    * Art des Meldegeldes.
    *
-   * - `Meldegeldpauschale` — pauschal je Verein
+   * - `Meldegeldpauschale` — pauschaler Betrag; in DSV7 je Meldung, ab DSV8 je Verein
    * - `Einzelmeldegeld` — je Einzelwettkampf
    * - `Staffelmeldegeld` — je Staffelwettkampf
    * - `Wkmeldegeld` — je einzelnem Wettkampf, hat Vorrang
@@ -892,7 +892,7 @@ export interface MeldegeldV8 {
   /**
    * Art des Meldegeldes.
    *
-   * - `Meldegeldpauschale` — pauschal je Verein
+   * - `Meldegeldpauschale` — pauschaler Betrag; in DSV7 je Meldung, ab DSV8 je Verein
    * - `Einzelmeldegeld` — je Einzelwettkampf
    * - `Staffelmeldegeld` — je Staffelwettkampf
    * - `Wkmeldegeld` — je einzelnem Wettkampf, hat Vorrang
