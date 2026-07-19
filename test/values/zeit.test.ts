@@ -2,6 +2,9 @@ import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
 import { decodeZeit, encodeZeit, isZeroZeit } from '../../src/values/zeit.js';
 
+/** Der Maximalwert 99:59:59,99 in Hundertsteln. */
+const MAX = 35_999_999;
+
 describe('decodeZeit', () => {
   it('liest HH:MM:SS,hh als Hundertstel', () => {
     expect(decodeZeit('00:01:00,82')).toBe(6082);
@@ -21,6 +24,22 @@ describe('decodeZeit', () => {
     expect(decodeZeit('00:60:00,00')).toBeNull();
     expect(decodeZeit('00:00:60,00')).toBeNull();
   });
+
+  it('weist ein Vorzeichen zurück — der Datentyp Zeit ist vorzeichenlos', () => {
+    // Das Vorzeichen ist ein eigenes Attribut `Art` von PNREAKTION und
+    // STABLOESE (dsv8.md:3698, 4201), es gehört nicht in die Zeit. Würde
+    // decodeZeit es abschneiden, liefe eine negative Endzeit als gültiger
+    // positiver Wert durch, ohne dass ein `invalid-value` entsteht.
+    expect(decodeZeit('-00:00:28,15')).toBeNull();
+    expect(decodeZeit('+00:00:28,15')).toBeNull();
+    expect(decodeZeit('-00:00:00,00')).toBeNull();
+  });
+
+  it('weist mehr als zwei Stellen je Gruppe zurück', () => {
+    expect(decodeZeit('100:00:00,00')).toBeNull();
+    expect(decodeZeit('00:00:00,000')).toBeNull();
+    expect(decodeZeit('0:00:00,00')).toBeNull();
+  });
 });
 
 describe('encodeZeit', () => {
@@ -34,9 +53,16 @@ describe('encodeZeit', () => {
     expect(encodeZeit(5)).toBe('00:00:00,05');
   });
 
+  it('schreibt den Maximalwert 99:59:59,99', () => {
+    // architecture.md nennt 99:59:59,99 als Maximalwert; das sind 35 999 999
+    // Hundertstel, nicht 99 * 360 000 (= 99:00:00,00).
+    expect(encodeZeit(MAX)).toBe('99:59:59,99');
+    expect(decodeZeit('99:59:59,99')).toBe(MAX);
+  });
+
   it('encode und decode sind zueinander invers', () => {
     fc.assert(
-      fc.property(fc.integer({ min: 0, max: 99 * 360000 }), (cs) => {
+      fc.property(fc.integer({ min: 0, max: MAX }), (cs) => {
         expect(decodeZeit(encodeZeit(cs))).toBe(cs);
       }),
     );

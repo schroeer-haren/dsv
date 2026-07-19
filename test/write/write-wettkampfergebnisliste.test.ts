@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { TypedRecord } from '../../src/parse/parse-typed-list.js';
 import { parseWettkampfergebnisliste } from '../../src/parse/parse-wettkampfergebnisliste.js';
+import { DsvWriteError } from '../../src/write/write-typed-list.js';
 import { writeWettkampfergebnisliste } from '../../src/write/write-wettkampfergebnisliste.js';
 
 /** Baut eine Elementzeile; jedes Attribut wird mit `;` terminiert. */
@@ -123,12 +124,12 @@ describe('writeWettkampfergebnisliste', () => {
 
   it('wirft bei einem fehlenden Pflichtfeld', () => {
     const records = withValue(minimalRecords(), 'PNERGEBNIS', 'name', '');
-    expect(() => writeWettkampfergebnisliste(records)).toThrow();
+    expect(() => writeWettkampfergebnisliste(records)).toThrow(DsvWriteError);
   });
 
   it('wirft bei einem unzulässigen Wert', () => {
     const records = withValue(minimalRecords(), 'PNERGEBNIS', 'endzeit', '28,15');
-    expect(() => writeWettkampfergebnisliste(records)).toThrow();
+    expect(() => writeWettkampfergebnisliste(records)).toThrow(DsvWriteError);
   });
 
   it('wirft bei einem Element der anderen Listenart', () => {
@@ -141,7 +142,7 @@ describe('writeWettkampfergebnisliste', () => {
 
   it('wirft, wenn ein Pflichtelement fehlt', () => {
     const records = minimalRecords().filter((r) => r.element !== 'VEREIN');
-    expect(() => writeWettkampfergebnisliste(records)).toThrow();
+    expect(() => writeWettkampfergebnisliste(records)).toThrow(DsvWriteError);
   });
 
   it('wirft ohne erkennbare Formatversion', () => {

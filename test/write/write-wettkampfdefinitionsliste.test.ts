@@ -3,7 +3,10 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { TypedRecord } from '../../src/parse/parse-wettkampfdefinitionsliste.js';
 import { parseWettkampfdefinitionsliste } from '../../src/parse/parse-wettkampfdefinitionsliste.js';
-import { writeWettkampfdefinitionsliste } from '../../src/write/write-wettkampfdefinitionsliste.js';
+import {
+  DsvWriteError,
+  writeWettkampfdefinitionsliste,
+} from '../../src/write/write-wettkampfdefinitionsliste.js';
 
 /** Baut eine Elementzeile; jedes Attribut wird mit `;` terminiert. */
 function line(element: string, fields: readonly string[]): string {
@@ -122,12 +125,12 @@ describe('writeWettkampfdefinitionsliste', () => {
 
   it('wirft bei einem fehlenden Pflichtfeld', () => {
     const records = withValue(minimalRecords(), 'VERANSTALTUNG', 'veranstaltungsort', '');
-    expect(() => writeWettkampfdefinitionsliste(records)).toThrow();
+    expect(() => writeWettkampfdefinitionsliste(records)).toThrow(DsvWriteError);
   });
 
   it('wirft bei einem unzulässigen Wert', () => {
     const records = withValue(minimalRecords(), 'MELDESCHLUSS', 'datum', '2026-05-01');
-    expect(() => writeWettkampfdefinitionsliste(records)).toThrow();
+    expect(() => writeWettkampfdefinitionsliste(records)).toThrow(DsvWriteError);
   });
 
   it('wirft bei einem unbekannten Element', () => {
@@ -140,7 +143,7 @@ describe('writeWettkampfdefinitionsliste', () => {
 
   it('wirft, wenn ein Pflichtelement fehlt', () => {
     const records = minimalRecords().filter((r) => r.element !== 'MELDEGELD');
-    expect(() => writeWettkampfdefinitionsliste(records)).toThrow();
+    expect(() => writeWettkampfdefinitionsliste(records)).toThrow(DsvWriteError);
   });
 });
 
