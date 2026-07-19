@@ -117,10 +117,16 @@ const EXPECTED_NEVER_EMPTY_REQUIRED: readonly string[] = [
 
 /**
  * Echte Abdeckungslücken: optionale Felder, die in keinem Fixture weggelassen
- * werden. Sie stammen alle aus Elementen, für die es nur ein einziges,
- * synthetisches Fixture gibt (BANKVERBINDUNG, NACHWEIS, PFLICHTZEIT) — dieses
- * eine Fixture füllt jedes Feld aus, damit die Werte überhaupt einmal geprüft
- * werden. Schliessen liesse sich die Lücke mit einer zweiten Variante je
+ * werden. Die Ursache ist je Element eine andere:
+ *
+ * - `NACHWEIS` kommt in keiner einzigen echten Datei vor; das eine
+ *   synthetische Fixture füllt jedes Feld aus.
+ * - `PFLICHTZEIT` steht real nur in `gh-dsvparser-definition.dsv7` (zwei
+ *   Zeilen), die `maximalJgAk` beide setzen.
+ * - `BANKVERBINDUNG` steht zwar in 29 echten Dateien — alle 29 setzen aber
+ *   eine `bic`, weshalb das optionale Feld nie leer vorkommt.
+ *
+ * Schliessen liesse sich die Lücke mit einer zweiten synthetischen Variante je
  * Element, die nur die Pflichtfelder setzt.
  *
  * `LASTSCHRIFT.hinweis` stand hier, bis `delta-lastschrift-leer-dsv8.dsv8`

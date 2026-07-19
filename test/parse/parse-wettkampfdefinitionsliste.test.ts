@@ -163,6 +163,25 @@ function definitionLists(dir: string): string[] {
 const REAL = 'test/fixtures/real';
 const SYNTH = 'test/fixtures/synth';
 
+/**
+ * Der vollständige Bestand an Befunden über alle echten
+ * Wettkampfdefinitionslisten, geschlüsselt nach `${severity}:${code}`.
+ *
+ * Erschöpfend statt selektiv: Die drei Tests darunter halten je eine erwartete
+ * Abweichung namentlich fest, würden eine *zusätzliche* Diagnostic-Art aber
+ * nicht bemerken. Diese Karte tut es — jede neue Art und jede veränderte Zahl
+ * schlägt hier fehl.
+ */
+const EXPECTED_DIAGNOSTICS: Record<string, number> = {
+  'error:missing-required-field': 4,
+  'warning:conditional-field-required': 22,
+  'warning:invalid-enum-value': 6,
+  'warning:invalid-value': 37,
+};
+
+/** Anzahl der Dateien mit mindestens einem `error` oder `fatal`. */
+const EXPECTED_FILES_WITH_ERRORS = 4;
+
 const realLists = definitionLists(REAL);
 const synthLists = definitionLists(SYNTH);
 
@@ -175,6 +194,48 @@ describe('Wettkampfdefinitionslisten aus test/fixtures/real', () => {
     const result = parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'));
     expect(result.diagnostics.filter((d) => d.severity === 'fatal')).toEqual([]);
     expect(result.document.records.length).toBeGreaterThan(0);
+  });
+
+  /**
+   * Hält den Bestand an Befunden exakt fest: Steigt die Zahl der betroffenen
+   * Dateien oder kommt eine Art hinzu, schlägt der Test fehl.
+   */
+  it('erzeugt genau den festgehaltenen Bestand an Befunden', () => {
+    const byCode = new Map<string, number>();
+    const filesWithErrors = new Set<string>();
+
+    for (const name of realLists) {
+      const result = parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'));
+
+      for (const d of result.diagnostics) {
+        const key = `${d.severity}:${d.code}`;
+        byCode.set(key, (byCode.get(key) ?? 0) + 1);
+        if (d.severity === 'error' || d.severity === 'fatal') filesWithErrors.add(name);
+      }
+    }
+
+    expect(Object.fromEntries([...byCode].sort())).toEqual(EXPECTED_DIAGNOSTICS);
+    expect(filesWithErrors.size).toBe(EXPECTED_FILES_WITH_ERRORS);
+  });
+
+  /**
+   * Erwartete Abweichung: Sechs Wettkämpfe einer einzigen Ausschreibung tragen
+   * die Wettkampfart `N`, die keine der Spec-Fassungen kennt. Der Parser
+   * toleriert den Wert (`tolerated: true`) und meldet ihn als Warnung, statt
+   * die Datei unbrauchbar zu machen.
+   */
+  it('warnt genau sechsmal wegen der unbekannten Wettkampfart N', () => {
+    const warnings = realLists.flatMap((name) =>
+      parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'))
+        .diagnostics.filter((d) => d.code === 'invalid-enum-value' && d.severity === 'warning')
+        .map((d) => ({ name, data: d.data })),
+    );
+
+    expect(warnings).toHaveLength(6);
+    expect(new Set(warnings.map((w) => w.name))).toEqual(new Set(['dsvportal-13062024-Wk.dsv7']));
+    for (const warning of warnings) {
+      expect(warning.data).toMatchObject({ field: 'wettkampfart', value: 'N', tolerated: true });
+    }
   });
 
   /**
