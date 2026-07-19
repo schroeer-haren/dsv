@@ -1,0 +1,12 @@
+FORMAT:Vereinsergebnisliste;7;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Synthetischer Wettkampf;Musterstadt;50;AUTOMATISCH;
+VERANSTALTER:Schwimmverband Musterland;
+AUSRICHTER:SV Musterstadt;Muster, Max;;;;;;;a@example.org;
+ABSCHNITT:1;15.03.2026;09:00;N;
+WETTKAMPF:1;V;1;1;50;F;GL;W;SW;;;
+WETTKAMPF:2;V;1;1;50;F;BE;W;SW;;;
+WERTUNG:1;V;1;JG;0;9999;W;Offene Wertung;
+WERTUNG:2;V;2;JG;0;9999;;Offene Wertung;
+VEREIN:SV Musterstadt;1234;10;GER;
+DATEIENDE

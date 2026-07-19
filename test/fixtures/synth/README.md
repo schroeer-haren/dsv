@@ -5,6 +5,44 @@ Der Ordner wird bei jedem Lauf neu geschrieben — hier nichts von Hand ablegen.
 
 Sie decken ab, wofür es in den 108 echten Dateien keine Belege gibt.
 
+## Die DSV8-Gegenprobe
+
+Eine echte DSV8-Datei gibt es nirgends — der Standard gilt erst ab dem
+01.08.2026, und die Landesverbände empfehlen, die Übergangsfrist bis zum
+31.12.2026 auszuschöpfen. Die Prüfung der DSV8-Unterstützung stützt sich
+deshalb allein auf die Spezifikation und auf diese Fixtures.
+
+Je Listenart stehen drei Dateien, die sich paarweise nur in einer Hinsicht
+unterscheiden:
+
+| Endung | Inhalt | Erwartung |
+| --- | --- | --- |
+| `delta-…-dsv7.dsv7` | ohne DSV8-Inhalt, als DSV7 deklariert | wird angenommen |
+| `delta-…-dsv8.dsv8` | mit DSV8-Inhalt, als DSV8 deklariert | wird angenommen |
+| `delta-…-verstoss.dsv7` | mit DSV8-Inhalt, als DSV7 deklariert | wird **beanstandet** |
+
+Die letzten beiden sind Zeile für Zeile identisch bis auf die Versionsnummer im
+`FORMAT`-Element; `test/schema/dsv8-abdeckung.test.ts` prüft auch das. Daran
+hängt der Beweis: Wäre eine Markierung `since: 8` vergessen, ginge die dritte
+Datei stillschweigend durch.
+
+Dateien mit `-verstoss` im Namen sind also **absichtlich ungültig** und aus den
+Sweeper-Tests ausgenommen, die für jedes Fixture Fehlerfreiheit verlangen.
+
+`test/schema/dsv8-delta.ts` führt das vollständige Delta zwischen DSV7 und DSV8
+auf; `test/schema/dsv8-abdeckung.test.ts` rechnet nach, dass jedes darin
+markierte Element, Feld und jeder Wert in mindestens einer DSV8-Fixture
+vorkommt, und dass jedes optionale Delta-Feld zusätzlich einmal leer steht.
+
+| Datei | Deckt ab |
+| --- | --- |
+| `delta-wettkampfdefinitionsliste-*` | `BANKVERBINDUNG.kontoinhaber`, die Kicks `KB`/`KR`, Geschlecht `D` am WETTKAMPF, die Meldegeldtypen `Teilnehmermeldegeld` und `Abschnittspauschale` |
+| `delta-lastschrift-*` | das Element `LASTSCHRIFT` — neben `BANKVERBINDUNG` nicht zugelassen und deshalb in einer eigenen Gegenprobe |
+| `delta-lastschrift-leer-dsv8.dsv8` | `LASTSCHRIFT.hinweis` einmal leer, damit sein Unterlassungswert `N` zum Zuge kommt |
+| `delta-vereinsmeldeliste-*` | `VEREIN.lastschrift`, `KARIMELDUNG.geschlecht`, `TRAINER.geschlecht`, die Kicks, Geschlecht `D` am WETTKAMPF |
+| `delta-vereinsergebnisliste-*` | die Kicks, Geschlecht `D` an WETTKAMPF und WERTUNG |
+| `delta-wettkampfergebnisliste-*` | die Kicks, Geschlecht `D` an der WERTUNG — am WETTKAMPF gehört `D` hier **nicht** zum Delta, diese Listenart kennt es dort schon in DSV7 |
+
 ## Wettkampfdefinitionsliste
 
 | Datei | Deckt ab |

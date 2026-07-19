@@ -1105,3 +1105,141 @@ schreibe('vereinsergebnis-knapp.dsv8', [
   line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', '', 'Offene Wertung'),
   line('VEREIN', 'SV Nachbarort', '4321', '11', 'GER'),
 ]);
+
+// ---------------------------------------------------------------------------
+// Delta-Fixtures: die Gegenprobe je Listenart
+// ---------------------------------------------------------------------------
+
+/**
+ * Je Listenart drei Dateien, die sich paarweise nur in einer Hinsicht
+ * unterscheiden — der eigentliche Beweis, dass die Versionsabhängigkeit trägt:
+ *
+ * - `…-dsv7.dsv7`      ohne DSV8-Inhalt, als DSV7 deklariert: muss sauber sein
+ * - `…-dsv8.dsv8`      mit DSV8-Inhalt, als DSV8 deklariert: muss sauber sein
+ * - `…-verstoss.dsv7`  mit DSV8-Inhalt, als DSV7 deklariert: muss beanstandet
+ *                      werden
+ *
+ * Die letzten beiden sind Zeile für Zeile identisch bis auf die
+ * Versionsnummer im FORMAT-Element. Genau daran hängt der Beweis: Wäre eine
+ * Markierung `since: 8` vergessen, nähme die Bibliothek die dritte Datei
+ * stillschweigend an.
+ *
+ * Zusammen decken die `…-dsv8`-Dateien jedes Feld, Element und jeden Wert des
+ * Deltas ab; `test/schema/dsv8-abdeckung.test.ts` rechnet das nach.
+ */
+
+/** Die drei Fassungen einer Gegenprobe aus einem Rumpf, der beide Fälle kennt. */
+const gegenprobe = (name: string, zeilen: (dsv8: boolean, version: 7 | 8) => string[]): void => {
+  schreibe(`${name}-dsv7.dsv7`, zeilen(false, 7));
+  schreibe(`${name}-dsv8.dsv8`, zeilen(true, 8));
+  schreibe(`${name}-verstoss.dsv7`, zeilen(true, 7));
+};
+
+// Wettkampfdefinitionsliste: kontoinhaber, die Kicks, divers am WETTKAMPF und
+// die beiden neuen Meldegeldtypen. LASTSCHRIFT fehlt hier — das Element ist
+// neben BANKVERBINDUNG nicht zugelassen (dsv8.md:831) und steht deshalb in
+// einer eigenen Gegenprobe.
+gegenprobe('delta-wettkampfdefinitionsliste', (dsv8, version) => [
+  ...kopf(version),
+  dsv8
+    ? line(
+        'BANKVERBINDUNG',
+        'Sparkasse Musterstadt',
+        'DE02120300000000202051',
+        'BYLADEM1001',
+        'SV Musterstadt',
+      )
+    : line('BANKVERBINDUNG', 'Sparkasse Musterstadt', 'DE02120300000000202051', 'BYLADEM1001'),
+  line('ABSCHNITT', '1', '15.03.2026', '08:00', '08:30', '09:00', 'N'),
+  dsv8
+    ? line('WETTKAMPF', '1', 'V', '1', '', '50', 'S', 'KB', 'D', 'SW', '', '')
+    : line('WETTKAMPF', '1', 'V', '1', '', '50', 'F', 'GL', 'W', 'SW', '', ''),
+  dsv8
+    ? line('WETTKAMPF', '2', 'V', '1', '', '50', 'S', 'KR', 'D', 'SW', '', '')
+    : line('WETTKAMPF', '2', 'V', '1', '', '50', 'F', 'BE', 'W', 'SW', '', ''),
+  line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', '', 'Offene Wertung'),
+  line('WERTUNG', '2', 'V', '2', 'JG', '0', '9999', '', 'Offene Wertung'),
+  line('MELDEGELD', 'Meldegeldpauschale', '10,00', ''),
+  ...(dsv8
+    ? [
+        line('MELDEGELD', 'Teilnehmermeldegeld', '5,00', ''),
+        line('MELDEGELD', 'Abschnittspauschale', '15,00', ''),
+      ]
+    : []),
+]);
+
+// LASTSCHRIFT als eigenes Element. In der DSV7-Fassung entfällt die Zeile
+// ersatzlos — das Element gibt es dort nicht.
+gegenprobe('delta-lastschrift', (dsv8, version) => [
+  ...kopf(version),
+  ...(dsv8 ? [line('LASTSCHRIFT', 'J')] : []),
+  ...rumpf,
+]);
+
+// `LASTSCHRIFT.hinweis` ist optional; hier steht es einmal leer, damit sein
+// Unterlassungswert `N` überhaupt zum Zuge kommt.
+schreibe('delta-lastschrift-leer-dsv8.dsv8', [...kopf(8), line('LASTSCHRIFT', ''), ...rumpf]);
+
+// Vereinsmeldeliste: VEREIN.lastschrift, KARIMELDUNG.geschlecht,
+// TRAINER.geschlecht, die Kicks und divers am WETTKAMPF.
+gegenprobe('delta-vereinsmeldeliste', (dsv8, version) => [
+  line('FORMAT', 'Vereinsmeldeliste', String(version)),
+  line('ERZEUGER', 'dsv-testdaten', '1.0', 'test@example.org'),
+  line('VERANSTALTUNG', 'Synthetischer Wettkampf', 'Musterstadt', '50', 'AUTOMATISCH'),
+  line('ABSCHNITT', '1', '15.03.2026', '09:00', 'N'),
+  dsv8
+    ? line('WETTKAMPF', '1', 'V', '1', '1', '50', 'S', 'KB', 'D', '', '')
+    : line('WETTKAMPF', '1', 'V', '1', '1', '50', 'F', 'GL', 'W', '', ''),
+  dsv8
+    ? line('WETTKAMPF', '2', 'V', '1', '1', '50', 'S', 'KR', 'D', '', '')
+    : line('WETTKAMPF', '2', 'V', '1', '1', '50', 'F', 'BE', 'W', '', ''),
+  dsv8
+    ? line('VEREIN', 'SV Musterstadt', '1234', '10', 'GER', 'J')
+    : line('VEREIN', 'SV Musterstadt', '1234', '10', 'GER'),
+  line('ANSPRECHPARTNER', 'Muster, Max', '', '', '', '', '', '', 'meldung@example.org'),
+  dsv8
+    ? line('KARIMELDUNG', '1', 'Richter, Robin', 'SCH', 'D')
+    : line('KARIMELDUNG', '1', 'Richter, Robin', 'SCH'),
+  dsv8 ? line('TRAINER', '1', 'Trainer, Toni', 'D') : line('TRAINER', '1', 'Trainer, Toni'),
+]);
+
+// Vereinsergebnisliste: rein additiv — die Kicks sowie divers am WETTKAMPF und
+// an der WERTUNG.
+gegenprobe('delta-vereinsergebnisliste', (dsv8, version) => [
+  line('FORMAT', 'Vereinsergebnisliste', String(version)),
+  line('ERZEUGER', 'dsv-testdaten', '1.0', 'test@example.org'),
+  line('VERANSTALTUNG', 'Synthetischer Wettkampf', 'Musterstadt', '50', 'AUTOMATISCH'),
+  line('VERANSTALTER', 'Schwimmverband Musterland'),
+  line('AUSRICHTER', 'SV Musterstadt', 'Muster, Max', '', '', '', '', '', '', 'a@example.org'),
+  line('ABSCHNITT', '1', '15.03.2026', '09:00', 'N'),
+  dsv8
+    ? line('WETTKAMPF', '1', 'V', '1', '1', '50', 'S', 'KB', 'D', 'SW', '', '')
+    : line('WETTKAMPF', '1', 'V', '1', '1', '50', 'F', 'GL', 'W', 'SW', '', ''),
+  dsv8
+    ? line('WETTKAMPF', '2', 'V', '1', '1', '50', 'S', 'KR', 'D', 'SW', '', '')
+    : line('WETTKAMPF', '2', 'V', '1', '1', '50', 'F', 'BE', 'W', 'SW', '', ''),
+  dsv8
+    ? line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', 'D', 'Offene Wertung')
+    : line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', 'W', 'Offene Wertung'),
+  line('WERTUNG', '2', 'V', '2', 'JG', '0', '9999', '', 'Offene Wertung'),
+  line('VEREIN', 'SV Musterstadt', '1234', '10', 'GER'),
+]);
+
+// Wettkampfergebnisliste: die Kicks und divers an der WERTUNG. Divers am
+// WETTKAMPF fehlt hier absichtlich — diese Listenart kennt es dort schon in
+// DSV7 (dsv7.md:4636), es gehört also nicht zum Delta.
+gegenprobe('delta-wettkampfergebnisliste', (dsv8, version) => [
+  ...ergebnisKopf(version),
+  line('ABSCHNITT', '1', '15.03.2026', '09:00', 'N'),
+  dsv8
+    ? line('WETTKAMPF', '1', 'V', '1', '1', '50', 'S', 'KB', 'D', 'SW', '', '')
+    : line('WETTKAMPF', '1', 'V', '1', '1', '50', 'F', 'GL', 'D', 'SW', '', ''),
+  dsv8
+    ? line('WETTKAMPF', '2', 'V', '1', '1', '50', 'S', 'KR', 'D', 'SW', '', '')
+    : line('WETTKAMPF', '2', 'V', '1', '1', '50', 'F', 'BE', 'D', 'SW', '', ''),
+  dsv8
+    ? line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', 'D', 'Offene Wertung')
+    : line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', 'W', 'Offene Wertung'),
+  line('WERTUNG', '2', 'V', '2', 'JG', '0', '9999', '', 'Offene Wertung'),
+  ...vereine,
+]);

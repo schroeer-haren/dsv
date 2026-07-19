@@ -197,8 +197,11 @@ describe('Round-Trip über echte Ergebnislisten', () => {
     expect(realFiles.filter((r) => r.document.records.length > 0).length).toBe(72);
     expect(realErrorFree.length).toBe(48);
     expect(realStrictFiles.length).toBe(47);
-    // Dazu die vier synthetischen Ergebnis-Fixtures.
-    expect(strictFiles.length).toBe(51);
+    // Dazu die synthetischen Ergebnis-Fixtures: die vier ursprünglichen und
+    // die beiden gültigen Fassungen der DSV8-Gegenprobe. Die dritte Fassung,
+    // `delta-wettkampfergebnisliste-verstoss.dsv7`, ist absichtlich ungültig
+    // und fällt schon aus `strictFiles` heraus.
+    expect(strictFiles.length).toBe(53);
   });
 
   it.each(strictFiles)('%s: parse → write → parse ist semantisch äquivalent', (path) => {

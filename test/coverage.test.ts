@@ -118,14 +118,17 @@ const EXPECTED_NEVER_EMPTY_REQUIRED: readonly string[] = [
 /**
  * Echte Abdeckungslücken: optionale Felder, die in keinem Fixture weggelassen
  * werden. Sie stammen alle aus Elementen, für die es nur ein einziges,
- * synthetisches Fixture gibt (BANKVERBINDUNG, LASTSCHRIFT, NACHWEIS,
- * PFLICHTZEIT) — dieses eine Fixture füllt jedes Feld aus, damit die Werte
- * überhaupt einmal geprüft werden. Schliessen liesse sich die Lücke mit einer
- * zweiten Variante je Element, die nur die Pflichtfelder setzt.
+ * synthetisches Fixture gibt (BANKVERBINDUNG, NACHWEIS, PFLICHTZEIT) — dieses
+ * eine Fixture füllt jedes Feld aus, damit die Werte überhaupt einmal geprüft
+ * werden. Schliessen liesse sich die Lücke mit einer zweiten Variante je
+ * Element, die nur die Pflichtfelder setzt.
+ *
+ * `LASTSCHRIFT.hinweis` stand hier, bis `delta-lastschrift-leer-dsv8.dsv8`
+ * dazukam: Als optionales Feld des Deltas muss es einmal leer vorkommen, sonst
+ * bliebe unbelegt, dass sein Trennzeichen in DSV8 auch ohne Wert dasteht.
  */
 const EXPECTED_NEVER_EMPTY_OPTIONAL: readonly string[] = [
   'BANKVERBINDUNG.bic',
-  'LASTSCHRIFT.hinweis',
   'NACHWEIS.nachweisBis',
   'PFLICHTZEIT.maximalJgAk',
 ];

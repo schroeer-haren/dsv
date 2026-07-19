@@ -1,0 +1,11 @@
+FORMAT:Vereinsmeldeliste;7;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Synthetischer Wettkampf;Musterstadt;50;AUTOMATISCH;
+ABSCHNITT:1;15.03.2026;09:00;N;
+WETTKAMPF:1;V;1;1;50;F;GL;W;;;
+WETTKAMPF:2;V;1;1;50;F;BE;W;;;
+VEREIN:SV Musterstadt;1234;10;GER;
+ANSPRECHPARTNER:Muster, Max;;;;;;;meldung@example.org;
+KARIMELDUNG:1;Richter, Robin;SCH;
+TRAINER:1;Trainer, Toni;
+DATEIENDE

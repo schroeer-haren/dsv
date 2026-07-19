@@ -1,0 +1,14 @@
+(* synthetische Fixture — von scripts/build-synth-fixtures.ts erzeugt *)
+FORMAT:Wettkampfergebnisliste;8;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Synthetischer Wettkampf;Musterstadt;25;AUTOMATISCH;
+VERANSTALTER:SV Musterstadt;
+AUSRICHTER:SV Musterstadt;Muster, Max;Musterweg 1;12345;Musterstadt;GER;;;ausrichter@example.org;
+ABSCHNITT:1;15.03.2026;09:00;N;
+WETTKAMPF:1;V;1;1;50;S;KB;D;SW;;;
+WETTKAMPF:2;V;1;1;50;S;KR;D;SW;;;
+WERTUNG:1;V;1;JG;0;9999;D;Offene Wertung;
+WERTUNG:2;V;2;JG;0;9999;;Offene Wertung;
+VEREIN:SV Musterstadt;1234;10;GER;
+VEREIN:Auslandsverein;0;0;AUT;
+DATEIENDE

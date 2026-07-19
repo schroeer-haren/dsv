@@ -1,0 +1,16 @@
+(* synthetische Fixture — von scripts/build-synth-fixtures.ts erzeugt *)
+FORMAT:Wettkampfdefinitionsliste;8;
+ERZEUGER:dsv-testdaten;1.0;test@example.org;
+VERANSTALTUNG:Synthetischer Wettkampf;Musterstadt;25;AUTOMATISCH;
+VERANSTALTUNGSORT:Hallenbad;Musterweg 1;12345;Musterstadt;GER;;;;
+AUSSCHREIBUNGIMNETZ:https://example.org/ausschreibung;
+VERANSTALTER:SV Musterstadt;
+AUSRICHTER:SV Musterstadt;Muster, Max;;;;;;;ausrichter@example.org;
+MELDEADRESSE:Muster, Max;;;;;;;meldung@example.org;
+MELDESCHLUSS:01.03.2026;18:00;
+LASTSCHRIFT:J;
+ABSCHNITT:1;15.03.2026;08:00;08:30;09:00;N;
+WETTKAMPF:1;V;1;;100;F;GL;W;SW;;;
+WERTUNG:1;V;1;JG;0;9999;;Offene Wertung;
+MELDEGELD:Meldegeldpauschale;10,00;;
+DATEIENDE

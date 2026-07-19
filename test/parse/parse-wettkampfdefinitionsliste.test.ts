@@ -139,10 +139,18 @@ describe('parseWettkampfdefinitionsliste', () => {
   });
 });
 
-/** Alle Fixtures eines Verzeichnisses, die eine Wettkampfdefinitionsliste sind. */
+/**
+ * Alle Fixtures eines Verzeichnisses, die eine Wettkampfdefinitionsliste sind.
+ *
+ * Fixtures mit `-verstoss` im Namen bleiben aussen vor: Sie sind absichtlich
+ * ungültig. Sie tragen DSV8-Inhalt, deklarieren sich aber als DSV7, und die
+ * Gegenprobe in `test/schema/dsv8-abdeckung.test.ts` lebt davon, dass sie
+ * beanstandet werden.
+ */
 function definitionLists(dir: string): string[] {
   return readdirSync(dir)
     .filter((f) => /\.dsv[678]?$/i.test(f))
+    .filter((f) => !f.includes('-verstoss'))
     .filter((f) => {
       const { document } = parseDsv(readFileSync(join(dir, f), 'utf8'));
       return (
