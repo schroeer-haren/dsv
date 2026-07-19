@@ -72,11 +72,17 @@ const QUALIFIKATIONSART_WERTE: readonly EnumValue[] = [
   { value: 'E', doc: 'Entscheidung' },
 ];
 
-/** Geschlecht bei den geführten Personen (dsv8.md:3406). */
+/**
+ * Geschlecht bei den geführten Personen (dsv8.md:3406).
+ *
+ * Ohne `since`: `D` steht an PERSON (dsv7.md:3260) und an STAFFELPERSON
+ * (dsv7.md:3731) schon in DSV7. Neu ist divers in dieser Listenart allein an
+ * WETTKAMPF und WERTUNG.
+ */
 const GESCHLECHT_PERSON_WERTE: readonly EnumValue[] = [
   { value: 'M', doc: 'männlich' },
   { value: 'W', doc: 'weiblich' },
-  { value: 'D', doc: 'divers', since: 8 },
+  { value: 'D', doc: 'divers' },
 ];
 
 /** Grund, aus dem ein Start nicht gewertet wird. */

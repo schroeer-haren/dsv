@@ -272,10 +272,14 @@ export const WETTKAMPF = element('WETTKAMPF', [
     required: true,
     doc: 'Geschlecht der Teilnehmenden.',
     specRef: 'dsv8.md:4771',
+    // `D` steht hier schon in DSV7 (dsv7.md:4636) und trägt deshalb kein
+    // `since`. Diese Listenart ist damit die einzige, die divers am WETTKAMPF
+    // von Anfang an kennt; Wettkampfdefinitions-, Vereinsmelde- und
+    // Vereinsergebnisliste ziehen erst mit DSV8 nach.
     values: [
       { value: 'M', doc: 'männlich' },
       { value: 'W', doc: 'weiblich' },
-      { value: 'D', doc: 'divers', since: 8 },
+      { value: 'D', doc: 'divers' },
       { value: 'X', doc: 'gemischte Wettkämpfe' },
     ],
   }),
@@ -348,10 +352,15 @@ export const WERTUNG = element('WERTUNG', [
     // Datei beschreibt. Kapitel 5.1 führt dasselbe Feld als M, W, X, D auf
     // (dsv8.md:1228–1234); diese Reihenfolge steht in der
     // Wettkampfdefinitionsliste. Der Wertevorrat ist in beiden derselbe.
+    //
+    // `D` kommt hier erst mit DSV8 hinzu: DSV7 führt an dieser Stelle nur
+    // M, W und X auf (dsv7.md:4775–4778), DSV8 schiebt divers dazwischen
+    // (dsv8.md:4942). Am WETTKAMPF derselben Liste stand `D` dagegen schon
+    // immer — die beiden Felder unterscheiden sich darin.
     values: [
       { value: 'M', doc: 'männlich' },
       { value: 'W', doc: 'weiblich' },
-      { value: 'D', doc: 'divers' },
+      { value: 'D', doc: 'divers', since: 8 },
       { value: 'X', doc: 'mixed' },
     ],
   }),

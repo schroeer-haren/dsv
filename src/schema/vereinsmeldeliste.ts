@@ -39,11 +39,18 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'E', doc: 'Entscheidung' },
 ];
 
-/** Geschlecht bei den gemeldeten Personen (dsv8.md:2206). */
+/**
+ * Geschlecht bei den gemeldeten Personen (dsv8.md:2206).
+ *
+ * Ohne `since`: `D` steht an PNMELDUNG schon in DSV7 (dsv7.md:2070). Neu ist
+ * divers in dieser Listenart am WETTKAMPF sowie an den beiden Feldern, die es
+ * in DSV7 überhaupt nicht gibt — `KARIMELDUNG.geschlecht` und
+ * `TRAINER.geschlecht`.
+ */
 const GESCHLECHT_PERSON_WERTE: readonly EnumValue[] = [
   { value: 'M', doc: 'männlich' },
   { value: 'W', doc: 'weiblich' },
-  { value: 'D', doc: 'divers', since: 8 },
+  { value: 'D', doc: 'divers' },
 ];
 
 /** Startklassen einer Schwimmart, `AB` für ohne Startklasse. */

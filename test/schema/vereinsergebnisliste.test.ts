@@ -809,11 +809,20 @@ describe('Vereinsergebnisliste — DSV8-Markierungen', () => {
     expect(seit8(WETTKAMPF, 'ausuebung')).toEqual(['KB', 'KR']);
   });
 
-  it('lässt divers an allen vier Geschlechtsfeldern erst ab DSV8 zu', () => {
+  /**
+   * Nur an WETTKAMPF und WERTUNG kommt divers mit DSV8 hinzu (dsv8.md:3143
+   * bzw. dsv8.md:3285). An PERSON und STAFFELPERSON steht `D` schon in DSV7
+   * (dsv7.md:3260 bzw. dsv7.md:3731) — dort wäre eine Markierung falsch und
+   * würde eine gültige DSV7-Datei zurückweisen.
+   */
+  it('lässt divers an WETTKAMPF und WERTUNG erst ab DSV8 zu', () => {
     expect(seit8(WETTKAMPF, 'geschlecht')).toEqual(['D']);
     expect(seit8(WERTUNG, 'geschlecht')).toEqual(['D']);
-    expect(seit8(PERSON, 'geschlecht')).toEqual(['D']);
-    expect(seit8(STAFFELPERSON, 'geschlecht')).toEqual(['D']);
+  });
+
+  it('lässt divers an PERSON und STAFFELPERSON schon in DSV7 zu', () => {
+    expect(seit8(PERSON, 'geschlecht')).toEqual([]);
+    expect(seit8(STAFFELPERSON, 'geschlecht')).toEqual([]);
   });
 
   /**
@@ -843,8 +852,6 @@ describe('Vereinsergebnisliste — DSV8-Markierungen', () => {
       'WETTKAMPF.ausuebung=KR',
       'WETTKAMPF.geschlecht=D',
       'WERTUNG.geschlecht=D',
-      'PERSON.geschlecht=D',
-      'STAFFELPERSON.geschlecht=D',
     ]);
   });
 });
