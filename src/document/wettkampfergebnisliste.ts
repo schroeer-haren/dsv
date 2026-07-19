@@ -50,7 +50,7 @@ import { decodeZeit } from '../values/zeit.js';
  * - Keine Rückverweise. Ein Zeiger vom Start auf seinen Wettkampf erzeugte
  *   einen Zyklus, an dem `JSON.stringify` wirft. Stattdessen stehen Index-Maps
  *   auf der obersten Ebene. Jeder `Start` hat genau einen Ort im Baum — unter
- *   seinem Wettkampf; `Schwimmer.starts` und `startByKey` verweisen auf
+ *   seinem Wettkampf; `ErgebnisPerson.starts` und `startByKey` verweisen auf
  *   dieselben Objekte, verdoppeln sie also nicht.
  * - Werte bleiben Zeichenketten, ausser Datum, Uhrzeit und Zeit.
  */
@@ -230,6 +230,12 @@ export interface ErgebnisAbschnitt {
 /**
  * Eine Person mit allen ihren Starts.
  *
+ * Der Name trägt das Präfix `Ergebnis` wie seine Geschwister `ErgebnisAbschnitt`
+ * und `ErgebnisWettkampf`: Dieselbe Entität ist je Listenart anders modelliert.
+ * Die Vereinsergebnisliste und die Vereinsmeldeliste kennen ein PERSON-Element
+ * und nennen ihren Typ deshalb `VereinsergebnisPerson` beziehungsweise
+ * `MeldungPerson`; die Wettkampfergebnisliste hat kein solches Element.
+ *
  * Diese Entität steht so in keiner Datei — sie ist aus den PNERGEBNIS-Zeilen
  * zusammengesetzt. Angeboten wird sie, weil die Messung an den echten Daten sie
  * trägt: über 17634 Personen in 75 Dateien, davon 17043 in mehr als einer
@@ -238,7 +244,7 @@ export interface ErgebnisAbschnitt {
  * aber empirisch nicht belegt; tritt doch einer auf, gewinnt die erste Zeile und
  * es entsteht ein `ambiguous-reference`.
  */
-export interface Schwimmer {
+export interface ErgebnisPerson {
   readonly veranstaltungsId: number;
   readonly name: string;
   readonly dsvId: string;
@@ -266,7 +272,7 @@ export interface Wettkampfergebnis {
   readonly startByKey: ReadonlyMap<string, Start>;
   /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
   readonly staffelByKey: ReadonlyMap<string, Staffel>;
-  readonly schwimmerById: ReadonlyMap<number, Schwimmer>;
+  readonly personById: ReadonlyMap<number, ErgebnisPerson>;
 }
 
 export interface ErgebnisProjectionResult {
@@ -992,16 +998,16 @@ export function projectWettkampfergebnisliste(
     );
   }
 
-  // --- Schwimmer -----------------------------------------------------------
-  const schwimmerById = new Map<number, Schwimmer>();
+  // --- Person -----------------------------------------------------------
+  const personById = new Map<number, ErgebnisPerson>();
   const schwimmerStarts = new Map<number, Start[]>();
 
   for (const { start } of startBuilders.values()) {
-    const vorhanden = schwimmerById.get(start.veranstaltungsId);
+    const vorhanden = personById.get(start.veranstaltungsId);
     if (vorhanden === undefined) {
       const starts: Start[] = [start];
       schwimmerStarts.set(start.veranstaltungsId, starts);
-      schwimmerById.set(start.veranstaltungsId, {
+      personById.set(start.veranstaltungsId, {
         veranstaltungsId: start.veranstaltungsId,
         name: start.name,
         dsvId: start.dsvId,
@@ -1059,7 +1065,7 @@ export function projectWettkampfergebnisliste(
       vereinByKennzahl,
       startByKey,
       staffelByKey,
-      schwimmerById,
+      personById,
     },
     diagnostics,
   };

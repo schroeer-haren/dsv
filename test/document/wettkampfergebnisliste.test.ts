@@ -513,7 +513,7 @@ describe('projectWettkampfergebnisliste', () => {
     expect(diagnostics.map((d) => d.code)).toEqual(['ambiguous-reference']);
   });
 
-  it('bietet die Schwimmer-Aggregation über alle Starts einer Person', () => {
+  it('bietet die Personen-Aggregation über alle Starts einer Person', () => {
     const { graph } = project(
       ABSCHNITT,
       WETTKAMPF,
@@ -525,10 +525,10 @@ describe('projectWettkampfergebnisliste', () => {
       pnergebnis({ wettkampfnr: '2', wertungsId: '2', endzeit: '00:01:02,00' }),
     );
 
-    const schwimmer = graph.schwimmerById.get(1);
-    expect(schwimmer?.name).toBe('Muster, Max');
-    expect(schwimmer?.starts).toHaveLength(2);
-    expect(schwimmer?.starts.map((s) => s.wettkampfnr)).toEqual([1, 2]);
+    const person = graph.personById.get(1);
+    expect(person?.name).toBe('Muster, Max');
+    expect(person?.starts).toHaveLength(2);
+    expect(person?.starts.map((s) => s.wettkampfnr)).toEqual([1, 2]);
   });
 });
 

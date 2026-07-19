@@ -263,12 +263,13 @@ staffel.abloesen; // → [{ startnummer: 2, art: '+', zeit: 68, line: 21 }]
 ```
 
 Dazu gibt es Index-Maps über Wettkampf, Wertung, Abschnitt, Verein, Start,
-Staffel und Schwimmer. `Schwimmer` steht so in keiner Datei – die Entität wird
-aus den Ergebniszeilen zusammengesetzt und sammelt alle Starts einer Person:
+Staffel und Person. `ErgebnisPerson` steht so in keiner Datei – die
+Wettkampfergebnisliste hat kein `PERSON`-Element, die Entität wird aus den
+Ergebniszeilen aggregiert und sammelt alle Starts einer Person:
 
 ```typescript
-graph.schwimmerById.get(501)!.name; // → 'Schmidt, Lea'
-graph.schwimmerById.get(501)!.starts.length; // → 1
+graph.personById.get(501)!.name; // → 'Schmidt, Lea'
+graph.personById.get(501)!.starts.length; // → 1
 
 // Die Kennzahl 0 steht für Vereine ausserhalb des DSV und ist kein
 // Schlüssel – sie bleibt aus der Map heraus.

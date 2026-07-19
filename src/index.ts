@@ -54,6 +54,7 @@ export type {
 export type {
   Abloese,
   ErgebnisAbschnitt,
+  ErgebnisPerson,
   ErgebnisProjectionResult,
   ErgebnisVeranstaltung,
   ErgebnisWertung,
@@ -61,7 +62,6 @@ export type {
   Kampfrichter,
   Platzierung,
   Reaktion,
-  Schwimmer,
   Staffel,
   StaffelPerson,
   StaffelZwischenzeit,

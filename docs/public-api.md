@@ -119,7 +119,7 @@ trifft die Formatierungsregel damit exakt, statt sie nachzubauen.
 | `ErgebnisWettkampf`        | type | Ein Wettkampf der Ergebnisliste.                                                         |
 | `ErgebnisWertung`          | type | Eine Wertungsgruppe der Ergebnisliste.                                                   |
 | `Verein`                   | type | Ein teilnehmender Verein.                                                                |
-| `Schwimmer`                | type | Eine gemeldete Person mit Jahrgang und Verein.                                           |
+| `ErgebnisPerson`           | type | Eine Person mit Jahrgang und Verein, aus den Ergebniszeilen aggregiert.                  |
 | `Start`                    | type | Ein Einzelstart mit seinem Ergebnis.                                                     |
 | `Zwischenzeit`             | type | Eine Zwischenzeit innerhalb eines Einzelstarts.                                          |
 | `Reaktion`                 | type | Die Reaktionszeit am Start.                                                              |
