@@ -189,7 +189,7 @@ describe('Vereinsmeldelisten aus test/fixtures/real', () => {
    * exakter Wert statt einer Schranke: Jede Abweichung ist entweder ein Mangel
    * der Dateien oder ein Fehler in der Schematabelle, und beides soll auffallen.
    */
-  it('erzeugt genau 171 Warnungen und sonst nichts', () => {
+  it('erzeugt genau eine Warnung und sonst nichts', () => {
     const byCode = new Map<string, number>();
 
     for (const name of realMeldeLists) {
@@ -200,42 +200,28 @@ describe('Vereinsmeldelisten aus test/fixtures/real', () => {
     }
 
     expect(Object.fromEntries([...byCode].sort())).toEqual({
-      'warning/conditional-field-required': 170,
       'warning/invalid-enum-value': 1,
     });
   });
 
   /**
-   * Befund mit Vorbehalt: Die Spezifikation verlangt bei Zwischenläufen und
-   * Finals die Nummer des qualifizierenden Wettkampfes (dsv8.md:1793). Betroffen
-   * sind hier **alle 170 Wettkämpfe mit Art `F`, ausnahmslos** — und in keiner
-   * der 34 Dateien gibt es unter derselben Nummer einen Vorlauf oder
-   * Zwischenlauf, auf den verwiesen werden könnte.
+   * Die Messung, die der Entscheidung zugrunde liegt (docs/architecture.md):
+   * Die Spezifikation verlangt bei Zwischenläufen und Finals die Nummer des
+   * qualifizierenden Wettkampfes (dsv8.md:1793). In diesen Dateien lassen
+   * **alle 170 Wettkämpfe mit Art `F` das Feld leer, ausnahmslos** — eine Quote
+   * von 100 % über 34 unabhängig erzeugte Dateien.
    *
-   * Bei einer Quote von 100 % über 34 unabhängig erzeugte Dateien ist der Fehler
-   * eher in der Regel als in den Dateien zu suchen: Eine Vereinsmeldung entsteht
-   * vor der Veranstaltung, also bevor sich überhaupt jemand qualifizieren
-   * konnte. `F` bezeichnet hier einen direkt ausgeschriebenen Endlauf, keinen
-   * Lauf mit vorgeschaltetem Vorlauf. Die Regel bleibt vorerst eine `warning`
-   * und ist damit folgenlos; ob sie für diese Listenart ganz entfallen sollte,
-   * ist offen und ausdrücklich nicht stillschweigend entschieden.
+   * Die Gegenprobe ist ebenso eindeutig: In keiner Datei gibt es unter der
+   * Nummer eines Finales einen Vorlauf oder Zwischenlauf, auf den überhaupt
+   * verwiesen werden könnte. Damit liegt der Fehler in der Regel, nicht in den
+   * Dateien — eine Vereinsmeldung entsteht vor der Veranstaltung, also bevor
+   * sich jemand qualifizieren konnte. `F` bezeichnet hier einen direkt
+   * ausgeschriebenen Endlauf, keinen Lauf mit vorgeschaltetem Vorlauf.
+   *
+   * Der Test hält beide Zahlen fest: die 170 Finals ohne Qualifikationsnummer
+   * bleiben, die Warnung dazu entfällt.
    */
-  it('warnt genau 170-mal wegen fehlender Qualifikationswettkampfnr — bei jedem Finale', () => {
-    const warnings = realMeldeLists.flatMap((name) =>
-      parseVereinsmeldeliste(readReal(name))
-        .diagnostics.filter((d) => d.code === 'conditional-field-required')
-        .map((d) => ({ name, data: d.data })),
-    );
-
-    expect(warnings).toHaveLength(170);
-    for (const warning of warnings) {
-      expect(warning.data).toMatchObject({
-        element: 'WETTKAMPF',
-        field: 'qualifikationswettkampfnr',
-        condition: 'F',
-      });
-    }
-
+  it('nennt bei keinem der 170 Finals einen Qualifikationswettkampf — und warnt nicht', () => {
     const finals = realMeldeLists.flatMap((name) =>
       parseVereinsmeldeliste(readReal(name)).document.records.filter(
         (r) => r.element === 'WETTKAMPF' && r.values['wettkampfart'] === 'F',
@@ -243,6 +229,39 @@ describe('Vereinsmeldelisten aus test/fixtures/real', () => {
     );
 
     expect(finals).toHaveLength(170);
+    expect(
+      finals.filter((r) => (r.values['qualifikationswettkampfnr'] ?? '').trim() !== ''),
+    ).toEqual([]);
+
+    // Gegenprobe: kein Finale trägt eine Nummer, unter der die Datei einen
+    // Vorlauf oder Zwischenlauf führt.
+    const referenceable = realMeldeLists.flatMap((name) => {
+      const { records } = parseVereinsmeldeliste(readReal(name)).document;
+      const heats = new Set(
+        records
+          .filter(
+            (r) =>
+              r.element === 'WETTKAMPF' &&
+              (r.values['wettkampfart'] === 'V' || r.values['wettkampfart'] === 'Z'),
+          )
+          .map((r) => r.values['wettkampfnr']),
+      );
+
+      return records
+        .filter((r) => r.element === 'WETTKAMPF' && r.values['wettkampfart'] === 'F')
+        .filter((r) => heats.has(r.values['wettkampfnr']))
+        .map((r) => `${name}:${String(r.values['wettkampfnr'])}`);
+    });
+
+    expect(referenceable).toEqual([]);
+
+    const warnings = realMeldeLists.flatMap((name) =>
+      parseVereinsmeldeliste(readReal(name)).diagnostics.filter(
+        (d) => d.code === 'conditional-field-required',
+      ),
+    );
+
+    expect(warnings).toEqual([]);
   });
 
   /**

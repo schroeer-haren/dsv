@@ -489,24 +489,46 @@ bietet sonst niemand an.
 - bei gesetztem „Grund der Nichtwertung" muss `Platz` = 0 sein
 - Vergleiche von Listart und Enum-Werten **case-insensitiv**
 
-### Offene Regel: Qualifikationswettkampfnr in der Vereinsmeldeliste
+### Entschieden: Qualifikationswettkampfnr gilt in der Vereinsmeldeliste nicht
 
 Die Spec verlangt bei Zwischenläufen und Finals die Nummer des qualifizierenden
-Wettkampfes (dsv8.md:1793). In den 34 echten Vereinsmeldelisten schlägt diese
-Regel bei **allen 170 Wettkämpfen mit Art `F` an, ausnahmslos** – und in keiner
-Datei gibt es unter derselben Nummer einen Vorlauf oder Zwischenlauf, auf den
-verwiesen werden könnte.
+Wettkampfes (dsv8.md:1793). In den 34 echten Vereinsmeldelisten schlug diese
+Regel bei **allen 170 Wettkämpfen mit Art `F` an, ausnahmslos**. Die Gegenprobe
+ist ebenso eindeutig: In keiner der 34 Dateien gibt es unter der Nummer eines
+Finales einen Vorlauf oder Zwischenlauf, auf den überhaupt verwiesen werden
+könnte, und von 1338 Starts geht kein einziger auf einen `F`-Wettkampf.
 
 Eine Quote von 100 % über 34 unabhängig erzeugte Dateien spricht gegen einen
 Mangel der Dateien und für eine zu weit gefasste Regel: Eine Vereinsmeldung
 entsteht **vor** der Veranstaltung, also bevor sich überhaupt jemand
-qualifizieren konnte. `F` bezeichnet hier einen direkt ausgeschriebenen Endlauf.
+qualifizieren konnte. `F` bezeichnet in einer Meldedatei einen direkt
+ausgeschriebenen Endlauf, keinen Finallauf mit vorgeschaltetem Vorlauf. Die
+Spec-Regel beschreibt damit den **Ergebnisfall, nicht den Meldefall**.
 
-Die Regel bleibt vorerst eine `warning` und ist damit folgenlos. Ob sie für
-diese Listenart ganz entfallen sollte, ist **offen und bewusst nicht
-stillschweigend entschieden**; der Befund ist in
-`test/parse/parse-vereinsmeldeliste.test.ts` exakt festgehalten, damit eine
-Änderung auffällt.
+**Entscheidung:** Die Regel gilt für die Vereinsmeldeliste nicht. Umgesetzt ist
+das nicht als Ausnahme im Regelrumpf, sondern durch Bindung an die Listenarten,
+für die sie gilt (`LISTENARTEN_MIT_QUALIFIKATION` in
+`src/validate/validate-document.ts`): Wettkampfdefinitions-,
+Wettkampfergebnis- und Vereinsergebnisliste. Über den Parameter `onlyIn` von
+`targetsWithFields` bleibt die Regel selbst frei von Sonderfällen.
+
+Messung vorher/nachher über alle 142 echten Dateien: 368 → 198 Diagnostics. Die
+170 Warnungen der Vereinsmeldeliste entfallen restlos, die Zahlen aller anderen
+Listenarten bleiben unverändert (u. a. 22 bzw. 36 `conditional-field-required`
+in Wettkampfdefinitions- und Wettkampfergebnisliste). Beide Zahlen sind in
+`test/parse/parse-vereinsmeldeliste.test.ts` festgenagelt.
+
+**Gegenprobe über die übrigen Querregeln:** Geprüft wurde, welche Regel in
+welcher Listenart überhaupt greifen kann. In der Vereinsmeldeliste sind alle
+weiteren Regeln des Ergebnisfalls bereits **strukturell** folgenlos, weil das
+Schema die nötigen Felder gar nicht führt – `zuordnungBestenliste` fehlt (Regel
+„gemischt → SW"), `platz`/`grundDerNichtwertung` fehlen (Regel „Platz 0 bei
+Nichtwertung"), ebenso die Elemente `LASTSCHRIFT`/`BANKVERBINDUNG`/`MELDEGELD`.
+Es greift dort nur noch die Kick-Regel (`technik`/`ausuebung`), und die ist eine
+reine Wertkonsistenz, die zum Meldezeitpunkt genauso gilt. Die
+Qualifikationsregel war also die einzige Regel des Ergebnisfalls, die in die
+Meldeliste durchschlug – weil `qualifikationswettkampfnr` das einzige Feld des
+Ergebnisfalls ist, das die Meldeliste-Vorlage mitführt.
 
 ## Testdaten und Datenschutz
 

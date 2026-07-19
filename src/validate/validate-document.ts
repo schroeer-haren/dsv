@@ -68,6 +68,29 @@ function validateCardinalities(
  */
 const QUALIFIZIERENDE_ARTEN = new Set(['Z', 'F']);
 
+/**
+ * Listenarten, für die die Qualifikationsregel gilt: die, die eine gelaufene
+ * Veranstaltung beschreiben oder ausschreiben.
+ *
+ * Die Vereinsmeldeliste fehlt bewusst. Sie entsteht **vor** der Veranstaltung —
+ * zum Meldezeitpunkt kann sich niemand qualifiziert haben, und `F` bezeichnet
+ * dort einen direkt ausgeschriebenen Endlauf, keinen Finallauf mit
+ * vorgeschaltetem Vorlauf. Die Spec-Regel (dsv8.md:1793) beschreibt den
+ * Ergebnisfall, nicht den Meldefall.
+ *
+ * Gemessen an den 34 echten Vereinsmeldelisten in `test/fixtures/real`: Die
+ * Regel traf dort auf **alle 170 Wettkämpfe der Art `F` zu, also 100 %**, und in
+ * keiner der Dateien existiert unter derselben Nummer ein Vor- oder
+ * Zwischenlauf, auf den verwiesen werden könnte. Von 1338 Starts geht kein
+ * einziger auf einen `F`-Wettkampf. Bei dieser Quote liegt der Fehler in der
+ * Regel, nicht in den Dateien.
+ */
+const LISTENARTEN_MIT_QUALIFIKATION = [
+  'Wettkampfdefinitionsliste',
+  'Wettkampfergebnisliste',
+  'Vereinsergebnisliste',
+];
+
 /** Ausübungswerte, die nur bei Technik `S` zulässig sind (dsv8.md:1070). */
 const KICK_AUSUEBUNGEN = new Set(['KB', 'KR']);
 
@@ -90,8 +113,20 @@ interface FieldRuleTarget {
  * müssen: Der Grund der Nichtwertung heisst in der Wettkampfergebnisliste
  * `PNERGEBNIS`/`STERGEBNIS`, in der Vereinsergebnisliste `PERSONENERGEBNIS`/
  * `STAFFELERGEBNIS`, und in beiden liegt er an anderer Stelle.
+ *
+ * `onlyIn` grenzt eine Regel zusätzlich auf bestimmte Listenarten ein. Das ist
+ * nötig, wenn dieselben Felder in mehreren Listenarten vorkommen, die Regel aber
+ * nur in einem Teil von ihnen fachlich gilt — siehe die Qualifikationsregel
+ * unten. Die Einschränkung steht hier und nicht im Regelrumpf, damit die Regel
+ * selbst frei von Sonderfällen bleibt.
  */
-function targetsWithFields(schema: ListSchema, fields: readonly string[]): FieldRuleTarget[] {
+function targetsWithFields(
+  schema: ListSchema,
+  fields: readonly string[],
+  onlyIn?: readonly string[],
+): FieldRuleTarget[] {
+  if (onlyIn !== undefined && !onlyIn.includes(schema.listenart)) return [];
+
   const targets: FieldRuleTarget[] = [];
 
   for (const occurrence of schema.elements) {
@@ -174,8 +209,13 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSch
   }
 
   // Zwischenläufe und Finals nennen den Lauf, der für sie qualifiziert
-  // (dsv8.md:1110).
-  for (const target of targetsWithFields(schema, ['wettkampfart', 'qualifikationswettkampfnr'])) {
+  // (dsv8.md:1110) — nicht jedoch in der Vereinsmeldeliste, siehe
+  // LISTENARTEN_MIT_QUALIFIKATION.
+  for (const target of targetsWithFields(
+    schema,
+    ['wettkampfart', 'qualifikationswettkampfnr'],
+    LISTENARTEN_MIT_QUALIFIKATION,
+  )) {
     const [artIndex, nummerIndex] = target.indices;
 
     for (const record of byElement.get(target.element.toUpperCase()) ?? []) {

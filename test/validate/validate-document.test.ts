@@ -575,62 +575,76 @@ describe('Querregeln greifen listenartunabhängig', () => {
   });
 
   describe('Qualifikationswettkampf bei Zwischenlauf und Finale', () => {
-    // Die Vereinsmeldeliste kennt kein Feld `zuordnungBestenliste`; die
-    // Qualifikationsnummer liegt daher eine Stelle früher als in den anderen
-    // Listenarten.
-    it('meldet den fehlenden Qualifikationswettkampf in der Vereinsmeldeliste', () => {
-      const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', [
-        '2',
+    /**
+     * Die Regel beschreibt den Ergebnisfall und ist deshalb an die Listenarten
+     * gebunden, die eine gelaufene Veranstaltung abbilden. Die Vereinsmeldeliste
+     * entsteht vor der Veranstaltung — dort kann sich niemand qualifiziert
+     * haben, siehe validate-document.ts und docs/architecture.md.
+     */
+    it.each(['Z', 'F'])(
+      'verlangt in der Vereinsmeldeliste bei Wettkampfart %s keinen Qualifikationswettkampf',
+      (art) => {
+        const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', [
+          '2',
+          art,
+          '1',
+          '',
+          '100',
+          'F',
+          'GL',
+          'W',
+          '',
+          '',
+        ]);
+
+        expect(validateWith(VEREINSMELDELISTE, lines)).toEqual([]);
+      },
+    );
+
+    it.each(['Z', 'F'])(
+      'meldet den fehlenden Qualifikationswettkampf bei Wettkampfart %s in der Vereinsergebnisliste',
+      (art) => {
+        const lines = replace(minimalVereinsergebnis(), 'WETTKAMPF', [
+          '1',
+          art,
+          '1',
+          '1',
+          '100',
+          'F',
+          'GL',
+          'W',
+          'SW',
+          '',
+          '',
+        ]);
+        const diagnostics = validateWith(VEREINSERGEBNISLISTE, lines);
+
+        expect(diagnostics.map((d) => d.code)).toEqual(['conditional-field-required']);
+        expect(diagnostics[0]?.severity).toBe('warning');
+        expect(diagnostics[0]?.data).toMatchObject({
+          element: 'WETTKAMPF',
+          field: 'qualifikationswettkampfnr',
+          condition: art,
+        });
+      },
+    );
+
+    it('schweigt, wenn die Vereinsergebnisliste den Qualifikationswettkampf nennt', () => {
+      const lines = replace(minimalVereinsergebnis(), 'WETTKAMPF', [
+        '1',
         'F',
         '1',
-        '',
+        '1',
         '100',
         'F',
         'GL',
         'W',
-        '',
-        '',
-      ]);
-      const diagnostics = validateWith(VEREINSMELDELISTE, lines);
-
-      expect(diagnostics.map((d) => d.code)).toEqual(['conditional-field-required']);
-      expect(diagnostics[0]?.data).toMatchObject({ field: 'qualifikationswettkampfnr' });
-    });
-
-    it('liest die Qualifikationsnummer der Vereinsmeldeliste an ihrer Stelle', () => {
-      // Nur die Nummer ist gesetzt, die Art bleibt leer. Über den Feldindex der
-      // übrigen Listenarten gelesen wäre das ein falscher Befund.
-      const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', [
-        '2',
-        'F',
-        '1',
-        '',
-        '100',
-        'F',
-        'GL',
-        'W',
-        '1',
-        '',
-      ]);
-
-      expect(validateWith(VEREINSMELDELISTE, lines)).toEqual([]);
-    });
-
-    it('schweigt, wenn die Vereinsmeldeliste den Qualifikationswettkampf nennt', () => {
-      const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', [
-        '2',
-        'F',
-        '1',
-        '',
-        '100',
-        'F',
-        'GL',
-        'W',
+        'SW',
         '1',
         'V',
       ]);
 
-      expect(validateWith(VEREINSMELDELISTE, lines)).toEqual([]);
+      expect(validateWith(VEREINSERGEBNISLISTE, lines)).toEqual([]);
     });
   });
 
