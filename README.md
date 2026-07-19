@@ -5,15 +5,12 @@
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-TypeScript-Bibliothek zum **Parsen und Erzeugen von DSV-Dateien** des Deutschen
-Schwimm-Verbands – Formate **DSV7** und **DSV8**.
+TypeScript-Bibliothek zum **Lesen und Schreiben von DSV-Dateien** des Deutschen
+Schwimm-Verbands – Formate **DSV7** und **DSV8**, alle vier Listenarten.
 
-> ⚠️ **Status: 0.5.0.** Die schema-freie Ebene liest und schreibt Dateien aller
-> vier Listenarten byte-identisch zurück. Darauf setzt die typisierte Ebene auf –
-> seit 0.4.0 für **alle vier Listenarten**: benannte Felder, Validierung gegen
-> das Schema und ein Objektgraph mit aufgelösten Bezügen. 0.5.0 hat die
-> Unterscheidung zwischen DSV7 und DSV8 vollständig überprüft und erprobt die
-> Bibliothek an **142 echten Dateien**.
+> **Status: 0.9.0 – Release-Kandidat für 1.0.** Der Funktionsumfang steht, die
+> öffentliche Oberfläche ist in [`docs/public-api.md`](docs/public-api.md)
+> festgehalten und wird mit 1.0 eingefroren.
 
 ## Installation
 
@@ -24,85 +21,89 @@ npm i @schroeer-haren/dsv
 Benötigt Node.js >= 18. Die Bibliothek hat keine Runtime-Abhängigkeiten und wird
 als ESM und CommonJS inklusive Type-Declarations ausgeliefert.
 
-## Verwendung
+## Schnellstart
 
-Die Bibliothek hat zwei Ebenen. Die **schema-freie Ebene** (`parseDsv`,
-`writeDsv`) funktioniert für alle vier Listenarten und interessiert sich nicht
-für Feldbedeutungen. Die **typisierte Ebene** kennt das Schema und gibt es
-inzwischen für alle vier Listenarten.
+Eine Ergebnisliste lesen und die Zeiten eines Wettkampfs ausgeben:
 
-### Die vier Listenarten im Überblick
+```typescript
+import { parseWettkampfergebnisliste, projectWettkampfergebnisliste } from '@schroeer-haren/dsv';
+
+const datei =
+  [
+    'FORMAT:Wettkampfergebnisliste;7;',
+    'ERZEUGER:Beispiel;1.0;info@example.org;',
+    'VERANSTALTUNG:Herbstpokal 2026;Musterstadt;25;HANDZEIT;',
+    'VERANSTALTER:SV Musterstadt;',
+    'AUSRICHTER:SV Musterstadt;Meier, Anna;Beispielweg 1;12345;Musterstadt;GER;;;anna@example.org;',
+    'ABSCHNITT:1;10.10.2026;09:00;N;',
+    'WETTKAMPF:25;E;1;2;50;F;GL;W;SW;;;',
+    'WERTUNG:25;E;1;JG;2010;2011;W;Jugend weiblich;',
+    'VEREIN:SV Musterstadt;1234;10;GER;',
+    'PNERGEBNIS:25;E;1;1;;Schmidt, Lea;100001;501;W;2010;;SV Musterstadt;1234;00:00:28,44;;;GER;;;',
+    'DATEIENDE',
+  ].join('\r\n') + '\r\n';
+
+const {
+  document: gelesen,
+  diagnostics: befunde,
+  ok: gelesenOk,
+} = parseWettkampfergebnisliste(datei);
+
+gelesenOk; // → true
+befunde; // → []
+
+const { graph: wettkaempfe } = projectWettkampfergebnisliste(gelesen);
+const lauf = wettkaempfe.wettkampfByKey.get('25:E')!;
+
+lauf.starts[0].name; // → 'Schmidt, Lea'
+lauf.starts[0].endzeit; // → 2844
+```
+
+Zeiten sind in Hundertstelsekunden dekodiert, Daten als Tripel aus Tag, Monat
+und Jahr. Alle übrigen Werte bleiben Zeichenketten – die Rohwerte werden für
+das byte-identische Zurückschreiben gebraucht.
+
+## Die zwei Ebenen
+
+Die Bibliothek bietet zwei Ebenen, die aufeinander aufbauen:
+
+|                             | schema-freie Ebene     | typisierte Ebene                            |
+| --------------------------- | ---------------------- | ------------------------------------------- |
+| Funktionen                  | `parseDsv`, `writeDsv` | `parse…`, `project…`, `write…` je Listenart |
+| Kennt Feldbedeutungen       | nein                   | ja                                          |
+| Validiert gegen das Schema  | nein                   | ja                                          |
+| Byte-identischer Round-Trip | ja                     | ja                                          |
+| Listenarten                 | alle, auch unbekannte  | die vier bekannten                          |
+
+**Nimm die typisierte Ebene**, wenn du mit den Inhalten arbeitest: Ergebnisse
+auswerten, Meldungen erzeugen, Dateien prüfen. Sie gibt dir benannte Felder,
+dekodierte Werte und einen Objektgraph mit aufgelösten Bezügen.
+
+**Nimm die schema-freie Ebene**, wenn dich die Bedeutung der Felder nicht
+interessiert – siehe [Schema-frei arbeiten](#schema-frei-arbeiten).
+
+### Die vier Listenarten
 
 Jede Listenart hat dieselben drei Funktionen: `parse…` liest und validiert,
-`write…` schreibt typisierte Records zurück, `project…` löst die Bezüge zu einem
-Objektgraph auf.
+`project…` löst die Bezüge zu einem Objektgraph auf, `write…` schreibt
+typisierte Records zurück.
 
 | Listenart                     | Elemente | Funktionen                                                                                             |
 | ----------------------------- | -------: | ------------------------------------------------------------------------------------------------------ |
-| **Wettkampfdefinitionsliste** |       19 | `parseWettkampfdefinitionsliste`, `writeWettkampfdefinitionsliste`, `projectWettkampfdefinitionsliste` |
-| **Wettkampfergebnisliste**    |       18 | `parseWettkampfergebnisliste`, `writeWettkampfergebnisliste`, `projectWettkampfergebnisliste`          |
-| **Vereinsmeldeliste**         |       17 | `parseVereinsmeldeliste`, `writeVereinsmeldeliste`, `projectVereinsmeldeliste`                         |
-| **Vereinsergebnisliste**      |       20 | `parseVereinsergebnisliste`, `writeVereinsergebnisliste`, `projectVereinsergebnisliste`                |
+| **Wettkampfdefinitionsliste** |       19 | `parseWettkampfdefinitionsliste`, `projectWettkampfdefinitionsliste`, `writeWettkampfdefinitionsliste` |
+| **Wettkampfergebnisliste**    |       18 | `parseWettkampfergebnisliste`, `projectWettkampfergebnisliste`, `writeWettkampfergebnisliste`          |
+| **Vereinsmeldeliste**         |       17 | `parseVereinsmeldeliste`, `projectVereinsmeldeliste`, `writeVereinsmeldeliste`                         |
+| **Vereinsergebnisliste**      |       20 | `parseVereinsergebnisliste`, `projectVereinsergebnisliste`, `writeVereinsergebnisliste`                |
 
 Die beiden Wettkampflisten sind die Sicht des Veranstalters, die beiden
 Vereinslisten die Sicht des Vereins: Was er meldet und was er als Protokoll
 zurückbekommt. Alle vier gibt es als DSV7 und DSV8.
 
-### Schema-frei: alle Listenarten
+## Wettkampfdefinitionsliste
 
-`parseDsv` liefert das Dokument zusammen mit Diagnostics. Ein unverändertes
-Dokument schreibt `writeDsv` byte-identisch zurück:
-
-```typescript
-import { parseDsv, writeDsv } from '@schroeer-haren/dsv';
-
-const text = 'FORMAT:Wettkampfergebnisliste;7;\r\nDATEIENDE\r\n';
-
-const { document, diagnostics, ok } = parseDsv(text);
-
-document.listenart; // → 'Wettkampfergebnisliste'
-document.version; // → 7
-document.items.length; // → 2
-ok; // → true (keine Diagnostic mit Severity 'error' oder 'fatal')
-diagnostics; // → []
-
-writeDsv(document) === text; // → true
-```
-
-Diagnostics melden Auffälligkeiten mit Position, ohne das Lesen abzubrechen –
-fehlt etwa das abschliessende `DATEIENDE`, wird das Dokument trotzdem geliefert:
-
-```typescript
-const { diagnostics } = parseDsv('FORMAT:Wettkampfergebnisliste;7;\r\n');
-
-diagnostics[0];
-// → {
-//     code: 'missing-dateiende-element',
-//     severity: 'warning',
-//     message: 'DATEIENDE element is missing',
-//     start: { line: 1, column: 1 },
-//     end: { line: 1, column: 1 },
-//   }
-```
-
-Wer bei fehlerhaften Dateien lieber eine Exception möchte, nutzt
-`parseDsvOrThrow`; es wirft einen `DsvParseError`, der die Diagnostics trägt:
-
-```typescript
-import { parseDsvOrThrow, DsvParseError } from '@schroeer-haren/dsv';
-
-try {
-  const document = parseDsvOrThrow(text);
-  writeDsv(document);
-} catch (error) {
-  if (error instanceof DsvParseError) console.error(error.diagnostics);
-}
-```
-
-### Typisiert: Wettkampfdefinitionsliste
-
-`parseWettkampfdefinitionsliste` prüft die Datei gegen das Schema und legt jeden
-Feldwert unter seinem Namen ab – statt unter einem Index:
+Die Ausschreibung: Was wird wann geschwommen, in welcher Wertung, zu welchem
+Meldegeld. `parseWettkampfdefinitionsliste` prüft die Datei gegen das Schema und
+legt jeden Feldwert unter seinem Namen ab – statt unter einem Index:
 
 ```typescript
 import { parseWettkampfdefinitionsliste } from '@schroeer-haren/dsv';
@@ -139,14 +140,6 @@ wettkampf.values.technik; // → 'B'
 wettkampf.values.zuordnungBestenliste; // → 'SW'
 ```
 
-Gelesen wird bewusst nachsichtig: Fehlende Felder oder unzulässige Werte
-verhindern die typisierten Records nicht, sie stehen als Diagnostics daneben.
-Nur eine falsche Listenart und eine nicht unterstützte Formatversion brechen die
-Auswertung ab – DSV6 wird mit `fatal` abgelehnt. Geprüft werden Feldanzahl,
-Pflichtfelder, Werttypen, Aufzählungswerte, Zahlenbereiche, Kardinalitäten und
-elementübergreifende Regeln, jeweils abhängig davon, ob die Datei DSV7 oder DSV8
-ist.
-
 `projectWettkampfdefinitionsliste` löst daraus die Bezüge auf und liefert einen
 Objektgraph – Wettkämpfe hängen an ihrem Abschnitt, Wertungen und Pflichtzeiten
 an ihrem Wettkampf:
@@ -161,7 +154,7 @@ graph.veranstaltung.bezeichnung; // → 'Herbstpokal 2026'
 const abschnitt = graph.abschnitte[0];
 
 abschnitt.datum; // → { day: 10, month: 10, year: 2026 }
-abschnitt.anfangszeit; // → 540 (Minuten seit Mitternacht)
+abschnitt.anfangszeit; // → 540
 abschnitt.wettkaempfe.length; // → 1
 abschnitt.wettkaempfe[0].wertungen[0].name; // → 'offen'
 
@@ -169,15 +162,11 @@ abschnitt.wettkaempfe[0].wertungen[0].name; // → 'offen'
 graph.wettkampfByKey.get('1:E')?.einzelstrecke; // → 50
 ```
 
-Ein Wettkampf wird über das Paar aus Nummer und Art adressiert, nicht über die
-Nummer allein: Dieselbe Nummer kommt regelmässig als Vorlauf und als
-Entscheidung vor. Datum, Uhrzeit und Zeit sind dekodiert, alle übrigen Werte
-bleiben Zeichenketten – die Rohwerte werden für den Round-Trip gebraucht.
+`anfangszeit` zählt Minuten seit Mitternacht. Ein Wettkampf wird über das Paar
+aus Nummer und Art adressiert, nicht über die Nummer allein: Dieselbe Nummer
+kommt regelmässig als Vorlauf und als Entscheidung vor.
 
-`writeWettkampfdefinitionsliste` schreibt typisierte Records wieder als Text.
-Anders als beim Lesen wird hier streng validiert und im Fehlerfall ein
-`DsvWriteError` geworfen – was beim Lesen nur eine Warnung war, verhindert das
-Schreiben:
+`writeWettkampfdefinitionsliste` schreibt typisierte Records wieder als Text:
 
 ```typescript
 import { writeWettkampfdefinitionsliste } from '@schroeer-haren/dsv';
@@ -185,10 +174,9 @@ import { writeWettkampfdefinitionsliste } from '@schroeer-haren/dsv';
 writeWettkampfdefinitionsliste(liste.records) === definition; // → true
 ```
 
-### Typisiert: Wettkampfergebnisliste
+## Wettkampfergebnisliste
 
-Die Ergebnisliste funktioniert genauso – `parseWettkampfergebnisliste`,
-`projectWettkampfergebnisliste` und `writeWettkampfergebnisliste`:
+Das Protokoll der ganzen Veranstaltung: alle Starts aller Vereine.
 
 ```typescript
 import { parseWettkampfergebnisliste, projectWettkampfergebnisliste } from '@schroeer-haren/dsv';
@@ -230,8 +218,7 @@ graph.veranstaltung.bezeichnung; // → 'Herbstpokal 2026'
 graph.abschnitte[0].kampfgericht[0].position; // → 'SR'
 ```
 
-Ein `Start` ist der Schwimmvorgang einer Person in einem Wettkampf. Zeiten sind
-in Hundertstelsekunden dekodiert:
+Ein `Start` ist der Schwimmvorgang einer Person in einem Wettkampf:
 
 ```typescript
 const wettkampf = graph.wettkampfByKey.get('25:E')!;
@@ -241,7 +228,7 @@ wettkampf.starts.length; // → 2
 const start = wettkampf.starts[0];
 
 start.name; // → 'Schmidt, Lea'
-start.endzeit; // → 2844 (Hundertstelsekunden)
+start.endzeit; // → 2844
 start.zwischenzeiten; // → [{ distanz: 25, zeit: 1372, line: 14 }]
 start.reaktionen; // → [{ art: '+', zeit: 71, line: 15 }]
 ```
@@ -288,12 +275,10 @@ graph.schwimmerById.get(501)!.starts.length; // → 1
 graph.vereinByKennzahl.get(1234)!.bezeichnung; // → 'SV Musterstadt'
 ```
 
-### Typisiert: Vereinsmeldeliste
+## Vereinsmeldeliste
 
-Die Vereinsmeldeliste ist das, was ein Verein an den Ausrichter schickt: seine
-Meldungen, seine Staffeln, seine Kampfrichter und Trainer.
-`projectVereinsmeldeliste` löst die Bezüge auf – Meldungen hängen an ihrer
-Person, die Person an ihrem Trainer:
+Was ein Verein an den Ausrichter schickt: seine Meldungen, seine Staffeln, seine
+Kampfrichter und Trainer.
 
 ```typescript
 import {
@@ -336,7 +321,7 @@ graph.verein!.bezeichnung; // → 'SV Musterstadt'
 graph.verein!.kennzahl; // → 1234
 graph.ansprechpartner!.email; // → 'anna@example.org'
 graph.abschnitte[0].datum; // → { day: 10, month: 10, year: 2026 }
-graph.abschnitte[0].anfangszeit; // → 540 (Minuten seit Mitternacht)
+graph.abschnitte[0].anfangszeit; // → 540
 graph.meldungen.length; // → 2
 ```
 
@@ -369,32 +354,12 @@ staffel.personen.map((p) => p.veranstaltungsId); // → [1, 2]
 writeVereinsmeldeliste(liste.records) === meldung; // → true
 ```
 
-Das Beispiel enthält absichtlich die Bruststartklasse `SB10`. Sie fehlt in der
-Werteliste der Spezifikation, obwohl `S10` und `SM10` bei den beiden anderen
-Startklassen stehen – eine Lücke der Vorlage, kein Verbot. Der Wert wird
-deshalb gelesen und geschrieben und nur als `info` vermerkt:
+## Vereinsergebnisliste
 
-```typescript
-const { diagnostics } = parseVereinsmeldeliste(meldung);
-
-diagnostics[0];
-// → {
-//     code: 'invalid-enum-value',
-//     severity: 'info',
-//     message:
-//       'HANDICAP.startklasseBrust: "SB10" is missing from the specification\'s list, accepted as a gap',
-//     start: { line: 12, column: 1 },
-//     end: { line: 12, column: 1 },
-//     data: { field: 'startklasseBrust', value: 'SB10', specGap: true },
-//   }
-```
-
-### Typisiert: Vereinsergebnisliste
-
-Die Vereinsergebnisliste ist das Protokoll, das der Verein zurückbekommt – auf
-seine Teilnehmenden beschränkt. Anders als die Wettkampfergebnisliste kennt sie
-`PERSON` als eigenes Element; die Person muss also nicht aus den Ergebniszeilen
-zusammengesetzt werden:
+Das Protokoll, das der Verein zurückbekommt – auf seine Teilnehmenden
+beschränkt. Anders als die Wettkampfergebnisliste kennt sie `PERSON` als eigenes
+Element; die Person muss also nicht aus den Ergebniszeilen zusammengesetzt
+werden:
 
 ```typescript
 import { parseVereinsergebnisliste, projectVereinsergebnisliste } from '@schroeer-haren/dsv';
@@ -442,7 +407,7 @@ graph.wertungById.get(1)!.name; // → 'Jugend weiblich'
 ```
 
 Ein `Start` hängt an seiner Person und trägt Endzeit, Zwischenzeiten,
-Reaktionszeiten und die Platzierungen – alle Zeiten in Hundertstelsekunden:
+Reaktionszeiten und die Platzierungen:
 
 ```typescript
 const person = graph.personById.get(1)!;
@@ -484,18 +449,209 @@ staffelStart.zwischenzeiten; // → [{ startnummer: 1, distanz: 100, zeit: 6361,
 staffelStart.abloesen; // → [{ startnummer: 2, art: '+', zeit: 32, line: 24 }]
 ```
 
-Zwei Regeln greifen hier besonders. Bei **gemischten Wettkämpfen** (Geschlecht
-`X`) verlangt die Spezifikation `SW` als Zuordnung zur Bestenliste; das meldet
-die Bibliothek nur als Warnung, weil 74 von 244 echten gemischten Wettkämpfen
-stattdessen `KG` oder `MS` tragen. Und die **Wertungs-ID eines Ergebnisses** muss
-auf eine Wertung des eigenen Wettkampfs zeigen – ein Fremdbezug ist ein
-`dangling-reference`. Diese Regel halten alle 97.330 Ergebnisse der echten
-Dateien ausnahmslos ein.
+## Diagnostics
+
+Alle `parse…`-Funktionen geben statt einer Exception ein `ParseResult` zurück:
+den Wert, eine Liste von `Diagnostic`s und ein `ok`-Kennzeichen. Jede Diagnostic
+trägt einen stabilen `code`, eine `severity`, eine Position und eine Meldung.
+
+Es gibt vier Severities:
+
+| Severity  | Bedeutung                                     | Wirkung                                           |
+| --------- | --------------------------------------------- | ------------------------------------------------- |
+| `fatal`   | Die Eingabe ist keine verwertbare DSV-Datei.  | Auswertung bricht ab, `ok` ist `false`            |
+| `error`   | Die Datei verletzt das Schema.                | Werte werden trotzdem geliefert, `ok` ist `false` |
+| `warning` | Auffällig, aber in echten Dateien verbreitet. | `ok` bleibt `true`                                |
+| `info`    | Hinweis, etwa eine Lücke der Spezifikation.   | `ok` bleibt `true`                                |
+
+`ok` ist genau dann `true`, wenn **keine** Diagnostic die Stufe `error` oder
+`fatal` hat. `warning` und `info` lassen `ok` unberührt – sie beschreiben
+Dateien, die im Wettkampfbetrieb üblich sind.
+
+Gelesen wird bewusst nachsichtig: Ein unzulässiger Wert verhindert die
+typisierten Records nicht, er steht als Diagnostic daneben. So kannst du eine
+fehlerhafte Datei trotzdem anzeigen, statt nur eine Fehlermeldung zu haben:
+
+```typescript
+import { parseWettkampfdefinitionsliste } from '@schroeer-haren/dsv';
+
+// bahnlaenge '99' gibt es nicht – erlaubt sind 16, 20, 25, 33, 50, FW und X
+const kaputt =
+  [
+    'FORMAT:Wettkampfdefinitionsliste;7;',
+    'ERZEUGER:Beispiel;1.0;info@example.org;',
+    'VERANSTALTUNG:Herbstpokal 2026;Musterstadt;99;HANDZEIT;',
+    'VERANSTALTUNGSORT:Hallenbad;Beispielweg 1;12345;Musterstadt;GER;;;;',
+    'AUSSCHREIBUNGIMNETZ:https://example.org/ausschreibung;',
+    'VERANSTALTER:SV Musterstadt;',
+    'AUSRICHTER:SV Musterstadt;Meier, Anna;Beispielweg 1;12345;Musterstadt;GER;;;anna@example.org;',
+    'MELDEADRESSE:Meier, Anna;Beispielweg 1;12345;Musterstadt;;;;anna@example.org;',
+    'MELDESCHLUSS:01.10.2026;23:59;',
+    'ABSCHNITT:1;10.10.2026;08:00;08:30;09:00;;',
+    'WETTKAMPF:1;E;1;1;50;B;GL;M;SW;;;',
+    'WERTUNG:1;E;1;AK;0;0;M;offen;',
+    'MELDEGELD:EINZELMELDEGELD;3,00;;',
+    'DATEIENDE',
+  ].join('\r\n') + '\r\n';
+
+const {
+  document: trotzdem,
+  diagnostics: befunde,
+  ok: istOk,
+} = parseWettkampfdefinitionsliste(kaputt);
+
+istOk; // → false
+trotzdem.records.length; // → 14
+befunde[0].code; // → 'invalid-enum-value'
+befunde[0].severity; // → 'error'
+befunde[0].message; // → 'VERANSTALTUNG.bahnlaenge: "99" is not an allowed value in DSV7'
+befunde[0].start; // → { line: 3, column: 1 }
+```
+
+Beim **Schreiben** ist die Bibliothek dagegen streng: Was beim Lesen nur
+gemeldet wurde, verhindert das Schreiben und wirft einen `DsvWriteError`. Sonst
+entstünden Dateien, die andere Programme nicht lesen können:
+
+```typescript
+import { writeWettkampfdefinitionsliste, DsvWriteError } from '@schroeer-haren/dsv';
+
+let meldungText = '';
+try {
+  writeWettkampfdefinitionsliste(trotzdem.records);
+} catch (fehler) {
+  if (fehler instanceof DsvWriteError) meldungText = fehler.message;
+}
+
+meldungText; // → 'invalid-enum-value: VERANSTALTUNG.bahnlaenge: "99" is not an allowed value in DSV7'
+```
+
+### Wann `parseDsvOrThrow`?
+
+`parseDsv` liefert auch bei kaputter Eingabe ein Ergebnis. Wenn dich nur der
+Erfolgsfall interessiert – etwa in einem Skript, das bei einer unbrauchbaren
+Datei ohnehin abbrechen soll – nimm `parseDsvOrThrow`. Es gibt das Dokument
+direkt zurück und wirft bei einer Diagnostic der Stufe `fatal` einen
+`DsvParseError`, der die Diagnostics mitträgt:
+
+```typescript
+import { parseDsvOrThrow, DsvParseError } from '@schroeer-haren/dsv';
+
+let codes: string[] = [];
+try {
+  parseDsvOrThrow('');
+} catch (fehler) {
+  if (fehler instanceof DsvParseError) codes = fehler.diagnostics.map((d) => d.code);
+}
+
+codes; // → ['empty-input']
+```
+
+Nur `fatal` wirft. Eine Datei mit `error`-Diagnostics kommt auch durch
+`parseDsvOrThrow` durch – wer das ausschliessen will, prüft `ok` selbst. Für die
+typisierten `parse…`-Funktionen gibt es keine werfende Variante; dort ist die
+Diagnostics-Liste der übliche Weg.
+
+## Schema-frei arbeiten
+
+`parseDsv` und `writeDsv` zerlegen jede DSV-Datei in Records, Kommentare und
+Leerzeilen und schreiben sie byte-identisch zurück – ohne das Schema zu kennen:
+
+```typescript
+import { parseDsv, writeDsv } from '@schroeer-haren/dsv';
+
+const text = 'FORMAT:Wettkampfergebnisliste;7;\r\nDATEIENDE\r\n';
+
+const { document, diagnostics, ok } = parseDsv(text);
+
+document.listenart; // → 'Wettkampfergebnisliste'
+document.version; // → 7
+document.items.length; // → 2
+ok; // → true
+diagnostics; // → []
+
+writeDsv(document) === text; // → true
+```
+
+Diagnostics melden Auffälligkeiten mit Position, ohne das Lesen abzubrechen –
+fehlt etwa das abschliessende `DATEIENDE`, wird das Dokument trotzdem geliefert:
+
+```typescript
+const unvollstaendig = parseDsv('FORMAT:Wettkampfergebnisliste;7;\r\n');
+
+unvollstaendig.ok; // → true
+unvollstaendig.diagnostics[0].code; // → 'missing-dateiende-element'
+unvollstaendig.diagnostics[0].severity; // → 'warning'
+```
+
+Nimm diese Ebene, wenn du
+
+- **Dateien unverändert durchreichen** willst – Ablage, Weiterleitung, Prüfung
+  auf Lesbarkeit,
+- **gezielt einzelne Zeilen ändern** und den Rest byte-identisch behalten willst,
+- **DSV6 oder unbekannte Listenarten** verarbeiten musst: Die schema-freie Ebene
+  liest sie strukturell, die typisierte lehnt sie mit `fatal` ab,
+- **eigene Regeln** über die Rohfelder legen willst, statt das mitgelieferte
+  Schema zu benutzen.
+
+Die typisierte Ebene setzt auf `parseDsv` auf – du verlierst also nichts, wenn du
+schema-frei anfängst und später auf die typisierte Ebene wechselst.
+
+## Generierte Elementtypen
+
+Für jedes Element der Spezifikation gibt es einen Typ je Formatversion, benannt
+nach Element und Version: `VeranstaltungV7`, `WettkampfV8`, `MeldungPersonV8`
+und so fort. Sie werden aus den Schema-Definitionen erzeugt und tragen die
+Feldbedeutung, die zulässigen Werte und die Fundstelle in der Spezifikation als
+Doc-Kommentar – beim Tippen sichtbar:
+
+```typescript
+import type { VeranstaltungV7 } from '@schroeer-haren/dsv';
+
+const veranstaltung: VeranstaltungV7 = {
+  veranstaltungsbezeichnung: 'Herbstpokal 2026',
+  veranstaltungsort: 'Musterstadt',
+  bahnlaenge: '25', // '16' | '20' | '25' | '33' | '50' | 'FW' | 'X'
+  zeitmessung: 'HANDZEIT',
+};
+
+veranstaltung.bahnlaenge; // → '25'
+```
+
+Felder mit fester Werteliste sind String-Literal-Unions, ein falscher Wert fällt
+also schon beim Kompilieren auf. Die Typen beschreiben die **Rohfelder** einer
+Zeile; für ausgewertete Daten nimm den Objektgraph aus `project…`.
+
+## Grenzen
+
+Was die Bibliothek **nicht** tut:
+
+- **DSV6** wird nicht ausgewertet. Die typisierte Ebene lehnt es mit
+  `unsupported-format-version` (`fatal`) ab; schema-frei ist es lesbar.
+- **Die ZIP-Variante** des Standards wird nicht unterstützt. Die Bibliothek
+  verarbeitet Text, keine Archive – entpacke sie vorher selbst.
+- **Meldegelder werden nicht berechnet.** Die `MELDEGELD`-Zeilen werden gelesen,
+  geschrieben und validiert, aber nicht zu einer Rechnung summiert.
+- **Zwischen DSV7 und DSV8 wird nicht konvertiert.** Beide Formatversionen
+  werden gelesen und geschrieben, jede in sich; eine DSV7-Datei nach DSV8 zu
+  überführen ist Sache der aufrufenden Anwendung.
+- **Dateinamen** nach der Namenskonvention der Spezifikation werden nicht
+  abgeleitet.
+- **Zeichenkodierung** ist nicht Aufgabe der Bibliothek: Sie arbeitet auf
+  Strings. Echte DSV-Dateien sind meist ISO-8859-1 – dekodiere sie beim Einlesen
+  selbst.
+
+## Öffentliche API
+
+Die vollständige Oberfläche steht in [`docs/public-api.md`](docs/public-api.md):
+jede exportierte Funktion, Klasse und jeder Typ mit einer Zeile, was sie tut. Ein
+Test hält die Liste mit den tatsächlichen Exporten deckungsgleich. Mit 1.0 wird
+diese Oberfläche eingefroren.
 
 ## Erprobung an echten Dateien
 
 Die Bibliothek wird nicht nur gegen die Spezifikation getestet, sondern gegen
-**142 echte DSV-Dateien** aus dem Wettkampfbetrieb:
+**142 echte DSV-Dateien** aus dem Wettkampfbetrieb – jede davon wird
+byte-identisch zurückgeschrieben.
 
 | Listenart                 | Dateien |
 | ------------------------- | ------: |
@@ -508,38 +664,12 @@ Die Dateien stammen aus **fünf Erzeuger-Dialekten** – EasyWk, SPLASH Meet
 Manager, cps-schwimm, Schwimmsoftware und WebClub. Die Dialekte unterscheiden
 sich real: WebClub schreibt Kommentare nur in eigenen Zeilen und setzt die
 Trennzeichen immer vollständig, EasyWk lässt sie in etwa 40 % der Zeilen weg.
-Jede dieser Dateien wird byte-identisch zurückgeschrieben.
 
 Für die **Vereinsergebnisliste** gibt es bislang keine echte Datei; ihr Schema
 ist ausschliesslich gegen die Spezifikation gebaut. 137 Dateien sind DSV7, 5 sind
-DSV6 und werden erwartungsgemäss mit `fatal` abgelehnt – **DSV8 ist in freier
-Wildbahn noch nicht anzutreffen**. Die DSV8-Unterstützung ist deshalb gegen das
-vollständige, zeilenweise erhobene Delta zwischen beiden Spezifikationen
-abgesichert statt gegen Realdaten.
-
-## Roadmap
-
-- [x] Schema-freies Lesen beliebiger DSV-Dateien in Records
-- [x] Byte-identisches Zurückschreiben unveränderter Dokumente
-- [x] Diagnostics mit Code, Severity und Position
-- [x] Wettkampfdefinitionsliste typisiert lesen/schreiben (DSV7 und DSV8)
-- [x] Validierung von Feldtypen, Aufzählungswerten und Kardinalitäten
-- [x] Objektgraph mit aufgelösten Bezügen für die Wettkampfdefinitionsliste
-- [x] Wettkampfergebnisliste typisiert lesen/schreiben (DSV7 und DSV8)
-- [x] Objektgraph mit aufgelösten Bezügen für die Wettkampfergebnisliste
-- [x] Vereinsmeldeliste typisiert lesen/schreiben (DSV7 und DSV8)
-- [x] Objektgraph mit aufgelösten Bezügen für die Vereinsmeldeliste
-- [x] Vereinsergebnisliste typisiert lesen/schreiben (DSV7 und DSV8)
-- [x] Objektgraph mit aufgelösten Bezügen für die Vereinsergebnisliste
-- [x] DSV7/DSV8-Delta über alle vier Listenarten zeilenweise verifiziert
-- [x] Erprobung an 142 echten Dateien aus fünf Erzeuger-Dialekten
-- [ ] Echte Vereinsergebnislisten als Testdaten
-- [ ] Echte DSV8-Dateien, sobald sie im Umlauf sind
-- [ ] Ableitung von Dateinamen nach der Namenskonvention der Spezifikation
-
-Damit sind alle vier Listenarten des DSV-Standards typisiert erschlossen. Was
-noch fehlt, ist keine Funktion, sondern Realdaten: für die Vereinsergebnisliste
-und für DSV8 insgesamt.
+DSV6 – **DSV8 ist in freier Wildbahn noch nicht anzutreffen**. Die
+DSV8-Unterstützung ist deshalb gegen das vollständige, zeilenweise erhobene
+Delta zwischen beiden Spezifikationen abgesichert statt gegen Realdaten.
 
 ## Entwicklung
 
@@ -555,11 +685,12 @@ npm run format     # Formatierung anwenden (Prettier)
 npm run typecheck  # TypeScript prüfen (tsc --noEmit)
 npm test           # Tests ausführen (Vitest)
 npm run test:watch # Tests im Watch-Modus
-npm run check      # lint + typecheck + test
+npm run generate   # generierte Elementtypen neu erzeugen
+npm run check      # lint + typecheck + test + build + publint + attw
 ```
 
-Dieselben Schritte (Build, Lint, Typecheck, Test) laufen bei jedem Push und
-Pull-Request auf `main` automatisch über GitHub Actions.
+Dieselben Schritte laufen bei jedem Push und Pull-Request auf `main`
+automatisch über GitHub Actions.
 
 ## Release
 
@@ -569,7 +700,7 @@ baut, prüft und via **npm Trusted Publishing (OIDC)** mit Provenance nach npm
 veröffentlicht. Es wird kein npm-Token im Repository benötigt.
 
 ```
-gh release create v0.5.0 --title v0.5.0 --generate-notes
+gh release create v0.9.0 --title v0.9.0 --generate-notes
 ```
 
 ## Built With
