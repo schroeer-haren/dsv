@@ -168,7 +168,32 @@ describe('Wettkampfergebnislisten aus test/fixtures/real', () => {
 
       expect(result.ok).toBe(false);
       expect(result.diagnostics.map((d) => d.code)).toContain('unsupported-format-version');
+
+      // Genau einmal, nicht zweimal: Die Meldung entsteht sowohl in `parseDsv`
+      // als auch in `validateDocument`. Würden beide Quellen angezapft, stünde
+      // derselbe Befund doppelt in der Liste.
+      expect(
+        result.diagnostics.filter((d) => d.code === 'unsupported-format-version'),
+      ).toHaveLength(1);
     }
+  });
+
+  /**
+   * Die Gegenprobe zur Entdoppelung: `parseDsv` meldet die nicht unterstützte
+   * Version nur, wenn überhaupt eine Zahl lesbar war. Ist keine lesbar, muss die
+   * typisierte Ebene sie nachtragen — sonst hätte das Entdoppeln den Befund für
+   * diesen Fall stillgelegt.
+   */
+  it('meldet die nicht unterstützte Version auch ohne lesbare Versionszahl genau einmal', () => {
+    const result = parseWettkampfergebnisliste(
+      'FORMAT:Wettkampfergebnisliste;abc;\r\nDATEIENDE\r\n',
+    );
+
+    expect(result.ok).toBe(false);
+    const befunde = result.diagnostics.filter((d) => d.code === 'unsupported-format-version');
+    expect(befunde).toHaveLength(1);
+    expect(befunde[0]?.severity).toBe('fatal');
+    expect(befunde[0]?.data?.['version']).toBeNull();
   });
 
   /**

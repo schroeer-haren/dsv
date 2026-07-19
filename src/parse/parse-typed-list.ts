@@ -4,7 +4,7 @@ import type { DsvDocument, ParseResult } from '../document/types.js';
 import type { ListSchema } from '../schema/list-schema.js';
 import { validateDocument } from '../validate/validate-document.js';
 import type { FormatVersion } from '../validate/format-version.js';
-import { isSupportedVersion } from '../validate/format-version.js';
+import { isSupportedVersion, unsupportedFormatVersion } from '../validate/format-version.js';
 import { fieldsForVersion } from '../validate/validate-fields.js';
 import { parseDsv } from './parse-dsv.js';
 
@@ -94,13 +94,25 @@ export function parseTypedList<TListenart extends string = string>(
     ]);
   }
 
-  const validation = validateDocument(document, schema);
-  const diagnostics = [...parsed.diagnostics, ...validation];
-
   if (!isSupportedVersion(document.version)) {
-    // `validateDocument` hat bereits `unsupported-format-version` gemeldet.
-    return rejected(document, diagnostics);
+    // Hier nicht über `validateDocument` gehen: Bei nicht unterstützter Version
+    // liefert es genau dieselbe Diagnostic, die `parseDsv` oben schon gemeldet
+    // hat — eine DSV6-Datei ergäbe `unsupported-format-version` sonst doppelt.
+    //
+    // `parseDsv` meldet sie allerdings nur, wenn überhaupt eine Versionszahl
+    // lesbar war. Ist keine lesbar (`version === null`), fehlt die Meldung dort
+    // und muss hier nachgetragen werden.
+    const bereitsGemeldet = parsed.diagnostics.some((d) => d.code === 'unsupported-format-version');
+
+    return rejected(
+      document,
+      bereitsGemeldet
+        ? [...parsed.diagnostics]
+        : [...parsed.diagnostics, unsupportedFormatVersion(document.version)],
+    );
   }
+
+  const diagnostics = [...parsed.diagnostics, ...validateDocument(document, schema)];
 
   const version = document.version;
   const records: TypedRecord[] = [];
