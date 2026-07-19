@@ -22,7 +22,7 @@ const dsv7Files = files.filter((f) => parseDsv(read(f)).document.version === 7);
 
 describe('Round-Trip über echte Dateien', () => {
   it('findet den erwarteten Bestand', () => {
-    expect(files).toHaveLength(108);
+    expect(files).toHaveLength(142);
   });
 
   it.each(files)('%s bleibt byte-identisch', (name) => {
@@ -30,8 +30,8 @@ describe('Round-Trip über echte Dateien', () => {
     expect(writeDsv(parseDsv(text).document)).toBe(text);
   });
 
-  it('teilt sich in 103 DSV7- und 5 DSV6-Dateien auf', () => {
-    expect(dsv7Files).toHaveLength(103);
+  it('teilt sich in 137 DSV7- und 5 DSV6-Dateien auf', () => {
+    expect(dsv7Files).toHaveLength(137);
     expect(dsv6Files).toHaveLength(5);
   });
 
@@ -94,6 +94,10 @@ describe('Zerlegung echter Dateien', () => {
     }
     // Exakter Wert statt unterer Schranke: Eine Schranke bemerkt nicht, wenn
     // zu gierig abgetrennt wird.
+    //
+    // Die Zahl ist mit den 34 Vereinsmeldelisten unverändert geblieben: Von
+    // allen Erzeugern setzt allein EasyWk Kommentare ans Zeilenende. WebClub
+    // kommentiert ausschliesslich in eigenen Zeilen (drei Kopfzeilen je Datei).
     expect(withComment).toBe(92_261);
   });
 });

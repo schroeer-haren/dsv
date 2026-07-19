@@ -1,0 +1,27 @@
+(* Vereinsmeldedatei, erzeugt mit WebClub, https://webclub.app *)
+(* erzeugt um 19.07.2026 11:18 *)
+(* registriert für: Schwimmverein Haren e.V. *)
+FORMAT: Vereinsmeldeliste;7;
+ERZEUGER: WebClub;1.76;info@webclub.app;
+VERANSTALTUNG: ABGESAGT - Bezirks- und Bezirksjahrgangsmeisterschaften lange Strecke;Wilhelmshaven;25;HANDZEIT;
+ABSCHNITT: 1;24.01.2026;10:00;N;
+ABSCHNITT: 2;24.01.2026;00:45;J;
+WETTKAMPF: 1;E;1;1;800;F;GL;W;;;
+WETTKAMPF: 2;E;1;1;1500;F;GL;M;;;
+WETTKAMPF: 3;E;1;1;400;L;GL;W;;;
+WETTKAMPF: 4;E;2;1;800;F;GL;M;;;
+WETTKAMPF: 5;E;2;1;1500;F;GL;W;;;
+WETTKAMPF: 6;E;2;1;400;L;GL;M;;;
+VEREIN: SV Haren;3867;9;GER;
+ANSPRECHPARTNER: Dietrich, Tom;Gartenstrasse 73;49733;Haren;GER;08324 949494;;carla.herrmann@example.org;
+PNMELDUNG: Lehmann, Ida;228807;631;W;2014;;;GER;;;
+STARTPN: 631;1;00:13:06,69;
+STARTPN: 631;3;00:07:03,95;
+PNMELDUNG: Kern, David;502917;660;W;2008;;;GER;;;
+STARTPN: 660;1;00:11:01,48;
+STARTPN: 660;5;00:21:08,27;
+PNMELDUNG: Kaiser, Marie;906037;661;M;2013;;;GER;;;
+STARTPN: 661;2;00:21:10,15;
+STARTPN: 661;4;00:11:28,17;
+STARTPN: 661;6;00:05:57,34;
+DATEIENDE

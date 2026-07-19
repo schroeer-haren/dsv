@@ -1,0 +1,37 @@
+(* Vereinsmeldedatei, erzeugt mit WebClub, https://webclub.app *)
+(* erzeugt um 19.07.2026 11:22 *)
+(* registriert für: Schwimmverein Haren e.V. *)
+FORMAT: Vereinsmeldeliste;7;
+ERZEUGER: WebClub;1.76;info@webclub.app;
+VERANSTALTUNG: Bezirks- und Bezirksjahrgangsmeisterschaften lange Strecke;Wilhelmshaven;25;HANDZEIT;
+ABSCHNITT: 1;26.01.2025;10:00;N;
+ABSCHNITT: 2;26.01.2025;00:45;J;
+WETTKAMPF: 1;E;1;1;800;F;GL;M;;;
+WETTKAMPF: 2;E;1;1;800;F;GL;W;;;
+WETTKAMPF: 3;E;1;1;400;L;GL;M;;;
+WETTKAMPF: 4;E;2;1;1500;F;GL;W;;;
+WETTKAMPF: 5;E;2;1;800;F;GL;M;;;
+WETTKAMPF: 6;E;2;1;1500;F;GL;M;;;
+WETTKAMPF: 7;E;2;1;400;L;GL;W;;;
+VEREIN: SV Haren;3867;9;GER;
+ANSPRECHPARTNER: Dietrich, Tom;Gartenstrasse 73;49733;Haren;GER;08324 949494;;carla.herrmann@example.org;
+PNMELDUNG: Pohl, Ben;203076;218;M;2007;;;GER;;;
+STARTPN: 218;3;00:05:28,56;
+STARTPN: 218;6;00:19:21,62;
+PNMELDUNG: Lang, Zoe;652366;388;W;2011;;;;;;
+STARTPN: 388;2;00:11:40,16;
+STARTPN: 388;7;00:06:23,78;
+PNMELDUNG: Kern, David;502917;660;W;2008;;;GER;;;
+STARTPN: 660;2;00:11:01,73;
+STARTPN: 660;7;00:06:15,66;
+PNMELDUNG: Kaiser, Marie;906037;661;M;2013;;;GER;;;
+STARTPN: 661;3;00:06:17,35;
+STARTPN: 661;5;00:11:42,12;
+TRAINER: 692;Richter, Karl;
+KARIMELDUNG: 471;Reuter, Linus;WKR;
+KARIMELDUNG: 664;Sander, Mia;WKR;
+KARIABSCHNITT: 471;1;;
+KARIABSCHNITT: 664;1;;
+KARIABSCHNITT: 471;2;;
+KARIABSCHNITT: 664;2;;
+DATEIENDE
