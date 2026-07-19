@@ -35,7 +35,7 @@ export type { Wettkampfdefinitionsliste } from './parse/parse-wettkampfdefinitio
 export type { Wettkampfergebnisliste } from './parse/parse-wettkampfergebnisliste.js';
 export type { Vereinsmeldeliste } from './parse/parse-vereinsmeldeliste.js';
 export type { Vereinsergebnisliste } from './parse/parse-vereinsergebnisliste.js';
-export type { FormatVersion } from './validate/validate-fields.js';
+export type { FormatVersion } from './validate/format-version.js';
 
 export type {
   Abschnitt,

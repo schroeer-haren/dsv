@@ -11,11 +11,9 @@ const read = (name: string): string => readFileSync(join(DIR, name), 'utf8');
 
 /**
  * Fünf Fixtures deklarieren die ältere Formatversion 6. Sie werden hier
- * getrennt geführt: Auf der schema-freien Ebene sind sie unauffällig, weil die
- * Zeilensyntax über alle Formatversionen identisch ist. Ab der Schema-Ebene
- * sollen sie dagegen mit `fatal` abgelehnt werden — dann muss diese Trennung
- * schon stehen, statt den Test zur Bremse gegen die eigene Entscheidung zu
- * machen.
+ * getrennt geführt: Ihre Zeilensyntax ist über alle Formatversionen identisch,
+ * sie zerfallen also sauber in Records und gehen byte-identisch durch den
+ * Round-Trip — abgelehnt werden sie trotzdem, auf jeder Ebene.
  */
 const dsv6Files = files.filter((f) => parseDsv(read(f)).document.version === 6);
 const dsv7Files = files.filter((f) => parseDsv(read(f)).document.version === 7);
@@ -42,12 +40,20 @@ describe('Round-Trip über echte Dateien', () => {
     expect(errors).toEqual([]);
   });
 
-  it.each(dsv6Files)('%s (DSV6) wird schema-frei ebenfalls fehlerfrei gelesen', (name) => {
-    // Gilt nur auf dieser Ebene. Ab der Schema-Ebene ist DSV6 abzulehnen.
-    const errors = parseDsv(read(name)).diagnostics.filter(
-      (d) => d.severity === 'error' || d.severity === 'fatal',
-    );
-    expect(errors).toEqual([]);
+  it.each(dsv6Files)('%s (DSV6) wird schon schema-frei abgelehnt', (name) => {
+    const result = parseDsv(read(name));
+    const found = result.diagnostics.find((d) => d.code === 'unsupported-format-version');
+
+    expect(found?.severity).toBe('fatal');
+    expect(result.ok).toBe(false);
+  });
+
+  it.each(dsv6Files)('%s (DSV6) wird trotz Ablehnung vollständig zerlegt', (name) => {
+    // Das ist der Unterschied zur typisierten Ebene: `fatal` heisst hier „nicht
+    // verwendbar", nicht „Abbruch". Die Zeilen bleiben zur Diagnose erhalten.
+    const text = read(name);
+    expect(parseDsv(text).document.items.length).toBeGreaterThan(0);
+    expect(writeDsv(parseDsv(text).document)).toBe(text);
   });
 });
 

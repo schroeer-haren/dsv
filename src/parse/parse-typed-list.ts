@@ -3,7 +3,8 @@ import type { Diagnostic } from '../diagnostics/types.js';
 import type { DsvDocument, ParseResult } from '../document/types.js';
 import type { ListSchema } from '../schema/list-schema.js';
 import { validateDocument } from '../validate/validate-document.js';
-import type { FormatVersion } from '../validate/validate-fields.js';
+import type { FormatVersion } from '../validate/format-version.js';
+import { isSupportedVersion } from '../validate/format-version.js';
 import { fieldsForVersion } from '../validate/validate-fields.js';
 import { parseDsv } from './parse-dsv.js';
 
@@ -40,10 +41,6 @@ export interface TypedList<TListenart extends string = string> {
 }
 
 const AT_START = { start: { line: 1, column: 1 }, end: { line: 1, column: 1 } };
-
-function isSupportedVersion(version: number | null): version is FormatVersion {
-  return version === 7 || version === 8;
-}
 
 /** Ergebnis ohne typisierte Records, wenn die Datei gar nicht auswertbar ist. */
 function rejected<TListenart extends string>(

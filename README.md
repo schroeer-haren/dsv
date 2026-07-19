@@ -74,6 +74,7 @@ Die Bibliothek bietet zwei Ebenen, die aufeinander aufbauen:
 | Validiert gegen das Schema  | nein                   | ja                                          |
 | Byte-identischer Round-Trip | ja                     | ja                                          |
 | Listenarten                 | alle, auch unbekannte  | die vier bekannten                          |
+| Formatversionen             | DSV7 und DSV8          | DSV7 und DSV8                               |
 
 **Nimm die typisierte Ebene**, wenn du mit den Inhalten arbeitest: Ergebnisse
 auswerten, Meldungen erzeugen, Dateien prüfen. Sie gibt dir benannte Felder,
@@ -632,8 +633,11 @@ Nimm diese Ebene, wenn du
 - **Dateien unverändert durchreichen** willst – Ablage, Weiterleitung, Prüfung
   auf Lesbarkeit,
 - **gezielt einzelne Zeilen ändern** und den Rest byte-identisch behalten willst,
-- **DSV6 oder unbekannte Listenarten** verarbeiten musst: Die schema-freie Ebene
-  liest sie strukturell, die typisierte lehnt sie mit `fatal` ab,
+- **unbekannte Listenarten** verarbeiten musst: Die schema-freie Ebene liest sie
+  strukturell, die typisierte lehnt sie mit `fatal` ab,
+- eine **abgelehnte Datei trotzdem ansehen** willst: Eine nicht unterstützte
+  Formatversion meldet auch `parseDsv` mit `fatal` – die Zeilen zerlegt es
+  trotzdem, `document.items` bleibt also zur Diagnose brauchbar,
 - **eigene Regeln** über die Rohfelder legen willst, statt das mitgelieferte
   Schema zu benutzen.
 
@@ -669,8 +673,10 @@ Zeile; für ausgewertete Daten nimm den Objektgraph aus `project…`.
 
 Was die Bibliothek **nicht** tut:
 
-- **DSV6** wird nicht ausgewertet. Die typisierte Ebene lehnt es mit
-  `unsupported-format-version` (`fatal`) ab; schema-frei ist es lesbar.
+- **DSV6** wird nicht angenommen. Beide Ebenen lehnen es mit
+  `unsupported-format-version` (`fatal`) ab – nur DSV7 und DSV8 gelten als
+  unterstützt. `parseDsv` zerlegt die Datei trotzdem in Zeilen, damit du sehen
+  kannst, was drinsteht; `parseDsvOrThrow` wirft.
 - **Die ZIP-Variante** des Standards wird nicht unterstützt. Die Bibliothek
   verarbeitet Text, keine Archive – entpacke sie vorher selbst.
 - **Meldegelder werden nicht berechnet.** Die `MELDEGELD`-Zeilen werden gelesen,

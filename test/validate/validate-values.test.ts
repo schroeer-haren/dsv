@@ -12,7 +12,7 @@ import {
 } from '../../src/schema/wettkampfdefinitionsliste.js';
 import { HANDICAP } from '../../src/schema/vereinsmeldeliste.js';
 import { validateValues } from '../../src/validate/validate-values.js';
-import type { FormatVersion } from '../../src/validate/validate-fields.js';
+import type { FormatVersion } from '../../src/validate/format-version.js';
 
 function record(element: string, fields: readonly string[], line = 1): DsvRecord {
   return {

@@ -5,7 +5,7 @@ import type { ElementDef, EnumValue, FieldDef, ScalarType } from '../schema/type
 import { decodeDatum } from '../values/datum.js';
 import { decodeUhrzeit } from '../values/uhrzeit.js';
 import { decodeZeit } from '../values/zeit.js';
-import type { FormatVersion } from './validate-fields.js';
+import type { FormatVersion } from './format-version.js';
 import { fieldsForVersion, isBlank } from './validate-fields.js';
 
 const ZAHL = /^\d+$/;

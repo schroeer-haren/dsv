@@ -211,3 +211,52 @@ describe('parseDsv — Version', () => {
     expect(parseDsv('FORMAT:X;\r\nDATEIENDE\r\n').document.version).toBeNull();
   });
 });
+
+const DSV6 = [
+  'FORMAT:Wettkampfergebnisliste;6;',
+  'ERZEUGER:EasyWk;5.27;info@easywk.de;',
+  'DATEIENDE',
+  '',
+].join('\r\n');
+
+describe('parseDsv — nicht unterstützte Formatversion', () => {
+  it('lehnt DSV6 schon schema-frei mit fatal ab', () => {
+    const { diagnostics, ok } = parseDsv(DSV6);
+    const found = diagnostics.find((d) => d.code === 'unsupported-format-version');
+
+    expect(found?.severity).toBe('fatal');
+    expect(found?.message).toContain('6');
+    expect(found?.data).toEqual({ version: 6 });
+    expect(ok).toBe(false);
+  });
+
+  it('zerlegt die Datei trotz fatal weiter — die Zeilen bleiben für die Diagnose da', () => {
+    const { document } = parseDsv(DSV6);
+
+    expect(document.listenart).toBe('Wettkampfergebnisliste');
+    expect(document.version).toBe(6);
+    expect(document.items.filter((i) => i.kind === 'element')).toHaveLength(3);
+  });
+
+  it('lässt parseDsvOrThrow bei DSV6 werfen', () => {
+    expect(() => parseDsvOrThrow(DSV6)).toThrow(/unsupported-format-version/);
+  });
+
+  it('meldet für DSV7 und DSV8 nichts', () => {
+    for (const version of [7, 8]) {
+      const { diagnostics } = parseDsv(`FORMAT:Wettkampfergebnisliste;${String(version)};\r\nDATEIENDE\r\n`);
+      expect(diagnostics.map((d) => d.code)).not.toContain('unsupported-format-version');
+    }
+  });
+
+  it('unterscheidet eine fehlende oder unlesbare Version von einer Version 6', () => {
+    // `version === null` heisst „keine Versionsangabe lesbar" — dafür stehen
+    // `missing-format-element` bzw. die Feldprüfung der typisierten Ebene ein.
+    // Eine unbelegte Behauptung „Version nicht unterstützt" wäre hier falsch.
+    for (const input of ['DATEIENDE\r\n', 'FORMAT:X;;\r\nDATEIENDE\r\n', 'FORMAT:X;abc;\r\n']) {
+      expect(parseDsv(input).diagnostics.map((d) => d.code)).not.toContain(
+        'unsupported-format-version',
+      );
+    }
+  });
+});

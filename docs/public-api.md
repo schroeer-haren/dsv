@@ -17,7 +17,7 @@ Die Benennung folgt einer Konvention: **englische Verben**
 
 | Name                             | Art      | Beschreibung                                                                                                      |
 | -------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| `parseDsv`                       | function | Liest beliebigen DSV-Text schema-frei in ein `DsvDocument` aus Records, Kommentaren und Leerzeilen.               |
+| `parseDsv`                       | function | Liest beliebigen DSV-Text schema-frei in ein `DsvDocument` aus Records, Kommentaren und Leerzeilen; meldet eine nicht unterstützte Formatversion als `fatal`, zerlegt sie aber trotzdem. |
 | `parseDsvOrThrow`                | function | Wie `parseDsv`, wirft aber bei einer Diagnostic der Stufe `fatal` einen `DsvParseError`, statt sie zurückzugeben. |
 | `parseWettkampfdefinitionsliste` | function | Liest eine Wettkampfdefinitionsliste typisiert und prüft sie gegen das Schema.                                    |
 | `parseWettkampfergebnisliste`    | function | Liest eine Wettkampfergebnisliste typisiert und prüft sie gegen das Schema.                                       |

@@ -2,9 +2,7 @@ import { createDiagnostic } from '../diagnostics/create.js';
 import type { Diagnostic } from '../diagnostics/types.js';
 import type { DsvRecord } from '../document/types.js';
 import type { ElementDef, FieldDef } from '../schema/types.js';
-
-/** Formatversion des DSV-Standards, gegen die geprüft wird. */
-export type FormatVersion = 7 | 8;
+import type { FormatVersion } from './format-version.js';
 
 /**
  * Gibt die Felder zurück, die in dieser Formatversion gelten. Felder mit

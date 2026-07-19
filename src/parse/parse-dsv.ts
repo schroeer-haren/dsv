@@ -4,6 +4,7 @@ import type { DsvDocument, DsvItem, DsvRecord, ParseResult } from '../document/t
 import { lexLine } from '../lexer/lex-line.js';
 import type { SourceLine } from '../source/source-text.js';
 import { createSourceText } from '../source/source-text.js';
+import { isSupportedVersion, unsupportedFormatVersion } from '../validate/format-version.js';
 
 /**
  * Verarbeitet Zeilen zu Items. Nimmt bewusst ein `Iterable` statt eines Arrays
@@ -106,11 +107,28 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
     );
   }
 
-  const version = format?.fields[1];
+  const raw = format?.fields[1];
+  const version = raw !== undefined && /^\d+$/.test(raw) ? Number(raw) : null;
+
+  // Auch auf dieser Ebene gilt: Nur DSV7 und DSV8 werden angenommen. Gemeldet
+  // wird mit demselben Code und derselben Meldung wie in `validateDocument` —
+  // beide Ebenen sollen zu derselben Datei dasselbe sagen.
+  //
+  // `version === null` ist ein anderer Fall: Dann ist gar keine Versionsangabe
+  // lesbar, wofür `missing-format-element` bzw. die Feldprüfung der typisierten
+  // Ebene einsteht. „Version nicht unterstützt" wäre hier eine Behauptung über
+  // eine Zahl, die es nicht gibt.
+  //
+  // Anders als die typisierte Ebene bricht `parseDsv` deswegen nicht ab: Die
+  // zerlegten Zeilen bleiben zur Diagnose brauchbar, `fatal` heisst hier „nicht
+  // verwendbar", nicht „nichts gelesen".
+  if (version !== null && !isSupportedVersion(version)) {
+    diagnostics.push(unsupportedFormatVersion(version));
+  }
 
   const document: DsvDocument = {
     listenart: format?.fields[0] ?? null,
-    version: version !== undefined && /^\d+$/.test(version) ? Number(version) : null,
+    version,
     items,
     hasBom: source.hasBom,
   };

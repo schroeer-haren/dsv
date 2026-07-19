@@ -2,7 +2,8 @@ import type { Diagnostic } from '../diagnostics/types.js';
 import type { TypedRecord } from '../parse/parse-typed-list.js';
 import { parseTypedList } from '../parse/parse-typed-list.js';
 import type { ListSchema } from '../schema/list-schema.js';
-import type { FormatVersion } from '../validate/validate-fields.js';
+import type { FormatVersion } from '../validate/format-version.js';
+import { isSupportedVersion } from '../validate/format-version.js';
 import { fieldsForVersion } from '../validate/validate-fields.js';
 
 export interface WriteOptions {
@@ -17,10 +18,6 @@ export class DsvWriteError extends Error {
     super(first === undefined ? 'DSV write failed' : `${first.code}: ${first.message}`);
     this.name = 'DsvWriteError';
   }
-}
-
-function isSupportedVersion(version: number): version is FormatVersion {
-  return version === 7 || version === 8;
 }
 
 /**
