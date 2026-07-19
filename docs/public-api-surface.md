@@ -294,6 +294,7 @@ readonly kind: 'element'
 readonly line: number
 readonly raw: string
 readonly rawFields: ReadonlyArray<string>
+readonly terminated: boolean
 ```
 
 ### DsvWriteError

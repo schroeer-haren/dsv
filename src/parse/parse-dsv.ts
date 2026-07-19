@@ -25,6 +25,7 @@ function collectItems(lines: Iterable<SourceLine>): DsvItem[] {
         rawFields: lexed.rawFields,
         comment: lexed.comment,
         bare: lexed.bare,
+        terminated: lexed.terminated,
         line: line.number,
         raw: line.content,
         eol: line.eol,
@@ -81,7 +82,7 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
   } else if (dateiende !== undefined && elements[elements.length - 1] !== dateiende) {
     // Gegenstück zu `format-not-first-element`: Kommentar- und Leerzeilen nach
     // DATEIENDE zählen nicht mit — DATEIENDE muss nur das letzte ELEMENT sein
-    // (dsv8.md:325). Wie dort eine Warnung: Die Daten selbst bleiben lesbar.
+    // (dsv8.md:336-337). Wie dort eine Warnung: Die Daten bleiben lesbar.
     diagnostics.push(
       createDiagnostic(
         'element-order-violation',
@@ -91,6 +92,32 @@ export function parseDsv(input: string): ParseResult<DsvDocument> {
           line: dateiende.line,
           data: { element: 'DATEIENDE' },
         },
+      ),
+    );
+  }
+
+  // dsv8.md:228-229 — "Da die Attribute aber durch eine feste Reihenfolge
+  // definiert sind, muss auf jeden Fall das Trennzeichen(;) gesetzt werden."
+  //
+  // Bewusst nur eine Warnung, und die Zeile wird trotzdem vollständig gelesen.
+  // Echte Dateien lassen das Schlusssemikolon weg: 73 Zeilen in 3 der 142
+  // gesammelten Dateien, durchweg STZWISCHENZEIT und alle aus derselben
+  // Erzeugerkette. Als Fehler gemeldet wiese die Bibliothek drei echte Dateien
+  // zurück, deren Daten einwandfrei sind — die Toleranz ist gegen die Realität
+  // richtig. Sie war bisher nur unsichtbar: Der Lexer verwarf das leere
+  // Schlusselement stillschweigend, und dieser Code war zwar deklariert, wurde
+  // aber nirgends erzeugt. Sichtbar gemacht kann jeder Aufrufer selbst
+  // entscheiden, ob ihn das stört.
+  //
+  // Beim Schreiben ist der Befund unzulässig; siehe `write-typed-list.ts`.
+  for (const item of elements) {
+    if (item.terminated) continue;
+    diagnostics.push(
+      createDiagnostic(
+        'unterminated-field-list',
+        'warning',
+        `${item.element}: the attribute list does not end with ";"`,
+        { line: item.line, data: { element: item.element } },
       ),
     );
   }

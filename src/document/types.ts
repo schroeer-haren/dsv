@@ -8,6 +8,12 @@ export interface DsvRecord {
   readonly rawFields: readonly string[];
   readonly comment: string | null;
   readonly bare: boolean;
+  /**
+   * Ob die Attributliste mit `;` abgeschlossen ist (dsv8.md:228-229).
+   *
+   * Bei `bare` immer `true` — dort gibt es keine Attributliste.
+   */
+  readonly terminated: boolean;
   readonly line: number;
   /** Vollständige Originalzeile ohne Zeilenende. Grundlage der Byte-Identität. */
   readonly raw: string;

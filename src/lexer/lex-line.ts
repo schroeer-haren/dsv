@@ -29,6 +29,12 @@ export interface LexedElement {
   readonly comment: string | null;
   /** `true` bei einem Element ohne Doppelpunkt und ohne Attribute (`DATEIENDE`). */
   readonly bare: boolean;
+  /**
+   * Ob die Attributliste mit `;` abgeschlossen ist (dsv8.md:228-229).
+   *
+   * Bei `bare` immer `true` — dort gibt es keine Attributliste.
+   */
+  readonly terminated: boolean;
   /** Die unveränderte Zeile ohne Zeilenende. */
   readonly raw: string;
   /** 1-basiert. */
@@ -98,6 +104,7 @@ export function lexLine(raw: string, line: number): LexedLine {
       rawFields: [],
       comment: null,
       bare: true,
+      terminated: true,
       raw,
       line,
     };
@@ -108,7 +115,18 @@ export function lexLine(raw: string, line: number): LexedLine {
 
   // Attribute sind mit `;` terminiert, nicht getrennt: `split` liefert daher ein
   // leeres Schlusselement, das kein Feld ist und genau einmal verworfen wird.
+  //
+  // Fehlt das abschliessende `;`, bleibt das letzte Feld ein echtes Feld und
+  // wird gelesen. Das ist Absicht — echte Dateien lassen es weg, siehe die
+  // Begründung zum Befund `unterminated-field-list` in `parse-dsv.ts`. Der
+  // Mangel wird hier nur festgehalten, nicht geheilt und nicht bestraft.
+  //
+  // `terminated` beurteilt den Rohtext, nicht das Ergebnis von `split`: Ein
+  // Leerzeichen hinter dem letzten `;` (`A:1; `) ist erlaubt und terminiert
+  // trotzdem. Ein leerer Rumpf (`A:`) hat keine Attributliste, die man
+  // abschliessen könnte.
   const parts = body.split(';');
+  const terminated = body.trim() === '' || body.trimEnd().endsWith(';');
   if (parts.length > 1 && parts[parts.length - 1] === '') parts.pop();
 
   return {
@@ -118,6 +136,7 @@ export function lexLine(raw: string, line: number): LexedLine {
     rawFields: parts,
     comment,
     bare: false,
+    terminated,
     raw,
     line,
   };

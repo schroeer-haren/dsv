@@ -2,6 +2,25 @@
 
 ## Unveröffentlicht
 
+### Breaking: Fehlendes Schluss-Semikolon wird gemeldet
+
+Endete eine Attributliste ohne `;`, entstand gar kein Befund: Der Lexer verwarf
+das leere Schlusselement stillschweigend. Der Code `unterminated-field-list`
+war zwar deklariert, wurde aber als einziger von zwanzig nirgends erzeugt.
+Spec: „Da die Attribute aber durch eine feste Reihenfolge definiert sind, muss
+auf jeden Fall das Trennzeichen(;) gesetzt werden" (dsv8.md:228-229).
+
+Die Zeile wird weiterhin vollständig gelesen, und der Befund ist bewusst nur
+eine Warnung. Nachgezählt betrifft er 73 Zeilen in 3 der 142 gesammelten echten
+Dateien, durchweg `STZWISCHENZEIT`; als Fehler gemeldet wiese die Bibliothek
+drei echte Dateien zurück, deren Daten einwandfrei sind. Die Toleranz ist gegen
+die Realität richtig — sie war nur weder markiert noch begründet noch sichtbar.
+
+`DsvRecord` und die Lexer-Ausgabe tragen dafür ein neues Feld `terminated`. Wer
+Diagnosen zählt oder auf Leerheit prüft, sieht bei diesen Dateien einen Befund
+mehr. Beim Schreiben ist der Befund unzulässig; der eigene Writer terminiert
+jedes Feld.
+
 ### Breaking: Der Writer verweigert jetzt spec-widrige Elementreihenfolgen
 
 `writeTypedList` und damit alle vier `write*`-Funktionen lieferten klaglos

@@ -182,6 +182,13 @@ describe('parseDsv — Diagnostics vollständig', () => {
       severity: 'warning',
       ok: true,
     },
+    {
+      name: 'fehlendes Schluss-Semikolon',
+      input: 'FORMAT:X;7;\r\nSTZWISCHENZEIT:1;50;00:00:30,10\r\nDATEIENDE\r\n',
+      code: 'unterminated-field-list',
+      severity: 'warning',
+      ok: true,
+    },
   ];
 
   it.each(cases)('$name meldet $code mit Severity $severity', ({ input, code, severity, ok }) => {
@@ -201,6 +208,55 @@ describe('parseDsv — Diagnostics vollständig', () => {
 
   it('wirft auch bei Severity fatal, nicht nur bei error', () => {
     expect(() => parseDsvOrThrow('')).toThrow(/empty-input/);
+  });
+});
+
+describe('parseDsv — fehlendes Schluss-Semikolon', () => {
+  // dsv8.md:228-229 — "Da die Attribute aber durch eine feste Reihenfolge
+  // definiert sind, muss auf jeden Fall das Trennzeichen(;) gesetzt werden."
+  // Die Toleranz ist gegen die Realität richtig, aber sie muss sichtbar sein.
+  const codes = (input: string): string[] => parseDsv(input).diagnostics.map((d) => d.code);
+
+  it('liest die Zeile trotzdem vollständig', () => {
+    const { document } = parseDsv('FORMAT:X;7;\r\nA:1;2;3\r\nDATEIENDE\r\n');
+    const record = document.items.find((i) => i.kind === 'element' && i.element === 'A');
+
+    expect(record?.kind).toBe('element');
+    if (record?.kind !== 'element') throw new Error('erwartet: element');
+    expect(record.fields).toEqual(['1', '2', '3']);
+    expect(record.terminated).toBe(false);
+  });
+
+  it('nennt Element und Zeile', () => {
+    const found = parseDsv('FORMAT:X;7;\r\nA:1;2;3\r\nDATEIENDE\r\n').diagnostics.find(
+      (d) => d.code === 'unterminated-field-list',
+    );
+
+    expect(found?.line).toBe(2);
+    expect(found?.data).toMatchObject({ element: 'A' });
+  });
+
+  it('schweigt bei ordentlich terminierten Zeilen', () => {
+    expect(codes('FORMAT:X;7;\r\nA:1;2;3;\r\nDATEIENDE\r\n')).toEqual([]);
+  });
+
+  it('duldet Leerraum hinter dem letzten Semikolon', () => {
+    expect(codes('FORMAT:X;7;\r\nA:1;2;3; \r\nDATEIENDE\r\n')).toEqual([]);
+  });
+
+  it('schweigt bei DATEIENDE — dort gibt es keine Attributliste', () => {
+    expect(codes('FORMAT:X;7;\r\nDATEIENDE\r\n')).toEqual([]);
+  });
+
+  it('schweigt bei einem Element ganz ohne Attribute', () => {
+    expect(codes('FORMAT:X;7;\r\nA:\r\nDATEIENDE\r\n')).toEqual([]);
+  });
+
+  it('beurteilt den Rumpf vor einem Zeilenendkommentar', () => {
+    expect(codes('FORMAT:X;7;\r\nA:1;2; (* ok *)\r\nDATEIENDE\r\n')).toEqual([]);
+    expect(codes('FORMAT:X;7;\r\nA:1;2 (* ok *)\r\nDATEIENDE\r\n')).toEqual([
+      'unterminated-field-list',
+    ]);
   });
 });
 

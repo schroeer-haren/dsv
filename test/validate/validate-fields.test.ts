@@ -15,6 +15,7 @@ function record(element: string, fields: readonly string[], line = 1): DsvRecord
     rawFields: fields,
     comment: null,
     bare: fields.length === 0,
+    terminated: true,
     line,
     raw: `${element}:${fields.join(';')}`,
     eol: '\n',

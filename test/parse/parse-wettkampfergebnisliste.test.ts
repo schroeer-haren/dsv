@@ -118,6 +118,12 @@ const EXPECTED_DIAGNOSTICS: Readonly<Record<string, number>> = {
   'warning:conditional-field-required': 36,
   'warning:invalid-enum-value': 1,
   'warning:invalid-value': 37,
+  // dsv8.md:228-229 — das abschliessende `;` fehlt. Nachgezählt: 73 Zeilen in
+  // 3 der 142 Dateien (`dsc-2025-11-02-Dresden-Pr-DSV.dsv7` 29,
+  // `dsc-2026-02-01-Dresden-Pr.dsv7` 29, `dsc-2026-01-18-Dresden-Pr-neu.dsv7`
+  // 15), durchweg STZWISCHENZEIT. Bewusst eine Warnung: Als Fehler wiese die
+  // Bibliothek drei echte Dateien zurück, deren Daten einwandfrei sind.
+  'warning:unterminated-field-list': 73,
 };
 
 /** Anzahl der Dateien mit mindestens einem `error` oder `fatal`. */
