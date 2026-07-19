@@ -17,18 +17,19 @@ unten vollständig aufgeführt.
 `0.9.0` liegt auf npm. Wer von dort kommt, muss die folgenden Punkte anfassen.
 Die Kurzfassung als Tabelle, die Begründungen darunter.
 
-| Alt                                                                    | Neu                                                                               |
-| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `Diagnostic.start` / `Diagnostic.end` (Typ `Position`)                 | `Diagnostic.line: number`, 1-basiert                                              |
-| `Position` (exportierter Typ)                                          | entfällt ersatzlos                                                                |
-| `ErgebnisPlatzierung.startnummerDisqualifiziert: string`               | `: number` (leer/unlesbar ergibt `NaN`)                                           |
-| `VereinsergebnisStaffelPlatzierung.startnummerDisqualifiziert: string` | `: number`                                                                        |
-| `qualifikationswettkampfart: 'V'\|'Z'\|'F'\|'E'\|'A'\|'N'`             | `'V'\|'Z'\|'F'\|'E'` (Vereinsmelde- und Wettkampfdefinitionsliste)                |
-| `encodeZeit` / `encodeUhrzeit` / `encodeDatum` → `null`                | werfen `DsvWriteError`                                                            |
-| weggelassenes Feld im Objektgraphen → `''`                             | Unterlassungswert der Spezifikation (`'N'`, `'+'`, `'00:00:00,00'`)               |
-| —                                                                      | `DsvRecord.terminated: boolean` (neues Pflichtfeld)                               |
-| —                                                                      | `DiagnosticCode` um `'unexpected-bom'` erweitert                                  |
-| —                                                                      | `VereinsergebnisStaffel.besetzungen` (neu), Typ `VereinsergebnisStaffelBesetzung` |
+| Alt                                                                      | Neu                                                                                      |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `Diagnostic.start` / `Diagnostic.end` (Typ `Position`)                   | `Diagnostic.line: number`, 1-basiert                                                     |
+| `Position` (exportierter Typ)                                            | entfällt ersatzlos                                                                       |
+| `ErgebnisPlatzierung.startnummerDisqualifiziert: string`                 | `: number` (leer/unlesbar ergibt `NaN`)                                                  |
+| `VereinsergebnisStaffelPlatzierung.startnummerDisqualifiziert: string`   | `: number`                                                                               |
+| `qualifikationswettkampfart: 'V'\|'Z'\|'F'\|'E'\|'A'\|'N'`               | `'V'\|'Z'\|'F'\|'E'` (Vereinsmelde- und Wettkampfdefinitionsliste)                       |
+| `encodeZeit` / `encodeUhrzeit` / `encodeDatum` → `null`                  | werfen `DsvWriteError`                                                                   |
+| weggelassenes Feld im Objektgraphen → `''`                               | Unterlassungswert der Spezifikation (`'N'`, `'+'`, `'00:00:00,00'`)                      |
+| —                                                                        | `DsvRecord.terminated: boolean` (neues Pflichtfeld)                                      |
+| —                                                                        | `DiagnosticCode` um `'unexpected-bom'` erweitert                                         |
+| —                                                                        | `VereinsergebnisStaffel.besetzungen` (neu), Typ `VereinsergebnisStaffelBesetzung`        |
+| `wettkampfart` `A`/`N`: `warning` + `data.tolerated`, Schreiben gesperrt | `info` + `data.specGap`, Schreiben erlaubt (Vereinsmelde- und Wettkampfdefinitionsliste) |
 
 **Wer von 0.8 oder früher kommt**, findet die grosse Umbenennung des
 Objektgraphen — Präfixe je Listenart (`Verein` → `ErgebnisVerein`),
@@ -81,6 +82,11 @@ Ersetzt durch einen Einzeldurchlauf ohne Regex: Kommentarende `*)` am
 Zeilenende (nur Leerraum dahinter), Beginn am letztmöglichen `(*`, vor dem nur
 Leerraum und davor ein `;` steht — rückwärts über `lastIndexOf`, damit dieselbe
 gierige Wahl herauskommt wie zuvor. Dieselbe Datei: **4,6 Millisekunden.**
+
+Der Effekt wächst mit der Dateigrösse, weil die alte Erkennung quadratisch in
+der Zeilenlänge war — nachgemessen vervierfacht sich ihre Laufzeit bei jeder
+Verdopplung. Eine 4,7 MB grosse Datei desselben Zuschnitts hätte danach rund
+**70 Minuten** gebraucht; der neue Lexer liest sie in **etwa 55 Millisekunden**.
 
 #### Die Staffelbesetzung hing am falschen Element
 
@@ -323,6 +329,53 @@ Der generierte Typ der betroffenen Felder verengt sich damit von
 dort `A` oder `N` führen, werden beim Lesen nicht mehr stillschweigend
 angenommen.
 
+### Breaking: `A` und `N` sind eine Lücke der Vorlage, keine geduldete Abweichung
+
+Nicht zu verwechseln mit dem Abschnitt darüber: Dort geht es um
+`qualifikationswettkampfart`, hier um das Nachbarfeld `wettkampfart`.
+
+In der Vereinsmelde- und der Wettkampfdefinitionsliste waren `A` (Ausschwimmen)
+und `N` (Nachschwimmen) als `tolerated` geführt — beim Lesen eine `warning`,
+beim Schreiben gesperrt. Sie sind jetzt `specGap`: beim Lesen ein `info`, beim
+Schreiben zugelassen.
+
+Die Wertetabellen dieser beiden Listenarten lassen die zwei Werte aus, schliessen
+sie aber nicht aus. Ein Verbot spricht keine der beiden Fassungen aus; sämtliche
+Fundstellen von „Ausschwimmen" in beiden Spezifikationen sind Zeilen von
+Wertetabellen. Die Vorlage widerspricht sich bei diesem Feld ausserdem selbst:
+Dasselbe Element `WERTUNG` führt `A` und `N` in der Wettkampfergebnisliste
+(dsv8.md:4913-4919) und lässt sie in der Vereinsergebnisliste weg
+(dsv8.md:3231-3235), obwohl beide dieselbe Veranstaltung beschreiben. Die
+Tabelle der Vereinsmeldeliste (dsv8.md:1729) führt sogar nur `V` und `E` — auch
+`Z` und `F` fehlen dort und gelten unbestritten. Eine Tabelle, die einen Wert
+nicht nennt, verbietet ihn also nicht.
+
+Belegt ist beides im gesammelten Bestand: `A` in
+`2026-06-28-Gera-SVHaren-Me.dsv7:25`, `N` dreifach in
+`dsvportal-13062024-Wk.dsv7:31-33` — Letzteres eine Ausschreibung des
+DSV-Portals selbst. Könnte eine Ausschreibung die Art `A` nicht ausdrücken,
+könnte ein Ausschwimmen nie in einer Ergebnisliste erscheinen, wo die
+Spezifikation es ausdrücklich vorsieht.
+
+Der Unterschied zu `tolerated` ist bewusst: Ein geduldeter Wert ist ein Mangel
+der Datei und bleibt beim Schreiben gesperrt, eine Lücke der Vorlage ist keiner.
+Die Strenge gegenüber echten Mängeln ändert sich nicht — etwa
+`MELDEGELD.meldegeldTyp` in abweichender Schreibweise bleibt unschreibbar. Von
+den 137 echten DSV7-Dateien weist der Writer auf dem Vorgabeweg jetzt 30 statt
+32 zurück; die zwei hinzugekommenen sind genau die beiden oben genannten.
+
+Wer auf `data.tolerated === true` filtert, findet `A` und `N` dort nicht mehr —
+sie tragen jetzt `data.specGap === true` und die Stufe `info` statt `warning`.
+Wer sie beim Schreiben bisher abfangen musste, kann das entfallen lassen.
+
+### Behoben: doppelter Befund bei nicht unterstützter Formatversion
+
+Eine DSV6-Datei erzeugte über die typisierten `parse…`-Funktionen zwei
+identische `unsupported-format-version`-Diagnostics: `parseDsv` meldet sie
+selbst, `validateDocument` bei nicht unterstützter Version noch einmal, und
+beide Listen wurden aneinandergehängt. Sie erscheint jetzt genau einmal. Wer
+Diagnosen zählt, sieht für DSV6-Dateien einen Befund weniger.
+
 ### Dokumentation
 
 `docs/` ist für 1.0 neu geordnet:
@@ -347,9 +400,20 @@ angenommen.
 
 Im README berichtigt: `Diagnostic.start` in einem Beispiel (das Feld gibt es
 nicht mehr), eine `MELDEGELD`-Zeile, die der Writer zu Recht zurückweist, die
-Zusage, `parseDsvOrThrow` werfe nur bei `fatal` (es wirft auch bei `error`), und
-die Behauptung, echte DSV-Dateien seien meist ISO-8859-1 — keine einzige der
-142 gesammelten ist es.
+Zusage, `parseDsvOrThrow` werfe nur bei `fatal`, und die Behauptung, echte
+DSV-Dateien seien meist ISO-8859-1 — keine einzige der 142 gesammelten ist es.
+
+Zu `parseDsvOrThrow` genauer: Die Funktion wirft, sobald `ok` `false` ist, also
+auch bei `error`. Das Verhalten bleibt so — `ok` ist der eine Erfolgsbegriff der
+Bibliothek, und ein Ausgang mit `ok === false`, bei dem die Funktion trotzdem
+zurückkehrt, wäre die schlechtere Zusage. Praktisch fällt der Unterschied kaum
+ins Gewicht: Die schema-freie Ebene kennt oberhalb von `warning` nur
+`empty-input`, `unsupported-format-version` und `missing-format-element`, und
+über alle 142 gesammelten echten Dateien wirft die Funktion an genau fünf — den
+fünf DSV6-Dateien. Die 28 Dateien mit einem leeren Pflichtfeld sind ein Befund
+der Schemaprüfung auf der typisierten Ebene und erreichen sie nicht. Für die
+typisierten `parse…`-Funktionen gibt es weiterhin bewusst keine werfende
+Variante.
 
 ## 0.9.0
 
