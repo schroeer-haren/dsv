@@ -1127,7 +1127,11 @@ export function projectVereinsergebnisliste(
         `STAFFELERGEBNIS ${key} names ${String(genannt)} of ${String(erwartet)} relay members; either all or none are expected`,
         {
           ...at(start.line),
-          data: { element: 'STAFFELPERSON', key, genannt, erwartet },
+          // `element` benennt überall in dieser Projektion das Element, auf das
+          // `line` zeigt — hier also STAFFELERGEBNIS, nicht die STAFFELPERSON,
+          // aus deren Kapitel die Regel stammt. Der Befund gilt der Staffel als
+          // Ganzes; eine einzelne Personenzeile ist nicht die schuldige.
+          data: { element: 'STAFFELERGEBNIS', key, genannt, erwartet },
         },
       ),
     );

@@ -349,10 +349,17 @@ describe('projectWettkampfergebnisliste', () => {
     expect(diagnostics.map((d) => d.code)).toEqual(['incomplete-relay']);
     expect(diagnostics[0]?.severity).toBe('warning');
     expect(diagnostics[0]?.data).toMatchObject({
+      // Nachricht, `line` und `element` benennen dasselbe Element.
+      element: 'STERGEBNIS',
       key: '900:2:E',
       genannt: 3,
       erwartet: 4,
     });
+    expect(diagnostics[0]?.message).toBe(
+      'STERGEBNIS 900:2:E names 3 of 4 relay members; either all or none are expected',
+    );
+    // Zeile 10 ist das STERGEBNIS, nicht die erste STAFFELPERSON.
+    expect(diagnostics[0]?.line).toBe(10);
   });
 
   it('schweigt zu einer Staffel ganz ohne Staffelpersonen — die Regel ist befolgt', () => {
@@ -386,6 +393,51 @@ describe('projectWettkampfergebnisliste', () => {
 
     expect(diagnostics.map((d) => d.code)).toEqual(['incomplete-relay']);
     expect(diagnostics[0]?.data).toMatchObject({ genannt: 2, erwartet: 4 });
+  });
+
+  it('nimmt erwartet aus dem Wettkampf der Staffel, nicht aus dem ersten des Dokuments', () => {
+    // Zwei Staffelwettkämpfe mit verschiedener Starterzahl: 4 und 8. Solange
+    // nur ein Wettkampf im Dokument steht, bliebe unbemerkt, wenn die Prüfung
+    // die Starterzahl stets aus dem ersten WETTKAMPF läse.
+    const achterWettkampf = line('WETTKAMPF', [
+      '3',
+      'E',
+      '1',
+      '8',
+      '100',
+      'R',
+      'GL',
+      'X',
+      'SW',
+      '',
+      '',
+    ]);
+    const achterWertung = line('WERTUNG', ['3', 'E', '7', 'AK', '100', '', 'X', 'Achterstaffel']);
+
+    const { diagnostics } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      achterWettkampf,
+      STAFFEL_WERTUNG,
+      achterWertung,
+      VEREIN,
+      stergebnis(),
+      ...['1', '2', '3'].map((n) => staffelperson(n)),
+      stergebnis({ wettkampfnr: '3', wertungsId: '7', veranstaltungsId: '901' }),
+      ...['1', '2', '3'].map((n) =>
+        staffelperson(n, { wettkampfnr: '3', veranstaltungsIdStaffel: '901' }),
+      ),
+    );
+
+    expect(diagnostics.map((d) => d.code)).toEqual(['incomplete-relay', 'incomplete-relay']);
+    const nachKey = new Map(
+      diagnostics.map((d) => [(d.data as { key: string }).key, d] as const),
+    );
+    expect(nachKey.get('900:2:E')?.data).toMatchObject({ genannt: 3, erwartet: 4 });
+    expect(nachKey.get('901:3:E')?.data).toMatchObject({ genannt: 3, erwartet: 8 });
+    // Jeder Befund zeigt auf die STERGEBNIS-Zeile seiner eigenen Staffel.
+    expect(nachKey.get('900:2:E')?.line).toBe(12);
+    expect(nachKey.get('901:3:E')?.line).toBe(16);
   });
 
   it('meldet Staffel-Unterelemente, deren STERGEBNIS fehlt', () => {
@@ -697,8 +749,58 @@ describe('projectWettkampfergebnisliste', () => {
 
   describe('doppelte Wertung innerhalb eines Starts', () => {
     // dsv8.md:5019 — "Für jede definierte Wertung muss hier jeweils die
-    // erreichte Platzierung ausgegeben werden": je Wertung genau eine. In allen
-    // 194 660 Ergebniszeilen des echten Bestandes kommt der Fall nie vor.
+    // erreichte Platzierung ausgegeben werden": je Wertung genau eine. Der Satz
+    // steht nur unter PNERGEBNIS; STERGEBNIS (dsv8.md:5403) kennt keinen
+    // solchen Hinweis. Dass dieselbe Erwartung auch für Staffeln gilt, ist eine
+    // Übertragung — deshalb hier eine Warnung und kein Fehler.
+    //
+    // Entscheidend ist der Zuschnitt: geprüft wird je Start, nicht je Element
+    // dokumentweit. In einer echten Datei teilen sich alle Schwimmer eines
+    // Wettkampfs dieselbe Wertung; dokumentweit gezählt gäbe das eine Warnung
+    // pro Ergebniszeile. In allen 194 660 Ergebniszeilen des echten Bestandes
+    // kommt der echte Fall dagegen nie vor.
+
+    it('schweigt, wenn zwei Starts sich dieselbe Wertung teilen', () => {
+      // Der Normalfall jeder echten Datei: eine Wertung, viele Schwimmer.
+      const { graph, diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        pnergebnis({ wertungsId: '1', platz: '1' }),
+        pnergebnis({
+          wertungsId: '1',
+          platz: '2',
+          name: 'Muster, Mo',
+          dsvId: '100002',
+          veranstaltungsId: '2',
+        }),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.startByKey.get('1:1:E')?.platzierungen[0]?.platz).toBe(1);
+      expect(graph.startByKey.get('2:1:E')?.platzierungen[0]?.platz).toBe(2);
+    });
+
+    it('schweigt, wenn zwei Staffeln sich dieselbe Wertung teilen', () => {
+      const { graph, diagnostics } = project(
+        ABSCHNITT,
+        STAFFEL_WETTKAMPF,
+        STAFFEL_WERTUNG,
+        VEREIN,
+        stergebnis({ wertungsId: '5', platz: '1' }),
+        stergebnis({
+          wertungsId: '5',
+          platz: '2',
+          nummerDerMannschaft: '2',
+          veranstaltungsId: '901',
+        }),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.staffelByKey.get('900:2:E')?.platzierungen[0]?.platz).toBe(1);
+      expect(graph.staffelByKey.get('901:2:E')?.platzierungen[0]?.platz).toBe(2);
+    });
 
     it('meldet zwei PNERGEBNIS desselben Starts mit derselben Wertung', () => {
       const { graph, diagnostics } = project(
@@ -716,6 +818,8 @@ describe('projectWettkampfergebnisliste', () => {
       const start = graph.startByKey.get('1:1:E');
       expect(start?.platzierungen).toHaveLength(1);
       expect(start?.platzierungen[0]?.platz).toBe(1);
+      // Gemeldet wird die zweite, widersprechende Zeile, nicht die erste.
+      expect(diagnostics[0]?.line).toBe(11);
     });
 
     it('meldet zwei STERGEBNIS derselben Staffel mit derselben Wertung', () => {
@@ -730,7 +834,13 @@ describe('projectWettkampfergebnisliste', () => {
 
       expect(diagnostics.map((d) => d.code)).toEqual(['ambiguous-reference']);
       expect(diagnostics[0]?.data).toMatchObject({ element: 'STERGEBNIS', wertungsId: 5 });
-      expect(graph.staffelByKey.get('900:2:E')?.platzierungen).toHaveLength(1);
+      const staffel = graph.staffelByKey.get('900:2:E');
+      expect(staffel?.platzierungen).toHaveLength(1);
+      // Die erste Platzierung gewinnt — wie im Personenfall. Ohne diese Zusage
+      // wäre „erste gewinnt" für die Hälfte der Fälle unbelegt.
+      expect(staffel?.platzierungen[0]?.platz).toBe(1);
+      // Gemeldet wird die zweite, widersprechende Zeile, nicht die erste.
+      expect(diagnostics[0]?.line).toBe(11);
     });
 
     it('lässt zwei verschiedene Wertungen desselben Starts zu', () => {
