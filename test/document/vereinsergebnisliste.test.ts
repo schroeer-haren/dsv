@@ -412,6 +412,51 @@ describe('projectVereinsergebnisliste', () => {
       expect(graph.staffelById.get(9001)?.starts).toHaveLength(2);
     });
 
+    it('ordnet die Mitglieder derselben Staffel je Wettkampf getrennt zu', () => {
+      // Der Schlüssel ist das Tripel aus Kennung, Wettkampfnummer und
+      // Wettkampfart. Fiele die Auflösung auf die Kennung allein zurück,
+      // bekäme die erste Staffel alle acht Mitglieder und die zweite keines —
+      // genau der Fehler, der schon einmal 72 Staffeln getroffen hat. Die
+      // Schlüssel allein zu prüfen genügt nicht: Das prüft nur das Format des
+      // Schlüssels, nicht seine Auflösung.
+      const zweiter = line('WETTKAMPF', ['2', 'E', '1', '4', '200', 'F', 'GL', 'W', 'SW', '', '']);
+      const zweiteWertung = line('WERTUNG', ['2', 'E', '2', 'JG', '0', '9999', '', 'Offen']);
+      const mitglied = (n: string, wettkampfnr: string): string =>
+        staffelperson({
+          startnummer: n,
+          wettkampfnr,
+          name: `Muster, Mia ${n}`,
+          dsvId: `10000${n}`,
+        });
+
+      const { graph } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        zweiter,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        staffel(),
+        staffelergebnis(),
+        ...['1', '2', '3', '4'].map((n) => mitglied(n, '1')),
+        staffelergebnis({ wettkampfnr: '2', wertungsId: '2' }),
+        ...['5', '6', '7', '8'].map((n) => mitglied(n, '2')),
+      );
+
+      expect(graph.staffelStartByKey.get('9001:1:E')?.personen.map((p) => p.dsvId)).toEqual([
+        '100001',
+        '100002',
+        '100003',
+        '100004',
+      ]);
+      expect(graph.staffelStartByKey.get('9001:2:E')?.personen.map((p) => p.dsvId)).toEqual([
+        '100005',
+        '100006',
+        '100007',
+        '100008',
+      ]);
+    });
+
     it('dedupliziert die je Wertung wiederholten Staffelmitglieder', () => {
       const zweiteWertung = line('WERTUNG', ['1', 'E', '2', 'JG', '2008', '', 'W', 'Jahrgang']);
       const { graph } = project(

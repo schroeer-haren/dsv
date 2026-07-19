@@ -531,6 +531,157 @@ describe('projectWettkampfergebnisliste', () => {
     expect(person?.starts.map((s) => s.wettkampfnr)).toEqual([1, 2]);
   });
 
+  describe('widersprüchliche Personenangaben über Wettkämpfe hinweg', () => {
+    // Der Signaturvergleich innerhalb eines Wettkampfs fängt nur Widersprüche
+    // zwischen den je Wertung wiederholten Zeilen desselben Starts. Dieselbe
+    // Veranstaltungs-ID in *zwei verschiedenen* Wettkämpfen wird erst beim
+    // Zusammenführen zur Person geprüft — über sechs Merkmale.
+
+    const zweiterWettkampf = line('WETTKAMPF', [
+      '3',
+      'E',
+      '1',
+      '1',
+      '50',
+      'R',
+      'GL',
+      'M',
+      'SW',
+      '',
+      '',
+    ]);
+    const zweiteWertung = line('WERTUNG', ['3', 'E', '3', 'JG', '2010', '', '', 'zweite']);
+
+    /** Projiziert dieselbe Person in Wettkampf 1:E und 3:E; `over` gilt für den zweiten. */
+    function zweiStarts(over: Partial<Record<string, string>>) {
+      return project(
+        ABSCHNITT,
+        WETTKAMPF,
+        zweiterWettkampf,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        pnergebnis(),
+        pnergebnis({ wettkampfnr: '3', wertungsId: '3', ...over }),
+      );
+    }
+
+    it.each([
+      ['name', { name: 'Anders, Anna' }],
+      ['dsvId', { dsvId: '999999' }],
+      ['geschlecht', { geschlecht: 'W' }],
+      ['jahrgang', { jahrgang: '1999' }],
+      ['verein', { verein: 'Anderer SV' }],
+      ['vereinskennzahl', { vereinskennzahl: '4321' }],
+    ])('meldet einen Widerspruch im Merkmal %s', (_merkmal, over) => {
+      const { graph, diagnostics } = zweiStarts(over);
+
+      const ambiguous = diagnostics.filter((d) => d.code === 'ambiguous-reference');
+      expect(ambiguous).toHaveLength(1);
+      expect(ambiguous[0]?.data).toMatchObject({ element: 'PNERGEBNIS', veranstaltungsId: 1 });
+      // Die erste Zeile gewinnt, beide Starts bleiben erhalten.
+      expect(graph.personById.get(1)?.starts).toHaveLength(2);
+    });
+
+    it('schweigt, wenn beide Starts dieselbe Person beschreiben', () => {
+      const { graph, diagnostics } = zweiStarts({});
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.personById.get(1)?.starts).toHaveLength(2);
+    });
+  });
+
+  describe('Zugehörigkeit der Wertung zum Wettkampf', () => {
+    // Eine Wertung gehört zu genau einem Wettkampf (architecture.md). Ein
+    // Ergebnis darf nur auf eine Wertung seines eigenen Wettkampfs zeigen. Eine
+    // gar nicht existierende `wertungsId` zu prüfen belegt das nicht: Sie
+    // scheitert schon an der vorgelagerten Existenzprüfung, und die eigentliche
+    // Zugehörigkeitsprüfung bleibt dabei ungetestet.
+
+    it('meldet ein PNERGEBNIS, dessen Wertung zu einem anderen Wettkampf gehört', () => {
+      const { diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        STAFFEL_WETTKAMPF,
+        WERTUNG,
+        STAFFEL_WERTUNG,
+        VEREIN,
+        // Wettkampf 1:E, aber Wertung 5 gehört zu Wettkampf 2:E.
+        pnergebnis({ wertungsId: '5' }),
+      );
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['dangling-reference']);
+      expect(diagnostics[0]?.data).toMatchObject({ element: 'PNERGEBNIS', wertungsId: 5 });
+    });
+
+    it('meldet ein STERGEBNIS, dessen Wertung zu einem anderen Wettkampf gehört', () => {
+      const { diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        STAFFEL_WETTKAMPF,
+        WERTUNG,
+        STAFFEL_WERTUNG,
+        VEREIN,
+        // Staffel in Wettkampf 2:E, aber Wertung 1 gehört zu Wettkampf 1:E.
+        stergebnis({ wertungsId: '1' }),
+      );
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['dangling-reference']);
+      expect(diagnostics[0]?.data).toMatchObject({ element: 'STERGEBNIS', wertungsId: 1 });
+    });
+
+    it('schweigt, wenn die Wertung zum eigenen Wettkampf gehört', () => {
+      const { diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        STAFFEL_WETTKAMPF,
+        WERTUNG,
+        STAFFEL_WERTUNG,
+        VEREIN,
+        pnergebnis({ wertungsId: '1' }),
+        stergebnis({ wertungsId: '5' }),
+      );
+
+      expect(diagnostics).toEqual([]);
+    });
+  });
+
+  it('ordnet die Mitglieder derselben Staffel je Wettkampf getrennt zu', () => {
+    // Der Schlüssel einer Staffel ist das Tripel aus Kennung, Wettkampfnummer
+    // und Wettkampfart. Fiele die Auflösung auf die Kennung allein zurück,
+    // bekäme die erste Staffel alle acht Mitglieder und die zweite keines —
+    // genau der Fehler, der schon einmal 72 Staffeln getroffen hat. Die
+    // Schlüssel allein zu prüfen genügt nicht: Das prüft nur das Format des
+    // Schlüssels, nicht seine Auflösung.
+    const wettkampf3 = line('WETTKAMPF', ['3', 'E', '1', '4', '200', 'F', 'GL', 'X', 'SW', '', '']);
+    const wertung3 = line('WERTUNG', ['3', 'E', '7', 'AK', '100', '', 'X', 'Staffel 2']);
+    const { graph } = project(
+      ABSCHNITT,
+      STAFFEL_WETTKAMPF,
+      wettkampf3,
+      STAFFEL_WERTUNG,
+      wertung3,
+      VEREIN,
+      stergebnis(),
+      ...['1', '2', '3', '4'].map((n) => staffelperson(n)),
+      stergebnis({ wettkampfnr: '3', wertungsId: '7' }),
+      ...['5', '6', '7', '8'].map((n) => staffelperson(n, { wettkampfnr: '3' })),
+    );
+
+    expect(graph.staffelByKey.get('900:2:E')?.personen.map((p) => p.dsvId)).toEqual([
+      '100001',
+      '100002',
+      '100003',
+      '100004',
+    ]);
+    expect(graph.staffelByKey.get('900:3:E')?.personen.map((p) => p.dsvId)).toEqual([
+      '100005',
+      '100006',
+      '100007',
+      '100008',
+    ]);
+  });
+
   it('hält zwei Wertungen mit unlesbarer Kennung nicht für Duplikate', () => {
     // Ein nicht lesbares Zahlenfeld ergibt `NaN`. Als Map-Schlüssel kollidiert
     // `NaN` mit sich selbst (SameValueZero), deshalb hielte die Duplikatprüfung
@@ -694,7 +845,15 @@ describe('Projektion über echte Ergebnislisten', () => {
         expect(graph.wettkampfByKey.has(`${String(start.wettkampfnr)}:${start.wettkampfart}`)).toBe(
           true,
         );
-        for (const p of start.platzierungen) expect(graph.wertungById.has(p.wertungsId)).toBe(true);
+        // Nicht bloss `wertungById.has(id)` — das wäre die schwächere
+        // Bedingung "die Wertung existiert irgendwo". Geprüft wird die
+        // Zugehörigkeit: Sie muss eine Wertung des eigenen Wettkampfs sein.
+        const eigene = new Set(
+          graph.wettkampfByKey
+            .get(`${String(start.wettkampfnr)}:${start.wettkampfart}`)
+            ?.wertungen.map((w) => w.id),
+        );
+        for (const p of start.platzierungen) expect(eigene.has(p.wertungsId)).toBe(true);
       }
 
       // Jede PNZWISCHENZEIT hat ihre Person gefunden.
