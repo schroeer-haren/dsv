@@ -28,7 +28,8 @@ Die Kurzfassung als Tabelle, die Begründungen darunter.
 | weggelassenes Feld im Objektgraphen → `''`                               | Unterlassungswert der Spezifikation (`'N'`, `'+'`, `'00:00:00,00'`)                      |
 | —                                                                        | `DsvRecord.terminated: boolean` (neues Pflichtfeld)                                      |
 | —                                                                        | `DiagnosticCode` um `'unexpected-bom'` erweitert                                         |
-| —                                                                        | `VereinsergebnisStaffel.besetzungen` (neu), Typ `VereinsergebnisStaffelBesetzung`        |
+| —                                                                        | `VereinsergebnisStaffel.besetzungen` (neu)                                               |
+| —                                                                        | `VereinsergebnisKampfgerichtV7`/`V8`: `position` um `'SPR'` erweitert                    |
 | `wettkampfart` `A`/`N`: `warning` + `data.tolerated`, Schreiben gesperrt | `info` + `data.specGap`, Schreiben erlaubt (Vereinsmelde- und Wettkampfdefinitionsliste) |
 
 **Wer von 0.8 oder früher kommt**, findet die grosse Umbenennung des
@@ -74,19 +75,24 @@ Die Erkennung von Zeilenendkommentaren benutzte die Regex
 `/^(.*;)(\s*\(\*.*\*\)\s*)$/`. Sie ist quadratisch: Das gierige `.*;` probiert
 jede Semikolonposition durch, und an jeder mit folgendem `(*` durchsucht
 `.*\*\)` den restlichen Zeilentext vergeblich. Eine wohlgeformte Datei aus
-vielen `;(*` ohne je ein `*)` brauchte **für 457 KB rund 37,9 Sekunden — ohne
+vielen `;(*` ohne je ein `*)` brauchte **für 457 KB rund 34 Sekunden — ohne
 eine einzige Diagnose**. Das ist aus der Ferne auslösbar, wenn eine Anwendung
 hochgeladene Dateien parst.
 
 Ersetzt durch einen Einzeldurchlauf ohne Regex: Kommentarende `*)` am
 Zeilenende (nur Leerraum dahinter), Beginn am letztmöglichen `(*`, vor dem nur
 Leerraum und davor ein `;` steht — rückwärts über `lastIndexOf`, damit dieselbe
-gierige Wahl herauskommt wie zuvor. Dieselbe Datei: **4,6 Millisekunden.**
+gierige Wahl herauskommt wie zuvor. Dieselbe Datei: **rund 5 Millisekunden.**
 
 Der Effekt wächst mit der Dateigrösse, weil die alte Erkennung quadratisch in
 der Zeilenlänge war — nachgemessen vervierfacht sich ihre Laufzeit bei jeder
-Verdopplung. Eine 4,7 MB grosse Datei desselben Zuschnitts hätte danach rund
-**70 Minuten** gebraucht; der neue Lexer liest sie in **etwa 55 Millisekunden**.
+Verdopplung. Eine 4,7 MB grosse Datei desselben Zuschnitts hätte danach in der
+Grössenordnung **einer Stunde** gebraucht; der neue Lexer liest sie in **etwa
+55 Millisekunden**.
+
+Alle Zeitangaben dieses Abschnitts sind auf einer Maschine nachgemessen und
+hängen von ihr ab; belastbar ist das Wachstumsverhalten, nicht die zweite
+Stelle.
 
 #### Die Staffelbesetzung hing am falschen Element
 
@@ -167,8 +173,9 @@ anbieten, genau das zu erzeugen, was die Spezifikation untersagt.
 „Numerischer Wert ohne Vorzeichen und Dezimalzeichen (positiver Integer,
 32 Bit)" (dsv8.md:265 = dsv7.md:231) — geprüft wurde davon nur die Ziffernform.
 Eine zwanzigstellige Zahl kam durch; eine Schranke gab es allein, wo ein Feld
-ein ausdrückliches `range` trägt, was in der Vereinsmeldeliste auf keines der
-20 `Zahl`-Felder zutrifft. Ein Empfänger, der in `int32` liest, lief über.
+ein ausdrückliches `range` trägt — in der Vereinsmeldeliste bei 9 ihrer 29
+`Zahl`-Felder, die übrigen 20 waren damit nach oben offen. Ein Empfänger, der
+in `int32` liest, lief über.
 
 Die Grenze ist 2³²−1 = `4294967295`: „ohne Vorzeichen" wörtlich genommen. Die
 Spezifikation lässt offen, ob sie die vorzeichenlose oder die vorzeichenbehaftete
@@ -207,7 +214,7 @@ ein wirklich existierender Kalendertag mit Jahr von `0` bis `9999`.
 ### Breaking: Unterlassungswerte werden in den Objektgraphen eingesetzt
 
 `FieldDef.default` beschrieb sich als „Unterlassungswert, der gilt, wenn das
-Feld nicht angegeben ist", wurde aber nirgends angewendet — 13 Felder führten
+Feld nicht angegeben ist", wurde aber nirgends angewendet — 12 Felder führten
 ihn, kein einziger Codepfad ausserhalb von `src/schema` las ihn. Ein
 weggelassenes Feld kam als `''` im Objektgraph an, obwohl die Spezifikation
 seinen Wert festlegt: `ABSCHNITT.relativeAngabe` etwa mit „Unterlassungswert
@@ -225,10 +232,11 @@ aus einem weggelassenen Feld würde ein angegebenes, und die Byte-Identität des
 Durchreichewegs wäre dahin. Der Objektgraph ist ohnehin die ausgedeutete
 Sicht — er löst Bezüge auf und dekodiert Zeiten.
 
-Betroffene Felder sind `relativeAngabe` (Unterlassungswert `N`), die
-Vorzeichen von Reaktions- und Ablösezeiten (`+`) sowie zwei Zeitfelder der
-Vereinsmeldeliste (`00:00:00,00`). Wer bisher auf `''` geprüft hat, muss
-stattdessen auf den Unterlassungswert prüfen.
+Betroffen sind alle 12 Felder: `relativeAngabe` in den vier Listenarten,
+`LASTSCHRIFT.hinweis` und `VEREIN.lastschrift` (alle mit Unterlassungswert
+`N`), die vier Vorzeichenfelder `art` von Reaktions- und Ablösezeiten (`+`)
+sowie die beiden `meldezeit`-Felder der Vereinsmeldeliste (`00:00:00,00`). Wer
+bisher auf `''` geprüft hat, muss stattdessen auf den Unterlassungswert prüfen.
 
 ### Breaking: Fehlendes Schluss-Semikolon wird gemeldet
 
@@ -267,7 +275,7 @@ Elementreihenfolge rutschten so auch eine fehlende `DATEIENDE`-Zeile und
 Ersetzungszeichen (U+FFFD) in Werten durch.
 
 Die Zuordnung hängt jetzt am Diagnostic-Code statt an der Schwere und ist über
-`Record<DiagnosticCode, boolean>` vollständig: Ein neuer Code lässt sich nicht
+`Record<DiagnosticCode, Schreiberlaubnis>` vollständig: Ein neuer Code lässt sich nicht
 einführen, ohne zu entscheiden, ob er in eigener Ausgabe vorkommen darf.
 Vorbelegung ist unzulässig. Erlaubt bleiben allein die beiden Querregeln
 `invalid-value` und `conditional-field-required` auf Warnstufe — echte, vom DSV
@@ -289,9 +297,12 @@ gesamte Besetzung und meldete je Schwimmer eine `dangling-reference` auf eine
 Beziehung, die die Spezifikation nirgends definiert. Erreichbar war sie danach
 über keinen Weg mehr.
 
-Neu trägt `VereinsergebnisStaffel` ein Feld `besetzungen` mit je einem
-`VereinsergebnisStaffelBesetzung`-Eintrag pro Wettkampf (`wettkampfnr`,
-`wettkampfart`, `personen`, `zwischenzeiten`). `VereinsergebnisStaffelStart`
+Neu trägt `VereinsergebnisStaffel` ein Feld `besetzungen` mit je einem Eintrag
+pro Wettkampf (`wettkampfnr`, `wettkampfart`, `personen`, `zwischenzeiten`).
+Der Elementtyp `VereinsergebnisStaffelBesetzung` wird derzeit **nicht** unter
+seinem Namen exportiert; wer ihn benennen muss, greift ihn bis auf Weiteres
+über `VereinsergebnisStaffel['besetzungen'][number]` ab.
+`VereinsergebnisStaffelStart`
 behält `personen` und `zwischenzeiten`; beide Wege zeigen auf dieselben
 Objekte. Die `dangling-reference` beider Elemente nennt jetzt `STAFFEL` und
 führt `veranstaltungsIdStaffel` statt eines Startschlüssels. Der Befund
@@ -306,6 +317,24 @@ dieses eine Element in Kapitel 5.3 als Anker „STERGEBNIS"
 (dsv8.md:4174-4175) — ein Element, das es in der Vereinsergebnisliste gar nicht
 gibt. Welches Element gemeint ist, lässt sich daraus nicht ableiten; solange
 die Absicht unklar ist, wird das bisherige Verhalten beibehalten.
+
+### Breaking: `SPR` ist in der Vereinsergebnisliste toleriert
+
+Die Wettkampfergebnisliste duldete `SPR` (Sprecher) im Feld
+`KAMPFGERICHT.position` schon, weil das Beispiel der Spezifikation
+`KAMPFGERICHT:1;SPR;…` schreibt, während ihre Werteliste nur `SP` führt. Die
+Vereinsergebnisliste trägt in ihrem eigenen Kapitel dieselbe Beispielzeile
+wortgleich (dsv8.md:4255), wies den Wert aber zurück. Beide Listenarten sagen
+jetzt dasselbe: `SPR` wird beim Lesen als `tolerated` angenommen und bleibt
+beim Schreiben unzulässig.
+
+Das Feld `position` der generierten Typen `VereinsergebnisKampfgerichtV7` und
+`VereinsergebnisKampfgerichtV8` weitet sich damit von 20 auf 21 Werte. Wer die
+Positionen erschöpfend abdeckt — etwa in einem `switch` ohne `default` —, muss
+`'SPR'` ergänzen; der Objektgraph-Typ `VereinsergebnisKampfrichter` führt
+`position` als `string` und ändert sich nicht. Anders als bei den übrigen Werten dieser
+Fassung fehlt hier die empirische Hälfte der Begründung: Der gesammelte Bestand
+enthält keine einzige echte Vereinsergebnisliste.
 
 ### Breaking: `qualifikationswettkampfart` toleriert kein `A`/`N` mehr
 
