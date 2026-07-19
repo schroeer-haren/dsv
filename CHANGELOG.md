@@ -2,6 +2,32 @@
 
 ## Unveröffentlicht
 
+### Breaking: Unterlassungswerte werden in den Objektgraphen eingesetzt
+
+`FieldDef.default` beschrieb sich als „Unterlassungswert, der gilt, wenn das
+Feld nicht angegeben ist", wurde aber nirgends angewendet — 13 Felder führten
+ihn, kein einziger Codepfad ausserhalb von `src/schema` las ihn. Ein
+weggelassenes Feld kam als `''` im Objektgraph an, obwohl die Spezifikation
+seinen Wert festlegt: `ABSCHNITT.relativeAngabe` etwa mit „Unterlassungswert
+ist N." (dsv8.md:2929), real 172× leer.
+
+Die Beschreibung war damit schlicht unwahr. Statt das Feld zu entfernen, wird
+es jetzt angewendet: Der Wert steht so in der Spezifikation, und ohne ihn muss
+jeder Anwender selbst wissen, dass ein leeres `relativeAngabe` `N` bedeutet —
+dieselbe Begründung, aus der die Encoder öffentlich sind.
+
+Eingesetzt wird er **allein in den Objektgraphen** unter `src/document`, nicht
+in `TypedRecord.values`. Die Records sind die Grundlage des Schreibens; ein dort
+eingesetzter Unterlassungswert stünde anschliessend ausgeschrieben in der Datei,
+aus einem weggelassenen Feld würde ein angegebenes, und die Byte-Identität des
+Durchreichewegs wäre dahin. Der Objektgraph ist ohnehin die ausgedeutete
+Sicht — er löst Bezüge auf und dekodiert Zeiten.
+
+Betroffene Felder sind `relativeAngabe` (Unterlassungswert `N`), die
+Vorzeichen von Reaktions- und Ablösezeiten (`+`) sowie zwei Zeitfelder der
+Vereinsmeldeliste (`00:00:00,00`). Wer bisher auf `''` geprüft hat, muss
+stattdessen auf den Unterlassungswert prüfen.
+
 ### Breaking: Fehlendes Schluss-Semikolon wird gemeldet
 
 Endete eine Attributliste ohne `;`, entstand gar kein Befund: Der Lexer verwarf

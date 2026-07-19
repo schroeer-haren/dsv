@@ -1,4 +1,6 @@
 import { createDiagnostic } from '../diagnostics/create.js';
+import { WETTKAMPFDEFINITIONSLISTE } from '../schema/wettkampfdefinitionsliste.js';
+import { createDefaultLookup } from './defaults.js';
 import type { Diagnostic } from '../diagnostics/types.js';
 import type {
   TypedRecord,
@@ -124,8 +126,13 @@ const EMPTY_VERANSTALTUNG: DefinitionVeranstaltung = {
 };
 
 /** Feldwert eines Records; fehlende Felder ergeben die leere Zeichenkette. */
+const unterlassungswert = createDefaultLookup(WETTKAMPFDEFINITIONSLISTE);
+
 function value(record: TypedRecord, name: string): string {
-  return record.values[name] ?? '';
+  // Leer heisst: nicht angegeben. Dann gilt der Unterlassungswert der
+  // Spezifikation, sofern das Feld einen führt — siehe `createDefaultLookup`.
+  const raw = record.values[name]?.trim() ?? '';
+  return raw === '' ? unterlassungswert(record.element, name) : raw;
 }
 
 /**

@@ -680,6 +680,22 @@ describe('projectVereinsergebnisliste', () => {
       expect(result.graph.staffelById.get(9001)?.besetzungen[0]?.personen).toHaveLength(1);
     });
 
+    // dsv8.md:2929 — "Unterlassungswert ist N." Das Schema führte diesen Wert
+    // schon, wandte ihn aber nirgends an; die Projektion lieferte "".
+    it('setzt den Unterlassungswert eines nicht angegebenen Feldes ein', () => {
+      const ohne = line('ABSCHNITT', ['2', '15.03.2026', '09:00', '']);
+      const { graph } = project(ohne, WETTKAMPF, WERTUNG, VEREIN);
+
+      expect(graph.abschnittByNummer.get(2)?.relativeAngabe).toBe('N');
+    });
+
+    it('lässt einen angegebenen Wert unangetastet', () => {
+      const mit = line('ABSCHNITT', ['2', '15.03.2026', '09:00', 'J']);
+      const { graph } = project(mit, WETTKAMPF, WERTUNG, VEREIN);
+
+      expect(graph.abschnittByNummer.get(2)?.relativeAngabe).toBe('J');
+    });
+
     it('meldet eine doppelte Staffelkennung', () => {
       const result = project(ABSCHNITT, WETTKAMPF, WERTUNG, VEREIN, staffel(), staffel());
 

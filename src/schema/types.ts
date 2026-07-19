@@ -43,7 +43,14 @@ export interface FieldDef {
   readonly specRef: string;
   /** Erlaubte Werte, falls das Feld eine feste Werteliste hat. */
   readonly values?: readonly EnumValue[];
-  /** Unterlassungswert, der gilt, wenn das Feld nicht angegeben ist. */
+  /**
+   * Unterlassungswert, der gilt, wenn das Feld nicht angegeben ist.
+   *
+   * Eingesetzt wird er allein in den Objektgraphen unter `src/document`, nicht
+   * in `TypedRecord.values`: Die Records sind die Grundlage des Schreibens, und
+   * ein dort eingesetzter Wert stünde anschliessend ausgeschrieben in der Datei.
+   * Siehe `createDefaultLookup`.
+   */
   readonly default?: string;
   /**
    * Zulässiger Zahlenbereich, jeweils einschliesslich. Eine Regel des Feldes,

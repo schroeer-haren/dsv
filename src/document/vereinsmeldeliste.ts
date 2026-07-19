@@ -1,4 +1,6 @@
 import { createDiagnostic } from '../diagnostics/create.js';
+import { VEREINSMELDELISTE } from '../schema/vereinsmeldeliste.js';
+import { createDefaultLookup } from './defaults.js';
 import type { Diagnostic } from '../diagnostics/types.js';
 import type { TypedRecord } from '../parse/parse-typed-list.js';
 import type { Vereinsmeldeliste } from '../parse/parse-vereinsmeldeliste.js';
@@ -249,8 +251,13 @@ const EMPTY_VERANSTALTUNG: MeldungVeranstaltung = {
 };
 
 /** Feldwert eines Records; fehlende Felder ergeben die leere Zeichenkette. */
+const unterlassungswert = createDefaultLookup(VEREINSMELDELISTE);
+
 function value(record: TypedRecord, name: string): string {
-  return record.values[name]?.trim() ?? '';
+  // Leer heisst: nicht angegeben. Dann gilt der Unterlassungswert der
+  // Spezifikation, sofern das Feld einen führt — siehe `createDefaultLookup`.
+  const raw = record.values[name]?.trim() ?? '';
+  return raw === '' ? unterlassungswert(record.element, name) : raw;
 }
 
 /**
