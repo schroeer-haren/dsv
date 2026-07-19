@@ -55,12 +55,6 @@ function validateCardinalities(
   return diagnostics;
 }
 
-/** Feldindizes im WETTKAMPF-Record, in DSV7 und DSV8 gleich. */
-const WETTKAMPF_ART = 1;
-const WETTKAMPF_TECHNIK = 5;
-const WETTKAMPF_AUSUEBUNG = 6;
-const WETTKAMPF_QUALIFIKATIONSNR = 9;
-
 /**
  * Wettkampfarten, die sich aus einem vorherigen Lauf speisen und deshalb dessen
  * Nummer nennen müssen (dsv8.md:1110).
@@ -74,27 +68,66 @@ const WETTKAMPF_QUALIFIKATIONSNR = 9;
  */
 const QUALIFIZIERENDE_ARTEN = new Set(['Z', 'F']);
 
-/**
- * Ergebniselemente der Wettkampfergebnisliste. In beiden liegen Platz und Grund
- * der Nichtwertung an derselben Stelle (dsv8.md:5046/5052 und
- * dsv8.md:5397/5403).
- */
-const ERGEBNIS_ELEMENTE = ['PNERGEBNIS', 'STERGEBNIS'];
-const ERGEBNIS_PLATZ = 3;
-const ERGEBNIS_GRUND = 4;
-
 /** Ausübungswerte, die nur bei Technik `S` zulässig sind (dsv8.md:1070). */
 const KICK_AUSUEBUNGEN = new Set(['KB', 'KR']);
+
+/**
+ * Ein Element einer Listenart samt der Feldindizes, die eine Feldregel braucht.
+ * Die Indizes stammen aus dem Schema und gelten deshalb je Listenart — dieselben
+ * Felder liegen in verschiedenen Listenarten an verschiedenen Stellen.
+ */
+interface FieldRuleTarget {
+  readonly element: string;
+  readonly indices: readonly number[];
+}
+
+/**
+ * Sucht alle Elemente der Listenart, die sämtliche genannten Felder führen, und
+ * gibt je Element deren Indizes zurück.
+ *
+ * Feldregeln hängen damit an Feldnamen statt an Positionen. Sie greifen in jeder
+ * Listenart, die die Felder kennt, ohne dass Elementnamen aufgezählt werden
+ * müssen: Der Grund der Nichtwertung heisst in der Wettkampfergebnisliste
+ * `PNERGEBNIS`/`STERGEBNIS`, in der Vereinsergebnisliste `PERSONENERGEBNIS`/
+ * `STAFFELERGEBNIS`, und in beiden liegt er an anderer Stelle.
+ */
+function targetsWithFields(schema: ListSchema, fields: readonly string[]): FieldRuleTarget[] {
+  const targets: FieldRuleTarget[] = [];
+
+  for (const occurrence of schema.elements) {
+    const names = occurrence.def.fields.map((f) => f.name);
+    const indices = fields.map((name) => names.indexOf(name));
+    if (indices.some((index) => index < 0)) continue;
+
+    targets.push({ element: occurrence.def.name, indices });
+  }
+
+  return targets;
+}
+
+/** Liest ein Feld eines Records ohne umgebende Leerzeichen. */
+function fieldAt(record: DsvRecord, index: number | undefined): string {
+  return (record.fields[index ?? -1] ?? '').trim();
+}
 
 /**
  * Querregeln zwischen Elementen und zwischen Feldern eines Elements, etwa: Meldegelder
  * werden entweder überwiesen oder eingezogen, nicht beides (dsv8.md:813).
  *
- * Die Regeln gelten listenartübergreifend. Sie greifen über Elementnamen, und
- * Elemente, die eine Listenart nicht kennt, kommen dort schlicht nicht vor —
- * die zugehörige Regel bleibt dann folgenlos.
+ * Die Regeln gelten listenartübergreifend, aber auf zweierlei Weise:
+ *
+ * - **Feldregeln** hängen an Feldnamen. Welche Elemente sie prüfen und an
+ *   welcher Stelle die Felder dort liegen, ermittelt `targetsWithFields` zur
+ *   Laufzeit aus dem Schema. So greift etwa die Nichtwertungsregel in der
+ *   Wettkampfergebnisliste auf `PNERGEBNIS`/`STERGEBNIS` und in der
+ *   Vereinsergebnisliste auf `PERSONENERGEBNIS`/`STAFFELERGEBNIS`, obwohl die
+ *   Elemente anders heissen und die Felder anders liegen.
+ * - **Elementregeln** hängen an einem Elementnamen, weil die Regel selbst von
+ *   diesem Element handelt: `LASTSCHRIFT`/`BANKVERBINDUNG` und `MELDEGELD` gibt
+ *   es nur in der Wettkampfdefinitionsliste. In Listenarten ohne diese Elemente
+ *   bleibt die Regel folgenlos.
  */
-function validateCrossRules(byElement: Map<string, DsvRecord[]>): Diagnostic[] {
+function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSchema): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
 
   const lastschrift = byElement.get('LASTSCHRIFT');
@@ -115,43 +148,50 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>): Diagnostic[] {
     );
   }
 
-  for (const record of byElement.get('WETTKAMPF') ?? []) {
-    // Kicks in Bauch- und Rückenlage gibt es nur als Schmetterling
-    // (dsv8.md:1070, dsv8.md:1072).
-    const ausuebung = (record.fields[WETTKAMPF_AUSUEBUNG] ?? '').trim();
-    const technik = (record.fields[WETTKAMPF_TECHNIK] ?? '').trim();
+  // Kicks in Bauch- und Rückenlage gibt es nur als Schmetterling
+  // (dsv8.md:1070, dsv8.md:1072).
+  for (const target of targetsWithFields(schema, ['technik', 'ausuebung'])) {
+    const [technikIndex, ausuebungIndex] = target.indices;
 
-    if (KICK_AUSUEBUNGEN.has(ausuebung) && technik !== 'S') {
+    for (const record of byElement.get(target.element.toUpperCase()) ?? []) {
+      const ausuebung = fieldAt(record, ausuebungIndex);
+      const technik = fieldAt(record, technikIndex);
+
+      if (!KICK_AUSUEBUNGEN.has(ausuebung) || technik === 'S') continue;
+
       diagnostics.push(
         createDiagnostic(
           'invalid-value',
           'error',
-          `WETTKAMPF.ausuebung: "${ausuebung}" is only allowed with technik S, found "${technik}"`,
+          `${target.element}.ausuebung: "${ausuebung}" is only allowed with technik S, found "${technik}"`,
           {
             ...at(record.line),
-            data: { element: 'WETTKAMPF', field: 'ausuebung', value: ausuebung, technik },
+            data: { element: target.element, field: 'ausuebung', value: ausuebung, technik },
           },
         ),
       );
     }
+  }
 
-    // Zwischenläufe und Finals nennen den Lauf, der für sie qualifiziert
-    // (dsv8.md:1110).
-    const art = (record.fields[WETTKAMPF_ART] ?? '').trim();
+  // Zwischenläufe und Finals nennen den Lauf, der für sie qualifiziert
+  // (dsv8.md:1110).
+  for (const target of targetsWithFields(schema, ['wettkampfart', 'qualifikationswettkampfnr'])) {
+    const [artIndex, nummerIndex] = target.indices;
 
-    if (
-      QUALIFIZIERENDE_ARTEN.has(art) &&
-      (record.fields[WETTKAMPF_QUALIFIKATIONSNR] ?? '').trim() === ''
-    ) {
+    for (const record of byElement.get(target.element.toUpperCase()) ?? []) {
+      const art = fieldAt(record, artIndex);
+      if (!QUALIFIZIERENDE_ARTEN.has(art)) continue;
+      if (fieldAt(record, nummerIndex) !== '') continue;
+
       diagnostics.push(
         createDiagnostic(
           'conditional-field-required',
           'warning',
-          `WETTKAMPF of type ${art} should name a qualifikationswettkampfnr`,
+          `${target.element} of type ${art} should name a qualifikationswettkampfnr`,
           {
             ...at(record.line),
             data: {
-              element: 'WETTKAMPF',
+              element: target.element,
               field: 'qualifikationswettkampfnr',
               condition: art,
             },
@@ -161,25 +201,26 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>): Diagnostic[] {
     }
   }
 
-  for (const element of ERGEBNIS_ELEMENTE) {
-    for (const record of byElement.get(element) ?? []) {
-      // Wer nicht gewertet wird, belegt keinen Platz (dsv8.md:5093,
-      // dsv8.md:5476).
-      const grund = (record.fields[ERGEBNIS_GRUND] ?? '').trim();
+  // Wer nicht gewertet wird, belegt keinen Platz (dsv8.md:5093, dsv8.md:5476).
+  for (const target of targetsWithFields(schema, ['platz', 'grundDerNichtwertung'])) {
+    const [platzIndex, grundIndex] = target.indices;
+
+    for (const record of byElement.get(target.element.toUpperCase()) ?? []) {
+      const grund = fieldAt(record, grundIndex);
       if (grund === '') continue;
 
-      const platz = (record.fields[ERGEBNIS_PLATZ] ?? '').trim();
+      const platz = fieldAt(record, platzIndex);
       if (platz === '0') continue;
 
       diagnostics.push(
         createDiagnostic(
           'invalid-value',
           'error',
-          `${element}.platz must be 0 when grundDerNichtwertung is set, found "${platz}"`,
+          `${target.element}.platz must be 0 when grundDerNichtwertung is set, found "${platz}"`,
           {
             ...at(record.line),
             data: {
-              element,
+              element: target.element,
               field: 'platz',
               value: platz,
               grundDerNichtwertung: grund,
@@ -262,7 +303,7 @@ export function validateDocument(document: DsvDocument, schema: ListSchema): Dia
   }
 
   diagnostics.push(...validateCardinalities(byElement, schema, version));
-  diagnostics.push(...validateCrossRules(byElement));
+  diagnostics.push(...validateCrossRules(byElement, schema));
 
   return diagnostics;
 }

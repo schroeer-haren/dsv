@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { parseDsv } from '../../src/parse/parse-dsv.js';
 import { WETTKAMPFDEFINITIONSLISTE } from '../../src/schema/wettkampfdefinitionsliste.js';
+import type { ListSchema } from '../../src/schema/list-schema.js';
+import { VEREINSERGEBNISLISTE } from '../../src/schema/vereinsergebnisliste.js';
+import { VEREINSMELDELISTE } from '../../src/schema/vereinsmeldeliste.js';
 import { WETTKAMPFERGEBNISLISTE } from '../../src/schema/wettkampfergebnisliste.js';
 import { validateDocument } from '../../src/validate/validate-document.js';
 
@@ -424,6 +427,243 @@ describe('validateDocument für die Wettkampfergebnisliste', () => {
         value: '3',
         grundDerNichtwertung: 'DS',
       });
+    });
+  });
+});
+
+/** Die Zeilen einer vollständigen, gültigen Minimal-Vereinsmeldeliste. */
+function minimalVereinsmeldung(): string[] {
+  return [
+    line('FORMAT', ['Vereinsmeldeliste', '8']),
+    line('ERZEUGER', ['Testsoftware', '1.0', 'info@example.org']),
+    line('VERANSTALTUNG', ['Testwettkampf', 'Kiel', '25', 'HANDZEIT']),
+    line('ABSCHNITT', ['1', '10.05.2026', '09:00', '']),
+    line('WETTKAMPF', ['1', 'V', '1', '', '100', 'F', 'GL', 'W', '', '']),
+    line('VEREIN', ['SV Test', '1234', '5', 'GER', '']),
+    line('ANSPRECHPARTNER', ['Muster, Mia', '', '', '', '', '', '', 'info@example.org']),
+    'DATEIENDE',
+  ];
+}
+
+/** Die Zeilen einer vollständigen, gültigen Minimal-Vereinsergebnisliste. */
+function minimalVereinsergebnis(): string[] {
+  return [
+    line('FORMAT', ['Vereinsergebnisliste', '8']),
+    line('ERZEUGER', ['Testsoftware', '1.0', 'info@example.org']),
+    line('VERANSTALTUNG', ['Testwettkampf', 'Kiel', '25', 'HANDZEIT']),
+    line('VERANSTALTER', ['Schwimmverband Musterland']),
+    line('AUSRICHTER', ['SV Test', 'Muster, Mia', '', '', '', '', '', '', 'info@example.org']),
+    line('ABSCHNITT', ['1', '10.05.2026', '09:00', 'N']),
+    line('WETTKAMPF', ['1', 'V', '1', '1', '100', 'F', 'GL', 'W', 'SW', '', '']),
+    line('WERTUNG', ['1', 'V', '1', 'JG', '0', '9999', '', 'Offene Wertung']),
+    line('VEREIN', ['SV Test', '1234', '5', 'GER']),
+    'DATEIENDE',
+  ];
+}
+
+/** Validiert eine Liste aus den gegebenen Zeilen gegen das gegebene Schema. */
+function validateWith(schema: ListSchema, lines: readonly string[]) {
+  const { document } = parseDsv(`${lines.join('\n')}\n`);
+  return validateDocument(document, schema);
+}
+
+/** Ein PERSONENERGEBNIS mit gegebenem Platz und Grund der Nichtwertung. */
+function personenergebnis(platz: string, grund: string): string {
+  return line('PERSONENERGEBNIS', ['9001', '1', 'V', '1', platz, '00:01:05,00', grund, '', '']);
+}
+
+/** Ein STAFFELERGEBNIS mit gegebenem Platz und Grund der Nichtwertung. */
+function staffelergebnis(platz: string, grund: string): string {
+  return line('STAFFELERGEBNIS', ['8001', '1', 'V', '1', platz, '00:04:05,00', grund, '', '', '']);
+}
+
+describe('Querregeln greifen listenartunabhängig', () => {
+  describe('Kicks nur bei Schmetterling', () => {
+    /** WETTKAMPF der Vereinsmeldeliste — ein Feld kürzer als in den anderen Listen. */
+    const meldungWettkampf = (technik: string, ausuebung: string): string[] => [
+      '1',
+      'V',
+      '1',
+      '',
+      '100',
+      technik,
+      ausuebung,
+      'W',
+      '',
+      '',
+    ];
+
+    const ergebnisWettkampf = (technik: string, ausuebung: string): string[] => [
+      '1',
+      'V',
+      '1',
+      '1',
+      '100',
+      technik,
+      ausuebung,
+      'W',
+      'SW',
+      '',
+      '',
+    ];
+
+    it.each(['KB', 'KR'])('meldet %s bei Technik F in der Vereinsmeldeliste', (ausuebung) => {
+      const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', meldungWettkampf('F', ausuebung));
+      const diagnostics = validateWith(VEREINSMELDELISTE, lines);
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.data).toMatchObject({ field: 'ausuebung', value: ausuebung });
+    });
+
+    it.each(['KB', 'KR'])('meldet %s bei Technik F in der Vereinsergebnisliste', (ausuebung) => {
+      const lines = replace(
+        minimalVereinsergebnis(),
+        'WETTKAMPF',
+        ergebnisWettkampf('F', ausuebung),
+      );
+      const diagnostics = validateWith(VEREINSERGEBNISLISTE, lines);
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.data).toMatchObject({ field: 'ausuebung', value: ausuebung });
+    });
+
+    it('akzeptiert KB bei Technik S in beiden Vereinslisten', () => {
+      expect(
+        validateWith(
+          VEREINSMELDELISTE,
+          replace(minimalVereinsmeldung(), 'WETTKAMPF', meldungWettkampf('S', 'KB')),
+        ),
+      ).toEqual([]);
+      expect(
+        validateWith(
+          VEREINSERGEBNISLISTE,
+          replace(minimalVereinsergebnis(), 'WETTKAMPF', ergebnisWettkampf('S', 'KB')),
+        ),
+      ).toEqual([]);
+    });
+  });
+
+  describe('Qualifikationswettkampf bei Zwischenlauf und Finale', () => {
+    // Die Vereinsmeldeliste kennt kein Feld `zuordnungBestenliste`; die
+    // Qualifikationsnummer liegt daher eine Stelle früher als in den anderen
+    // Listenarten.
+    it('meldet den fehlenden Qualifikationswettkampf in der Vereinsmeldeliste', () => {
+      const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', [
+        '2',
+        'F',
+        '1',
+        '',
+        '100',
+        'F',
+        'GL',
+        'W',
+        '',
+        '',
+      ]);
+      const diagnostics = validateWith(VEREINSMELDELISTE, lines);
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['conditional-field-required']);
+      expect(diagnostics[0]?.data).toMatchObject({ field: 'qualifikationswettkampfnr' });
+    });
+
+    it('liest die Qualifikationsnummer der Vereinsmeldeliste an ihrer Stelle', () => {
+      // Nur die Nummer ist gesetzt, die Art bleibt leer. Über den Feldindex der
+      // übrigen Listenarten gelesen wäre das ein falscher Befund.
+      const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', [
+        '2',
+        'F',
+        '1',
+        '',
+        '100',
+        'F',
+        'GL',
+        'W',
+        '1',
+        '',
+      ]);
+
+      expect(validateWith(VEREINSMELDELISTE, lines)).toEqual([]);
+    });
+
+    it('schweigt, wenn die Vereinsmeldeliste den Qualifikationswettkampf nennt', () => {
+      const lines = replace(minimalVereinsmeldung(), 'WETTKAMPF', [
+        '2',
+        'F',
+        '1',
+        '',
+        '100',
+        'F',
+        'GL',
+        'W',
+        '1',
+        'V',
+      ]);
+
+      expect(validateWith(VEREINSMELDELISTE, lines)).toEqual([]);
+    });
+  });
+
+  describe('Platz 0 bei Nichtwertung in der Vereinsergebnisliste', () => {
+    const person = line('PERSON', [
+      'Mustermann, Maxi',
+      '123456',
+      '9001',
+      'W',
+      '2010',
+      '',
+      'GER',
+      '',
+      '',
+    ]);
+    const staffel = line('STAFFEL', ['1', '8001', 'JG', '0', '9999']);
+
+    it.each([
+      ['PERSONENERGEBNIS', personenergebnis('0', 'DS')],
+      ['STAFFELERGEBNIS', staffelergebnis('0', 'DS')],
+    ])('akzeptiert Platz 0 mit Grund in %s', (_element, record) => {
+      expect(
+        validateWith(VEREINSERGEBNISLISTE, [...minimalVereinsergebnis(), person, staffel, record]),
+      ).toEqual([]);
+    });
+
+    it.each([
+      ['PERSONENERGEBNIS', personenergebnis('3', '')],
+      ['STAFFELERGEBNIS', staffelergebnis('3', '')],
+    ])('akzeptiert einen Platz ohne Grund in %s', (_element, record) => {
+      expect(
+        validateWith(VEREINSERGEBNISLISTE, [...minimalVereinsergebnis(), person, staffel, record]),
+      ).toEqual([]);
+    });
+
+    it.each([
+      ['PERSONENERGEBNIS', personenergebnis('3', 'DS')],
+      ['STAFFELERGEBNIS', staffelergebnis('3', 'DS')],
+    ])('meldet Platz ungleich 0 mit Grund in %s', (element, record) => {
+      const diagnostics = validateWith(VEREINSERGEBNISLISTE, [
+        ...minimalVereinsergebnis(),
+        person,
+        staffel,
+        record,
+      ]);
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.severity).toBe('error');
+      expect(diagnostics[0]?.data).toMatchObject({
+        element,
+        field: 'platz',
+        value: '3',
+        grundDerNichtwertung: 'DS',
+      });
+    });
+  });
+
+  describe('Listenarten ohne Ergebnisfelder', () => {
+    it('meldet in der Wettkampfdefinitionsliste keine Nichtwertungsbefunde', () => {
+      expect(validate(minimal(8))).toEqual([]);
+    });
+
+    it('meldet in der Vereinsmeldeliste keine Nichtwertungsbefunde', () => {
+      expect(validateWith(VEREINSMELDELISTE, minimalVereinsmeldung())).toEqual([]);
     });
   });
 });
