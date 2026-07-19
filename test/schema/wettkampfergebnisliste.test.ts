@@ -32,7 +32,17 @@ function requiredNames(def: ElementDef): readonly string[] {
   return def.fields.filter((f) => f.required).map((f) => f.name);
 }
 
-/** Werte einer Werteliste in der Reihenfolge der Spezifikation. */
+/**
+ * Die Werte einer Werteliste in der Reihenfolge, in der das Schema sie führt.
+ *
+ * Das ist nicht durchweg „die Reihenfolge der Spezifikation": Bei
+ * `zuordnungBestenliste` ist die Spezifikation mit sich selbst uneinig — sie
+ * zählt SW, EW, PA, MS, KG, XX (dsv8.md:1097–1106) und SW, MS, KG, EW, PA, XX
+ * (dsv8.md:3148–3158, 4804–4813) auf. Eine von drei Listenarten geteilte
+ * Konstante kann nur einer der beiden folgen. Die Reihenfolge trägt deshalb
+ * keine Bedeutung; die Prüfung stellt nur Zugehörigkeit zur Menge fest, siehe
+ * `src/schema/shared-values.ts`.
+ */
 function enumValues(def: ElementDef, fieldName: string): readonly string[] {
   const found = def.fields.find((f) => f.name === fieldName);
   if (found === undefined) throw new Error(`Feld ${fieldName} fehlt in ${def.name}`);

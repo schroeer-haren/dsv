@@ -689,6 +689,13 @@ export const STAFFEL = element('STAFFEL', [
  * aus und verweist nur.
  */
 export const STAFFELPERSON = element('STAFFELPERSON', [
+  // Pflichtfeld gegen den Buchstaben der Tabelle: Die Pflichtfeld-Zelle ist im
+  // PDF (S. 35) leer, während das unmittelbar folgende STAFFELERGEBNIS für
+  // dasselbe Feld `J` trägt. Die Leerstelle ist als Auslassung gelesen, nicht
+  // als Wahlfreiheit — ohne diese Kennung liesse sich die Zeile keiner Staffel
+  // zuordnen, und alle übrigen Felder des Elements beschrieben eine Person,
+  // von der niemand wüsste, zu wem sie gehört. Ein Unterlassungswert, der die
+  // Lücke schliessen könnte, ist nirgends genannt.
   field('veranstaltungsIdStaffel', 'Zahl', {
     required: true,
     doc: 'Kennung der Staffel innerhalb dieser Veranstaltung.',

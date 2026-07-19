@@ -57,7 +57,8 @@ describe('renderElement', () => {
     // geschlecht: D ist erst ab DSV8 zulässig.
     expect(v7).not.toContain("'D'");
     expect(v8).toContain("'D'");
-    // technik: KB und KR ebenfalls erst ab DSV8.
+    // ausuebung: KB und KR ebenfalls erst ab DSV8 — sie gehören zur Ausübung,
+    // nicht zur Technik.
     expect(v7).not.toContain("'KB'");
     expect(v8).toContain("'KB'");
   });

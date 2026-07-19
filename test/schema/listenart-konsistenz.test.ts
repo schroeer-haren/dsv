@@ -84,6 +84,26 @@ describe('qualifikationswettkampfart über alle Listenarten', () => {
   });
 });
 
+describe('FORMAT.listart nennt seine eigene Listenart', () => {
+  /**
+   * Die selbstbezügliche Probe: Der Doc-Kommentar von `FORMAT.listart` muss
+   * den Namen der Listenart nennen, zu der das Schema gehört. Sie fängt das
+   * Schema, das aus einem Nachbarkapitel kopiert wurde, ohne dass der Name
+   * mitgezogen ist.
+   *
+   * Drei der vier Listenarten prüften das je für sich; der
+   * Wettkampfdefinitionsliste fehlte es. Hier gilt es für alle vier zugleich
+   * und kann deshalb beim Anlegen einer weiteren nicht mehr vergessen werden.
+   */
+  it.each(DSV8_DELTA.map(([name]) => name))('%s', (listenart) => {
+    const schema = DSV8_DELTA.find(([name]) => name === listenart)?.[1];
+    const format = schema?.elements.find(({ def }) => def.name === 'FORMAT')?.def;
+    const listart = format?.fields.find((f) => f.name === 'listart');
+
+    expect(listart?.doc).toContain(listenart);
+  });
+});
+
 describe('KAMPFGERICHT.position in beiden Ergebnislisten', () => {
   /**
    * Die beiden Ergebnislisten führen dasselbe Element mit derselben

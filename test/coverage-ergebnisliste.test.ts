@@ -63,10 +63,15 @@ const required = new Set<string>(
  * Die Liste steht hier trotzdem vollständig, damit auffällt, wenn ein Fixture
  * anfängt, ein Pflichtfeld leer zu lassen.
  *
- * Drei Pflichtfelder fehlen in dieser Liste, weil echte Dateien sie tatsächlich
- * leer lassen: `KAMPFGERICHT.vereinDesKampfrichters`, `VEREIN.nationenkuerzel`
- * und `PNREAKTION.art` ist optional. Diese Leerstellen sind Mängel der Quellen,
- * keine Absicht der Fixtures.
+ * Sechs Pflichtfelder fehlen in dieser Liste, weil echte Dateien sie
+ * tatsächlich leer lassen: `VERANSTALTER.nameDesVeranstalters`,
+ * `AUSRICHTER.nameDesAusrichters`, `AUSRICHTER.name`, `AUSRICHTER.email`,
+ * `KAMPFGERICHT.vereinDesKampfrichters` und `VEREIN.nationenkuerzel`. Diese
+ * Leerstellen sind Mängel der Quellen, keine Absicht der Fixtures.
+ *
+ * `PNREAKTION.art` gehört nicht dazu: Das Feld ist gar kein Pflichtfeld,
+ * sondern optional mit dem Unterlassungswert `+`, und taucht in dieser Liste
+ * deshalb ohnehin nicht auf.
  */
 const EXPECTED_NEVER_EMPTY_REQUIRED: readonly string[] = [
   'FORMAT.listart',

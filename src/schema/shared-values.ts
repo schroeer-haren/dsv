@@ -41,11 +41,12 @@ export const TECHNIK_WERTE: readonly EnumValue[] = [
 /**
  * Zuordnung für Bestenlistenauswertungen (dsv8.md:1075, dsv8.md:4784).
  *
- * Die Reihenfolge folgt Kapitel 5.1 (dsv8.md:1097–1107). Kapitel 5.4 führt
- * denselben Wertevorrat als SW, MS, KG, EW, PA, XX auf (dsv8.md:4804–4813).
- * Diese Liste wird von beiden Listenarten benutzt und kann deshalb nur einer
- * der beiden Reihenfolgen folgen; die Reihenfolge trägt keine Bedeutung, da
- * die Prüfung nur Zugehörigkeit zur Menge feststellt.
+ * Die Reihenfolge folgt Kapitel 5.1 (dsv8.md:1097–1107). Die Kapitel 5.3 und
+ * 5.4 führen denselben Wertevorrat als SW, MS, KG, EW, PA, XX auf
+ * (dsv8.md:3148–3158 und 4804–4813). Die Spezifikation ist hier also mit sich
+ * selbst uneinig. Diese Liste wird von allen drei Listenarten benutzt und kann
+ * deshalb nur einer der beiden Reihenfolgen folgen; die Reihenfolge trägt
+ * keine Bedeutung, da die Prüfung nur Zugehörigkeit zur Menge feststellt.
  */
 export const ZUORDNUNG_BESTENLISTE_WERTE: readonly EnumValue[] = [
   { value: 'SW', doc: 'Schwimmen für Jugend und offene Klasse' },
