@@ -174,7 +174,7 @@ describe('projectVereinsergebnisliste', () => {
     const kari = line('KAMPFGERICHT', ['1', 'SCH', 'Richter, R1', 'SV Test']);
     const { graph } = project(ABSCHNITT, kari, WETTKAMPF, WERTUNG, VEREIN);
 
-    expect(graph.abschnitte[0]?.kampfgericht.map((k) => k.position)).toEqual(['SCH']);
+    expect(graph.abschnitte[0]?.kampfrichter.map((k) => k.position)).toEqual(['SCH']);
   });
 
   describe('Personen', () => {

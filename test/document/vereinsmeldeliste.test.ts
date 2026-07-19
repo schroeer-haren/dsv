@@ -289,7 +289,7 @@ describe('projectVereinsmeldeliste', () => {
         nummerDerMannschaft: '1',
         name: 'Staffel A',
       });
-      expect(result.graph.staffelmeldungen).toHaveLength(2);
+      expect(result.graph.staffeln).toHaveLength(2);
     });
 
     // Eine nicht lesbare Kennung ergibt `NaN`. Käme sie in die Indexmap, fänden
@@ -309,7 +309,7 @@ describe('projectVereinsmeldeliste', () => {
       expect(result.graph.staffelById.size).toBe(0);
       expect([...result.graph.staffelById.keys()].some(Number.isNaN)).toBe(false);
 
-      const staffel = result.graph.staffelmeldungen[0];
+      const staffel = result.graph.staffeln[0];
       expect(staffel?.veranstaltungsId).toBeNaN();
       expect(staffel?.starts).toEqual([]);
       expect(staffel?.personen).toEqual([]);
@@ -404,8 +404,8 @@ describe('projectVereinsmeldeliste', () => {
     const { graph, diagnostics } = projectVereinsmeldeliste(parseVereinsmeldeliste(text).document);
 
     expect(diagnostics).toEqual([]);
-    expect(graph.meldungen).toHaveLength(3);
-    expect(graph.staffelmeldungen).toHaveLength(2);
+    expect(graph.personen).toHaveLength(3);
+    expect(graph.staffeln).toHaveLength(2);
     expect(graph.kampfrichter).toHaveLength(4);
     expect(graph.trainer).toHaveLength(4);
     expect(graph.verein?.bezeichnung).toBe('SV Musterstadt');
@@ -436,7 +436,7 @@ describe('projectVereinsmeldeliste', () => {
   it('ergibt NaN für eine nicht lesbare Zahl', () => {
     const { graph } = project(...RUMPF, pnmeldung({ veranstaltungsId: 'xx' }));
 
-    expect(graph.meldungen[0]?.veranstaltungsId).toBeNaN();
+    expect(graph.personen[0]?.veranstaltungsId).toBeNaN();
   });
 });
 
@@ -515,7 +515,7 @@ describe('Projektion über echte Vereinsmeldelisten', () => {
     let starts = 0;
 
     for (const name of realMeldeLists) {
-      for (const meldung of projectReal(name).graph.meldungen) {
+      for (const meldung of projectReal(name).graph.personen) {
         for (const start of meldung.starts) {
           starts++;
           arten.set(start.wettkampfart, (arten.get(start.wettkampfart) ?? 0) + 1);
@@ -537,7 +537,7 @@ describe('Projektion über echte Vereinsmeldelisten', () => {
   it('führt genau eine Personenmeldung ohne Einzelstart', () => {
     const ohneStart = realMeldeLists.flatMap((name) =>
       projectReal(name)
-        .graph.meldungen.filter((m) => m.starts.length === 0)
+        .graph.personen.filter((m) => m.starts.length === 0)
         .map(() => name),
     );
 
@@ -552,8 +552,8 @@ describe('Projektion über echte Vereinsmeldelisten', () => {
 
     for (const name of realMeldeLists) {
       const { graph } = projectReal(name);
-      meldungen += graph.meldungen.length;
-      staffelmeldungen += graph.staffelmeldungen.length;
+      meldungen += graph.personen.length;
+      staffelmeldungen += graph.staffeln.length;
       kampfrichter += graph.kampfrichter.length;
       trainer += graph.trainer.length;
     }

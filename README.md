@@ -216,7 +216,7 @@ ok; // → true
 const { graph } = projectWettkampfergebnisliste(liste);
 
 graph.veranstaltung.bezeichnung; // → 'Herbstpokal 2026'
-graph.abschnitte[0].kampfgericht[0].position; // → 'SR'
+graph.abschnitte[0].kampfrichter[0].position; // → 'SR'
 ```
 
 Ein `ErgebnisStart` ist der Schwimmvorgang einer Person in einem Wettkampf:
@@ -324,7 +324,7 @@ graph.verein!.kennzahl; // → 1234
 graph.ansprechpartner!.email; // → 'anna@example.org'
 graph.abschnitte[0].datum; // → { day: 10, month: 10, year: 2026 }
 graph.abschnitte[0].anfangszeit; // → 540
-graph.meldungen.length; // → 2
+graph.personen.length; // → 2
 ```
 
 Eine gemeldete Person trägt ihre Einzelstarts, ihre Nationalitäten, ihren
@@ -403,7 +403,7 @@ const { graph } = projectVereinsergebnisliste(liste);
 
 graph.veranstaltung.bezeichnung; // → 'Herbstpokal 2026'
 graph.verein!.bezeichnung; // → 'SV Musterstadt'
-graph.abschnitte[0].kampfgericht[0].position; // → 'SR'
+graph.abschnitte[0].kampfrichter[0].position; // → 'SR'
 graph.personen.length; // → 2
 graph.wertungById.get(1)!.name; // → 'Jugend weiblich'
 ```

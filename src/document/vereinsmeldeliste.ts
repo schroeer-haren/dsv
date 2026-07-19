@@ -221,8 +221,8 @@ export interface Vereinsmeldung {
   readonly abschnitte: readonly MeldungAbschnitt[];
   /** Wettkämpfe, deren `abschnittsnr` auf keinen Abschnitt zeigt. */
   readonly wettkaempfeOhneAbschnitt: readonly MeldungWettkampf[];
-  readonly meldungen: readonly MeldungPerson[];
-  readonly staffelmeldungen: readonly MeldungStaffel[];
+  readonly personen: readonly MeldungPerson[];
+  readonly staffeln: readonly MeldungStaffel[];
   readonly kampfrichter: readonly MeldungKampfrichter[];
   readonly trainer: readonly MeldungTrainer[];
   /** Schlüssel ist `${nummer}:${art}`. */
@@ -632,7 +632,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
   }
 
   // --- Personenmeldungen ---------------------------------------------------
-  const meldungen: MeldungPerson[] = [];
+  const personen: MeldungPerson[] = [];
   const personById = new Map<number, MeldungPerson>();
   const personBuilders = new Map<number, PersonBuilder>();
 
@@ -671,7 +671,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
       starts,
       line: record.line,
     };
-    meldungen.push(person);
+    personen.push(person);
 
     if (personById.has(veranstaltungsId)) {
       diagnostics.push(
@@ -760,7 +760,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
   }
 
   // --- Staffelmeldungen ----------------------------------------------------
-  const staffelmeldungen: MeldungStaffel[] = [];
+  const staffeln: MeldungStaffel[] = [];
   const staffelById = new Map<number, MeldungStaffel>();
   const staffelBuilders = new Map<number, StaffelBuilder>();
 
@@ -781,7 +781,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
       personen,
       line: record.line,
     };
-    staffelmeldungen.push(staffel);
+    staffeln.push(staffel);
 
     if (staffelById.has(veranstaltungsId)) {
       diagnostics.push(
@@ -888,8 +888,8 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
       ansprechpartner,
       abschnitte,
       wettkaempfeOhneAbschnitt,
-      meldungen,
-      staffelmeldungen,
+      personen,
+      staffeln,
       kampfrichter,
       trainer,
       wettkampfByKey,

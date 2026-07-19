@@ -222,7 +222,7 @@ export interface ErgebnisAbschnitt {
   readonly anfangszeit: number | null;
   /** `J`, wenn die Zeit relativ zum Ende des Vorabschnitts gilt. */
   readonly relativeAngabe: string;
-  readonly kampfgericht: readonly ErgebnisKampfrichter[];
+  readonly kampfrichter: readonly ErgebnisKampfrichter[];
   readonly wettkaempfe: readonly ErgebnisWettkampf[];
   readonly line: number;
 }
@@ -454,21 +454,21 @@ export function projectWettkampfergebnisliste(
   // --- Abschnitte ----------------------------------------------------------
   const abschnitte: ErgebnisAbschnitt[] = [];
   const abschnittWettkaempfe = new Map<ErgebnisAbschnitt, ErgebnisWettkampf[]>();
-  const abschnittKampfgericht = new Map<number, ErgebnisKampfrichter[]>();
+  const abschnittKampfrichter = new Map<number, ErgebnisKampfrichter[]>();
   const abschnittByNummer = new Map<number, ErgebnisAbschnitt>();
 
   for (const record of records) {
     if (record.element !== 'ABSCHNITT') continue;
 
     const wettkaempfe: ErgebnisWettkampf[] = [];
-    const kampfgericht: ErgebnisKampfrichter[] = [];
+    const kampfrichter: ErgebnisKampfrichter[] = [];
     const nummer = number(record, 'abschnittsnr');
     const abschnitt: ErgebnisAbschnitt = {
       nummer,
       datum: decodeDatum(value(record, 'abschnittsdatum')),
       anfangszeit: decodeUhrzeit(value(record, 'anfangszeit')),
       relativeAngabe: value(record, 'relativeAngabe'),
-      kampfgericht,
+      kampfrichter,
       wettkaempfe,
       line: record.line,
     };
@@ -487,7 +487,7 @@ export function projectWettkampfergebnisliste(
       );
     } else if (Number.isFinite(nummer)) {
       abschnittByNummer.set(nummer, abschnitt);
-      abschnittKampfgericht.set(nummer, kampfgericht);
+      abschnittKampfrichter.set(nummer, kampfrichter);
     }
   }
 
@@ -502,7 +502,7 @@ export function projectWettkampfergebnisliste(
       line: record.line,
     };
 
-    const ziel = abschnittKampfgericht.get(abschnittsnr);
+    const ziel = abschnittKampfrichter.get(abschnittsnr);
     if (ziel === undefined) {
       diagnostics.push(
         createDiagnostic(

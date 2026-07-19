@@ -263,7 +263,7 @@ export interface VereinsergebnisAbschnitt {
   readonly anfangszeit: number | null;
   /** `J`, wenn die Zeit relativ zum Ende des Vorabschnitts gilt. */
   readonly relativeAngabe: string;
-  readonly kampfgericht: readonly VereinsergebnisKampfrichter[];
+  readonly kampfrichter: readonly VereinsergebnisKampfrichter[];
   readonly wettkaempfe: readonly VereinsergebnisWettkampf[];
   readonly line: number;
 }
@@ -449,21 +449,21 @@ export function projectVereinsergebnisliste(
   // --- Abschnitte ----------------------------------------------------------
   const abschnitte: VereinsergebnisAbschnitt[] = [];
   const abschnittWettkaempfe = new Map<VereinsergebnisAbschnitt, VereinsergebnisWettkampf[]>();
-  const abschnittKampfgericht = new Map<number, VereinsergebnisKampfrichter[]>();
+  const abschnittKampfrichter = new Map<number, VereinsergebnisKampfrichter[]>();
   const abschnittByNummer = new Map<number, VereinsergebnisAbschnitt>();
 
   for (const record of records) {
     if (record.element !== 'ABSCHNITT') continue;
 
     const wettkaempfe: VereinsergebnisWettkampf[] = [];
-    const kampfgericht: VereinsergebnisKampfrichter[] = [];
+    const kampfrichter: VereinsergebnisKampfrichter[] = [];
     const nummer = number(record, 'abschnittsnr');
     const abschnitt: VereinsergebnisAbschnitt = {
       nummer,
       datum: decodeDatum(value(record, 'abschnittsdatum')),
       anfangszeit: decodeUhrzeit(value(record, 'anfangszeit')),
       relativeAngabe: value(record, 'relativeAngabe'),
-      kampfgericht,
+      kampfrichter,
       wettkaempfe,
       line: record.line,
     };
@@ -482,7 +482,7 @@ export function projectVereinsergebnisliste(
       );
     } else if (Number.isFinite(nummer)) {
       abschnittByNummer.set(nummer, abschnitt);
-      abschnittKampfgericht.set(nummer, kampfgericht);
+      abschnittKampfrichter.set(nummer, kampfrichter);
     }
   }
 
@@ -497,7 +497,7 @@ export function projectVereinsergebnisliste(
       line: record.line,
     };
 
-    const ziel = abschnittKampfgericht.get(abschnittsnr);
+    const ziel = abschnittKampfrichter.get(abschnittsnr);
     if (ziel === undefined) {
       diagnostics.push(
         createDiagnostic(
