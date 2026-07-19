@@ -1756,7 +1756,7 @@ version: string
 ```ts
 abschnittsnr: string
 nameKampfrichter: string
-position: 'SCH' | 'STA' | 'ZRO' | 'ZR' | 'ZNO' | 'ZN' | 'RZN' | 'SR' | 'WRO' | 'WR' | 'AUS' | 'SP' | 'PKF' | 'STO' | 'WKH' | 'ASCH' | 'SIB' | 'SAUF' | 'VER' | 'ZBV'
+position: 'SCH' | 'STA' | 'ZRO' | 'ZR' | 'ZNO' | 'ZN' | 'RZN' | 'SR' | 'WRO' | 'WR' | 'AUS' | 'SP' | 'PKF' | 'STO' | 'WKH' | 'ASCH' | 'SIB' | 'SAUF' | 'VER' | 'ZBV' | 'SPR'
 vereinDesKampfrichters: string
 ```
 
@@ -1765,7 +1765,7 @@ vereinDesKampfrichters: string
 ```ts
 abschnittsnr: string
 nameKampfrichter: string
-position: 'SCH' | 'STA' | 'ZRO' | 'ZR' | 'ZNO' | 'ZN' | 'RZN' | 'SR' | 'WRO' | 'WR' | 'AUS' | 'SP' | 'PKF' | 'STO' | 'WKH' | 'ASCH' | 'SIB' | 'SAUF' | 'VER' | 'ZBV'
+position: 'SCH' | 'STA' | 'ZRO' | 'ZR' | 'ZNO' | 'ZN' | 'RZN' | 'SR' | 'WRO' | 'WR' | 'AUS' | 'SP' | 'PKF' | 'STO' | 'WKH' | 'ASCH' | 'SIB' | 'SAUF' | 'VER' | 'ZBV' | 'SPR'
 vereinDesKampfrichters: string
 ```
 

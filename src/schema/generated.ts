@@ -3424,6 +3424,7 @@ export interface VereinsergebnisKampfgerichtV7 {
    * - `SAUF` — Schwimmaufsicht
    * - `VER` — Verpflegung
    * - `ZBV` — zur besonderen Verwendung
+   * - `SPR` — Sprecher*in; die Werteliste der Spezifikation kennt nur SP, ihr eigenes Beispiel in diesem Kapitel (dsv8.md:4255) schreibt aber SPR — beim Lesen Warnung, beim Schreiben unzulässig (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
    *
    * @see dsv8.md:2943
    */
@@ -3447,7 +3448,8 @@ export interface VereinsergebnisKampfgerichtV7 {
     | 'SIB'
     | 'SAUF'
     | 'VER'
-    | 'ZBV';
+    | 'ZBV'
+    | 'SPR';
 
   /**
    * Name und Vorname.

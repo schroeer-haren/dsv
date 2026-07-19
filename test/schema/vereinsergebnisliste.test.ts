@@ -152,8 +152,19 @@ describe('Vereinsergebnisliste — Kopf', () => {
       'SAUF',
       'VER',
       'ZBV',
+      'SPR',
     ]);
-    expect(enumValues(KAMPFGERICHT, 'position')).toHaveLength(20);
+    expect(enumValues(KAMPFGERICHT, 'position')).toHaveLength(21);
+
+    // `SPR` ist der einzige tolerierte Wert: Die Wertetabelle führt `SP`, das
+    // Beispiel desselben Kapitels schreibt `SPR` (dsv8.md:4255). Genauso in
+    // der Wettkampfergebnisliste, die dieselbe Beispielzeile führt.
+    expect(
+      KAMPFGERICHT.fields
+        .find((f) => f.name === 'position')
+        ?.values?.filter((v) => v.tolerated === true)
+        .map((v) => v.value),
+    ).toEqual(['SPR']);
   });
 });
 

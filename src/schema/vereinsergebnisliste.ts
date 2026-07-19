@@ -236,6 +236,22 @@ export const ABSCHNITT = element('ABSCHNITT', [
  *
  * Der Wertevorrat der Position ist weiter als der Einsatzwunsch der
  * Vereinsmeldeliste: `WKH` und `ZBV` gehören hier dazu, dort nicht.
+ *
+ * `SPR` ist wie in der Wettkampfergebnisliste toleriert. Die Begründung trägt
+ * hier nur eine ihrer beiden Hälften: Das Beispiel dieses Kapitels schreibt
+ * `KAMPFGERICHT:1;SPR;…` (dsv8.md:4255) — wortgleich zu dem der
+ * Wettkampfergebnisliste (dsv8.md:5852) —, während die Wertetabelle `SP`
+ * führt. Ein Realbeleg fehlt dagegen zwangsläufig: Es gibt im gesammelten
+ * Bestand überhaupt keine Vereinsergebnisliste.
+ *
+ * Die Entscheidung fällt trotzdem für die Tolerierung. Was die Spezifikation
+ * in ihrem eigenen Beispiel schreibt, wird ein Erzeuger schreiben, der sich an
+ * ihr orientiert; dass es in dieser Listenart bisher niemand getan hat, heisst
+ * nur, dass niemand sie erzeugt. Der engere Vorrat wäre eine Zusicherung, für
+ * die es weder in der Spezifikation noch in den Daten eine Grundlage gibt —
+ * und die beiden Listenarten unterschiedlich zu behandeln, obwohl sie dieselbe
+ * Beispielzeile führen, wäre in keiner Richtung zu begründen. Wie dort: beim
+ * Lesen mit Warnung angenommen, beim Schreiben unzulässig.
  */
 export const KAMPFGERICHT = element('KAMPFGERICHT', [
   field('abschnittsnr', 'Zahl', {
@@ -269,6 +285,14 @@ export const KAMPFGERICHT = element('KAMPFGERICHT', [
       { value: 'SAUF', doc: 'Schwimmaufsicht' },
       { value: 'VER', doc: 'Verpflegung' },
       { value: 'ZBV', doc: 'zur besonderen Verwendung' },
+      {
+        value: 'SPR',
+        doc:
+          'Sprecher*in; die Werteliste der Spezifikation kennt nur SP, ihr eigenes Beispiel ' +
+          'in diesem Kapitel (dsv8.md:4255) schreibt aber SPR — beim Lesen Warnung, beim ' +
+          'Schreiben unzulässig',
+        tolerated: true,
+      },
     ],
   }),
   field('nameKampfrichter', 'ZK', {

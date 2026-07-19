@@ -84,6 +84,41 @@ describe('qualifikationswettkampfart über alle Listenarten', () => {
   });
 });
 
+describe('KAMPFGERICHT.position in beiden Ergebnislisten', () => {
+  /**
+   * Die beiden Ergebnislisten führen dasselbe Element mit derselben
+   * Wertetabelle, und beide Kapitel enthalten dieselbe Beispielzeile
+   * `KAMPFGERICHT:1;SPR;…` (dsv8.md:4255 und 5852), die mit `SPR` einen Wert
+   * schreibt, den die Wertetabelle nicht führt.
+   *
+   * Die Tolerierung von `SPR` stand deshalb lange nur in der
+   * Wettkampfergebnisliste — dort gibt es zusätzlich einen Realbeleg, während
+   * es überhaupt keine echten Vereinsergebnislisten gibt. Der fehlende
+   * Realbeleg ist aber kein Gegenbeleg, und die Beispielzeile gilt für beide
+   * gleich. Dass die beiden nicht wieder auseinanderlaufen, hält dieser Test
+   * fest.
+   */
+  const felder = alleFelder().filter(
+    ({ element, feld }) => element === 'KAMPFGERICHT' && feld.name === 'position',
+  );
+
+  it('kommt in genau den beiden Ergebnislisten vor', () => {
+    expect(felder.map((f) => f.listenart)).toEqual([
+      'Vereinsergebnisliste',
+      'Wettkampfergebnisliste',
+    ]);
+  });
+
+  it('führt in beiden dieselbe Werteliste, mit SPR als einzigem tolerierten Wert', () => {
+    const [vel, wel] = felder;
+
+    expect(werte(vel?.feld ?? ({} as FieldDef))).toBe(werte(wel?.feld ?? ({} as FieldDef)));
+    expect(werte(vel?.feld ?? ({} as FieldDef))).toBe(
+      'SCH,STA,ZRO,ZR,ZNO,ZN,RZN,SR,WRO,WR,AUS,SP,PKF,STO,WKH,ASCH,SIB,SAUF,VER,ZBV,SPR?',
+    );
+  });
+});
+
 describe('Bereiche am WETTKAMPF über alle Listenarten', () => {
   /**
    * Die Zahlenbereiche des WETTKAMPF, festgehalten für alle vier Listenarten
