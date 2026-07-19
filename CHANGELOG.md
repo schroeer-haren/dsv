@@ -39,6 +39,32 @@ Objektgraphen — Präfixe je Listenart (`Verein` → `ErgebnisVerein`),
 `kampfgericht` → `kampfrichter`) — vollständig im Abschnitt
 [0.9.0](#090) aufgeführt. Sie ist in 1.0.0 nicht erneut enthalten.
 
+### Neu: vorbestehende Mängel beim Schreiben durchreichen
+
+Echte Dateien lassen Pflichtfelder leer — 53 Fundstellen in 28 der 142
+gesammelten, meist `KAMPFGERICHT.vereinDesKampfrichters` (35×). Der typisierte
+Writer verweigerte sie, womit der häufigste Anwendungsfall überhaupt scheiterte:
+ein Protokoll einlesen, einen Eintrag ändern, speichern — an einem Mangel, den
+der Aufrufer weder verursacht noch berührt hat.
+
+Neu sind `writeWettkampfdefinitionslistePreservingDefects`,
+`writeWettkampfergebnislistePreservingDefects`,
+`writeVereinsmeldelistePreservingDefects` und
+`writeVereinsergebnislistePreservingDefects` samt dem Typ `WriteResult`. Sie
+geben statt einer Zeichenkette `{ text, preservedDefects }` zurück, sodass sich
+das Durchgereichte nicht übersehen lässt.
+
+Die Strenge bleibt die Vorgabe. Die Erlaubnistabelle bekommt dafür zwei weitere
+Stufen statt eines zweiten Mechanismus daneben: `preexisting-defect` für
+`missing-required-field` — ein fehlender Wert, der die Datei lesbar lässt — und
+`preexisting-defect-when-tolerated` für `invalid-enum-value`, das nur mit
+`data.tolerated === true` durchgereicht wird. Der Zusatz ist der Punkt: nur ein
+Wert, den die Bibliothek selbst als real vorkommend führt, also einer, den die
+Datei mitgebracht hat. Ein vom Aufrufer erfundener Wert bleibt auf beiden Wegen
+verwehrt, ebenso `unexpected-field-count`, `element-order-violation`,
+`unknown-element` und alles auf `fatal`-Stufe. Damit gehen alle 137 echten
+DSV7-Dateien durch den typisierten Writer.
+
 ### Behoben: drei kritische Fehler
 
 #### Quadratische Laufzeit im Lexer

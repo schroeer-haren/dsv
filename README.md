@@ -593,8 +593,15 @@ echten DSV7-Dateien hinweg:
 | `conditional-field-required` | `warning` |     58 |
 | `invalid-enum-value`         | `warning` |     12 |
 
-Die tragfähige Haltung ist, `fatal` als Abbruchgrund zu nehmen und alles andere
-zu protokollieren:
+Zum **Zurückschreiben** einer solchen Datei gibt es einen eigenen, ausdrücklich
+benannten Weg: `write…PreservingDefects` reicht einen vorbestehenden Mangel
+durch, statt ihn zu verweigern, und gibt statt eines Textes ein `WriteResult`
+zurück – was durchgereicht wurde, steht in `preservedDefects` und lässt sich
+nicht übersehen. Der Vorgabeweg bleibt streng. Siehe
+[`docs/beispiele.md`](docs/beispiele.md#eine-mangelhafte-datei-zurückschreiben).
+
+Die tragfähige Haltung beim Lesen ist, `fatal` als Abbruchgrund zu nehmen und
+alles andere zu protokollieren:
 
 ```typescript
 const { document, diagnostics } = parseWettkampfergebnisliste(text);

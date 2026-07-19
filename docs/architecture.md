@@ -477,12 +477,36 @@ durchweg als `warning` ausgedrückt — **jede Lese-Milde wurde damit automatisc
 zur Schreib-Erlaubnis.** Ein Writer, dem man die Records verkehrt herum gab,
 lieferte klaglos eine Datei mit `DATEIENDE` in Zeile 1 aus.
 
-Die Zuordnung ist als `Record<DiagnosticCode, boolean>` **vollständig**: Ein
-neuer Code lässt sich nicht einführen, ohne zu entscheiden, ob er in eigener
-Ausgabe vorkommen darf; eine Vorbelegung gibt es nicht. Erlaubt sind genau zwei
-Codes auf Warnstufe — `invalid-value` und `conditional-field-required` —, weil
-echte, vom DSV ausgelieferte Dateien sie verletzen und sich sonst eine
-eingelesene echte Datei nicht wieder ausschreiben ließe.
+Die Zuordnung ist **vollständig**: Ein neuer Code lässt sich nicht einführen,
+ohne zu entscheiden, wie er in eigener Ausgabe zu behandeln ist; eine
+Vorbelegung gibt es nicht. Sie kennt drei Stufen:
+
+- **erlaubt** — `invalid-value` und `conditional-field-required` auf Warnstufe,
+  weil echte, vom DSV ausgelieferte Dateien sie verletzen und sich sonst eine
+  eingelesene echte Datei nicht wieder ausschreiben ließe.
+- **vorbestehender Mangel** (`preexisting-defect`) — allein
+  `missing-required-field`. Ein fehlender Wert lässt die Datei lesbar; er
+  entsteht in der erzeugenden Software, nicht beim Aufrufer.
+- **vorbestehender Mangel, sofern toleriert**
+  (`preexisting-defect-when-tolerated`) — allein `invalid-enum-value`, und nur
+  bei `data.tolerated === true`. Der Zusatz ist der Punkt: Durchgereicht wird
+  nur ein Wert, den die Bibliothek selbst in ihrer Toleranzliste führt, den die
+  Datei also mitgebracht hat. Ein Wert, den der Aufrufer erfindet, steht in
+  keiner Toleranzliste und bleibt auf beiden Wegen verwehrt.
+- **verweigert** — alles Übrige, insbesondere `unexpected-field-count`,
+  `element-order-violation` und `unknown-element`, sowie alles auf
+  `fatal`-Stufe. Es würde die Lesbarkeit zerstören.
+
+Die beiden mittleren Stufen verweigert der Vorgabeweg weiterhin; die eigens
+benannten `write…PreservingDefects`-Funktionen reichen sie durch und geben sie
+in `WriteResult.preservedDefects` zurück.
+
+Die dritte Stufe ist eine Antwort auf den häufigsten Anwendungsfall überhaupt:
+ein Protokoll einlesen, einen Eintrag ändern, speichern. Ohne sie scheiterte er
+an knapp jeder fünften echten Datei — an einem Mangel, den der Aufrufer weder
+verursacht noch angefasst hat. Dass der Weg einen eigenen Namen trägt und einen
+anderen Rückgabetyp hat, statt einer Option am Vorgabeweg, ist Absicht: Eine
+Nachlässigkeit soll man wollen müssen und danach sehen.
 
 ## Validierungsregeln jenseits der Attributtypen
 

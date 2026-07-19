@@ -527,6 +527,74 @@ Beachte: Beide Befunde sind `warning`. Ob ein Befund die eigene Ausgabe sperrt,
 hängt am **Code**, nicht an der Schwere — sonst wäre jede Nachsicht beim Lesen
 automatisch eine Erlaubnis beim Schreiben.
 
+### Eine mangelhafte Datei zurückschreiben
+
+Damit stellt sich die Frage, wie der häufigste Anwendungsfall überhaupt gehen
+soll: ein Protokoll einlesen, einen Eintrag ändern, speichern. Der strenge
+Vorgabeweg verweigert die Datei, weil sie ein Pflichtfeld leer lässt — einen
+Mangel, den du weder verursacht noch angefasst hast:
+
+```typescript
+const text = readFileSync('test/fixtures/real/b-potsdam-2025-lm-protokoll.dsv7', 'utf8');
+const { document: liste } = parseWettkampfergebnisliste(text);
+
+writeWettkampfergebnisliste(liste.records);
+// wirft DsvWriteError:
+// 'missing-required-field: KAMPFGERICHT requires a value for field vereinDesKampfrichters'
+```
+
+Dafür gibt es einen zweiten, ausdrücklich benannten Weg. Er reicht den
+vorbestehenden Mangel durch und gibt statt einer Zeichenkette ein `WriteResult`
+zurück, damit du das Durchgereichte nicht übersehen kannst:
+
+```typescript
+import { writeWettkampfergebnislistePreservingDefects } from '@schroeer-haren/dsv';
+
+const ergebnis = writeWettkampfergebnislistePreservingDefects(liste.records);
+
+Object.keys(ergebnis); // → ['text', 'preservedDefects']
+ergebnis.text.length; // → 699852
+ergebnis.preservedDefects.length; // → 3
+
+ergebnis.preservedDefects[0];
+// → { code: 'missing-required-field', severity: 'error',
+//     message: 'KAMPFGERICHT requires a value for field vereinDesKampfrichters',
+//     line: 53, data: { field: 'vereinDesKampfrichters' } }
+```
+
+**Durchgereicht wird nur, was die Datei lesbar lässt** — und nur, was sie
+selbst mitgebracht hat. Eingestuft sind dafür zwei Befunde:
+`missing-required-field` und `invalid-enum-value`, letzterer aber **nur mit**
+`data.tolerated === true`, also nur bei einem Wert, den die Bibliothek
+wissentlich als real vorkommend führt:
+
+```typescript
+const text = readFileSync('test/fixtures/real/2026-06-28-Gera-SVHaren-Me.dsv7', 'utf8');
+const { document: meldung } = parseVereinsmeldeliste(text);
+
+meldung; // enthält WETTKAMPF.wettkampfart 'A' — real, aber nicht spezifiziert
+
+writeVereinsmeldeliste(meldung.records);
+// wirft DsvWriteError:
+// 'invalid-enum-value: WETTKAMPF.wettkampfart: "A" is not specified for this list type'
+
+writeVereinsmeldelistePreservingDefects(meldung.records).preservedDefects.map((d) => [
+  d.code,
+  d.data?.tolerated,
+]);
+// → [['invalid-enum-value', true]]
+```
+
+Ein Aufzählungswert, den **du** erfindest, steht in keiner Toleranzliste und
+bleibt auf beiden Wegen verwehrt. Ebenso alles, was ein fremdes Programm zum
+Abbruch brächte — eine falsche Feldanzahl, eine verletzte Elementreihenfolge,
+ein unbekanntes Element — und alles auf `fatal`-Stufe. Der Weg ist eine
+Nachsicht gegenüber fremden Mängeln, keine Abschaltung der Prüfung.
+
+Beachte, dass `ergebnis.text` **nicht** byte-identisch zur Quelle ist: Wie alle
+typisierten `write…`-Funktionen arbeitet auch dieser Weg auf Records und lässt
+Kommentarzeilen weg. Wer Byte-Identität braucht, nimmt `writeDsv`.
+
 ### `parseDsvOrThrow`
 
 `parseDsvOrThrow` gibt das Dokument direkt zurück und wirft einen
