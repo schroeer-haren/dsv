@@ -553,9 +553,7 @@ describe('projectVereinsergebnisliste', () => {
         );
 
         expect(codes(result)).toEqual(['dangling-reference']);
-        expect(result.diagnostics[0]?.message).toBe(
-          'STAFFELPERSON refers to unknown STAFFEL 9999',
-        );
+        expect(result.diagnostics[0]?.message).toBe('STAFFELPERSON refers to unknown STAFFEL 9999');
         expect(result.diagnostics[0]?.data).toMatchObject({
           element: 'STAFFELPERSON',
           veranstaltungsIdStaffel: 9999,

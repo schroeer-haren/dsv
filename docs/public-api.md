@@ -50,20 +50,20 @@ ein Präfix wäre eine Verdopplung.
 
 ## Schreiben
 
-| Name                             | Art      | Beschreibung                                                                                |
-| -------------------------------- | -------- | ------------------------------------------------------------------------------------------- |
-| `writeDsv`                       | function | Schreibt ein `DsvDocument` byte-identisch zurück in Text.                                   |
-| `writeWettkampfdefinitionsliste` | function | Schreibt eine typisierte Wettkampfdefinitionsliste als DSV-Text.                            |
-| `writeWettkampfergebnisliste`    | function | Schreibt eine typisierte Wettkampfergebnisliste als DSV-Text.                               |
-| `writeVereinsmeldeliste`         | function | Schreibt eine typisierte Vereinsmeldeliste als DSV-Text.                                    |
-| `writeVereinsergebnisliste`      | function | Schreibt eine typisierte Vereinsergebnisliste als DSV-Text.                                 |
+| Name                                              | Art      | Beschreibung                                                                                |
+| ------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------- |
+| `writeDsv`                                        | function | Schreibt ein `DsvDocument` byte-identisch zurück in Text.                                   |
+| `writeWettkampfdefinitionsliste`                  | function | Schreibt eine typisierte Wettkampfdefinitionsliste als DSV-Text.                            |
+| `writeWettkampfergebnisliste`                     | function | Schreibt eine typisierte Wettkampfergebnisliste als DSV-Text.                               |
+| `writeVereinsmeldeliste`                          | function | Schreibt eine typisierte Vereinsmeldeliste als DSV-Text.                                    |
+| `writeVereinsergebnisliste`                       | function | Schreibt eine typisierte Vereinsergebnisliste als DSV-Text.                                 |
 | `writeWettkampfdefinitionslistePreservingDefects` | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
 | `writeWettkampfergebnislistePreservingDefects`    | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
 | `writeVereinsmeldelistePreservingDefects`         | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
 | `writeVereinsergebnislistePreservingDefects`      | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
-| `DsvWriteError`                  | class    | Fehler beim Schreiben, wenn die Daten das Schema verletzen und keine gültige Datei ergäben. |
-| `WriteOptions`                   | type     | Einstellungen des Schreibens: Zeilenende (`eol`) und Formatversion (`version`).             |
-| `WriteResult`                    | type     | Ergebnis des Durchreichens: der Text und die durchgereichten Mängel (`preservedDefects`).   |
+| `DsvWriteError`                                   | class    | Fehler beim Schreiben, wenn die Daten das Schema verletzen und keine gültige Datei ergäben. |
+| `WriteOptions`                                    | type     | Einstellungen des Schreibens: Zeilenende (`eol`) und Formatversion (`version`).             |
+| `WriteResult`                                     | type     | Ergebnis des Durchreichens: der Text und die durchgereichten Mängel (`preservedDefects`).   |
 
 ## Schema-freie Ebene
 
@@ -92,7 +92,7 @@ ein Präfix wäre eine Verdopplung.
 
 | Name             | Art  | Beschreibung                                                                           |
 | ---------------- | ---- | -------------------------------------------------------------------------------------- |
-| `Diagnostic`     | type | Ein einzelner Befund mit Code, Severity, Quellzeile und Meldung.                         |
+| `Diagnostic`     | type | Ein einzelner Befund mit Code, Severity, Quellzeile und Meldung.                       |
 | `DiagnosticCode` | type | Die feste Menge der Befundkennungen, etwa `wrong-list-type` oder `dangling-reference`. |
 | `Severity`       | type | Stufe eines Befunds: `fatal`, `error`, `warning` oder `info`.                          |
 

@@ -77,12 +77,9 @@ describe('encodeZeit', () => {
 // umsetzt: Was unser eigener Leser nicht akzeptiert, dürfen wir nicht
 // ausliefern.
 describe('encodeZeit — Eingabeprüfung', () => {
-  it.each([-1, -0.5, NaN, Infinity, -Infinity, 0.5, 1e18, MAX + 1])(
-    'weist %p zurück',
-    (wert) => {
-      expect(() => encodeZeit(wert)).toThrow(DsvWriteError);
-    },
-  );
+  it.each([-1, -0.5, NaN, Infinity, -Infinity, 0.5, 1e18, MAX + 1])('weist %p zurück', (wert) => {
+    expect(() => encodeZeit(wert)).toThrow(DsvWriteError);
+  });
 
   it('lässt die Randwerte des gültigen Bereichs durch', () => {
     expect(encodeZeit(0)).toBe('00:00:00,00');

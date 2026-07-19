@@ -430,9 +430,7 @@ describe('projectWettkampfergebnisliste', () => {
     );
 
     expect(diagnostics.map((d) => d.code)).toEqual(['incomplete-relay', 'incomplete-relay']);
-    const nachKey = new Map(
-      diagnostics.map((d) => [(d.data as { key: string }).key, d] as const),
-    );
+    const nachKey = new Map(diagnostics.map((d) => [(d.data as { key: string }).key, d] as const));
     expect(nachKey.get('900:2:E')?.data).toMatchObject({ genannt: 3, erwartet: 4 });
     expect(nachKey.get('901:3:E')?.data).toMatchObject({ genannt: 3, erwartet: 8 });
     // Jeder Befund zeigt auf die STERGEBNIS-Zeile seiner eigenen Staffel.

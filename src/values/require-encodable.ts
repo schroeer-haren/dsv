@@ -21,12 +21,7 @@ import { DsvWriteError } from '../write/write-error.js';
  * eintreten sollte — und die nächstliegende Reaktion darauf, `?? ''`, verlöre
  * den Wert stillschweigend. Ein Wurf zeigt den Fehler dort, wo er entstand.
  */
-export function requireEncodable(
-  ok: boolean,
-  typ: string,
-  wert: unknown,
-  erwartet: string,
-): void {
+export function requireEncodable(ok: boolean, typ: string, wert: unknown, erwartet: string): void {
   if (ok) return;
 
   throw new DsvWriteError([

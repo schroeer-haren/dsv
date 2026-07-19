@@ -812,7 +812,9 @@ describe('Vereinsergebnisliste — Typprüfung greift beim Lesen', () => {
 
     it('lässt die vier spezifizierten Arten unbeanstandet', () => {
       const befunde = parseVereinsergebnisliste(FIXTURE).diagnostics.filter(
-        (d) => d.data?.['field'] === 'wettkampfart' && ['V', 'Z', 'F', 'E'].includes(String(d.data['value'])),
+        (d) =>
+          d.data?.['field'] === 'wettkampfart' &&
+          ['V', 'Z', 'F', 'E'].includes(String(d.data['value'])),
       );
 
       expect(befunde).toEqual([]);

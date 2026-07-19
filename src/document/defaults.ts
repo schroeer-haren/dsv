@@ -19,7 +19,9 @@ import type { ListSchema } from '../schema/list-schema.js';
  * dieselbe Art von Deutung — und für den Leser des Graphen der Unterschied
  * zwischen „steht nicht da" und „bedeutet N".
  */
-export function createDefaultLookup(schema: ListSchema): (element: string, field: string) => string {
+export function createDefaultLookup(
+  schema: ListSchema,
+): (element: string, field: string) => string {
   const byElement = new Map<string, Map<string, string>>();
 
   for (const { def } of schema.elements) {

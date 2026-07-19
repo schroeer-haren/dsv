@@ -189,7 +189,10 @@ export function validateValues(
             'invalid-enum-value',
             'warning',
             `${def.name}.${fieldDef.name}: "${value}" differs from the specified spelling "${match.value}"`,
-            { ...at, data: { field: fieldDef.name, value, expected: match.value, tolerated: true } },
+            {
+              ...at,
+              data: { field: fieldDef.name, value, expected: match.value, tolerated: true },
+            },
           ),
         );
       } else if (match.tolerated === true) {
