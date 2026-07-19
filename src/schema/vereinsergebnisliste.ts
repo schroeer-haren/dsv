@@ -87,20 +87,20 @@ const GESCHLECHT_PERSON_WERTE: readonly EnumValue[] = [
   { value: 'D', doc: 'divers' },
 ];
 
-/** Grund, aus dem ein Start nicht gewertet wird. */
+/** Grund, aus dem ein Start nicht gewertet wird (dsv8.md:3552, dsv8.md:4028). */
 const NICHTWERTUNG_WERTE: readonly EnumValue[] = [
-  { value: 'DS', doc: 'disqualifiziert' },
-  { value: 'NA', doc: 'nicht angetreten' },
-  { value: 'AB', doc: 'abgemeldet' },
+  { value: 'DS', doc: 'Disqualifikation' },
+  { value: 'NA', doc: 'nicht am Start' },
+  { value: 'AB', doc: 'vom Wettkampf abgemeldet' },
   { value: 'AU', doc: 'aufgegeben' },
-  { value: 'ZU', doc: 'zurückgezogen' },
+  { value: 'ZU', doc: 'Zeitüberschreitung, nur bei Langstrecken' },
 ];
 
-/** Erhöhtes oder nachträgliches Meldegeld. */
+/** Kennzeichen zum erhöhten nachträglichen Meldegeld (dsv8.md:3579, dsv8.md:4053). */
 const MELDEGELD_WERTE: readonly EnumValue[] = [
-  { value: 'E', doc: 'erhöhtes Meldegeld' },
-  { value: 'F', doc: 'erhöhtes und nachträgliches Meldegeld' },
-  { value: 'N', doc: 'nachträgliches Meldegeld' },
+  { value: 'E', doc: 'Norm erreicht' },
+  { value: 'F', doc: 'erhöhtes Meldegeld fällig' },
+  { value: 'N', doc: 'Norm nicht erreicht, aber nachgewiesen' },
 ];
 
 /** Vorzeichen einer Reaktions- oder Ablösezeit. */
@@ -267,24 +267,24 @@ export const KAMPFGERICHT = element('KAMPFGERICHT', [
     values: [
       { value: 'SCH', doc: 'Schiedsrichter*in' },
       { value: 'STA', doc: 'Starter*in' },
-      { value: 'ZRO', doc: 'Zeitnehmer-Obmann/-frau' },
-      { value: 'ZR', doc: 'Zeitnehmer*in' },
-      { value: 'ZNO', doc: 'Zielrichter-Obmann/-frau' },
-      { value: 'ZN', doc: 'Zielrichter*in' },
-      { value: 'RZN', doc: 'Richter*in für Zielankunft' },
+      { value: 'ZRO', doc: 'Zielrichterobmann' },
+      { value: 'ZR', doc: 'Zielrichter*in' },
+      { value: 'ZNO', doc: 'Zeitnehmerobmann' },
+      { value: 'ZN', doc: 'Zeitnehmer*in' },
+      { value: 'RZN', doc: 'Reservezeitnehmer*in' },
       { value: 'SR', doc: 'Schwimmrichter*in' },
-      { value: 'WRO', doc: 'Wenderichter-Obmann/-frau' },
+      { value: 'WRO', doc: 'Wenderichterobmann' },
       { value: 'WR', doc: 'Wenderichter*in' },
       { value: 'AUS', doc: 'Auswerter*in' },
       { value: 'SP', doc: 'Sprecher*in' },
-      { value: 'PKF', doc: 'Protokollkampfrichter*in' },
+      { value: 'PKF', doc: 'Protokollführer*in' },
       { value: 'STO', doc: 'Startordner*in' },
       { value: 'WKH', doc: 'Wettkampfhelfer*in' },
-      { value: 'ASCH', doc: 'Assistenz Schiedsrichter*in' },
+      { value: 'ASCH', doc: 'Assistenz-Schiedsrichter*in' },
       { value: 'SIB', doc: 'Sicherheitsbeauftragte*r' },
-      { value: 'SAUF', doc: 'Schwimmaufsicht' },
-      { value: 'VER', doc: 'Verpflegung' },
-      { value: 'ZBV', doc: 'zur besonderen Verwendung' },
+      { value: 'SAUF', doc: 'Streckenaufsicht' },
+      { value: 'VER', doc: 'Ordner Versorgungsstelle' },
+      { value: 'ZBV', doc: 'sonstige Kampfrichter' },
       {
         value: 'SPR',
         doc:
@@ -349,14 +349,14 @@ export const WETTKAMPF = element('WETTKAMPF', [
     doc: 'Ausübung der Schwimmart.',
     specRef: 'dsv8.md:3102',
     values: [
-      { value: 'GL', doc: 'Gleichgültig' },
+      { value: 'GL', doc: 'ganze Lage' },
       { value: 'BE', doc: 'Beine' },
       { value: 'AR', doc: 'Arme' },
       { value: 'ST', doc: 'Start' },
       { value: 'WE', doc: 'Wende' },
-      { value: 'GB', doc: 'Gleitübung Beine' },
-      { value: 'KB', doc: 'Kicks auf dem Bauch', since: 8 },
-      { value: 'KR', doc: 'Kicks auf dem Rücken', since: 8 },
+      { value: 'GB', doc: 'Gleitübung' },
+      { value: 'KB', doc: 'Kicks Bauchlage, nur bei Technik S', since: 8 },
+      { value: 'KR', doc: 'Kicks Rückenlage, nur bei Technik S', since: 8 },
       { value: 'X', doc: 'beliebige Sonderform' },
     ],
   }),

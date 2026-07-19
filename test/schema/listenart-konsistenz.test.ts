@@ -203,3 +203,72 @@ describe('Fundstellen liegen im Kapitel ihrer Listenart', () => {
     expect(fremd).toEqual([]);
   });
 });
+
+/**
+ * Gleichnamige Felder müssen denselben Code auch gleich beschreiben.
+ *
+ * Die Doc-Texte der Werte landen als JSDoc in der ausgelieferten öffentlichen
+ * API. Weichen zwei Listenarten für denselben Code voneinander ab, ist
+ * mindestens eine von beiden falsch — und wer sich auf die falsche verlässt,
+ * schreibt inhaltlich falsche Dateien, ohne dass die Validierung anschlägt:
+ * der Wertevorrat stimmt ja.
+ *
+ * Genau so waren im Kampfgericht `ZRO` und `ZNO` paarweise vertauscht (Spec:
+ * `ZRO = Zielrichterobmann`, `ZNO = Zeitnehmerobmann`, dsv8.md:2085-2093) und
+ * `GL` in zwei von vier Listenarten als „Gleichgültig" statt „ganze Lage"
+ * beschrieben (dsv8.md:1764) — jeweils zwei Listenarten richtig, zwei falsch.
+ * Beide Male hätte dieser Vergleich es sofort gezeigt — er hat beim Anlegen
+ * ausserdem `grundDerNichtwertung.ZU` („zurückgezogen" statt
+ * „Zeitüberschreitung", dsv8.md:3566) und die drei Codes von
+ * `erhoehtesNachtraeglichesMeldegeld` (dsv8.md:3579) gefunden.
+ *
+ * Nicht jede Abweichung ist ein Fehler: Manche gleichnamigen Felder gehören zu
+ * verschiedenen Elementen und bedeuten dort tatsächlich Verschiedenes. Die
+ * sind unten einzeln aufgeführt und begründet — was dort nicht steht, gilt als
+ * Fehler.
+ */
+const ERLAUBTE_ABWEICHUNGEN: readonly string[] = [
+  // NACHWEIS.bahnlaenge schränkt ein, welche Bahnlänge als Nachweis zählt
+  // (dsv8.md:1093); WETTKAMPF.bahnlaenge benennt die Bahn selbst.
+  'bahnlaenge.25',
+  'bahnlaenge.50',
+  // `geschlecht` steht sowohl an Wettkampf- als auch an Personenelementen: bei
+  // Wettkämpfen meint X die gemischte Austragung, bei Personen die gemischte
+  // Wertung einer Staffel.
+  'geschlecht.X',
+  // `art` trägt das Vorzeichen einmal einer Reaktionszeit (Start relativ zum
+  // Signal), einmal einer Ablöse-/Zwischenzeit (schlicht das Vorzeichen).
+  'art.+',
+  'art.-',
+  // Beide Texte beschreiben dieselbe Toleranz, nennen aber die Fundstelle des
+  // jeweils eigenen Kapitels.
+  'position.SPR',
+];
+
+describe('gleichnamige Felder beschreiben gleiche Codes gleich', () => {
+  it('führt keine widersprüchlichen Doc-Texte', () => {
+    /** Feldname -> Code -> Doc-Text -> Fundorte. */
+    const docs = new Map<string, Map<string, Map<string, string[]>>>();
+
+    for (const { listenart, element, feld } of alleFelder()) {
+      const proFeld = docs.get(feld.name) ?? new Map<string, Map<string, string[]>>();
+      docs.set(feld.name, proFeld);
+      for (const wert of feld.values ?? []) {
+        const proCode = proFeld.get(wert.value) ?? new Map<string, string[]>();
+        proFeld.set(wert.value, proCode);
+        proCode.set(wert.doc, [...(proCode.get(wert.doc) ?? []), `${listenart}.${element}`]);
+      }
+    }
+
+    const widersprueche: string[] = [];
+    for (const [feldname, proFeld] of docs) {
+      for (const [code, proDoc] of proFeld) {
+        if (proDoc.size <= 1) continue;
+        if (ERLAUBTE_ABWEICHUNGEN.includes(`${feldname}.${code}`)) continue;
+        widersprueche.push(`${feldname}.${code}: ${[...proDoc.keys()].join(' | ')}`);
+      }
+    }
+
+    expect(widersprueche).toEqual([]);
+  });
+});

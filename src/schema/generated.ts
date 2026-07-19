@@ -2381,12 +2381,12 @@ export interface MeldungWettkampfV7 {
   /**
    * Ausübung der Schwimmart.
    *
-   * - `GL` — Gleichgültig
+   * - `GL` — ganze Lage
    * - `BE` — Beine
    * - `AR` — Arme
    * - `ST` — Start
    * - `WE` — Wende
-   * - `GB` — Gleitübung Beine
+   * - `GB` — Gleitübung
    * - `X` — beliebige Sonderform
    *
    * @see dsv8.md:1749
@@ -2484,14 +2484,14 @@ export interface MeldungWettkampfV8 {
   /**
    * Ausübung der Schwimmart.
    *
-   * - `GL` — Gleichgültig
+   * - `GL` — ganze Lage
    * - `BE` — Beine
    * - `AR` — Arme
    * - `ST` — Start
    * - `WE` — Wende
-   * - `GB` — Gleitübung Beine
-   * - `KB` — Kicks auf dem Bauch
-   * - `KR` — Kicks auf dem Rücken
+   * - `GB` — Gleitübung
+   * - `KB` — Kicks Bauchlage, nur bei Technik S
+   * - `KR` — Kicks Rückenlage, nur bei Technik S
    * - `X` — beliebige Sonderform
    *
    * @see dsv8.md:1749
@@ -2747,22 +2747,22 @@ export interface MeldungKariabschnittV7 {
    *
    * - `SCH` — Schiedsrichter*in
    * - `STA` — Starter*in
-   * - `ZRO` — Zeitnehmer-Obmann/-frau
-   * - `ZR` — Zeitnehmer*in
-   * - `ZNO` — Zielrichter-Obmann/-frau
-   * - `ZN` — Zielrichter*in
-   * - `RZN` — Richter*in für Zielankunft
+   * - `ZRO` — Zielrichterobmann
+   * - `ZR` — Zielrichter*in
+   * - `ZNO` — Zeitnehmerobmann
+   * - `ZN` — Zeitnehmer*in
+   * - `RZN` — Reservezeitnehmer*in
    * - `SR` — Schwimmrichter*in
-   * - `WRO` — Wenderichter-Obmann/-frau
+   * - `WRO` — Wenderichterobmann
    * - `WR` — Wenderichter*in
    * - `AUS` — Auswerter*in
    * - `SP` — Sprecher*in
-   * - `PKF` — Protokollkampfrichter*in
+   * - `PKF` — Protokollführer*in
    * - `STO` — Startordner*in
-   * - `ASCH` — Assistenz Schiedsrichter*in
+   * - `ASCH` — Assistenz-Schiedsrichter*in
    * - `SIB` — Sicherheitsbeauftragte*r
-   * - `SAUF` — Schwimmaufsicht
-   * - `VER` — Verpflegung
+   * - `SAUF` — Streckenaufsicht
+   * - `VER` — Ordner Versorgungsstelle
    *
    * @see dsv8.md:2062
    */
@@ -3406,24 +3406,24 @@ export interface VereinsergebnisKampfgerichtV7 {
    *
    * - `SCH` — Schiedsrichter*in
    * - `STA` — Starter*in
-   * - `ZRO` — Zeitnehmer-Obmann/-frau
-   * - `ZR` — Zeitnehmer*in
-   * - `ZNO` — Zielrichter-Obmann/-frau
-   * - `ZN` — Zielrichter*in
-   * - `RZN` — Richter*in für Zielankunft
+   * - `ZRO` — Zielrichterobmann
+   * - `ZR` — Zielrichter*in
+   * - `ZNO` — Zeitnehmerobmann
+   * - `ZN` — Zeitnehmer*in
+   * - `RZN` — Reservezeitnehmer*in
    * - `SR` — Schwimmrichter*in
-   * - `WRO` — Wenderichter-Obmann/-frau
+   * - `WRO` — Wenderichterobmann
    * - `WR` — Wenderichter*in
    * - `AUS` — Auswerter*in
    * - `SP` — Sprecher*in
-   * - `PKF` — Protokollkampfrichter*in
+   * - `PKF` — Protokollführer*in
    * - `STO` — Startordner*in
    * - `WKH` — Wettkampfhelfer*in
-   * - `ASCH` — Assistenz Schiedsrichter*in
+   * - `ASCH` — Assistenz-Schiedsrichter*in
    * - `SIB` — Sicherheitsbeauftragte*r
-   * - `SAUF` — Schwimmaufsicht
-   * - `VER` — Verpflegung
-   * - `ZBV` — zur besonderen Verwendung
+   * - `SAUF` — Streckenaufsicht
+   * - `VER` — Ordner Versorgungsstelle
+   * - `ZBV` — sonstige Kampfrichter
    * - `SPR` — Sprecher*in; die Werteliste der Spezifikation kennt nur SP, ihr eigenes Beispiel in diesem Kapitel (dsv8.md:4255) schreibt aber SPR — beim Lesen Warnung, beim Schreiben unzulässig (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
    *
    * @see dsv8.md:2943
@@ -3528,12 +3528,12 @@ export interface VereinsergebnisWettkampfV7 {
   /**
    * Ausübung der Schwimmart.
    *
-   * - `GL` — Gleichgültig
+   * - `GL` — ganze Lage
    * - `BE` — Beine
    * - `AR` — Arme
    * - `ST` — Start
    * - `WE` — Wende
-   * - `GB` — Gleitübung Beine
+   * - `GB` — Gleitübung
    * - `X` — beliebige Sonderform
    *
    * @see dsv8.md:3102
@@ -3645,14 +3645,14 @@ export interface VereinsergebnisWettkampfV8 {
   /**
    * Ausübung der Schwimmart.
    *
-   * - `GL` — Gleichgültig
+   * - `GL` — ganze Lage
    * - `BE` — Beine
    * - `AR` — Arme
    * - `ST` — Start
    * - `WE` — Wende
-   * - `GB` — Gleitübung Beine
-   * - `KB` — Kicks auf dem Bauch
-   * - `KR` — Kicks auf dem Rücken
+   * - `GB` — Gleitübung
+   * - `KB` — Kicks Bauchlage, nur bei Technik S
+   * - `KR` — Kicks Rückenlage, nur bei Technik S
    * - `X` — beliebige Sonderform
    *
    * @see dsv8.md:3102
@@ -4006,11 +4006,11 @@ export interface VereinsergebnisPersonenergebnisV7 {
   /**
    * Grund, aus dem das Ergebnis nicht gewertet wird.
    *
-   * - `DS` — disqualifiziert
-   * - `NA` — nicht angetreten
-   * - `AB` — abgemeldet
+   * - `DS` — Disqualifikation
+   * - `NA` — nicht am Start
+   * - `AB` — vom Wettkampf abgemeldet
    * - `AU` — aufgegeben
-   * - `ZU` — zurückgezogen
+   * - `ZU` — Zeitüberschreitung, nur bei Langstrecken
    *
    * @see dsv8.md:3499
    */
@@ -4026,9 +4026,9 @@ export interface VereinsergebnisPersonenergebnisV7 {
   /**
    * Kennzeichen für erhöhtes oder nachträgliches Meldegeld.
    *
-   * - `E` — erhöhtes Meldegeld
-   * - `F` — erhöhtes und nachträgliches Meldegeld
-   * - `N` — nachträgliches Meldegeld
+   * - `E` — Norm erreicht
+   * - `F` — erhöhtes Meldegeld fällig
+   * - `N` — Norm nicht erreicht, aber nachgewiesen
    *
    * @see dsv8.md:3579
    */
@@ -4326,11 +4326,11 @@ export interface VereinsergebnisStaffelergebnisV7 {
   /**
    * Grund, aus dem das Ergebnis nicht gewertet wird.
    *
-   * - `DS` — disqualifiziert
-   * - `NA` — nicht angetreten
-   * - `AB` — abgemeldet
+   * - `DS` — Disqualifikation
+   * - `NA` — nicht am Start
+   * - `AB` — vom Wettkampf abgemeldet
    * - `AU` — aufgegeben
-   * - `ZU` — zurückgezogen
+   * - `ZU` — Zeitüberschreitung, nur bei Langstrecken
    *
    * @see dsv8.md:3985
    */
@@ -4353,9 +4353,9 @@ export interface VereinsergebnisStaffelergebnisV7 {
   /**
    * Kennzeichen für erhöhtes oder nachträgliches Meldegeld.
    *
-   * - `E` — erhöhtes Meldegeld
-   * - `F` — erhöhtes und nachträgliches Meldegeld
-   * - `N` — nachträgliches Meldegeld
+   * - `E` — Norm erreicht
+   * - `F` — erhöhtes Meldegeld fällig
+   * - `N` — Norm nicht erreicht, aber nachgewiesen
    *
    * @see dsv8.md:4054
    */
