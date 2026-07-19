@@ -584,12 +584,10 @@ export interface WettkampfV7 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
    *
    * @see dsv8.md:1119
    */
-  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | 'A' | 'N';
+  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E';
 }
 
 export interface WettkampfV8 {
@@ -706,12 +704,10 @@ export interface WettkampfV8 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
    *
    * @see dsv8.md:1119
    */
-  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | 'A' | 'N';
+  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E';
 }
 
 export interface WertungV7 {
@@ -2422,12 +2418,10 @@ export interface MeldungWettkampfV7 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
    *
    * @see dsv8.md:1796
    */
-  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | 'A' | 'N';
+  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E';
 }
 
 export interface MeldungWettkampfV8 {
@@ -2530,12 +2524,10 @@ export interface MeldungWettkampfV8 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
    *
    * @see dsv8.md:1796
    */
-  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | 'A' | 'N';
+  qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E';
 }
 
 export interface MeldungVereinV7 {

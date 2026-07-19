@@ -291,10 +291,10 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
       ...wettkampfartWerte,
       ...wettkampfartToleriert,
     ]);
-    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual([
-      ...wettkampfartWerte,
-      ...wettkampfartToleriert,
-    ]);
+    // Ohne die tolerierten Arten: Aus einem Aus- oder Nachschwimmen
+    // qualifiziert man sich nicht weiter (dsv8.md:1119). Der Abgleich über
+    // alle vier Listenarten steht in `listenart-konsistenz.test.ts`.
+    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual([...wettkampfartWerte]);
   });
 
   it('trennt spezifikationskonforme von tolerierten Wettkampfarten', () => {

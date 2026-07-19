@@ -124,17 +124,15 @@ describe('Vereinsmeldeliste — WETTKAMPF', () => {
    * der 34 Vereinsmeldelisten meldet einen Wettkampf mit Art `A`. Wie in der
    * Wettkampfdefinitionsliste sind die letzten beiden nur toleriert — lesbar,
    * aber nicht schreibbar.
+   *
+   * Die qualifizierende Wettkampfart teilt diesen Vorrat ausdrücklich nicht:
+   * Aus einem Aus- oder Nachschwimmen qualifiziert man sich nicht weiter, und
+   * alle vier Wertetabellen der Spezifikation führen dort nur V, Z, F und E.
+   * Der listenartübergreifende Abgleich steht in `listenart-konsistenz.test.ts`.
    */
   it('nimmt sechs Wettkampfarten auf, obwohl die Wertetabelle nur zwei nennt', () => {
     expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual(['V', 'Z', 'F', 'E', 'A', 'N']);
-    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual([
-      'V',
-      'Z',
-      'F',
-      'E',
-      'A',
-      'N',
-    ]);
+    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual(['V', 'Z', 'F', 'E']);
   });
 
   it('führt die geteilten und die eigenen Wertelisten', () => {

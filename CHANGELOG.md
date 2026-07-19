@@ -1,5 +1,29 @@
 # Changelog
 
+## Unveröffentlicht
+
+### Breaking: `qualifikationswettkampfart` toleriert kein `A`/`N` mehr
+
+Das Feld `qualifikationswettkampfart` widersprach sich zwischen den
+Listenarten: In Vereinsmeldeliste und Wettkampfdefinitionsliste liess es
+zusätzlich `A` (Ausschwimmen) und `N` (Nachschwimmen) als tolerierte Werte zu,
+in Wettkampfergebnis- und Vereinsergebnisliste nicht.
+
+Richtig ist der engere Vorrat. Alle vier Wertetabellen der Spezifikation führen
+für dieses Feld übereinstimmend nur `V`, `Z`, `F` und `E` (dsv8.md:1119, 1815,
+3177, 4826) — aus einem Aus- oder Nachschwimmen qualifiziert man sich nicht
+weiter. Die beiden abweichenden Listenarten teilten sich für dieses Feld
+versehentlich die Wertekonstante des Nachbarfeldes `wettkampfart`, wo `A` und
+`N` empirisch belegt und zu Recht toleriert sind; die Tolerierung schlug damit
+auf ein fremdes Feld durch. Ein Realbeleg dafür existiert nicht: In allen 5629
+`WETTKAMPF`-Zeilen der gesammelten echten Dateien trägt das Feld nur `V`, `Z`,
+`E` oder gar nichts.
+
+Der generierte Typ der betroffenen Felder verengt sich damit von
+`'V' | 'Z' | 'F' | 'E' | 'A' | 'N'` auf `'V' | 'Z' | 'F' | 'E'`. Dateien, die
+dort `A` oder `N` führen, werden beim Lesen nicht mehr stillschweigend
+angenommen.
+
 ## 0.9.0
 
 Diese Version friert die öffentliche Oberfläche ein. Sie ist der

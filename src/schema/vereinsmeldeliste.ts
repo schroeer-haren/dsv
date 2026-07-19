@@ -43,8 +43,10 @@ import { element, field } from './types.js';
  * (dsv8.md:3058). Die Wettkampfdefinitionsliste toleriert sie trotzdem, weil
  * `N` dort in echten Ausschreibungen belegt ist. Für die Vereinsmeldeliste
  * liegt nun ein Beleg für `A` vor: `2026-06-28-Gera-SVHaren-Me.dsv7` meldet
- * einen Wettkampf mit Art `A`. Beide Werte werden deshalb wie dort behandelt —
- * beim Lesen toleriert, beim Schreiben weiterhin unzulässig.
+ * einen Wettkampf mit Art `A`. Für `N` gibt es hier keinen Beleg — belegt ist
+ * es nur in der Wettkampfdefinitionsliste, so wie `A` nur hier. Toleriert wird
+ * deshalb beides der Symmetrie halber: beim Lesen angenommen, beim Schreiben
+ * weiterhin unzulässig.
  */
 const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'V', doc: 'Vorlauf' },
@@ -53,6 +55,23 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'E', doc: 'Entscheidung' },
   { value: 'A', doc: 'Ausschwimmen', tolerated: true },
   { value: 'N', doc: 'Nachschwimmen', tolerated: true },
+];
+
+/**
+ * Wettkampfart des qualifizierenden Laufs. Aus einem Aus- oder Nachschwimmen
+ * qualifiziert man sich nicht weiter (dsv8.md:1815).
+ *
+ * Eigene Konstante, obwohl die vier Werte denen von `WETTKAMPFART_WERTE`
+ * gleichen: Die dortige Tolerierung von A und N gilt ausdrücklich nur für die
+ * Wettkampfart selbst. Teilte sich dieses Feld die Konstante, schlüge sie auf
+ * ein Feld durch, für das die Spezifikation A und N in keiner Listenart führt
+ * und für das es im gesamten Bestand echter Dateien keinen Beleg gibt.
+ */
+const QUALIFIKATIONSART_WERTE: readonly EnumValue[] = [
+  { value: 'V', doc: 'Vorlauf' },
+  { value: 'Z', doc: 'Zwischenlauf' },
+  { value: 'F', doc: 'Finale' },
+  { value: 'E', doc: 'Entscheidung' },
 ];
 
 /**
@@ -250,7 +269,7 @@ export const WETTKAMPF = element('WETTKAMPF', [
   field('qualifikationswettkampfart', 'Zeichen', {
     doc: 'Art des qualifizierenden Wettkampfes.',
     specRef: 'dsv8.md:1796',
-    values: WETTKAMPFART_WERTE,
+    values: QUALIFIKATIONSART_WERTE,
   }),
 ]);
 

@@ -1469,7 +1469,7 @@ anzahlStarter?: string | undefined
 ausuebung: 'X' | 'GL' | 'BE' | 'AR' | 'ST' | 'WE' | 'GB'
 einzelstrecke: string
 geschlecht: 'X' | 'M' | 'W'
-qualifikationswettkampfart?: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A' | undefined
+qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | undefined
 qualifikationswettkampfnr?: string | undefined
 technik: 'X' | 'F' | 'R' | 'B' | 'S' | 'L'
 wettkampfart: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A'
@@ -1484,7 +1484,7 @@ anzahlStarter?: string | undefined
 ausuebung: 'X' | 'GL' | 'BE' | 'AR' | 'ST' | 'WE' | 'GB' | 'KB' | 'KR'
 einzelstrecke: string
 geschlecht: 'X' | 'M' | 'W' | 'D'
-qualifikationswettkampfart?: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A' | undefined
+qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | undefined
 qualifikationswettkampfnr?: string | undefined
 technik: 'X' | 'F' | 'R' | 'B' | 'S' | 'L'
 wettkampfart: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A'
@@ -2400,7 +2400,7 @@ anzahlStarter?: string | undefined
 ausuebung: 'X' | 'GL' | 'BE' | 'AR' | 'ST' | 'WE' | 'GB'
 einzelstrecke: string
 geschlecht: 'X' | 'M' | 'W'
-qualifikationswettkampfart?: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A' | undefined
+qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | undefined
 qualifikationswettkampfnr?: string | undefined
 technik: 'X' | 'F' | 'R' | 'B' | 'S' | 'L'
 wettkampfart: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A'
@@ -2416,7 +2416,7 @@ anzahlStarter?: string | undefined
 ausuebung: 'X' | 'GL' | 'BE' | 'AR' | 'ST' | 'WE' | 'GB' | 'KB' | 'KR'
 einzelstrecke: string
 geschlecht: 'X' | 'M' | 'W' | 'D'
-qualifikationswettkampfart?: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A' | undefined
+qualifikationswettkampfart?: 'V' | 'Z' | 'F' | 'E' | undefined
 qualifikationswettkampfnr?: string | undefined
 technik: 'X' | 'F' | 'R' | 'B' | 'S' | 'L'
 wettkampfart: 'N' | 'V' | 'Z' | 'F' | 'E' | 'A'

@@ -283,6 +283,23 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'N', doc: 'Nachschwimmen', tolerated: true },
 ];
 
+/**
+ * Wettkampfart des qualifizierenden Laufs. Aus einem Aus- oder Nachschwimmen
+ * qualifiziert man sich nicht weiter (dsv8.md:1119).
+ *
+ * Eigene Konstante, obwohl die vier Werte denen von `WETTKAMPFART_WERTE`
+ * gleichen: Die dortige Tolerierung von A und N gilt ausdrücklich nur für die
+ * Wettkampfart selbst. Teilte sich dieses Feld die Konstante, schlüge sie auf
+ * ein Feld durch, für das die Spezifikation A und N in keiner Listenart führt
+ * und für das es im gesamten Bestand echter Dateien keinen Beleg gibt.
+ */
+const QUALIFIKATIONSART_WERTE: readonly EnumValue[] = [
+  { value: 'V', doc: 'Vorlauf' },
+  { value: 'Z', doc: 'Zwischenlauf' },
+  { value: 'F', doc: 'Finale' },
+  { value: 'E', doc: 'Entscheidung' },
+];
+
 /** WETTKAMPF — ein einzelner Wettkampf der Veranstaltung (dsv8.md:979). */
 export const WETTKAMPF = element('WETTKAMPF', [
   field('wettkampfnr', 'Zahl', {
@@ -362,7 +379,7 @@ export const WETTKAMPF = element('WETTKAMPF', [
   field('qualifikationswettkampfart', 'Zeichen', {
     doc: 'Art des qualifizierenden Wettkampfes.',
     specRef: 'dsv8.md:1119',
-    values: WETTKAMPFART_WERTE,
+    values: QUALIFIKATIONSART_WERTE,
   }),
 ]);
 
