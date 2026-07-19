@@ -78,3 +78,38 @@ describe('writeVereinsmeldeliste', () => {
     ).toThrow(/MELDEGELD/);
   });
 });
+
+/**
+ * Das Beispiel der Spezifikation schreibt die Listart in Grossbuchstaben, die
+ * Attributtabelle dagegen „Konstant 'Vereinsmeldeliste'". Auch die echten
+ * Dateien der anderen Listenarten variieren darin (siehe `docs/architecture.md`,
+ * Realdaten-Befund 3). Der Vergleich ist deshalb case-insensitiv — belegt war
+ * das für diese Listenart bisher nicht.
+ */
+describe('Vereinsmeldeliste — Grossschreibung der Listart', () => {
+  it('akzeptiert die Listart in Grossbuchstaben', () => {
+    const gross = text.replace('Vereinsmeldeliste', 'VEREINSMELDELISTE');
+
+    expect(gross).toContain('VEREINSMELDELISTE');
+
+    const result = parseVereinsmeldeliste(gross);
+
+    expect(result.diagnostics).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it('akzeptiert die Listart in Kleinbuchstaben', () => {
+    const result = parseVereinsmeldeliste(text.replace('Vereinsmeldeliste', 'vereinsmeldeliste'));
+
+    expect(result.diagnostics).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it('weist eine wirklich andere Listart weiterhin zurück', () => {
+    const result = parseVereinsmeldeliste(
+      text.replace('Vereinsmeldeliste', 'Wettkampfdefinitionsliste'),
+    );
+
+    expect(result.diagnostics.map((d) => d.code)).toContain('wrong-list-type');
+  });
+});

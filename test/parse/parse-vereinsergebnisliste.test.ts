@@ -93,3 +93,43 @@ describe('writeVereinsergebnisliste', () => {
     );
   });
 });
+
+/**
+ * Das Beispiel der Spezifikation schreibt `FORMAT:VEREINSERGEBNISLISTE;8;` in
+ * Grossbuchstaben, die Attributtabelle dagegen „Konstant
+ * 'Vereinsergebnisliste'". Auch die echten Dateien der anderen Listenarten
+ * variieren darin (siehe `docs/architecture.md`, Realdaten-Befund 3). Der
+ * Vergleich ist deshalb case-insensitiv — belegt war das für diese Listenart
+ * bisher nicht.
+ */
+describe('Vereinsergebnisliste — Grossschreibung der Listart', () => {
+  const ORIGINAL = readFileSync(VOLL, 'utf8');
+
+  it('akzeptiert die Listart in Grossbuchstaben', () => {
+    const gross = ORIGINAL.replace('Vereinsergebnisliste', 'VEREINSERGEBNISLISTE');
+
+    expect(gross).toContain('VEREINSERGEBNISLISTE');
+
+    const result = parseVereinsergebnisliste(gross);
+
+    expect(result.diagnostics).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it('akzeptiert die Listart in Kleinbuchstaben', () => {
+    const result = parseVereinsergebnisliste(
+      ORIGINAL.replace('Vereinsergebnisliste', 'vereinsergebnisliste'),
+    );
+
+    expect(result.diagnostics).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it('weist eine wirklich andere Listart weiterhin zurück', () => {
+    const result = parseVereinsergebnisliste(
+      ORIGINAL.replace('Vereinsergebnisliste', 'Wettkampfdefinitionsliste'),
+    );
+
+    expect(result.diagnostics.map((d) => d.code)).toContain('wrong-list-type');
+  });
+});
