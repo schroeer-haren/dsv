@@ -788,3 +788,94 @@ schreibe('ergebnis-dsv8.dsv8', [
   line('STZWISCHENZEIT', '9020', '1', 'E', '1', '50', '00:00:35,00'),
   line('STABLOESE', '9020', '1', 'E', '1', '+', '00:00:00,50'),
 ]);
+
+// ---------------------------------------------------------------------------
+// Vereinsmeldeliste
+// ---------------------------------------------------------------------------
+
+/**
+ * Für diese Listenart gibt es keine einzige echte Datei. Dieses Fixture ist
+ * damit der einzige Beleg dafür, dass Schema, Leser und Schreiber
+ * zusammenpassen — es führt jedes der 17 Elemente mindestens einmal, dazu die
+ * DSV8-Neuheiten (`VEREIN.lastschrift`, Geschlecht `D` bei KARIMELDUNG,
+ * TRAINER und PNMELDUNG, die Ausübungen `KB` und `KR`) und alle vier
+ * Wettkampfarten — auch `Z` und `F`, die die Wertetabelle der Spezifikation
+ * nicht nennt, ihre eigene Beispielzeile aber verwendet.
+ */
+schreibe('vereinsmeldung.dsv8', [
+  line('FORMAT', 'Vereinsmeldeliste', '8'),
+  line('ERZEUGER', 'dsv-testdaten', '1.0', 'test@example.org'),
+  line('VERANSTALTUNG', 'Synthetischer Wettkampf', 'Musterstadt', '50', 'AUTOMATISCH'),
+  line('ABSCHNITT', '1', '15.03.2026', '09:00', 'N'),
+  line('ABSCHNITT', '2', '15.03.2026', '01:30', 'J'),
+  // Alle vier Wettkampfarten, beide Kicks und alle Geschlechter.
+  line('WETTKAMPF', '1', 'V', '1', '1', '100', 'F', 'GL', 'W', '', ''),
+  line('WETTKAMPF', '2', 'Z', '1', '1', '50', 'R', 'BE', 'M', '1', 'V'),
+  line('WETTKAMPF', '3', 'F', '2', '1', '50', 'S', 'KB', 'D', '2', 'Z'),
+  line('WETTKAMPF', '4', 'E', '2', '4', '25000', 'S', 'KR', 'X', '3', 'F'),
+  line('WETTKAMPF', '5', 'E', '2', '1', '0', 'X', 'AR', 'W', '', ''),
+  line('VEREIN', 'SV Musterstadt', '1234', '10', 'GER', 'J'),
+  line(
+    'ANSPRECHPARTNER',
+    'Muster, Max',
+    'Musterweg 1',
+    '12345',
+    'Musterstadt',
+    'GER',
+    '0123 456789',
+    '0123 456780',
+    'meldung@example.org',
+  ),
+  // Alle vier Kampfrichtergruppen und alle drei Geschlechter.
+  line('KARIMELDUNG', '1', 'Richter, Rita', 'SCH', 'W'),
+  line('KARIMELDUNG', '2', 'Richter, Rolf', 'WKR', 'M'),
+  line('KARIMELDUNG', '3', 'Richter, Robin', 'AUS', 'D'),
+  line('KARIMELDUNG', '4', 'Richter, Rosa', 'SPR', ''),
+  // Alle 18 Einsatzwünsche, dazu einmal ohne Angabe.
+  ...[
+    'SCH',
+    'STA',
+    'ZRO',
+    'ZR',
+    'ZNO',
+    'ZN',
+    'RZN',
+    'SR',
+    'WRO',
+    'WR',
+    'AUS',
+    'SP',
+    'PKF',
+    'STO',
+    'ASCH',
+    'SIB',
+    'SAUF',
+    'VER',
+    '',
+  ].map((wunsch, index) =>
+    line('KARIABSCHNITT', String((index % 4) + 1), String((index % 2) + 1), wunsch),
+  ),
+  line('TRAINER', '1', 'Trainer, Tina', 'W'),
+  line('TRAINER', '2', 'Trainer, Tom', 'M'),
+  line('TRAINER', '3', 'Trainer, Toni', 'D'),
+  line('TRAINER', '4', 'Trainer, Tabea', ''),
+  line('PNMELDUNG', 'Muster, Mia', '100010', '1', 'W', '2008', '20', '1', 'GER', 'POL', 'UKR'),
+  line('PNMELDUNG', 'Muster, Mo', '100011', '2', 'M', '2007', '', '', '', '', ''),
+  line('PNMELDUNG', 'Muster, Alex', '100012', '3', 'D', '2006', '25', '3', 'AUT', '', ''),
+  // HANDICAP: die Startklassen ohne Angabe (AB) und je eine hohe Klasse.
+  line('HANDICAP', '1', 'DBS-4711', 'IPC-4711', 'S10', 'SB9', 'SM10', 'Regel 12'),
+  line('HANDICAP', '2', '', '', 'AB', 'AB', 'AB', ''),
+  line('HANDICAP', '3', '', '', 'S14', 'SB14', 'SM14', ''),
+  line('STARTPN', '1', '1', '00:01:02,11'),
+  line('STARTPN', '2', '2', ''),
+  line('STARTPN', '3', '3', '00:00:31,45'),
+  // STMELDUNG: Jahrgangs- und Altersklassenwertung, mit und ohne obere Grenze.
+  line('STMELDUNG', '1', '9001', 'JG', '2008', '2010', 'Staffel A'),
+  line('STMELDUNG', '2', '9002', 'AK', '100', '', ''),
+  line('STARTST', '9001', '4', '00:04:12,34'),
+  line('STARTST', '9002', '4', ''),
+  line('STAFFELPERSON', '9001', '4', '1', '1'),
+  line('STAFFELPERSON', '9001', '4', '2', '2'),
+  line('STAFFELPERSON', '9001', '4', '3', '3'),
+  line('STAFFELPERSON', '9002', '4', '1', '1'),
+]);

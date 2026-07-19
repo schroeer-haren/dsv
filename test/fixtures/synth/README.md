@@ -33,6 +33,16 @@ Alle vier Dateien werden von `parseWettkampfergebnisliste` ohne eine einzige
 Diagnostic gelesen; sie taugen damit auch als Eingabe für den Round-Trip des
 Schreibers.
 
+## Vereinsmeldeliste
+
+Für diese Listenart gibt es **keine einzige** echte Datei. Das Fixture ist
+damit der einzige Beleg dafür, dass Schema, Leser und Schreiber zusammenpassen
+— was es prüft, ist die Lesart der Spezifikation, nicht die Wirklichkeit.
+
+| Datei | Deckt ab |
+| --- | --- |
+| `vereinsmeldung.dsv8` | alle 17 Elemente mindestens einmal; die DSV8-Neuheiten `VEREIN.lastschrift`, Geschlecht `D` bei KARIMELDUNG, TRAINER und PNMELDUNG sowie die Ausübungen `KB`/`KR`; alle vier Wettkampfarten, alle vier Kampfrichtergruppen und alle 18 Einsatzwünsche |
+
 ### Verbleibende Lücke
 
 `VERANSTALTUNG.bahnlaenge` ist im Wert `20` nicht belegt. `VERANSTALTUNG` steht

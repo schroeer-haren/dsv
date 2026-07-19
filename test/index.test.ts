@@ -8,11 +8,13 @@ describe('öffentliche API', () => {
       'DsvWriteError',
       'parseDsv',
       'parseDsvOrThrow',
+      'parseVereinsmeldeliste',
       'parseWettkampfdefinitionsliste',
       'parseWettkampfergebnisliste',
       'projectWettkampfdefinitionsliste',
       'projectWettkampfergebnisliste',
       'writeDsv',
+      'writeVereinsmeldeliste',
       'writeWettkampfdefinitionsliste',
       'writeWettkampfergebnisliste',
     ]);
