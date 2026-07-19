@@ -1,4 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { parseVereinsmeldeliste } from '../../src/parse/parse-vereinsmeldeliste.js';
 import type { ElementDef } from '../../src/schema/types.js';
 import {
   ABSCHNITT,
@@ -410,5 +412,186 @@ describe('Vereinsmeldeliste — Schema', () => {
         expect(f.specRef).toMatch(/^dsv8\.md:\d+$/);
       }
     }
+  });
+});
+
+/**
+ * Hält den Datentyp jedes Schemafeldes fest — vollständig, nicht stichprobenartig.
+ *
+ * Die übrigen Schema-Tests prüfen Feldnamen, Pflichtangaben, Wertelisten,
+ * Bereiche und Unterlassungswerte, aber nie den Typ. Ein Feld, das versehentlich
+ * als `ZK` statt als `Zeit` deklariert ist, bestünde sie alle: Der Wert
+ * `00:01:02,11` sieht in beiden Fällen wohlgeformt aus, und die synthetischen
+ * Fixtures stammen aus derselben Tabelle wie das Schema, tragen den Fehler also
+ * mit, statt ihn aufzudecken.
+ *
+ * Die Erwartung steht deshalb ausgeschrieben da und wird nicht aus dem Schema
+ * abgeleitet — sonst prüfte der Test sich selbst.
+ */
+describe('Vereinsmeldeliste — Datentypen', () => {
+  const ERWARTETE_TYPEN: Readonly<Record<string, Readonly<Record<string, string>>>> = {
+    FORMAT: {
+      listart: 'ZK',
+      version: 'Zahl',
+    },
+    ERZEUGER: {
+      software: 'ZK',
+      version: 'ZK',
+      kontakt: 'ZK',
+    },
+    VERANSTALTUNG: {
+      veranstaltungsbezeichnung: 'ZK',
+      veranstaltungsort: 'ZK',
+      bahnlaenge: 'ZK',
+      zeitmessung: 'ZK',
+    },
+    ABSCHNITT: {
+      abschnittsnr: 'Zahl',
+      abschnittsdatum: 'Datum',
+      anfangszeit: 'Uhrzeit',
+      relativeAngabe: 'Zeichen',
+    },
+    WETTKAMPF: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      abschnittsnr: 'Zahl',
+      anzahlStarter: 'Zahl',
+      einzelstrecke: 'Zahl',
+      technik: 'Zeichen',
+      ausuebung: 'ZK',
+      geschlecht: 'Zeichen',
+      qualifikationswettkampfnr: 'Zahl',
+      qualifikationswettkampfart: 'Zeichen',
+    },
+    VEREIN: {
+      vereinsbezeichnung: 'ZK',
+      vereinskennzahl: 'Zahl',
+      landesschwimmverband: 'Zahl',
+      nationenkuerzel: 'ZK',
+      lastschrift: 'Zeichen',
+    },
+    ANSPRECHPARTNER: {
+      name: 'ZK',
+      strasse: 'ZK',
+      plz: 'ZK',
+      ort: 'ZK',
+      land: 'ZK',
+      telefon: 'ZK',
+      fax: 'ZK',
+      email: 'ZK',
+    },
+    KARIMELDUNG: {
+      nummerKampfrichter: 'Zahl',
+      name: 'ZK',
+      kampfrichtergruppe: 'ZK',
+      geschlecht: 'Zeichen',
+    },
+    KARIABSCHNITT: {
+      nummerKampfrichter: 'Zahl',
+      abschnittsnummer: 'Zahl',
+      einsatzwunsch: 'ZK',
+    },
+    TRAINER: {
+      nummerTrainer: 'Zahl',
+      name: 'ZK',
+      geschlecht: 'Zeichen',
+    },
+    PNMELDUNG: {
+      name: 'ZK',
+      dsvId: 'Zahl',
+      veranstaltungsId: 'Zahl',
+      geschlecht: 'Zeichen',
+      jahrgang: 'Zahl',
+      altersklasse: 'Zahl',
+      nummerTrainer: 'Zahl',
+      nationalitaet1: 'ZK',
+      nationalitaet2: 'ZK',
+      nationalitaet3: 'ZK',
+    },
+    HANDICAP: {
+      veranstaltungsId: 'Zahl',
+      dbsId: 'ZK',
+      ipcId: 'ZK',
+      startklasse: 'ZK',
+      startklasseBrust: 'ZK',
+      startklasseLagen: 'ZK',
+      exceptions: 'ZK',
+    },
+    STARTPN: {
+      veranstaltungsId: 'Zahl',
+      wettkampfnummer: 'Zahl',
+      meldezeit: 'Zeit',
+    },
+    STMELDUNG: {
+      nummerDerMannschaft: 'Zahl',
+      veranstaltungsIdStaffel: 'Zahl',
+      wertungsklasseTyp: 'ZK',
+      mindestJgAk: 'JGAK',
+      maximalJgAk: 'JGAK',
+      nameDerStaffel: 'ZK',
+    },
+    STARTST: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnummer: 'Zahl',
+      meldezeit: 'Zeit',
+    },
+    STAFFELPERSON: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnummer: 'Zahl',
+      veranstaltungsId: 'Zahl',
+      startnummer: 'Zahl',
+    },
+  };
+
+  it('deklariert für jedes Feld den erwarteten Datentyp', () => {
+    const actual: Record<string, Record<string, string>> = {};
+
+    for (const occurrence of VEREINSMELDELISTE.elements) {
+      if (occurrence.def.fields.length === 0) continue;
+      const fields: Record<string, string> = {};
+      for (const f of occurrence.def.fields) fields[f.name] = f.type;
+      actual[occurrence.def.name] = fields;
+    }
+
+    expect(actual).toEqual(ERWARTETE_TYPEN);
+  });
+});
+
+/**
+ * Gegenprobe zur Datentyp-Tabelle: Die Typen müssen beim Lesen auch wirken.
+ *
+ * Ohne diese Tests bliebe offen, ob ein als `Zeit` oder `Datum` deklariertes
+ * Feld tatsächlich geprüft wird — ein Feld, das versehentlich `ZK` heisst,
+ * nähme jeden Unsinn stillschweigend an.
+ */
+describe('Vereinsmeldeliste — Typprüfung greift beim Lesen', () => {
+  const FIXTURE = readFileSync('test/fixtures/synth/vereinsmeldung.dsv8', 'utf8');
+
+  /** Ersetzt im Fixture den ersten Treffer und liest die Datei erneut. */
+  function mitFehler(suchen: string, ersetzen: string) {
+    expect(FIXTURE).toContain(suchen);
+    return parseVereinsmeldeliste(FIXTURE.replace(suchen, ersetzen));
+  }
+
+  it('liest das unveränderte Fixture ohne Befund', () => {
+    expect(parseVereinsmeldeliste(FIXTURE).diagnostics).toEqual([]);
+  });
+
+  it('meldet eine fehlerhafte Angabe in STARTPN.meldezeit', () => {
+    const result = mitFehler('00:00:31,45', '99:99:99,99');
+    const befunde = result.diagnostics.filter((d) => d.code === 'invalid-value');
+
+    expect(befunde.length).toBeGreaterThan(0);
+    expect(befunde[0]?.severity).toBe('error');
+    expect(befunde[0]?.data).toMatchObject({ field: 'meldezeit', value: '99:99:99,99' });
+  });
+
+  it('meldet eine fehlerhafte Angabe in ABSCHNITT.abschnittsdatum', () => {
+    const result = mitFehler('15.03.2026', '32.13.2026');
+    const befunde = result.diagnostics.filter((d) => d.code === 'invalid-value');
+
+    expect(befunde.length).toBeGreaterThan(0);
+    expect(befunde[0]?.severity).toBe('error');
+    expect(befunde[0]?.data).toMatchObject({ field: 'abschnittsdatum', value: '32.13.2026' });
   });
 });

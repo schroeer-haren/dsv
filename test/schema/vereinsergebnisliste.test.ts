@@ -1,4 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { parseVereinsergebnisliste } from '../../src/parse/parse-vereinsergebnisliste.js';
 import type { ElementDef } from '../../src/schema/types.js';
 import {
   ABSCHNITT,
@@ -558,5 +560,230 @@ describe('Vereinsergebnisliste — Schema', () => {
         expect(line).toBeLessThanOrEqual(4240);
       }
     }
+  });
+});
+
+/**
+ * Hält den Datentyp jedes Schemafeldes fest — vollständig, nicht stichprobenartig.
+ *
+ * Die übrigen Schema-Tests prüfen Feldnamen, Pflichtangaben, Wertelisten,
+ * Bereiche und Unterlassungswerte, aber nie den Typ. Ein Feld, das versehentlich
+ * als `ZK` statt als `Zeit` deklariert ist, bestünde sie alle: Der Wert
+ * `00:01:02,11` sieht in beiden Fällen wohlgeformt aus, und die synthetischen
+ * Fixtures stammen aus derselben Tabelle wie das Schema, tragen den Fehler also
+ * mit, statt ihn aufzudecken.
+ *
+ * Die Erwartung steht deshalb ausgeschrieben da und wird nicht aus dem Schema
+ * abgeleitet — sonst prüfte der Test sich selbst.
+ */
+describe('Vereinsergebnisliste — Datentypen', () => {
+  const ERWARTETE_TYPEN: Readonly<Record<string, Readonly<Record<string, string>>>> = {
+    FORMAT: {
+      listart: 'ZK',
+      version: 'Zahl',
+    },
+    ERZEUGER: {
+      software: 'ZK',
+      version: 'ZK',
+      kontakt: 'ZK',
+    },
+    VERANSTALTUNG: {
+      veranstaltungsbezeichnung: 'ZK',
+      veranstaltungsort: 'ZK',
+      bahnlaenge: 'ZK',
+      zeitmessung: 'ZK',
+    },
+    VERANSTALTER: {
+      nameDesVeranstalters: 'ZK',
+    },
+    AUSRICHTER: {
+      nameDesAusrichters: 'ZK',
+      name: 'ZK',
+      strasse: 'ZK',
+      plz: 'ZK',
+      ort: 'ZK',
+      land: 'ZK',
+      telefon: 'ZK',
+      fax: 'ZK',
+      email: 'ZK',
+    },
+    ABSCHNITT: {
+      abschnittsnr: 'Zahl',
+      abschnittsdatum: 'Datum',
+      anfangszeit: 'Uhrzeit',
+      relativeAngabe: 'Zeichen',
+    },
+    KAMPFGERICHT: {
+      abschnittsnr: 'Zahl',
+      position: 'ZK',
+      nameKampfrichter: 'ZK',
+      vereinDesKampfrichters: 'ZK',
+    },
+    WETTKAMPF: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      abschnittsnr: 'Zahl',
+      anzahlStarter: 'Zahl',
+      einzelstrecke: 'Zahl',
+      technik: 'Zeichen',
+      ausuebung: 'ZK',
+      geschlecht: 'Zeichen',
+      zuordnungBestenliste: 'ZK',
+      qualifikationswettkampfnr: 'Zahl',
+      qualifikationswettkampfart: 'Zeichen',
+    },
+    WERTUNG: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsId: 'Zahl',
+      wertungsklasseTyp: 'ZK',
+      mindestJgAk: 'JGAK',
+      maximalJgAk: 'JGAK',
+      geschlecht: 'Zeichen',
+      wertungsname: 'ZK',
+    },
+    VEREIN: {
+      vereinsbezeichnung: 'ZK',
+      vereinskennzahl: 'Zahl',
+      landesschwimmverband: 'Zahl',
+      nationenkuerzel: 'ZK',
+    },
+    PERSON: {
+      name: 'ZK',
+      dsvId: 'Zahl',
+      veranstaltungsId: 'Zahl',
+      geschlecht: 'Zeichen',
+      jahrgang: 'Zahl',
+      altersklasse: 'Zahl',
+      nationalitaet1: 'ZK',
+      nationalitaet2: 'ZK',
+      nationalitaet3: 'ZK',
+    },
+    PERSONENERGEBNIS: {
+      veranstaltungsId: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsId: 'Zahl',
+      platz: 'Zahl',
+      endzeit: 'Zeit',
+      grundDerNichtwertung: 'ZK',
+      disqualifikationsbemerkung: 'ZK',
+      erhoehtesNachtraeglichesMeldegeld: 'Zeichen',
+    },
+    PNZWISCHENZEIT: {
+      veranstaltungsId: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      distanz: 'Zahl',
+      zwischenzeit: 'Zeit',
+    },
+    PNREAKTION: {
+      veranstaltungsId: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      art: 'Zeichen',
+      reaktionszeit: 'Zeit',
+    },
+    STAFFEL: {
+      nummerDerMannschaft: 'Zahl',
+      veranstaltungsIdStaffel: 'Zahl',
+      wertungsklasseTyp: 'ZK',
+      mindestJgAk: 'JGAK',
+      maximalJgAk: 'JGAK',
+    },
+    STAFFELPERSON: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      name: 'ZK',
+      dsvId: 'Zahl',
+      startnummer: 'Zahl',
+      geschlecht: 'Zeichen',
+      jahrgang: 'Zahl',
+      altersklasse: 'Zahl',
+      nationalitaet1: 'ZK',
+      nationalitaet2: 'ZK',
+      nationalitaet3: 'ZK',
+    },
+    STAFFELERGEBNIS: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsId: 'Zahl',
+      platz: 'Zahl',
+      endzeit: 'Zeit',
+      grundDerNichtwertung: 'ZK',
+      startnummerDisqualifiziert: 'Zahl',
+      disqualifikationsbemerkung: 'ZK',
+      erhoehtesNachtraeglichesMeldegeld: 'Zeichen',
+    },
+    STZWISCHENZEIT: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      startnummer: 'Zahl',
+      distanz: 'Zahl',
+      zwischenzeit: 'Zeit',
+    },
+    STABLOESE: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      startnummer: 'Zahl',
+      art: 'Zeichen',
+      reaktionszeit: 'Zeit',
+    },
+  };
+
+  it('deklariert für jedes Feld den erwarteten Datentyp', () => {
+    const actual: Record<string, Record<string, string>> = {};
+
+    for (const occurrence of VEREINSERGEBNISLISTE.elements) {
+      if (occurrence.def.fields.length === 0) continue;
+      const fields: Record<string, string> = {};
+      for (const f of occurrence.def.fields) fields[f.name] = f.type;
+      actual[occurrence.def.name] = fields;
+    }
+
+    expect(actual).toEqual(ERWARTETE_TYPEN);
+  });
+});
+
+/**
+ * Gegenprobe zur Datentyp-Tabelle: Die Typen müssen beim Lesen auch wirken.
+ *
+ * Ohne diese Tests bliebe offen, ob ein als `Zeit` oder `Datum` deklariertes
+ * Feld tatsächlich geprüft wird — ein Feld, das versehentlich `ZK` heisst,
+ * nähme jeden Unsinn stillschweigend an.
+ */
+describe('Vereinsergebnisliste — Typprüfung greift beim Lesen', () => {
+  const FIXTURE = readFileSync('test/fixtures/synth/vereinsergebnis.dsv8', 'utf8');
+
+  /** Ersetzt im Fixture den ersten Treffer und liest die Datei erneut. */
+  function mitFehler(suchen: string, ersetzen: string) {
+    expect(FIXTURE).toContain(suchen);
+    return parseVereinsergebnisliste(FIXTURE.replace(suchen, ersetzen));
+  }
+
+  it('liest das unveränderte Fixture ohne Befund', () => {
+    expect(parseVereinsergebnisliste(FIXTURE).diagnostics).toEqual([]);
+  });
+
+  it('meldet eine fehlerhafte Angabe in PERSONENERGEBNIS.endzeit', () => {
+    const result = mitFehler('00:01:02,11', '99:99:99,99');
+    const befunde = result.diagnostics.filter((d) => d.code === 'invalid-value');
+
+    expect(befunde.length).toBeGreaterThan(0);
+    expect(befunde[0]?.severity).toBe('error');
+    expect(befunde[0]?.data).toMatchObject({ field: 'endzeit', value: '99:99:99,99' });
+  });
+
+  it('meldet eine fehlerhafte Angabe in ABSCHNITT.abschnittsdatum', () => {
+    const result = mitFehler('15.03.2026', '32.13.2026');
+    const befunde = result.diagnostics.filter((d) => d.code === 'invalid-value');
+
+    expect(befunde.length).toBeGreaterThan(0);
+    expect(befunde[0]?.severity).toBe('error');
+    expect(befunde[0]?.data).toMatchObject({ field: 'abschnittsdatum', value: '32.13.2026' });
   });
 });

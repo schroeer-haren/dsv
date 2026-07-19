@@ -485,3 +485,152 @@ describe('Versionsmarkierung am Element', () => {
     expect(ABSCHNITT.since).toBeUndefined();
   });
 });
+
+/**
+ * Hält den Datentyp jedes Schemafeldes fest — vollständig, nicht stichprobenartig.
+ *
+ * Die übrigen Schema-Tests prüfen Feldnamen, Pflichtangaben, Wertelisten,
+ * Bereiche und Unterlassungswerte, aber nie den Typ. Ein Feld, das versehentlich
+ * als `ZK` statt als `Zeit` deklariert ist, bestünde sie alle: Der Wert
+ * `00:01:02,11` sieht in beiden Fällen wohlgeformt aus, und die synthetischen
+ * Fixtures stammen aus derselben Tabelle wie das Schema, tragen den Fehler also
+ * mit, statt ihn aufzudecken.
+ *
+ * Die Erwartung steht deshalb ausgeschrieben da und wird nicht aus dem Schema
+ * abgeleitet — sonst prüfte der Test sich selbst.
+ */
+describe('Wettkampfdefinitionsliste — Datentypen', () => {
+  const ERWARTETE_TYPEN: Readonly<Record<string, Readonly<Record<string, string>>>> = {
+    FORMAT: {
+      listart: 'ZK',
+      version: 'Zahl',
+    },
+    ERZEUGER: {
+      software: 'ZK',
+      version: 'ZK',
+      kontakt: 'ZK',
+    },
+    VERANSTALTUNG: {
+      veranstaltungsbezeichnung: 'ZK',
+      veranstaltungsort: 'ZK',
+      bahnlaenge: 'ZK',
+      zeitmessung: 'ZK',
+    },
+    VERANSTALTUNGSORT: {
+      nameSchwimmhalle: 'ZK',
+      strasse: 'ZK',
+      plz: 'ZK',
+      ort: 'ZK',
+      land: 'ZK',
+      telefon: 'ZK',
+      fax: 'ZK',
+      email: 'ZK',
+    },
+    AUSSCHREIBUNGIMNETZ: {
+      internetadresse: 'ZK',
+    },
+    VERANSTALTER: {
+      nameDesVeranstalters: 'ZK',
+    },
+    AUSRICHTER: {
+      nameDesAusrichters: 'ZK',
+      name: 'ZK',
+      strasse: 'ZK',
+      plz: 'ZK',
+      ort: 'ZK',
+      land: 'ZK',
+      telefon: 'ZK',
+      fax: 'ZK',
+      email: 'ZK',
+    },
+    MELDEADRESSE: {
+      name: 'ZK',
+      strasse: 'ZK',
+      plz: 'ZK',
+      ort: 'ZK',
+      land: 'ZK',
+      telefon: 'ZK',
+      fax: 'ZK',
+      email: 'ZK',
+    },
+    MELDESCHLUSS: {
+      datum: 'Datum',
+      uhrzeit: 'Uhrzeit',
+    },
+    BANKVERBINDUNG: {
+      nameDerBank: 'ZK',
+      iban: 'ZK',
+      bic: 'ZK',
+      kontoinhaber: 'ZK',
+    },
+    LASTSCHRIFT: {
+      hinweis: 'Zeichen',
+    },
+    BESONDERES: {
+      anmerkungen: 'ZK',
+    },
+    NACHWEIS: {
+      nachweisVon: 'Datum',
+      nachweisBis: 'Datum',
+      bahnlaenge: 'ZK',
+    },
+    ABSCHNITT: {
+      abschnittsnr: 'Zahl',
+      abschnittsdatum: 'Datum',
+      einlass: 'Uhrzeit',
+      kampfrichtersitzung: 'Uhrzeit',
+      anfangszeit: 'Uhrzeit',
+      relativeAngabe: 'Zeichen',
+    },
+    WETTKAMPF: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      abschnittsnr: 'Zahl',
+      anzahlStarter: 'Zahl',
+      einzelstrecke: 'Zahl',
+      technik: 'Zeichen',
+      ausuebung: 'ZK',
+      geschlecht: 'Zeichen',
+      zuordnungBestenliste: 'ZK',
+      qualifikationswettkampfnr: 'Zahl',
+      qualifikationswettkampfart: 'Zeichen',
+    },
+    WERTUNG: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsId: 'Zahl',
+      wertungsklasseTyp: 'ZK',
+      mindestJgAk: 'JGAK',
+      maximalJgAk: 'JGAK',
+      geschlecht: 'Zeichen',
+      wertungsname: 'ZK',
+    },
+    PFLICHTZEIT: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsklasseTyp: 'ZK',
+      mindestJgAk: 'JGAK',
+      maximalJgAk: 'JGAK',
+      pflichtzeit: 'Zeit',
+      geschlecht: 'Zeichen',
+    },
+    MELDEGELD: {
+      meldegeldTyp: 'ZK',
+      betrag: 'Betrag',
+      wettkampfnr: 'Zahl',
+    },
+  };
+
+  it('deklariert für jedes Feld den erwarteten Datentyp', () => {
+    const actual: Record<string, Record<string, string>> = {};
+
+    for (const occurrence of WETTKAMPFDEFINITIONSLISTE.elements) {
+      if (occurrence.def.fields.length === 0) continue;
+      const fields: Record<string, string> = {};
+      for (const f of occurrence.def.fields) fields[f.name] = f.type;
+      actual[occurrence.def.name] = fields;
+    }
+
+    expect(actual).toEqual(ERWARTETE_TYPEN);
+  });
+});

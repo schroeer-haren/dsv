@@ -574,3 +574,184 @@ describe('WETTKAMPFERGEBNISLISTE', () => {
     }
   });
 });
+
+/**
+ * Hält den Datentyp jedes Schemafeldes fest — vollständig, nicht stichprobenartig.
+ *
+ * Die übrigen Schema-Tests prüfen Feldnamen, Pflichtangaben, Wertelisten,
+ * Bereiche und Unterlassungswerte, aber nie den Typ. Ein Feld, das versehentlich
+ * als `ZK` statt als `Zeit` deklariert ist, bestünde sie alle: Der Wert
+ * `00:01:02,11` sieht in beiden Fällen wohlgeformt aus, und die synthetischen
+ * Fixtures stammen aus derselben Tabelle wie das Schema, tragen den Fehler also
+ * mit, statt ihn aufzudecken.
+ *
+ * Die Erwartung steht deshalb ausgeschrieben da und wird nicht aus dem Schema
+ * abgeleitet — sonst prüfte der Test sich selbst.
+ */
+describe('Wettkampfergebnisliste — Datentypen', () => {
+  const ERWARTETE_TYPEN: Readonly<Record<string, Readonly<Record<string, string>>>> = {
+    FORMAT: {
+      listart: 'ZK',
+      version: 'Zahl',
+    },
+    ERZEUGER: {
+      software: 'ZK',
+      version: 'ZK',
+      kontakt: 'ZK',
+    },
+    VERANSTALTUNG: {
+      veranstaltungsbezeichnung: 'ZK',
+      veranstaltungsort: 'ZK',
+      bahnlaenge: 'ZK',
+      zeitmessung: 'ZK',
+    },
+    VERANSTALTER: {
+      nameDesVeranstalters: 'ZK',
+    },
+    AUSRICHTER: {
+      nameDesAusrichters: 'ZK',
+      name: 'ZK',
+      strasse: 'ZK',
+      plz: 'ZK',
+      ort: 'ZK',
+      land: 'ZK',
+      telefon: 'ZK',
+      fax: 'ZK',
+      email: 'ZK',
+    },
+    ABSCHNITT: {
+      abschnittsnr: 'Zahl',
+      abschnittsdatum: 'Datum',
+      anfangszeit: 'Uhrzeit',
+      relativeAngabe: 'Zeichen',
+    },
+    KAMPFGERICHT: {
+      abschnittsnr: 'Zahl',
+      position: 'ZK',
+      nameKampfrichter: 'ZK',
+      vereinDesKampfrichters: 'ZK',
+    },
+    WETTKAMPF: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      abschnittsnr: 'Zahl',
+      anzahlStarter: 'Zahl',
+      einzelstrecke: 'Zahl',
+      technik: 'Zeichen',
+      ausuebung: 'ZK',
+      geschlecht: 'Zeichen',
+      zuordnungBestenliste: 'ZK',
+      qualifikationswettkampfnr: 'Zahl',
+      qualifikationswettkampfart: 'Zeichen',
+    },
+    WERTUNG: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsId: 'Zahl',
+      wertungsklasseTyp: 'ZK',
+      mindestJgAk: 'JGAK',
+      maximalJgAk: 'JGAK',
+      geschlecht: 'Zeichen',
+      wertungsname: 'ZK',
+    },
+    VEREIN: {
+      vereinsbezeichnung: 'ZK',
+      vereinskennzahl: 'Zahl',
+      landesschwimmverband: 'Zahl',
+      nationenkuerzel: 'ZK',
+    },
+    PNERGEBNIS: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsId: 'Zahl',
+      platz: 'Zahl',
+      grundDerNichtwertung: 'ZK',
+      name: 'ZK',
+      dsvId: 'Zahl',
+      veranstaltungsId: 'Zahl',
+      geschlecht: 'Zeichen',
+      jahrgang: 'Zahl',
+      altersklasse: 'Zahl',
+      verein: 'ZK',
+      vereinskennzahl: 'Zahl',
+      endzeit: 'Zeit',
+      disqualifikationsbemerkung: 'ZK',
+      erhoehtesNachtraeglichesMeldegeld: 'Zeichen',
+      nationalitaet1: 'ZK',
+      nationalitaet2: 'ZK',
+      nationalitaet3: 'ZK',
+    },
+    PNZWISCHENZEIT: {
+      veranstaltungsId: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      distanz: 'Zahl',
+      zwischenzeit: 'Zeit',
+    },
+    PNREAKTION: {
+      veranstaltungsId: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      art: 'Zeichen',
+      reaktionszeit: 'Zeit',
+    },
+    STERGEBNIS: {
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      wertungsId: 'Zahl',
+      platz: 'Zahl',
+      grundDerNichtwertung: 'ZK',
+      nummerDerMannschaft: 'Zahl',
+      veranstaltungsId: 'Zahl',
+      verein: 'ZK',
+      vereinskennzahl: 'Zahl',
+      endzeit: 'Zeit',
+      startnummerDisqualifiziert: 'Zahl',
+      disqualifikationsbemerkung: 'ZK',
+      erhoehtesNachtraeglichesMeldegeld: 'Zeichen',
+    },
+    STAFFELPERSON: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      name: 'ZK',
+      dsvId: 'Zahl',
+      startnummer: 'Zahl',
+      geschlecht: 'Zeichen',
+      jahrgang: 'Zahl',
+      altersklasse: 'Zahl',
+      nationalitaet1: 'ZK',
+      nationalitaet2: 'ZK',
+      nationalitaet3: 'ZK',
+    },
+    STZWISCHENZEIT: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      startnummer: 'Zahl',
+      distanz: 'Zahl',
+      zwischenzeit: 'Zeit',
+    },
+    STABLOESE: {
+      veranstaltungsIdStaffel: 'Zahl',
+      wettkampfnr: 'Zahl',
+      wettkampfart: 'Zeichen',
+      startnummer: 'Zahl',
+      art: 'Zeichen',
+      reaktionszeit: 'Zeit',
+    },
+  };
+
+  it('deklariert für jedes Feld den erwarteten Datentyp', () => {
+    const actual: Record<string, Record<string, string>> = {};
+
+    for (const occurrence of WETTKAMPFERGEBNISLISTE.elements) {
+      if (occurrence.def.fields.length === 0) continue;
+      const fields: Record<string, string> = {};
+      for (const f of occurrence.def.fields) fields[f.name] = f.type;
+      actual[occurrence.def.name] = fields;
+    }
+
+    expect(actual).toEqual(ERWARTETE_TYPEN);
+  });
+});
