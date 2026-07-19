@@ -232,9 +232,15 @@ describe('Durchreichen über den echten Bestand', () => {
     }
 
     // Das Abnahmekriterium: alle 137, keine Ausnahme. 28 Dateien bringen ein
-    // leeres Pflichtfeld mit, 4 einen tolerierten Aufzählungswert.
+    // leeres Pflichtfeld mit, 2 einen tolerierten Aufzählungswert.
+    //
+    // Vormals waren es 4: Die beiden Dateien mit den Wettkampfarten `A` und `N`
+    // zählen nicht mehr mit, seit die Arten als `specGap` gelten. Ein
+    // ausgeschriebenes Ausschwimmen ist kein Mangel der Datei, also darf es
+    // auch nicht als vorbestehender Mangel durchgereicht werden — es geht den
+    // Vorgabeweg (siehe den Test unten).
     expect(gescheitert).toEqual([]);
-    expect(mitMangel).toBe(32);
+    expect(mitMangel).toBe(30);
   });
 
   /**
@@ -256,11 +262,15 @@ describe('Durchreichen über den echten Bestand', () => {
 
   /**
    * Die Vorgabe bleibt streng: Ohne den ausdrücklichen Weg scheitern dieselben
-   * 32 Dateien weiterhin. Fiele diese Zahl auf 4, wäre die Strenge still
+   * 30 Dateien weiterhin. Fiele diese Zahl auf 2, wäre die Strenge still
    * abgeschafft worden.
+   *
+   * Der Test hält ausserdem die Trennlinie zwischen den beiden Vorbehalten an
+   * je einem echten Beispiel fest, damit sie nicht einseitig verschoben wird:
+   * Ein `tolerated`-Wert sperrt den Vorgabeweg, ein `specGap`-Wert nicht.
    */
-  it('verweigert weiterhin 32 Dateien auf dem Vorgabeweg', () => {
-    let gescheitert = 0;
+  it('verweigert weiterhin 30 Dateien auf dem Vorgabeweg', () => {
+    const gescheitert: string[] = [];
 
     for (const name of dsv7Files) {
       const text = read(name);
@@ -271,10 +281,22 @@ describe('Durchreichen über den echten Bestand', () => {
       try {
         writeTypedList(parsed.document.records, schema, { version: 7 });
       } catch {
-        gescheitert++;
+        gescheitert.push(name);
       }
     }
 
-    expect(gescheitert).toBe(32);
+    expect(gescheitert).toHaveLength(30);
+
+    // `tolerated` sperrt weiterhin: Diese beiden Dateien schreiben einen von
+    // der Wertetabelle geführten Wert in abweichender Schreibweise.
+    expect(gescheitert).toContain('gh-dsvparser-definition.dsv7');
+    expect(gescheitert).toContain('gh-dsvparser-ergebnis.dsv7');
+
+    // `specGap` sperrt nicht: Genau diese beiden Dateien tragen die
+    // Wettkampfarten `A` bzw. `N` und gingen vor der Umstufung ebenfalls hier
+    // durchs Raster. Sie müssen den Vorgabeweg jetzt bestehen — sonst wäre die
+    // Umstufung wirkungslos.
+    expect(gescheitert).not.toContain('2026-06-28-Gera-SVHaren-Me.dsv7');
+    expect(gescheitert).not.toContain('dsvportal-13062024-Wk.dsv7');
   });
 });

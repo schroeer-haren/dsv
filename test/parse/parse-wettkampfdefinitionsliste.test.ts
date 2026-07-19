@@ -174,8 +174,9 @@ const SYNTH = 'test/fixtures/synth';
  */
 const EXPECTED_DIAGNOSTICS: Record<string, number> = {
   'error:missing-required-field': 4,
+  'info:invalid-enum-value': 6,
   'warning:conditional-field-required': 22,
-  'warning:invalid-enum-value': 10,
+  'warning:invalid-enum-value': 4,
   'warning:invalid-value': 37,
 };
 
@@ -219,35 +220,47 @@ describe('Wettkampfdefinitionslisten aus test/fixtures/real', () => {
   });
 
   /**
-   * Erwartete Abweichungen, beide als `tolerated: true` gemeldet — geduldet
-   * beim Lesen, unzulässig beim Schreiben:
+   * Zwei Abweichungen, verschieden eingestuft — und der Unterschied ist der
+   * Kern der Sache:
    *
-   * - Sechs Wettkämpfe einer einzigen Ausschreibung tragen die Wettkampfart
-   *   `N`, die keine der Spec-Fassungen kennt.
+   * - Sechs Sätze einer einzigen Ausschreibung tragen die Wettkampfart `N`:
+   *   drei WETTKAMPF- und die drei zugehörigen WERTUNG-Zeilen von
+   *   `dsvportal-13062024-Wk.dsv7`. Die Wertetabellen dieser Listenart führen
+   *   `N` nicht, doch sie lassen ihn bloss aus, statt ihn auszuschliessen —
+   *   die Datei stammt vom DSV-Portal selbst. Deshalb `specGap`: beim Lesen
+   *   ein `info`, beim Schreiben erlaubt. Die volle Begründung steht bei
+   *   `WETTKAMPFART_WERTE` in `src/schema/wettkampfdefinitionsliste.ts`.
    * - Vier MELDEGELD-Sätze einer einzigen Datei schreiben den Typ in
    *   Grossbuchstaben. Bei 1204 MELDEGELD-Sätzen im Bestand ist das die
    *   Ausnahme; das Feld wird deshalb ohne Rücksicht auf die Schreibweise
-   *   gelesen, die Abweichung aber gemeldet.
+   *   gelesen, die Abweichung aber als `tolerated` gemeldet — Warnung beim
+   *   Lesen, beim Schreiben unzulässig. Eine abweichende Schreibweise ist ein
+   *   Mangel der Datei, keine Lücke der Vorlage.
    */
-  it('warnt genau zehnmal, je Abweichung namentlich', () => {
+  it('meldet die Wettkampfart N sechsmal als Lücke der Vorlage', () => {
+    const hinweise = realLists.flatMap((name) =>
+      parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'))
+        .diagnostics.filter((d) => d.code === 'invalid-enum-value' && d.severity === 'info')
+        .map((d) => ({ name, data: d.data })),
+    );
+
+    expect(hinweise).toHaveLength(6);
+    expect(new Set(hinweise.map((w) => w.name))).toEqual(new Set(['dsvportal-13062024-Wk.dsv7']));
+    for (const hinweis of hinweise) {
+      expect(hinweis.data).toMatchObject({ field: 'wettkampfart', value: 'N', specGap: true });
+    }
+  });
+
+  it('warnt genau viermal, je Abweichung namentlich', () => {
     const warnings = realLists.flatMap((name) =>
       parseWettkampfdefinitionsliste(readFileSync(join(REAL, name), 'utf8'))
         .diagnostics.filter((d) => d.code === 'invalid-enum-value' && d.severity === 'warning')
         .map((d) => ({ name, data: d.data })),
     );
 
-    expect(warnings).toHaveLength(10);
+    expect(warnings).toHaveLength(4);
     for (const warning of warnings) {
       expect(warning.data).toMatchObject({ tolerated: true });
-    }
-
-    const wettkampfart = warnings.filter((w) => w.data?.['field'] === 'wettkampfart');
-    expect(wettkampfart).toHaveLength(6);
-    expect(new Set(wettkampfart.map((w) => w.name))).toEqual(
-      new Set(['dsvportal-13062024-Wk.dsv7']),
-    );
-    for (const warning of wettkampfart) {
-      expect(warning.data).toMatchObject({ value: 'N' });
     }
 
     const schreibweise = warnings.filter((w) => w.data?.['field'] === 'meldegeldTyp');

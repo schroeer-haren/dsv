@@ -315,11 +315,13 @@ describe('validateValues', () => {
   });
 });
 
-describe('tolerierte Aufzählungswerte', () => {
-  // Die Spezifikation sieht A und N nur in den Ergebnislisten vor. In echten
-  // Ausschreibungen kommt N trotzdem vor — belegt in
-  // dsvportal-13062024-Wk.dsv7. Als Fehler gemeldet wiese die Bibliothek
-  // Dateien zurück, die in der Praxis im Umlauf sind.
+describe('ausgelassene Aufzählungswerte', () => {
+  // Die Wertetabellen der Wettkampfdefinitionsliste lassen A und N aus. In
+  // echten Ausschreibungen kommt N trotzdem vor — belegt in
+  // dsvportal-13062024-Wk.dsv7, einer Datei des DSV-Portals selbst. Als Fehler
+  // gemeldet wiese die Bibliothek Dateien zurück, die in der Praxis im Umlauf
+  // sind; als `tolerated` gemeldet könnte sie sie nicht wieder erzeugen.
+  // Deshalb `specGap`: beim Lesen ein `info`, beim Schreiben erlaubt.
   const wettkampfMit = (art: string): DsvRecord => ({
     kind: 'element',
     element: 'WETTKAMPF',
@@ -333,11 +335,12 @@ describe('tolerierte Aufzählungswerte', () => {
     eol: '\r\n',
   });
 
-  it('meldet Nachschwimmen als Warnung, nicht als Fehler', () => {
+  it('meldet Nachschwimmen als Hinweis, nicht als Fehler', () => {
     const found = validateValues(wettkampfMit('N'), WETTKAMPF, 7);
     expect(found).toHaveLength(1);
-    expect(found[0]?.severity).toBe('warning');
-    expect(found[0]?.data?.tolerated).toBe(true);
+    expect(found[0]?.severity).toBe('info');
+    expect(found[0]?.data?.specGap).toBe(true);
+    expect(found[0]?.data?.tolerated).toBeUndefined();
   });
 
   it('meldet einen spezifikationskonformen Wert gar nicht', () => {

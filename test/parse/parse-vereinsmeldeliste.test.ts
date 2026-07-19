@@ -189,7 +189,7 @@ describe('Vereinsmeldelisten aus test/fixtures/real', () => {
    * exakter Wert statt einer Schranke: Jede Abweichung ist entweder ein Mangel
    * der Dateien oder ein Fehler in der Schematabelle, und beides soll auffallen.
    */
-  it('erzeugt genau eine Warnung und sonst nichts', () => {
+  it('erzeugt genau einen Hinweis und sonst nichts', () => {
     const byCode = new Map<string, number>();
 
     for (const name of realMeldeLists) {
@@ -200,7 +200,7 @@ describe('Vereinsmeldelisten aus test/fixtures/real', () => {
     }
 
     expect(Object.fromEntries([...byCode].sort())).toEqual({
-      'warning/invalid-enum-value': 1,
+      'info/invalid-enum-value': 1,
     });
   });
 
@@ -268,20 +268,26 @@ describe('Vereinsmeldelisten aus test/fixtures/real', () => {
    * Einzelbefund: `2026-06-28-Gera-SVHaren-Me.dsv7` meldet einen Wettkampf mit
    * Art `A` (Ausschwimmen). Die Wertetabelle der Vereinsmeldeliste kennt den
    * Wert nicht — sie nennt sogar nur `V` und `E` —, die Ergebnislisten dagegen
-   * schon (dsv8.md:3058). Das ist eine Lücke der Vorlage, kein Mangel der Datei;
-   * `A` und `N` werden deshalb wie in der Wettkampfdefinitionsliste toleriert.
+   * schon (dsv8.md:3058). Das ist eine Lücke der Vorlage, kein Mangel der Datei.
+   *
+   * `A` und `N` sind deshalb als `specGap` markiert und nicht als `tolerated`:
+   * Sie ergeben beim Lesen ein `info` statt einer Warnung und dürfen
+   * geschrieben werden. Die Begründung im Einzelnen steht bei
+   * `WETTKAMPFART_WERTE` in `src/schema/vereinsmeldeliste.ts`, die Aufteilung
+   * über alle vier Listenarten in `test/schema/listenart-konsistenz.test.ts`.
    */
-  it('toleriert die Wettkampfart A genau einmal', () => {
-    const tolerated = realMeldeLists.flatMap((name) =>
+  it('meldet die Wettkampfart A genau einmal als Lücke der Vorlage', () => {
+    const gemeldet = realMeldeLists.flatMap((name) =>
       parseVereinsmeldeliste(readReal(name))
         .diagnostics.filter((d) => d.code === 'invalid-enum-value')
-        .map((d) => ({ name, data: d.data })),
+        .map((d) => ({ name, severity: d.severity, data: d.data })),
     );
 
-    expect(tolerated).toEqual([
+    expect(gemeldet).toEqual([
       {
         name: '2026-06-28-Gera-SVHaren-Me.dsv7',
-        data: { field: 'wettkampfart', value: 'A', tolerated: true },
+        severity: 'info',
+        data: { field: 'wettkampfart', value: 'A', specGap: true },
       },
     ]);
   });

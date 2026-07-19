@@ -266,21 +266,40 @@ export const ABSCHNITT = element('ABSCHNITT', [
   }),
 ]);
 
-/** Wertevorrat der Wettkampfart, in WETTKAMPF, WERTUNG und PFLICHTZEIT gleich. */
+/**
+ * Wertevorrat der Wettkampfart, in WETTKAMPF, WERTUNG und PFLICHTZEIT gleich.
+ *
+ * Alle drei Wertetabellen dieser Listenart führen nur V, Z, F und E
+ * (dsv8.md:1015, 1197, 1276; dsv7.md:940, 1115, 1194). Das ist eine Auslassung
+ * der Vorlage, kein Ausschluss — deshalb `specGap` und nicht `tolerated`:
+ *
+ * - Die Spezifikation widerspricht sich bei diesem Feld selbst. Dasselbe
+ *   Element WERTUNG führt A und N in der Wettkampfergebnisliste
+ *   (dsv8.md:4913-4919), lässt sie in der Vereinsergebnisliste aber weg
+ *   (dsv8.md:3231-3235) — bei identischer Veranstaltung. Wo eine Tabelle die
+ *   beiden weglässt, sagt das folglich nichts über ihre Zulässigkeit.
+ * - Ein Verbot spricht keine der beiden Fassungen aus; „Ausschwimmen" kommt
+ *   ausschliesslich in Zeilen von Wertetabellen vor.
+ * - Die Ausschreibung ist die Quelle der Wettkampfnummern. Könnte sie die Art
+ *   A nicht ausdrücken, könnte ein Ausschwimmen nie in einer Ergebnisliste
+ *   erscheinen, wo die Spezifikation es ausdrücklich vorsieht.
+ * - Das DSV-Portal selbst schreibt es: dsvportal-13062024-Wk.dsv7:31-33 führt
+ *   drei Wettkämpfe der Art N, als „Nachschwimmen" kommentiert, und die
+ *   zugehörigen WERTUNG-Zeilen (:58-60) tragen die Art ebenso.
+ *
+ * `specGap` heisst: beim Lesen ein `info`, beim Schreiben zugelassen. Das
+ * Schreiben muss offen sein, sonst liesse sich die Ausschreibung des
+ * DSV-Portals lesen, aber nicht wieder erzeugen — und `write…PreservingDefects`
+ * ist dafür nicht gedacht, denn ein ausgeschriebenes Nachschwimmen ist kein
+ * Mangel der Datei.
+ */
 const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'V', doc: 'Vorlauf' },
   { value: 'Z', doc: 'Zwischenlauf' },
   { value: 'F', doc: 'Finale' },
   { value: 'E', doc: 'Entscheidung' },
-  // Die Spezifikation sieht A und N nur in den Ergebnislisten vor
-  // (dsv8.md:4726). In echten Ausschreibungen kommt N trotzdem vor — belegt
-  // in dsvportal-13062024-Wk.dsv7, wo drei Wettkämpfe mit Art N als
-  // „Nachschwimmen" kommentiert sind. Für A gibt es in den echten
-  // Ausschreibungen keinen Beleg; toleriert wird es der Symmetrie halber.
-  // Toleriert beim Lesen, beim Schreiben weiterhin unzulässig.
-  // Den Vorbehalt trägt `tolerated`; die generierten Typen schreiben ihn aus.
-  { value: 'A', doc: 'Ausschwimmen', tolerated: true },
-  { value: 'N', doc: 'Nachschwimmen', tolerated: true },
+  { value: 'A', doc: 'Ausschwimmen', specGap: true },
+  { value: 'N', doc: 'Nachschwimmen', specGap: true },
 ];
 
 /**
@@ -501,9 +520,13 @@ export const MELDEGELD = element('MELDEGELD', [
     //
     // Geduldet heisst hier aber nicht erlaubt: Eine Schreibweise, die von der
     // Werteliste abweicht, ergibt beim Lesen eine Warnung mit `tolerated: true`
-    // und ist beim Schreiben unzulässig (validate-values.ts). Damit verhält
-    // sich das Feld wie die tolerierte Wettkampfart `N` weiter unten und
-    // legalisiert die Abweichung nicht still.
+    // und ist beim Schreiben unzulässig (validate-values.ts) — die Abweichung
+    // wird also nicht still legalisiert.
+    //
+    // Das ist der Gegenfall zur Wettkampfart `A`/`N` weiter oben: Dort lässt
+    // die Vorlage einen Wert aus, den sie anderswo selbst führt (`specGap`,
+    // beim Schreiben zugelassen); hier schreibt eine Datei einen geführten
+    // Wert falsch (`tolerated`, beim Schreiben gesperrt).
     caseInsensitive: true,
     doc: 'Art des Meldegeldes.',
     specRef: 'dsv8.md:1360',

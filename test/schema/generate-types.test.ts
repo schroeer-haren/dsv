@@ -5,6 +5,7 @@ import {
   renderBothVersions,
   renderElement,
 } from '../../scripts/generate-types.js';
+import type { FieldDef } from '../../src/schema/types.js';
 import { field } from '../../src/schema/types.js';
 import { ABSCHNITT as ERGEBNIS_ABSCHNITT } from '../../src/schema/wettkampfergebnisliste.js';
 import { ABSCHNITT, VERANSTALTUNG, WETTKAMPF } from '../../src/schema/wettkampfdefinitionsliste.js';
@@ -68,12 +69,39 @@ describe('renderElement', () => {
     expect(v7).not.toContain('divers');
   });
 
-  it('nimmt tolerierte Werte in die Union auf und kennzeichnet sie im JSDoc', () => {
+  it('nimmt ausgelassene Werte in die Union auf und kennzeichnet sie im JSDoc', () => {
     const out = renderElement('Wettkampf', WETTKAMPF, 8);
-    // A und N kommen real vor, auch wenn die Spec sie hier nicht vorsieht.
+    // A und N kommen real vor, auch wenn die Wertetabelle dieser Listenart sie
+    // auslässt. Der Vorbehalt muss im JSDoc stehen, sonst lesen sie sich wie
+    // reguläre Werte der Spezifikation.
     expect(out).toContain("'A'");
     expect(out).toContain("'N'");
-    expect(out).toMatch(/- `A` — .*laut Spezifikation nicht für diese Listenart vorgesehen/);
+    expect(out).toMatch(/- `A` — .*ausgelassen, aber nicht ausgeschlossen/);
+    expect(out).not.toMatch(/- `A` — .*toleriert/);
+  });
+
+  it('kennzeichnet tolerierte und ausgelassene Werte verschieden', () => {
+    // Die beiden Markierungen verhalten sich verschieden — toleriert heisst
+    // beim Schreiben gesperrt, ausgelassen heisst erlaubt. Ein gemeinsamer
+    // Text wäre irreführend.
+    const feld: FieldDef = {
+      name: 'x',
+      type: 'Zeichen',
+      required: true,
+      caseInsensitive: false,
+      doc: 'Feld.',
+      specRef: 'dsv8.md:1',
+      values: [
+        { value: 'A', doc: 'geduldet', tolerated: true },
+        { value: 'B', doc: 'ausgelassen', specGap: true },
+        { value: 'C', doc: 'regulär' },
+      ],
+    };
+    const out = renderElement('X', { name: 'X', bare: false, fields: [feld] }, 8);
+
+    expect(out).toMatch(/- `A` — geduldet \(laut Spezifikation nicht/);
+    expect(out).toMatch(/- `B` — ausgelassen \(von der Wertetabelle/);
+    expect(out).toMatch(/- `C` — regulär\n/);
   });
 });
 

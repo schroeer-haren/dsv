@@ -187,7 +187,7 @@ function enumEntries(def: ElementDef, fieldName: string): readonly [string, 8 | 
 /** Von der Spezifikation für diese Listenart vorgesehen. */
 const wettkampfartWerte = ['V', 'Z', 'F', 'E'];
 /** Im Format bekannt, aber laut Spec nur in den Ergebnislisten. */
-const wettkampfartToleriert = ['A', 'N'];
+const wettkampfartLuecke = ['A', 'N'];
 
 describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
   it('benennt BANKVERBINDUNG und führt den Kontoinhaber erst ab DSV8', () => {
@@ -303,7 +303,7 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
     ]);
     expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual([
       ...wettkampfartWerte,
-      ...wettkampfartToleriert,
+      ...wettkampfartLuecke,
     ]);
     // Ohne die tolerierten Arten: Aus einem Aus- oder Nachschwimmen
     // qualifiziert man sich nicht weiter (dsv8.md:1119). Der Abgleich über
@@ -311,19 +311,18 @@ describe('Wettkampfdefinitionsliste — Wettkämpfe und Meldegeld', () => {
     expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual([...wettkampfartWerte]);
   });
 
-  it('trennt spezifikationskonforme von tolerierten Wettkampfarten', () => {
-    // A und N sieht die Spec nur in den Ergebnislisten vor; eine echte
-    // Ausschreibung schreibt N trotzdem. Sie sind deshalb enthalten,
-    // aber als toleriert markiert — beim Lesen Warnung, beim Schreiben
-    // unzulässig.
+  it('trennt spezifikationskonforme von ausgelassenen Wettkampfarten', () => {
+    // Die Wertetabellen dieser Listenart lassen A und N aus, schliessen sie
+    // aber nicht aus — das DSV-Portal selbst schreibt N in eine Ausschreibung.
+    // Sie sind deshalb als `specGap` markiert: beim Lesen ein `info`, beim
+    // Schreiben erlaubt. Begründung bei `WETTKAMPFART_WERTE` im Schema,
+    // Abgleich über alle vier Listenarten in `listenart-konsistenz.test.ts`.
     const werte = WETTKAMPF.fields.find((f) => f.name === 'wettkampfart')?.values ?? [];
 
-    expect(werte.filter((v) => v.tolerated !== true).map((v) => v.value)).toEqual(
-      wettkampfartWerte,
-    );
-    expect(werte.filter((v) => v.tolerated === true).map((v) => v.value)).toEqual(
-      wettkampfartToleriert,
-    );
+    expect(werte.filter((v) => v.specGap !== true).map((v) => v.value)).toEqual(wettkampfartWerte);
+    expect(werte.filter((v) => v.specGap === true).map((v) => v.value)).toEqual(wettkampfartLuecke);
+    // Kein Wert dieses Feldes ist gesperrt.
+    expect(werte.filter((v) => v.tolerated === true)).toEqual([]);
   });
 
   it('benennt WERTUNG', () => {

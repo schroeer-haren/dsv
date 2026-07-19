@@ -39,22 +39,34 @@ import { element, field } from './types.js';
  * unvollständig; hier stehen deshalb alle vier Werte. Die echten Dateien
  * bestätigen das: `E` und `F` kommen tausendfach vor.
  *
- * `A` und `N` sieht die Spezifikation nur in den Ergebnislisten vor
- * (dsv8.md:3058). Die Wettkampfdefinitionsliste toleriert sie trotzdem, weil
- * `N` dort in echten Ausschreibungen belegt ist. Für die Vereinsmeldeliste
- * liegt nun ein Beleg für `A` vor: `2026-06-28-Gera-SVHaren-Me.dsv7` meldet
- * einen Wettkampf mit Art `A`. Für `N` gibt es hier keinen Beleg — belegt ist
- * es nur in der Wettkampfdefinitionsliste, so wie `A` nur hier. Toleriert wird
- * deshalb beides der Symmetrie halber: beim Lesen angenommen, beim Schreiben
- * weiterhin unzulässig.
+ * `A` und `N` lässt die Wertetabelle dieser Listenart weg (dsv8.md:1729,
+ * dsv7.md:1637). Das ist eine Auslassung der Vorlage, kein Ausschluss —
+ * deshalb `specGap` und nicht `tolerated`:
+ *
+ * - Die Spezifikation widerspricht sich bei diesem Feld selbst: Dasselbe
+ *   Element WERTUNG führt A und N in der Wettkampfergebnisliste
+ *   (dsv8.md:4913-4919) und lässt sie in der Vereinsergebnisliste weg
+ *   (dsv8.md:3231-3235), obwohl beide dieselbe Veranstaltung beschreiben. Eine
+ *   Tabelle, die die beiden nicht nennt, schliesst sie damit nicht aus.
+ * - Ein Verbot spricht keine der beiden Fassungen aus.
+ * - Die Meldeliste wiederholt die Wettkampfdefinitionen, auf die sie meldet.
+ *   Sie muss ausdrücken können, was in der Ausschreibung steht — und dort ist
+ *   die Art `N` belegt (dsvportal-13062024-Wk.dsv7:31-33).
+ * - Für die Meldeliste selbst ist `A` belegt:
+ *   `2026-06-28-Gera-SVHaren-Me.dsv7:25` meldet `WETTKAMPF: 903;A`.
+ *
+ * `specGap` heisst: beim Lesen ein `info`, beim Schreiben zugelassen. `N`
+ * bekommt dieselbe Markierung wie `A`, obwohl in dieser Listenart nur `A`
+ * belegt ist: Beide stehen in derselben Tabellenzeile der Spezifikation und
+ * fehlen aus demselben Grund; ein fehlender Realbeleg ist kein Gegenbeleg.
  */
 const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'V', doc: 'Vorlauf' },
   { value: 'Z', doc: 'Zwischenlauf' },
   { value: 'F', doc: 'Finale' },
   { value: 'E', doc: 'Entscheidung' },
-  { value: 'A', doc: 'Ausschwimmen', tolerated: true },
-  { value: 'N', doc: 'Nachschwimmen', tolerated: true },
+  { value: 'A', doc: 'Ausschwimmen', specGap: true },
+  { value: 'N', doc: 'Nachschwimmen', specGap: true },
 ];
 
 /**

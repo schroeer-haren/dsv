@@ -488,8 +488,8 @@ export interface WettkampfV7 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:981
    */
@@ -605,8 +605,8 @@ export interface WettkampfV8 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:981
    */
@@ -725,8 +725,8 @@ export interface WertungV7 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:1153
    */
@@ -800,8 +800,8 @@ export interface PflichtzeitV7 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:1260
    */
@@ -2336,8 +2336,8 @@ export interface MeldungWettkampfV7 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:1695
    */
@@ -2439,8 +2439,8 @@ export interface MeldungWettkampfV8 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
-   * - `N` — Nachschwimmen (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:1695
    */
@@ -2983,7 +2983,7 @@ export interface MeldungHandicapV7 {
    * - `SB7` — Startklasse SB7
    * - `SB8` — Startklasse SB8
    * - `SB9` — Startklasse SB9
-   * - `SB10` — Startklasse SB10
+   * - `SB10` — Startklasse SB10 (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    * - `SB11` — Startklasse SB11
    * - `SB12` — Startklasse SB12
    * - `SB13` — Startklasse SB13
@@ -3720,8 +3720,8 @@ export interface VereinsergebnisWertungV7 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen
-   * - `N` — Nachschwimmen
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:3207
    */
@@ -3792,8 +3792,8 @@ export interface VereinsergebnisWertungV8 {
    * - `Z` — Zwischenlauf
    * - `F` — Finale
    * - `E` — Entscheidung
-   * - `A` — Ausschwimmen
-   * - `N` — Nachschwimmen
+   * - `A` — Ausschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
+   * - `N` — Nachschwimmen (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)
    *
    * @see dsv8.md:3207
    */

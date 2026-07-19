@@ -39,9 +39,16 @@ function renderDoc(field: FieldDef, version: 7 | 8): string[] {
   if (values.length > 0) {
     lines.push(`   *`);
     for (const v of values) {
+      // Beide Vorbehalte gehören ins JSDoc, weil sie sich im Verhalten
+      // unterscheiden: Ein tolerierter Wert wird beim Lesen angenommen, aber
+      // beim Schreiben abgewiesen; ein ausgelassener darf auch geschrieben
+      // werden. Stünde nur der eine da, läse sich der andere wie ein regulärer
+      // Wert der Spezifikation.
       const hinweis = v.tolerated
         ? ' (laut Spezifikation nicht für diese Listenart vorgesehen, wird beim Lesen toleriert)'
-        : '';
+        : v.specGap
+          ? ' (von der Wertetabelle dieser Listenart ausgelassen, aber nicht ausgeschlossen — wird gelesen und geschrieben)'
+          : '';
       lines.push(`   * - \`${v.value}\` — ${v.doc}${hinweis}`);
     }
   }

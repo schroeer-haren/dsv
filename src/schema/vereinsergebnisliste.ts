@@ -77,6 +77,13 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
  * Das gemeinsame `WETTKAMPFART_WERTE` bekommt die Markierung **nicht** — an
  * WETTKAMPF (dsv8.md:3057) und den Ergebniselementen (dsv8.md:3465) sind `A`
  * und `N` regulär spec-belegt und keine Lücke.
+ *
+ * Dasselbe Kriterium gilt inzwischen in allen vier Listenarten: Wo eine
+ * Wertetabelle `A` und `N` auslässt, sind sie `specGap`; wo sie sie führt,
+ * stehen sie unmarkiert. Das betrifft ausserdem die Wettkampfdefinitions- und
+ * die Vereinsmeldeliste. Festgehalten ist die Aufteilung in
+ * `test/schema/listenart-konsistenz.test.ts`, damit sie nicht einseitig
+ * verschoben wird.
  */
 const WERTUNG_WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'V', doc: 'Vorlauf' },

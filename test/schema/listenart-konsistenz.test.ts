@@ -30,9 +30,19 @@ function alleFelder(): readonly Fundort[] {
   );
 }
 
-/** Die Werte eines Feldes als vergleichbare Zeichenkette. */
+/**
+ * Die Werte eines Feldes als vergleichbare Zeichenkette.
+ *
+ * `?` markiert einen tolerierten Wert (beim Lesen `warning`, beim Schreiben
+ * gesperrt), `~` eine Lücke der Vorlage (beim Lesen `info`, beim Schreiben
+ * erlaubt). Der Unterschied gehört in die Zeichenkette, weil er das Verhalten
+ * bestimmt: Ein Vergleich, der nur die Codes führte, hielte eine Verschiebung
+ * zwischen den beiden Markierungen für unverändert.
+ */
 function werte(feld: FieldDef): string {
-  return (feld.values ?? []).map((v) => `${v.value}${v.tolerated === true ? '?' : ''}`).join(',');
+  return (feld.values ?? [])
+    .map((v) => `${v.value}${v.tolerated === true ? '?' : ''}${v.specGap === true ? '~' : ''}`)
+    .join(',');
 }
 
 describe('qualifikationswettkampfart über alle Listenarten', () => {
@@ -81,6 +91,108 @@ describe('qualifikationswettkampfart über alle Listenarten', () => {
         listenart,
       ).not.toContain('N');
     }
+  });
+});
+
+describe('wettkampfart über alle Listenarten', () => {
+  /**
+   * `A` (Ausschwimmen) und `N` (Nachschwimmen) an jedem `wettkampfart`-Feld
+   * aller vier Listenarten, samt Markierung.
+   *
+   * Die Wertetabellen der Spezifikation taugen für dieses Feld nicht als
+   * Aufzählung des erlaubten Vorrats — sie widersprechen sich innerhalb
+   * desselben Standards. Dasselbe Element WERTUNG mit demselben Feld führt
+   * `A` und `N` in der Wettkampfergebnisliste (dsv8.md:4913-4919,
+   * dsv7.md:4749-4755) und lässt sie in der Vereinsergebnisliste weg
+   * (dsv8.md:3231-3235, dsv7.md:3075-3079). Beide Listen beschreiben
+   * dieselbe Veranstaltung, einmal aus Sicht des Ausrichters, einmal aus
+   * Sicht des Vereins; ein sachlicher Grund für den Unterschied ist nicht
+   * denkbar. Ein Verbot spricht ausserdem in keiner der beiden Fassungen aus:
+   * die einzigen Fundstellen von „Ausschwimmen" sind Zeilen der Wertetabellen.
+   *
+   * Wo eine Tabelle die beiden also weglässt, ist das eine Auslassung der
+   * Vorlage und kein Ausschluss — mithin `specGap`, nicht `tolerated`. Der
+   * Bestand echter Dateien bestätigt es an beiden Enden: Das DSV-Portal selbst
+   * schreibt `WETTKAMPF: 102;N` in eine Wettkampfdefinitionsliste
+   * (dsvportal-13062024-Wk.dsv7:31-33), und eine Vereinsmeldeliste antwortet
+   * mit `WETTKAMPF: 903;A` (2026-06-28-Gera-SVHaren-Me.dsv7:25).
+   *
+   * Die Liste unten hält jede einzelne Markierung fest. Sie ist der Wächter
+   * gegen eine einseitige Änderung: Wer `A`/`N` in einer Listenart wieder auf
+   * `tolerated` zurückdreht oder sie in einer weiteren Listenart markiert,
+   * ohne die Begründung über alle vier zu prüfen, bekommt hier einen roten
+   * Test statt einer stillen Uneinheitlichkeit.
+   */
+  const felder = alleFelder().filter(({ feld }) => feld.name === 'wettkampfart');
+
+  it('führt überall genau die sechs Wettkampfarten', () => {
+    for (const { listenart, element, feld } of felder) {
+      expect(
+        (feld.values ?? []).map((v) => v.value),
+        `${listenart}.${element}`,
+      ).toEqual(['V', 'Z', 'F', 'E', 'A', 'N']);
+    }
+  });
+
+  it('markiert A und N nirgends als toleriert', () => {
+    /**
+     * Die harte Grenze: `tolerated` sperrt das Schreiben. Ein Ausrichter
+     * könnte dann kein Nachschwimmen ausschreiben, obwohl das DSV-Portal
+     * genau das tut — die Bibliothek könnte dessen eigene Datei lesen, aber
+     * nicht wieder erzeugen. Das ist kein Mangel der Datei, sondern einer der
+     * Vorlage, und `write…PreservingDefects` ist dafür nicht der richtige Weg:
+     * dieser Durchgriff ist für Mängel eingelesener Dateien gedacht, nicht
+     * dafür, einen sachlich einwandfreien Wettkampf neu anzulegen.
+     */
+    const toleriert = felder
+      .filter(({ feld }) => (feld.values ?? []).some((v) => v.tolerated === true))
+      .map(({ listenart, element }) => `${listenart}.${element}`);
+
+    expect(toleriert).toEqual([]);
+  });
+
+  it('markiert genau die Stellen als specGap, an denen die Spezifikation A und N auslässt', () => {
+    const je = felder.map(
+      ({ listenart, element, feld }) => `${listenart}.${element}: ${werte(feld)}`,
+    );
+
+    expect(je).toEqual([
+      // Die Wettkampfdefinitionsliste lässt A und N in jeder ihrer drei
+      // Wertetabellen weg (dsv8.md:1015, 1197, 1276) — belegt vorkommen tun
+      // sie trotzdem. Eine Ausschreibung ist die Quelle der Wettkampfnummern;
+      // könnte sie die Art A nicht ausdrücken, könnte ein Ausschwimmen nie
+      // in einer Ergebnisliste auftauchen, wo die Spezifikation es ausdrücklich
+      // vorsieht.
+      'Wettkampfdefinitionsliste.WETTKAMPF: V,Z,F,E,A~,N~',
+      'Wettkampfdefinitionsliste.WERTUNG: V,Z,F,E,A~,N~',
+      'Wettkampfdefinitionsliste.PFLICHTZEIT: V,Z,F,E,A~,N~',
+      // Die Vereinsmeldeliste wiederholt die Wettkampfdefinitionen, auf die
+      // sie meldet (dsv8.md:1729). Sie muss ausdrücken können, was dort steht.
+      'Vereinsmeldeliste.WETTKAMPF: V,Z,F,E,A~,N~',
+      // In der Vereinsergebnisliste führt allein die WERTUNG A und N nicht
+      // (dsv8.md:3231) — ihr eigenes WETTKAMPF nennt sie (dsv8.md:3054-3059),
+      // und das gleichnamige Element der Wettkampfergebnisliste ebenso.
+      'Vereinsergebnisliste.WETTKAMPF: V,Z,F,E,A,N',
+      'Vereinsergebnisliste.WERTUNG: V,Z,F,E,A~,N~',
+      'Vereinsergebnisliste.PERSONENERGEBNIS: V,Z,F,E,A,N',
+      'Vereinsergebnisliste.PNZWISCHENZEIT: V,Z,F,E,A,N',
+      'Vereinsergebnisliste.PNREAKTION: V,Z,F,E,A,N',
+      'Vereinsergebnisliste.STAFFELPERSON: V,Z,F,E,A,N',
+      'Vereinsergebnisliste.STAFFELERGEBNIS: V,Z,F,E,A,N',
+      'Vereinsergebnisliste.STZWISCHENZEIT: V,Z,F,E,A,N',
+      'Vereinsergebnisliste.STABLOESE: V,Z,F,E,A,N',
+      // Die Wettkampfergebnisliste führt A und N durchgehend regulär
+      // (dsv8.md:4736-4741 und fort).
+      'Wettkampfergebnisliste.WETTKAMPF: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.WERTUNG: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.PNERGEBNIS: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.PNZWISCHENZEIT: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.PNREAKTION: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.STERGEBNIS: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.STAFFELPERSON: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.STZWISCHENZEIT: V,Z,F,E,A,N',
+      'Wettkampfergebnisliste.STABLOESE: V,Z,F,E,A,N',
+    ]);
   });
 });
 

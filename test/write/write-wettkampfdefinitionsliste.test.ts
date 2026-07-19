@@ -109,18 +109,51 @@ describe('writeWettkampfdefinitionsliste', () => {
     expect(parseWettkampfdefinitionsliste(text).document.version).toBe(7);
   });
 
-  it('wirft bei einem tolerierten Aufzählungswert', () => {
-    // `N` ist im Format bekannt, für diese Listenart aber nicht vorgesehen.
-    // Beim Lesen nur eine Warnung, beim Schreiben unzulässig.
+  it('schreibt die von der Wertetabelle ausgelassene Wettkampfart N', () => {
+    // `N` ist im Format bekannt; die Wertetabelle dieser Listenart lässt ihn
+    // aus, schliesst ihn aber nicht aus (Begründung bei `WETTKAMPFART_WERTE`
+    // in `src/schema/wettkampfdefinitionsliste.ts`). Das Schreiben muss offen
+    // sein, sonst liesse sich eine Ausschreibung mit Nachschwimmen — wie das
+    // DSV-Portal sie ausliefert — lesen, aber nicht erzeugen.
     const records = withValue(minimalRecords(), 'WETTKAMPF', 'wettkampfart', 'N');
 
-    const read = parseWettkampfdefinitionsliste(
-      writeWettkampfdefinitionsliste(minimalRecords()).replace('WETTKAMPF:1;E;', 'WETTKAMPF:1;N;'),
-    );
-    expect(read.ok).toBe(true);
-    expect(read.diagnostics.some((d) => d.data?.['tolerated'] === true)).toBe(true);
+    const text = writeWettkampfdefinitionsliste(records);
+    expect(text).toContain('WETTKAMPF:1;N;');
 
-    expect(() => writeWettkampfdefinitionsliste(records)).toThrow(/tolerated|not specified/i);
+    // Rundlauf: Das Geschriebene ist wieder lesbar und gilt nur als Hinweis.
+    const read = parseWettkampfdefinitionsliste(text);
+    expect(read.ok).toBe(true);
+    const befund = read.diagnostics.filter((d) => d.data?.['field'] === 'wettkampfart');
+    expect(befund).toHaveLength(1);
+    expect(befund[0]?.severity).toBe('info');
+    expect(befund[0]?.data?.['specGap']).toBe(true);
+  });
+
+  it('wirft weiterhin bei einem tolerierten Aufzählungswert', () => {
+    // Die Gegenprobe zum Fall darüber, und der eigentliche Zweck dieses Paares:
+    // Beide Werte sind beim Lesen zulässig, aber nur der ausgelassene darf auch
+    // geschrieben werden. `meldegeldTyp` in Grossbuchstaben ist ein Mangel der
+    // Datei, keine Lücke der Vorlage — beim Lesen eine Warnung, beim Schreiben
+    // unzulässig.
+    const abweichend = writeWettkampfdefinitionsliste(minimalRecords()).replace(
+      'MELDEGELD:Meldegeldpauschale;',
+      'MELDEGELD:MELDEGELDPAUSCHALE;',
+    );
+
+    // Leseseite: angenommen, aber als `warning` mit `tolerated` — nicht als
+    // `info` mit `specGap` wie die Wettkampfart oben.
+    const read = parseWettkampfdefinitionsliste(abweichend);
+    expect(read.ok).toBe(true);
+    const befund = read.diagnostics.filter((d) => d.data?.['field'] === 'meldegeldTyp');
+    expect(befund).toHaveLength(1);
+    expect(befund[0]?.severity).toBe('warning');
+    expect(befund[0]?.data?.['tolerated']).toBe(true);
+    expect(befund[0]?.data?.['specGap']).toBeUndefined();
+
+    // Schreibseite: gesperrt — hier trennen sich die beiden Markierungen.
+    const records = withValue(minimalRecords(), 'MELDEGELD', 'meldegeldTyp', 'MELDEGELDPAUSCHALE');
+    expect(() => writeWettkampfdefinitionsliste(records)).toThrow(DsvWriteError);
+    expect(() => writeWettkampfdefinitionsliste(records)).toThrow(/invalid-enum-value/);
   });
 
   it('wirft bei einem fehlenden Pflichtfeld', () => {

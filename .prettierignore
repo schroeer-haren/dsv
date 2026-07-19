@@ -2,3 +2,9 @@
 # genau die Eigenheiten zerstören, wegen derer sie hier liegen
 test/fixtures/
 dist/
+
+# Erzeugte Dateien. `generate:check` und `api-surface:check` vergleichen sie mit
+# `git diff --exit-code` gegen das Erzeugte – würde Prettier sie nachformatieren,
+# schlüge die Prüfung fehl, sobald jemand `npm run format` laufen lässt.
+src/schema/generated.ts
+docs/public-api-surface.md
