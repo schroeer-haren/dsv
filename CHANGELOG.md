@@ -1,5 +1,108 @@
 # Changelog
 
+## 0.4.0
+
+Die beiden Vereinslisten sind jetzt typisiert — damit sind **alle vier
+Listenarten** des DSV-Standards vollständig erschlossen. Wer bisher nur
+Veranstalterdateien typisiert lesen konnte, bekommt nun dieselbe Ebene für die
+Vereinsseite: die Meldung, die ein Verein abgibt, und das Protokoll, das er
+zurückbekommt. Die schema-freie Ebene aus 0.1.0 sowie die beiden
+Wettkampflisten aus 0.2.0 und 0.3.0 bleiben unverändert gültig.
+
+### Enthalten
+
+- `parseVereinsmeldeliste(text)`, `writeVereinsmeldeliste(records, options)` und
+  `projectVereinsmeldeliste(liste)`. Alle 17 Elemente der Vereinsmeldeliste sind
+  mit Feldnamen, Datentypen, Pflichtangaben, Aufzählungswerten und
+  Kardinalitäten beschrieben. Der Objektgraph hängt Meldungen an ihre Person,
+  Personen an ihren Trainer und Staffelbesetzungen an ihre Staffelmeldung; dazu
+  Index-Maps über Wettkampf, Abschnitt, Meldung, Staffelmeldung, Kampfrichter
+  und Trainer
+- `parseVereinsergebnisliste(text)`, `writeVereinsergebnisliste(records, options)`
+  und `projectVereinsergebnisliste(liste)`. Alle 20 Elemente der
+  Vereinsergebnisliste sind beschrieben. Der Objektgraph verbindet Personen mit
+  ihren Starts, Starts mit Platzierungen, Zwischenzeiten und Reaktionszeiten,
+  Staffeln mit ihrer Besetzung und den Ablösezeiten
+- Anders als die Wettkampfergebnisliste kennt die Vereinsergebnisliste `PERSON`
+  als eigenes Element. Die Person muss deshalb nicht aus den Ergebniszeilen
+  zusammengesetzt werden — sie steht in der Datei. Die Typnamen tragen darum je
+  Listenart ein Präfix (`Vereinsergebnis…`, `Meldung…`): Dieselben Begriffe sind
+  je Listenart anders modelliert
+- Neue Regel: Bei gemischten Wettkämpfen (Geschlecht `X`) ist als Zuordnung zur
+  Bestenliste `SW` anzugeben. Gemeldet als **Warnung**, nicht als Fehler — siehe
+  unten
+- Neue Regel: Die Wertungs-ID eines Ergebnisses muss auf eine Wertung des
+  eigenen Wettkampfs zeigen. Ein Fremdbezug wird als `dangling-reference`
+  gemeldet
+- `SB10` wird als Startklasse für Brust jetzt akzeptiert. Der Werteliste der
+  Spezifikation fehlt `SB10`, während `S10` und `SM10` bei den beiden anderen
+  Startklassen stehen — eine Lücke der Vorlage, kein Verbot. Der Wert wird
+  gelesen und geschrieben und erzeugt eine Diagnostic der Severity `info`
+
+### Behoben
+
+- Die elementübergreifenden Regeln hingen an festen Feldpositionen und an
+  aufgezählten Elementnamen. In der Vereinsergebnisliste heissen dieselben
+  Elemente anders (`PERSONENERGEBNIS`/`STAFFELERGEBNIS` statt
+  `PNERGEBNIS`/`STERGEBNIS`) und die Felder liegen an anderer Stelle — die
+  Regeln griffen dort **gar nicht**. Sie binden jetzt zur Laufzeit über
+  Feldnamen an das Schema der jeweiligen Listenart. Dabei kam ein zweiter Fehler
+  heraus: Die Regel zum Qualifikationswettkampf las Feldindex 9. Die
+  Vereinsmeldeliste kennt kein Feld `zuordnungBestenliste`, dort steht an dieser
+  Stelle die Qualifikationsart — die Regel prüfte also das falsche Feld
+- `Wettkampfdefinitionsliste` und `Wettkampfergebnisliste` waren seit dem
+  Zusammenlegen von Parser und Writer in 0.3.0 strukturgleich und damit
+  wechselseitig zuweisbar: `projectWettkampfdefinitionsliste(ergebnisliste)`
+  kam durch den Compiler. `TypedList` trägt jetzt einen Typparameter für die
+  Listenart, getragen von einem optionalen Phantomfeld, das nie gesetzt wird und
+  zur Laufzeit nicht existiert. Das Verhalten ändert sich dadurch nicht
+
+### Zu beachten: die Typunterscheidung ist strenger
+
+Die Wiederherstellung der Typunterscheidung ist **nur auf Typebene** sichtbar —
+zur Laufzeit ändert sich nichts, und `src/index.ts` ist gegenüber 0.3.0 rein
+additiv. Für TypeScript-Nutzer gibt es aber zwei sichtbare Effekte:
+
+- Code, der eine Ergebnisliste an eine Definitionslisten-Funktion übergab,
+  kompiliert nicht mehr. Das war schon in 0.3.0 falsch und lieferte einen
+  Objektgraph aus fehlgedeuteten Feldern; der Compiler hat es nur nicht bemerkt.
+- Wer eine Liste mit dem seit 0.3.0 öffentlichen Typ `TypedList` **ohne**
+  Typargument annotiert und dann an eine listenartspezifische Funktion
+  weiterreicht, bekommt jetzt ebenfalls einen Fehler. Das trifft auch Code, der
+  vorher korrekt war. Abhilfe: den passenden Alias verwenden
+  (`Wettkampfergebnisliste`) oder das Typargument angeben
+  (`TypedList<'Wettkampfergebnisliste'>`).
+
+Streng nach SemVer ist der zweite Punkt ein Breaking Change auf Quellcode-Ebene.
+Er wird hier trotzdem in einem Minor-Release ausgeliefert: Das Paket steht in
+`0.x`, wo die öffentliche Schnittstelle laut SemVer ausdrücklich noch nicht
+stabilisiert ist, die Laufzeit ist nicht betroffen, ein Build bricht sofort und
+sichtbar statt still falsche Ergebnisse zu liefern, und die Behebung ist eine
+Textänderung an der Typannotation.
+
+### Was echte Dateien auslösen
+
+- **Gemischte Wettkämpfe.** Von den 244 Wettkämpfen mit Geschlecht `X` in den
+  echten Dateien halten sich nur 170 an die Vorgabe `SW`. Die übrigen 74 tragen
+  `KG` (33×, kindgerechte Wettkämpfe) oder `MS` (41×, Masters) — beides fachlich
+  sinnvolle Zuordnungen, die die Regel der Spezifikation so nicht vorsieht. Als
+  Fehler gemeldet wiese die Bibliothek Protokolle zurück, die real im Umlauf
+  sind. Deshalb ist es eine Warnung.
+- **Wertungs-ID.** Umgekehrt bei der zweiten neuen Regel: Alle 97.330 Ergebnisse
+  der 72 echten Wettkampfergebnislisten zeigen auf eine Wertung ihres eigenen
+  Wettkampfs — kein einziger Verstoss. Eine Regel, die an so vielen echten
+  Datensätzen ausnahmslos gilt, darf ein Fehler sein.
+
+Beide Zahlen erklären, warum auch weitgehend fehlerfreie Dateien Befunde
+erzeugen: Die Warnung zur Bestenliste feuert bei knapp einem Drittel der
+gemischten Wettkämpfe, und das ist kein Mangel der Dateien, sondern eine Regel
+der Spezifikation, an die sich die Praxis nicht hält.
+
+### Geprüft
+
+1358 Tests. Der byte-identische Round-Trip aus 0.1.0 gilt unverändert über alle
+echten Wettkampfdateien.
+
 ## 0.3.0
 
 Die Wettkampfergebnisliste ist jetzt vollständig typisiert. Damit ist die

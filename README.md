@@ -8,11 +8,10 @@
 TypeScript-Bibliothek zum **Parsen und Erzeugen von DSV-Dateien** des Deutschen
 Schwimm-Verbands – Formate **DSV7** und **DSV8**.
 
-> ⚠️ **Status: 0.3.0.** Die schema-freie Ebene liest und schreibt Dateien aller
-> vier Listenarten byte-identisch zurück. Darauf setzt die typisierte Ebene auf,
-> inzwischen für die **Wettkampfdefinitionsliste** und die
-> **Wettkampfergebnisliste**: benannte Felder, Validierung gegen das Schema und
-> ein Objektgraph mit aufgelösten Bezügen. Die beiden Vereinslisten folgen.
+> ⚠️ **Status: 0.4.0.** Die schema-freie Ebene liest und schreibt Dateien aller
+> vier Listenarten byte-identisch zurück. Darauf setzt die typisierte Ebene auf –
+> seit 0.4.0 für **alle vier Listenarten**: benannte Felder, Validierung gegen
+> das Schema und ein Objektgraph mit aufgelösten Bezügen.
 
 ## Installation
 
@@ -27,8 +26,25 @@ als ESM und CommonJS inklusive Type-Declarations ausgeliefert.
 
 Die Bibliothek hat zwei Ebenen. Die **schema-freie Ebene** (`parseDsv`,
 `writeDsv`) funktioniert für alle vier Listenarten und interessiert sich nicht
-für Feldbedeutungen. Die **typisierte Ebene** kennt das Schema und gibt es für
-die Wettkampfdefinitionsliste und die Wettkampfergebnisliste.
+für Feldbedeutungen. Die **typisierte Ebene** kennt das Schema und gibt es
+inzwischen für alle vier Listenarten.
+
+### Die vier Listenarten im Überblick
+
+Jede Listenart hat dieselben drei Funktionen: `parse…` liest und validiert,
+`write…` schreibt typisierte Records zurück, `project…` löst die Bezüge zu einem
+Objektgraph auf.
+
+| Listenart                     | Elemente | Funktionen                                                                                             |
+| ----------------------------- | -------: | ------------------------------------------------------------------------------------------------------ |
+| **Wettkampfdefinitionsliste** |       19 | `parseWettkampfdefinitionsliste`, `writeWettkampfdefinitionsliste`, `projectWettkampfdefinitionsliste` |
+| **Wettkampfergebnisliste**    |       18 | `parseWettkampfergebnisliste`, `writeWettkampfergebnisliste`, `projectWettkampfergebnisliste`          |
+| **Vereinsmeldeliste**         |       17 | `parseVereinsmeldeliste`, `writeVereinsmeldeliste`, `projectVereinsmeldeliste`                         |
+| **Vereinsergebnisliste**      |       20 | `parseVereinsergebnisliste`, `writeVereinsergebnisliste`, `projectVereinsergebnisliste`                |
+
+Die beiden Wettkampflisten sind die Sicht des Veranstalters, die beiden
+Vereinslisten die Sicht des Vereins: Was er meldet und was er als Protokoll
+zurückbekommt. Alle vier gibt es als DSV7 und DSV8.
 
 ### Schema-frei: alle Listenarten
 
@@ -270,6 +286,210 @@ graph.schwimmerById.get(501)!.starts.length; // → 1
 graph.vereinByKennzahl.get(1234)!.bezeichnung; // → 'SV Musterstadt'
 ```
 
+### Typisiert: Vereinsmeldeliste
+
+Die Vereinsmeldeliste ist das, was ein Verein an den Ausrichter schickt: seine
+Meldungen, seine Staffeln, seine Kampfrichter und Trainer.
+`projectVereinsmeldeliste` löst die Bezüge auf – Meldungen hängen an ihrer
+Person, die Person an ihrem Trainer:
+
+```typescript
+import {
+  parseVereinsmeldeliste,
+  projectVereinsmeldeliste,
+  writeVereinsmeldeliste,
+} from '@schroeer-haren/dsv';
+
+const meldung =
+  [
+    'FORMAT:Vereinsmeldeliste;8;',
+    'ERZEUGER:Beispiel;1.0;info@example.org;',
+    'VERANSTALTUNG:Herbstpokal 2026;Musterstadt;25;HANDZEIT;',
+    'ABSCHNITT:1;10.10.2026;09:00;N;',
+    'WETTKAMPF:1;E;1;1;50;F;GL;W;;;',
+    'WETTKAMPF:4;E;1;4;50;F;GL;W;;;',
+    'VEREIN:SV Musterstadt;1234;10;GER;J;',
+    'ANSPRECHPARTNER:Meier, Anna;Beispielweg 1;12345;Musterstadt;GER;;;anna@example.org;',
+    'TRAINER:1;Trainer, Tina;W;',
+    'PNMELDUNG:Schmidt, Lea;100001;1;W;2010;;1;GER;;;',
+    'PNMELDUNG:Bauer, Mia;100002;2;W;2011;;;;;;',
+    'HANDICAP:1;DBS-4711;IPC-4711;S10;SB10;SM10;;',
+    'STARTPN:1;1;00:00:29,10;',
+    'STARTPN:2;1;;',
+    'STMELDUNG:1;9001;JG;2010;2011;Staffel A;',
+    'STARTST:9001;4;00:02:05,00;',
+    'STAFFELPERSON:9001;4;1;1;',
+    'STAFFELPERSON:9001;4;2;2;',
+    'DATEIENDE',
+  ].join('\r\n') + '\r\n';
+
+const { document: liste, ok } = parseVereinsmeldeliste(meldung);
+
+ok; // → true
+liste.version; // → 8
+
+const { graph } = projectVereinsmeldeliste(liste);
+
+graph.verein!.bezeichnung; // → 'SV Musterstadt'
+graph.verein!.kennzahl; // → 1234
+graph.ansprechpartner!.email; // → 'anna@example.org'
+graph.abschnitte[0].datum; // → { day: 10, month: 10, year: 2026 }
+graph.abschnitte[0].anfangszeit; // → 540 (Minuten seit Mitternacht)
+graph.meldungen.length; // → 2
+```
+
+Eine gemeldete Person trägt ihre Einzelstarts, ihre Nationalitäten, ihren
+aufgelösten Trainer und – bei Para-Schwimmerinnen und -Schwimmern – ihr
+Handicap:
+
+```typescript
+const lea = graph.meldungById.get(1)!;
+
+lea.name; // → 'Schmidt, Lea'
+lea.jahrgang; // → '2010'
+lea.trainer!.name; // → 'Trainer, Tina'
+lea.nationalitaeten; // → ['GER']
+lea.starts; // → [{ wettkampfnr: 1, wettkampfart: 'E', meldezeit: 2910, line: 13 }]
+```
+
+Meldezeiten sind wie alle Zeiten in Hundertstelsekunden dekodiert. Staffeln
+stehen daneben und nennen ihre Besetzung als Verweis auf die gemeldeten
+Personen:
+
+```typescript
+const staffel = graph.staffelmeldungById.get(9001)!;
+
+staffel.name; // → 'Staffel A'
+staffel.wertungsklasseTyp; // → 'JG'
+staffel.starts; // → [{ wettkampfnr: 4, wettkampfart: 'E', meldezeit: 12500, line: 16 }]
+staffel.personen.map((p) => p.veranstaltungsId); // → [1, 2]
+
+writeVereinsmeldeliste(liste.records) === meldung; // → true
+```
+
+Das Beispiel enthält absichtlich die Bruststartklasse `SB10`. Sie fehlt in der
+Werteliste der Spezifikation, obwohl `S10` und `SM10` bei den beiden anderen
+Startklassen stehen – eine Lücke der Vorlage, kein Verbot. Der Wert wird
+deshalb gelesen und geschrieben und nur als `info` vermerkt:
+
+```typescript
+const { diagnostics } = parseVereinsmeldeliste(meldung);
+
+diagnostics[0];
+// → {
+//     code: 'invalid-enum-value',
+//     severity: 'info',
+//     message:
+//       'HANDICAP.startklasseBrust: "SB10" is missing from the specification\'s list, accepted as a gap',
+//     start: { line: 12, column: 1 },
+//     end: { line: 12, column: 1 },
+//     data: { field: 'startklasseBrust', value: 'SB10', specGap: true },
+//   }
+```
+
+### Typisiert: Vereinsergebnisliste
+
+Die Vereinsergebnisliste ist das Protokoll, das der Verein zurückbekommt – auf
+seine Teilnehmenden beschränkt. Anders als die Wettkampfergebnisliste kennt sie
+`PERSON` als eigenes Element; die Person muss also nicht aus den Ergebniszeilen
+zusammengesetzt werden:
+
+```typescript
+import { parseVereinsergebnisliste, projectVereinsergebnisliste } from '@schroeer-haren/dsv';
+
+const ergebnis =
+  [
+    'FORMAT:Vereinsergebnisliste;8;',
+    'ERZEUGER:Beispiel;1.0;info@example.org;',
+    'VERANSTALTUNG:Herbstpokal 2026;Musterstadt;25;HANDZEIT;',
+    'VERANSTALTER:Schwimmverband Musterland;',
+    'AUSRICHTER:SV Musterstadt;Meier, Anna;Beispielweg 1;12345;Musterstadt;GER;;;anna@example.org;',
+    'ABSCHNITT:1;10.10.2026;09:00;N;',
+    'KAMPFGERICHT:1;SR;Meier, Anna;SV Musterstadt;',
+    'WETTKAMPF:1;E;1;1;50;F;GL;W;SW;;;',
+    'WETTKAMPF:4;E;1;4;200;F;ST;X;SW;;;',
+    'WERTUNG:1;E;1;JG;2010;2011;W;Jugend weiblich;',
+    'WERTUNG:4;E;2;AK;100;;X;Staffel offen;',
+    'VEREIN:SV Musterstadt;1234;10;GER;',
+    'PERSON:Schmidt, Lea;100001;1;W;2010;;GER;;;',
+    'PERSON:Bauer, Mia;100002;2;W;2011;;GER;;;',
+    'PERSONENERGEBNIS:1;1;E;1;1;00:00:28,44;;;;',
+    'PERSONENERGEBNIS:2;1;E;1;0;00:00:00,00;DS;Fehlstart;;',
+    'PNZWISCHENZEIT:1;1;E;25;00:00:13,72;',
+    'PNREAKTION:1;1;E;+;00:00:00,71;',
+    'STAFFEL:1;9001;AK;100;;',
+    'STAFFELPERSON:9001;4;E;Schmidt, Lea;100001;1;W;2010;;GER;;;',
+    'STAFFELPERSON:9001;4;E;Bauer, Mia;100002;2;W;2011;;GER;;;',
+    'STAFFELERGEBNIS:9001;4;E;2;1;00:02:05,00;;;;;',
+    'STZWISCHENZEIT:9001;4;E;1;100;00:01:03,61;',
+    'STABLOESE:9001;4;E;2;+;00:00:00,32;',
+    'DATEIENDE',
+  ].join('\r\n') + '\r\n';
+
+const { document: liste, ok } = parseVereinsergebnisliste(ergebnis);
+
+ok; // → true
+
+const { graph } = projectVereinsergebnisliste(liste);
+
+graph.veranstaltung.bezeichnung; // → 'Herbstpokal 2026'
+graph.verein!.bezeichnung; // → 'SV Musterstadt'
+graph.abschnitte[0].kampfgericht[0].position; // → 'SR'
+graph.personen.length; // → 2
+graph.wertungById.get(1)!.name; // → 'Jugend weiblich'
+```
+
+Ein `Start` hängt an seiner Person und trägt Endzeit, Zwischenzeiten,
+Reaktionszeiten und die Platzierungen – alle Zeiten in Hundertstelsekunden:
+
+```typescript
+const person = graph.personById.get(1)!;
+
+person.name; // → 'Schmidt, Lea'
+person.starts.length; // → 1
+
+const start = person.starts[0];
+
+start.endzeit; // → 2844
+start.zwischenzeiten; // → [{ distanz: 25, zeit: 1372, line: 17 }]
+start.reaktionen; // → [{ art: '+', zeit: 71, line: 18 }]
+start.platzierungen[0].wertungsId; // → 1
+start.platzierungen[0].platz; // → 1
+
+// Bei Nichtwertung ist der Platz 0 – das erzwingt die Validierung
+const mia = graph.personById.get(2)!;
+
+mia.starts[0].platzierungen[0].platz; // → 0
+mia.starts[0].platzierungen[0].grundDerNichtwertung; // → 'DS'
+mia.starts[0].platzierungen[0].disqualifikationsbemerkung; // → 'Fehlstart'
+```
+
+Staffeln sind wie in der Wettkampfergebnisliste über das Tripel aus
+Veranstaltungs-ID, Wettkampfnummer und Wettkampfart adressiert und tragen ihre
+Besetzung samt Ablösezeiten:
+
+```typescript
+const staffel = graph.staffelById.get(9001)!;
+
+staffel.wertungsklasseTyp; // → 'AK'
+staffel.starts.length; // → 1
+
+const staffelStart = graph.staffelStartByKey.get('9001:4:E')!;
+
+staffelStart.endzeit; // → 12500
+staffelStart.personen.map((p) => p.name); // → ['Schmidt, Lea', 'Bauer, Mia']
+staffelStart.zwischenzeiten; // → [{ startnummer: 1, distanz: 100, zeit: 6361, line: 23 }]
+staffelStart.abloesen; // → [{ startnummer: 2, art: '+', zeit: 32, line: 24 }]
+```
+
+Zwei Regeln greifen hier besonders. Bei **gemischten Wettkämpfen** (Geschlecht
+`X`) verlangt die Spezifikation `SW` als Zuordnung zur Bestenliste; das meldet
+die Bibliothek nur als Warnung, weil 74 von 244 echten gemischten Wettkämpfen
+stattdessen `KG` oder `MS` tragen. Und die **Wertungs-ID eines Ergebnisses** muss
+auf eine Wertung des eigenen Wettkampfs zeigen – ein Fremdbezug ist ein
+`dangling-reference`. Diese Regel halten alle 97.330 Ergebnisse der echten
+Dateien ausnahmslos ein.
+
 ## Roadmap
 
 - [x] Schema-freies Lesen beliebiger DSV-Dateien in Records
@@ -280,8 +500,12 @@ graph.vereinByKennzahl.get(1234)!.bezeichnung; // → 'SV Musterstadt'
 - [x] Objektgraph mit aufgelösten Bezügen für die Wettkampfdefinitionsliste
 - [x] Wettkampfergebnisliste typisiert lesen/schreiben (DSV7 und DSV8)
 - [x] Objektgraph mit aufgelösten Bezügen für die Wettkampfergebnisliste
-- [ ] Vereinsmeldeliste typisiert lesen/schreiben
-- [ ] Vereinsergebnisliste typisiert lesen/schreiben
+- [x] Vereinsmeldeliste typisiert lesen/schreiben (DSV7 und DSV8)
+- [x] Objektgraph mit aufgelösten Bezügen für die Vereinsmeldeliste
+- [x] Vereinsergebnisliste typisiert lesen/schreiben (DSV7 und DSV8)
+- [x] Objektgraph mit aufgelösten Bezügen für die Vereinsergebnisliste
+
+Damit sind alle vier Listenarten des DSV-Standards typisiert erschlossen.
 
 ## Entwicklung
 
@@ -311,7 +535,7 @@ baut, prüft und via **npm Trusted Publishing (OIDC)** mit Provenance nach npm
 veröffentlicht. Es wird kein npm-Token im Repository benötigt.
 
 ```
-gh release create v0.3.0 --title v0.3.0 --generate-notes
+gh release create v0.4.0 --title v0.4.0 --generate-notes
 ```
 
 ## Built With
