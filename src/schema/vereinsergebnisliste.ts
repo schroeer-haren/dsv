@@ -35,10 +35,22 @@ import type { EnumValue } from './types.js';
 import { element, field } from './types.js';
 
 /**
- * Wertevorrat der Wettkampfart in den Ergebniselementen.
+ * Wertevorrat der Wettkampfart in WETTKAMPF, WERTUNG und den Ergebniselementen.
  *
- * Ergebnisse können auch zu Aus- und Nachschwimmen entstehen; die Wertung
- * selbst kennt diese beiden Arten dagegen nicht (dsv8.md:3231).
+ * Die Wertetabelle der WERTUNG dieser Listenart nennt A und N nicht
+ * (dsv8.md:3197) — anders als WETTKAMPF (dsv8.md:3057) und PERSONENERGEBNIS
+ * (dsv8.md:3465), die beide alle sechs Arten führen. Weil `wertungsId` in
+ * jedem Ergebnis Pflicht ist und eine Wertung nur zum eigenen Wettkampf
+ * gehören darf, könnten Ergebnisse eines Aus- oder Nachschwimmens sonst
+ * überhaupt keine gültige Wertung haben.
+ *
+ * Die engere Tabelle ist deshalb als unvollständig gelesen, nicht als Grenze:
+ *
+ * - Die Wettkampfergebnisliste, dieselbe Sache in anderer Form, führt A und N
+ *   bei WERTUNG ausdrücklich auf (dsv8.md:4913).
+ * - In `test/fixtures/real` gibt es Wertungen der Art A (1x) und N (3x); die
+ *   beiden Ergebnisse eines Ausschwimmens zeigen dort auf die A-Wertung ihres
+ *   eigenen Wettkampfs.
  */
 const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'V', doc: 'Vorlauf' },
@@ -49,8 +61,11 @@ const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'N', doc: 'Nachschwimmen' },
 ];
 
-/** Wettkampfart ohne Aus- und Nachschwimmen, wie sie WERTUNG führt. */
-const WETTKAMPFART_WERTUNG_WERTE: readonly EnumValue[] = [
+/**
+ * Wettkampfart des qualifizierenden Laufs. Aus einem Aus- oder Nachschwimmen
+ * qualifiziert man sich nicht weiter (dsv8.md:3177).
+ */
+const QUALIFIKATIONSART_WERTE: readonly EnumValue[] = [
   { value: 'V', doc: 'Vorlauf' },
   { value: 'Z', doc: 'Zwischenlauf' },
   { value: 'F', doc: 'Finale' },
@@ -338,16 +353,17 @@ export const WETTKAMPF = element('WETTKAMPF', [
   field('qualifikationswettkampfart', 'Zeichen', {
     doc: 'Art des qualifizierenden Wettkampfes.',
     specRef: 'dsv8.md:3177',
-    values: WETTKAMPFART_WERTUNG_WERTE,
+    values: QUALIFIKATIONSART_WERTE,
   }),
 ]);
 
 /**
  * WERTUNG — die Wertungsklassen eines Wettkampfes (dsv8.md:3205).
  *
- * Die Wettkampfart kennt hier weder `A` noch `N` (dsv8.md:3231) — anders als
- * das Element WETTKAMPF derselben Listenart. Gewertet wird nur, was Vorlauf,
- * Zwischenlauf, Finale oder Entscheidung ist.
+ * Zur Wettkampfart siehe `WETTKAMPFART_WERTE`: Die Wertetabelle dieser
+ * Listenart nennt `A` und `N` nicht, ist damit aber nachweislich unvollständig
+ * — sonst könnten Ergebnisse eines Aus- oder Nachschwimmens keine Wertung
+ * haben, obwohl `wertungsId` dort Pflicht ist.
  */
 export const WERTUNG = element('WERTUNG', [
   field('wettkampfnr', 'Zahl', {
@@ -358,9 +374,9 @@ export const WERTUNG = element('WERTUNG', [
   }),
   field('wettkampfart', 'Zeichen', {
     required: true,
-    doc: 'Art des Wettkampfes; ohne Aus- und Nachschwimmen.',
+    doc: 'Art des Wettkampfes.',
     specRef: 'dsv8.md:3207',
-    values: WETTKAMPFART_WERTUNG_WERTE,
+    values: WETTKAMPFART_WERTE,
   }),
   field('wertungsId', 'Zahl', {
     required: true,

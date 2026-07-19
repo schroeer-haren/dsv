@@ -990,6 +990,12 @@ schreibe('vereinsergebnis.dsv8', [
   line('WERTUNG', '3', 'F', '3', 'AK', '100', '120', 'M', 'Masters 100 bis 120'),
   line('WERTUNG', '4', 'E', '4', 'AK', '100', '', 'D', 'Masters 100'),
   line('WERTUNG', '7', 'V', '5', 'JG', '0', '9999', 'X', 'Gemischte Wertung'),
+  // Aus- und Nachschwimmen brauchen eine eigene Wertung: Ein Ergebnis darf nur
+  // auf eine Wertung seines eigenen Wettkampfs zeigen, und `wertungsId` ist
+  // Pflicht. Die Wertetabelle der WERTUNG führt A und N nicht auf
+  // (dsv8.md:3197) — siehe die Begründung am Wertevorrat des Schemas.
+  line('WERTUNG', '5', 'A', '6', 'AK', '0', '9999', 'W', 'Ausschwimmen'),
+  line('WERTUNG', '6', 'N', '7', 'JG', '0', '9999', 'M', 'Nachschwimmen'),
   line('VEREIN', 'SV Musterstadt', '1234', '10', 'GER'),
   // Alle drei Geschlechter; Altersklasse und Nationalitäten gesetzt und leer.
   line('PERSON', 'Muster, Mia', '100010', '1', 'W', '2008', '20', 'GER', 'POL', 'UKR'),
@@ -1001,8 +1007,8 @@ schreibe('vereinsergebnis.dsv8', [
   line('PERSONENERGEBNIS', '1', '2', 'Z', '2', '0', '00:00:31,45', 'DS', 'Wende', 'E'),
   line('PERSONENERGEBNIS', '2', '3', 'F', '3', '0', '00:00:00,00', 'NA', '', 'F'),
   line('PERSONENERGEBNIS', '2', '4', 'E', '4', '0', '00:00:00,00', 'AB', '', 'N'),
-  line('PERSONENERGEBNIS', '3', '5', 'A', '5', '0', '00:00:00,00', 'AU', '', ''),
-  line('PERSONENERGEBNIS', '3', '6', 'N', '5', '0', '00:00:00,00', 'ZU', '', ''),
+  line('PERSONENERGEBNIS', '3', '5', 'A', '6', '0', '00:00:00,00', 'AU', '', ''),
+  line('PERSONENERGEBNIS', '3', '6', 'N', '7', '0', '00:00:00,00', 'ZU', '', ''),
   line('PNZWISCHENZEIT', '1', '1', 'V', '50', '00:00:29,03'),
   line('PNZWISCHENZEIT', '2', '3', 'F', '25', '00:00:14,88'),
   // Vorzeichen der Reaktionszeit gesetzt und leer.
@@ -1062,7 +1068,7 @@ schreibe('vereinsergebnis.dsv8', [
   // Grund, und leer.
   line('STAFFELERGEBNIS', '9001', '4', 'E', '4', '2', '00:04:30,84', '', '', '', ''),
   line('STAFFELERGEBNIS', '9001', '4', 'E', '4', '0', '00:00:00,00', 'DS', '3', 'Wechsel', 'E'),
-  line('STAFFELERGEBNIS', '9002', '6', 'N', '5', '0', '00:00:00,00', 'ZU', '0', '', ''),
+  line('STAFFELERGEBNIS', '9002', '6', 'N', '7', '0', '00:00:00,00', 'ZU', '0', '', ''),
   line('STZWISCHENZEIT', '9001', '4', 'E', '1', '100', '00:01:03,61'),
   line('STZWISCHENZEIT', '9001', '4', 'E', '2', '200', '00:02:10,02'),
   // STABLOESE hat im Kapitel keine Beispielzeile; die Feldfolge stammt allein

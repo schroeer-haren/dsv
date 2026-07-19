@@ -603,6 +603,8 @@ export function projectVereinsergebnisliste(
 
   // --- Wertungen -----------------------------------------------------------
   const wertungById = new Map<number, VereinsergebnisWertung>();
+  /** Der Wettkampf, zu dem eine Wertung gehört, als `wettkampfKey`. */
+  const wettkampfByWertungsId = new Map<number, string>();
 
   for (const record of records) {
     if (record.element !== 'WERTUNG') continue;
@@ -632,6 +634,7 @@ export function projectVereinsergebnisliste(
     }
 
     const key = wettkampfKey(number(record, 'wettkampfnr'), value(record, 'wettkampfart'));
+    if (!wettkampfByWertungsId.has(id)) wettkampfByWertungsId.set(id, key);
     const builder = builders.get(key);
     if (builder === undefined) {
       diagnostics.push(
@@ -648,17 +651,52 @@ export function projectVereinsergebnisliste(
     builder.wertungen.push(wertung);
   }
 
-  /** Meldet eine Platzierung, deren Wertung es nicht gibt. */
+  /**
+   * Meldet eine Platzierung, deren Wertung es nicht gibt oder die zu einem
+   * anderen Wettkampf gehört.
+   *
+   * Die Wertungs-ID ist zwar veranstaltungsweit eindeutig (dsv8.md:3253), aber
+   * jede Wertung nennt selbst einen Wettkampf. Ein Ergebnis darf deshalb nur
+   * auf eine Wertung seines eigenen Wettkampfs zeigen — die Spezifikation
+   * verlangt bei PERSONENERGEBNIS ausdrücklich, „für jede definierte Wertung"
+   * die erreichte Platzierung auszugeben (dsv8.md:3459).
+   *
+   * An den echten Dateien gemessen: Alle 97 330 Ergebnisse der 72
+   * Wettkampfergebnislisten in `test/fixtures/real` zeigen auf eine Wertung
+   * ihres eigenen Wettkampfs — kein einziger Verstoss.
+   */
   function pruefeWertung(record: TypedRecord, id: number): void {
     const wertungsId = number(record, 'wertungsId');
-    if (wertungById.has(wertungsId)) return;
+    if (!wertungById.has(wertungsId)) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `${record.element} for ${String(id)} refers to unknown WERTUNG ${value(record, 'wertungsId')}`,
+          { ...at(record.line), data: { element: record.element, wertungsId } },
+        ),
+      );
+      return;
+    }
+
+    const eigener = wettkampfKey(number(record, 'wettkampfnr'), value(record, 'wettkampfart'));
+    const derWertung = wettkampfByWertungsId.get(wertungsId);
+    if (derWertung === undefined || derWertung === eigener) return;
 
     diagnostics.push(
       createDiagnostic(
         'dangling-reference',
         'warning',
-        `${record.element} for ${String(id)} refers to unknown WERTUNG ${value(record, 'wertungsId')}`,
-        { ...at(record.line), data: { element: record.element, wertungsId } },
+        `${record.element} for ${eigener} refers to WERTUNG ${String(wertungsId)} of WETTKAMPF ${derWertung}`,
+        {
+          ...at(record.line),
+          data: {
+            element: record.element,
+            wertungsId,
+            wettkampf: eigener,
+            wertungWettkampf: derWertung,
+          },
+        },
       ),
     );
   }

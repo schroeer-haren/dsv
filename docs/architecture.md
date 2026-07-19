@@ -559,6 +559,35 @@ Daraus abgeleitete Entscheidungen zu den bekannten Lücken:
 - **Der Komma-statt-Semikolon-Fehler** in den Spec-Beispielen wird **nicht**
   toleriert – er ist als Tippfehler identifiziert (Befund 9), nicht als
   Formatvariante.
+- **`WERTUNG` der Vereinsergebnisliste kennt `A` und `N` nicht** (dsv8.md:3197),
+  obwohl `WETTKAMPF` (dsv8.md:3057) und `PERSONENERGEBNIS` (dsv8.md:3465)
+  derselben Listenart alle sechs Wettkampfarten führen und `wertungsId` in
+  jedem Ergebnis Pflichtfeld ist. Ergebnisse eines Aus- oder Nachschwimmens
+  könnten damit keine gültige Wertung haben – die Listenart wäre für genau
+  diesen Fall nicht schreibbar.
+
+  Zwei Lesarten waren möglich: (a) die Wertungs-ID ist veranstaltungsweit
+  eindeutig (dsv8.md:3253) und darf auf die Wertung eines _anderen_ Wettkampfs
+  zeigen, oder (b) sie muss zum eigenen Wettkampf gehören, und die enge
+  Wertetabelle ist unvollständig.
+
+  **Entschieden für (b).** Drei Gründe, alle nachgeprüft statt angenommen:
+  Erstens nennt jede `WERTUNG` selbst einen Wettkampf – wäre der Bezug
+  beliebig, wäre dieses Feld ohne Bedeutung. Zweitens verlangt die Spec bei
+  `PERSONENERGEBNIS` ausdrücklich, „für jede definierte Wertung" die
+  Platzierung auszugeben (dsv8.md:3459), was nur wettkampfbezogen sinnvoll ist.
+  Drittens die Messung an den Realdaten: **alle 97 330 Ergebnisse** der 72
+  echten Wettkampfergebnislisten zeigen auf eine Wertung ihres eigenen
+  Wettkampfs, kein einziger Verstoss. Dort gibt es auch Wertungen der Arten
+  `A` (1×) und `N` (3×) – die beiden Ergebnisse eines Ausschwimmens verweisen
+  auf die `A`-Wertung ihres eigenen Wettkampfs. Die Wettkampfergebnisliste
+  führt `A` und `N` bei `WERTUNG` zudem ausdrücklich auf (dsv8.md:4913); nur
+  die Tabelle der Vereinsergebnisliste lässt sie weg.
+
+  Umgesetzt als `dangling-reference`-Warnung in beiden Ergebnis-Projektionen,
+  und `WERTUNG` der Vereinsergebnisliste nimmt `A` und `N` auf. Das
+  synthetische Fixture umging den Widerspruch zuvor stillschweigend, indem ein
+  `A`-Ergebnis auf die Wertung eines fremden Wettkampfs zeigte.
 
 Grundsatz für künftige Fälle: Wo die Spec schweigt und eine Interpretation
 gültige Daten zerstören könnte, gewinnt die konservative Lesart.

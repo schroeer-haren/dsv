@@ -448,3 +448,60 @@ describe('projectVereinsergebnisliste', () => {
     expect(() => JSON.stringify(graph)).not.toThrow();
   });
 });
+
+describe('Wertungen gehören zum Wettkampf des Ergebnisses', () => {
+  // Wettkampf 2 mit einer eigenen Wertung 2 — dieselbe Veranstaltung, ein
+  // anderer Wettkampf.
+  const WETTKAMPF_2 = line('WETTKAMPF', ['2', 'E', '1', '4', '100', 'R', 'GL', 'W', 'SW', '', '']);
+  const WERTUNG_2 = line('WERTUNG', ['2', 'E', '2', 'JG', '0', '9999', '', 'Zweite Wertung']);
+
+  it('akzeptiert ein Ergebnis, das auf die Wertung seines Wettkampfs zeigt', () => {
+    const { diagnostics } = project(
+      ABSCHNITT,
+      WETTKAMPF,
+      WETTKAMPF_2,
+      WERTUNG,
+      WERTUNG_2,
+      VEREIN,
+      person(),
+      personenergebnis({ wettkampfnr: '2', wertungsId: '2' }),
+    );
+
+    expect(diagnostics).toEqual([]);
+  });
+
+  it('meldet ein PERSONENERGEBNIS, dessen Wertung zu einem anderen Wettkampf gehört', () => {
+    const result = project(
+      ABSCHNITT,
+      WETTKAMPF,
+      WETTKAMPF_2,
+      WERTUNG,
+      WERTUNG_2,
+      VEREIN,
+      person(),
+      personenergebnis({ wettkampfnr: '2', wertungsId: '1' }),
+    );
+
+    expect(codes(result)).toEqual(['dangling-reference']);
+    expect(result.diagnostics[0]?.data).toMatchObject({
+      element: 'PERSONENERGEBNIS',
+      wertungsId: 1,
+    });
+  });
+
+  it('meldet ein STAFFELERGEBNIS, dessen Wertung zu einem anderen Wettkampf gehört', () => {
+    const result = project(
+      ABSCHNITT,
+      WETTKAMPF,
+      WETTKAMPF_2,
+      WERTUNG,
+      WERTUNG_2,
+      VEREIN,
+      staffel(),
+      staffelperson(),
+      staffelergebnis({ wettkampfnr: '2', wertungsId: '1' }),
+    );
+
+    expect(codes(result)).toContain('dangling-reference');
+  });
+});

@@ -597,6 +597,8 @@ export function projectWettkampfergebnisliste(
 
   // --- Wertungen -----------------------------------------------------------
   const wertungById = new Map<number, ErgebnisWertung>();
+  /** Der Wettkampf, zu dem eine Wertung gehört, als `wettkampfKey`. */
+  const wettkampfByWertungsId = new Map<number, string>();
 
   for (const record of records) {
     if (record.element !== 'WERTUNG') continue;
@@ -626,6 +628,7 @@ export function projectWettkampfergebnisliste(
     }
 
     const key = wettkampfKey(number(record, 'wettkampfnr'), value(record, 'wettkampfart'));
+    if (!wettkampfByWertungsId.has(id)) wettkampfByWertungsId.set(id, key);
     const builder = builders.get(key);
     if (builder === undefined) {
       diagnostics.push(
@@ -722,17 +725,49 @@ export function projectWettkampfergebnisliste(
     builder.starts.push(start);
   }
 
-  /** Meldet eine Platzierung, deren Wertung es nicht gibt. */
+  /**
+   * Meldet eine Platzierung, deren Wertung es nicht gibt oder die zu einem
+   * anderen Wettkampf gehört.
+   *
+   * Die Wertungs-ID ist veranstaltungsweit eindeutig (dsv8.md:4873), aber jede
+   * Wertung nennt selbst einen Wettkampf; ein Ergebnis darf deshalb nur auf
+   * eine Wertung seines eigenen Wettkampfs zeigen.
+   *
+   * An den echten Dateien gemessen: Alle 97 330 Ergebnisse der 72
+   * Wettkampfergebnislisten in `test/fixtures/real` halten sich daran.
+   */
   function pruefeWertung(record: TypedRecord, veranstaltungsId: number): void {
     const wertungsId = number(record, 'wertungsId');
-    if (wertungById.has(wertungsId)) return;
+    if (!wertungById.has(wertungsId)) {
+      diagnostics.push(
+        createDiagnostic(
+          'dangling-reference',
+          'warning',
+          `${record.element} for ${String(veranstaltungsId)} refers to unknown WERTUNG ${value(record, 'wertungsId')}`,
+          { ...at(record.line), data: { element: record.element, wertungsId } },
+        ),
+      );
+      return;
+    }
+
+    const eigener = wettkampfKey(number(record, 'wettkampfnr'), value(record, 'wettkampfart'));
+    const derWertung = wettkampfByWertungsId.get(wertungsId);
+    if (derWertung === undefined || derWertung === eigener) return;
 
     diagnostics.push(
       createDiagnostic(
         'dangling-reference',
         'warning',
-        `${record.element} for ${String(veranstaltungsId)} refers to unknown WERTUNG ${value(record, 'wertungsId')}`,
-        { ...at(record.line), data: { element: record.element, wertungsId } },
+        `${record.element} for ${eigener} refers to WERTUNG ${String(wertungsId)} of WETTKAMPF ${derWertung}`,
+        {
+          ...at(record.line),
+          data: {
+            element: record.element,
+            wertungsId,
+            wettkampf: eigener,
+            wertungWettkampf: derWertung,
+          },
+        },
       ),
     );
   }

@@ -237,12 +237,19 @@ describe('Vereinsergebnisliste — WETTKAMPF und WERTUNG', () => {
     expect(enumValues(WERTUNG, 'geschlecht')).toEqual(['M', 'W', 'D', 'X']);
   });
 
-  it('kennt in WERTUNG kein Aus- und kein Nachschwimmen, in WETTKAMPF aber schon', () => {
-    expect(enumValues(WERTUNG, 'wettkampfart')).toEqual(['V', 'Z', 'F', 'E']);
-    expect(enumValues(WERTUNG, 'wettkampfart')).not.toContain('A');
-    expect(enumValues(WERTUNG, 'wettkampfart')).not.toContain('N');
-    expect(enumValues(WETTKAMPF, 'wettkampfart')).toContain('A');
-    expect(enumValues(WETTKAMPF, 'wettkampfart')).toContain('N');
+  /**
+   * Die Wertetabelle der WERTUNG nennt A und N nicht (dsv8.md:3197). Sie ist
+   * als unvollständig gelesen: `wertungsId` ist in jedem Ergebnis Pflicht und
+   * darf nur auf eine Wertung des eigenen Wettkampfs zeigen — Ergebnisse eines
+   * Aus- oder Nachschwimmens hätten sonst keine mögliche Wertung.
+   */
+  it('kennt in WERTUNG wie in WETTKAMPF alle sechs Wettkampfarten', () => {
+    expect(enumValues(WERTUNG, 'wettkampfart')).toEqual(['V', 'Z', 'F', 'E', 'A', 'N']);
+    expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual(['V', 'Z', 'F', 'E', 'A', 'N']);
+  });
+
+  it('lässt aus einem Aus- oder Nachschwimmen nicht weiterqualifizieren', () => {
+    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual(['V', 'Z', 'F', 'E']);
   });
 });
 
