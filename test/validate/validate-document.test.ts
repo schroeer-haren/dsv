@@ -428,6 +428,37 @@ describe('validateDocument für die Wettkampfergebnisliste', () => {
         grundDerNichtwertung: 'DS',
       });
     });
+
+    // Verlangt ist die Ziffer 0, nicht „irgendetwas Nullartiges": Ein leerer
+    // Platz ist keine 0, und `01` ist eine Platzierung, die nur so anfängt.
+    it.each(['PNERGEBNIS', 'STERGEBNIS'])(
+      'meldet einen leeren Platz mit Grund in %s',
+      (element) => {
+        const record = element === 'PNERGEBNIS' ? pnergebnis('', 'DS') : stergebnis('', 'DS');
+        const diagnostics = validateErgebnis([...minimalErgebnis(), record]);
+
+        expect(diagnostics.map((d) => d.code)).toContain('invalid-value');
+        expect(diagnostics.find((d) => d.code === 'invalid-value')?.data).toMatchObject({
+          element,
+          field: 'platz',
+          value: '',
+          grundDerNichtwertung: 'DS',
+        });
+      },
+    );
+
+    it.each(['PNERGEBNIS', 'STERGEBNIS'])('meldet Platz 01 mit Grund in %s', (element) => {
+      const record = element === 'PNERGEBNIS' ? pnergebnis('01', 'DS') : stergebnis('01', 'DS');
+      const diagnostics = validateErgebnis([...minimalErgebnis(), record]);
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.data).toMatchObject({
+        element,
+        field: 'platz',
+        value: '01',
+        grundDerNichtwertung: 'DS',
+      });
+    });
   });
 });
 
@@ -652,6 +683,47 @@ describe('Querregeln greifen listenartunabhängig', () => {
         element,
         field: 'platz',
         value: '3',
+        grundDerNichtwertung: 'DS',
+      });
+    });
+
+    // Wie in der Wettkampfergebnisliste: Verlangt ist die Ziffer 0.
+    it.each([
+      ['PERSONENERGEBNIS', personenergebnis('', 'DS')],
+      ['STAFFELERGEBNIS', staffelergebnis('', 'DS')],
+    ])('meldet einen leeren Platz mit Grund in %s', (element, record) => {
+      const diagnostics = validateWith(VEREINSERGEBNISLISTE, [
+        ...minimalVereinsergebnis(),
+        person,
+        staffel,
+        record,
+      ]);
+
+      expect(diagnostics.map((d) => d.code)).toContain('invalid-value');
+      expect(diagnostics.find((d) => d.code === 'invalid-value')?.data).toMatchObject({
+        element,
+        field: 'platz',
+        value: '',
+        grundDerNichtwertung: 'DS',
+      });
+    });
+
+    it.each([
+      ['PERSONENERGEBNIS', personenergebnis('01', 'DS')],
+      ['STAFFELERGEBNIS', staffelergebnis('01', 'DS')],
+    ])('meldet Platz 01 mit Grund in %s', (element, record) => {
+      const diagnostics = validateWith(VEREINSERGEBNISLISTE, [
+        ...minimalVereinsergebnis(),
+        person,
+        staffel,
+        record,
+      ]);
+
+      expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+      expect(diagnostics[0]?.data).toMatchObject({
+        element,
+        field: 'platz',
+        value: '01',
         grundDerNichtwertung: 'DS',
       });
     });

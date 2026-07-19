@@ -109,6 +109,36 @@ describe('projectVereinsmeldeliste', () => {
     expect(result.graph.wettkaempfeOhneAbschnitt).toHaveLength(1);
   });
 
+  it('meldet eine doppelte Abschnittsnummer', () => {
+    const zweiter = line('ABSCHNITT', ['1', '16.03.2026', '14:00', 'J']);
+    const result = project(ABSCHNITT, zweiter, WETTKAMPF, VEREIN, ANSPRECHPARTNER);
+
+    expect(codes(result)).toEqual(['ambiguous-reference']);
+    // Der erste Abschnitt gewinnt: Die Indexmap trägt seine Werte, nicht die
+    // des zweiten Records.
+    expect(result.graph.abschnittByNummer.size).toBe(1);
+    expect(result.graph.abschnittByNummer.get(1)).toMatchObject({
+      datum: { year: 2026, month: 3, day: 15 },
+      relativeAngabe: 'N',
+    });
+    // Beide Records bleiben als Objekte erhalten.
+    expect(result.graph.abschnitte).toHaveLength(2);
+  });
+
+  it('meldet einen doppelten Wettkampf aus Nummer und Art', () => {
+    const zweiter = line('WETTKAMPF', ['1', 'V', '1', '1', '200', 'R', 'GL', 'M', '', '']);
+    const result = project(ABSCHNITT, WETTKAMPF, zweiter, VEREIN, ANSPRECHPARTNER);
+
+    expect(codes(result)).toEqual(['ambiguous-reference']);
+    // Der erste Wettkampf gewinnt.
+    expect(result.graph.wettkampfByKey.size).toBe(1);
+    expect(result.graph.wettkampfByKey.get('1:V')).toMatchObject({
+      einzelstrecke: 100,
+      technik: 'F',
+      geschlecht: 'W',
+    });
+  });
+
   describe('Personenmeldungen', () => {
     it('projiziert PNMELDUNG mit Nationalitäten', () => {
       const { graph, diagnostics } = project(...RUMPF, pnmeldung());
@@ -169,10 +199,27 @@ describe('projectVereinsmeldeliste', () => {
       expect(codes(result)).toEqual(['dangling-reference']);
     });
 
-    it('meldet eine doppelte Veranstaltungs-ID', () => {
-      const result = project(...RUMPF, pnmeldung(), pnmeldung());
+    it('meldet ein zweites Handicap zu derselben Meldung', () => {
+      const erstes = line('HANDICAP', ['1', 'DBS-4711', 'IPC-4711', 'S10', 'SB9', 'SM10', '']);
+      const zweites = line('HANDICAP', ['1', 'DBS-0815', 'IPC-0815', 'S5', 'SB4', 'SM5', 'X']);
+      const result = project(...RUMPF, pnmeldung(), erstes, zweites);
 
       expect(codes(result)).toEqual(['ambiguous-reference']);
+      // Das erste Handicap gewinnt.
+      expect(result.graph.meldungById.get(1)?.handicap).toMatchObject({
+        dbsId: 'DBS-4711',
+        startklasse: 'S10',
+        startklasseBrust: 'SB9',
+      });
+    });
+
+    it('meldet eine doppelte Veranstaltungs-ID', () => {
+      const result = project(...RUMPF, pnmeldung(), pnmeldung({ name: 'Zweite, Zoe' }));
+
+      expect(codes(result)).toEqual(['ambiguous-reference']);
+      // Die erste Meldung gewinnt.
+      expect(result.graph.meldungById.size).toBe(1);
+      expect(result.graph.meldungById.get(1)?.name).toBe('Muster, Mia');
     });
 
     // dsv8.md:2524 — reine Staffelschwimmer werden als PNMELDUNG ohne STARTPN
@@ -224,6 +271,46 @@ describe('projectVereinsmeldeliste', () => {
       const result = project(...RUMPF, line('STARTST', ['9999', '1', '']));
 
       expect(codes(result)).toEqual(['dangling-reference']);
+    });
+
+    it('meldet eine doppelte Staffelkennung', () => {
+      const result = project(
+        ...RUMPF,
+        stmeldung(),
+        stmeldung({ nummerDerMannschaft: '2', nameDerStaffel: 'Staffel B' }),
+      );
+
+      expect(codes(result)).toEqual(['ambiguous-reference']);
+      // Die erste Staffelmeldung gewinnt.
+      expect(result.graph.staffelmeldungById.size).toBe(1);
+      expect(result.graph.staffelmeldungById.get(9001)).toMatchObject({
+        nummerDerMannschaft: '1',
+        name: 'Staffel A',
+      });
+      expect(result.graph.staffelmeldungen).toHaveLength(2);
+    });
+
+    // Eine nicht lesbare Kennung ergibt `NaN`. Käme sie in die Indexmap, fänden
+    // Bezüge mit ebenso unlesbarer Kennung sie über `NaN` wieder — `Map` nutzt
+    // SameValueZero, `NaN` ist dort sein eigener Schlüssel. Solche Bezüge sind
+    // aber keine Auflösung, sondern zwei Lesefehler.
+    it('nimmt eine unlesbare Staffelkennung nicht in die Indexmap auf', () => {
+      const result = project(
+        ...RUMPF,
+        pnmeldung(),
+        stmeldung({ veranstaltungsIdStaffel: 'xx' }),
+        line('STARTST', ['xx', '1', '']),
+        line('STAFFELPERSON', ['xx', '1', '1', '1']),
+      );
+
+      expect(codes(result)).toEqual(['dangling-reference', 'dangling-reference']);
+      expect(result.graph.staffelmeldungById.size).toBe(0);
+      expect([...result.graph.staffelmeldungById.keys()].some(Number.isNaN)).toBe(false);
+
+      const staffel = result.graph.staffelmeldungen[0];
+      expect(staffel?.veranstaltungsId).toBeNaN();
+      expect(staffel?.starts).toEqual([]);
+      expect(staffel?.personen).toEqual([]);
     });
   });
 

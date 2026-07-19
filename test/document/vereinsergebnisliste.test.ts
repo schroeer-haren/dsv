@@ -234,6 +234,75 @@ describe('projectVereinsergebnisliste', () => {
       expect(graph.startByKey.get('1:1:E')?.platzierungen.map((p) => p.platz)).toEqual([1, 3]);
     });
 
+    // Die nicht gewertete Zeile trägt die Platzhalterzeit `00:00:00,00`; die
+    // geschwommene Zeit steht in der gewerteten Zeile. Welche Zeile zuerst
+    // kommt, ist beliebig — massgeblich ist die gewertete.
+    it('nimmt die Endzeit der gewerteten Zeile, auch wenn sie nicht die erste ist', () => {
+      const zweiteWertung = line('WERTUNG', [
+        '1',
+        'E',
+        '2',
+        'JG',
+        '2008',
+        '',
+        'W',
+        'Jahrgang 2008',
+      ]);
+      const { graph, diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        person(),
+        personenergebnis({
+          wertungsId: '1',
+          platz: '0',
+          endzeit: '00:00:00,00',
+          grundDerNichtwertung: 'DS',
+        }),
+        personenergebnis({ wertungsId: '2', platz: '3', endzeit: '00:01:02,11' }),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.startByKey.get('1:1:E')?.endzeit).toBe(6211);
+    });
+
+    it('bleibt bei der ersten Zeile, wenn keine Zeile gewertet ist', () => {
+      const zweiteWertung = line('WERTUNG', [
+        '1',
+        'E',
+        '2',
+        'JG',
+        '2008',
+        '',
+        'W',
+        'Jahrgang 2008',
+      ]);
+      const { graph } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        person(),
+        personenergebnis({
+          wertungsId: '1',
+          platz: '0',
+          endzeit: '00:00:11,11',
+          grundDerNichtwertung: 'DS',
+        }),
+        personenergebnis({
+          wertungsId: '2',
+          platz: '0',
+          endzeit: '00:00:22,22',
+          grundDerNichtwertung: 'AB',
+        }),
+      );
+
+      expect(graph.startByKey.get('1:1:E')?.endzeit).toBe(1111);
+    });
+
     it('meldet ein Ergebnis ohne Person', () => {
       const result = project(ABSCHNITT, WETTKAMPF, WERTUNG, VEREIN, personenergebnis());
 
@@ -384,6 +453,73 @@ describe('projectVereinsergebnisliste', () => {
       const start = graph.staffelStartByKey.get('9001:1:E');
       expect(start?.zwischenzeiten).toHaveLength(1);
       expect(start?.abloesen).toHaveLength(1);
+    });
+
+    // Dieselbe Regel wie bei den Personen: Die gewertete Zeile trägt die Zeit.
+    it('nimmt die Endzeit der gewerteten Zeile, auch wenn sie nicht die erste ist', () => {
+      const zweiteWertung = line('WERTUNG', [
+        '1',
+        'E',
+        '2',
+        'JG',
+        '2008',
+        '',
+        'W',
+        'Jahrgang 2008',
+      ]);
+      const { graph, diagnostics } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        staffel(),
+        staffelergebnis({
+          wertungsId: '1',
+          platz: '0',
+          endzeit: '00:00:00,00',
+          grundDerNichtwertung: 'DS',
+        }),
+        staffelergebnis({ wertungsId: '2', platz: '3', endzeit: '00:04:30,84' }),
+      );
+
+      expect(diagnostics).toEqual([]);
+      expect(graph.staffelStartByKey.get('9001:1:E')?.endzeit).toBe(27084);
+    });
+
+    it('bleibt bei der ersten Zeile, wenn keine Zeile gewertet ist', () => {
+      const zweiteWertung = line('WERTUNG', [
+        '1',
+        'E',
+        '2',
+        'JG',
+        '2008',
+        '',
+        'W',
+        'Jahrgang 2008',
+      ]);
+      const { graph } = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        staffel(),
+        staffelergebnis({
+          wertungsId: '1',
+          platz: '0',
+          endzeit: '00:00:11,11',
+          grundDerNichtwertung: 'DS',
+        }),
+        staffelergebnis({
+          wertungsId: '2',
+          platz: '0',
+          endzeit: '00:00:22,22',
+          grundDerNichtwertung: 'AB',
+        }),
+      );
+
+      expect(graph.staffelStartByKey.get('9001:1:E')?.endzeit).toBe(1111);
     });
 
     it('meldet ein Staffelergebnis ohne STAFFEL', () => {
