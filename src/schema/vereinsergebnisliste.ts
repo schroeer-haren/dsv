@@ -1,10 +1,12 @@
 /**
  * Schema der Vereinsergebnisliste (dsv8.md:2670 ff.).
  *
- * Wie bei der Vereinsmeldeliste gibt es für diese Listenart keine einzige echte
- * Datei. Die Definitionen stützen sich allein auf Kapitel 5.3 der
- * Spezifikation, gegengeprüft an den Beispielzeilen desselben Kapitels
- * (dsv8.md:4240 ff.) und an einer fremden Ruby-Implementierung.
+ * Für diese Listenart gibt es keine einzige echte Datei — als einzige der vier.
+ * Die Vereinsmeldeliste war lange im selben Zustand, hat inzwischen aber 34
+ * echte Dateien; hier steht der Nachweis weiterhin aus. Die Definitionen
+ * stützen sich deshalb allein auf Kapitel 5.3 der Spezifikation, gegengeprüft
+ * an den Beispielzeilen desselben Kapitels (dsv8.md:4240 ff.) und an einer
+ * fremden Ruby-Implementierung.
  *
  * Vier Eigenheiten dieser Listenart sind festzuhalten:
  *

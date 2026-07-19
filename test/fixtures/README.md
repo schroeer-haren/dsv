@@ -2,9 +2,10 @@
 
 ## `real/` – anonymisierte Realdaten
 
-108 echte DSV-Dateien von öffentlich ausgeschriebenen Schwimmwettkämpfen,
-erzeugt mit [`scripts/anonymize.ts`](../../scripts/anonymize.ts) aus den
-Originalen in `spec/samples/`.
+142 echte DSV-Dateien von Schwimmwettkämpfen, erzeugt mit
+[`scripts/anonymize.ts`](../../scripts/anonymize.ts) aus den Originalen in
+`spec/samples/`. Die Wettkampflisten stammen aus öffentlichen Ausschreibungen
+und Protokollen, die 34 Vereinsmeldelisten direkt von einem Verein.
 
 Der Ordner wird bei jedem Lauf des Skripts vollständig neu geschrieben – dort
 nichts von Hand ablegen.
@@ -34,32 +35,44 @@ Personen, und ihre Bezeichnungen sind für Tests strukturell relevant.
 
 ### Bestand
 
-| Listenart                  | DSV7 | DSV6 |
-| -------------------------- | ---- | ---- |
-| Wettkampfergebnisliste     | 72   | 3    |
-| Wettkampfdefinitionsliste  | 31   | 2    |
+| Listenart                 | DSV7 | DSV6 |
+| ------------------------- | ---- | ---- |
+| Wettkampfergebnisliste    | 72   | 3    |
+| Wettkampfdefinitionsliste | 31   | 2    |
+| Vereinsmeldeliste         | 34   | –    |
 
-Zeilenenden: 95× CRLF, 13× LF. Erzeuger überwiegend EasyWk, dazu 9× SPLASH
-Meet Manager. Darunter mehrere **Paare aus Ausschreibung und zugehörigem
-Protokoll** desselben Wettkampfs – die eignen sich für Konsistenztests über
-zwei Dateien hinweg.
+Zeilenenden: 129× CRLF, 13× LF. Erzeuger: 91× EasyWk, 34× WebClub 1.76,
+9× SPLASH Meet Manager, 6× cps-schwimm, 2× Schwimmsoftware. Unter den
+Wettkampflisten mehrere **Paare aus Ausschreibung und zugehörigem Protokoll**
+desselben Wettkampfs – die eignen sich für Konsistenztests über zwei Dateien
+hinweg.
+
+Die 34 Vereinsmeldelisten stammen alle von einem Verein (SV Haren) und alle von
+WebClub 1.76. Sie sind der einzige Bestand dieser Listenart und damit die erste
+Konfrontation ihrer Schematabelle mit echten Daten; der vollständige Befund
+steht in `test/parse/parse-vereinsmeldeliste.test.ts`.
 
 ### Lücken
 
-- **Vereinsmeldeliste und Vereinsergebnisliste fehlen vollständig.** Beide
-  enthalten die Meldedaten eines einzelnen Vereins, gehen direkt an den
-  Ausrichter und werden nie veröffentlicht.
+- **Die Vereinsergebnisliste fehlt vollständig.** Sie enthält die Ergebnisdaten
+  eines einzelnen Vereins, geht direkt an den Ausrichter und wird nie
+  veröffentlicht. Für die Vereinsmeldeliste galt das bis zu diesem Bestand
+  ebenso – dort liegen inzwischen 34 echte Dateien vor.
+- **Nur ein Erzeuger und ein Verein je Vereinsmeldeliste.** Eigenheiten von
+  WebClub 1.76 lassen sich mangels zweitem Erzeuger nicht von Eigenschaften der
+  Listenart trennen.
 - **DSV8 fehlt vollständig.** Der Standard gilt erst ab 01.08.2026, und die
   Landesverbände empfehlen, die Übergangsfrist bis 31.12.2026 auszuschöpfen.
   Selbst Ausschreibungen für Dezember 2026 liegen noch als DSV7 vor.
 
-Beides muss über `synth/` abgedeckt werden.
+Das muss über `synth/` abgedeckt werden.
 
 ## `synth/` – synthetische Fixtures
 
 Aus der Spezifikation abgeleitete Dateien, die alle Schemafelder abdecken –
-insbesondere die beiden Listenarten und die Formatversion, für die es keine
-Realdaten gibt.
+insbesondere die Vereinsergebnisliste und die Formatversion, für die es keine
+Realdaten gibt, sowie die DSV8-Felder der Vereinsmeldeliste, die in den echten
+DSV7-Dateien naturgemäß fehlen.
 
 ## Originale
 

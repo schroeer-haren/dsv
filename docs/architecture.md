@@ -74,32 +74,59 @@ umso wichtiger wird: Breite entsteht am Ende, nicht am Anfang.
 Punkt 5 ist der Kern: der Schlüssel für eine Elementdefinition ist
 `(Listenart, Elementname)`, nicht der Elementname allein.
 
-## Befunde aus 108 echten Dateien
+## Befunde aus 142 echten Dateien
 
 Gesammelter Bestand in `spec/samples/`: 75 Wettkampfergebnislisten, 33
-Wettkampfdefinitionslisten; 103× DSV7, 5× DSV6, **0× DSV8**. Erzeuger: 91×
-EasyWk, 9× SPLASH Meet Manager 11, 8 ohne Erzeuger-Kommentar.
+Wettkampfdefinitionslisten, 34 Vereinsmeldelisten; 137× DSV7, 5× DSV6,
+**0× DSV8**. Erzeuger: 91× EasyWk, 34× WebClub 1.76, 9× SPLASH Meet Manager 11,
+6× cps-schwimm, 2× Schwimmsoftware.
 
 Was die Realität anders macht als die Spec – jeder Punkt ist ein Parser-Bug in
 spe:
 
-1. **`FORMAT:` steht nur selten in Zeile 1.** In 106 von 108 Dateien stehen
+1. **`FORMAT:` steht nur selten in Zeile 1.** In 140 von 142 Dateien stehen
    davor ein bis mehrere Erzeuger-Kommentare (`(* erzeugt mit EasyWk … *)`,
-   `(* SPLASH Meet Manager 11 … *)`); `FORMAT:` folgt dann in Zeile 3 (9×),
-   6 (91×) oder 9 (6×). Nur zwei Dateien beginnen direkt damit. Die Spec-Regel
-   „FORMAT muss erstes Element sein" meint das erste **Element** –
-   Kommentarzeilen zählen nicht mit. Eine Prüfung auf Zeile 1 scheitert an
-   praktisch jeder echten Datei.
+   `(* SPLASH Meet Manager 11 … *)`, `(* Vereinsmeldedatei, erzeugt mit
+WebClub … *)`); `FORMAT:` folgt dann in Zeile 3 (9×), 4 (34×), 6 (91×) oder
+   9 (6×). Nur zwei Dateien beginnen direkt damit. Die Spec-Regel „FORMAT muss
+   erstes Element sein" meint das erste **Element** – Kommentarzeilen zählen
+   nicht mit. Eine Prüfung auf Zeile 1 scheitert an praktisch jeder echten
+   Datei.
 2. **Leerzeichen nach dem Doppelpunkt sind die Mehrheit**, nicht die Ausnahme:
-   `FORMAT: Wettkampfergebnisliste;7;` in 91 von 108 Dateien gegenüber 17 ohne.
-   Gilt auch für Datenzeilen (`VERANSTALTUNG: Kreismeisterschaften…`).
+   `FORMAT: Wettkampfergebnisliste;7;` in 125 von 142 Dateien gegenüber 17 ohne.
+   Gilt auch für Datenzeilen (`VERANSTALTUNG: Kreismeisterschaften…`). EasyWk
+   und WebClub setzen es ausnahmslos, SPLASH, cps-schwimm und Schwimmsoftware
+   ausnahmslos nicht – es ist eine Eigenschaft des Erzeugers, keine der Datei.
 3. **Groß-/Kleinschreibung der Listart variiert** (`FORMAT:WETTKAMPFERGEBNIS­LISTE`)
    – Vergleich case-insensitiv, wie schon aus der Spec abgeleitet.
-4. **Zeilenenden gemischt**: 95× CRLF, 13× LF. Ein Parser, der `\r` nicht
-   abstreift, schleppt es ins letzte Feld.
+4. **Zeilenenden gemischt**: 129× CRLF, 13× LF. Ein Parser, der `\r` nicht
+   abstreift, schleppt es ins letzte Feld. Die 13 LF-Dateien stammen sämtlich
+   von EasyWk, cps-schwimm und Schwimmsoftware; WebClub schreibt ausnahmslos
+   CRLF.
 5. **Encoding durchgängig UTF-8** – kein einziges CP1252 im Bestand. Die
    Warn-Diagnostic bei U+FFFD bleibt trotzdem sinnvoll, ist aber kein
    Hauptfall.
+
+### Der Dialekt von WebClub 1.76
+
+Die 34 Vereinsmeldelisten sind der erste Bestand eines dritten Erzeugers in
+nennenswerter Zahl. Er verhält sich in jedem geprüften Punkt sauber und
+einheitlich – und unterscheidet sich in zweien von EasyWk:
+
+- **Kommentare nur in eigenen Zeilen.** Genau drei Kopfzeilen je Datei
+  (`(* Vereinsmeldedatei, erzeugt mit WebClub … *)`, Erzeugungszeitpunkt,
+  registrierter Verein), zusammen 102 – und **kein einziger Kommentar am
+  Zeilenende**. Über den gesamten Bestand ist EasyWk der einzige Erzeuger, der
+  Zeilenendkommentare setzt (alle 92 261). Die Zahl in `test/round-trip.test.ts`
+  ist mit den neuen Dateien deshalb unverändert geblieben.
+- **Trennzeichen immer vollständig.** Alle 3 704 Datenzeilen enden auf `;`, und
+  optionale Felder am Zeilenende stehen als leere Felder da statt zu fehlen
+  (`WETTKAMPF: 1;E;1;4;100;L;GL;M;;;`). EasyWk lässt das Schlusstrennzeichen in
+  rund 40 % der Zeilen weg. Für den Parser ist beides zulässig; für die
+  Feldzahlprüfung ist WebClub der strengere und damit aussagekräftigere Fall.
+
+Gemeinsam mit EasyWk hat WebClub das Leerzeichen nach dem Doppelpunkt und – im
+Gegensatz zu EasyWk – ausnahmslos CRLF. Kein BOM, durchgängig UTF-8.
 
 ### Anführungszeichen sind Daten, kein Quoting
 
@@ -121,18 +148,28 @@ könnte, gewinnt die konservative Lesart".
 
 ### Fehlende Listenarten
 
-**Vereinsmeldeliste und Vereinsergebnisliste: 0 Fundstellen.** Das ist
-strukturell, nicht Suchpech – beide enthalten die Meldedaten eines einzelnen
-Vereins und gehen direkt an den Ausrichter, statt veröffentlicht zu werden. Für
-diese beiden Listenarten gibt es also **keine Realdaten**; sie müssen
-synthetisch aus der Spec erzeugt oder bei einem Verein erfragt werden. Das ist
-ein Risiko für Schritt 5 der Umsetzung und der Grund, warum der synthetische
-Fixture-Korpus kein Beiwerk ist.
+Beide Vereinslisten enthalten die Meldedaten eines einzelnen Vereins und gehen
+direkt an den Ausrichter, statt veröffentlicht zu werden. Öffentlich zu finden
+sind sie deshalb nicht – das war strukturell, nicht Suchpech.
+
+**Vereinsmeldeliste: inzwischen 34 Realdateien.** Sie stammen nicht aus einer
+Websuche, sondern direkt von einem Verein (SV Haren), erzeugt mit **WebClub
+1.76**, alle in DSV7. Damit ist diese Listenart nicht mehr allein gegen die Spec
+gebaut. Der Befund der ersten Konfrontation steht in
+`test/parse/parse-vereinsmeldeliste.test.ts`: kein `fatal`, kein `error`, 171
+Warnungen – davon 170 an einer einzigen Regel, siehe Realdaten-Befund weiter
+unten.
+
+**Vereinsergebnisliste: weiterhin 0 Fundstellen.** Für sie gilt das oben
+Gesagte unverändert; sie muss synthetisch aus der Spec erzeugt oder bei einem
+Verein erfragt werden. Der synthetische Fixture-Korpus bleibt dafür kein
+Beiwerk.
 
 ### Unabhängige Implementierungen als Cross-Check
 
-Für die beiden Listenarten ohne Realdaten ist eine zweite, unabhängige Lesart
-der Spec der beste verfügbare Ersatz. Zwei Implementierungen eignen sich dafür:
+Für die Vereinsergebnisliste – und bis zum Zugang der 34 Meldelisten auch für
+die Vereinsmeldeliste – ist eine zweite, unabhängige Lesart der Spec der beste
+verfügbare Ersatz. Zwei Implementierungen eignen sich dafür:
 
 - **[bigcurl/dsv7-parser](https://github.com/bigcurl/dsv7-parser)** (Ruby, MIT) –
   deckt als einzige alle vier Listenarten ab und ist bemerkenswert ähnlich
@@ -146,6 +183,13 @@ Abgleich des `vml_schema.rb` gegen unseren Element-Katalog: **vollständige
 10, `STAFFELPERSON` 4, `PNMELDUNG` 10, `HANDICAP` 7, `STMELDUNG` 6) und
 inklusive aller vier in DSV8 angehängten Attribute, die dort erwartungsgemäß
 fehlen (`VEREIN` 4, `KARIMELDUNG` 3, `TRAINER` 2).
+
+Die 34 echten Vereinsmeldelisten bestätigen genau diese Zahlen ein zweites Mal,
+diesmal an Daten statt an fremdem Code: Über alle Dateien hinweg ist die
+Feldanzahl je Element konstant und deckt sich mit dem Schema, sobald man die
+`since: 8`-Felder abzieht – `VEREIN` 4 statt 5, `KARIMELDUNG` 3 statt 4,
+`TRAINER` 2 statt 3. Die Versionsmarkierungen der Tabelle waren also richtig
+geraten.
 
 Das ist ausdrücklich **Verifikation, keine Vorlage** – es wird kein Code
 übernommen. Der Nutzen liegt darin, Lesefehler in der Spec aufzudecken, dort wo
@@ -444,6 +488,25 @@ bietet sonst niemand an.
 - `BANKVERBINDUNG` und `LASTSCHRIFT` schließen einander aus (dsv8.md:828)
 - bei gesetztem „Grund der Nichtwertung" muss `Platz` = 0 sein
 - Vergleiche von Listart und Enum-Werten **case-insensitiv**
+
+### Offene Regel: Qualifikationswettkampfnr in der Vereinsmeldeliste
+
+Die Spec verlangt bei Zwischenläufen und Finals die Nummer des qualifizierenden
+Wettkampfes (dsv8.md:1793). In den 34 echten Vereinsmeldelisten schlägt diese
+Regel bei **allen 170 Wettkämpfen mit Art `F` an, ausnahmslos** – und in keiner
+Datei gibt es unter derselben Nummer einen Vorlauf oder Zwischenlauf, auf den
+verwiesen werden könnte.
+
+Eine Quote von 100 % über 34 unabhängig erzeugte Dateien spricht gegen einen
+Mangel der Dateien und für eine zu weit gefasste Regel: Eine Vereinsmeldung
+entsteht **vor** der Veranstaltung, also bevor sich überhaupt jemand
+qualifizieren konnte. `F` bezeichnet hier einen direkt ausgeschriebenen Endlauf.
+
+Die Regel bleibt vorerst eine `warning` und ist damit folgenlos. Ob sie für
+diese Listenart ganz entfallen sollte, ist **offen und bewusst nicht
+stillschweigend entschieden**; der Befund ist in
+`test/parse/parse-vereinsmeldeliste.test.ts` exakt festgehalten, damit eine
+Änderung auffällt.
 
 ## Testdaten und Datenschutz
 
