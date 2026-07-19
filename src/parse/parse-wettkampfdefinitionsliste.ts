@@ -5,8 +5,13 @@ import { parseTypedList } from './parse-typed-list.js';
 
 export type { TypedRecord } from './parse-typed-list.js';
 
-/** Eine gelesene Wettkampfdefinitionsliste. */
-export type Wettkampfdefinitionsliste = TypedList;
+/**
+ * Eine gelesene Wettkampfdefinitionsliste.
+ *
+ * Der Typparameter ist ein Phantom: Er unterscheidet die Listenart im
+ * Typsystem, ohne die Laufzeitform zu verändern.
+ */
+export type Wettkampfdefinitionsliste = TypedList<'Wettkampfdefinitionsliste'>;
 
 /**
  * Liest eine Wettkampfdefinitionsliste und legt jeden Feldwert unter seinem
@@ -20,5 +25,5 @@ export type Wettkampfdefinitionsliste = TypedList;
 export function parseWettkampfdefinitionsliste(
   input: string,
 ): ParseResult<Wettkampfdefinitionsliste> {
-  return parseTypedList(input, WETTKAMPFDEFINITIONSLISTE);
+  return parseTypedList<'Wettkampfdefinitionsliste'>(input, WETTKAMPFDEFINITIONSLISTE);
 }

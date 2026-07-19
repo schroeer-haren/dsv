@@ -3,8 +3,13 @@ import { WETTKAMPFERGEBNISLISTE } from '../schema/wettkampfergebnisliste.js';
 import type { TypedList } from './parse-typed-list.js';
 import { parseTypedList } from './parse-typed-list.js';
 
-/** Eine gelesene Wettkampfergebnisliste. */
-export type Wettkampfergebnisliste = TypedList;
+/**
+ * Eine gelesene Wettkampfergebnisliste.
+ *
+ * Der Typparameter ist ein Phantom: Er unterscheidet die Listenart im
+ * Typsystem, ohne die Laufzeitform zu verändern.
+ */
+export type Wettkampfergebnisliste = TypedList<'Wettkampfergebnisliste'>;
 
 /**
  * Liest eine Wettkampfergebnisliste und legt jeden Feldwert unter seinem
@@ -16,5 +21,5 @@ export type Wettkampfergebnisliste = TypedList;
  * führen zu `fatal` und einem leeren Bestand.
  */
 export function parseWettkampfergebnisliste(input: string): ParseResult<Wettkampfergebnisliste> {
-  return parseTypedList(input, WETTKAMPFERGEBNISLISTE);
+  return parseTypedList<'Wettkampfergebnisliste'>(input, WETTKAMPFERGEBNISLISTE);
 }

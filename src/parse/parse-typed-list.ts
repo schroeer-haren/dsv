@@ -15,13 +15,28 @@ export interface TypedRecord {
   readonly values: Readonly<Record<string, string>>;
 }
 
-/** Eine gelesene Liste, unabhängig von ihrer Listenart. */
-export interface TypedList {
+/**
+ * Eine gelesene Liste, unabhängig von ihrer Listenart.
+ *
+ * `TListenart` unterscheidet die Listenarten allein im Typsystem: Alle
+ * Listenarten tragen dieselbe Struktur, wären also strukturell wechselseitig
+ * zuweisbar — `projectWettkampfdefinitionsliste(ergebnisliste)` käme durch den
+ * Compiler. Das Phantomfeld `__listenart` wird nie gesetzt und existiert nicht
+ * zur Laufzeit; es ist optional, damit es beim Erzeugen einer Liste nirgends
+ * angegeben werden muss. Der Weg kostet damit keine Zeremonie: kein Wrapper,
+ * keine Kopie der Struktur je Listenart, keine Änderung am Verhalten.
+ */
+export interface TypedList<TListenart extends string = string> {
   readonly listenart: string;
   readonly version: FormatVersion;
   readonly records: readonly TypedRecord[];
   /** Das zugrunde liegende schema-freie Dokument, für Round-Trip und Rohzugriff. */
   readonly document: DsvDocument;
+  /**
+   * Phantomfeld: nur zur Unterscheidung der Listenarten im Typsystem. Wird nie
+   * gesetzt und nie gelesen.
+   */
+  readonly __listenart?: TListenart;
 }
 
 const AT_START = { start: { line: 1, column: 1 }, end: { line: 1, column: 1 } };
@@ -31,10 +46,10 @@ function isSupportedVersion(version: number | null): version is FormatVersion {
 }
 
 /** Ergebnis ohne typisierte Records, wenn die Datei gar nicht auswertbar ist. */
-function rejected(
+function rejected<TListenart extends string>(
   document: DsvDocument,
   diagnostics: readonly Diagnostic[],
-): ParseResult<TypedList> {
+): ParseResult<TypedList<TListenart>> {
   return {
     document: {
       listenart: document.listenart ?? '',
@@ -61,7 +76,10 @@ function rejected(
  * Die Listenart steckt allein in `schema` — das Lesen selbst ist für alle
  * Listenarten dasselbe Verfahren und nicht bloss ähnlich aussehender Code.
  */
-export function parseTypedList(input: string, schema: ListSchema): ParseResult<TypedList> {
+export function parseTypedList<TListenart extends string = string>(
+  input: string,
+  schema: ListSchema,
+): ParseResult<TypedList<TListenart>> {
   const parsed = parseDsv(input);
   const document = parsed.document;
   const listenart = document.listenart;
