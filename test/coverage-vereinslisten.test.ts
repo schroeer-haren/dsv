@@ -33,9 +33,11 @@ interface Listenart {
   readonly parse: (input: string) => ParseResult<TypedList<string>>;
   /**
    * Optionale Felder, die in keinem Fixture leer vorkommen. Soll leer bleiben:
-   * Für beide Vereinslisten gibt es keine echte Datei, die Fixtures sind
-   * vollständig in der Hand dieses Projekts, und jede Lücke lässt sich mit
-   * einer weiteren Zeile schliessen.
+   * Für die Vereinsergebnisliste gibt es keine echte Datei, die Fixtures sind
+   * dort vollständig in der Hand dieses Projekts, und jede Lücke lässt sich mit
+   * einer weiteren Zeile schliessen. Für die Vereinsmeldeliste kommen seit dem
+   * Bestand von 34 echten WebClub-Dateien Realdaten hinzu; sie schliessen die
+   * Lücken zusätzlich, statt sie zu öffnen.
    */
   readonly expectedNeverEmptyOptional: readonly string[];
 }
@@ -94,10 +96,13 @@ describe.each(LISTENARTEN)(
 
     /**
      * Anders als bei den beiden Wettkampflisten steht hier die vollständige
-     * Menge der Pflichtfelder: Für die Vereinslisten gibt es keine echte Datei,
-     * und kein Fixture lässt ein Pflichtfeld leer — ein leerer Wert wäre dort
-     * ein `missing-required-field`. Der Test schlägt an, sobald doch eines leer
-     * auftaucht.
+     * Menge der Pflichtfelder: Kein Fixture lässt ein Pflichtfeld leer — ein
+     * leerer Wert wäre dort ein `missing-required-field`. Der Test schlägt an,
+     * sobald doch eines leer auftaucht.
+     *
+     * Für die Vereinsmeldeliste ist das seit den 34 echten WebClub-Dateien
+     * keine blosse Eigenschaft selbstgebauter Fixtures mehr, sondern an echten
+     * Daten belegt: Auch sie lassen kein Pflichtfeld leer.
      */
     it('lässt kein Pflichtfeld leer', () => {
       expect(neverEmpty.filter((f) => required.has(f))).toEqual(

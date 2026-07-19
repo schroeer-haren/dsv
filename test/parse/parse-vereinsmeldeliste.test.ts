@@ -1,6 +1,11 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { parseDsv } from '../../src/parse/parse-dsv.js';
 import { parseVereinsmeldeliste } from '../../src/parse/parse-vereinsmeldeliste.js';
+import { VEREINSMELDELISTE } from '../../src/schema/vereinsmeldeliste.js';
+import { fieldsForVersion } from '../../src/validate/validate-fields.js';
+import { writeDsv } from '../../src/write/write-dsv.js';
 import { writeVereinsmeldeliste } from '../../src/write/write-vereinsmeldeliste.js';
 
 const FIXTURE = 'test/fixtures/synth/vereinsmeldung.dsv8';
@@ -111,5 +116,190 @@ describe('Vereinsmeldeliste — Grossschreibung der Listart', () => {
     );
 
     expect(result.diagnostics.map((d) => d.code)).toContain('wrong-list-type');
+  });
+});
+
+/**
+ * Alle Fixtures eines Verzeichnisses, die eine Vereinsmeldeliste sind.
+ *
+ * Bis zu diesem Bestand gab es für diese Listenart keine einzige echte Datei —
+ * das Schema war ausschliesslich gegen Kapitel 5.2 der Spezifikation gebaut.
+ * Die 34 Dateien hier sind die erste Konfrontation dieser Tabelle mit echten
+ * Daten.
+ */
+function meldeLists(dir: string): string[] {
+  return readdirSync(dir)
+    .filter((f) => /\.dsv[678]?$/i.test(f))
+    .filter((f) => !f.includes('-verstoss'))
+    .filter((f) => {
+      const { document } = parseDsv(readFileSync(join(dir, f), 'utf8'));
+      return (
+        document.listenart?.toLowerCase() === 'vereinsmeldeliste' &&
+        (document.version === 7 || document.version === 8)
+      );
+    });
+}
+
+const REAL = 'test/fixtures/real';
+const realMeldeLists = meldeLists(REAL);
+
+const readReal = (name: string): string => readFileSync(join(REAL, name), 'utf8');
+
+describe('Vereinsmeldelisten aus test/fixtures/real', () => {
+  it('findet den erwarteten Bestand', () => {
+    expect(realMeldeLists).toHaveLength(34);
+  });
+
+  it('stammt vollständig von WebClub 1.76', () => {
+    const erzeuger = new Set(
+      realMeldeLists.map((name) => {
+        const record = parseVereinsmeldeliste(readReal(name)).document.records.find(
+          (r) => r.element === 'ERZEUGER',
+        );
+        return `${String(record?.values['software'])} ${String(record?.values['version'])}`;
+      }),
+    );
+
+    expect([...erzeuger]).toEqual(['WebClub 1.76']);
+  });
+
+  it.each(realMeldeLists)('%s wird ohne fatal gelesen', (name) => {
+    const result = parseVereinsmeldeliste(readReal(name));
+    expect(result.diagnostics.filter((d) => d.severity === 'fatal')).toEqual([]);
+    expect(result.document.records.length).toBeGreaterThan(0);
+  });
+
+  it('hat keine einzige Datei mit einem Fehler', () => {
+    const withErrors = realMeldeLists.filter(
+      (name) =>
+        parseVereinsmeldeliste(readReal(name)).diagnostics.filter((d) => d.severity === 'error')
+          .length > 0,
+    );
+
+    expect(withErrors).toEqual([]);
+  });
+
+  it.each(realMeldeLists)('%s bleibt beim Round-Trip byte-identisch', (name) => {
+    const original = readReal(name);
+    expect(writeDsv(parseDsv(original).document)).toBe(original);
+  });
+
+  /**
+   * Der vollständige Befund über alle 34 Dateien, nach Code und Severity. Ein
+   * exakter Wert statt einer Schranke: Jede Abweichung ist entweder ein Mangel
+   * der Dateien oder ein Fehler in der Schematabelle, und beides soll auffallen.
+   */
+  it('erzeugt genau 171 Warnungen und sonst nichts', () => {
+    const byCode = new Map<string, number>();
+
+    for (const name of realMeldeLists) {
+      for (const d of parseVereinsmeldeliste(readReal(name)).diagnostics) {
+        const key = `${d.severity}/${d.code}`;
+        byCode.set(key, (byCode.get(key) ?? 0) + 1);
+      }
+    }
+
+    expect(Object.fromEntries([...byCode].sort())).toEqual({
+      'warning/conditional-field-required': 170,
+      'warning/invalid-enum-value': 1,
+    });
+  });
+
+  /**
+   * Befund mit Vorbehalt: Die Spezifikation verlangt bei Zwischenläufen und
+   * Finals die Nummer des qualifizierenden Wettkampfes (dsv8.md:1793). Betroffen
+   * sind hier **alle 170 Wettkämpfe mit Art `F`, ausnahmslos** — und in keiner
+   * der 34 Dateien gibt es unter derselben Nummer einen Vorlauf oder
+   * Zwischenlauf, auf den verwiesen werden könnte.
+   *
+   * Bei einer Quote von 100 % über 34 unabhängig erzeugte Dateien ist der Fehler
+   * eher in der Regel als in den Dateien zu suchen: Eine Vereinsmeldung entsteht
+   * vor der Veranstaltung, also bevor sich überhaupt jemand qualifizieren
+   * konnte. `F` bezeichnet hier einen direkt ausgeschriebenen Endlauf, keinen
+   * Lauf mit vorgeschaltetem Vorlauf. Die Regel bleibt vorerst eine `warning`
+   * und ist damit folgenlos; ob sie für diese Listenart ganz entfallen sollte,
+   * ist offen und ausdrücklich nicht stillschweigend entschieden.
+   */
+  it('warnt genau 170-mal wegen fehlender Qualifikationswettkampfnr — bei jedem Finale', () => {
+    const warnings = realMeldeLists.flatMap((name) =>
+      parseVereinsmeldeliste(readReal(name))
+        .diagnostics.filter((d) => d.code === 'conditional-field-required')
+        .map((d) => ({ name, data: d.data })),
+    );
+
+    expect(warnings).toHaveLength(170);
+    for (const warning of warnings) {
+      expect(warning.data).toMatchObject({
+        element: 'WETTKAMPF',
+        field: 'qualifikationswettkampfnr',
+        condition: 'F',
+      });
+    }
+
+    const finals = realMeldeLists.flatMap((name) =>
+      parseVereinsmeldeliste(readReal(name)).document.records.filter(
+        (r) => r.element === 'WETTKAMPF' && r.values['wettkampfart'] === 'F',
+      ),
+    );
+
+    expect(finals).toHaveLength(170);
+  });
+
+  /**
+   * Einzelbefund: `2026-06-28-Gera-SVHaren-Me.dsv7` meldet einen Wettkampf mit
+   * Art `A` (Ausschwimmen). Die Wertetabelle der Vereinsmeldeliste kennt den
+   * Wert nicht — sie nennt sogar nur `V` und `E` —, die Ergebnislisten dagegen
+   * schon (dsv8.md:3058). Das ist eine Lücke der Vorlage, kein Mangel der Datei;
+   * `A` und `N` werden deshalb wie in der Wettkampfdefinitionsliste toleriert.
+   */
+  it('toleriert die Wettkampfart A genau einmal', () => {
+    const tolerated = realMeldeLists.flatMap((name) =>
+      parseVereinsmeldeliste(readReal(name))
+        .diagnostics.filter((d) => d.code === 'invalid-enum-value')
+        .map((d) => ({ name, data: d.data })),
+    );
+
+    expect(tolerated).toEqual([
+      {
+        name: '2026-06-28-Gera-SVHaren-Me.dsv7',
+        data: { field: 'wettkampfart', value: 'A', tolerated: true },
+      },
+    ]);
+  });
+
+  /**
+   * Die Feldanzahl je Element ist über alle 34 Dateien konstant und deckt sich
+   * mit dem Schema — gemessen gegen die Felder der Formatversion 7, denn Felder
+   * mit `since: 8` haben in einer DSV7-Datei nicht einmal ein Trennzeichen.
+   *
+   * Das bestätigt die Tabelle an einer Stelle, die bisher nur behauptet war:
+   * `VEREIN.lastschrift`, `KARIMELDUNG.geschlecht` und `TRAINER.geschlecht`
+   * fehlen in den echten Dateien genau so, wie es ihr `since: 8` vorhersagt.
+   */
+  it('hält je Element eine konstante Feldanzahl, die zum Schema passt', () => {
+    const observed = new Map<string, Set<number>>();
+
+    for (const name of realMeldeLists) {
+      for (const item of parseDsv(readReal(name)).document.items) {
+        if (item.kind !== 'element' || item.bare) continue;
+        const seen = observed.get(item.element) ?? new Set<number>();
+        seen.add(item.fields.length);
+        observed.set(item.element, seen);
+      }
+    }
+
+    const expected = new Map(
+      VEREINSMELDELISTE.elements.map((o) => [o.def.name, fieldsForVersion(o.def, 7).length]),
+    );
+
+    const actual = [...observed]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([element, sizes]) => [element, [...sizes]]);
+
+    expect(actual).toEqual(
+      [...observed]
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([element]) => [element, [expected.get(element)]]),
+    );
   });
 });

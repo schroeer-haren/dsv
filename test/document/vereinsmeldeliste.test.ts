@@ -1,6 +1,8 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { projectVereinsmeldeliste } from '../../src/document/vereinsmeldeliste.js';
+import { parseDsv } from '../../src/parse/parse-dsv.js';
 import { parseVereinsmeldeliste } from '../../src/parse/parse-vereinsmeldeliste.js';
 
 /** Baut eine Elementzeile; jedes Attribut wird mit `;` terminiert. */
@@ -435,5 +437,132 @@ describe('projectVereinsmeldeliste', () => {
     const { graph } = project(...RUMPF, pnmeldung({ veranstaltungsId: 'xx' }));
 
     expect(graph.meldungen[0]?.veranstaltungsId).toBeNaN();
+  });
+});
+
+const REAL = 'test/fixtures/real';
+
+/** Alle echten Fixtures, die eine Vereinsmeldeliste sind. */
+const realMeldeLists = readdirSync(REAL)
+  .filter((f) => /\.dsv[678]?$/i.test(f))
+  .filter((f) => {
+    const { document } = parseDsv(readFileSync(join(REAL, f), 'utf8'));
+    return (
+      document.listenart?.toLowerCase() === 'vereinsmeldeliste' &&
+      (document.version === 7 || document.version === 8)
+    );
+  });
+
+/** Projiziert eine echte Datei. */
+function projectReal(name: string): ReturnType<typeof projectVereinsmeldeliste> {
+  return projectVereinsmeldeliste(
+    parseVereinsmeldeliste(readFileSync(join(REAL, name), 'utf8')).document,
+  );
+}
+
+/**
+ * Der Objektgraph dieser Listenart war bis zu diesem Bestand ausschliesslich an
+ * selbstgebauten Zeilen geprüft. Hier läuft er über 34 echte Dateien.
+ */
+describe('Projektion über echte Vereinsmeldelisten', () => {
+  it('findet den erwarteten Bestand', () => {
+    expect(realMeldeLists).toHaveLength(34);
+  });
+
+  it.each(realMeldeLists)('%s ergibt einen nicht-leeren Graph', (name) => {
+    const { graph } = projectReal(name);
+    expect(graph.abschnitte.length).toBeGreaterThan(0);
+    expect(graph.wettkampfByKey.size).toBeGreaterThan(0);
+    expect(graph.verein).not.toBeNull();
+  });
+
+  it.each(realMeldeLists)('%s: jeder Wettkampf findet seinen Abschnitt', (name) => {
+    expect(projectReal(name).graph.wettkaempfeOhneAbschnitt).toEqual([]);
+  });
+
+  /**
+   * Über alle 34 Dateien entsteht **keine einzige** Diagnostic. Ein exakter
+   * Wert statt einer Schranke: Sobald eine echte Datei eine hängende oder
+   * mehrdeutige Referenz enthält, soll das auffallen.
+   */
+  it('erzeugt über alle 34 Dateien keine einzige Warnung', () => {
+    const diagnostics = realMeldeLists.flatMap((name) =>
+      projectReal(name).diagnostics.map((d) => ({ name, code: d.code, severity: d.severity })),
+    );
+
+    expect(diagnostics).toEqual([]);
+  });
+
+  /**
+   * Der interessante Fall: STARTPN nennt den Wettkampf nur über die Nummer,
+   * ohne die Art (dsv8.md:2381). Mehrdeutig wird das erst, wenn dieselbe Nummer
+   * unter mehreren Arten geführt ist.
+   *
+   * In den echten Dateien gibt es genau **eine** solche Nummer —
+   * `2026-06-28-Gera-SVHaren-Me.dsv7` führt Wettkampf 322 als `V` und als `E` —
+   * und auf sie zeigt **kein einziger Start**. Die Mehrdeutigkeit existiert
+   * also strukturell, wird aber nie ausgelöst. Deshalb steht oben null und
+   * nicht eins.
+   */
+  it('löst jeden Start eindeutig auf, trotz einer mehrdeutigen Wettkampfnummer', () => {
+    const ambiguous = realMeldeLists.flatMap((name) =>
+      projectReal(name).diagnostics.filter((d) => d.code === 'ambiguous-reference'),
+    );
+
+    expect(ambiguous).toEqual([]);
+
+    const arten = new Map<string, number>();
+    let starts = 0;
+
+    for (const name of realMeldeLists) {
+      for (const meldung of projectReal(name).graph.meldungen) {
+        for (const start of meldung.starts) {
+          starts++;
+          arten.set(start.wettkampfart, (arten.get(start.wettkampfart) ?? 0) + 1);
+        }
+      }
+    }
+
+    expect(starts).toBe(1338);
+    // Jeder Start hat eine aufgelöste Art — keiner bleibt leer.
+    expect(Object.fromEntries([...arten].sort())).toEqual({ E: 1298, V: 40 });
+  });
+
+  /**
+   * dsv8.md:2524 — „Reine Staffelschwimmer müssen als PNMELDUNG ohne STARTPN
+   * angegeben werden." Genau ein solcher Fall steht in den echten Dateien. Er
+   * ist der vorgesehene Normalfall, keine Auffälligkeit, und erzeugt deshalb
+   * keine Diagnostic.
+   */
+  it('führt genau eine Personenmeldung ohne Einzelstart', () => {
+    const ohneStart = realMeldeLists.flatMap((name) =>
+      projectReal(name)
+        .graph.meldungen.filter((m) => m.starts.length === 0)
+        .map(() => name),
+    );
+
+    expect(ohneStart).toHaveLength(1);
+  });
+
+  it('zählt den Gesamtbestand des Graphen', () => {
+    let meldungen = 0;
+    let staffelmeldungen = 0;
+    let kampfrichter = 0;
+    let trainer = 0;
+
+    for (const name of realMeldeLists) {
+      const { graph } = projectReal(name);
+      meldungen += graph.meldungen.length;
+      staffelmeldungen += graph.staffelmeldungen.length;
+      kampfrichter += graph.kampfrichter.length;
+      trainer += graph.trainer.length;
+    }
+
+    expect({ meldungen, staffelmeldungen, kampfrichter, trainer }).toEqual({
+      meldungen: 268,
+      staffelmeldungen: 28,
+      kampfrichter: 78,
+      trainer: 30,
+    });
   });
 });
