@@ -154,6 +154,27 @@ describe('projectVereinsmeldeliste', () => {
       });
     });
 
+    it('hält zwei PNMELDUNGen mit unlesbarer Kennung nicht für Duplikate', () => {
+      // Ein nicht lesbares Zahlenfeld ergibt `NaN`. Als Map-Schlüssel
+      // kollidiert `NaN` mit sich selbst (SameValueZero), deshalb hielte die
+      // Duplikatprüfung zwei Meldungen mit unlesbarer Kennung für dieselbe.
+      // Der `Number.isFinite`-Wächter vor dem `set` verhindert das.
+      const result = project(
+        ...RUMPF,
+        pnmeldung({ veranstaltungsId: 'x' }),
+        pnmeldung({ veranstaltungsId: 'y', name: 'Muster, Mo' }),
+      );
+
+      expect(codes(result)).not.toContain('ambiguous-reference');
+      expect(result.graph.personById.has(Number.NaN)).toBe(false);
+    });
+
+    it('meldet zwei PNMELDUNGen mit derselben Kennung weiterhin als Duplikat', () => {
+      const result = project(...RUMPF, pnmeldung(), pnmeldung({ name: 'Muster, Mo' }));
+
+      expect(codes(result)).toContain('ambiguous-reference');
+    });
+
     it('löst den Trainer auf', () => {
       const trainer = line('TRAINER', ['1', 'Trainer, Tina', 'W']);
       const { graph, diagnostics } = project(...RUMPF, trainer, pnmeldung({ nummerTrainer: '1' }));

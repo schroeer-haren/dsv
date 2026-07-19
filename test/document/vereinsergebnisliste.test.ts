@@ -644,6 +644,66 @@ describe('Wertungen gehören zum Wettkampf des Ergebnisses', () => {
     expect(codes(result)).toContain('dangling-reference');
   });
 
+  describe('unlesbare Kennungen werden nicht zu Duplikaten', () => {
+    // Ein nicht lesbares Zahlenfeld ergibt `NaN`. Als Map-Schlüssel kollidiert
+    // `NaN` mit sich selbst (SameValueZero), deshalb hält jede Duplikatprüfung
+    // zwei Sätze mit unlesbarer Kennung für denselben. Der
+    // `Number.isFinite`-Wächter vor dem `set` verhindert genau das: Ohne ihn
+    // entstünde ein falsches `ambiguous-reference`, und der zweite Satz ginge
+    // verloren.
+
+    it('meldet zwei WERTUNGen mit unlesbarer Kennung nicht als Duplikat', () => {
+      const a = line('WERTUNG', ['1', 'E', 'x', 'JG', '0', '9999', '', 'Erste']);
+      const b = line('WERTUNG', ['1', 'E', 'y', 'JG', '0', '9999', '', 'Zweite']);
+      const result = project(ABSCHNITT, WETTKAMPF, a, b, VEREIN);
+
+      expect(codes(result)).not.toContain('ambiguous-reference');
+      expect(result.graph.wertungById.has(Number.NaN)).toBe(false);
+    });
+
+    it('meldet zwei PERSONen mit unlesbarer Kennung nicht als Duplikat', () => {
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        person({ veranstaltungsId: 'x' }),
+        person({ veranstaltungsId: 'y', name: 'Muster, Mo' }),
+      );
+
+      expect(codes(result)).not.toContain('ambiguous-reference');
+      expect(result.graph.personById.has(Number.NaN)).toBe(false);
+    });
+
+    it('meldet zwei STAFFELn mit unlesbarer Kennung nicht als Duplikat', () => {
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        staffel({ veranstaltungsIdStaffel: 'x' }),
+        staffel({ veranstaltungsIdStaffel: 'y', nummerDerMannschaft: '2' }),
+      );
+
+      expect(codes(result)).not.toContain('ambiguous-reference');
+      expect(result.graph.staffelById.has(Number.NaN)).toBe(false);
+    });
+
+    it('meldet echte Duplikate weiterhin', () => {
+      // Gegenprobe: Der Wächter darf die Duplikatprüfung nicht abschalten.
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        person(),
+        person({ name: 'Muster, Mo' }),
+      );
+
+      expect(codes(result)).toContain('ambiguous-reference');
+    });
+  });
+
   describe('doppelte Wertung innerhalb eines Starts', () => {
     // dsv8.md:3471 — "Für jede definierte Wertung muss hier jeweils die
     // erreichte Platzierung ausgegeben werden": je Wertung genau eine. In allen

@@ -207,6 +207,21 @@ describe('projectWettkampfdefinitionsliste', () => {
     expect(graph.abschnitte[0]?.wettkaempfe).toHaveLength(2);
   });
 
+  it('hält zwei Wertungen mit unlesbarer Kennung nicht für Duplikate', () => {
+    // Ein nicht lesbares Zahlenfeld ergibt `NaN`. Als Map-Schlüssel kollidiert
+    // `NaN` mit sich selbst (SameValueZero), deshalb hielte die Duplikatprüfung
+    // zwei Wertungen mit unlesbarer Kennung für dieselbe. Der
+    // `Number.isFinite`-Wächter vor dem `set` verhindert das.
+    const lines = withLine(
+      withLine(minimal(), line('WERTUNG', ['1', 'E', 'x', 'JG', '2010', '', '', 'erste'])),
+      line('WERTUNG', ['1', 'E', 'y', 'JG', '2011', '', '', 'zweite']),
+    );
+    const { graph, diagnostics } = project(lines);
+
+    expect(diagnostics.filter((d) => d.code === 'ambiguous-reference')).toEqual([]);
+    expect(graph.wertungById.has(Number.NaN)).toBe(false);
+  });
+
   it('meldet zwei Wertungen mit gleicher Kennung; die erste gewinnt', () => {
     const { graph, diagnostics } = project(
       withLine(minimal(), line('WERTUNG', ['1', 'E', '1', 'JG', '2011', '', '', 'zweite'])),

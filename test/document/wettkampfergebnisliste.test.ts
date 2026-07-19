@@ -531,6 +531,19 @@ describe('projectWettkampfergebnisliste', () => {
     expect(person?.starts.map((s) => s.wettkampfnr)).toEqual([1, 2]);
   });
 
+  it('hält zwei Wertungen mit unlesbarer Kennung nicht für Duplikate', () => {
+    // Ein nicht lesbares Zahlenfeld ergibt `NaN`. Als Map-Schlüssel kollidiert
+    // `NaN` mit sich selbst (SameValueZero), deshalb hielte die Duplikatprüfung
+    // zwei Wertungen mit unlesbarer Kennung für dieselbe. Der
+    // `Number.isFinite`-Wächter vor dem `set` verhindert das.
+    const a = line('WERTUNG', ['1', 'E', 'x', 'JG', '2010', '', '', 'erste']);
+    const b = line('WERTUNG', ['1', 'E', 'y', 'JG', '2011', '', '', 'zweite']);
+    const { graph, diagnostics } = project(ABSCHNITT, WETTKAMPF, a, b, VEREIN);
+
+    expect(diagnostics.filter((d) => d.code === 'ambiguous-reference')).toEqual([]);
+    expect(graph.wertungById.has(Number.NaN)).toBe(false);
+  });
+
   describe('doppelte Wertung innerhalb eines Starts', () => {
     // dsv8.md:5019 — "Für jede definierte Wertung muss hier jeweils die
     // erreichte Platzierung ausgegeben werden": je Wertung genau eine. In allen
