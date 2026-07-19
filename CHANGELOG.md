@@ -1,5 +1,102 @@
 # Changelog
 
+## 0.5.0
+
+Diese Version bringt keine neue Funktion, sondern **Verlässlichkeit**: Die
+Unterscheidung zwischen DSV7 und DSV8 wurde vollständig überprüft, und die
+Vereinsmeldeliste hat zum ersten Mal echte Dateien gesehen. Beides hat Fehler
+zutage gefördert, die Nutzerinnen und Nutzer unmittelbar betreffen — vor allem
+beim Geschlechtswert `D = divers`. Die öffentliche API ist gegenüber 0.4.0
+**unverändert**; `src/index.ts` ist byte-identisch.
+
+### Behoben: vier falsche DSV8-Markierungen bei `divers`
+
+Die Bibliothek unterscheidet, welche Werte es erst ab DSV8 gibt. Ein
+zeilenweiser Abgleich der DSV7- und DSV8-Spezifikation über alle vier
+Listenarten hat gezeigt, dass `D = divers` in DSV7 **inkonsistent** vorhanden
+ist — und dass die Markierungen das an vier Stellen falsch abgebildet haben.
+
+Drei Stellen waren fälschlich als DSV8-neu markiert. Dort hat die Bibliothek
+**gültige DSV7-Dateien beanstandet**:
+
+- `PNMELDUNG.geschlecht` der Vereinsmeldeliste (dsv7.md:2070)
+- `PERSON.geschlecht` und `STAFFELPERSON.geschlecht` der Vereinsergebnisliste
+  (dsv7.md:3260, dsv7.md:3731)
+- `WETTKAMPF.geschlecht` der Wettkampfergebnisliste (dsv7.md:4636)
+
+Wer DSV7-Dateien mit `D` an diesen Stellen liest, bekommt die Warnung jetzt
+nicht mehr. Die Werte waren immer schon gültig.
+
+Eine Stelle war **nicht** markiert, obwohl sie es hätte sein müssen:
+`WERTUNG.geschlecht` der Wettkampfergebnisliste führt in DSV7 nur `M`, `W`, `X`
+(dsv7.md:4775–4778), erst DSV8 ergänzt `divers` (dsv8.md:4942). Eine DSV7-Datei
+mit DSV8-Inhalt wurde dort stillschweigend angenommen — die Richtung, die
+tatsächlich Korrektheit kostet. Sie wird jetzt beanstandet.
+
+Damit sich das nicht wiederholt, hält ein neuer Test das **vollständige Delta**
+zwischen DSV7 und DSV8 für alle vier Listenarten fest und verlangt Gleichheit in
+beide Richtungen: Weder eine überzählige noch eine fehlende Markierung bleibt
+unbemerkt. Je Listenart gibt es zusätzlich eine Gegenprobe aus drei Dateien —
+dieselbe Datei ohne DSV8-Inhalt (gültig als DSV7), mit DSV8-Inhalt (gültig als
+DSV8) und mit DSV8-Inhalt als DSV7 deklariert (wird beanstandet). Die letzten
+beiden sind zeilengleich bis auf die Versionsnummer, und ein Test prüft genau
+das.
+
+### Behoben: kein Qualifikationswettkampf in der Vereinsmeldeliste
+
+Die Spezifikation verlangt bei Wettkampfart `Z` oder `F` die Nummer des
+qualifizierenden Wettkampfes (dsv8.md:1793). Diese Regel beschreibt den
+**Ergebnisfall, nicht den Meldefall**: Eine Vereinsmeldung entsteht vor der
+Veranstaltung, also bevor sich überhaupt jemand qualifizieren konnte, und `F`
+bezeichnet dort einen direkt ausgeschriebenen Endlauf.
+
+Gemessen an den 34 echten Vereinsmeldelisten schlug die Regel bei **allen 170
+Wettkämpfen der Art `F` an, also zu 100 %** — und in keiner Datei existiert
+unter derselben Nummer ein Vor- oder Zwischenlauf, auf den verwiesen werden
+könnte. Die Regel gilt für die Vereinsmeldeliste deshalb nicht mehr. Für die
+übrigen drei Listenarten bleibt sie unverändert in Kraft.
+
+Über alle 142 echten Dateien sinkt die Zahl der Diagnostics dadurch von 368 auf
+198; alle 170 entfallenen Warnungen stammen aus Vereinsmeldelisten.
+
+### Behoben: Wettkampfart `A` in der Vereinsmeldeliste
+
+Die Wertetabelle der Vereinsmeldeliste nennt nur `V` und `E`, die Ergebnislisten
+dagegen auch `A` (Ausschwimmen) und `N` (dsv8.md:3058). Eine echte Datei nutzt
+`A`. Das ist eine Lücke der Vorlage, kein Mangel der Datei — beide Werte werden
+jetzt wie in der Wettkampfdefinitionsliste toleriert.
+
+### Erprobung: 34 echte Vereinsmeldelisten
+
+Für diese Listenart gab es bis 0.4.0 **keine einzige echte Datei**; das Schema
+war ausschliesslich gegen die Spezifikation gebaut. Die erste Konfrontation mit
+der Wirklichkeit verlief ohne Beanstandung: kein `fatal`, kein `error`,
+Feldanzahlen exakt wie im Schema, und alle 34 Dateien schreiben sich
+byte-identisch zurück. Die Versionsmarkierungen haben sich dabei bestätigt — in
+DSV7 hat `VEREIN` vier Felder statt fünf, `KARIMELDUNG` drei statt vier und
+`TRAINER` zwei statt drei.
+
+Mit diesen Dateien kommt ein **fünfter Erzeuger-Dialekt** hinzu: WebClub 1.76.
+Er schreibt Kommentare nur in eigenen Zeilen, nie am Zeilenende, und setzt die
+Trennzeichen immer vollständig — EasyWk lässt sie in etwa 40 % der Zeilen weg.
+Der Bestand an echten Testdateien wächst damit auf **142**.
+
+### Zu beachten
+
+Die API ist unverändert, das Verhalten ändert sich an drei Stellen:
+
+- DSV7-Dateien mit `divers` an den drei oben genannten Stellen erzeugen **keine
+  Warnung mehr**. Wer Diagnostics auszählt, sieht weniger.
+- DSV7-Dateien mit `divers` an `WERTUNG.geschlecht` der Wettkampfergebnisliste
+  erzeugen **neu** eine Beanstandung. Das ist die einzige Verschärfung dieser
+  Version; betroffen sind nur Dateien, die sich als DSV7 ausgeben und
+  DSV8-Inhalt tragen.
+- Vereinsmeldelisten erzeugen keine `conditional-field-required`-Warnung zum
+  Qualifikationswettkampf mehr.
+
+Alle drei Änderungen betreffen ausschliesslich Diagnostics. Gelesene Records,
+Objektgraphen und geschriebene Dateien bleiben identisch.
+
 ## 0.4.0
 
 Die beiden Vereinslisten sind jetzt typisiert — damit sind **alle vier

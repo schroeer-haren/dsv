@@ -8,10 +8,12 @@
 TypeScript-Bibliothek zum **Parsen und Erzeugen von DSV-Dateien** des Deutschen
 Schwimm-Verbands – Formate **DSV7** und **DSV8**.
 
-> ⚠️ **Status: 0.4.0.** Die schema-freie Ebene liest und schreibt Dateien aller
+> ⚠️ **Status: 0.5.0.** Die schema-freie Ebene liest und schreibt Dateien aller
 > vier Listenarten byte-identisch zurück. Darauf setzt die typisierte Ebene auf –
 > seit 0.4.0 für **alle vier Listenarten**: benannte Felder, Validierung gegen
-> das Schema und ein Objektgraph mit aufgelösten Bezügen.
+> das Schema und ein Objektgraph mit aufgelösten Bezügen. 0.5.0 hat die
+> Unterscheidung zwischen DSV7 und DSV8 vollständig überprüft und erprobt die
+> Bibliothek an **142 echten Dateien**.
 
 ## Installation
 
@@ -490,6 +492,31 @@ auf eine Wertung des eigenen Wettkampfs zeigen – ein Fremdbezug ist ein
 `dangling-reference`. Diese Regel halten alle 97.330 Ergebnisse der echten
 Dateien ausnahmslos ein.
 
+## Erprobung an echten Dateien
+
+Die Bibliothek wird nicht nur gegen die Spezifikation getestet, sondern gegen
+**142 echte DSV-Dateien** aus dem Wettkampfbetrieb:
+
+| Listenart                 | Dateien |
+| ------------------------- | ------: |
+| Wettkampfergebnisliste    |      75 |
+| Vereinsmeldeliste         |      34 |
+| Wettkampfdefinitionsliste |      33 |
+| Vereinsergebnisliste      |       0 |
+
+Die Dateien stammen aus **fünf Erzeuger-Dialekten** – EasyWk, SPLASH Meet
+Manager, cps-schwimm, Schwimmsoftware und WebClub. Die Dialekte unterscheiden
+sich real: WebClub schreibt Kommentare nur in eigenen Zeilen und setzt die
+Trennzeichen immer vollständig, EasyWk lässt sie in etwa 40 % der Zeilen weg.
+Jede dieser Dateien wird byte-identisch zurückgeschrieben.
+
+Für die **Vereinsergebnisliste** gibt es bislang keine echte Datei; ihr Schema
+ist ausschliesslich gegen die Spezifikation gebaut. 137 Dateien sind DSV7, 5 sind
+DSV6 und werden erwartungsgemäss mit `fatal` abgelehnt – **DSV8 ist in freier
+Wildbahn noch nicht anzutreffen**. Die DSV8-Unterstützung ist deshalb gegen das
+vollständige, zeilenweise erhobene Delta zwischen beiden Spezifikationen
+abgesichert statt gegen Realdaten.
+
 ## Roadmap
 
 - [x] Schema-freies Lesen beliebiger DSV-Dateien in Records
@@ -504,8 +531,15 @@ Dateien ausnahmslos ein.
 - [x] Objektgraph mit aufgelösten Bezügen für die Vereinsmeldeliste
 - [x] Vereinsergebnisliste typisiert lesen/schreiben (DSV7 und DSV8)
 - [x] Objektgraph mit aufgelösten Bezügen für die Vereinsergebnisliste
+- [x] DSV7/DSV8-Delta über alle vier Listenarten zeilenweise verifiziert
+- [x] Erprobung an 142 echten Dateien aus fünf Erzeuger-Dialekten
+- [ ] Echte Vereinsergebnislisten als Testdaten
+- [ ] Echte DSV8-Dateien, sobald sie im Umlauf sind
+- [ ] Ableitung von Dateinamen nach der Namenskonvention der Spezifikation
 
-Damit sind alle vier Listenarten des DSV-Standards typisiert erschlossen.
+Damit sind alle vier Listenarten des DSV-Standards typisiert erschlossen. Was
+noch fehlt, ist keine Funktion, sondern Realdaten: für die Vereinsergebnisliste
+und für DSV8 insgesamt.
 
 ## Entwicklung
 
@@ -535,7 +569,7 @@ baut, prüft und via **npm Trusted Publishing (OIDC)** mit Provenance nach npm
 veröffentlicht. Es wird kein npm-Token im Repository benötigt.
 
 ```
-gh release create v0.4.0 --title v0.4.0 --generate-notes
+gh release create v0.5.0 --title v0.5.0 --generate-notes
 ```
 
 ## Built With
