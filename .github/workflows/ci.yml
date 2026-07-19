@@ -37,6 +37,9 @@ jobs:
       - name: Typecheck (TypeScript)
         run: npm run typecheck
 
+      - name: Check generated schema types
+        run: npm run generate:check
+
       - name: Check API surface snapshot
         run: npm run api-surface:check
 

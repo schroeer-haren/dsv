@@ -66,7 +66,7 @@
     "api-surface:check": "npm run api-surface && git diff --exit-code docs/public-api-surface.md",
     "publint": "publint --strict",
     "attw": "attw --pack .",
-    "check": "npm run lint && npm run typecheck && npm run api-surface:check && npm run test && npm run build && npm run publint && npm run attw",
+    "check": "npm run lint && npm run typecheck && npm run generate:check && npm run api-surface:check && npm run test && npm run build && npm run publint && npm run attw",
     "prepare": "npm run build"
   },
   "devDependencies": {
