@@ -1,11 +1,17 @@
 /**
  * Schema der Vereinsmeldeliste (dsv8.md:1520 ff.).
  *
- * Für diese Listenart gibt es keine einzige echte Datei. Die Definitionen
- * stützen sich allein auf Kapitel 5.2 der Spezifikation, gegengeprüft an den
- * Beispielzeilen desselben Kapitels und an einer fremden Ruby-Implementierung.
- * Wo Tabelle und Beispiel einander widersprechen, steht die Entscheidung am
- * betroffenen Element.
+ * Die Definitionen stützen sich auf Kapitel 5.2 der Spezifikation,
+ * gegengeprüft an den Beispielzeilen desselben Kapitels und an einer fremden
+ * Ruby-Implementierung. Wo Tabelle und Beispiel einander widersprechen, steht
+ * die Entscheidung am betroffenen Element.
+ *
+ * Anders als bei ihrer Entstehung gibt es für diese Listenart inzwischen echte
+ * Dateien: 34 Vereinsmeldelisten in DSV7, alle von WebClub 1.76. Sie
+ * bestätigen die Tabelle weitgehend — insbesondere die Feldzahlen samt der
+ * `since: 8`-Markierungen — und haben eine Lücke aufgedeckt, siehe
+ * `WETTKAMPFART_WERTE`. Der vollständige Befund steht in
+ * `test/parse/parse-vereinsmeldeliste.test.ts`.
  *
  * Wie bei den anderen Listenarten sind die gleichnamigen Kopfelemente eigene
  * Definitionen: ABSCHNITT führt hier vier Felder, WETTKAMPF kennt keine
@@ -30,13 +36,23 @@ import { element, field } from './types.js';
  * (dsv8.md:1729). Die Beispielzeile desselben Kapitels verwendet aber `F`
  * (dsv8.md:2608), und das unmittelbar benachbarte Feld der qualifizierenden
  * Wettkampfart führt V, Z, F und E auf. Die Aufzählung ist damit nachweislich
- * unvollständig; hier stehen deshalb alle vier Werte.
+ * unvollständig; hier stehen deshalb alle vier Werte. Die echten Dateien
+ * bestätigen das: `E` und `F` kommen tausendfach vor.
+ *
+ * `A` und `N` sieht die Spezifikation nur in den Ergebnislisten vor
+ * (dsv8.md:3058). Die Wettkampfdefinitionsliste toleriert sie trotzdem, weil
+ * `N` dort in echten Ausschreibungen belegt ist. Für die Vereinsmeldeliste
+ * liegt nun ein Beleg für `A` vor: `2026-06-28-Gera-SVHaren-Me.dsv7` meldet
+ * einen Wettkampf mit Art `A`. Beide Werte werden deshalb wie dort behandelt —
+ * beim Lesen toleriert, beim Schreiben weiterhin unzulässig.
  */
 const WETTKAMPFART_WERTE: readonly EnumValue[] = [
   { value: 'V', doc: 'Vorlauf' },
   { value: 'Z', doc: 'Zwischenlauf' },
   { value: 'F', doc: 'Finale' },
   { value: 'E', doc: 'Entscheidung' },
+  { value: 'A', doc: 'Ausschwimmen', tolerated: true },
+  { value: 'N', doc: 'Nachschwimmen', tolerated: true },
 ];
 
 /**

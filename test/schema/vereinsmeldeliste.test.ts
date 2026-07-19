@@ -118,9 +118,23 @@ describe('Vereinsmeldeliste — WETTKAMPF', () => {
     ]);
   });
 
-  it('nimmt alle vier Wettkampfarten auf, obwohl die Wertetabelle nur zwei nennt', () => {
-    expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual(['V', 'Z', 'F', 'E']);
-    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual(['V', 'Z', 'F', 'E']);
+  /**
+   * Die Wertetabelle nennt nur `V` und `E`. `Z` und `F` kommen aus der
+   * Beispielzeile und dem Nachbarfeld, `A` und `N` aus den echten Dateien: Eine
+   * der 34 Vereinsmeldelisten meldet einen Wettkampf mit Art `A`. Wie in der
+   * Wettkampfdefinitionsliste sind die letzten beiden nur toleriert — lesbar,
+   * aber nicht schreibbar.
+   */
+  it('nimmt sechs Wettkampfarten auf, obwohl die Wertetabelle nur zwei nennt', () => {
+    expect(enumValues(WETTKAMPF, 'wettkampfart')).toEqual(['V', 'Z', 'F', 'E', 'A', 'N']);
+    expect(enumValues(WETTKAMPF, 'qualifikationswettkampfart')).toEqual([
+      'V',
+      'Z',
+      'F',
+      'E',
+      'A',
+      'N',
+    ]);
   });
 
   it('führt die geteilten und die eigenen Wertelisten', () => {
