@@ -787,3 +787,64 @@ describe('Vereinsergebnisliste — Typprüfung greift beim Lesen', () => {
     expect(befunde[0]?.data).toMatchObject({ field: 'abschnittsdatum', value: '32.13.2026' });
   });
 });
+
+/**
+ * Hält die DSV8-Markierungen fest — vollständig, wie es der Gegentest der
+ * Vereinsmeldeliste für ihre Felder tut.
+ *
+ * DSV7 kennt weder die Kicks `KB`/`KR` noch das Geschlecht `D`. Ohne diesen
+ * Test bliebe unbelegt, dass die Vereinsergebnisliste beides erst ab DSV8
+ * zulässt — und ein fehlendes `since: 8` fiele nicht auf, weil die
+ * synthetischen Fixtures dieser Listenart durchweg DSV8 sind.
+ */
+describe('Vereinsergebnisliste — DSV8-Markierungen', () => {
+  /** Die erst ab DSV8 erlaubten Werte eines Feldes. */
+  function seit8(def: ElementDef, fieldName: string): readonly string[] {
+    const found = def.fields.find((f) => f.name === fieldName);
+    if (found === undefined) throw new Error(`Feld ${fieldName} fehlt in ${def.name}`);
+    return (found.values ?? []).filter((v) => v.since === 8).map((v) => v.value);
+  }
+
+  it('lässt die Kicks erst ab DSV8 zu', () => {
+    expect(seit8(WETTKAMPF, 'ausuebung')).toEqual(['KB', 'KR']);
+  });
+
+  it('lässt divers an allen vier Geschlechtsfeldern erst ab DSV8 zu', () => {
+    expect(seit8(WETTKAMPF, 'geschlecht')).toEqual(['D']);
+    expect(seit8(WERTUNG, 'geschlecht')).toEqual(['D']);
+    expect(seit8(PERSON, 'geschlecht')).toEqual(['D']);
+    expect(seit8(STAFFELPERSON, 'geschlecht')).toEqual(['D']);
+  });
+
+  /**
+   * Die Vereinsergebnisliste ist rein additiv gegenüber DSV7: kein Element und
+   * kein Feld kommt hinzu, nur Werte. Diese Erwartung steht ausgeschrieben da,
+   * damit ein versehentlich gesetztes `since` auffällt.
+   */
+  it('führt weder ein Element noch ein Feld erst ab DSV8 ein', () => {
+    const elementeSeit8: string[] = [];
+    const felderSeit8: string[] = [];
+    const werteSeit8: string[] = [];
+
+    for (const occurrence of VEREINSERGEBNISLISTE.elements) {
+      if (occurrence.def.since === 8) elementeSeit8.push(occurrence.def.name);
+      for (const f of occurrence.def.fields) {
+        if (f.since === 8) felderSeit8.push(`${occurrence.def.name}.${f.name}`);
+        for (const v of f.values ?? []) {
+          if (v.since === 8) werteSeit8.push(`${occurrence.def.name}.${f.name}=${v.value}`);
+        }
+      }
+    }
+
+    expect(elementeSeit8).toEqual([]);
+    expect(felderSeit8).toEqual([]);
+    expect(werteSeit8).toEqual([
+      'WETTKAMPF.ausuebung=KB',
+      'WETTKAMPF.ausuebung=KR',
+      'WETTKAMPF.geschlecht=D',
+      'WERTUNG.geschlecht=D',
+      'PERSON.geschlecht=D',
+      'STAFFELPERSON.geschlecht=D',
+    ]);
+  });
+});
