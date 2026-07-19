@@ -281,7 +281,9 @@ export interface Vereinsergebnis {
   readonly wettkampfByKey: ReadonlyMap<string, VereinsergebnisWettkampf>;
   readonly wertungById: ReadonlyMap<number, VereinsergebnisWertung>;
   readonly abschnittByNummer: ReadonlyMap<number, VereinsergebnisAbschnitt>;
+  /** Schlüssel ist die `veranstaltungsId` der Person. */
   readonly personById: ReadonlyMap<number, VereinsergebnisPerson>;
+  /** Schlüssel ist die `veranstaltungsId` der Staffel. */
   readonly staffelById: ReadonlyMap<number, VereinsergebnisStaffel>;
   /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
   readonly startByKey: ReadonlyMap<string, VereinsergebnisStart>;

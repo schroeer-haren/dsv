@@ -332,7 +332,7 @@ aufgelösten Trainer und – bei Para-Schwimmerinnen und -Schwimmern – ihr
 Handicap:
 
 ```typescript
-const lea = graph.meldungById.get(1)!;
+const lea = graph.personById.get(1)!;
 
 lea.name; // → 'Schmidt, Lea'
 lea.jahrgang; // → '2010'
@@ -346,7 +346,7 @@ stehen daneben und nennen ihre Besetzung als Verweis auf die gemeldeten
 Personen:
 
 ```typescript
-const staffel = graph.staffelmeldungById.get(9001)!;
+const staffel = graph.staffelById.get(9001)!;
 
 staffel.name; // → 'Staffel A'
 staffel.wertungsklasseTyp; // → 'JG'

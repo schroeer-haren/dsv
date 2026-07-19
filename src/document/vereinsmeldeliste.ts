@@ -228,8 +228,10 @@ export interface Vereinsmeldung {
   /** Schlüssel ist `${nummer}:${art}`. */
   readonly wettkampfByKey: ReadonlyMap<string, MeldungWettkampf>;
   readonly abschnittByNummer: ReadonlyMap<number, MeldungAbschnitt>;
-  readonly meldungById: ReadonlyMap<number, MeldungPerson>;
-  readonly staffelmeldungById: ReadonlyMap<number, MeldungStaffel>;
+  /** Schlüssel ist die `veranstaltungsId` der Person. */
+  readonly personById: ReadonlyMap<number, MeldungPerson>;
+  /** Schlüssel ist die `veranstaltungsId` der Staffel. */
+  readonly staffelById: ReadonlyMap<number, MeldungStaffel>;
   readonly kampfrichterByNummer: ReadonlyMap<number, MeldungKampfrichter>;
   readonly trainerByNummer: ReadonlyMap<number, MeldungTrainer>;
 }
@@ -631,7 +633,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
 
   // --- Personenmeldungen ---------------------------------------------------
   const meldungen: MeldungPerson[] = [];
-  const meldungById = new Map<number, MeldungPerson>();
+  const personById = new Map<number, MeldungPerson>();
   const personBuilders = new Map<number, PersonBuilder>();
 
   for (const record of records) {
@@ -671,7 +673,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
     };
     meldungen.push(person);
 
-    if (meldungById.has(veranstaltungsId)) {
+    if (personById.has(veranstaltungsId)) {
       diagnostics.push(
         createDiagnostic(
           'ambiguous-reference',
@@ -681,7 +683,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
         ),
       );
     } else if (Number.isFinite(veranstaltungsId)) {
-      meldungById.set(veranstaltungsId, person);
+      personById.set(veranstaltungsId, person);
       personBuilders.set(veranstaltungsId, { starts, person });
     }
   }
@@ -759,7 +761,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
 
   // --- Staffelmeldungen ----------------------------------------------------
   const staffelmeldungen: MeldungStaffel[] = [];
-  const staffelmeldungById = new Map<number, MeldungStaffel>();
+  const staffelById = new Map<number, MeldungStaffel>();
   const staffelBuilders = new Map<number, StaffelBuilder>();
 
   for (const record of records) {
@@ -781,7 +783,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
     };
     staffelmeldungen.push(staffel);
 
-    if (staffelmeldungById.has(veranstaltungsId)) {
+    if (staffelById.has(veranstaltungsId)) {
       diagnostics.push(
         createDiagnostic(
           'ambiguous-reference',
@@ -794,7 +796,7 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
         ),
       );
     } else if (Number.isFinite(veranstaltungsId)) {
-      staffelmeldungById.set(veranstaltungsId, staffel);
+      staffelById.set(veranstaltungsId, staffel);
       staffelBuilders.set(veranstaltungsId, { starts, personen, staffel });
     }
   }
@@ -892,8 +894,8 @@ export function projectVereinsmeldeliste(liste: Vereinsmeldeliste): MeldungProje
       trainer,
       wettkampfByKey,
       abschnittByNummer,
-      meldungById,
-      staffelmeldungById,
+      personById,
+      staffelById,
       kampfrichterByNummer,
       trainerByNummer,
     },

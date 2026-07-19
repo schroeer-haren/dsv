@@ -270,8 +270,15 @@ export interface Wettkampfergebnis {
   readonly vereinByKennzahl: ReadonlyMap<number, ErgebnisVerein>;
   /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
   readonly startByKey: ReadonlyMap<string, ErgebnisStart>;
-  /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
+  /**
+   * Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`.
+   *
+   * Anders als `Vereinsergebnis.staffelById` zusammengesetzt: Eine
+   * Wettkampfergebnisliste führt die Staffeln aller Vereine, dort ist die
+   * `veranstaltungsId` einer Staffel nur je Wettkampf eindeutig.
+   */
   readonly staffelByKey: ReadonlyMap<string, ErgebnisStaffel>;
+  /** Schlüssel ist die `veranstaltungsId` der Person. */
   readonly personById: ReadonlyMap<number, ErgebnisPerson>;
 }
 

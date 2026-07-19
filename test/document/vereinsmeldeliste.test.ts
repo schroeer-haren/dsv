@@ -146,7 +146,7 @@ describe('projectVereinsmeldeliste', () => {
       const { graph, diagnostics } = project(...RUMPF, pnmeldung());
 
       expect(diagnostics).toEqual([]);
-      expect(graph.meldungById.get(1)).toMatchObject({
+      expect(graph.personById.get(1)).toMatchObject({
         veranstaltungsId: 1,
         name: 'Muster, Mia',
         nationalitaeten: ['GER', 'POL'],
@@ -159,14 +159,14 @@ describe('projectVereinsmeldeliste', () => {
       const { graph, diagnostics } = project(...RUMPF, trainer, pnmeldung({ nummerTrainer: '1' }));
 
       expect(diagnostics).toEqual([]);
-      expect(graph.meldungById.get(1)?.trainer?.name).toBe('Trainer, Tina');
+      expect(graph.personById.get(1)?.trainer?.name).toBe('Trainer, Tina');
     });
 
     it('meldet eine unbekannte Trainernummer', () => {
       const result = project(...RUMPF, pnmeldung({ nummerTrainer: '9' }));
 
       expect(codes(result)).toEqual(['dangling-reference']);
-      expect(result.graph.meldungById.get(1)?.trainer).toBeNull();
+      expect(result.graph.personById.get(1)?.trainer).toBeNull();
     });
 
     it('hängt den Start an Meldung und Wettkampf', () => {
@@ -174,7 +174,7 @@ describe('projectVereinsmeldeliste', () => {
       const { graph, diagnostics } = project(...RUMPF, pnmeldung(), start);
 
       expect(diagnostics).toEqual([]);
-      const projiziert = graph.meldungById.get(1)?.starts[0];
+      const projiziert = graph.personById.get(1)?.starts[0];
       expect(projiziert).toMatchObject({ wettkampfnr: 1, wettkampfart: 'V', meldezeit: 6211 });
       expect(graph.wettkampfByKey.get('1:V')?.starts).toEqual([projiziert]);
     });
@@ -191,7 +191,7 @@ describe('projectVereinsmeldeliste', () => {
       const { graph, diagnostics } = project(...RUMPF, pnmeldung(), handicap);
 
       expect(diagnostics).toEqual([]);
-      expect(graph.meldungById.get(1)?.handicap?.startklasse).toBe('S10');
+      expect(graph.personById.get(1)?.handicap?.startklasse).toBe('S10');
     });
 
     it('meldet ein Handicap ohne Meldung', () => {
@@ -208,7 +208,7 @@ describe('projectVereinsmeldeliste', () => {
 
       expect(codes(result)).toEqual(['ambiguous-reference']);
       // Das erste Handicap gewinnt.
-      expect(result.graph.meldungById.get(1)?.handicap).toMatchObject({
+      expect(result.graph.personById.get(1)?.handicap).toMatchObject({
         dbsId: 'DBS-4711',
         startklasse: 'S10',
         startklasseBrust: 'SB9',
@@ -220,8 +220,8 @@ describe('projectVereinsmeldeliste', () => {
 
       expect(codes(result)).toEqual(['ambiguous-reference']);
       // Die erste Meldung gewinnt.
-      expect(result.graph.meldungById.size).toBe(1);
-      expect(result.graph.meldungById.get(1)?.name).toBe('Muster, Mia');
+      expect(result.graph.personById.size).toBe(1);
+      expect(result.graph.personById.get(1)?.name).toBe('Muster, Mia');
     });
 
     // dsv8.md:2524 — reine Staffelschwimmer werden als PNMELDUNG ohne STARTPN
@@ -235,7 +235,7 @@ describe('projectVereinsmeldeliste', () => {
       );
 
       expect(diagnostics).toEqual([]);
-      expect(graph.meldungById.get(1)?.starts).toEqual([]);
+      expect(graph.personById.get(1)?.starts).toEqual([]);
     });
   });
 
@@ -250,7 +250,7 @@ describe('projectVereinsmeldeliste', () => {
       );
 
       expect(diagnostics).toEqual([]);
-      const staffel = graph.staffelmeldungById.get(9001);
+      const staffel = graph.staffelById.get(9001);
       expect(staffel).toMatchObject({ nummerDerMannschaft: '1', name: 'Staffel A' });
       expect(staffel?.starts[0]).toMatchObject({ wettkampfnr: 1, meldezeit: 25234 });
       expect(staffel?.personen[0]).toMatchObject({ veranstaltungsId: 1, startnummer: 2 });
@@ -284,8 +284,8 @@ describe('projectVereinsmeldeliste', () => {
 
       expect(codes(result)).toEqual(['ambiguous-reference']);
       // Die erste Staffelmeldung gewinnt.
-      expect(result.graph.staffelmeldungById.size).toBe(1);
-      expect(result.graph.staffelmeldungById.get(9001)).toMatchObject({
+      expect(result.graph.staffelById.size).toBe(1);
+      expect(result.graph.staffelById.get(9001)).toMatchObject({
         nummerDerMannschaft: '1',
         name: 'Staffel A',
       });
@@ -306,8 +306,8 @@ describe('projectVereinsmeldeliste', () => {
       );
 
       expect(codes(result)).toEqual(['dangling-reference', 'dangling-reference']);
-      expect(result.graph.staffelmeldungById.size).toBe(0);
-      expect([...result.graph.staffelmeldungById.keys()].some(Number.isNaN)).toBe(false);
+      expect(result.graph.staffelById.size).toBe(0);
+      expect([...result.graph.staffelById.keys()].some(Number.isNaN)).toBe(false);
 
       const staffel = result.graph.staffelmeldungen[0];
       expect(staffel?.veranstaltungsId).toBeNaN();
@@ -330,7 +330,7 @@ describe('projectVereinsmeldeliste', () => {
       );
 
       expect(diagnostics).toEqual([]);
-      expect(graph.meldungById.get(1)?.starts[0]?.wettkampfart).toBe('V');
+      expect(graph.personById.get(1)?.starts[0]?.wettkampfart).toBe('V');
     });
 
     it('meldet mehrere Wettkämpfe mit derselben Nummer als mehrdeutig', () => {
@@ -346,7 +346,7 @@ describe('projectVereinsmeldeliste', () => {
 
       expect(codes(result)).toEqual(['ambiguous-reference']);
       // Der erste Wettkampf gewinnt, der Start geht nicht verloren.
-      expect(result.graph.meldungById.get(1)?.starts[0]?.wettkampfart).toBe('V');
+      expect(result.graph.personById.get(1)?.starts[0]?.wettkampfart).toBe('V');
       expect(result.graph.wettkampfByKey.get('1:V')?.starts).toHaveLength(1);
     });
 
@@ -362,14 +362,14 @@ describe('projectVereinsmeldeliste', () => {
       );
 
       expect(codes(result)).toEqual(['ambiguous-reference']);
-      expect(result.graph.staffelmeldungById.get(9001)?.starts[0]?.wettkampfart).toBe('V');
+      expect(result.graph.staffelById.get(9001)?.starts[0]?.wettkampfart).toBe('V');
     });
 
     it('meldet eine Nummer, zu der es keinen Wettkampf gibt', () => {
       const result = project(...RUMPF, pnmeldung(), line('STARTPN', ['1', '9', '']));
 
       expect(codes(result)).toEqual(['dangling-reference']);
-      expect(result.graph.meldungById.get(1)?.starts[0]?.wettkampfart).toBe('');
+      expect(result.graph.personById.get(1)?.starts[0]?.wettkampfart).toBe('');
     });
   });
 
