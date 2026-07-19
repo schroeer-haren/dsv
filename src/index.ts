@@ -28,7 +28,23 @@ export { writeWettkampfergebnisliste } from './write/write-wettkampfergebnislist
 export { writeVereinsmeldeliste } from './write/write-vereinsmeldeliste.js';
 export { writeVereinsergebnisliste } from './write/write-vereinsergebnisliste.js';
 
-export type { WriteOptions } from './write/write-wettkampfdefinitionsliste.js';
+/**
+ * Der ausdrückliche Weg, eine eingelesene Datei mit einem vorbestehenden Mangel
+ * wieder auszuschreiben.
+ *
+ * Echte Dateien lassen ein Pflichtfeld leer — 28 der 142 gesammelten tun das.
+ * Der strenge Vorgabeweg verweigert sie deshalb, obwohl der Anwender den Mangel
+ * weder verursacht noch berührt hat. Diese Fassungen reichen ihn unverändert
+ * weiter und geben statt eines Textes ein `WriteResult`: Was durchgereicht
+ * wurde, steht in `preservedDefects`, und daran kommt kein Aufrufer vorbei.
+ * Alles, was die Datei unlesbar machen würde, bleibt auch hier verwehrt.
+ */
+export { writeWettkampfdefinitionslistePreservingDefects } from './write/write-wettkampfdefinitionsliste.js';
+export { writeWettkampfergebnislistePreservingDefects } from './write/write-wettkampfergebnisliste.js';
+export { writeVereinsmeldelistePreservingDefects } from './write/write-vereinsmeldeliste.js';
+export { writeVereinsergebnislistePreservingDefects } from './write/write-vereinsergebnisliste.js';
+
+export type { WriteOptions, WriteResult } from './write/write-wettkampfdefinitionsliste.js';
 
 export type { TypedRecord, TypedList } from './parse/parse-typed-list.js';
 export type { Wettkampfdefinitionsliste } from './parse/parse-wettkampfdefinitionsliste.js';

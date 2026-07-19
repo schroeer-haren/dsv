@@ -17,7 +17,7 @@ sind aber über ein Feld erreichbar und damit trotzdem Teil der Oberfläche.
 Neu erzeugen mit `npm run api-surface`; `npm run api-surface:check` prüft, dass
 die Datei zum Quellstand passt.
 
-Stand: 227 Typen (davon 1 intern), 22 Werte.
+Stand: 228 Typen (davon 1 intern), 26 Werte.
 
 ## Werte
 
@@ -41,9 +41,13 @@ projectWettkampfdefinitionsliste: (liste: Wettkampfdefinitionsliste) => Definiti
 projectWettkampfergebnisliste: (liste: Wettkampfergebnisliste) => ErgebnisProjectionResult
 writeDsv: (document: DsvDocument) => string
 writeVereinsergebnisliste: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => string
+writeVereinsergebnislistePreservingDefects: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => WriteResult
 writeVereinsmeldeliste: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => string
+writeVereinsmeldelistePreservingDefects: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => WriteResult
 writeWettkampfdefinitionsliste: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => string
+writeWettkampfdefinitionslistePreservingDefects: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => WriteResult
 writeWettkampfergebnisliste: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => string
+writeWettkampfergebnislistePreservingDefects: (records: ReadonlyArray<TypedRecord>, options?: WriteOptions) => WriteResult
 ```
 
 ## Typen
@@ -2432,4 +2436,11 @@ zuordnungBestenliste: 'SW' | 'EW' | 'PA' | 'MS' | 'KG' | 'XX'
 ```ts
 readonly eol?: '\r\n' | '\n' | undefined
 readonly version?: FormatVersion | undefined
+```
+
+### WriteResult
+
+```ts
+readonly preservedDefects: ReadonlyArray<Diagnostic>
+readonly text: string
 ```

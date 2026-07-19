@@ -15,6 +15,26 @@ export interface WriteOptions {
 export { DsvWriteError } from './write-error.js';
 
 /**
+ * Das Ergebnis des Schreibens mit Durchreichen vorbestehender Mängel.
+ *
+ * Der Rückgabewert ist bewusst kein blosser Text: Wer den Weg über
+ * `…PreservingDefects` wählt, soll nicht daran vorbeikommen zu erfahren, was
+ * durchgereicht wurde. Stilles Durchwinken wäre so schlimm wie die
+ * Verweigerung — der Ausrichter bekäme die mangelhafte Datei, ohne dass
+ * irgendwo stünde, woran es fehlt.
+ */
+export interface WriteResult {
+  /** Der erzeugte Text — dieselbe kanonische Form wie beim strengen Weg. */
+  readonly text: string;
+  /**
+   * Die durchgereichten Mängel, in der Reihenfolge der Rücklese. Leer, wenn
+   * nichts durchzureichen war; dann ist die Ausgabe so streng geprüft wie beim
+   * Vorgabeweg.
+   */
+  readonly preservedDefects: readonly Diagnostic[];
+}
+
+/**
  * Welche Warnungen in selbst erzeugtem Text vorkommen dürfen.
  *
  * Die Leseseite ist absichtlich milde: Echte Dateien haben Eigenheiten, die
@@ -45,36 +65,83 @@ export { DsvWriteError } from './write-error.js';
  *   bleibt beim Lesen sichtbar; das ist die richtige Stelle dafür.
  *
  * `invalid-enum-value` steht bewusst **nicht** auf der Liste: Tolerierte Werte
- * und abweichende Schreibweisen sind lesbar, aber nicht schreibbar — und keine
- * echte Datei verlangt hier eine Ausnahme. Die `specGap`-Fassung desselben
- * Codes hat Schwere `info` und wird davon nicht berührt.
+ * und abweichende Schreibweisen sind lesbar, aber nicht schreibbar. Die
+ * `specGap`-Fassung desselben Codes hat Schwere `info` und wird davon nicht
+ * berührt.
+ *
+ * Vier echte Dateien verlangen hier gemessen eine Ausnahme und bekommen sie
+ * nicht: `wettkampfart` mit `A`/`N` ausserhalb von WERTUNG,
+ * `meldegeldTyp` in Grossschreibung, `position` mit `SPR`. Sie lassen sich
+ * deshalb auch auf dem ausdrücklichen Weg nicht ausschreiben. Das ist eine
+ * eigene, offene Frage — entweder gehören diese Werte in die Wertelisten
+ * beziehungsweise als `specGap` markiert, oder der Writer müsste die
+ * Schreibweise vereinheitlichen. Beides ist eine Entscheidung über die
+ * Leseseite und gehört nicht in die Durchreiche-Stufe: Ein Wert ausserhalb der
+ * Werteliste ist kein fehlender Wert.
  *
  * Die drei Graph-Codes sind hier ohnehin unerreichbar: Sie entstehen erst in
- * den Projektionen unter `src/document`, nicht in `parseTypedList`. `false`
+ * den Projektionen unter `src/document`, nicht in `parseTypedList`. `'never'`
  * ist für sie die sichere Vorbelegung.
+ *
+ * Seit dem Durchreichen vorbestehender Mängel hat die Tabelle drei Stufen statt
+ * zwei. Die dritte, `'preexisting-defect'`, ist die Antwort auf einen Fall, den
+ * die zweiwertige Fassung nicht kannte: Eine echte Datei bringt ein leeres
+ * Pflichtfeld mit, der Anwender ändert einen ganz anderen Eintrag und will
+ * speichern. Verweigert die Bibliothek das, kann sie nichts, was sie gelesen
+ * hat, wieder ausschreiben. Winkt sie es stillschweigend durch, schickt sie den
+ * Mangel weiter an den Ausrichter. Die Stufe erlaubt beides zu trennen: nur auf
+ * ausdrücklichen Wunsch, und nur gegen einen Bericht.
+ *
+ * Die Trennlinie innerhalb der Stufe ist, ob der Mangel die Datei unlesbar
+ * macht:
+ *
+ * - **Ein leeres Pflichtfeld** (`missing-required-field`) ist ein fehlender
+ *   Wert. Die Datei bleibt zerlegbar, jedes andere Feld bleibt auswertbar, und
+ *   der Mangel stammt messbar aus der erzeugenden Software — 53 Vorkommen in 28
+ *   von 142 echten Dateien, allen voran `KAMPFGERICHT.vereinDesKampfrichters`
+ *   mit 35. Er darf durchgereicht werden.
+ * - **Alles andere nicht.** Ein unzulässiger Aufzählungswert
+ *   (`invalid-enum-value`) ist kein fehlender Wert, sondern ein Wert, den ein
+ *   fremder Leser anders oder gar nicht auflöst; eine falsche Feldzahl
+ *   (`unexpected-field-count`), eine kaputte Elementreihenfolge
+ *   (`element-order-violation`) oder ein unbekanntes Element
+ *   (`unknown-element`) zerstören die Zerlegbarkeit selbst. Dort erzeugte der
+ *   Aufrufer eine Datei, die niemand mehr auswerten kann — das ist kein
+ *   vorbestehender Mangel mehr, sondern ein neuer.
  */
-const WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT: Record<DiagnosticCode, boolean> = {
-  'missing-format-element': false,
-  'missing-dateiende-element': false,
-  'format-not-first-element': false,
-  'element-order-violation': false,
-  'unknown-encoding-replacement-character': false,
-  'unexpected-bom': false,
-  'unterminated-field-list': false,
-  'unexpected-field-count': false,
-  'unknown-element': false,
-  'missing-required-field': false,
-  'invalid-value': true,
-  'invalid-enum-value': false,
-  'cardinality-violation': false,
-  'mutually-exclusive-elements': false,
-  'conditional-field-required': true,
-  'unsupported-format-version': false,
-  'wrong-list-type': false,
-  'dangling-reference': false,
-  'ambiguous-reference': false,
-  'incomplete-relay': false,
-  'empty-input': false,
+type Schreiberlaubnis =
+  /** Auch in eigener Ausgabe zulässig; erzeugt nie einen Schreibfehler. */
+  | 'always'
+  /** Nie zulässig, auch nicht auf dem ausdrücklichen Weg. */
+  | 'never'
+  /**
+   * Nur auf ausdrücklichen Wunsch und nur gegen Bericht: ein Mangel, den die
+   * Datei mitbringt und der sie lesbar lässt.
+   */
+  | 'preexisting-defect';
+
+const WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT: Record<DiagnosticCode, Schreiberlaubnis> = {
+  'missing-format-element': 'never',
+  'missing-dateiende-element': 'never',
+  'format-not-first-element': 'never',
+  'element-order-violation': 'never',
+  'unknown-encoding-replacement-character': 'never',
+  'unexpected-bom': 'never',
+  'unterminated-field-list': 'never',
+  'unexpected-field-count': 'never',
+  'unknown-element': 'never',
+  'missing-required-field': 'preexisting-defect',
+  'invalid-value': 'always',
+  'invalid-enum-value': 'never',
+  'cardinality-violation': 'never',
+  'mutually-exclusive-elements': 'never',
+  'conditional-field-required': 'always',
+  'unsupported-format-version': 'never',
+  'wrong-list-type': 'never',
+  'dangling-reference': 'never',
+  'ambiguous-reference': 'never',
+  'incomplete-relay': 'never',
+  'empty-input': 'never',
 };
 
 /**
@@ -89,7 +156,22 @@ const WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT: Record<DiagnosticCode, boolean> = {
 function istSchreibfehler(d: Diagnostic): boolean {
   if (d.severity === 'fatal' || d.severity === 'error') return true;
   if (d.severity === 'info') return false;
-  return !WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT[d.code];
+  return WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT[d.code] !== 'always';
+}
+
+/**
+ * Ob ein Schreibfehler als vorbestehender Mangel durchgereicht werden darf.
+ *
+ * `fatal` nie: Diese Stufe sagt, dass gar keine verwertbare DSV-Datei
+ * vorliegt — da ist nichts durchzureichen, sondern etwas grundlegend kaputt.
+ * Sonst entscheidet allein die Tabelle, und zwar unabhängig von der Schwere:
+ * `missing-required-field` ist heute `error`, und genau dieser Fall soll
+ * durchgereicht werden können. Die Schwere beschreibt, wie schlimm der Mangel
+ * ist; die Tabelle, wer ihn zu verantworten hat.
+ */
+function istVorbestehenderMangel(d: Diagnostic): boolean {
+  if (d.severity === 'fatal') return false;
+  return WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT[d.code] === 'preexisting-defect';
 }
 
 /**
@@ -192,6 +274,52 @@ export function writeTypedList(
   schema: ListSchema,
   options: WriteOptions = {},
 ): string {
+  return write(records, schema, options, false).text;
+}
+
+/**
+ * Schreibt wie `writeTypedList`, reicht aber vorbestehende Mängel durch.
+ *
+ * Gedacht für den einen Fall, an dem der strenge Weg scheitern muss: Eine echte
+ * Datei einlesen, einen Eintrag ändern, wieder speichern. Bringt die Datei ein
+ * leeres Pflichtfeld mit — 28 der 142 gesammelten echten Dateien tun das, allen
+ * voran `KAMPFGERICHT.vereinDesKampfrichters` —, so verweigert `writeTypedList`
+ * die Ausgabe wegen eines Mangels, den der Anwender nie verursacht und nie
+ * berührt hat. Er stammt aus der erzeugenden Software (EasyWk, WebClub,
+ * Splash).
+ *
+ * Der Name sagt, was hier geschieht: Ein bekannter Mangel wird **unverändert
+ * weitergereicht**. Das ist keine Bequemlichkeitsoption und heisst deshalb auch
+ * nicht `strict: false` — wer diesen Weg wählt, erklärt, dass er eine Datei mit
+ * einem Mangel ausliefern will.
+ *
+ * Durchgereicht wird nur, was die Datei mitbringt und lesbar lässt: heute allein
+ * `missing-required-field`. Ein unzulässiger Aufzählungswert, eine falsche
+ * Feldzahl oder eine kaputte Elementreihenfolge bleiben verwehrt — dort erzeugte
+ * der Aufrufer eine Datei, die niemand mehr auswerten kann. Die Zuordnung steht
+ * in `WARNUNG_IN_EIGENER_AUSGABE_ERLAUBT`.
+ *
+ * Der Rückgabewert ist ein `WriteResult`, kein Text: Wer diesen Weg geht, kommt
+ * nicht daran vorbei zu erfahren, was durchgereicht wurde. Sind
+ * `preservedDefects` leer, ist die Ausgabe so streng geprüft wie beim
+ * Vorgabeweg.
+ *
+ * @throws {DsvWriteError} bei jedem Befund, der kein vorbestehender Mangel ist.
+ */
+export function writeTypedListPreservingDefects(
+  records: readonly TypedRecord[],
+  schema: ListSchema,
+  options: WriteOptions = {},
+): WriteResult {
+  return write(records, schema, options, true);
+}
+
+function write(
+  records: readonly TypedRecord[],
+  schema: ListSchema,
+  options: WriteOptions,
+  preserve: boolean,
+): WriteResult {
   const version = resolveVersion(records, options);
 
   if (version === null) {
@@ -222,7 +350,10 @@ export function writeTypedList(
   const check = parseTypedList(text, schema);
   const problems = check.diagnostics.filter(istSchreibfehler);
 
-  if (problems.length > 0) throw new DsvWriteError(problems);
+  const preservedDefects = preserve ? problems.filter(istVorbestehenderMangel) : [];
+  const blocking = problems.filter((d) => !preservedDefects.includes(d));
 
-  return text;
+  if (blocking.length > 0) throw new DsvWriteError(blocking);
+
+  return { text, preservedDefects };
 }

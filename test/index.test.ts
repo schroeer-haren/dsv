@@ -25,9 +25,13 @@ describe('öffentliche API', () => {
       'projectWettkampfergebnisliste',
       'writeDsv',
       'writeVereinsergebnisliste',
+      'writeVereinsergebnislistePreservingDefects',
       'writeVereinsmeldeliste',
+      'writeVereinsmeldelistePreservingDefects',
       'writeWettkampfdefinitionsliste',
+      'writeWettkampfdefinitionslistePreservingDefects',
       'writeWettkampfergebnisliste',
+      'writeWettkampfergebnislistePreservingDefects',
     ]);
   });
 

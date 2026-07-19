@@ -57,8 +57,13 @@ ein Präfix wäre eine Verdopplung.
 | `writeWettkampfergebnisliste`    | function | Schreibt eine typisierte Wettkampfergebnisliste als DSV-Text.                               |
 | `writeVereinsmeldeliste`         | function | Schreibt eine typisierte Vereinsmeldeliste als DSV-Text.                                    |
 | `writeVereinsergebnisliste`      | function | Schreibt eine typisierte Vereinsergebnisliste als DSV-Text.                                 |
+| `writeWettkampfdefinitionslistePreservingDefects` | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
+| `writeWettkampfergebnislistePreservingDefects`    | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
+| `writeVereinsmeldelistePreservingDefects`         | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
+| `writeVereinsergebnislistePreservingDefects`      | function | Wie oben, reicht aber vorbestehende Mängel der Quelle durch und meldet sie.                 |
 | `DsvWriteError`                  | class    | Fehler beim Schreiben, wenn die Daten das Schema verletzen und keine gültige Datei ergäben. |
 | `WriteOptions`                   | type     | Einstellungen des Schreibens: Zeilenende (`eol`) und Formatversion (`version`).             |
+| `WriteResult`                    | type     | Ergebnis des Durchreichens: der Text und die durchgereichten Mängel (`preservedDefects`).   |
 
 ## Schema-freie Ebene
 
