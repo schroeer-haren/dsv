@@ -29,7 +29,7 @@ import { decodeZeit } from '../values/zeit.js';
  *   sind für den Round-Trip nötig; die drei Zeittypen sind ohne Dekodierung
  *   aber praktisch unbrauchbar.
  */
-export interface Veranstaltung {
+export interface DefinitionVeranstaltung {
   readonly bezeichnung: string;
   readonly ort: string;
   readonly bahnlaenge: string;
@@ -37,7 +37,7 @@ export interface Veranstaltung {
 }
 
 /** Ein Veranstaltungsabschnitt samt der Wettkämpfe, die in ihm stattfinden. */
-export interface Abschnitt {
+export interface DefinitionAbschnitt {
   readonly nummer: number;
   readonly datum: Datum | null;
   /** Minuten seit Mitternacht, `null` ohne oder bei ungültiger Angabe. */
@@ -48,13 +48,13 @@ export interface Abschnitt {
   readonly anfangszeit: number | null;
   /** `J`, wenn die Zeiten relativ zum Ende des Vorabschnitts gelten. */
   readonly relativeAngabe: string;
-  readonly wettkaempfe: readonly Wettkampf[];
+  readonly wettkaempfe: readonly DefinitionWettkampf[];
   /** Zeilennummer des zugrunde liegenden ABSCHNITT-Records, 1-basiert. */
   readonly line: number;
 }
 
 /** Eine Wertungsgruppe innerhalb eines Wettkampfes. */
-export interface Wertung {
+export interface DefinitionWertung {
   /** Veranstaltungsweit eindeutige Kennung aus `wertungsId`. */
   readonly id: number;
   readonly wertungsklasseTyp: string;
@@ -66,7 +66,7 @@ export interface Wertung {
 }
 
 /** Eine Pflichtzeit eines Wettkampfes. */
-export interface Pflichtzeit {
+export interface DefinitionPflichtzeit {
   readonly wertungsklasseTyp: string;
   readonly mindestJgAk: string;
   readonly maximalJgAk: string;
@@ -83,7 +83,7 @@ export interface Pflichtzeit {
  * über die Nummer allein: Dieselbe Nummer kommt regelmässig als Vorlauf und als
  * Entscheidung vor.
  */
-export interface Wettkampf {
+export interface DefinitionWettkampf {
   readonly nummer: number;
   readonly art: string;
   readonly abschnittsnr: number;
@@ -93,30 +93,30 @@ export interface Wettkampf {
   readonly ausuebung: string;
   readonly geschlecht: string;
   readonly zuordnungBestenliste: string;
-  readonly wertungen: readonly Wertung[];
-  readonly pflichtzeiten: readonly Pflichtzeit[];
+  readonly wertungen: readonly DefinitionWertung[];
+  readonly pflichtzeiten: readonly DefinitionPflichtzeit[];
   /** Auflösung von qualifikationswettkampfnr/-art, `null` wenn nicht gesetzt. */
   readonly qualifikationAus: { readonly nummer: number; readonly art: string } | null;
   readonly line: number;
 }
 
 export interface Wettkampfdefinition {
-  readonly veranstaltung: Veranstaltung;
-  readonly abschnitte: readonly Abschnitt[];
+  readonly veranstaltung: DefinitionVeranstaltung;
+  readonly abschnitte: readonly DefinitionAbschnitt[];
   /** Wettkämpfe, deren `abschnittsnr` auf keinen Abschnitt zeigt. */
-  readonly wettkaempfeOhneAbschnitt: readonly Wettkampf[];
+  readonly wettkaempfeOhneAbschnitt: readonly DefinitionWettkampf[];
   /** Schlüssel ist `${nummer}:${art}`. */
-  readonly wettkampfByKey: ReadonlyMap<string, Wettkampf>;
-  readonly wertungById: ReadonlyMap<number, Wertung>;
-  readonly abschnittByNummer: ReadonlyMap<number, Abschnitt>;
+  readonly wettkampfByKey: ReadonlyMap<string, DefinitionWettkampf>;
+  readonly wertungById: ReadonlyMap<number, DefinitionWertung>;
+  readonly abschnittByNummer: ReadonlyMap<number, DefinitionAbschnitt>;
 }
 
-export interface ProjectionResult {
+export interface DefinitionProjectionResult {
   readonly graph: Wettkampfdefinition;
   readonly diagnostics: readonly Diagnostic[];
 }
 
-const EMPTY_VERANSTALTUNG: Veranstaltung = {
+const EMPTY_VERANSTALTUNG: DefinitionVeranstaltung = {
   bezeichnung: '',
   ort: '',
   bahnlaenge: '',
@@ -153,9 +153,9 @@ function at(line: number): {
 
 /** Zwischenstand eines Wettkampfes, dessen Kinderlisten noch wachsen. */
 interface WettkampfBuilder {
-  readonly wertungen: Wertung[];
-  readonly pflichtzeiten: Pflichtzeit[];
-  readonly wettkampf: Wettkampf;
+  readonly wertungen: DefinitionWertung[];
+  readonly pflichtzeiten: DefinitionPflichtzeit[];
+  readonly wettkampf: DefinitionWettkampf;
 }
 
 /**
@@ -170,21 +170,21 @@ interface WettkampfBuilder {
  */
 export function projectWettkampfdefinitionsliste(
   liste: Wettkampfdefinitionsliste,
-): ProjectionResult {
+): DefinitionProjectionResult {
   const diagnostics: Diagnostic[] = [];
 
   const veranstaltung = projectVeranstaltung(liste.records);
 
-  const abschnitte: Abschnitt[] = [];
-  const abschnittWettkaempfe = new Map<Abschnitt, Wettkampf[]>();
-  const abschnittByNummer = new Map<number, Abschnitt>();
+  const abschnitte: DefinitionAbschnitt[] = [];
+  const abschnittWettkaempfe = new Map<DefinitionAbschnitt, DefinitionWettkampf[]>();
+  const abschnittByNummer = new Map<number, DefinitionAbschnitt>();
 
   for (const record of liste.records) {
     if (record.element !== 'ABSCHNITT') continue;
 
-    const wettkaempfe: Wettkampf[] = [];
+    const wettkaempfe: DefinitionWettkampf[] = [];
     const nummer = number(record, 'abschnittsnr');
-    const abschnitt: Abschnitt = {
+    const abschnitt: DefinitionAbschnitt = {
       nummer,
       datum: decodeDatum(value(record, 'abschnittsdatum')),
       einlass: decodeUhrzeit(value(record, 'einlass')),
@@ -213,7 +213,7 @@ export function projectWettkampfdefinitionsliste(
   }
 
   const builders = new Map<string, WettkampfBuilder>();
-  const wettkaempfeOhneAbschnitt: Wettkampf[] = [];
+  const wettkaempfeOhneAbschnitt: DefinitionWettkampf[] = [];
 
   for (const record of liste.records) {
     if (record.element !== 'WETTKAMPF') continue;
@@ -227,9 +227,9 @@ export function projectWettkampfdefinitionsliste(
     const qualifikationAus =
       Number.isFinite(qualNummer) || qualArt !== '' ? { nummer: qualNummer, art: qualArt } : null;
 
-    const wertungen: Wertung[] = [];
-    const pflichtzeiten: Pflichtzeit[] = [];
-    const wettkampf: Wettkampf = {
+    const wertungen: DefinitionWertung[] = [];
+    const pflichtzeiten: DefinitionPflichtzeit[] = [];
+    const wettkampf: DefinitionWettkampf = {
       nummer,
       art,
       abschnittsnr,
@@ -303,13 +303,13 @@ export function projectWettkampfdefinitionsliste(
     );
   }
 
-  const wertungById = new Map<number, Wertung>();
+  const wertungById = new Map<number, DefinitionWertung>();
 
   for (const record of liste.records) {
     if (record.element !== 'WERTUNG') continue;
 
     const id = number(record, 'wertungsId');
-    const wertung: Wertung = {
+    const wertung: DefinitionWertung = {
       id,
       wertungsklasseTyp: value(record, 'wertungsklasseTyp'),
       mindestJgAk: value(record, 'mindestJgAk'),
@@ -355,7 +355,7 @@ export function projectWettkampfdefinitionsliste(
   for (const record of liste.records) {
     if (record.element !== 'PFLICHTZEIT') continue;
 
-    const pflichtzeit: Pflichtzeit = {
+    const pflichtzeit: DefinitionPflichtzeit = {
       wertungsklasseTyp: value(record, 'wertungsklasseTyp'),
       mindestJgAk: value(record, 'mindestJgAk'),
       maximalJgAk: value(record, 'maximalJgAk'),
@@ -381,7 +381,7 @@ export function projectWettkampfdefinitionsliste(
     builder.pflichtzeiten.push(pflichtzeit);
   }
 
-  const wettkampfByKey = new Map<string, Wettkampf>();
+  const wettkampfByKey = new Map<string, DefinitionWettkampf>();
   for (const [wettkampfKey, builder] of builders) {
     wettkampfByKey.set(wettkampfKey, builder.wettkampf);
   }
@@ -400,7 +400,7 @@ export function projectWettkampfdefinitionsliste(
 }
 
 /** Die Eckdaten der Veranstaltung; ohne VERANSTALTUNG-Record leere Werte. */
-function projectVeranstaltung(records: readonly TypedRecord[]): Veranstaltung {
+function projectVeranstaltung(records: readonly TypedRecord[]): DefinitionVeranstaltung {
   const record = records.find((r) => r.element === 'VERANSTALTUNG');
   if (record === undefined) return EMPTY_VERANSTALTUNG;
 

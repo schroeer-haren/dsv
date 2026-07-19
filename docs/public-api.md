@@ -11,19 +11,25 @@ Ergänzung dieser Datei.
 
 Die Benennung folgt einer Konvention: **englische Verben**
 (`parse`, `write`, `project`) und **DSV-Fachbegriffe in Originalschreibweise**
-(`Wettkampfdefinitionsliste`, `Vereinsmeldeliste`, `Abschnitt`).
+(`Wettkampfdefinitionsliste`, `Vereinsmeldeliste`, `DefinitionAbschnitt`).
+
+Für den Objektgraph gilt zusätzlich: **Jeder Typ trägt das Präfix seiner
+Listenart** – `Definition…`, `Ergebnis…`, `Meldung…`, `Vereinsergebnis…`. Nur
+die vier Wurzeltypen `Wettkampfdefinition`, `Wettkampfergebnis`,
+`Vereinsmeldung` und `Vereinsergebnis` tragen keines: Sie _sind_ die Listenart,
+ein Präfix wäre eine Verdopplung.
 
 ## Lesen
 
-| Name                             | Art      | Beschreibung                                                                                                      |
-| -------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| Name                             | Art      | Beschreibung                                                                                                                                                                             |
+| -------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `parseDsv`                       | function | Liest beliebigen DSV-Text schema-frei in ein `DsvDocument` aus Records, Kommentaren und Leerzeilen; meldet eine nicht unterstützte Formatversion als `fatal`, zerlegt sie aber trotzdem. |
-| `parseDsvOrThrow`                | function | Wie `parseDsv`, wirft aber bei einer Diagnostic der Stufe `fatal` einen `DsvParseError`, statt sie zurückzugeben. |
-| `parseWettkampfdefinitionsliste` | function | Liest eine Wettkampfdefinitionsliste typisiert und prüft sie gegen das Schema.                                    |
-| `parseWettkampfergebnisliste`    | function | Liest eine Wettkampfergebnisliste typisiert und prüft sie gegen das Schema.                                       |
-| `parseVereinsmeldeliste`         | function | Liest eine Vereinsmeldeliste typisiert und prüft sie gegen das Schema.                                            |
-| `parseVereinsergebnisliste`      | function | Liest eine Vereinsergebnisliste typisiert und prüft sie gegen das Schema.                                         |
-| `DsvParseError`                  | class    | Fehler, den `parseDsvOrThrow` bei einer `fatal`-Diagnostic wirft; trägt die Diagnostics mit.                      |
+| `parseDsvOrThrow`                | function | Wie `parseDsv`, wirft aber bei einer Diagnostic der Stufe `fatal` einen `DsvParseError`, statt sie zurückzugeben.                                                                        |
+| `parseWettkampfdefinitionsliste` | function | Liest eine Wettkampfdefinitionsliste typisiert und prüft sie gegen das Schema.                                                                                                           |
+| `parseWettkampfergebnisliste`    | function | Liest eine Wettkampfergebnisliste typisiert und prüft sie gegen das Schema.                                                                                                              |
+| `parseVereinsmeldeliste`         | function | Liest eine Vereinsmeldeliste typisiert und prüft sie gegen das Schema.                                                                                                                   |
+| `parseVereinsergebnisliste`      | function | Liest eine Vereinsergebnisliste typisiert und prüft sie gegen das Schema.                                                                                                                |
+| `DsvParseError`                  | class    | Fehler, den `parseDsvOrThrow` bei einer `fatal`-Diagnostic wirft; trägt die Diagnostics mit.                                                                                             |
 
 ## Projizieren
 
@@ -98,37 +104,37 @@ trifft die Formatierungsregel damit exakt, statt sie nachzubauen.
 
 ## Objektgraph der Wettkampfdefinitionsliste
 
-| Name                  | Art  | Beschreibung                                                              |
-| --------------------- | ---- | ------------------------------------------------------------------------- |
-| `ProjectionResult`    | type | Ergebnis der Projektion einer Wettkampfdefinitionsliste, mit Diagnostics. |
-| `Wettkampfdefinition` | type | Wurzel des Objektgraphen einer Wettkampfdefinitionsliste.                 |
-| `Veranstaltung`       | type | Die Veranstaltung mit Ort, Bahnlänge und Zeitmessung.                     |
-| `Abschnitt`           | type | Ein Abschnitt der Veranstaltung mit seinen Zeitangaben.                   |
-| `Wettkampf`           | type | Ein ausgeschriebener Wettkampf mit Strecke, Technik und Altersklasse.     |
-| `Wertung`             | type | Eine Wertungsgruppe eines Wettkampfs.                                     |
-| `Pflichtzeit`         | type | Eine geforderte Pflichtzeit zu einem Wettkampf.                           |
+| Name                         | Art  | Beschreibung                                                              |
+| ---------------------------- | ---- | ------------------------------------------------------------------------- |
+| `DefinitionProjectionResult` | type | Ergebnis der Projektion einer Wettkampfdefinitionsliste, mit Diagnostics. |
+| `Wettkampfdefinition`        | type | Wurzel des Objektgraphen einer Wettkampfdefinitionsliste.                 |
+| `DefinitionVeranstaltung`    | type | Die Veranstaltung mit Ort, Bahnlänge und Zeitmessung.                     |
+| `DefinitionAbschnitt`        | type | Ein Abschnitt der Veranstaltung mit seinen Zeitangaben.                   |
+| `DefinitionWettkampf`        | type | Ein ausgeschriebener Wettkampf mit Strecke, Technik und Altersklasse.     |
+| `DefinitionWertung`          | type | Eine Wertungsgruppe eines Wettkampfs.                                     |
+| `DefinitionPflichtzeit`      | type | Eine geforderte Pflichtzeit zu einem Wettkampf.                           |
 
 ## Objektgraph der Wettkampfergebnisliste
 
-| Name                       | Art  | Beschreibung                                                                             |
-| -------------------------- | ---- | ---------------------------------------------------------------------------------------- |
-| `ErgebnisProjectionResult` | type | Ergebnis der Projektion einer Wettkampfergebnisliste, mit Diagnostics.                   |
-| `Wettkampfergebnis`        | type | Wurzel des Objektgraphen einer Wettkampfergebnisliste.                                   |
-| `ErgebnisVeranstaltung`    | type | Die Veranstaltung der Ergebnisliste.                                                     |
-| `ErgebnisAbschnitt`        | type | Ein Abschnitt der Ergebnisliste; führt vier Felder statt der sechs der Definitionsliste. |
-| `ErgebnisWettkampf`        | type | Ein Wettkampf der Ergebnisliste.                                                         |
-| `ErgebnisWertung`          | type | Eine Wertungsgruppe der Ergebnisliste.                                                   |
-| `Verein`                   | type | Ein teilnehmender Verein.                                                                |
-| `ErgebnisPerson`           | type | Eine Person mit Jahrgang und Verein, aus den Ergebniszeilen aggregiert.                  |
-| `Start`                    | type | Ein Einzelstart mit seinem Ergebnis.                                                     |
-| `Zwischenzeit`             | type | Eine Zwischenzeit innerhalb eines Einzelstarts.                                          |
-| `Reaktion`                 | type | Die Reaktionszeit am Start.                                                              |
-| `Platzierung`              | type | Die Platzierung eines Starts in einer Wertung.                                           |
-| `Staffel`                  | type | Eine Staffel mit ihrem Ergebnis.                                                         |
-| `StaffelPerson`            | type | Ein Startabschnitt einer Staffel, besetzt mit einer Person.                              |
-| `StaffelZwischenzeit`      | type | Eine Zwischenzeit innerhalb eines Staffelabschnitts.                                     |
-| `Abloese`                  | type | Die Ablösezeit an einem Staffelwechsel.                                                  |
-| `Kampfrichter`             | type | Ein eingesetzter Kampfrichter.                                                           |
+| Name                          | Art  | Beschreibung                                                                             |
+| ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| `ErgebnisProjectionResult`    | type | Ergebnis der Projektion einer Wettkampfergebnisliste, mit Diagnostics.                   |
+| `Wettkampfergebnis`           | type | Wurzel des Objektgraphen einer Wettkampfergebnisliste.                                   |
+| `ErgebnisVeranstaltung`       | type | Die Veranstaltung der Ergebnisliste.                                                     |
+| `ErgebnisAbschnitt`           | type | Ein Abschnitt der Ergebnisliste; führt vier Felder statt der sechs der Definitionsliste. |
+| `ErgebnisWettkampf`           | type | Ein Wettkampf der Ergebnisliste.                                                         |
+| `ErgebnisWertung`             | type | Eine Wertungsgruppe der Ergebnisliste.                                                   |
+| `ErgebnisVerein`              | type | Ein teilnehmender Verein.                                                                |
+| `ErgebnisPerson`              | type | Eine Person mit Jahrgang und Verein, aus den Ergebniszeilen aggregiert.                  |
+| `ErgebnisStart`               | type | Ein Einzelstart mit seinem Ergebnis.                                                     |
+| `ErgebnisZwischenzeit`        | type | Eine Zwischenzeit innerhalb eines Einzelstarts.                                          |
+| `ErgebnisReaktion`            | type | Die Reaktionszeit am Start.                                                              |
+| `ErgebnisPlatzierung`         | type | Die Platzierung eines Starts in einer Wertung.                                           |
+| `ErgebnisStaffel`             | type | Eine Staffel mit ihrem Ergebnis.                                                         |
+| `ErgebnisStaffelPerson`       | type | Ein Startabschnitt einer Staffel, besetzt mit einer Person.                              |
+| `ErgebnisStaffelZwischenzeit` | type | Eine Zwischenzeit innerhalb eines Staffelabschnitts.                                     |
+| `ErgebnisAbloese`             | type | Die Ablösezeit an einem Staffelwechsel.                                                  |
+| `ErgebnisKampfrichter`        | type | Ein eingesetzter Kampfrichter.                                                           |
 
 ## Objektgraph der Vereinsmeldeliste
 

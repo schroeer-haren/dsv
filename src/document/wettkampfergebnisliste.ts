@@ -17,9 +17,9 @@ import { decodeZeit } from '../values/zeit.js';
  * jeder Zeile mitführt — und dieselbe Person einmal je Wertung wiederholt
  * (dsv8.md:5019).
  *
- * Diese Wiederholung wird hier aufgelöst. Ein `Start` ist der Schwimmvorgang
+ * Diese Wiederholung wird hier aufgelöst. Ein `ErgebnisStart` ist der Schwimmvorgang
  * einer Person in einem Wettkampf; die Wertungen, in denen dieser Start
- * platziert wurde, hängen als `Platzierung` daran. Gemessen an den 48
+ * platziert wurde, hängen als `ErgebnisPlatzierung` daran. Gemessen an den 48
  * fehlerfreien echten Dateien trägt das: In 6970 Fällen erscheint eine Person
  * mehrfach im selben Wettkampf, und in keinem einzigen weichen Name, DSV-ID,
  * Geschlecht, Jahrgang, Verein, Vereinskennzahl oder Endzeit voneinander ab.
@@ -49,7 +49,7 @@ import { decodeZeit } from '../values/zeit.js';
  * - Alle Bezüge werden sofort aufgelöst, nicht über Getter.
  * - Keine Rückverweise. Ein Zeiger vom Start auf seinen Wettkampf erzeugte
  *   einen Zyklus, an dem `JSON.stringify` wirft. Stattdessen stehen Index-Maps
- *   auf der obersten Ebene. Jeder `Start` hat genau einen Ort im Baum — unter
+ *   auf der obersten Ebene. Jeder `ErgebnisStart` hat genau einen Ort im Baum — unter
  *   seinem Wettkampf; `ErgebnisPerson.starts` und `startByKey` verweisen auf
  *   dieselben Objekte, verdoppeln sie also nicht.
  * - Werte bleiben Zeichenketten, ausser Datum, Uhrzeit und Zeit.
@@ -62,7 +62,7 @@ export interface ErgebnisVeranstaltung {
 }
 
 /** Ein an der Veranstaltung beteiligter Verein. */
-export interface Verein {
+export interface ErgebnisVerein {
   readonly bezeichnung: string;
   /** Vierstellige Kennzahl; `0` bei nicht dem DSV angehörenden Vereinen. */
   readonly kennzahl: number;
@@ -72,7 +72,7 @@ export interface Verein {
 }
 
 /** Eine Besetzung im Kampfgericht eines Abschnitts. */
-export interface Kampfrichter {
+export interface ErgebnisKampfrichter {
   readonly position: string;
   readonly name: string;
   readonly verein: string;
@@ -92,7 +92,7 @@ export interface ErgebnisWertung {
 }
 
 /** Die Platzierung eines Starts in einer Wertung. */
-export interface Platzierung {
+export interface ErgebnisPlatzierung {
   readonly wertungsId: number;
   readonly platz: number;
   /** `DS`, `NA`, `AB`, `AU` oder `ZU`; leer, wenn das Ergebnis zählt. */
@@ -103,7 +103,7 @@ export interface Platzierung {
 }
 
 /** Eine Zwischenzeit auf einer Teilstrecke. */
-export interface Zwischenzeit {
+export interface ErgebnisZwischenzeit {
   readonly distanz: number;
   /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
   readonly zeit: number | null;
@@ -111,7 +111,7 @@ export interface Zwischenzeit {
 }
 
 /** Eine Reaktionszeit beim Start. */
-export interface Reaktion {
+export interface ErgebnisReaktion {
   /** `+` für Start nach, `-` für Start vor dem Signal. */
   readonly art: string;
   /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
@@ -126,7 +126,7 @@ export interface Reaktion {
  * betreffen. Was den Schwimmvorgang beschreibt, steht hier einmal; was die
  * Wertung betrifft, steht in `platzierungen`.
  */
-export interface Start {
+export interface ErgebnisStart {
   /** Veranstaltungsweit eindeutige Kennung der Person. */
   readonly veranstaltungsId: number;
   readonly wettkampfnr: number;
@@ -142,15 +142,15 @@ export interface Start {
   readonly nationalitaeten: readonly string[];
   /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
   readonly endzeit: number | null;
-  readonly platzierungen: readonly Platzierung[];
-  readonly zwischenzeiten: readonly Zwischenzeit[];
-  readonly reaktionen: readonly Reaktion[];
+  readonly platzierungen: readonly ErgebnisPlatzierung[];
+  readonly zwischenzeiten: readonly ErgebnisZwischenzeit[];
+  readonly reaktionen: readonly ErgebnisReaktion[];
   /** Zeilennummer der ersten zugrunde liegenden PNERGEBNIS-Zeile. */
   readonly line: number;
 }
 
 /** Eine Teilnehmerin oder ein Teilnehmer einer Staffel. */
-export interface StaffelPerson {
+export interface ErgebnisStaffelPerson {
   readonly name: string;
   readonly dsvId: string;
   readonly startnummer: number;
@@ -162,17 +162,17 @@ export interface StaffelPerson {
 }
 
 /** Eine Zwischenzeit innerhalb einer Staffel. */
-export interface StaffelZwischenzeit extends Zwischenzeit {
+export interface ErgebnisStaffelZwischenzeit extends ErgebnisZwischenzeit {
   readonly startnummer: number;
 }
 
 /** Eine Ablösezeit innerhalb einer Staffel. */
-export interface Abloese extends Reaktion {
+export interface ErgebnisAbloese extends ErgebnisReaktion {
   readonly startnummer: number;
 }
 
-/** Das Ergebnis einer Staffel, aufgebaut wie ein `Start`. */
-export interface Staffel {
+/** Das Ergebnis einer Staffel, aufgebaut wie ein `ErgebnisStart`. */
+export interface ErgebnisStaffel {
   /** Veranstaltungsweit eindeutige Kennung der Staffel. */
   readonly veranstaltungsId: number;
   readonly wettkampfnr: number;
@@ -183,10 +183,10 @@ export interface Staffel {
   /** Hundertstelsekunden, `null` bei ungültiger Angabe. */
   readonly endzeit: number | null;
   readonly startnummerDisqualifiziert: string;
-  readonly platzierungen: readonly Platzierung[];
-  readonly personen: readonly StaffelPerson[];
-  readonly zwischenzeiten: readonly StaffelZwischenzeit[];
-  readonly abloesen: readonly Abloese[];
+  readonly platzierungen: readonly ErgebnisPlatzierung[];
+  readonly personen: readonly ErgebnisStaffelPerson[];
+  readonly zwischenzeiten: readonly ErgebnisStaffelZwischenzeit[];
+  readonly abloesen: readonly ErgebnisAbloese[];
   readonly line: number;
 }
 
@@ -207,8 +207,8 @@ export interface ErgebnisWettkampf {
   readonly geschlecht: string;
   readonly zuordnungBestenliste: string;
   readonly wertungen: readonly ErgebnisWertung[];
-  readonly starts: readonly Start[];
-  readonly staffeln: readonly Staffel[];
+  readonly starts: readonly ErgebnisStart[];
+  readonly staffeln: readonly ErgebnisStaffel[];
   /** Auflösung von qualifikationswettkampfnr/-art, `null` wenn nicht gesetzt. */
   readonly qualifikationAus: { readonly nummer: number; readonly art: string } | null;
   readonly line: number;
@@ -222,7 +222,7 @@ export interface ErgebnisAbschnitt {
   readonly anfangszeit: number | null;
   /** `J`, wenn die Zeit relativ zum Ende des Vorabschnitts gilt. */
   readonly relativeAngabe: string;
-  readonly kampfgericht: readonly Kampfrichter[];
+  readonly kampfgericht: readonly ErgebnisKampfrichter[];
   readonly wettkaempfe: readonly ErgebnisWettkampf[];
   readonly line: number;
 }
@@ -230,11 +230,11 @@ export interface ErgebnisAbschnitt {
 /**
  * Eine Person mit allen ihren Starts.
  *
- * Der Name trägt das Präfix `Ergebnis` wie seine Geschwister `ErgebnisAbschnitt`
- * und `ErgebnisWettkampf`: Dieselbe Entität ist je Listenart anders modelliert.
- * Die Vereinsergebnisliste und die Vereinsmeldeliste kennen ein PERSON-Element
- * und nennen ihren Typ deshalb `VereinsergebnisPerson` beziehungsweise
- * `MeldungPerson`; die Wettkampfergebnisliste hat kein solches Element.
+ * Der Name trägt das Präfix `Ergebnis` wie jeder Typ dieses Graphen: Dieselbe
+ * Entität ist je Listenart anders modelliert. Die Vereinsergebnisliste und die
+ * Vereinsmeldeliste kennen ein PERSON-Element und nennen ihren Typ deshalb
+ * `VereinsergebnisPerson` beziehungsweise `MeldungPerson`; die
+ * Wettkampfergebnisliste hat kein solches Element.
  *
  * Diese Entität steht so in keiner Datei — sie ist aus den PNERGEBNIS-Zeilen
  * zusammengesetzt. Angeboten wird sie, weil die Messung an den echten Daten sie
@@ -253,13 +253,13 @@ export interface ErgebnisPerson {
   readonly verein: string;
   readonly vereinskennzahl: number;
   /** Dieselben Objekte, die auch unter ihrem Wettkampf hängen. */
-  readonly starts: readonly Start[];
+  readonly starts: readonly ErgebnisStart[];
 }
 
 export interface Wettkampfergebnis {
   readonly veranstaltung: ErgebnisVeranstaltung;
   readonly abschnitte: readonly ErgebnisAbschnitt[];
-  readonly vereine: readonly Verein[];
+  readonly vereine: readonly ErgebnisVerein[];
   /** Wettkämpfe, deren `abschnittsnr` auf keinen Abschnitt zeigt. */
   readonly wettkaempfeOhneAbschnitt: readonly ErgebnisWettkampf[];
   /** Schlüssel ist `${nummer}:${art}`. */
@@ -267,11 +267,11 @@ export interface Wettkampfergebnis {
   readonly wertungById: ReadonlyMap<number, ErgebnisWertung>;
   readonly abschnittByNummer: ReadonlyMap<number, ErgebnisAbschnitt>;
   /** Ohne die Kennzahl 0: die kennzeichnet vereinslose Meldungen, sie ist kein Schlüssel. */
-  readonly vereinByKennzahl: ReadonlyMap<number, Verein>;
+  readonly vereinByKennzahl: ReadonlyMap<number, ErgebnisVerein>;
   /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
-  readonly startByKey: ReadonlyMap<string, Start>;
+  readonly startByKey: ReadonlyMap<string, ErgebnisStart>;
   /** Schlüssel ist `${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`. */
-  readonly staffelByKey: ReadonlyMap<string, Staffel>;
+  readonly staffelByKey: ReadonlyMap<string, ErgebnisStaffel>;
   readonly personById: ReadonlyMap<number, ErgebnisPerson>;
 }
 
@@ -330,7 +330,7 @@ function nationalitaeten(record: TypedRecord): string[] {
 }
 
 /** Die Platzierung, die eine PNERGEBNIS- oder STERGEBNIS-Zeile beschreibt. */
-function platzierung(record: TypedRecord): Platzierung {
+function platzierung(record: TypedRecord): ErgebnisPlatzierung {
   return {
     wertungsId: number(record, 'wertungsId'),
     platz: number(record, 'platz'),
@@ -344,28 +344,28 @@ function platzierung(record: TypedRecord): Platzierung {
 /** Zwischenstand eines Wettkampfes, dessen Kinderlisten noch wachsen. */
 interface WettkampfBuilder {
   readonly wertungen: ErgebnisWertung[];
-  readonly starts: Start[];
-  readonly staffeln: Staffel[];
+  readonly starts: ErgebnisStart[];
+  readonly staffeln: ErgebnisStaffel[];
   readonly wettkampf: ErgebnisWettkampf;
 }
 
 /** Zwischenstand eines Starts, dessen Kinderlisten noch wachsen. */
 interface StartBuilder {
-  readonly platzierungen: Platzierung[];
-  readonly zwischenzeiten: Zwischenzeit[];
-  readonly reaktionen: Reaktion[];
-  readonly start: Start;
+  readonly platzierungen: ErgebnisPlatzierung[];
+  readonly zwischenzeiten: ErgebnisZwischenzeit[];
+  readonly reaktionen: ErgebnisReaktion[];
+  readonly start: ErgebnisStart;
   /** Die Felder, die den Schwimmvorgang beschreiben, zur Widerspruchsprüfung. */
   readonly signatur: string;
 }
 
 /** Zwischenstand einer Staffel, deren Kinderlisten noch wachsen. */
 interface StaffelBuilder {
-  readonly platzierungen: Platzierung[];
-  readonly personen: StaffelPerson[];
-  readonly zwischenzeiten: StaffelZwischenzeit[];
-  readonly abloesen: Abloese[];
-  readonly staffel: Staffel;
+  readonly platzierungen: ErgebnisPlatzierung[];
+  readonly personen: ErgebnisStaffelPerson[];
+  readonly zwischenzeiten: ErgebnisStaffelZwischenzeit[];
+  readonly abloesen: ErgebnisAbloese[];
+  readonly staffel: ErgebnisStaffel;
   readonly signatur: string;
   /**
    * Die bereits übernommenen Kindzeilen, je Element nach ihrer fachlichen
@@ -409,14 +409,14 @@ export function projectWettkampfergebnisliste(
   const veranstaltung = projectVeranstaltung(records);
 
   // --- Vereine -------------------------------------------------------------
-  const vereine: Verein[] = [];
-  const vereinByKennzahl = new Map<number, Verein>();
+  const vereine: ErgebnisVerein[] = [];
+  const vereinByKennzahl = new Map<number, ErgebnisVerein>();
 
   for (const record of records) {
     if (record.element !== 'VEREIN') continue;
 
     const kennzahl = number(record, 'vereinskennzahl');
-    const verein: Verein = {
+    const verein: ErgebnisVerein = {
       bezeichnung: value(record, 'vereinsbezeichnung'),
       kennzahl,
       landesschwimmverband: value(record, 'landesschwimmverband'),
@@ -447,14 +447,14 @@ export function projectWettkampfergebnisliste(
   // --- Abschnitte ----------------------------------------------------------
   const abschnitte: ErgebnisAbschnitt[] = [];
   const abschnittWettkaempfe = new Map<ErgebnisAbschnitt, ErgebnisWettkampf[]>();
-  const abschnittKampfgericht = new Map<number, Kampfrichter[]>();
+  const abschnittKampfgericht = new Map<number, ErgebnisKampfrichter[]>();
   const abschnittByNummer = new Map<number, ErgebnisAbschnitt>();
 
   for (const record of records) {
     if (record.element !== 'ABSCHNITT') continue;
 
     const wettkaempfe: ErgebnisWettkampf[] = [];
-    const kampfgericht: Kampfrichter[] = [];
+    const kampfgericht: ErgebnisKampfrichter[] = [];
     const nummer = number(record, 'abschnittsnr');
     const abschnitt: ErgebnisAbschnitt = {
       nummer,
@@ -488,7 +488,7 @@ export function projectWettkampfergebnisliste(
     if (record.element !== 'KAMPFGERICHT') continue;
 
     const abschnittsnr = number(record, 'abschnittsnr');
-    const kampfrichter: Kampfrichter = {
+    const kampfrichter: ErgebnisKampfrichter = {
       position: value(record, 'position'),
       name: value(record, 'nameKampfrichter'),
       verein: value(record, 'vereinDesKampfrichters'),
@@ -527,8 +527,8 @@ export function projectWettkampfergebnisliste(
       Number.isFinite(qualNummer) || qualArt !== '' ? { nummer: qualNummer, art: qualArt } : null;
 
     const wertungen: ErgebnisWertung[] = [];
-    const starts: Start[] = [];
-    const staffeln: Staffel[] = [];
+    const starts: ErgebnisStart[] = [];
+    const staffeln: ErgebnisStaffel[] = [];
     const wettkampf: ErgebnisWettkampf = {
       nummer,
       art,
@@ -691,10 +691,10 @@ export function projectWettkampfergebnisliste(
       continue;
     }
 
-    const platzierungen: Platzierung[] = [platzierung(record)];
-    const zwischenzeiten: Zwischenzeit[] = [];
-    const reaktionen: Reaktion[] = [];
-    const start: Start = {
+    const platzierungen: ErgebnisPlatzierung[] = [platzierung(record)];
+    const zwischenzeiten: ErgebnisZwischenzeit[] = [];
+    const reaktionen: ErgebnisReaktion[] = [];
+    const start: ErgebnisStart = {
       veranstaltungsId,
       wettkampfnr: nummer,
       wettkampfart: art,
@@ -850,11 +850,11 @@ export function projectWettkampfergebnisliste(
       continue;
     }
 
-    const platzierungen: Platzierung[] = [platzierung(record)];
-    const personen: StaffelPerson[] = [];
-    const zwischenzeiten: StaffelZwischenzeit[] = [];
-    const abloesen: Abloese[] = [];
-    const staffel: Staffel = {
+    const platzierungen: ErgebnisPlatzierung[] = [platzierung(record)];
+    const personen: ErgebnisStaffelPerson[] = [];
+    const zwischenzeiten: ErgebnisStaffelZwischenzeit[] = [];
+    const abloesen: ErgebnisAbloese[] = [];
+    const staffel: ErgebnisStaffel = {
       veranstaltungsId,
       wettkampfnr: nummer,
       wettkampfart: art,
@@ -1000,12 +1000,12 @@ export function projectWettkampfergebnisliste(
 
   // --- Person -----------------------------------------------------------
   const personById = new Map<number, ErgebnisPerson>();
-  const schwimmerStarts = new Map<number, Start[]>();
+  const schwimmerStarts = new Map<number, ErgebnisStart[]>();
 
   for (const { start } of startBuilders.values()) {
     const vorhanden = personById.get(start.veranstaltungsId);
     if (vorhanden === undefined) {
-      const starts: Start[] = [start];
+      const starts: ErgebnisStart[] = [start];
       schwimmerStarts.set(start.veranstaltungsId, starts);
       personById.set(start.veranstaltungsId, {
         veranstaltungsId: start.veranstaltungsId,
@@ -1047,10 +1047,10 @@ export function projectWettkampfergebnisliste(
   const wettkampfByKey = new Map<string, ErgebnisWettkampf>();
   for (const [key, builder] of builders) wettkampfByKey.set(key, builder.wettkampf);
 
-  const startByKey = new Map<string, Start>();
+  const startByKey = new Map<string, ErgebnisStart>();
   for (const [key, builder] of startBuilders) startByKey.set(key, builder.start);
 
-  const staffelByKey = new Map<string, Staffel>();
+  const staffelByKey = new Map<string, ErgebnisStaffel>();
   for (const [key, builder] of staffelBuilders) staffelByKey.set(key, builder.staffel);
 
   return {

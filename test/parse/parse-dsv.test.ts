@@ -244,7 +244,9 @@ describe('parseDsv — nicht unterstützte Formatversion', () => {
 
   it('meldet für DSV7 und DSV8 nichts', () => {
     for (const version of [7, 8]) {
-      const { diagnostics } = parseDsv(`FORMAT:Wettkampfergebnisliste;${String(version)};\r\nDATEIENDE\r\n`);
+      const { diagnostics } = parseDsv(
+        `FORMAT:Wettkampfergebnisliste;${String(version)};\r\nDATEIENDE\r\n`,
+      );
       expect(diagnostics.map((d) => d.code)).not.toContain('unsupported-format-version');
     }
   });

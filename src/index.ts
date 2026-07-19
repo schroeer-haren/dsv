@@ -37,38 +37,43 @@ export type { Vereinsmeldeliste } from './parse/parse-vereinsmeldeliste.js';
 export type { Vereinsergebnisliste } from './parse/parse-vereinsergebnisliste.js';
 export type { FormatVersion } from './validate/format-version.js';
 
+/**
+ * Der Objektgraph der Wettkampfdefinitionsliste. Wie in allen vier Graphen
+ * trägt jeder Typ das Präfix seiner Listenart — hier `Definition`.
+ */
 export type {
-  Abschnitt,
-  Pflichtzeit,
-  ProjectionResult,
-  Veranstaltung,
-  Wertung,
-  Wettkampf,
+  DefinitionAbschnitt,
+  DefinitionPflichtzeit,
+  DefinitionProjectionResult,
+  DefinitionVeranstaltung,
+  DefinitionWertung,
+  DefinitionWettkampf,
   Wettkampfdefinition,
 } from './document/wettkampfdefinitionsliste.js';
 /**
- * Der Objektgraph der Ergebnisliste. Die Namen tragen das Präfix `Ergebnis`,
- * wo die Definitionsliste denselben Begriff anders modelliert — ABSCHNITT etwa
- * führt dort sechs Felder und hier vier.
+ * Der Objektgraph der Ergebnisliste, Präfix `Ergebnis`. Das Präfix ist keine
+ * Kollisionsvermeidung, sondern eine Aussage: Dieselben Begriffe sind je
+ * Listenart anders modelliert — ABSCHNITT etwa führt in der Definitionsliste
+ * sechs Felder und hier vier.
  */
 export type {
-  Abloese,
+  ErgebnisAbloese,
   ErgebnisAbschnitt,
+  ErgebnisKampfrichter,
   ErgebnisPerson,
+  ErgebnisPlatzierung,
   ErgebnisProjectionResult,
+  ErgebnisReaktion,
+  ErgebnisStaffel,
+  ErgebnisStaffelPerson,
+  ErgebnisStaffelZwischenzeit,
+  ErgebnisStart,
   ErgebnisVeranstaltung,
+  ErgebnisVerein,
   ErgebnisWertung,
   ErgebnisWettkampf,
-  Kampfrichter,
-  Platzierung,
-  Reaktion,
-  Staffel,
-  StaffelPerson,
-  StaffelZwischenzeit,
-  Start,
-  Verein,
+  ErgebnisZwischenzeit,
   Wettkampfergebnis,
-  Zwischenzeit,
 } from './document/wettkampfergebnisliste.js';
 /**
  * Der Objektgraph der Vereinsergebnisliste. Auch hier tragen die Namen ein

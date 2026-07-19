@@ -219,7 +219,7 @@ graph.veranstaltung.bezeichnung; // → 'Herbstpokal 2026'
 graph.abschnitte[0].kampfgericht[0].position; // → 'SR'
 ```
 
-Ein `Start` ist der Schwimmvorgang einer Person in einem Wettkampf:
+Ein `ErgebnisStart` ist der Schwimmvorgang einer Person in einem Wettkampf:
 
 ```typescript
 const wettkampf = graph.wettkampfByKey.get('25:E')!;
@@ -236,7 +236,7 @@ start.reaktionen; // → [{ art: '+', zeit: 71, line: 15 }]
 
 Die Datei kennt keine Personen-Entität, sondern wiederholt dieselbe Person je
 Wertung. Der Objektgraph fasst diese Zeilen zu einem Start zusammen; die
-Wertungen hängen als `Platzierung` daran:
+Wertungen hängen als `ErgebnisPlatzierung` daran:
 
 ```typescript
 start.platzierungen[0].wertungsId; // → 1
@@ -408,7 +408,7 @@ graph.personen.length; // → 2
 graph.wertungById.get(1)!.name; // → 'Jugend weiblich'
 ```
 
-Ein `Start` hängt an seiner Person und trägt Endzeit, Zwischenzeiten,
+Ein `ErgebnisStart` hängt an seiner Person und trägt Endzeit, Zwischenzeiten,
 Reaktionszeiten und die Platzierungen:
 
 ```typescript
