@@ -1,5 +1,166 @@
 # Changelog
 
+## 0.9.0
+
+Diese Version friert die öffentliche Oberfläche ein. Sie ist der
+Release-Kandidat vor 1.0: Alles, was hier exportiert wird, soll unter 1.0
+unverändert weiterbestehen. Deshalb sammelt 0.9.0 sämtliche Umbenennungen, die
+noch anstanden — **es ist die letzte Version mit Breaking Changes vor 1.0**.
+Wer von 0.5.0 kommt, hat einmal Anpassungsaufwand; die Abschnitte unten nennen
+zu jedem alten Namen den neuen.
+
+Zwei Dinge sichern den Freeze ab: `docs/public-api.md` führt alle 242 Exporte
+mit je einer Zeile, was sie tun, und `test/public-api.test.ts` vergleicht diese
+Liste mit dem, was `src/index.ts` tatsächlich exportiert. Jede Abweichung — ein
+neuer Export, ein entfernter, ein umbenannter, eine geänderte Art — lässt den
+Test fehlschlagen. Ab 1.0 ist damit jede Änderung der Oberfläche eine bewusste
+Entscheidung und keine Nebenwirkung mehr.
+
+### Breaking: alle Objektgraph-Typen tragen ihr Listenart-Präfix
+
+Das Präfix stand bisher nur dort, wo es sonst kollidiert wäre. Welcher Graph die
+nackten Namen bekam, hing allein daran, welcher zuerst geschrieben wurde —
+Implementierungsgeschichte, die in die Oberfläche durchschlug. `Verein`,
+`Start`, `Staffel` oder `Wettkampf` sagten nicht, zu welcher Listenart sie
+gehören.
+
+Die Regel lautet jetzt: Jeder Objektgraph-Typ trägt das Präfix seiner
+Listenart. Nur die vier Wurzeltypen `Wettkampfdefinition`,
+`Wettkampfergebnis`, `Vereinsmeldung` und `Vereinsergebnis` tragen keines — sie
+_sind_ die Listenart.
+
+Wettkampfdefinitionsliste (Präfix `Definition`):
+
+| alt                | neu                          |
+| ------------------ | ---------------------------- |
+| `Veranstaltung`    | `DefinitionVeranstaltung`    |
+| `Abschnitt`        | `DefinitionAbschnitt`        |
+| `Wettkampf`        | `DefinitionWettkampf`        |
+| `Wertung`          | `DefinitionWertung`          |
+| `Pflichtzeit`      | `DefinitionPflichtzeit`      |
+| `ProjectionResult` | `DefinitionProjectionResult` |
+
+Wettkampfergebnisliste (Präfix `Ergebnis`):
+
+| alt                   | neu                           |
+| --------------------- | ----------------------------- |
+| `Verein`              | `ErgebnisVerein`              |
+| `Start`               | `ErgebnisStart`               |
+| `Staffel`             | `ErgebnisStaffel`             |
+| `StaffelPerson`       | `ErgebnisStaffelPerson`       |
+| `Zwischenzeit`        | `ErgebnisZwischenzeit`        |
+| `StaffelZwischenzeit` | `ErgebnisStaffelZwischenzeit` |
+| `Reaktion`            | `ErgebnisReaktion`            |
+| `Abloese`             | `ErgebnisAbloese`             |
+| `Platzierung`         | `ErgebnisPlatzierung`         |
+| `Kampfrichter`        | `ErgebnisKampfrichter`        |
+
+### Breaking: `Schwimmer` heisst `ErgebnisPerson`
+
+Die Konvention der Oberfläche lautet: DSV-Fachbegriffe in Originalschreibweise.
+`Schwimmer` war der einzige erfundene Fachbegriff — die Spezifikation nennt das
+Element `PERSON`, und die beiden anderen Objektgraphen nennen ihren Typ
+entsprechend `MeldungPerson` und `VereinsergebnisPerson`.
+
+| alt                               | neu                            |
+| --------------------------------- | ------------------------------ |
+| `Schwimmer`                       | `ErgebnisPerson`               |
+| `Wettkampfergebnis.schwimmerById` | `Wettkampfergebnis.personById` |
+
+Die Besonderheit bleibt und steht im Doc-Kommentar: Die Wettkampfergebnisliste
+hat gar kein `PERSON`-Element, die Entität wird aus den denormalisierten
+`PNERGEBNIS`-Zeilen aggregiert.
+
+### Breaking: einheitliche Namen der Index-Maps
+
+Die Index-Maps der vier Objektgraphen folgen jetzt durchgängig der Regel
+`<Entität>By<Schlüssel>`: Der Name benennt die Entität, die man findet, das
+Suffix das Feld, unter dem man sie findet. Die Vereinsmeldung benannte zwei
+Maps nach dem Element statt nach der Entität:
+
+| alt                                 | neu                          |
+| ----------------------------------- | ---------------------------- |
+| `Vereinsmeldung.meldungById`        | `Vereinsmeldung.personById`  |
+| `Vereinsmeldung.staffelmeldungById` | `Vereinsmeldung.staffelById` |
+
+`Wettkampfergebnis.staffelByKey` behält seinen abweichenden Namen: Sein
+Schlüssel ist zusammengesetzt (`${veranstaltungsId}:${wettkampfnr}:${wettkampfart}`),
+weil eine Wettkampfergebnisliste die Staffeln aller Vereine führt und die
+`veranstaltungsId` dort nur je Wettkampf eindeutig ist. Das Suffix `ByKey`
+gegenüber `ById` hält diesen Unterschied im Namen sichtbar; die Doc-Kommentare
+nennen zu jeder Map jetzt zusätzlich ihren Schlüssel.
+
+### Breaking: `parseDsv` lehnt DSV6 ab
+
+`parseDsv` war versionsblind: Eine DSV6-Datei kam ohne jeden Hinweis durch,
+während `validateDocument` sie längst mit `fatal` ablehnte. Beide Ebenen sagen
+jetzt dasselbe, `parseDsvOrThrow` wirft entsprechend bei DSV6.
+
+Anders als die typisierte Ebene bricht `parseDsv` dabei nicht ab: `fatal` heisst
+hier „nicht verwendbar", nicht „nichts gelesen" — die zerlegten Zeilen bleiben
+zur Diagnose erhalten. Wer DSV6-Dateien bisher stillschweigend durch `parseDsv`
+geschoben hat, bekommt jetzt eine `fatal`-Diagnostic und muss `result.ok`
+auswerten. `version === null` bleibt der andere Fall: Ohne lesbare
+Versionsangabe wäre „nicht unterstützt" eine Behauptung über eine Zahl, die es
+nicht gibt.
+
+### Neu: die Wert-Codecs sind exportiert
+
+Der Objektgraph liefert Datumsangaben als `Datum`, Zeiten als
+Hundertstelsekunden und Uhrzeiten als Minuten seit Mitternacht. Die Umwandlung
+zurück in die Schreibweise des Formats war bislang intern — wer eine Zeit
+anzeigen oder ein Datum zurückschreiben wollte, musste die Regel nachbauen und
+traf sie mit hoher Wahrscheinlichkeit knapp daneben: führende Nullen, Komma
+statt Punkt als Dezimaltrennzeichen, die volle `HH:MM:SS,hh`-Form auch
+unterhalb einer Stunde.
+
+Exportiert sind `decodeDatum`/`encodeDatum`, `decodeZeit`/`encodeZeit` und
+`decodeUhrzeit`/`encodeUhrzeit`. Dazu `isZeroZeit`: `00:00:00,00` ist der
+spezifizierte Unterlassungswert für „keine Zeit" und wird bewusst nicht auf
+`null` abgebildet, damit beim Zurückschreiben die Unterscheidung zwischen
+„nicht angegeben" und „ausdrücklich Null" erhalten bleibt.
+
+### Neu: die generierten Elementtypen sind exportiert
+
+Die 148 aus der Spezifikation erzeugten Elementtypen lagen bisher ungenutzt im
+Paket. Sie sind jetzt exportiert, samt Doc-Kommentaren mit der Fundstelle in der
+Spezifikation. Die Namen tragen durchgehend das Suffix `V7` oder `V8` und
+kollidieren deshalb nicht mit den handgeschriebenen Typen des Objektgraphen.
+Der Codegen deckt jetzt alle vier Listenarten ab, nicht mehr nur die
+Wettkampfdefinitionsliste — Drift gegenüber der Spezifikation fällt damit
+überall auf.
+
+`dist/index.d.ts` wächst dadurch von 50,2 KB auf 139,2 KB. Der Laufzeit-Bundle
+bleibt unverändert.
+
+### Neu: publint und attw prüfen das veröffentlichte Paket
+
+Die `types`-Condition zeigte für beide Modulsysteme auf die ESM-Deklaration, ein
+CJS-Konsument bekam also Typen, die sich als ESM ausgeben (attw `FalseESM`,
+publint-Warnung). Die Typen sind jetzt je Condition getrennt, `require` zeigt
+auf die `.d.cts`, die tsup ohnehin erzeugt. Beide Werkzeuge laufen in
+`npm run check` und in der CI nach dem Build.
+
+### Erprobung und Dokumentation
+
+- **Robustheit**: Ein neuer Test hält abgeschnittene Zeilen, falsche Feldzahlen,
+  leere und reine Kommentardateien, BOM, gemischte Zeilenenden,
+  Mehrmegabyte-Zeilen, fehlenden Zeilenumbruch am Ende, alleinstehendes
+  `DATEIENDE`, Null-Bytes, Ersetzungszeichen, reine Semikolonzeilen und
+  Sonderzeichen in Elementnamen fest — je gegen alle vier typisierten Parser,
+  die schema-freie Ebene, die Projektionen und den Round-Trip. Kein Eingabefall
+  wirft, keiner ist langsam.
+- **Benchmark**: `docs/benchmark.md` hält die Zahlen für schema-freies Parsen,
+  typisiertes Parsen, Schreiben und Projektion fest — über eine synthetische
+  50-MB-Liste und über realistische 14.000 Zeilen. Dokumentiert ist auch der
+  rund zehnfache Speicherbedarf gegenüber der Eingabe; er folgt daraus, dass der
+  Rohtext für das byte-identische Schreiben mitgeführt wird.
+- **README**: neu gegliedert aus der Anwendungsperspektive statt aus der
+  Entstehungsgeschichte — Schnellstart, die Wahl zwischen den beiden Ebenen, je
+  ein Abschnitt mit vollständigem Beispiel pro Listenart. Dazu Diagnostics samt
+  Severity-Tabelle, und die Grenzen: kein DSV6, keine ZIP-Variante, keine
+  Meldegeldberechnung, keine Konvertierung zwischen den Formatversionen.
+
 ## 0.5.0
 
 Diese Version bringt keine neue Funktion, sondern **Verlässlichkeit**: Die
