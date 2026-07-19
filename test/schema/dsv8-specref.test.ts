@@ -1,14 +1,32 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { DSV8_DELTA } from './dsv8-delta.js';
 import type { FieldDef } from '../../src/schema/types.js';
 
+/**
+ * Die Spezifikationen liegen nur lokal — `spec/` ist bewusst nicht im
+ * Repository, die Dokumente gehören dem DSV. Alles, was ihren Wortlaut prüft,
+ * kann deshalb nur laufen, wo sie vorliegen; in der CI entfällt es.
+ *
+ * Das ist eine echte Einschränkung und keine bequeme: Der zeilengenaue
+ * Abgleich ist genau der Test, der eine verrutschte Fundstelle fängt, und er
+ * läuft nur auf einem Rechner, der die Spezifikationen hat. Was ohne sie
+ * prüfbar bleibt — die Form der Fundstellen und die Vollständigkeit der
+ * Tabelle unten — läuft deshalb unbedingt.
+ */
 const SPEC = join(import.meta.dirname, '..', '..', 'spec');
+const DSV7_MD = join(SPEC, 'dsv7.md');
+const DSV8_MD = join(SPEC, 'dsv8.md');
 
-const dsv8 = readFileSync(join(SPEC, 'dsv8.md'), 'utf8').split('\n');
-const dsv7 = readFileSync(join(SPEC, 'dsv7.md'), 'utf8').split('\n');
+const specVorhanden = existsSync(DSV7_MD) && existsSync(DSV8_MD);
+
+const lies = (pfad: string): readonly string[] =>
+  specVorhanden ? readFileSync(pfad, 'utf8').split('\n') : [];
+
+const dsv8 = lies(DSV8_MD);
+const dsv7 = lies(DSV7_MD);
 
 /** Die Zeile einer Fundstelle, ohne umgebende Leerzeichen. */
 const zeile = (datei: readonly string[], nr: number): string => (datei[nr - 1] ?? '').trim();
@@ -46,6 +64,16 @@ function alleFelder(): readonly { readonly pfad: string; readonly feld: FieldDef
 }
 
 describe('Fundstellen im Schema', () => {
+  it('verweist ausschliesslich auf dsv8.md', () => {
+    const fremd = alleFelder()
+      .filter(({ feld }) => !/^dsv8\.md:\d+$/.test(feld.specRef))
+      .map(({ pfad, feld }) => `${pfad} -> ${feld.specRef}`);
+
+    expect(fremd).toEqual([]);
+  });
+});
+
+describe.skipIf(!specVorhanden)('Fundstellen im Schema — gegen spec/dsv8.md', () => {
   /**
    * Der breite Durchgang über alle Felder, nicht nur die des Deltas. Er fängt
    * die Fundstelle ab, die auf eine Seitenzahl oder die Fusszeile zeigt — der
@@ -59,14 +87,6 @@ describe('Fundstellen im Schema', () => {
 
     expect(wertlos).toEqual([]);
   });
-
-  it('verweist ausschliesslich auf dsv8.md', () => {
-    const fremd = alleFelder()
-      .filter(({ feld }) => !/^dsv8\.md:\d+$/.test(feld.specRef))
-      .map(({ pfad, feld }) => `${pfad} -> ${feld.specRef}`);
-
-    expect(fremd).toEqual([]);
-  });
 });
 
 /**
@@ -77,76 +97,65 @@ describe('Fundstellen im Schema', () => {
  * ihrem Wortlaut. Ein blosser Zeilenverweis liesse sich nicht nachprüfen; der
  * mitgeführte Wortlaut macht die Prüfung scharf und überlebt eine Neuextraktion
  * der Spezifikation nicht stillschweigend.
+ *
+ * Die Tabellen stehen ausserhalb der Testblöcke, damit sich ihre
+ * Vollständigkeit auch dort prüfen lässt, wo die Spezifikationen fehlen: Dass
+ * jede Markierung eine Fundstelle hat, ist ohne sie nachrechenbar; nur der
+ * Wortlaut ist es nicht.
  */
-describe('Zeilengenauer Abgleich der DSV8-Stellen', () => {
-  /** Felder und Elemente, die DSV8 einführt, mit Fundstelle und Wortlaut. */
-  const FELDER: readonly (readonly [string, number, string])[] = [
-    ['BANKVERBINDUNG.kontoinhaber', 791, 'Kontoinhaber  ZK'],
-    ['LASTSCHRIFT (Element)', 801, 'LASTSCHRIFT:'],
-    ['LASTSCHRIFT.hinweis', 813, 'Hinweis'],
-    ['VEREIN.lastschrift', 1863, 'Lastschrift'],
-    ['KARIMELDUNG.geschlecht', 2018, 'Geschlecht des'],
-    ['TRAINER.geschlecht', 2145, 'Geschlecht des'],
-  ];
 
-  it.each(FELDER)('%s steht in dsv8.md:%i', (_name, nr, wortlaut) => {
-    expect(zeile(dsv8, nr)).toBe(wortlaut);
-  });
+/** Felder und Elemente, die DSV8 einführt, mit Fundstelle und Wortlaut. */
+const FELDER: readonly (readonly [string, number, string])[] = [
+  ['BANKVERBINDUNG.kontoinhaber', 791, 'Kontoinhaber  ZK'],
+  ['LASTSCHRIFT (Element)', 801, 'LASTSCHRIFT:'],
+  ['LASTSCHRIFT.hinweis', 813, 'Hinweis'],
+  ['VEREIN.lastschrift', 1863, 'Lastschrift'],
+  ['KARIMELDUNG.geschlecht', 2018, 'Geschlecht des'],
+  ['TRAINER.geschlecht', 2145, 'Geschlecht des'],
+];
 
-  /**
-   * Die Werte des Deltas. Neben der Fundstelle in DSV8 steht, ob DSV7 den Wert
-   * an dieser Stelle kennt — bei den Kicks nirgends, bei divers je nach Feld.
-   */
-  const WERTE: readonly (readonly [string, number, string])[] = [
-    [
-      'Wettkampfdefinitionsliste WETTKAMPF.ausuebung=KB',
-      1070,
-      'KB = Kicks Bauchlage (nur Technik = S)',
-    ],
-    [
-      'Wettkampfdefinitionsliste WETTKAMPF.ausuebung=KR',
-      1072,
-      'KR = Kicks Rückenlage (nur Technik = S)',
-    ],
-    ['Wettkampfdefinitionsliste WETTKAMPF.geschlecht=D', 1092, 'D = divers'],
-    [
-      'Wettkampfdefinitionsliste MELDEGELD.meldegeldTyp=Teilnehmermeldegeld',
-      1378,
-      'Teilnehmermeldegeld',
-    ],
-    [
-      'Wettkampfdefinitionsliste MELDEGELD.meldegeldTyp=Abschnittspauschale',
-      1380,
-      'Abschnittspauschale',
-    ],
-    ['Vereinsmeldeliste WETTKAMPF.ausuebung=KB', 1774, 'KB = Kicks Bauchlage (nur Technik = S)'],
-    ['Vereinsmeldeliste WETTKAMPF.ausuebung=KR', 1776, 'KR = Kicks Rückenlage (nur Technik = S)'],
-    ['Vereinsmeldeliste WETTKAMPF.geschlecht=D', 1791, 'D = divers'],
-    ['Vereinsergebnisliste WETTKAMPF.ausuebung=KB', 3120, 'KB = Kicks Bauchlage (nur Technik = S)'],
-    [
-      'Vereinsergebnisliste WETTKAMPF.ausuebung=KR',
-      3122,
-      'KR = Kicks Rückenlage (nur Technik = S)',
-    ],
-    ['Vereinsergebnisliste WETTKAMPF.geschlecht=D', 3143, 'D = divers'],
-    ['Vereinsergebnisliste WERTUNG.geschlecht=D', 3285, 'D = divers'],
-    [
-      'Wettkampfergebnisliste WETTKAMPF.ausuebung=KB',
-      4779,
-      'KB = Kicks Bauchlage (nur Technik = S)',
-    ],
-    [
-      'Wettkampfergebnisliste WETTKAMPF.ausuebung=KR',
-      4781,
-      'KR = Kicks Rückenlage (nur Technik = S)',
-    ],
-    ['Wettkampfergebnisliste WERTUNG.geschlecht=D', 4942, 'D = divers'],
-  ];
+/**
+ * Die Werte des Deltas. Neben der Fundstelle in DSV8 steht ihr Wortlaut.
+ */
+const WERTE: readonly (readonly [string, number, string])[] = [
+  [
+    'Wettkampfdefinitionsliste WETTKAMPF.ausuebung=KB',
+    1070,
+    'KB = Kicks Bauchlage (nur Technik = S)',
+  ],
+  [
+    'Wettkampfdefinitionsliste WETTKAMPF.ausuebung=KR',
+    1072,
+    'KR = Kicks Rückenlage (nur Technik = S)',
+  ],
+  ['Wettkampfdefinitionsliste WETTKAMPF.geschlecht=D', 1092, 'D = divers'],
+  [
+    'Wettkampfdefinitionsliste MELDEGELD.meldegeldTyp=Teilnehmermeldegeld',
+    1378,
+    'Teilnehmermeldegeld',
+  ],
+  [
+    'Wettkampfdefinitionsliste MELDEGELD.meldegeldTyp=Abschnittspauschale',
+    1380,
+    'Abschnittspauschale',
+  ],
+  ['Vereinsmeldeliste WETTKAMPF.ausuebung=KB', 1774, 'KB = Kicks Bauchlage (nur Technik = S)'],
+  ['Vereinsmeldeliste WETTKAMPF.ausuebung=KR', 1776, 'KR = Kicks Rückenlage (nur Technik = S)'],
+  ['Vereinsmeldeliste WETTKAMPF.geschlecht=D', 1791, 'D = divers'],
+  ['Vereinsergebnisliste WETTKAMPF.ausuebung=KB', 3120, 'KB = Kicks Bauchlage (nur Technik = S)'],
+  ['Vereinsergebnisliste WETTKAMPF.ausuebung=KR', 3122, 'KR = Kicks Rückenlage (nur Technik = S)'],
+  ['Vereinsergebnisliste WETTKAMPF.geschlecht=D', 3143, 'D = divers'],
+  ['Vereinsergebnisliste WERTUNG.geschlecht=D', 3285, 'D = divers'],
+  ['Wettkampfergebnisliste WETTKAMPF.ausuebung=KB', 4779, 'KB = Kicks Bauchlage (nur Technik = S)'],
+  [
+    'Wettkampfergebnisliste WETTKAMPF.ausuebung=KR',
+    4781,
+    'KR = Kicks Rückenlage (nur Technik = S)',
+  ],
+  ['Wettkampfergebnisliste WERTUNG.geschlecht=D', 4942, 'D = divers'],
+];
 
-  it.each(WERTE)('%s steht in dsv8.md:%i', (_name, nr, wortlaut) => {
-    expect(zeile(dsv8, nr)).toBe(wortlaut);
-  });
-
+describe('Vollständigkeit der Fundstellentabelle', () => {
   it('führt für jeden markierten Wert genau eine Fundstelle', () => {
     const markierteWerte = DSV8_DELTA.flatMap(([, schema]) =>
       schema.elements.flatMap(({ def }) =>
@@ -155,6 +164,29 @@ describe('Zeilengenauer Abgleich der DSV8-Stellen', () => {
     );
 
     expect(WERTE).toHaveLength(markierteWerte.length);
+  });
+
+  it('führt für jedes markierte Element und Feld genau eine Fundstelle', () => {
+    const markierte = DSV8_DELTA.flatMap(([, schema]) =>
+      schema.elements.flatMap(({ def }) => [
+        ...(def.since === 8 ? [def.name] : []),
+        ...def.fields.filter((f) => f.since === 8).map((f) => f.name),
+      ]),
+    );
+
+    // Ein Eintrag mehr als Markierungen: `LASTSCHRIFT` steht mit dem Element
+    // und mit seinem Attribut `hinweis` in der Tabelle.
+    expect(FELDER).toHaveLength(markierte.length + 1);
+  });
+});
+
+describe.skipIf(!specVorhanden)('Zeilengenauer Abgleich der DSV8-Stellen', () => {
+  it.each(FELDER)('%s steht in dsv8.md:%i', (_name, nr, wortlaut) => {
+    expect(zeile(dsv8, nr)).toBe(wortlaut);
+  });
+
+  it.each(WERTE)('%s steht in dsv8.md:%i', (_name, nr, wortlaut) => {
+    expect(zeile(dsv8, nr)).toBe(wortlaut);
   });
 
   /**
