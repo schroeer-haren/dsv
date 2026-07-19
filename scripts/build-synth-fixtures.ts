@@ -989,6 +989,9 @@ schreibe('vereinsergebnis.dsv8', [
   line('WERTUNG', '2', 'Z', '2', 'JG', '2008', '', 'W', 'Jahrgang 2008'),
   line('WERTUNG', '3', 'F', '3', 'AK', '100', '120', 'M', 'Masters 100 bis 120'),
   line('WERTUNG', '4', 'E', '4', 'AK', '100', '', 'D', 'Masters 100'),
+  // Zweite Wertung desselben Wettkampfes: Erst dadurch kann ein Start zwei
+  // Platzierungen tragen, ohne dass dieselbe Wertung zweimal vergeben wird.
+  line('WERTUNG', '4', 'E', '8', 'JG', '2008', '2010', 'X', 'Jahrgangswertung'),
   line('WERTUNG', '7', 'V', '5', 'JG', '0', '9999', 'X', 'Gemischte Wertung'),
   // Aus- und Nachschwimmen brauchen eine eigene Wertung: Ein Ergebnis darf nur
   // auf eine Wertung seines eigenen Wettkampfs zeigen, und `wertungsId` ist
@@ -1016,8 +1019,11 @@ schreibe('vereinsergebnis.dsv8', [
   line('PNREAKTION', '2', '3', 'F', '-', '00:00:00,04'),
   line('PNREAKTION', '3', '5', 'A', '', '00:00:00,68'),
   // Jahrgangs- und Altersklassenstaffel, obere Grenze gesetzt und leer.
+  // 9003 schwimmt denselben Wettkampf wie 9001 und wird disqualifiziert; sie
+  // trägt damit den Disqualifikationsfall, der nicht an 9001 hängen darf.
   line('STAFFEL', '1', '9001', 'JG', '2008', '2010'),
   line('STAFFEL', '2', '9002', 'AK', '100', ''),
+  line('STAFFEL', '3', '9003', 'JG', '2008', '2010'),
   line(
     'STAFFELPERSON',
     '9001',
@@ -1064,10 +1070,36 @@ schreibe('vereinsergebnis.dsv8', [
     '',
     '',
   ),
+  line(
+    'STAFFELPERSON',
+    '9003',
+    '4',
+    'E',
+    'Muster, Mia',
+    '100010',
+    '1',
+    'W',
+    '2008',
+    '',
+    '',
+    '',
+    '',
+  ),
   // Startnummer der disqualifizierten Person gesetzt, 0 für den allgemeinen
   // Grund, und leer.
+  //
+  // Die beiden Ergebnisse der Staffel 9001 gehören zu verschiedenen Wertungen
+  // desselben Wettkampfes — Wertung 4 und die zweite Wertung 8 — und tragen
+  // dieselbe Endzeit: Ein Start wird in jeder Wertung, der er angehört, eigens
+  // platziert. Zweimal dieselbe `wertungsId` wäre ein Widerspruch; Wettkampf 4
+  // führt deshalb zwei Wertungen.
+  //
+  // Der Disqualifikationsfall hängt an der eigenen Staffel 9003: Wer
+  // disqualifiziert ist, ist es in jeder Wertung, kann also nicht daneben
+  // platziert sein.
   line('STAFFELERGEBNIS', '9001', '4', 'E', '4', '2', '00:04:30,84', '', '', '', ''),
-  line('STAFFELERGEBNIS', '9001', '4', 'E', '4', '0', '00:00:00,00', 'DS', '3', 'Wechsel', 'E'),
+  line('STAFFELERGEBNIS', '9001', '4', 'E', '8', '1', '00:04:30,84', '', '', '', ''),
+  line('STAFFELERGEBNIS', '9003', '4', 'E', '4', '0', '00:00:00,00', 'DS', '3', 'Wechsel', 'E'),
   line('STAFFELERGEBNIS', '9002', '6', 'N', '7', '0', '00:00:00,00', 'ZU', '0', '', ''),
   line('STZWISCHENZEIT', '9001', '4', 'E', '1', '100', '00:01:03,61'),
   line('STZWISCHENZEIT', '9001', '4', 'E', '2', '200', '00:02:10,02'),

@@ -549,12 +549,15 @@ describe('projectVereinsergebnisliste', () => {
 
     expect(diagnostics).toEqual([]);
     expect(graph.personen).toHaveLength(3);
-    expect(graph.staffeln).toHaveLength(2);
+    expect(graph.staffeln).toHaveLength(3);
     expect(graph.abschnitte).toHaveLength(3);
     expect(graph.verein?.bezeichnung).toBe('SV Musterstadt');
-    // Die Staffel 9001 ist in Wettkampf 4 zweimal gewertet, ihre drei
-    // Mitglieder stehen aber nur einmal in der Datei.
-    expect(graph.staffelStartByKey.get('9001:4:E')?.platzierungen).toHaveLength(2);
+    // Die Staffel 9001 gehört in Wettkampf 4 zwei verschiedenen Wertungen an
+    // — der Wertung 4 und der Wertung 8 — und wird in jeder eigens platziert.
+    // Ihre drei Mitglieder stehen dabei nur einmal in der Datei.
+    expect(graph.staffelStartByKey.get('9001:4:E')?.platzierungen.map((p) => p.wertungsId)).toEqual(
+      [4, 8],
+    );
     expect(graph.staffelStartByKey.get('9001:4:E')?.personen).toHaveLength(3);
   });
 
