@@ -9,6 +9,14 @@ Exporten aus `src/index.ts` und schlägt bei jeder Abweichung fehl — auch bei
 einer geänderten Art. Ein neuer Export ist deshalb immer eine bewusste
 Ergänzung dieser Datei.
 
+Diese Datei führt die Exporte und beschreibt, **was** jeder von ihnen tut; sie
+wird von Hand gepflegt. Woraus die exportierten Typen bestehen — jedes Feld mit
+seinem Typ — steht in der generierten
+[`public-api-surface.md`](./public-api-surface.md). Auch die ist eingefroren:
+Ein umbenanntes Feld ändert keinen Exportnamen und bliebe hier unsichtbar, ist
+aber genauso ein Breaking Change. Neu erzeugt wird sie mit
+`npm run api-surface`.
+
 Die Benennung folgt einer Konvention: **englische Verben**
 (`parse`, `write`, `project`) und **DSV-Fachbegriffe in Originalschreibweise**
 (`Wettkampfdefinitionsliste`, `Vereinsmeldeliste`, `DefinitionAbschnitt`).

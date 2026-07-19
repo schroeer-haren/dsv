@@ -9,12 +9,25 @@ noch anstanden — **es ist die letzte Version mit Breaking Changes vor 1.0**.
 Wer von 0.5.0 kommt, hat einmal Anpassungsaufwand; die Abschnitte unten nennen
 zu jedem alten Namen den neuen.
 
-Zwei Dinge sichern den Freeze ab: `docs/public-api.md` führt alle 242 Exporte
+Drei Dinge sichern den Freeze ab. `docs/public-api.md` führt alle 242 Exporte
 mit je einer Zeile, was sie tun, und `test/public-api.test.ts` vergleicht diese
 Liste mit dem, was `src/index.ts` tatsächlich exportiert. Jede Abweichung — ein
 neuer Export, ein entfernter, ein umbenannter, eine geänderte Art — lässt den
-Test fehlschlagen. Ab 1.0 ist damit jede Änderung der Oberfläche eine bewusste
-Entscheidung und keine Nebenwirkung mehr.
+Test fehlschlagen.
+
+Die Exportnamen allein genügen aber nicht: Die Umbenennungen unten, etwa
+`meldungById` → `personById` oder `meldungen` → `personen`, ändern keinen
+einzigen Exportnamen und sind trotzdem Breaking Changes. Deshalb hält die
+generierte `docs/public-api-surface.md` zusätzlich die **Member** jedes
+erreichbaren Typs fest — 227 Typen mit jedem Feld und dessen Typ, einschliesslich
+der 148 generierten Elementtypen. Jeder benannte Typ steht dort genau einmal und
+genau eine Ebene tief; Verweise stehen als Name da und werden unter ihrem
+eigenen Eintrag aufgelöst, damit ein umbenanntes Feld genau eine geänderte Zeile
+ergibt. Neu erzeugt wird die Datei mit `npm run api-surface`,
+`npm run api-surface:check` prüft sie in `npm run check` und in der CI.
+
+Ab 1.0 ist damit jede Änderung der Oberfläche — bis auf die Feldebene — eine
+bewusste Entscheidung und keine Nebenwirkung mehr.
 
 ### Breaking: alle Objektgraph-Typen tragen ihr Listenart-Präfix
 
@@ -89,6 +102,30 @@ weil eine Wettkampfergebnisliste die Staffeln aller Vereine führt und die
 `veranstaltungsId` dort nur je Wettkampf eindeutig ist. Das Suffix `ByKey`
 gegenüber `ById` hält diesen Unterschied im Namen sichtbar; die Doc-Kommentare
 nennen zu jeder Map jetzt zusätzlich ihren Schlüssel.
+
+### Breaking: einheitliche Namen der Sammlungsfelder
+
+Dieselbe Regel wie bei den Index-Maps gilt jetzt auch für die Array-Felder:
+Der Name benennt die Entität, die drinsteht, nicht das DSV-Element, aus dem sie
+stammt. Bis 0.5.0 stand deshalb `meldungen` (aus `PNMELDUNG`) direkt neben
+`personById` — dieselbe Sache unter zwei Namen im selben Interface.
+
+| alt                                     | neu                                     |
+| --------------------------------------- | --------------------------------------- |
+| `Vereinsmeldung.meldungen`              | `Vereinsmeldung.personen`               |
+| `Vereinsmeldung.staffelmeldungen`       | `Vereinsmeldung.staffeln`               |
+| `ErgebnisAbschnitt.kampfgericht`        | `ErgebnisAbschnitt.kampfrichter`        |
+| `VereinsergebnisAbschnitt.kampfgericht` | `VereinsergebnisAbschnitt.kampfrichter` |
+
+`kampfgericht` war derselbe Fall: Das Element heisst `KAMPFGERICHT`, die
+Entität darin ist ein Kampfrichter — die Vereinsmeldung nannte dieselbe Entität
+an ihrer Wurzel längst `kampfrichter`. Alle übrigen Sammlungsfelder der vier
+Graphen (`abschnitte`, `wettkaempfe`, `wertungen`, `pflichtzeiten`, `starts`,
+`staffelStarts`, `personen`, `staffeln`, `vereine`, `platzierungen`,
+`zwischenzeiten`, `reaktionen`, `abloesen`, `einsaetze`,
+`kampfrichterEinsaetze`, `trainer`, `nationalitaeten`,
+`wettkaempfeOhneAbschnitt`) tragen bereits den Namen ihrer Entität und bleiben
+unverändert.
 
 ### Breaking: `parseDsv` lehnt DSV6 ab
 

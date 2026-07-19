@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
+import { renderSurface } from '../scripts/api-surface.js';
 
 /**
  * Friert die öffentliche Oberfläche ein. `docs/public-api.md` ist die
@@ -16,6 +17,7 @@ import { describe, expect, it } from 'vitest';
 
 const entryPoint = fileURLToPath(new URL('../src/index.ts', import.meta.url));
 const apiDoc = fileURLToPath(new URL('../docs/public-api.md', import.meta.url));
+const surfaceDoc = fileURLToPath(new URL('../docs/public-api-surface.md', import.meta.url));
 
 type ExportKind = 'class' | 'constant' | 'function' | 'type';
 
@@ -96,5 +98,26 @@ describe('öffentliche API', () => {
   it('führt jeden Namen genau einmal', () => {
     const names = documented.map((e) => e.name);
     expect(names).toEqual([...new Set(names)]);
+  });
+});
+
+/**
+ * Der Freeze über die Exportnamen allein genügt nicht: Ein umbenanntes Feld
+ * eines exportierten Typs ändert keinen Exportnamen und ist trotzdem ein
+ * Breaking Change. `docs/public-api-surface.md` hält deshalb zusätzlich die
+ * Member jedes erreichbaren Typs fest — Aufbau und Begründung der Tiefe stehen
+ * am Kopf von `scripts/api-surface.ts`.
+ */
+describe('Member der öffentlichen Typen', () => {
+  it('entsprechen docs/public-api-surface.md', () => {
+    const expected = readFileSync(surfaceDoc, 'utf8');
+    const actual = renderSurface();
+
+    // Der Vergleich läuft zeilenweise: Bei einer Abweichung zeigt Vitest dann
+    // die geänderte Zeile und nicht 2500 Zeilen Diff.
+    expect(
+      actual.split('\n'),
+      'Oberfläche und Snapshot weichen ab — mit `npm run api-surface` neu erzeugen und den Diff prüfen.',
+    ).toEqual(expected.split('\n'));
   });
 });
