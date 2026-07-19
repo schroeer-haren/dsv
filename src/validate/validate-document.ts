@@ -201,6 +201,43 @@ function validateCrossRules(byElement: Map<string, DsvRecord[]>, schema: ListSch
     }
   }
 
+  // Gemischte Wettkämpfe gehören in die Standard-Bestenliste: „Falls gemischte
+  // Wettkämpfe ist SW anzugeben" (dsv8.md:3159).
+  //
+  // Gemeldet als `warning`, nicht als `error`: Von den 244 Wettkämpfen mit
+  // Geschlecht X in `test/fixtures/real` halten sich nur 170 daran. Die
+  // übrigen 74 tragen KG (33×, kindgerechte Wettkämpfe) oder MS (41×,
+  // Masters) — beides fachlich sinnvolle Zuordnungen, die die Spec-Regel so
+  // nicht vorsieht. Als Fehler gemeldet wiese die Bibliothek Protokolle
+  // zurück, die real im Umlauf sind.
+  for (const target of targetsWithFields(schema, ['geschlecht', 'zuordnungBestenliste'])) {
+    const [geschlechtIndex, zuordnungIndex] = target.indices;
+
+    for (const record of byElement.get(target.element.toUpperCase()) ?? []) {
+      if (fieldAt(record, geschlechtIndex).toUpperCase() !== 'X') continue;
+
+      const zuordnung = fieldAt(record, zuordnungIndex);
+      if (zuordnung.toUpperCase() === 'SW') continue;
+
+      diagnostics.push(
+        createDiagnostic(
+          'invalid-value',
+          'warning',
+          `${target.element}.zuordnungBestenliste should be SW for mixed competitions, found "${zuordnung}"`,
+          {
+            ...at(record.line),
+            data: {
+              element: target.element,
+              field: 'zuordnungBestenliste',
+              value: zuordnung,
+              geschlecht: 'X',
+            },
+          },
+        ),
+      );
+    }
+  }
+
   // Wer nicht gewertet wird, belegt keinen Platz (dsv8.md:5093, dsv8.md:5476).
   for (const target of targetsWithFields(schema, ['platz', 'grundDerNichtwertung'])) {
     const [platzIndex, grundIndex] = target.indices;

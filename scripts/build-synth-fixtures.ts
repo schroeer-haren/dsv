@@ -977,10 +977,12 @@ schreibe('vereinsergebnis.dsv8', [
   line('WETTKAMPF', '1', 'V', '1', '', '100', 'F', 'GL', 'W', 'SW', '', ''),
   line('WETTKAMPF', '2', 'Z', '1', '1', '50', 'R', 'BE', 'M', 'MS', '1', 'V'),
   line('WETTKAMPF', '3', 'F', '2', '1', '50', 'B', 'AR', 'D', 'KG', '2', 'Z'),
-  line('WETTKAMPF', '4', 'E', '2', '4', '400', 'L', 'ST', 'X', 'EW', '3', 'F'),
+  // Gemischt (X) verlangt die Standard-Bestenliste SW (dsv8.md:3159); EW steht
+  // deshalb an Wettkampf 7, sonst bliebe der Wert unbelegt.
+  line('WETTKAMPF', '4', 'E', '2', '4', '400', 'L', 'ST', 'X', 'SW', '3', 'F'),
   line('WETTKAMPF', '5', 'A', '3', '1', '200', 'S', 'WE', 'W', 'PA', '4', 'E'),
   line('WETTKAMPF', '6', 'N', '3', '1', '0', 'X', 'GB', 'M', 'XX', '', ''),
-  line('WETTKAMPF', '7', 'V', '1', '1', '25000', 'S', 'KB', 'W', 'SW', '', ''),
+  line('WETTKAMPF', '7', 'V', '1', '1', '25000', 'S', 'KB', 'W', 'EW', '', ''),
   line('WETTKAMPF', '8', 'V', '1', '1', '100', 'S', 'KR', 'M', 'SW', '', ''),
   // Beide Wertungsklassen, obere Grenze und Geschlecht je gesetzt und leer.
   line('WERTUNG', '1', 'V', '1', 'JG', '0', '9999', '', 'Offene Wertung'),

@@ -108,11 +108,16 @@ describe('parseWettkampfergebnisliste', () => {
  *   Wettkampfdefinitionsliste (dsv8.md:1110).
  * - `invalid-enum-value`: einmal KAMPFGERICHT.position `SPR`, bereits als
  *   `tolerated` im Schema hinterlegt (dsv8.md:5852).
+ * - `invalid-value`: 37-mal ein gemischter Wettkampf (Geschlecht X) mit einer
+ *   anderen Zuordnung zur Bestenliste als `SW`, entgegen dsv8.md:3159. Über
+ *   alle 103 echten Dateien betrifft das 74 von 244 gemischten Wettkämpfen;
+ *   sie tragen KG oder MS. Deshalb ist die Regel eine `warning`.
  */
 const EXPECTED_DIAGNOSTICS: Readonly<Record<string, number>> = {
   'error:missing-required-field': 49,
   'warning:conditional-field-required': 36,
   'warning:invalid-enum-value': 1,
+  'warning:invalid-value': 37,
 };
 
 /** Anzahl der Dateien mit mindestens einem `error` oder `fatal`. */

@@ -667,3 +667,60 @@ describe('Querregeln greifen listenartunabhängig', () => {
     });
   });
 });
+
+describe('Gemischte Wettkämpfe gehören in die Standard-Bestenliste', () => {
+  /** WETTKAMPF der Listenarten mit `zuordnungBestenliste` — elf Felder. */
+  const wettkampf = (geschlecht: string, zuordnung: string): string[] => [
+    '1',
+    'V',
+    '1',
+    '1',
+    '100',
+    'F',
+    'GL',
+    geschlecht,
+    zuordnung,
+    '',
+    '',
+  ];
+
+  it.each([
+    ['Wettkampfdefinitionsliste', WETTKAMPFDEFINITIONSLISTE, minimal(8)],
+    ['Vereinsergebnisliste', VEREINSERGEBNISLISTE, minimalVereinsergebnis()],
+  ])('meldet Geschlecht X mit anderer Zuordnung als SW in der %s', (_name, schema, lines) => {
+    const diagnostics = validateWith(
+      schema,
+      replace([...lines], 'WETTKAMPF', wettkampf('X', 'EW')),
+    );
+
+    expect(diagnostics.map((d) => d.code)).toEqual(['invalid-value']);
+    expect(diagnostics[0]?.severity).toBe('warning');
+    expect(diagnostics[0]?.data).toMatchObject({
+      field: 'zuordnungBestenliste',
+      value: 'EW',
+      geschlecht: 'X',
+    });
+  });
+
+  it('akzeptiert Geschlecht X mit SW', () => {
+    expect(
+      validateWith(
+        VEREINSERGEBNISLISTE,
+        replace(minimalVereinsergebnis(), 'WETTKAMPF', wettkampf('X', 'SW')),
+      ),
+    ).toEqual([]);
+  });
+
+  it.each(['M', 'W', 'D'])('lässt Zuordnung EW bei Geschlecht %s unberührt', (geschlecht) => {
+    expect(
+      validateWith(
+        VEREINSERGEBNISLISTE,
+        replace(minimalVereinsergebnis(), 'WETTKAMPF', wettkampf(geschlecht, 'EW')),
+      ),
+    ).toEqual([]);
+  });
+
+  it('greift in der Vereinsmeldeliste nicht, weil dort die Zuordnung fehlt', () => {
+    expect(validateWith(VEREINSMELDELISTE, minimalVereinsmeldung())).toEqual([]);
+  });
+});
