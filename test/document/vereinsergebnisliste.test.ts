@@ -558,7 +558,7 @@ describe('projectVereinsergebnisliste', () => {
     expect(graph.staffelStartByKey.get('9001:4:E')?.platzierungen.map((p) => p.wertungsId)).toEqual(
       [4, 8],
     );
-    expect(graph.staffelStartByKey.get('9001:4:E')?.personen).toHaveLength(3);
+    expect(graph.staffelStartByKey.get('9001:4:E')?.personen).toHaveLength(4);
   });
 
   it('bricht bei einer leeren Datei nicht ab', () => {
@@ -642,5 +642,126 @@ describe('Wertungen gehören zum Wettkampf des Ergebnisses', () => {
     );
 
     expect(codes(result)).toContain('dangling-reference');
+  });
+
+  describe('unvollständige Staffeln', () => {
+    // dsv8.md:3805 — "Falls nicht alle Staffelteilnehmer angegeben sind, ist
+    // die Ausgabe der Staffelpersonen zu unterdrücken." Die Regel steht im
+    // eigenen Kapitel der Vereinsergebnisliste, nicht bloss bei der
+    // Wettkampfergebnisliste. WETTKAMPF führt vier Starter.
+
+    it('meldet eine Staffel, die einige, aber nicht alle Mitglieder nennt', () => {
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        staffel(),
+        staffelergebnis(),
+        ...['1', '2', '3'].map((n) => staffelperson({ startnummer: n })),
+      );
+
+      expect(codes(result)).toEqual(['incomplete-relay']);
+      expect(result.diagnostics[0]?.severity).toBe('warning');
+      expect(result.diagnostics[0]?.data).toMatchObject({
+        element: 'STAFFELPERSON',
+        key: '9001:1:E',
+        genannt: 3,
+        erwartet: 4,
+      });
+    });
+
+    it('schweigt zu einer vollständigen Staffel', () => {
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        VEREIN,
+        staffel(),
+        staffelergebnis(),
+        ...['1', '2', '3', '4'].map((n) => staffelperson({ startnummer: n })),
+      );
+
+      expect(codes(result)).toEqual([]);
+    });
+
+    it('schweigt zu einer Staffel ganz ohne Staffelpersonen — die Regel ist befolgt', () => {
+      // Gar keine Personen zu nennen ist genau das, was die Spec verlangt,
+      // wenn nicht alle bekannt sind.
+      const result = project(ABSCHNITT, WETTKAMPF, WERTUNG, VEREIN, staffel(), staffelergebnis());
+
+      expect(codes(result)).toEqual([]);
+    });
+
+    it('zählt verschiedene Startnummern, nicht Zeilen', () => {
+      // Der je Wertung wiederholte Personenblock darf die halbe Staffel nicht
+      // vollständig erscheinen lassen.
+      const zweiteWertung = line('WERTUNG', ['1', 'E', '2', 'JG', '2008', '', 'W', 'Jahrgang']);
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WERTUNG,
+        zweiteWertung,
+        VEREIN,
+        staffel(),
+        staffelergebnis({ wertungsId: '1' }),
+        ...['1', '2'].map((n) => staffelperson({ startnummer: n })),
+        staffelergebnis({ wertungsId: '2' }),
+        ...['1', '2'].map((n) => staffelperson({ startnummer: n })),
+      );
+
+      expect(codes(result)).toEqual(['incomplete-relay']);
+      expect(result.diagnostics[0]?.data).toMatchObject({ genannt: 2, erwartet: 4 });
+    });
+
+    it('schweigt, wenn der Wettkampf keine Starterzahl nennt', () => {
+      // Ohne anzahlStarter ist die Vollständigkeit unbestimmt — dann lieber
+      // gar nichts melden als raten.
+      const ohneAnzahl = line('WETTKAMPF', [
+        '1',
+        'E',
+        '1',
+        '',
+        '100',
+        'F',
+        'GL',
+        'W',
+        'SW',
+        '',
+        '',
+      ]);
+      const result = project(
+        ABSCHNITT,
+        ohneAnzahl,
+        WERTUNG,
+        VEREIN,
+        staffel(),
+        staffelergebnis(),
+        staffelperson({ startnummer: '1' }),
+      );
+
+      expect(codes(result)).toEqual([]);
+    });
+
+    it('trennt die Vollständigkeit je Wettkampf derselben Staffel', () => {
+      // Dieselbe Mannschaft in zwei Wettkämpfen: nur der unvollständige Start
+      // wird gemeldet, nicht die Staffel als Ganzes.
+      const result = project(
+        ABSCHNITT,
+        WETTKAMPF,
+        WETTKAMPF_2,
+        WERTUNG,
+        WERTUNG_2,
+        VEREIN,
+        staffel(),
+        staffelergebnis(),
+        ...['1', '2', '3', '4'].map((n) => staffelperson({ startnummer: n })),
+        staffelergebnis({ wettkampfnr: '2', wertungsId: '2' }),
+        ...['1', '2'].map((n) => staffelperson({ startnummer: n, wettkampfnr: '2' })),
+      );
+
+      expect(codes(result)).toEqual(['incomplete-relay']);
+      expect(result.diagnostics[0]?.data).toMatchObject({ key: '9001:2:E', genannt: 2 });
+    });
   });
 });

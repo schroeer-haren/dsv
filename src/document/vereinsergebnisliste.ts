@@ -1046,6 +1046,38 @@ export function projectVereinsergebnisliste(
     }
   }
 
+  // dsv8.md:3805 — "Falls nicht alle Staffelteilnehmer angegeben sind, ist die
+  // Ausgabe der Staffelpersonen zu unterdrücken." Die Regel steht wortgleich im
+  // eigenen Kapitel der Vereinsergebnisliste, nicht nur bei der
+  // Wettkampfergebnisliste (dsv8.md:5531): Sie kennt genau zwei erlaubte
+  // Zustände, alle Teilnehmer oder keinen. Eine Staffel, die einige nennt,
+  // lässt offen, ob der Rest fehlt oder gar nicht mitschwamm.
+  //
+  // Gezählt werden verschiedene Startnummern, nicht Zeilen: Sonst schlüge die
+  // Prüfung durch die je Wertung wiederholten Personenblöcke in die falsche
+  // Richtung aus und hielte eine halbe Staffel für vollständig.
+  for (const [key, builder] of staffelStartBuilders) {
+    const genannt = builder.gesehen.personen.size;
+    if (genannt === 0) continue;
+
+    const start = builder.start;
+    const wettkampf = builders.get(wettkampfKey(start.wettkampfnr, start.wettkampfart));
+    const erwartet = Number(wettkampf?.wettkampf.anzahlStarter);
+    if (!Number.isFinite(erwartet) || erwartet <= 0 || genannt >= erwartet) continue;
+
+    diagnostics.push(
+      createDiagnostic(
+        'incomplete-relay',
+        'warning',
+        `STAFFELERGEBNIS ${key} names ${String(genannt)} of ${String(erwartet)} relay members; either all or none are expected`,
+        {
+          ...at(start.line),
+          data: { element: 'STAFFELPERSON', key, genannt, erwartet },
+        },
+      ),
+    );
+  }
+
   const wettkampfByKey = new Map<string, VereinsergebnisWettkampf>();
   for (const [key, builder] of builders) wettkampfByKey.set(key, builder.wettkampf);
 
