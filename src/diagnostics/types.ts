@@ -35,7 +35,18 @@ export type DiagnosticCode =
 export interface Diagnostic {
   readonly code: DiagnosticCode;
   readonly severity: Severity;
-  /** Englisch. Lokalisierung erfolgt über `code` und `data`. */
+  /**
+   * Eine englische Beschreibung für Menschen — Protokolle, Fehlerausgaben,
+   * Entwicklerwerkzeuge.
+   *
+   * Der Wortlaut ist **ausdrücklich nicht zugesichert** und ändert sich ohne
+   * Bruch der Schnittstelle, auch in Patch-Versionen. Er ist keine
+   * Programmierschnittstelle: Wer einen Befund auswertet, unterscheidet ihn
+   * über `code` und liest seine Einzelheiten aus `data`. Wer ihn anzeigt,
+   * lokalisiert ihn ebenso über `code` und `data`. Ein Abgleich auf den
+   * Meldungstext — Gleichheit, Teilzeichenkette, reguläre Ausdrücke — bricht
+   * ohne Vorwarnung.
+   */
   readonly message: string;
   readonly start: Position;
   readonly end: Position;

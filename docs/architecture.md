@@ -314,7 +314,11 @@ wird im README zuerst gezeigt, damit der bequeme Weg der werfende ist und nicht
 der still ignorierende. Severity `fatal` (Input ist kein DSV) wirft immer.
 
 `Diagnostic.code` ist eine String-Literal-Union (greppbar, dokumentierbar,
-lokalisierbar) mit strukturiertem `data`-Feld; `message` ist englisch.
+lokalisierbar) mit strukturiertem `data`-Feld; `message` ist englisch. Der
+Wortlaut von `message` gehört ausdrücklich **nicht** zur zugesicherten
+Oberfläche: Er richtet sich an Menschen und darf sich jederzeit ändern.
+Konsumenten werten `code` und `data` aus – deshalb prüfen auch die Tests diese
+beiden und nicht den Text.
 `line`/`column` sind **1-basiert**, `column` in UTF-16-Code-Units, und es wird
 eine Span (`start`/`end`) geführt, nicht nur ein Punkt.
 
