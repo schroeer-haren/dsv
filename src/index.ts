@@ -129,3 +129,19 @@ export type {
   ParseResult,
 } from './document/types.js';
 export type { Diagnostic, DiagnosticCode, Position, Severity } from './diagnostics/types.js';
+
+/**
+ * Die generierten Elementtypen, je Listenart und Formatversion einer pro
+ * Element der Spezifikation. Sie tragen die Feldbedeutungen und die
+ * Fundstelle in der Spezifikation (`@see dsv8.md:361`) als Doc-Kommentar und
+ * machen sie damit beim Tippen sichtbar — der eigentliche Ertrag des
+ * Codegen-Ansatzes.
+ *
+ * Die Namen tragen durchgehend das Suffix `V7` oder `V8` und kollidieren
+ * deshalb nicht mit den handgeschriebenen Typen des Objektgraphen. Der
+ * Sternexport ist Absicht: `src/schema/generated.ts` wird erzeugt, und ein
+ * neu hinzukommendes Element soll ohne Handarbeit mit herauskommen. Dass die
+ * Oberfläche dadurch nicht unbemerkt wächst, sichert `test/public-api.test.ts`
+ * gegen `docs/public-api.md` ab.
+ */
+export type * from './schema/generated.js';
