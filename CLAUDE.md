@@ -86,18 +86,23 @@ Befunde aus dem gesammelten Bestand, alle parser-relevant:
 ## Stack
 
 - TypeScript (strict), ESM als Quellformat
-- Build: `tsup` → `dist/` mit ESM + CJS + Type-Declarations
+- Build: `tsdown` → `dist/` mit ESM + CJS + Type-Declarations (tsup unterstützt
+  TypeScript 7 nicht, egoist/tsup#1405)
 - Tests: `vitest`
-- Node >= 18
+- TypeScript 7; Werkzeuge, die die Compiler-API brauchen (`scripts/api-surface.ts`,
+  `test/public-api.test.ts`), nutzen `@typescript/typescript6`
+- Lint: oxlint typbewusst (`.oxlintrc.json`, `oxlint-tsgolint`) statt ESLint
+- Node >= 18 für Nutzer der Bibliothek; entwickelt und geprüft wird mit Node 26
+  (`.nvmrc`)
 
 ## Befehle
 
 ```bash
-npm run build       # tsup → dist/
-npm run lint        # eslint .
-npm run lint:fix    # eslint . --fix
+npm run build       # tsdown → dist/
+npm run lint        # oxlint
+npm run lint:fix    # oxlint --fix
 npm run format      # prettier --write .
-npm run typecheck   # tsc --noEmit
+npm run typecheck   # tsc --noEmit --incremental false
 npm test            # vitest run
 npm run check       # lint + typecheck + test
 ```

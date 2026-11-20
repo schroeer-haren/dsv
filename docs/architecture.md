@@ -234,9 +234,9 @@ parse → validate`), aber **alle Kanten in Gegenrichtung sind reine
 schema-freien Datentypen, die alle drei brauchen; die Werte fließen nur in eine
 Richtung.
 
-Diese Kanten sind **nicht durch ESLint erzwungen.** Eine frühere Fassung dieses
-Dokuments behauptete eine `no-restricted-imports`-Regel; `eslint.config.js`
-enthält keine. Wer die Schichtung ändert, muss sie selbst nachhalten.
+Diese Kanten sind **nicht durch den Linter erzwungen.** Eine frühere Fassung dieses
+Dokuments behauptete eine `no-restricted-imports`-Regel; weder die frühere
+`eslint.config.js` noch die heutige `.oxlintrc.json` enthält eine. Wer die Schichtung ändert, muss sie selbst nachhalten.
 
 ## Referenzauflösung
 
@@ -566,7 +566,7 @@ Umgesetzt als `specGap`-Wert: beim Lesen `info`, beim Schreiben erlaubt.
 ## Plattform und Paketierung
 
 Der Kern ist strikt Node-frei (kein `Buffer`, kein `node:*`) und läuft in
-Browser, Deno, Workers und Edge. Ausgeliefert wird über `tsup` als ESM + CJS +
+Browser, Deno, Workers und Edge. Ausgeliefert wird über `tsdown` als ESM + CJS +
 `.d.ts`, geprüft mit `publint` und `@arethetypeswrong/cli` im `check`-Skript.
 
 **Es gibt genau einen Einstiegspunkt.** `package.json` exportiert `"."` und

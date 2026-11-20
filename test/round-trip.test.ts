@@ -106,7 +106,7 @@ describe('Round-Trip über echte Dateien', () => {
    * gehen.
    */
   it('behält Nicht-ASCII-Zeichen in nahezu allen Dateien', () => {
-    const nonAscii = files.filter((name) => [...read(name)].some((c) => c.codePointAt(0)! > 127));
+    const nonAscii = files.filter((name) => /[\u{80}-\u{10FFFF}]/u.test(read(name)));
     expect(nonAscii).toHaveLength(139);
   });
 
