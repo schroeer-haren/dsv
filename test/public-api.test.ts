@@ -1,6 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import ts from 'typescript';
+// TypeScript 7 bringt keine Compiler-API mit; die Analyse läuft über das
+// offizielle Kompatibilitätspaket mit der API von TypeScript 6. Typgeprüft
+// wird das Projekt selbst weiter mit TS 7 (`npm run typecheck`).
+import ts from '@typescript/typescript6';
 import { describe, expect, it } from 'vitest';
 import { collectSurface, renderSurface } from '../scripts/api-surface.js';
 

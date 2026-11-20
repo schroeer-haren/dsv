@@ -808,8 +808,8 @@ Klonen die Abhängigkeiten installieren und die bereitgestellten Skripte nutzen:
 
 ```
 npm install        # Abhängigkeiten installieren
-npm run build      # nach ./dist bauen (ESM + CJS + .d.ts, via tsup)
-npm run lint       # Lint-Regeln prüfen (ESLint)
+npm run build      # nach ./dist bauen (ESM + CJS + .d.ts, via tsdown)
+npm run lint       # Lint-Regeln prüfen (oxlint)
 npm run lint:fix   # sichere Lint-Fixes anwenden
 npm run format     # Formatierung anwenden (Prettier)
 npm run typecheck  # TypeScript prüfen (tsc --noEmit)
@@ -836,9 +836,9 @@ gh release create v1.0.0 --title v1.0.0 --generate-notes
 ## Built With
 
 - [TypeScript](https://www.typescriptlang.org/) – Programmiersprache
-- [tsup](https://tsup.egoist.dev/) – Bundler für ESM, CJS und Type-Declarations
+- [tsdown](https://tsdown.dev/) – Bundler für ESM, CJS und Type-Declarations
 - [Vitest](https://vitest.dev/) – Test-Framework
-- [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/) – Linter und Formatter
+- [oxlint](https://oxc.rs/docs/guide/usage/linter) & [Prettier](https://prettier.io/) – Linter und Formatter
 - [npm](https://www.npmjs.com/) – Paketmanager
 
 ## Lizenz

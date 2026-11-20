@@ -56,7 +56,9 @@ function matchesType(value: string, type: ScalarType): boolean {
     case 'ZK':
       return true;
     case 'Zeichen':
-      return [...value].length === 1;
+      // Genau ein Codepunkt (auch Umlaute und Zeichen außerhalb der BMP);
+      // mit `u` steht `.` für einen Codepunkt, nicht für eine UTF-16-Einheit.
+      return /^.$/su.test(value);
     case 'Zahl':
       return ZAHL.test(value) && Number(value) <= ZAHL_MAX;
     case 'Datum':
